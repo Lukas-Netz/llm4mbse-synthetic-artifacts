@@ -1,0 +1,3 @@
+
+After pitman-arm-angle-change or hazard-warning-light-switch-position-change, it is always the case that direction-indicator-control equals true and direction-indicator-direction equals corresponding-direction and direction-indicator-flash-mode equals normal.
+        

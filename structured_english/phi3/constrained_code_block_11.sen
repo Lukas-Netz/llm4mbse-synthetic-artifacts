@@ -1,0 +1,2 @@
+
+Globally, if driver-holds-pitman-arm-for-more-than-half-second-and-pitman-arm-position-equals-tip-blinking-left, then in response flashing-cycles-left-direction-indicators equals true and flashing-mode-left equals blinking-cycle-release-until-pitman-arm-leaves-position-tip-blinking-left.

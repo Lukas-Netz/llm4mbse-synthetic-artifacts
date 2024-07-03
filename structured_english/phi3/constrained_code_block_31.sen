@@ -1,0 +1,3 @@
+
+After darkness-switch equals activated until not darkness-switch equals activated, it is always the case that ambient-lighting-mode equals off.
+Globally, if vehicle-type equals armored-vehicle, then in response ambient-lighting-mode equals off.

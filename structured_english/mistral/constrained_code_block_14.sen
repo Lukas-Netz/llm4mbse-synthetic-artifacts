@@ -1,0 +1,3 @@
+
+Globally, if emergency-situation equals true, then in response pulse-reduction equals false.
+Globally, if not emergency-situation equals true, then in response pulse-reduction equals true.

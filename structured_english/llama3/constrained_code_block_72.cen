@@ -1,0 +1,2 @@
+
+Globally, if preceding-vehicle-departs and vehicle-speed equals 0, then in response vehicle-speed equals not and vehicle-acceleration equals true.

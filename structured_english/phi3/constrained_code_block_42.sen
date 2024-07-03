@@ -1,0 +1,4 @@
+
+Globally, if pitman-arm-is-pulled, then in response high-beam-headlight equals true.
+Globally, it is always the case that high-beam-headlight equals false.
+Globally, if pitman-arm-is-not-pulled, then in response high-beam-headlight equals false.

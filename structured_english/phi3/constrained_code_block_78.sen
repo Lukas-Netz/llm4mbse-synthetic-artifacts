@@ -1,0 +1,4 @@
+
+Globally, if deceleration-rate less than or-equal-to or deceleration-rate equals 5, then in response collision-with-vehicle-ahead equals true.
+Globally, if collision-with-vehicle-ahead equals true, then in response acoustical-signal-one equals true and acoustical-signal-two equals true and acoustical-signal-one-duration equals 0.1 and acoustical-signal-two-duration equals 0.1 and acoustical-signal-pause-between-one-and-two equals 0.2.
+Globally, if collision-with-vehicle-ahead equals false, then in response no-intervention-demanded equals true.

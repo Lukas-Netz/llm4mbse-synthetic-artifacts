@@ -1,0 +1,4 @@
+
+After two-complete-flashing-cycles, if ignition-key equals not-in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.
+Globally, if ignition-key equals in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.
+Globally, if not ignition-key equals not-in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.

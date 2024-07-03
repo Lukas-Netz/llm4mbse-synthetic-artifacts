@@ -1,0 +1,3 @@
+
+After cruise-control-lever-head-pressing equals true, speed-limit-enabled equals true.
+After cruise-control-lever-head-pressing equals false, speed-limit-enabled equals false.

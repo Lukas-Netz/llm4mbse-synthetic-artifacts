@@ -1,0 +1,5 @@
+
+
+
+
+Globally, if cruise-control equals activated, then in response vehicle-speed equals current-vehicle-speed and driver-action equals no-accelerator-press and driver-action equals no-brake-press.

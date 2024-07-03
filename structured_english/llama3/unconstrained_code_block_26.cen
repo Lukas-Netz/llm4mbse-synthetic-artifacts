@@ -1,0 +1,5 @@
+
+
+
+
+Globally, if active-speed-limit equals true and speed-limiting-lever equals activated, then in response active-speed-limit equals false.

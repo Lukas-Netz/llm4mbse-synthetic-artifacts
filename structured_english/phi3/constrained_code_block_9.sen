@@ -1,0 +1,2 @@
+
+Globally, if driver-moves-pitman-arm-duration less than 0.5 and pitman-arm-position equals "Tip-Blinking-left", then in response left-direction-indicator-flash equals true and flash-cycles equals 3.

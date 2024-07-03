@@ -1,0 +1,5 @@
+
+Globally, if pitman-arm and hazard-warning-light-switch equals on, then in response turn-signal equals true.
+Globally, if pitman-arm and not hazard-warning-light-switch equals on, then in response turn-signal equals false.
+Globally, if not pitman-arm and hazard-warning-light-switch equals on, then in response turn-signal equals true.
+Globally, if not pitman-arm and not hazard-warning-light-switch equals on, then in response turn-signal equals false.

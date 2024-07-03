@@ -1,0 +1,3 @@
+
+Globally, if direction-blinking-right equals true, then in response tip-blinking-right equals true.
+Globally, if direction-blinking-left equals true, then in response tip-blinking-left equals true.

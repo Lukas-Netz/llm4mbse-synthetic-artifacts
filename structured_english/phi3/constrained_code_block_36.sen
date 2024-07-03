@@ -1,0 +1,3 @@
+
+Globally, if adaptive-high-beam-headlights-status equals available, then in response instrument-cluster-symbol equals symbol-indicating-availability.
+Globally, if adaptive-high-beam-headlights-status equals unavailable, then in response instrument-cluster-symbol equals symbol-indicating-unavailability.

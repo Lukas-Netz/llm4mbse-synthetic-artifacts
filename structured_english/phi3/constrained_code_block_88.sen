@@ -1,0 +1,2 @@
+
+Globally, if gas-pedal-pushed equals true and gas-pedal-position-demands-more-acceleration-than-cruise-control-demands, then in response acceleration-setting-adopted equals gas-pedal-position-demands-more-acceleration-than-cruise-control-demands.

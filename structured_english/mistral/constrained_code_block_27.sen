@@ -1,0 +1,3 @@
+
+Globally, if not (door-opening or door-closing or ignition-key-insertion or ignition-key-removal), then in response low-beam-headlights-status equals deactivated.
+Globally, if 30 or more-seconds-passed-since-last-action, then in response low-beam-headlights-status equals deactivated.

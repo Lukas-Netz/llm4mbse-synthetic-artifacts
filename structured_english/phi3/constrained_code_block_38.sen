@@ -1,0 +1,5 @@
+
+Globally, if camera-detects-advancing-vehicle and high-beam-headlights-activated, then in response headlight-mode equals low-beam-headlights and time-to-transition-headlight-mode equals 0.5.
+Globally, if headlight-mode equals high-beam-headlights, then in response illumination-area equals 65.
+Globally, if headlight-mode equals high-beam-headlights, then in response luminous-strength equals reduced-strength.
+Globally, if headlight-mode equals high-beam-headlights, then in response headlight-position equals adjusted-position.

@@ -1,0 +1,6 @@
+
+Globally, if preceding-vehicle-speed less than 20, then in response distance-to-preceding-vehicle equals 2.5.
+Globally, if both-vehicles-are-standing, then in response absolute-distance equals 2.
+Globally, if preceding-vehicle-is-accelerating-again, then in response distance-to-preceding-vehicle equals 3.
+Globally, if vehicle-speed greater than 20, then in response distance-configuration equals system-configuration.
+Globally, it is always the case that distance-configuration equals system-configuration.

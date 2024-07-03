@@ -1,0 +1,4 @@
+
+After push-brake or push-hand-brake, until not equals push-brake or not equals push-hand-brake.
+Globally, if cruise-control-active equals true, then in response cruise-control-active equals false.
+Globally, if cruise-control-active equals false, then in response cruise_control_active equals true.

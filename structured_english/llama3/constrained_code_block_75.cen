@@ -1,0 +1,3 @@
+
+Globally, if distance-to-vehicle-ahead less than speed-dependent-safety-distance, then in response vehicle-brakes equals true.
+Globally, if vehicle-brakes equals true, then in response deceleration equals 5.0.

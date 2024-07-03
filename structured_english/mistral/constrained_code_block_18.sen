@@ -1,0 +1,2 @@
+
+Globally, if flash-direction-indicators equals true and indicator-direction equals all and flash-mode equals synchronically, then in response cumulated-deviation-after-flashing-cycles equals (cumulated-deviation-after-flashing-cycles-minus-one) and (current-flashing-cycle-number-minus-previous-flashing-cycle-number) and (current-flashing-cycle-number-greater-than-or-equal-to equals 1000 and cumulated-deviation-after-flashing-cycles-minus-one less than orequal or equal equals 0.05.

@@ -1,0 +1,5 @@
+
+Globally, if push-pitman-arm-away-from-driver, then in response high-beam-status equals permanent-high-beam-activation and high-beam-status equals adaptive-high-beam-activation and pitman-arm-status equals engaged.
+Globally, if pull-pitman-arm-towards-driver, then in response high-beam-status equals temporary-high-beam-activation and pitman-arm-status equals not-engaged.
+Globally, if move-pitman-arm-up-or-down, then in response direction-indicator-status equals temporary-left-or-right-activation and deflection-angle equals 5.
+Globally, if move-pitman-arm-up-or-down-and-deflection-angle-greater-than-or-equal-to-but-less-than-or-equal-to-seven, then in response direction-indicator-status equals permanent-left-or-right-activation and deflection-angle equals 7.

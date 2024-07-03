@@ -1,0 +1,2 @@
+
+Globally, if country equals USA or country equals CANADA, then in response daytime-running-light-intensity equals daytime-running-light-intensity-dimmed-by-half and direction-blinking-side equals true.

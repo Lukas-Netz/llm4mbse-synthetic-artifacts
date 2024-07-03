@@ -1,0 +1,4 @@
+
+Globally, if light-rotary-switch equals automatic, then in response low-beam-headlights equals true and exterior-brightness-lower-than-S1 equals true.
+Globally, if exterior-brightness-exceeds-S2 and S2 greater than S1, then in response low-beam-headlights equals false.
+Globally, regardless-of-exterior-brightness-levels-below-S2 and S2 greater than S1 and light-rotary-switch equals automatic or not automatic and exterior-brightness-lower-than-S1 equals true or false and time-since-low-beam-activation equals 3 or more.

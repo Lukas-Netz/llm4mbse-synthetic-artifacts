@@ -1,0 +1,10 @@
+
+Globally, if preceding-vehicle-speed less than 20 and preceding-vehicle-speed not equals 0, then in response distance-to-preceding-vehicle equals 2.5.
+Globally, if preceding-vehicle-speed equals 0, then in response distance-to-preceding-vehicle equals 2.
+Globally, if preceding-vehicle-speed greater than 0 and preceding-vehicle-speed less than 20, then in response distance-to-preceding-vehicle equals 2.
+Globally, if preceding-vehicle-speed greater than 20, then in response distance-to-preceding-vehicle equals system-level.
+Globally, if preceding-vehicle-speed equals 0 and vehicle-speed equals 0, then in response distance-to-preceding-vehicle equals 2.
+Globally, if preceding-vehicle-speed greater than 0 and vehicle-speed equals 0, then in response distance-to-preceding-vehicle equals 2.5.
+Globally, if preceding-vehicle-speed greater than 0 and vehicle-speed greater than 0, then in response distance-to-preceding-vehicle equals 3.
+Globally, if preceding-vehicle-speed greater than 0 and vehicle-speed greater than 0 and preceding-vehicle-accelerating equals true, then in response distance-to-preceding-vehicle equals 3.
+Globally, if preceding-vehicle-speed greater than 0 and vehicle-speed greater than 0 and preceding-vehicle-accelerating equals false, then in response distance-to-preceding-vehicle equals system-level.

@@ -1,0 +1,4 @@
+
+Globally, if cruise-control-lever equals activated, then in response cruise-control-activated equals true.
+Globally, if current-vehicle-speed less or equal than 20, then in response speed-set-point equals current-vehicle-speed and cruise-activated equals false.
+Globally, if cruise-activated equals false and cruise-control-lever equals moved-up or cruise-control-lever equals moved-down, then in response speed-set-point equals current-vehicle-speed.

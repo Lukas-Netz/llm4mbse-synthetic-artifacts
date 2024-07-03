@@ -1,0 +1,5 @@
+
+Globally, if subvoltage equals true and ambient-light equals not-available, then in response ambient-light-sensor-output equals false.
+Globally, if subvoltage equals false and ambient-light equals not-available, then in response ambient-light-sensor-output equals unknown.
+Globally, if subvoltage equals true and ambient-light equals available, then in response ambient-light-sensor-output equals true.
+Globally, if subvoltage equals false and ambient-light equals available, then in response ambient-light-sensor-output equals true.

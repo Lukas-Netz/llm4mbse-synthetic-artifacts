@@ -1,0 +1,4 @@
+
+Globally, if preceding-vehicle-departs and preceding-vehicle-speed greater than standstill-speed, then in response vehicle-acceleration equals true.
+Globally, if preceding-vehicle-departs and preceding_vehicle_speed equals standstill-speed, then in response vehicle-acceleration equals true.
+Globally, if preceding-vehicle-departs and preceding_vehicle_speed less than standstill-speed, then in response vehicle-acceleration equals false.

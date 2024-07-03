@@ -1,0 +1,4 @@
+
+After gas-pedal-position greater than 90, speed-limit-deactivation equals true.
+Globally, if speed-limit-deactivation equals true, then in response speed-limit-enabled equals false.
+Globally, if not speed-limit-deactivation equals true, then in response speed-limit-enabled equals true.

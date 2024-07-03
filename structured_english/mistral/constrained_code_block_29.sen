@@ -1,0 +1,3 @@
+
+After low-beam-headlights equals activated and direction-blinking-requested equals true and vehicle-speed less than 10, then equals true.
+Globally, if not low-beam-headlights equals activated or direction-blinking-requested equals false or vehicle-speed greater than 10, then in response cornering-light equals false.

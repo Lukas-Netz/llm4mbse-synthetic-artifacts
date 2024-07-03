@@ -1,0 +1,3 @@
+
+Globally, if sign-recognition-system equals active and sign-detected equals true, then in response speed-limit equals sign-recognized-speed-limit.
+Globally, if sign-recognition-system equals inactive or sign-detected equals false, then in response speed-limit equals default-speed-limit.

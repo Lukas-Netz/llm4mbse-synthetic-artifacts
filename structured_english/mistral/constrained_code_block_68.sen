@@ -1,0 +1,4 @@
+
+Globally, if vehicle-speed less than set-point-speed, then in response acceleration equals positive-acceleration.
+Globally, if vehicle-speed greater than set-point-speed, then in response deceleration equals negative-deceleration.
+Globally, if vehicle-speed equals set-point-speed, then in response acceleration equals zero and deceleration equals zero.

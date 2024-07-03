@@ -1,0 +1,3 @@
+
+After ambient-light-switch equals activated, it is always the case that if at-least-one-door-open equals true and exterior-brightness-outside-vehicle less than S1, then in-response-to-door-open-event-low-beam-headlights equals activated.
+After ambient-light-switch equals activated, it is always the case that if all-doors-closed equals true, then in-response-to-all-doors-closed-event-low-beam-headlights equals deactivated.

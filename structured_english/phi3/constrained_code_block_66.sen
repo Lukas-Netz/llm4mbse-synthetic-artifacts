@@ -1,0 +1,6 @@
+
+Globally, if speed-control-system-function equals user-function, then in response system-behavior equals specified-behavior.
+Globally, user-function equals speed-control-system-function-one or user-function equals speed-control_system-function-two or user-function equals speed-control-system-function-three.
+Globally, if user-function equals speed-control-system-function-one, then in response system-behavior equals behavior-one.
+Globally, if user-function equals speed-control-system-function-two, then in response system-behavior equals behavior-two.
+Globally, if user-function equals speed-control-system-function-three, then in response system-behavior equals behavior-three.

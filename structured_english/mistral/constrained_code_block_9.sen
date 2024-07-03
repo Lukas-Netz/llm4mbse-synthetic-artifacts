@@ -1,0 +1,2 @@
+
+After driver-activates-pitman-arm-in-another-direction or driver-activates-hazard-warning-light-switch, it is always the case that tip-blinking-cycle equals stopped and requested-flashing-cycle equals released.

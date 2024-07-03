@@ -1,0 +1,5 @@
+
+Globally, if preceding-vehicle-speed less than 20 and preceding-vehicle-speed equals 0, then in response distance-to-preceding-vehicle equals 2.5.
+Globally, if both-vehicles-are-standing, then in response distance-to_absolute equals 2.
+Globally, if preceding-vehicle-speed greater than 20 and preceding-vehicle-speed equals 20, then in response distance-to-preceding-vehicle equals 3.
+Globally, if preceding-vehicle-speed greater than 20 and preceding-vehicle-speed equals 20, then in response distance-to-preceding-vehicle equals 3 and this-distance-is-independent-of-user-input.

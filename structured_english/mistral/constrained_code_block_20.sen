@@ -1,0 +1,8 @@
+
+Globally, it is always the case that if flash-direction-indicators equals true, then in and only-if and flash-mode equals synchronically and flash-cycle-completed equals true.
+Globally, it is always the case that if flash-direction-indicators equals false, then in and only-if and flash-mode equals tip-blinking or flash-mode equals direction-blinking.
+Globally, it is always the case that if flash-mode equals tip-blinking or flash-mode equals direction-blinking, then in and only-if and flash-cycle-completed equals false.
+Globally, it is always the case that if flash-mode equals tip-blinking and pitman-arm-position equals tip-blinking, then in and only-if and flash-cycle-completed equals false.
+Globally, it is always the case that if flash-mode equals tip-blinking and pitman-arm-position equals direction-blinking, then in and only-if and flash-cycle-completed equals true.
+Globally, it is always the case that if flash-mode equals direction-blinking and pitman-arm-position equals tip-blinking, then in and only-if and flash-cycle-completed equals true.
+Globally, it is always the case that if flash-mode equals direction-blinking and pitman-arm-position equals direction-blinking, then in and only-if and flash-cycle-completed equals false.

@@ -1,0 +1,3 @@
+
+Globally, if adaptive-high-beam-headlights equals operational, then in response symbol-in-instrument-cluster equals present.
+Globally, if not adaptive-high-beam-headlights equals operational, then in response symbol-in-instrument-cluster equals absent.

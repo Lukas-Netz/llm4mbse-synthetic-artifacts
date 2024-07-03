@@ -1,0 +1,3 @@
+
+After driver-pulls-down-cruise-control-lever and cruise-control-activated equals true and cruise-control-lever-position equals beyond-first-resistance-level, then: equals speed-set-point-reduced.
+Globally, speed-set-point-reduced equals speed-set-point-current-ten-place-minus-one.

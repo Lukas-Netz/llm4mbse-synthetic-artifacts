@@ -1,0 +1,3 @@
+
+Globally, if cruise-control-switch equals on and vehicle-speed not equals desired-speed, then in response vehicle-speed equals desired-speed.
+Globally, if cruise-control-switch equals off, then in response vehicle-speed equals not-set-speed.

@@ -1,0 +1,4 @@
+
+Globally, if vehicle-speed-difference equals set-point-speed, then in response acceleration equals true and deceleration equals false.
+Globally, if vehicle-speed-difference less than set-point-speed, then in response acceleration equals false and deceleration equals true.
+Globally, if vehicle-speed-difference greater than set-point-speed, then in response acceleration equals true and deceleration equals false.

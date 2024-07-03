@@ -1,0 +1,4 @@
+
+After pitman-arm-pulled equals true, it is always the case that high-beam-headlight-activated equals true.
+After pitman-arm-pulled equals false, it is always the case that high-beam-headlight-activated equals false.
+        

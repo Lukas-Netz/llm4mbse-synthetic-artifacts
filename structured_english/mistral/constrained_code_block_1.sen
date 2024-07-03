@@ -1,0 +1,3 @@
+
+After pitman-arm-position-change or hazard-warning-light-switch-position-change, it is always the case that direction-indicators-control equals true and direction-indicators-direction equals corresponding-direction and direction-indicators-mode equals flashing.
+Globally, if not direction-indicators-control equals true, then in response direction-indicators-direction equals off and direction-indicators-mode equals off.

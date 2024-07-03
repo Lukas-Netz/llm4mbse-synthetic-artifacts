@@ -1,0 +1,2 @@
+
+After voltage-in-vehicle-electrical-system greater than 14.5, it is always the case that overvoltage equals true.

@@ -1,0 +1,3 @@
+
+After speed-limiting-lever equals activated, speed-limit-function equals true.
+After speed-limiting-lever equals deactivated, speed-limit-function equals false.

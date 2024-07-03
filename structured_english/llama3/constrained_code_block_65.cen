@@ -1,0 +1,6 @@
+
+Globally, speed-control-system-features equals user-function-union.
+Globally, user-function-union equals speed-control-function-union.
+Globally, speed-control-function-union equals speed-control-function-union-element-union.
+Globally, speed-control-function-union-element-union equals speed-control-function-union-element-union-element-union.
+Globally, speed-control-function-union-element-union-element-union equals speed-resume-function and adaptive-cruise-control-function and coast-function.

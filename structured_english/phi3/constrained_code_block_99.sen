@@ -1,0 +1,5 @@
+
+Globally, if cruise-control-lever-state equals on and speed-limit-function-state equals off, then in response LED-cruise-control-lever-indicator equals on.
+Globally, if cruise-control-lever-state equals off and speed-limit-function-state equals on, then in response LED-cruise-control-lever-indicator equals on.
+Globally, if cruise-control-lever-state equals on and speed-limit-function-state equals on, then in response LED-cruise-control-lever-indicator equals off.
+Globally, if cruise-control-lever-state equals off and speed-limit-function-state equals off, then in response LED-cruise-control-lever-indicator equals off.

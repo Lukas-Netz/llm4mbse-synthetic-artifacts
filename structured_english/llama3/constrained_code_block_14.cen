@@ -1,0 +1,3 @@
+
+Globally, if driver-activates-pitman-arm and tip-blinking-flashing-cycles greater than 3, then in response tip-blinking-remaining-cycles equals 3.
+Globally, if driver-activates-pitman-arm and tip-blinking-remaining-cycles equals 3, then in response tip-blinking-completion equals current-remaining-cycle.

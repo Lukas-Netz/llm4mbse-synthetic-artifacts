@@ -1,0 +1,3 @@
+
+Globally, if any-condition-activates-low-beam-headlights equals true, then in response low-beam-headlights equals on.
+Globally, any-condition-activates-low-beam-headlights equals (ignition-key-in-ignition-lock and time-of-day-is-night) or (automatic-headlight-control-enabled and ambient-light-level-is-low) or (manual-headlight-control-enabled and driver-requests-low-beam).

@@ -1,0 +1,2 @@
+
+Globally, if instrument-cluster-display-request equals true, then in response display-priority equals instrument-cluster-priority-setting.

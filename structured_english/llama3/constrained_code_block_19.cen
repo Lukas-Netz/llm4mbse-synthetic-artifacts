@@ -1,0 +1,2 @@
+
+Globally, if tip-blinking equals activated and hazard-warning-light-switch equals released, then in response tip-considered-during-deactivation equals false.

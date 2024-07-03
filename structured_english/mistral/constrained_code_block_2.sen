@@ -1,0 +1,4 @@
+
+Globally, if light-rotary-switch equals low-beam, then in response headlights-low-beam equals true.
+Globally, if light-rotary-switch equals daytime-running-light, then in response headlights-low-beam equals false.
+Globally, if light-rotary-switch equals auto, then in response headlights-low-beam equals if-light-intensity-sensor-value-is-less-than-threshold-value-for-daytime-running-light-activation.

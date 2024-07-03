@@ -1,0 +1,2 @@
+
+After ambient-light-switch equals activated, it is always the case that low-beam-headlights-active equals true and low-beam-headlights-control-switch equals not-activated and headlight-control-switch equals off.

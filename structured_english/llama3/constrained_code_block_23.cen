@@ -1,0 +1,4 @@
+
+Globally, it is always the case that flashing-cycle-completion equals true.
+Globally, it is always the case that indicator-switching-behavior equals false.
+Globally, it is always the case that pitman-arm-change-from-tip-blinking-to-direction-blinking-or-back equals no-visible-effect.

@@ -1,0 +1,4 @@
+
+Globally, if voltage greater than overvoltage-threshold, then in response headlights-activation equals (actual-power-percentage-within-tolerance).
+Globally, overvoltage-threshold equals 100 and voltage-minus-base-voltage equals 14.5.
+Globally, actual-power-percentage-within-tolerance equals (overvoltage-threshold-minus-((voltage-base-voltage) and (voltage-base-voltage-less-overvoltage-threshold)) and 20 and (voltage-base-voltage-less-overvoltage-threshold)) and (voltage-base-voltage-less-overvoltage-threshold-less-tolerance-upper-bound or voltage-base-voltage-greater-tolerance-lower-bound).

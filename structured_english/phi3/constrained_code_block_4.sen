@@ -1,0 +1,2 @@
+
+After moving-pitman-arm-to-turn-left until not moving-pitman-arm-to-turn-left, it is always the case that flash-left-direction-indicators equals true and indicator-direction equals front-left-exterior-mirror-left-rear-left and flash-mode equals synchronically and pulse-ratio-bright-to-dark equals 1.

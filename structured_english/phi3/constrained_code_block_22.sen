@@ -1,0 +1,4 @@
+
+Globally, if flash-mode equals true, then in response flash-cycle-completion equals true.
+Globally, if flash-mode equals true and flash-cycle-completion equals true, then in response flash-mode equals false.
+Globally, if flash-mode equals false, then in response flash-mode equals true.

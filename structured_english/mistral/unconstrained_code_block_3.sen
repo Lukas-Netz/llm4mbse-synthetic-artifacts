@@ -1,0 +1,3 @@
+
+After hazard-warning-light-deactivated and pit-arm equals direction-blinking-left or pit-arm equals direction-blinking-right, it is always the case that release-direction-blinking-cycle equals true.
+        

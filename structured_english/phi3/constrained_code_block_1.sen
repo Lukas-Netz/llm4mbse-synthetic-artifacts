@@ -1,0 +1,5 @@
+
+Globally, if pitman-arm-status equals true and hazard-warning-light-switch equals released, then in response driving-direction-indicators equals true and indicator-direction equals all and flash-mode equals synchronically.
+Globally, if not pitman-arm-status equals true and hazard-warning-light-switch equals released, then in response driving-direction-indicators equals false and indicator-direction equals none.
+Globally, if ignition-key equals in-ignition-lock, then in response driving-direction-indicators equals true and indicator-direction equals all and flash-mode equals synchronically.
+Globally, if not ignition-key equals in-ignition-lock, then in response driving-direction-indicators equals false and indicator-direction equals none.

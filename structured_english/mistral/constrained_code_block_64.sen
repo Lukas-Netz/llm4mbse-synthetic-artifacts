@@ -1,0 +1,2 @@
+
+Globally, if distance-to-preceding-vehicle greater than speed-dependent-safety-distance and vehicle-speed less than set-speed, then in response acceleration equals 2.

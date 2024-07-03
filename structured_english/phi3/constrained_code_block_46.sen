@@ -1,0 +1,5 @@
+
+Globally, if subvoltage equals true and light-rotary-switch equals auto, then in response high-beam-headlight equals true and pitman-arm-state equals pulled.
+Globally, if subvoltage equals false, then in response high-beam-headlight equals false.
+Globally, if light-rotary-switch not equals auto, then in response high-beam-headlight equals false.
+Globally, if pitman-arm-state not equals pulled, then in response high-beam-headlight equals false.

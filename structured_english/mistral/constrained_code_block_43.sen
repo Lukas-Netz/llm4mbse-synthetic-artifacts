@@ -1,0 +1,2 @@
+
+Globally, if power-level-to-illuminant less than minimum-power-level, then in response reduce-power-to-illuminant equals true.

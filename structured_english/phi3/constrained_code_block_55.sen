@@ -1,0 +1,2 @@
+
+Globally, if control-lever-attached-to-steering-column equals pitman-arm, then in response steering-input equals true.

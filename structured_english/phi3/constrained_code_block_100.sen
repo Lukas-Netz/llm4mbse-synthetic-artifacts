@@ -1,0 +1,5 @@
+
+After hazard-warning-light-switch equals released until not hazard_warning_light_switch equals released, it is always the case that flash-direction-indicators equals true and indicator-direction equals all and flash-mode equals synchronically.
+After hazard-warning-light-switch equals engaged until not hazard_warning_light_switch equals engaged, it is always the case that haptic-feedback equals true.
+Globally, if ignition-key equals in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.
+Globally, if not ignition-key equals in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 2.

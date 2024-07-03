@@ -1,0 +1,4 @@
+
+Globally, if adaptive-cruise-control-system and vehicle-speed greater than 0, then in response vehicle-maintains-distance-to-preceding-vehicle equals true and includes-braking-until-full-standstill and includes-starting-from-standstill.
+Globally, it is always the case that vehicle-maintains-distance-to_preceding-vehicle equals true.
+Globally, if vehicle-speed equals 0, then in response vehicle-maintains-distance-to-preceding-vehicle equals false.

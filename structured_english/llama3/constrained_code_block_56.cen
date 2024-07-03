@@ -1,0 +1,7 @@
+
+Globally, pitman-arm-position equals one-of:push-away-from-driver or pull-towards-driver or move-up-or-down.
+Globally, if pitman-arm-position equals push-away-from-driver, then in response high-beam-activation equals permanent and adaptive-high-beam-activation equals true.
+Globally, if pitman-arm-position equals pull-towards-driver, then in response high-beam-activation equals temporary and flasher-activation equals true.
+Globally, if pitman-arm-position equals move-up-or-down, then in response direction-indicator-activation equals one-of:temporary-permanent-left-right.
+Globally, if pitman-arm-position equals move-up-or-down and deflection-angle equals 5, then in response direction-indicator-activation equals temporary.
+Globally, if pitman-arm-position equals move-up-or-down and deflection-angle equals 7, then in response direction-indicator-activation equals permanent.

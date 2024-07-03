@@ -1,0 +1,5 @@
+
+Globally, if not flashing-cycle-completed, then in response flashing-occur equals false.
+Globally, if flashing-cycle-completed, then in response flashing-occur equals true.
+Globally, if flashing-occur equals true, then in response new-flashing-cycle-occur equals false.
+Globally, if flashing-occur equals false, then in response new-flashing-cycle-occur equals true.

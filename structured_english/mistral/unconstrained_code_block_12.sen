@@ -1,0 +1,2 @@
+
+After cruise-control-activated equals true, it is always the case that vehicle-speed-control-enabled equals true and accelerator-pedal-position equals constant and brake-pedal-position equals constant.

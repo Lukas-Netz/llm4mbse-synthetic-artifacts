@@ -1,0 +1,7 @@
+
+
+
+
+Globally, if cruise-control-switch equals switched, then in response LED-indicator equals on.
+Globally, if cruise-control-switch equals switched and speed-limit-function equals active, then in response LED-indicator equals off.
+Globally, if cruise-control-switch equals switched and speed-limit-function equals inactive, then in response LED-indicator equals on.

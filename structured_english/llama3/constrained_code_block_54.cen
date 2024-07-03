@@ -1,0 +1,5 @@
+
+Globally, if daytime-running-light equals deactivated, then in response daytime-running-light equals false.
+Globally, if daytime-running-light equals activated, then in response daytime-running-light equals true.
+Globally, if daytime-running-light equals true, then in response daytime-running-light-activation equals in-menu-settings-vehicle-settings-daytime-running-light.
+Globally, if daytime-running-light equals false, then in response daytime-running-light-activation equals not-in-menu-settings-vehicle-settings-daytime-running-light.

@@ -1,0 +1,3 @@
+
+Globally, if driver-enables-cruise-control, then in response vehicle-speed equals set-speed.
+Globally, driver-enables-cruise-control equals true-when-possible.

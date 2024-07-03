@@ -1,0 +1,4 @@
+
+Globally, if driver-activates-pitman-arm or driver-activates-hazard-warning-light-switch, then in response tip-blinking-cycle-stopped equals true and requested-flashing-cycle-released equals true.
+Globally, if driver-activates-pitman-arm or driver-activates-hazard-warning-light-switch and tip-blinking-cycles-remaining greater than 0, then in response tip-blinking-cycles-remaining equals 0.0.
+Globally, if driver-activates-pitman-arm or driver-activates-hazard-warning-light-switch and tip-blinking-remaining-cycles equals 0, then in response tip-blinking-remaining-cycles equals 0.0.

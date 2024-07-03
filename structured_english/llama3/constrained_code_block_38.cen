@@ -1,0 +1,4 @@
+
+Globally, if adaptive-high-beam-headlight equals activated and vehicle-speed greater than 30, then in response street-illumination equals true within 2.0Seconds.
+Globally, if adaptive-high-beam-headlight equals activated and vehicle-recognized-light equals none, then in response street-illumination equals true within 2.0Seconds.
+Globally, it is always the case that street-illumination equals according-to-characteristic-curve-AL-Il2.

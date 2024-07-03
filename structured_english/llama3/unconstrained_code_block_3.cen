@@ -1,0 +1,4 @@
+
+
+
+Globally, if hazard-warning-activated equals false and pit-arm-position equals direction-blinking-left or pit-arm-position equals direction-blinking-right, then in response direction-blinking-cycle equals released.

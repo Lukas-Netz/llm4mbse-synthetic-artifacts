@@ -1,0 +1,3 @@
+
+Globally, if cruise-control-lever-position equals above-first-resistance-level and cruise-control-activated, then in response cruise-control-speed-set-point equals next-tens-place-of-starting-speed.
+Globally, if cruise-control-lever-position equals below-first-resistance-level, then in response cruise-control-speed-set-point equals starting-speed.

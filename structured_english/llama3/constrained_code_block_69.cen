@@ -1,0 +1,2 @@
+
+Globally, if speed-limit equals set, then in response vehicle-speed equals less-than-or-equal-to-set-speed.

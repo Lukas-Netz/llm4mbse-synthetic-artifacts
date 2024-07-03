@@ -1,0 +1,3 @@
+
+Globally, if vehicle-speed greater than 0 and distance-to-preceding-vehicle less than safety-distance, then in response visual-warning-signal equals true and acoustic-warning-signal equals true.
+Globally, if vehicle-speed equals 0, then in response visual-warning-signal equals false and acoustic-warning-signal equals false.

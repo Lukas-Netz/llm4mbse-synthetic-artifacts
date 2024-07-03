@@ -1,0 +1,5 @@
+
+
+
+Globally, if pitman-arm equals pulled, then in response headlamp-flasher equals activated and high-beam-headlight equals activated.
+Globally, if not pitman-arm equals pulled, then in response headlamp-flasher equals not-activated and high-beam-headlight equals not-activated.

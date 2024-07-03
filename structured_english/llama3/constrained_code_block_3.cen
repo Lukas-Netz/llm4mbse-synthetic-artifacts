@@ -1,0 +1,5 @@
+
+Globally, if high-beam-switch equals on, then in response high-beam-headlights equals on.
+Globally, if high-beam-switch equals off, then in response high-beam-headlights equals off.
+Globally, if high-beam-switch equals on and vehicle-detection equals true, then in response high-beam-headlights equals off.
+Globally, if high-beam-switch equals on and vehicle-detection equals false, then in response high-beam-headlights equals on.

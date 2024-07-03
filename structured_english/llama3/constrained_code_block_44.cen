@@ -1,0 +1,2 @@
+
+Globally, if light-rotary-switch equals "off" or light-rotary-switch equals "exterior light on", then in response pitman-arm-pulling and high-beam-headlight-activation equals true and fixed-illumination-area equals 220.0.

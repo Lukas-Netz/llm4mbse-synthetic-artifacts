@@ -1,0 +1,3 @@
+
+Globally, if cruise-control-lever-head equals pressed, then in response speed-limit-enabled equals true.
+Globally, if cruise-control-lever-head equals not-pressed, then in response speed-limit-enabled equals false.

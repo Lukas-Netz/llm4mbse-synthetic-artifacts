@@ -1,0 +1,3 @@
+
+Globally, if pitman-arm-movement and pitman-arm-movement-duration less than 0.5, then in response left-direction-indicators equals flash and flash-cycles equals 3.0.
+Globally, if not pitman-arm-movement or pitman-arm-movement-duration greater or equal than 0.5, then in response left-direction-indicators equals not-flash.

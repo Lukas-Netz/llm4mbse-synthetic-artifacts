@@ -1,0 +1,6 @@
+
+After pitman-arm-movement equals horizontal-neutral, then and only after 0.5000000000000001 Seconds.
+Globally, if pitman-arm-movement equals horizontal-neutral, then in response adaptive-high-beam-headlight equals false.
+Globally, if pitman-arm-movement not equals horizontal-neutral, then in response adaptive-high-beam-headlight equals true.
+Globally, if pitman_arm_movement equals horizontal_neutral, then in response headlight-illumination equals low_beam_headlights.
+Globally, if pitman_arm_movement not equals horizontal_neutral, then in response headlight-illumination equals adaptive_high_beam_headlights.

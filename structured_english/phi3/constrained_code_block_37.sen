@@ -1,0 +1,4 @@
+
+Globally, if adaptive-high-beam-headlights equals activated and vehicle-speed greater than 30 and no-advancing-vehicle-detected-by-camera, then in response street-illumination-time equals 2.
+Globally, if adaptive-high-beam-headlights equals activated and vehicle-speed less than or-equal-to or not-detected-advancing-vehicle-by-camera, then in response street-illumination-time equals system-default-time.
+Globally, characteristic-curve-AL-l112 equals illumination-time-within-range-of-activated-high-beam-headlights.

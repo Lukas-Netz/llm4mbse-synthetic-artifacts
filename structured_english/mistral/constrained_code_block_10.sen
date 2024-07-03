@@ -1,0 +1,2 @@
+
+After driver-holds-pitman-arm equals true and pitman-arm-position equals tip-blinking-left until not driver-holds-pitman-arm equals true, it is always the case that flash-direction-indicators equals true and indicator-direction equals left and flash-mode equals cycling.

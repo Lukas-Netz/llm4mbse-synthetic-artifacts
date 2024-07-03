@@ -1,0 +1,2 @@
+
+Globally, if cruise-control-activated equals true, then in response vehicle-speed equals constant-speed and accelerator-pedal equals not-pressed and brake-pedal equals not-pressed.

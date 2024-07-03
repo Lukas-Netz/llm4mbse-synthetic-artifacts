@@ -1,0 +1,3 @@
+
+Globally, if light-rotary-switch equals daytime-running-light-setting, then in response low-beam-headlights equals false.
+Globally, if light-rotary-switch not equals daytime-running-light-setting, then in response low-beam-headlights equals true.

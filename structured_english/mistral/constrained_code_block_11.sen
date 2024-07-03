@@ -1,0 +1,5 @@
+
+After direction-blinking-right-switch equals released until not direction-blinking-right-switch equals released, it is always the case that flash-direction-indicators equals true and indicator-direction equals right and flash-mode equals synchronically.
+After tip-blinking-right-switch equals released until not tip-blinking-right-switch equals released, it is always the case that flash-tip-indicators equals true and indicator-direction equals right and flash-mode equals synchronically.
+Globally, if analogous-to-left-side equals true, then in response tip-blinking-right-switch equals exists.
+Globally, if analogous-to-left-side equals true, then in response direction-blinking-right-switch equals exists.

@@ -1,0 +1,6 @@
+
+Globally, if low-beam-headlights-switch equals on, then in response low-beam-headlights-status equals on.
+Globally, if day-light-sensor equals dark, then in response low-beam-headlights-status equals on.
+Globally, if automatic-headlight-control-switch equals on, then in response low-beam-headlights-status equals on.
+Globally, if automatic-headlight-control-switch equals off and day-light-sensor equals not-dark, then in response low-beam-headlights-status equals off.
+Globally, if automatic-headlight-control-switch equals off and low-beam-headlights-switch equals off, then in response low-beam-headlights-status equals off.

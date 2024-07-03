@@ -1,0 +1,3 @@
+
+After clamp-activation-switch-number-equals equals 30 and ignition-key equals in-ignition-lock, it is always the case that camera-self-test-activated equals true.
+After clamp-activation-switch-number-equals equals 30 and elapsed-time equals 20000, it is always the case that camera-picture-information-available equals true.

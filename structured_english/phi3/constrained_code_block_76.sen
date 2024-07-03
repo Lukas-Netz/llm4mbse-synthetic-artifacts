@@ -1,0 +1,2 @@
+
+Globally, if driver-activates-cruise-control-by-lever-pull or if not equals cruise-control-lever-up-press or if not equals cruise-control-lever-down-press, then in response vehicle-maintains-set-speed-if-possible.

@@ -1,0 +1,3 @@
+
+Globally, if speed-limiting-lever equals activated, then in response speed-limit equals selected-value.
+Globally, selected-value equals 60 or selected-value equals 80 or selected_value equals 100.

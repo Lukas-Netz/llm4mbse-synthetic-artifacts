@@ -1,0 +1,2 @@
+
+After pitman-arm-position equals "Tip-Blinking left" and duration-of-pitman-arm-movement less than 0.5, it is always the case that flash-direction-indicators equals true and indicator-direction equals left and flash-mode equals three-cycles.

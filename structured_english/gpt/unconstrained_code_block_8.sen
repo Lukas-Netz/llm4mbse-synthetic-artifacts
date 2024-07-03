@@ -1,0 +1,3 @@
+
+Globally, if ambient-light equals activated and at-least-one-door equals open and exterior-brightness less than threshold-S1, then in response low-beam-headlights equals activated.
+Globally, if all-doors equals closed, then in response low-beam-headlights equals deactivated.

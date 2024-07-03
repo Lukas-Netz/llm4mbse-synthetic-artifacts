@@ -1,0 +1,3 @@
+
+Globally, if exterior-lighting-system-function equals user-function, then in response lighting-output equals specified-output.
+Globally, user-functions-list equals list-of-all-possible-user-functions-in-exterior-lighting-system.

@@ -1,0 +1,2 @@
+
+Globally, if driver-activates-pitman-arm and current-flashing-cycle equals within-three-cycles-of-tip-blinking, then in response complete-current-flashing-cycle and stop-further-flashing-cycles.

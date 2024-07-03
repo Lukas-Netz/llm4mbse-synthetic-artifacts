@@ -1,0 +1,3 @@
+
+Globally, if driver-holds-pitman-arm and pitman-arm-position equals "tip-blinking-left" and time-held-greater-than equals 0.5, then in response direction-indicators-left equals flashing and flashing-cycles-left equals released.
+Globally, if driver-lets-go-arms, then in response direction-indicators-left equals not-flashing.

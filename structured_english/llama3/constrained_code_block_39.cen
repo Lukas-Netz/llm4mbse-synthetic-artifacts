@@ -1,0 +1,4 @@
+
+Globally, if camera-recognizes-vehicle-lights equals true, then in response high-beam-headlights equals low-beam-headlights within 0.5 Seconds.
+Globally, it is always the case that adjustment-of-headlight-position and reduction-of-luminous-strength equals true.
+Globally, it is always the case that area-of-illumination equals 65.0.

@@ -1,0 +1,2 @@
+
+After pitman-arm equals turn-left, it is always the case that flash-direction-indicators equals true and indicator-direction equals left and flash-mode equals synchronically and pulse-ratio-bright-to-dark equals 1.

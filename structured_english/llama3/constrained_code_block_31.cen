@@ -1,0 +1,5 @@
+
+Globally, if ambient-light equals low-beam-headlights, then in response ambient-conditions equals not-activated.
+Globally, if none-of-the-following-actions-occur within 30 Seconds, then in response ambient-conditions equals not-activated.
+Globally, if any-of-the-following-actions-occur, then in response ambient-conditions equals activated.
+Globally, any-possible-actions-include: or -door-closing and -door-opening and ignition-key-insertion and ignition-key-removal.

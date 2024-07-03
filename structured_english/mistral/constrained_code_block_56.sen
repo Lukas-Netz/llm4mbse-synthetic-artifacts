@@ -1,0 +1,2 @@
+
+Globally, if critical-situation equals true, then in response vehicle-decelerates-to-full-standstill equals true.

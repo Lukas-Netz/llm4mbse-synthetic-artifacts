@@ -1,0 +1,3 @@
+
+Globally, if gas-pedal-pressure equals greater-than-ninety-percent-speed-limit, then in response speed-limit-deactivation equals true and speed-limit-deactivation-duration equals temporary.
+Globally, if gas-pedal-pressure less or equal than ninety-percent-speed-limit, then in response speed-limit-deactivation equals false.

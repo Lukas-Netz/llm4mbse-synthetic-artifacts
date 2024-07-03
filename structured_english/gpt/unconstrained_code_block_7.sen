@@ -1,0 +1,3 @@
+
+Globally, if daytime-running-light equals activated and engine equals started, then in response low-beam-headlights equals activated.
+After ignition-key equals in-ignition-lock until not ignition-key equals in-ignition-lock, it is always the case that daytime-running-light equals active.

@@ -1,0 +1,6 @@
+
+
+
+
+Globally, if emergency-situation, then in response pulse-reduction equals true.
+Globally, if pulse-reduction equals true, then in response hazard-warning-light-activation equals as-long-as-possible-before-car-battery-is-empty.

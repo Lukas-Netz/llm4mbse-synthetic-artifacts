@@ -1,0 +1,3 @@
+
+Globally, if cruise-control-deactivated and cruise-control-lever-pulled, then in response set-speed-point equals last-chosen-speed-set-point.
+Globally, if no-speed-set-since-last-motor-start and cruise-control-lever-pulled, then in response set-speed-point equals current-vehicle-speed.

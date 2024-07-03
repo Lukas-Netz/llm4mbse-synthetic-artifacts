@@ -1,0 +1,4 @@
+
+Globally, if vehicle-speed equals unknown, then in response light-illumination-area equals unknown.
+Globally, if vehicle-speed greater than unknown, then in response light-illumination-area equals within between 100 and 300.0 Seconds.
+Globally, if vehicle-speed equals unknown, then in response light-illumination-area equals unknown.

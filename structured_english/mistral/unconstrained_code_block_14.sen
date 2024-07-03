@@ -1,0 +1,3 @@
+
+After speed-limit-function-activation equals true, it is always the case that current-speed less or equal than set-speed-limit.
+        

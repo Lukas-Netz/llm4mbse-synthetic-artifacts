@@ -1,0 +1,3 @@
+
+After brake-pedal-force equals heavy, it is always the case that brake-assist equals true and brake-force-multiplier equals greater-than-one.
+Globally, if brake-assist equals false, then in response brake-force-multiplier equals one.

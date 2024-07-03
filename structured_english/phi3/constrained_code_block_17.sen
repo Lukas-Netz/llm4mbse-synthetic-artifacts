@@ -1,0 +1,5 @@
+
+Globally, if ignition-key equals not-in-ignition-lock, then in response hazard-warning-light-active equals true and as-long-as-possible-until-battery-empty.
+Globally, if ignition-key equals in-ignition-lock, then in response hazard-warning-light-active equals false.
+Globally, if hazard-warning-light-active equals true, then in response car-battery-status equals empty.
+Globally, if hazard-warning-light-active equals false, then in response car-battery-status equals not-empty.

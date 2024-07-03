@@ -1,0 +1,3 @@
+
+Globally, if driver-activates-pitman-arm-not-in-requested-direction or driver-activates-hazard-warning-light-switch, then in response Tip-Blinking-cycle-must-be-stopped and requested-flashing-cycle-must-be-released.
+Globally, it is always the case that requested-flashing-cycle equals direction-of-turn-signal-flashing or requested-flashing-cycle equals tip-blinking-cycle or requested-flashing_cycle equals hazard-warning-light-flashing.

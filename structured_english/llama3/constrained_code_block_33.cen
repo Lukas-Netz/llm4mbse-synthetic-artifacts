@@ -1,0 +1,3 @@
+
+Globally, if low-beam-headlights equals activated and direction-blinking equals requested, then in response cornering-light equals activated.
+Globally, if vehicle-speed less than 10.0, then in response cornering-light equals activated.

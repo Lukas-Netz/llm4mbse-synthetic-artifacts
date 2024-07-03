@@ -1,0 +1,2 @@
+
+After corner-approach-duration equals 10 and direction-blinking equals false, it is always the case that cornering-light equals true and fade-out-duration equals 1.0.

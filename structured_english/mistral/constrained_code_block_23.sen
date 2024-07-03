@@ -1,0 +1,4 @@
+
+After daytime-running-light-activation equals true, it is always the case that low-beam-headlights-activation equals true and engine-start equals true.
+Globally, if ignition-key equals in-ignition-lock, then in response daytime-running-light-activation equals true.
+Globally, if ignition-key equals not-in-ignition-lock, then in response daytime-running-light-activation equals false.

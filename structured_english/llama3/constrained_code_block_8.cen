@@ -1,0 +1,3 @@
+
+Globally, if deviation-from-expected-behavior less than 0.05, then in response cognitive-threshold equals accepted.
+Globally, cognitive-observer equals human.

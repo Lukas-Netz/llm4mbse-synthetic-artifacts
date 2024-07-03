@@ -1,0 +1,5 @@
+
+Globally, if high-beam-switch equals on, then in response high-beam-control equals adaptive-high-beam-control.
+Globally, if high-beam-control equals adaptive-high-beam-control, then in response high-beam-headlights-control equals on.
+Globally, if high-beam-control equals adaptive-high-beam-control and advancing-vehicle-detection equals true, then in response high-beam-headlights-control equals off.
+Globally, if high-beam-control equals adaptive-high-beam-control and advancing-vehicle-detection equals false, then in response high-beam-headlights-control equals on.

@@ -1,0 +1,2 @@
+
+Globally, if speed-limit-function equals activated, then in response current-speed less than or-equal-to-set-speed-limit.

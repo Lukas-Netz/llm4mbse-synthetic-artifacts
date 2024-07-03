@@ -1,0 +1,3 @@
+
+Globally, if cruise-control-lever equals activated and cruise-control-resistance-level equals first-resistance-level, then in response speed-set-point equals next-lower-tens-place-of-starting-speed.
+Globally, if cruise-control-lever equals activated and cruise-control-resistance-level not equals first-resistance-level, then in response speed-set-point equals starting-speed.

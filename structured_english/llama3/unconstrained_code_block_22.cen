@@ -1,0 +1,5 @@
+
+
+
+
+Globally, if current-vehicle-speed equals set-point-speed, then in response acceleration equals set-acceleration and deceleration equals set-deceleration.

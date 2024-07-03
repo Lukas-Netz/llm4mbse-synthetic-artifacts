@@ -1,0 +1,3 @@
+
+Globally, if tip-blinking-activated and not hazard-warning-deactivated, then in response hazard-warning-deactivated equals false.
+Globally, if not tip-blinking-activated, then in response hazard-warning-deactivated equals true.

@@ -1,0 +1,3 @@
+
+Globally, if speed-limit-switch equals on, then in response vehicle-speed equals or-less-than-speed-limit.
+Globally, if speed-limit-switch equals off, then in response vehicle-speed equals not-limited.

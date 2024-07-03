@@ -1,0 +1,5 @@
+
+Globally, if pitman-arm equals moved-to-horizontal-neutral-position, then in response adaptive-high-beam-headlight equals deactivated.
+Globally, if adaptive-high-beam-headlight equals deactivated, then in response illumination-of-street equals reduced and illumination-mode equals low-beam-headlights.
+Globally, it is always the case that reduction-of-illumination-occurs-immediately.
+Globally, it is always the case that reduction-of-illumination-does-not-occur-gently.

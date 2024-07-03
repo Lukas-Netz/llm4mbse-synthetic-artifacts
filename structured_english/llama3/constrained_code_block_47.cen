@@ -1,0 +1,3 @@
+
+Globally, if voltage-vehicle-electrical-system less than 8.5, then in response subvoltage equals true.
+Globally, if voltage-vehicle-electrical-system greater or equal than 8.5, then in response subvoltage equals false.

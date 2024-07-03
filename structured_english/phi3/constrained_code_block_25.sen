@@ -1,0 +1,6 @@
+
+After engine-start and ignition-key equals in-ignition-lock, then after 0.5000000000000001 Seconds.
+Globally, if ignition-key equals in-ignition_lock, then in response low-beam-headlights equals true.
+Globally, if ignition-key not equals in-ignition_lock, then in response low-beam-headlights equals false.
+Globally, if daytime-running-light equals active, then in response low-beam-headlights equals true and duration equals 0.5000000000000001.
+Globally, if daytime-running-light not equals active, then in response low-beam-headlights equals false.

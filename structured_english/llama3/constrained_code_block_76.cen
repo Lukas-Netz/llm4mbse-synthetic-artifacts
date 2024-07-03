@@ -1,0 +1,3 @@
+
+Globally, if maximum-deceleration less than 5.0, then in response warning equals true.
+Globally, if warning equals true, then in response warning-signal equals acoustical and warning-signal-duration equals 0.1 and warning-signal-pause equals 0.2 and warning-demand equals intervene.

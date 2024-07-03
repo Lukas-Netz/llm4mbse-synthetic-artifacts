@@ -1,0 +1,5 @@
+
+Globally, if cruise-control-lever-position equals up or cruise-control-lever-position equals down and cruise-control-status equals deactivated, then in response speed-set-point equals current-vehicle-speed.
+Globally, if current-vehicle-speed less than 20, then in response cruise-control-status equals not-activated.
+Globally, if cruise-control-status equals activated, then in response cruise-control-status equals not-activated.
+Globally, if current-vehicle-speed greater than 20 and cruise-control-status equals not-activated, then in response cruise-control-status equals activated.

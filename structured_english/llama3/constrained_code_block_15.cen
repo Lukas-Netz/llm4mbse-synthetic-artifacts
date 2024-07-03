@@ -1,0 +1,4 @@
+
+Globally, if hazard-warning-light-switch equals released, then in response direction-indicator-flashing equals true and direction-indicator equals all and flash-mode equals synchronically.
+Globally, if ignition-ignition-lock and ignition-key equals in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.1.
+Globally, if not ignition-ignition-lock and ignition-key equals not-in-ignition-lock, then in response pulse-ratio-bright-to-dark equals 1.2.

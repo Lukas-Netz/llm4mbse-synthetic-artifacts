@@ -1,0 +1,4 @@
+
+Globally, if driver-pushes-cruise-control-lever and cruise-control-activated, then in response cruise-control-speed-set-point equals increased-by-ten.
+Globally, if driver-pushes-cruise-control-lever and cruise-control-activated, then in response cruise-control-speed-set-point equals round-up-to-next-tens-place.
+Globally, if driver-pushes-cruise-control-lever and cruise-control-activated, then in response cruise-control-speed-set-point equals example-previous-speed-set-point and new-speed-set-point equals example-new-speed-set-point.

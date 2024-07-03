@@ -1,0 +1,2 @@
+
+Globally, if tip-blinking equals activated and hazard-warning-light-switch equals not-released, then in response hazard-warning-light-switch equals not-released and not-consider-tip-blinking.

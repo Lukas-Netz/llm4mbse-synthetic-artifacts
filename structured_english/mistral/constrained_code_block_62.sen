@@ -1,0 +1,2 @@
+
+After driver-enables-cruise-control, it is always the case that vehicle-maintains-set-speed equals true.

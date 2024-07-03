@@ -1,0 +1,2 @@
+
+Globally, if heavy-brake-pushing-detected and brake-pedal-pressure-greater-than-threshold, then in response braking-process-intensity equals increased-intensity.

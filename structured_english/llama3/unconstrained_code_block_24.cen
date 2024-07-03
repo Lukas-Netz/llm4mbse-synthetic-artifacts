@@ -1,0 +1,5 @@
+
+
+
+
+Globally, if driver-pushes-gas-pedal and gas-pedal-position greater than cruise-control-acceleration, then in response acceleration-setting equals driver-acceleration-setting.

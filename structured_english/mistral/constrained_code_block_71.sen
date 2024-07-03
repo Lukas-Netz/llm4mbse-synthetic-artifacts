@@ -1,0 +1,3 @@
+
+Globally, if driver-pushes-gas-pedal and cruise-control-active equals true, then in response acceleration-setting equals driver-demanded-acceleration.
+Globally, if driver-pushes-gas-pedal and cruise-control-active equals false, then in response acceleration-setting equals cruise-control-setting.

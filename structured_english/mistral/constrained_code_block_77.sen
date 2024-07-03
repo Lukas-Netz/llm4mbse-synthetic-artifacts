@@ -1,0 +1,2 @@
+
+After speed-limiting-lever equals deactivated, it is always the case that active-speed-limit equals false.

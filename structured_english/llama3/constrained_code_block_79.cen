@@ -1,0 +1,4 @@
+
+Globally, if adaptive-cruise-control-system and calculate-distance-to-vehicle-ahead, then in response issue-warnings equals true.
+Globally, if issue-warnings equals true and actual-distance less than (current-speed/ and time), then in response warning-type equals acoustic-alarm.
+Globally, if issue-warnings equals true and actual-distance less than 2 and time, then in response warning-type equals visual-warning.

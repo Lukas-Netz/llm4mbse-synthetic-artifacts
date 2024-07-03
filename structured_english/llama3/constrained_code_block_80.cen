@@ -1,0 +1,4 @@
+
+Globally, if vehicle-speed less or equal than 60, then in response emergency-brake-assistant-availability equals true and emergency-brake-assistant-activation equals stationary-obstacle.
+Globally, if vehicle-velocity less or equal than 120, then in response emergency-brake-assistant-availability equals true and emergency-brake-assistant-activation equals moving-obstacle.
+Globally, if vehicle-velocity greater than 60 or vehicle-velocity greater than 120, then in response emergency-brake-assistant-availability equals false.

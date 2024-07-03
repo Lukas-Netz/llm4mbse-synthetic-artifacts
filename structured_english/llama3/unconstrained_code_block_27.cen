@@ -1,0 +1,6 @@
+
+
+
+
+Globally, if press-cruise-control-lever equals true, then in response speed-limit-enabled equals true.
+Globally, if not press-cruise-control-lever equals true, then in response speed-limit-enabled equals false.

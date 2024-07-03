@@ -1,0 +1,5 @@
+
+Globally, if speed-window equals 0 and above or speed-window equals 60 and below or speed-window equals 120 and above, then in response emergency-brake-assistant equals true.
+Globally, if speed-window equals 0, then in response emergency-brake-assistant equals true and obstacle-type equals stationary.
+Globally, if speed-window equals 60 and below, then in response emergency-brake-assistant equals true and obstacle-type equals moving.
+Globally, if speed-window equals 120 and above, then in response emergency-brake-assistant equals true and obstacle-type equals moving.

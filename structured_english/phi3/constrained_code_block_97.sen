@@ -1,0 +1,2 @@
+
+Globally, if speed-limiting-lever equals released, then in response active-speed-limit equals false.
