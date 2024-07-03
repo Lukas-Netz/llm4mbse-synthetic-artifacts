@@ -1,0 +1,66 @@
+
+classdiagram ConnectedCarPlatform {
+
+    class Vehicle {
+      String vin;
+      Set<Feature> features;
+      Set<Sensor> sensors;
+    }
+
+    class Feature {
+      String name;
+    }
+
+    class GPS extends Feature {
+      Location location;
+      double speed;
+      String direction;
+    }
+
+    class Bluetooth extends Feature {
+      String connectedDevice;
+    }
+
+    class WiFi extends Feature {
+      boolean isConnected;
+    }
+
+    class Sensor {
+      String name;
+      double value;
+    }
+
+    class Computer {
+      void processSensorData(Sensor sensor);
+      void sendDataToCloud();
+    }
+
+    class Cloud {
+      void storeData(Vehicle vehicle);
+      void processData(Vehicle vehicle);
+      void sendAlerts(Vehicle vehicle);
+    }
+
+    class Fleet {
+      Set<Vehicle> vehicles;
+      FleetAdministrator admin;
+    }
+
+    class FleetAdministrator {
+      void monitorVehicles();
+      void trackLocation(Vehicle vehicle);
+      void receiveAlerts(Vehicle vehicle);
+    }
+
+    class Payment {
+      void charge(Vehicle vehicle);
+      void processTransaction(Vehicle vehicle);
+    }
+
+    composition Vehicle -> (has) Feature;
+    composition Vehicle -> (has) Sensor;
+    composition Vehicle -> (has) Computer;
+    composition Fleet -> (has) FleetAdministrator;
+    composition Fleet -> (has) Payment;
+    composition Vehicle -> (has) Cloud;
+}

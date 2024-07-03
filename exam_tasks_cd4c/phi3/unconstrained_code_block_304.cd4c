@@ -1,0 +1,35 @@
+
+classdiagram PrecisionFertilizerDispenser {
+
+    class Dispenser {
+      String uniqueId;
+      Location location;
+      int capacity;
+      int currentFertilizerLevel;
+      void dispenseFertilizer(double amount);
+      void refillFertilizer(int amount);
+      double getFertilizerLevel();
+    }
+
+    class Sensor {
+      String location;
+      double soilMoisture;
+      double pHLevel;
+      void updateSensorData();
+    }
+
+    class MobileApp {
+      void scheduleFertilizerApplication(Dispenser dispenser, double amount);
+      void monitorSoilConditions(Dispenser dispenser);
+      void receiveAlerts(Dispenser dispenser);
+    }
+
+    class Farm {
+      List<Dispenser> dispensers;
+      List<Sensor> sensors;
+    }
+
+    composition Farm -> (has) Dispenser [*];
+    composition Farm -> (has) Sensor [*];
+    composition Dispenser -> Sensor [*];
+}

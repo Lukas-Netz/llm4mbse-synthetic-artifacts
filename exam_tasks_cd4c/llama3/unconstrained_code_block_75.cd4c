@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram LogisticsFleet  {
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Truck extends Vehicle  {
+    int cargoCapacity;
+    TrailerType trailerType;
+  }
+
+  class Van extends Vehicle  {
+    int cargoCapacity;
+    CargoType cargoType;
+  }
+
+  class Car extends Vehicle  {
+    int cargoCapacity;
+    FuelEfficiencyRating fuelEfficiencyRating;
+  }
+
+  class VehicleLocation  {
+    double latitude;
+    double longitude;
+  }
+
+  class MaintenanceTask  {
+    Date dueDate;
+    String description;
+  }
+
+  class FuelConsumptionReport  {
+    double totalFuelConsumed;
+    double averageFuelEfficiency;
+  }
+
+  class DistanceTraveledReport  {
+    double totalDistanceTraveled;
+  }
+
+  class CRMIntegration  {
+    CustomerOrder customerOrder;
+  }
+
+  class CustomerOrder  {
+    String customerName;
+    String orderDetails;
+  }
+
+  composition Vehicle -> VehicleLocation;
+  composition Vehicle -> MaintenanceTask[*];
+  composition Vehicle -> FuelConsumptionReport;
+  composition Vehicle -> DistanceTraveledReport;
+  composition CRMIntegration -> CustomerOrder;
+}
+

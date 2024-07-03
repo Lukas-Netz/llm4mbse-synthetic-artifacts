@@ -1,0 +1,50 @@
+
+classdiagram CloudCollaborationSystem {
+
+    class Project {
+      String name;
+      String description;
+      List<Task> tasks;
+      User projectManager;
+      List<User> teamMembers;
+      List<User> observers;
+      void addUser(User user);
+      void removeUser(User user);
+      void assignUser(User user, Task task);
+      void unassignUser(User user, Task task);
+      void updateTaskProgress(Task task, String progress);
+      String getProjectProgress();
+    }
+
+    class Task {
+      String name;
+      String description;
+      Date dueDate;
+      List<User> assignedUsers;
+      String progress;
+      void updateProgress(String progress);
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+    }
+
+    class File {
+      String name;
+      String content;
+      String fileType;
+    }
+
+    class Comment {
+      String content;
+      User commenter;
+      Date timestamp;
+    }
+
+    association Project <-> User[0..*];
+    association Project <-> Task[1..*];
+    association Task <-> User[0..*];
+    association Project <-> File[0..*];
+    association Task <-> Comment[0..*];
+}

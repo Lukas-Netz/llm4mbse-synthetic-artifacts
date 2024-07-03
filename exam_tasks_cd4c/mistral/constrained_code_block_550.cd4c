@@ -1,0 +1,51 @@
+
+classdiagram CoralReefMonitoring {
+
+  class Sensor {
+    String id;
+    String type;
+    String parameter;
+  }
+
+  class Drone {
+    String id;
+    String model;
+    String batteryLevel;
+  }
+
+  class CentralHub {
+    -> Sensor [*];
+    -> Drone [*];
+    Database database;
+    UserInterface ui;
+  }
+
+  class Database {
+    void storeData(Sensor sensor, Drone drone);
+  }
+
+  class UserInterface {
+    void displayData(Sensor sensor, Drone drone);
+  }
+
+  class CoralReefHealth {
+    int healthScore;
+    String status;
+  }
+
+  class ChangeOrThreat {
+    String type;
+    String severity;
+  }
+
+  class Recommendation {
+    String action;
+    String description;
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Drone [*];
+  association CentralHub -- CoralReefHealth;
+  association CentralHub -- ChangeOrThreat;
+  association CentralHub -- Recommendation;
+}

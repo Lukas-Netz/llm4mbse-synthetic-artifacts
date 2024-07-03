@@ -1,0 +1,40 @@
+
+classdiagram VirtualFashionShowroom {
+
+    class VirtualFashionShowroom {
+      List<FashionItem> items;
+      FashionShow show;
+    }
+
+    class FashionItem {
+      String name;
+      String brand;
+      String category;
+      double price;
+      FashionDesigner designer;
+      String collectionName;
+      String collectionDescription;
+      List<FashionItem> collectionItems;
+    }
+
+    class FashionDesigner {
+      String name;
+      String bio;
+      List<FashionItem> createdItems;
+    }
+
+    class FashionShow {
+      String name;
+      String description;
+      Date startDate;
+      Date endDate;
+      List<FashionItem> items;
+    }
+
+    association VirtualFashionShowroom -> [has] FashionItem;
+    association VirtualFashionShowroom -> [has] FashionShow;
+    composition FashionItem -> FashionDesigner;
+    composition FashionItem -> FashionItemCollection;
+    association FashionDesigner -> [has] FashionItemCollection;
+    composition FashionShow -> FashionItemCollection;
+}

@@ -1,0 +1,46 @@
+
+classdiagram CyberDefenseSystem {
+
+    class Sensor {
+      String sensorId;
+      List<Network> networksMonitored;
+    }
+
+    class Analyzer {
+      int priorityLevel;
+      List<Threat> threatsAnalyzed;
+    }
+
+    class Responder {
+      ResponseType responseType;
+      List<Threat> threatsRespondedTo;
+    }
+
+    class Database {
+      int capacityGB;
+      List<Threat> knownThreats;
+    }
+
+    class AI {
+      float learningRate;
+      List<Threat> threatsLearnedFrom;
+    }
+
+    class SystemAdministrator {
+      void configureSystem();
+      void addComponent(Component component);
+      void removeComponent(Component component);
+      void monitorSystemPerformance();
+    }
+
+    class Threat {
+      String threatId;
+      String threatType;
+    }
+
+    association Sensor -> Analyzer [*];
+    association Analyzer -> Responder [*];
+    association Responder -> Database [*];
+    association Database -> AI [*];
+    composition SystemAdministrator -> CyberDefenseSystem [0..1];
+}

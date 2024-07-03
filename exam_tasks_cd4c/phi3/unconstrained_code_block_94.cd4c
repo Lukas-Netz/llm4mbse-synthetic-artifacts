@@ -1,0 +1,34 @@
+
+classdiagram PredictivePolicingSystem {
+
+    class CrimeDatabase {
+      void storeCrimeData(Crime crime);
+      Crime retrieveCrimeData(String location, String time);
+    }
+
+    class MLModel {
+      void trainModel(CrimeDatabase database);
+      Crime predictCrime(GIS gis, String location, String time);
+    }
+
+    class GIS {
+      void provideSpatialData(String location);
+    }
+
+    class UI {
+      void inputPatrolRoute(String route);
+      Crime predictCrime(GIS gis, String route);
+      void visualizeCrimeHotspots(CrimeDatabase database);
+    }
+
+    class Crime {
+      String location;
+      String time;
+      String type;
+    }
+
+    composition PredictivePolicingSystem -> (has) CrimeDatabase;
+    composition PredictivePolicingSystem -> (has) MLModel;
+    composition PredictivePolicingSystem -> (has) GIS;
+    composition PredictivePolicingSystem -> (has) UI;
+}

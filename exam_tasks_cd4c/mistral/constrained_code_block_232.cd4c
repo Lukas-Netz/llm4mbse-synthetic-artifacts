@@ -1,0 +1,58 @@
+
+classdiagram DigitalHealthCoaching {
+
+  class User {
+    String uniqueIdentifier;
+    HealthGoal [ ] goals;
+    UserType type;
+  }
+
+  enum UserType {
+    Athlete, Senior, ChronicDisease;
+  }
+
+  class Coach {
+    String uniqueIdentifier;
+    ExpertiseArea [ ] areas;
+    User [ ] assignedUsers;
+  }
+
+  enum ExpertiseArea {
+    Nutrition, Fitness, MentalHealth;
+  }
+
+  class Session {
+    User user;
+    Coach coach;
+    DateTime startTime;
+    DateTime endTime;
+    String summary;
+  }
+
+  class Exercise {
+    String description;
+    DifficultyLevel difficulty;
+    Duration recommendedDuration;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class ProgressTracking {
+    User user;
+    Metric [ ] metrics;
+  }
+
+  enum Metric {
+    Weight, BloodPressure, BloodGlucose;
+  }
+
+  composition DigitalHealthCoaching -> User [*];
+  composition DigitalHealthCoaching -> Coach [*];
+  association User [*] has [  many ]  (hasCoach)  -> Coach [1];
+  association Session [1] has [  one ]  (belongsToUser)  -> User [1];
+  association Session [1] has [  one ]  (belongsToCoach)  -> Coach [1];
+  association Exercise [1] assignedTo [  many ]  -> User [*];
+  association ProgressTracking [1] tracks [  many ]  -> User [*];
+}

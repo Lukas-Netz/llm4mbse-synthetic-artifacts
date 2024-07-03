@@ -1,0 +1,54 @@
+
+classdiagram MobileHealthApp {
+
+    class PatientProfile {
+      String patientId;
+      String personalInfo;
+      String medicalHistory;
+      List<Medication> medications;
+      List<Symptom> symptoms;
+    }
+
+    class Symptom {
+      String symptomId;
+      String description;
+      PatientProfile profile;
+    }
+
+    class Medication {
+      String medicationId;
+      String name;
+      String dosage;
+      PatientProfile profile;
+    }
+
+    class DoctorDashboard {
+      List<PatientProfile> patientProfiles;
+      void sendMessage(PatientProfile patientProfile, String message);
+    }
+
+    class LabResultViewer {
+      String resultId;
+      String resultData;
+      PatientProfile profile;
+    }
+
+    class MobileHealthApp {
+      List<PatientProfile> patientProfiles;
+      SymptomTracker symptomTracker;
+      MedicationReminder medicationReminder;
+      DoctorDashboard doctorDashboard;
+      LabResultViewer labResultViewer;
+    }
+
+    association MobileHealthApp -> PatientProfile [*];
+    association MobileHealthApp -> SymptomTracker [*];
+    association MobileHealthApp -> MedicationReminder [*];
+    association MobileHealthApp -> DoctorDashboard [*];
+    association MobileHealthApp -> LabResultViewer [*];
+
+    composition PatientProfile -> Symptom [*];
+    composition PatientProfile -> Medication [*];
+    composition DoctorDashboard -> PatientProfile [*];
+    composition LabResultViewer -> PatientProfile [*];
+}

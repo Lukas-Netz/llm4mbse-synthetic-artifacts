@@ -1,0 +1,96 @@
+
+classdiagram TalentAcquisition {
+
+  class JobPosting {
+    String title;
+    String description;
+    List<JobRequirement> requirements;
+  }
+
+  class Candidate {
+    String name;
+    String email;
+    List<String> skills;
+    List<Interview> interviews;
+  }
+
+  class Interview {
+    Interviewer interviewer;
+    List<InterviewQuestion> questions;
+    List<InterviewAnswer> answers;
+    List<InterviewRating> ratings;
+    List<InterviewComment> comments;
+    List<InterviewNote> notes;
+    List<InterviewAttachment> attachments;
+  }
+
+  class Interviewer {
+    String name;
+    String email;
+  }
+
+  class InterviewQuestion {
+    String questionText;
+  }
+
+  class InterviewAnswer {
+    String answerText;
+  }
+
+  class InterviewRating {
+    int rating;
+  }
+
+  class InterviewComment {
+    String commentText;
+  }
+
+  class InterviewNote {
+    String noteText;
+  }
+
+  class InterviewAttachment {
+    String attachmentName;
+    String attachmentType;
+    String attachmentUrl;
+  }
+
+  class JobRequirement {
+    String requirementText;
+  }
+
+  class Report {
+    String reportType;
+    String reportData;
+  }
+
+  class HRSystemIntegration {
+    String integrationName;
+    String integrationUrl;
+  }
+
+  composition JobPosting [*] TalentAcquisitionSystem
+  --  JobPosting
+  -  {  ordered } 					;
+
+  composition Candidate [*] TalentAcquisitionSystem
+  --  Candidate
+  -  {  ordered } 					;
+
+  composition Interview [*] Candidate
+  --  Interview
+  -  {  ordered } 					;
+
+  association Interviewer -- Interview
+  -  {  ordered } 					;
+
+  association InterviewQuestion -- Interview
+  -  {  ordered } 					;
+
+  association InterviewAnswer -- Interview
+  -  {  ordered } 					;
+
+  association InterviewRating -- Interview
+  -  {  ordered } 					;
+
+ 			}

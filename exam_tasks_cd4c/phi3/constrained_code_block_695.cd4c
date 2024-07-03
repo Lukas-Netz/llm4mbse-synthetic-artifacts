@@ -1,0 +1,49 @@
+
+classdiagram GreenhouseRobots {
+
+    class Robot {
+      String uniqueIdentifier;
+      Set<Sensor> sensors;
+      RobotRole role;
+    }
+
+    class Sensor {
+      String sensorType;
+    }
+
+    class RobotRole {
+      String roleName;
+    }
+
+    class ControlSystem {
+      Set<Robot> robots;
+      void assignTask(Robot robot, Task task);
+      void updateRobot(Robot robot, Task task);
+      void scheduleTasks();
+    }
+
+    class Database {
+      Map<String, Plant> plantDatabase;
+      Map<String, EnvironmentalCondition> conditionDatabase;
+    }
+
+    class UserInterface {
+      void displayRobotStatus(Robot robot);
+      void controlRobot(Robot robot, String command);
+    }
+
+    class Plant {
+      String plantType;
+      GrowthStage growthStage;
+    }
+
+    class EnvironmentalCondition {
+      String conditionType;
+      double value;
+    }
+
+    association GreenhouseRobots -> ControlSystem [*];
+    association GreenhouseRobots -> Database [*];
+    association GreenhouseRobots -> UserInterface [*];
+    composition GreenhouseRobots -> Robot [*];
+}

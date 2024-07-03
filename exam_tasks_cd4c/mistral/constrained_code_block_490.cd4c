@@ -1,0 +1,62 @@
+
+classdiagram SAT {
+
+  class Farm {
+    String uniqueIdentifier;
+    Farmer manager;
+    FarmType type;
+  }
+
+  enum FarmType {
+    Organic, Conventional, Permaculture;
+  }
+
+  class Crop {
+    String uniqueIdentifier;
+    Farm associatedFarm;
+    CropType type;
+  }
+
+  enum CropType {
+    Fruit, Vegetable, Grain, Legume;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    Farm associatedFarm;
+    Crop associatedCrop;
+    String parameter;
+  }
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String location;
+    String data;
+  }
+
+  class FarmEquipment {
+    String uniqueIdentifier;
+    Farm associatedFarm;
+    EquipmentType type;
+  }
+
+  enum EquipmentType {
+    Tractor, Plow, Harvester;
+  }
+
+  class PestControl {
+    String uniqueIdentifier;
+    Farm associatedFarm;
+    PestControlType type;
+  }
+
+  enum PestControlType {
+    Pesticide, BiologicalControlAgent;
+  }
+
+  composition Farm -> Farmer;
+  composition Farm -> (has) Sensor [*];
+  composition Farm -> (has) WeatherStation;
+  composition Farm -> (has) FarmEquipment [*];
+  composition Farm -> (has) PestControl [*];
+}

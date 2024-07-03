@@ -1,0 +1,61 @@
+
+
+classdiagram ARPlatform {
+
+  class AREngine {
+    int resolution;
+    int frameRate;
+    RenderingMode mode;
+
+    void renderContent(ARContent content);
+  }
+
+  class ARContent {
+    Type type;
+    Position position;
+    Scale scale;
+    Rotation rotation;
+
+    void displayContent();
+  }
+
+  enum Type {
+    THREE_D_MODEL, TEXT, IMAGE
+  
+
+  
+  
+ ;}
+
+  class ARDevice {
+    int cameraResolution;
+    int screenResolution;
+    int processingPower;
+
+    void displayContent(ARContent content);
+  }
+
+  class ARUser {
+    String name;
+    String email;
+    String password;
+
+    void interactWithContent(ARContent content);
+  }
+
+  composition AREngine -> ARContent;
+  composition ARDevice -> ARContent;
+  association ARUser -> ARDevice
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

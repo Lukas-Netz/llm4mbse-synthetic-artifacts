@@ -1,0 +1,51 @@
+
+classdiagram MediaStreaming {
+
+  class User {
+    String username;
+    String password;
+    Playlist [ ] playlists;
+  }
+
+  class Playlist {
+    String name;
+    MediaItem [ ] mediaItems;
+  }
+
+  abstract class MediaItem {
+    String title;
+    String description;
+    String genre;
+    int rating;
+  }
+
+  class Movie extends MediaItem { }
+  class TVShow extends MediaItem { }
+  class MusicTrack extends MediaItem { }
+
+  class ContentProvider {
+    Catalog catalog;
+  }
+
+  class Catalog {
+    MediaItem [ ] items;
+    void filterByGenre(String genre);
+    void filterByReleaseDate(Date date);
+    void filterByRating(int rating);
+  }
+
+  class PaymentSystem {
+    User [ ] users;
+    PaymentMethod [ ] paymentMethods;
+  }
+
+  abstract class PaymentMethod { }
+  class CreditCard extends PaymentMethod { }
+  class PayPal extends PaymentMethod { }
+
+  composition MediaStreaming -> User [*];
+  composition User -> Playlist [*];
+  composition ContentProvider -> Catalog;
+  composition PaymentSystem -> User [*];
+  composition User -> PaymentMethod [*];
+}

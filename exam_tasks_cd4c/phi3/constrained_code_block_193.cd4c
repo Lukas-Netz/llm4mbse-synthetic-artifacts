@@ -1,0 +1,63 @@
+
+classdiagram IntelligentEmailMarketingSystem {
+
+    class Customer {
+      String name;
+      String email;
+      List<Purchase> purchaseHistory;
+    }
+
+    class Purchase {
+      String productName;
+      String purchaseDate;
+      int purchaseAmount;
+    }
+
+    class EmailTemplate {
+      String templateId;
+      String templateContent;
+    }
+
+    class EmailCampaign {
+      String campaignId;
+      EmailTemplate template;
+      List<Customer> targetAudience;
+      String campaignStatus;
+      void sendEmails();
+      void trackPerformance();
+    }
+
+    class CampaignManager {
+      void createCampaign(EmailCampaign campaign);
+      void scheduleCampaign(EmailCampaign campaign, DateTime scheduleDate);
+      void sendCampaign(EmailCampaign campaign);
+    }
+
+    class CustomerSegment {
+      String segmentId;
+      List<Customer> customers;
+      void assignCampaign(EmailCampaign campaign);
+    }
+
+    class ReportingModule {
+      void generateReport(EmailCampaign campaign);
+    }
+
+    association CampaignManager 
+      to -> EmailCampaign [0..*];
+
+    association CampaignManager 
+      to -> ReportingModule [0..1];
+
+    association CampaignManager 
+      to -> CustomerSegment [0..*];
+
+    association CustomerSegment 
+      to -> EmailCampaign [0..1];
+
+    composition Customer -> List<<Purchase>>;
+
+    composition EmailTemplate -> List<<String>>;
+
+    composition EmailCampaign -> List<<Customer>>;
+}

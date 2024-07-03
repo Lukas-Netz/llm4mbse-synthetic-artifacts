@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram FinancialPlatform  {
+
+  class Customer  {
+    String username;
+    String password;
+    Account account;
+  }
+
+  class Account  {
+    String accountNumber;
+    double balance;
+    TransactionHistory transactionHistory;
+  }
+
+  class TransactionHistory  {
+    List<Transaction> transactions;
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    String description;
+  }
+
+  class Budget  {
+    double income;
+    double expenses;
+    double savings;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class Platform  {
+    List<Customer> customers;
+    List<Account> accounts;
+    List<Transaction> transactions;
+    Budget budget;
+    Administrator administrator;
+  }
+
+  composition Platform -> (has) Administrator;
+  composition Platform -> (has) Budget;
+  composition Customer -> (has) Account;
+  composition Account -> (has) TransactionHistory;
+  composition TransactionHistory -> (has) Transaction;
+  composition Budget -> (has) Customer;
+  composition Administrator -> (has) Platform;
+  composition Platform -> (has) Customer;
+  composition Platform -> (has) Account;
+  composition Platform -> (has) Transaction;
+  composition Platform -> (has) Budget;
+}

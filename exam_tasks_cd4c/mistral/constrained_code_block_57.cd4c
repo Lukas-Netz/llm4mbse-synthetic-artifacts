@@ -1,0 +1,56 @@
+
+classdiagram ITS {
+
+  class TrafficSensor {
+    String id;
+    TrafficData collectData();
+  }
+
+  class TrafficCamera {
+    String id;
+    Image captureImage();
+  }
+
+  class TrafficManagementCenter {
+    -> TrafficSensor [*];
+    -> TrafficCamera [*];
+    void analyzeTraffic();
+    void respondToIncident();
+  }
+
+  class TrafficSignalController {
+    String id;
+    TrafficData trafficData;
+    void optimizeSignalTiming();
+  }
+
+  class TrafficData {
+    int trafficVolume;
+    float averageSpeed;
+    float occupancy;
+  }
+
+  class Image {
+    String imageData;
+  }
+
+  class DataAnalytics {
+    -> TrafficData [*];
+    void analyzeData();
+    void generateReport();
+  }
+
+  class EmergencyServices {
+    void notifyOfIncident();
+  }
+
+  class Integration {
+    EmergencyServices emergencyServices;
+    TrafficSignalController [ ] trafficSignalControllers;
+  }
+
+  composition TrafficManagementCenter -> TrafficSensor;
+  composition TrafficManagementCenter -> TrafficCamera;
+  association TrafficSignalController -- TrafficData;
+  association Integration -- TrafficSignalController [*];
+}

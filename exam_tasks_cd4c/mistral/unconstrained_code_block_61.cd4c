@@ -1,0 +1,49 @@
+
+classdiagram FitnessTrackingDevice {
+
+  class FitnessTrackingDevice {
+    String uniqueIdentifier;
+    User user;
+    Activity walking;
+    Activity running;
+    Activity cycling;
+    Activity swimming;
+    HeartRate heartRate;
+    BloodPressure bloodPressure;
+    SleepQuality sleepQuality;
+  }
+
+  class User {
+    String name;
+    String email;
+  }
+
+  abstract class Activity {
+    int duration;
+    double distance;
+    int caloriesBurned;
+  }
+
+  class Walking extends Activity {}
+  class Running extends Activity {}
+  class Cycling extends Activity {}
+  class Swimming extends Activity {}
+
+  class HeartRate {
+    int beatsPerMinute;
+  }
+
+  class BloodPressure {
+    int systolic;
+    int diastolic;
+  }
+
+  class SleepQuality {
+    int sleepScore;
+  }
+
+  association FitnessTrackingDevice -- User;
+  composition FitnessTrackingDevice -- (has) HeartRate;
+  composition FitnessTrackingDevice -- (has) BloodPressure;
+  composition FitnessTrackingDevice -- (has) SleepQuality;
+}

@@ -1,0 +1,76 @@
+
+classdiagram VRPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      List<VRExperience> createdExperiences;
+    }
+
+    class VRExperience {
+      String title;
+      String description;
+      List<Scene> scenes;
+      User creator;
+      void createScene(Scene scene);
+      void editScene(Scene scene);
+      void deleteScene(Scene scene);
+      void shareExperience(User user);
+      void rateExperience(int rating);
+      void reviewExperience(String review);
+      String searchExperience(String keyword, String category);
+    }
+
+    abstract class Scene {
+      String name;
+      String description;
+      List<Object> objects;
+      Scene creator;
+      void addObject(Object object);
+      void removeObject(Object object);
+    }
+
+    class Object {
+      String name;
+      String description;
+      List<Property> properties;
+      Object creator;
+      void addProperty(Property property);
+      void removeProperty(Property property);
+    }
+
+    class Property {
+      String type;
+      String value;
+      Property creator;
+    }
+
+    class  TwoDObject extends Object {
+      String image;
+    }
+
+    class  ThreeDObject extends Object {
+      String model;
+    }
+
+    class InteractiveObject extends Object {
+      void interact();
+    }
+
+    class VRExperienceRating {
+      int rating;
+      String review;
+      VRExperience experience;
+    }
+
+    class VRExperienceSearchResult {
+      VRExperience experience;
+      String title;
+      String description;
+    }
+
+  composition User -> (has) VRExperience;
+  composition VRExperience -> (has) Scene;
+  composition Scene -> (has) Object;
+  composition User -> (has) VRExperienceRating;
+  composition VRExperience -> (has) VRExperienceSearchResult;
+}

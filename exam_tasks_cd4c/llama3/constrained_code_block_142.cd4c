@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram EmployeeTraining  {
+
+  class EmployeeRequest {
+    Employee employee;
+    String trainingType;
+  }
+
+  class TrainingManager {
+    void reviewRequest(EmployeeRequest request);
+    void approveRequest(EmployeeRequest request);
+    void rejectRequest(EmployeeRequest request);
+  }
+
+  class TrainerAssignment {
+    Employee employee;
+    Trainer trainer;
+  }
+
+  class TrainingPlan {
+    Trainer trainer;
+    Employee employee;
+    Date startDate;
+    Date endDate;
+  }
+
+  class EmployeeCompletion {
+    Employee employee;
+    TrainingPlan trainingPlan;
+    Date completionDate;
+  }
+
+  class TrainerEvaluation {
+    Trainer trainer;
+    Employee employee;
+    TrainingPlan trainingPlan;
+    EvaluationResult result;
+  }
+
+  class TrainingCertification {
+    TrainingManager manager;
+    Employee employee;
+    TrainingPlan trainingPlan;
+    CertificationResult result;
+  }
+
+  enum EvaluationResult {
+    Pass, Fail
+  ;}
+
+  enum CertificationResult {
+    Certified, NotCertified
+  ;}
+
+  composition TrainingManager -> EmployeeRequest [1..*];
+  composition TrainerAssignment -> Trainer [1];
+  composition TrainingPlan -> Trainer [1];
+  composition EmployeeCompletion -> TrainingPlan [1];
+  composition TrainerEvaluation -> Trainer [1];
+  composition TrainingCertification -> TrainingManager [1];
+}

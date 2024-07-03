@@ -1,0 +1,64 @@
+
+classdiagram MusicPlatform {
+
+    class Artist {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      String biography;
+      List<MusicTrack> musicTracks;
+      void uploadMusicTrack(MusicTrack track);
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      String password;
+      List<MusicTrack> listenedTracks;
+      void streamMusicTrack(MusicTrack track);
+      void purchaseMusicTrack(MusicTrack track);
+      void rateMusicTrack(MusicTrack track, int rating);
+    }
+
+    class MusicTrack {
+      String uniqueIdentifier;
+      String title;
+      Artist artist;
+      String genre;
+      int duration;
+      String hash;
+      void verifyTransaction(User user);
+    }
+
+    <<blockchain>> class Blockchain {
+      List<Block> blocks;
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+    }
+
+    class Transaction {
+      String sender;
+      String receiver;
+      String musicTrack;
+      int amount;
+      String signature;
+    }
+
+    class RatingSystem {
+      Map<MusicTrack, List<Rating>> ratings;
+      double calculateWeightedAverage(MusicTrack track);
+    }
+
+    class RecommendationEngine {
+      Map<User, List<MusicTrack>> userPreferences;
+      List<MusicTrack> recommendMusicTracks(User user);
+    }
+
+  composition Artist -> MusicTrack [*];
+  composition User -> MusicTrack [*];
+  composition User -> RatingSystem [*];
+  composition User -> RecommendationEngine [*];
+  composition MusicTrack -> Blockchain [*];
+  composition MusicTrack -> RatingSystem [*];
+}

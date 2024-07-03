@@ -1,0 +1,39 @@
+
+classdiagram QuantumSecureCommunicationSystem {
+
+    class Satellite {
+      encryptMessage(Message message);
+      decryptMessage(Message encryptedMessage);
+    WritableKeyManagementSystem keyManager;
+    }
+
+    class GroundStation {
+      sendMessageToSatellite(Message message);
+      receiveMessageFromSatellite(Message encryptedMessage);
+      sendMessageToUser(User user, Message message);
+      receiveMessageFromUser(User user, Message message);
+    }
+
+    class User {
+      String uniqueIdentifier;
+      List<Message> receivedMessages;
+    }
+
+    class Message {
+      String content;
+      User sender;
+      User receiver;
+    }
+
+    class KeyManagementSystem {
+      generateKey();
+      distributeKey(User user);
+    }
+
+    association GroundStation -> Satellite;
+    association GroundStation -> KeyManagementSystem;
+    association Satellite -> KeyManagementSystem;
+    association User -> GroundStation;
+    association User -> Satellite;
+    composition User -> Message;
+}

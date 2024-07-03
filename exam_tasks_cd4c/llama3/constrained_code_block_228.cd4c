@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram CodeReviewSystem  {
+
+  class CodeAnalyzer  {
+    Language language;
+    Complexity complexity;
+    Security security;
+    Maintainability maintainability;
+  }
+
+  class VersionControlSystemIntegration  {
+    Repository repository;
+    Branch branch;
+    Commit commit;
+  }
+
+  class Dashboard  {
+    CodeQuality codeQuality;
+    Trends trends;
+    Recommendations recommendations;
+  }
+
+  class AIModel  {
+    Algorithm algorithm;
+    TrainingData trainingData;
+  }
+
+  class CodeReviewer  {
+    Feedback feedback;
+    Suggestions suggestions;
+  }
+
+  class CodeSnippet  {
+    String code;
+    CodeAnalyzer analysis;
+  }
+
+  class Developer  {
+    String name;
+    CodeSnippet codeSnippets;
+  }
+
+  class CodeQuality  {
+    int qualityScore;
+    String qualityFeedback;
+  }
+
+  class Trends  {
+    List<CodeQuality> codeQualityTrends;
+  }
+
+  class Recommendations  {
+    List<String> improvementSuggestions;
+  }
+
+  composition CodeReviewSystem -> (has) CodeAnalyzer;
+  composition CodeReviewSystem -> (has) VersionControlSystemIntegration;
+  composition CodeReviewSystem -> (has) Dashboard;
+  composition CodeReviewSystem -> (has) AIModel;
+  composition CodeReviewSystem -> (has) CodeReviewer;
+
+  composition CodeAnalyzer -> CodeSnippet;
+  composition CodeSnippet -> CodeQuality;
+  composition CodeQuality -> Trends;
+  composition Trends -> Recommendations;
+
+  composition VersionControlSystemIntegration -> Repository;
+  }

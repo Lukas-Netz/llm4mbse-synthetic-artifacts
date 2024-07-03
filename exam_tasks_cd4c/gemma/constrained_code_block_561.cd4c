@@ -1,0 +1,26 @@
+
+
+classdiagram TranslationSystem {
+
+  class LanguageDictionary {
+    Map<String, Map<String, String>> translations;
+  }
+
+  class TextProcessingModule {
+    List<String> processText(String text);
+  }
+
+  class TranslationModule {
+    String translateText(List<String> words);
+  }
+
+  class UserInterface {
+    String inputText;
+    String translatedText;
+  }
+
+  composition LanguageDictionary -> (has) Translations;
+  composition TextProcessingModule -> (uses) LanguageDictionary;
+  composition TranslationModule -> (uses) LanguageDictionary;
+  association UserInterface -> TranslationModule;
+}

@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram LawFirm  {
+
+  class Lawyer  {
+    String uniqueId;
+    String name;
+    LawArea expertise;
+  }
+
+  class Case  {
+    String uniqueId;
+    String description;
+    CaseStatus status;
+  }
+
+  class LawArea  {
+    String name;
+  }
+
+  class CaseRating  {
+    Lawyer lawyer;
+    int rating;
+  }
+
+  class Client  {
+    String name;
+    Case[] cases;
+  }
+
+  class Platform  {
+    Lawyer[] lawyers;
+    Case[] cases;
+    Client[] clients;
+  }
+
+  composition Platform -> (has) Lawyer[*];
+  composition Platform -> (has) Case[*];
+  composition Platform -> (has) Client[*];
+  composition Case -> (has) Lawyer[*];
+  composition Lawyer -> (has) CaseRating[*];
+  composition Client -> (has) Case[*];
+}

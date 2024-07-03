@@ -1,0 +1,49 @@
+
+classdiagram OnlineEconomicsPlatform {
+
+    class Course {
+      String courseId;
+      String title;
+      String description;
+      CourseLevel level;
+    }
+
+    class Student {
+      String studentId;
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Assignment {
+      String assignmentId;
+      String title;
+      Date submissionDeadline;
+      Course course;
+      Student student;
+      double grade;
+    }
+
+    class Grade {
+      Student student;
+      Course course;
+      Assignment assignment;
+    }
+
+    class Instructor {
+      String instructorId;
+      String name;
+      String email;
+      List<Course> managedCourses;
+      List<Assignment> managedAssignments;
+      List<Grade> managedGrades;
+    }
+
+    association Student -> List<<Course>>;
+    association Instructor -> List<<Course>>;
+    association Instructor -> List<<Assignment>>;
+    association Instructor -> List<<Grade>>;
+    association Course -> List<<Assignment>>;
+    association Course -> List<<Grade>>;
+    composition Student -> List<<Grade>>;
+}

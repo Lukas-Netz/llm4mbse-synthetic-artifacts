@@ -1,0 +1,56 @@
+
+classdiagram AIContentModeration {
+
+    class User {
+      void submitContent(Content content);
+    }
+
+    class Content {
+      String type;
+      String content;
+    }
+
+    class ContentModeration {
+      void analyzeContent(Content content);
+      void reviewContent(Content content, Moderator moderator);
+      void approveContent(Content content);
+      void rejectContent(Content content);
+      void trackModerationHistory(Content content);
+      Analytics getModeratorPerformance(Moderator moderator);
+    }
+
+    abstract class Moderator {
+      void reviewContent(Content content);
+      void approveContent(Content content);
+      void rejectContent(Content content);
+    }
+
+    class HumanModerator extends Moderator {
+      void reviewContent(Content content);
+    }
+
+    class AIModerator extends Moderator {
+      void analyzeContent(Content content);
+      void flagContentForReview(Content content);
+    }
+
+    class HybridModerator extends Moderator {
+      void analyzeContent(Content content);
+      void reviewContent(Content content);
+      void approveContent(Content content);
+      void rejectContent(Content content);
+    }
+
+    class Analytics {
+      int accuracy;
+      int precision;
+      int recall;
+    }
+
+  composition User -> ContentModeration;
+  composition ContentModeration -> Content [*];
+  composition ContentModeration -> HumanModerator [*];
+  composition ContentModeration -> AIModerator [*];
+  composition ContentModeration -> HybridModerator [*];
+  composition ContentModeration -> Analytics;
+}

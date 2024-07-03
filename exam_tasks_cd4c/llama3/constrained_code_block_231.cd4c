@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram FinancialPlanningSystem  {
+
+  class User  {
+    String username;
+    String password;
+    FinancialGoal[] financialGoals;
+    InvestmentPortfolio[] investmentPortfolios;
+  }
+
+  class FinancialGoal  {
+    String goalDescription;
+    double targetAmount;
+    Date targetDate;
+  }
+
+  class InvestmentPortfolio  {
+    String portfolioName;
+    InvestmentOption[] investmentOptions;
+  }
+
+  class InvestmentOption  {
+    String optionName;
+    double investmentAmount;
+  }
+
+  class FinancialSituation  {
+    double income;
+    double expenses;
+    double savings;
+  }
+
+  class FinancialAdvice  {
+    String adviceText;
+    double recommendedInvestment;
+  }
+
+  class Notification  {
+    String notificationText;
+    Date notificationDate;
+  }
+
+  class FinancialReport  {
+    String reportTitle;
+    FinancialSituation financialSituation;
+    FinancialAdvice financialAdvice;
+  }
+
+  class FinancialInstitution  {
+    String institutionName;
+    String institutionType;
+  }
+
+  class ExternalService  {
+    String serviceName;
+    String serviceType;
+  }
+
+  class FinancialData  {
+    FinancialSituation financialSituation;
+    FinancialGoal[] financialGoals;
+    InvestmentPortfolio[] investmentPortfolios;
+  }
+
+  composition FinancialPlanningSystem -> User [1..*];
+  composition User -> FinancialGoal [1..*];
+  composition User -> InvestmentPortfolio [1..*];
+  composition FinancialGoal -> FinancialSituation [1..*];
+  composition FinancialSituation -> FinancialAdvice [1..*];
+  composition FinancialAdvice -> Notification [1..*];
+  composition FinancialReport -> FinancialSituation [1..*];
+  composition FinancialReport -> FinancialAdvice [1..*];
+  composition FinancialInstitution -> ExternalService [1..*];
+  }

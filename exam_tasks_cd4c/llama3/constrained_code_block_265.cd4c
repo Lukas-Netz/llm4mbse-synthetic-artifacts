@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram VotingSystem  {
+
+  class Voter  {
+    String username;
+    String password;
+  }
+
+  class Election  {
+    String name;
+    List<Candidate> candidates;
+  }
+
+  class Candidate  {
+    String name;
+    String description;
+  }
+
+  class Vote  {
+    Election election;
+    Candidate candidate;
+    Voter voter;
+  }
+
+  class Blockchain  {
+    List<Vote> votes;
+  }
+
+  class Administrator  {
+    void verifyVotes();
+  }
+
+  class VotingSystem  {
+    Blockchain blockchain;
+    List<Voter> voters;
+    List<Election> elections;
+
+    void registerVoter(Voter voter);
+    void loginVoter(Voter voter);
+    void viewElections();
+    void castVote(Vote vote);
+    void verifyVote(Vote vote);
+  }
+
+  composition VotingSystem -> Blockchain;
+  composition VotingSystem -> Voter[*];
+  composition VotingSystem -> Election[*];
+  composition Election -> Candidate[*];
+  composition Vote -> Election;
+  composition Vote -> Candidate;
+  composition Vote -> Voter;
+  composition Administrator -> VotingSystem;
+}

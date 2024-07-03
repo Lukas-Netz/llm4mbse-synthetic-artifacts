@@ -1,0 +1,43 @@
+
+classdiagram LunarColonizationInfra {
+
+    class LunarBase {
+      String name;
+      String location;
+      String status;
+    }
+
+    class Module {
+      String identifier;
+      String type;
+      ModuleStatus status;
+      Sensor[] sensors;
+      Actuator[] actuators;
+    }
+
+    class ControlSystem {
+      void monitorModuleStatus(Module module);
+      void sendCommand(Module module, Command command);
+      void updateModuleConfig(Module module, Configuration config);
+    }
+
+    class ResourceManagement {
+      Resource resource;
+      ResourceStatus status;
+    }
+
+    enum ModuleStatus {
+      Functioning, NonFunctioning;
+    }
+
+    enum ResourceStatus {
+      Adequate, Insufficient;
+    }
+
+    association LunarBase <-> ControlSystem [*];
+    association ControlSystem <-> Module [*];
+    association ControlSystem <-> ResourceManagement [*];
+    composition Module -> (has) Sensor [*];
+    composition Module -> (has) Actuator [*];
+    composition ResourceManagement -> (has) Resource [*];
+}

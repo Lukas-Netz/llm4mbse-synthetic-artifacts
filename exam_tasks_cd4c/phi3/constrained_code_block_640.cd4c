@@ -1,0 +1,50 @@
+
+classdiagram BlockchainLandSystem {
+
+    class LandPlot {
+      String uniqueId;
+      String location;
+      double size;
+      List<Transaction> ownershipHistory;
+    }
+
+    class Owner {
+      String uniqueId;
+      String name;
+      String contactInfo;
+    }
+
+    class Transaction {
+      String uniqueId;
+      LandPlot landPlot;
+      Owner owner;
+      TransactionType type;
+    }
+
+    class TransactionType {
+      String type;
+    }
+
+    enum TransactionType {
+      Purchase, Sale, Lease;
+    }
+
+    class Blockchain {
+      Map<String, LandPlot> landPlots;
+      Map<String, Owner> owners;
+      Map<String, Transaction> transactions;
+
+      void addLandPlot(LandPlot landPlot);
+      void addOwner(Owner owner);
+      void addTransaction(Transaction transaction);
+      LandPlot getLandPlot(String uniqueId);
+      Owner getOwner(String uniqueId);
+      Transaction getTransaction(String uniqueId);
+      void verifyTransaction(String uniqueId);
+      void updateOwnershipHistory(String uniqueId, Transaction transaction);
+    }
+
+  composition Blockchain -> (has) LandPlot;
+  composition Blockchain -> (has) Owner;
+  composition Blockchain -> (has) Transaction;
+}

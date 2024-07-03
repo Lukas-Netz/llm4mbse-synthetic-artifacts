@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram CarbonOffsettingSystem  {
+
+  class CarbonCredit  {
+    String uniqueId;
+    int quantity;
+    CreditType type;
+  }
+
+  class CreditType  {
+    String name;
+  }
+
+  class CarbonOffsetProject  {
+    String uniqueId;
+    String name;
+    String description;
+  }
+
+  class Transaction  {
+    String uniqueId;
+    DateTime timestamp;
+    User buyer;
+    User seller;
+  }
+
+  class User  {
+    String username;
+  }
+
+  class Blockchain  {
+    -> CarbonCredit  [*];
+    -> Transaction  [*];
+  }
+
+  composition Blockchain  ->  (has) CarbonCredit;
+  composition Blockchain  ->  (has) Transaction;
+  composition CarbonOffsetProject  ->  (has) CarbonCredit  [*];
+  composition Transaction  ->  (has) CarbonCredit;
+  composition Transaction  ->  (has) User;
+}
+

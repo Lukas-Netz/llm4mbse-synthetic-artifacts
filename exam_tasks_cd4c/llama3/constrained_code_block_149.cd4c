@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram PersonalizationSystem  {
+
+  class Customer  {
+    String name;
+    String email;
+    PurchaseHistory purchaseHistory;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class PurchaseHistory  {
+    List<Product> products;
+  }
+
+  class AIEngine  {
+    void analyze(Customer customer, Product product);
+  }
+
+  class RecommendationEngine  {
+    List<Product> generateRecommendations(Customer customer);
+  }
+
+  class UserInterface  {
+    void displayRecommendations(Customer customer);
+    void displayRelatedProducts(Product product);
+  }
+
+  composition Customer -> (has) PurchaseHistory;
+  composition Product -> (has) none;
+  composition AIEngine -> (uses) Customer;
+  composition AIEngine -> (uses) Product;
+  composition RecommendationEngine -> (uses) AIEngine;
+  composition UserInterface -> (uses) RecommendationEngine;
+  association Customer -> (logs) UserInterface;
+  association Product -> (searched) UserInterface;
+  association Product -> (purchased) Customer;
+}

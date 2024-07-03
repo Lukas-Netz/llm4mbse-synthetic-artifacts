@@ -1,0 +1,65 @@
+
+
+
+classdiagram SustainableAgricultureTechnology  {
+
+  class Farm  {
+    String uniqueIdentifier;
+    FarmType type;
+    Farmer farmer;
+  }
+
+  class Crop  {
+    String uniqueIdentifier;
+    Farm farm;
+    CropType type;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Farm farm;
+    Crop crop;
+    MeasurementType type;
+    double value;
+  }
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    MeasurementType type;
+    double temperature;
+    double humidity;
+    double precipitation;
+  }
+
+  class FarmEquipment  {
+    String uniqueIdentifier;
+    Farm farm;
+    EquipmentType type;
+  }
+
+  class PestControl  {
+    String uniqueIdentifier;
+    Farm farm;
+    PestType type;
+  }
+
+  class Measurement  {
+    Sensor sensor;
+    double value;
+  }
+
+  class Report  {
+    Farm farm;
+    Crop crop;
+    String recommendation;
+  }
+
+  composition Farm -> (has) Crop[*];
+  composition Crop -> (has) Sensor[*];
+  composition Sensor -> (has) Measurement;
+  composition WeatherStation -> (has) Measurement;
+  composition Farm -> (has) FarmEquipment[*];
+  composition Farm -> (has) PestControl[*];
+  composition Report -> (has) Farm;
+  composition Report -> (has) Crop;
+}

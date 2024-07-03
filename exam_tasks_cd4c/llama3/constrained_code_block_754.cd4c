@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram MusicPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Playlist  [] playlists;
+  }
+
+  class Artist  {
+    String uniqueIdentifier;
+    Song  [] songs;
+  }
+
+  class Song  {
+    String uniqueIdentifier;
+    String title;
+    String genre;
+  }
+
+  class Playlist  {
+    String name;
+    Song  [] songs;
+  }
+
+  class Recommendation  {
+    User user;
+    Song song;
+  }
+
+  class Analytics  {
+    Song song;
+    int streams;
+    int downloads;
+  }
+
+  class Payment  {
+    User user;
+    Song song;
+    double amount;
+  }
+
+  class PremiumService  {
+    User user;
+    boolean isSubscribed;
+  }
+
+  composition User -> Playlist [0..*];
+  composition Artist -> Song [0..*];
+  composition Playlist -> Song [0..*];
+  composition Recommendation -> User;
+  composition Analytics -> Song;
+  composition Payment -> User;
+  composition PremiumService -> User;
+}

@@ -1,0 +1,90 @@
+
+classdiagram RetailAnalytics {
+
+  class RetailAnalyticsSystem {
+    SalesDataProvider salesDataProvider;
+    CustomerBehaviorProvider customerBehaviorProvider;
+    PredictiveAnalytics predictiveAnalytics;
+    BusinessIntelligenceTools biTools;
+    DataVisualizationTools dvTools;
+  }
+
+  interface SalesDataProvider {
+    SalesData getSalesData();
+  }
+
+  interface CustomerBehaviorProvider {
+    CustomerBehavior getCustomerBehavior();
+  }
+
+  class PredictiveAnalytics {
+    SalesData salesData;
+    CustomerBehavior customerBehavior;
+    Forecast forecast;
+  }
+
+  class SalesData {
+    Product product;
+    Category category;
+    Store store;
+    Date date;
+    int quantity;
+    double revenue;
+  }
+
+  enum Product {
+    PRODUCT_1, PRODUCT_2, PRODUCT_3;
+  }
+
+  enum Category {
+    CATEGORY_1, CATEGORY_2, CATEGORY_3;
+  }
+
+  enum Store {
+    STORE_1, STORE_2, STORE_3;
+  }
+
+  class CustomerBehavior {
+    Customer customer;
+    Store store;
+    Date date;
+    int visits;
+    double averageBasketValue;
+  }
+
+  class Customer {
+    String customerId;
+    String firstName;
+    String lastName;
+    String email;
+  }
+
+  class Forecast {
+    Product product;
+    Category category;
+    Store store;
+    Date date;
+    int predictedSales;
+  }
+
+  class BusinessIntelligenceTools {
+    SalesData salesData;
+    CustomerBehavior customerBehavior;
+    Forecast forecast;
+  }
+
+  class DataVisualizationTools {
+    SalesData salesData;
+    CustomerBehavior customerBehavior;
+    Forecast forecast;
+  }
+
+  composition RetailAnalyticsSystem -> SalesDataProvider [1];
+  composition RetailAnalyticsSystem -> CustomerBehaviorProvider [1];
+  composition PredictiveAnalytics -> SalesData [1];
+  composition PredictiveAnalytics -> CustomerBehavior [1];
+  composition BusinessIntelligenceTools -> SalesData [1];
+  composition BusinessIntelligenceTools -> CustomerBehavior [1];
+  composition DataVisualizationTools -> SalesData [1];
+  composition DataVisualizationTools -> CustomerBehavior [1];
+}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram GestureRecognitionSystem  {
+
+  class Camera  {
+    Image capture();
+  }
+
+  class ProcessingUnit  {
+    Gesture recognize(Image image);
+  }
+
+  class Database  {
+    void store(Gesture gesture);
+    Gesture retrieve(String gestureId);
+  }
+
+  class Gesture  {
+    GestureType type;
+    Point location;
+    Direction direction;
+    Rotation rotation;
+  }
+
+  enum GestureType  {
+    Pointing,
+    Swiping,
+    Tapping,
+    Rotating
+  ;}
+
+  enum Direction  {
+    Horizontal,
+    Vertical
+  ;}
+
+  enum Rotation  {
+    Clockwise,
+    Counterclockwise
+  ;}
+
+  composition Camera -> ProcessingUnit;
+  composition ProcessingUnit -> Database;
+  composition Database -> Gesture;
+  composition Gesture -> GestureType;
+  composition Gesture -> Point;
+  composition Gesture -> Direction;
+  composition Gesture -> Rotation;
+}

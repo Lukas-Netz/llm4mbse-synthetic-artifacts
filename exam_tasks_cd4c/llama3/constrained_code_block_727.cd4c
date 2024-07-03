@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram OilSpillCleanup  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    DroneStatus status;
+  }
+
+  class OilSpill  {
+    Location location;
+    int size;
+    OilType type;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    int range;
+  }
+
+  class CleanupAgent  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    CleanupAgentStatus status;
+  }
+
+  class MissionControl  {
+    Drone[] drones;
+    CleanupAgent[] cleanupAgents;
+    OilSpill[] oilSpills;
+    void assignDroneToOilSpill(Drone drone, OilSpill oilSpill);
+    void assignCleanupAgentToOilSpill(CleanupAgent agent, OilSpill oilSpill);
+    void monitorStatus();
+    void adjustMissionPlan();
+    void generateReport();
+  }
+
+  enum DroneStatus  {
+    Operational, NonOperational;
+  }
+
+  enum CleanupAgentStatus  {
+    Operational, NonOperational;
+  }
+
+  enum OilType  {
+    CrudeOil, Gasoline, Other;
+  }
+
+  enum Location  {
+    xCoord, yCoord;
+  }
+
+  composition MissionControl -> (has) Drone[*];
+  composition MissionControl -> (has) CleanupAgent[*];
+  composition MissionControl -> (has) OilSpill[*];
+  composition Drone -> (has) Location;
+  composition CleanupAgent -> (has) Location;
+  composition OilSpill -> (has) Location;
+  composition Sensor -> (has) Location;
+}

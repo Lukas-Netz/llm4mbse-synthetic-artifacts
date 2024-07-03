@@ -1,0 +1,80 @@
+
+classdiagram PersonalizedEducation {
+
+  class StudentProfile {
+    String uniqueIdentifier;
+    LearningStyle learningStyle;
+    Strengths strengths;
+    Weaknesses weaknesses;
+  }
+
+  class LearningStyle {
+    String style;
+  }
+
+  class Strengths {
+    String[] subjects;
+  }
+
+  class Weaknesses {
+    String[] subjects;
+  }
+
+  class CourseCatalog {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Subject subject;
+    Level level;
+  }
+
+  enum Subject {
+    Math, Science, English, History, etc;
+  }
+
+  enum Level {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class RecommendationEngine {
+    StudentProfile studentProfile;
+    CourseCatalog[] courseCatalog;
+    void analyze();
+    Course[] recommend();
+  }
+
+  class TeacherProfile {
+    String uniqueIdentifier;
+    Expertise expertise;
+    TeachingStyle teachingStyle;
+  }
+
+  class Expertise {
+    String[] subjects;
+  }
+
+  class TeachingStyle {
+    String style;
+  }
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Subject subject;
+    Level level;
+    TeacherProfile teacher;
+  }
+
+  class CourseEnrollment {
+    StudentProfile student;
+    Course course;
+    boolean isEnrolled;
+  }
+
+  composition PersonalizedEducation -> StudentProfile [*];
+  composition PersonalizedEducation -> CourseCatalog [*];
+  composition PersonalizedEducation -> RecommendationEngine;
+  composition PersonalizedEducation -> TeacherProfile [*];
+  composition Course -> CourseEnrollment [*];
+}

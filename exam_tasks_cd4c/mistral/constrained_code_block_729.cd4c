@@ -1,0 +1,76 @@
+
+classdiagram SmartCityWasteManagement {
+
+  class WasteCollectionVehicle {
+    String uniqueIdentifier;
+    String type;
+    int capacity;
+  }
+
+  class WasteCollectionPoint {
+    String uniqueIdentifier;
+    String location;
+    String type;
+  }
+
+  class WasteStream {
+    String uniqueIdentifier;
+    String type;
+    int volume;
+  }
+
+  class WasteContainer {
+    String uniqueIdentifier;
+    String type;
+    int capacity;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String role;
+    String password;
+  }
+
+  class WasteMovement {
+    WasteCollectionVehicle wcv;
+    WasteStream wasteStream;
+    WasteContainer wasteContainer;
+    String timestamp;
+  }
+
+  class Report {
+    String type;
+    String content;
+  }
+
+  class Alert {
+    String type;
+    String content;
+  }
+
+  composition WasteCollectionVehicle [*] WasteMovement [manyToOne]
+  -- WasteStream [*]
+  -
+  {
+    ordered
+    }
+  ;
+  composition WasteMovement WasteContainer [manyToOne]
+  -- WasteContainer [*]
+  {
+    ordered
+    }
+  ;
+  association User [*] WasteMovement [manyToMany]
+  -- WasteStream [*]
+  {
+    ordered
+    }
+  ;
+  association User [*] Report [manyToMany]
+  -- Alert [*]
+  {
+    ordered
+    }
+  ;
+}

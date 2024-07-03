@@ -1,0 +1,236 @@
+
+classdiagram 
+
+class 
+{
+  private 
+  interfaces3DModel;
+  interfaces3DModelLoader;
+  interfaces3DModelAnalyzer;
+  interfaces3DModelExporter;
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  class 
+  implements 
+  {
+    private 
+    private 
+    private 
+    ;
+
+    public 
+    public 
+    public 
+    ;
+  }
+
+  }

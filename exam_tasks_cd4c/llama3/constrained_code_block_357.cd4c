@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram RemoteWorkSolution  {
+
+  class Employee  {
+    String uniqueId;
+    String name;
+    String email;
+    Workspace[] workspaces;
+  }
+
+  class Workspace  {
+    String uniqueId;
+    String name;
+    String description;
+    Employee[] employees;
+    Task[] tasks;
+    File[] files;
+  }
+
+  class Task  {
+    String uniqueId;
+    String name;
+    String description;
+    Date deadline;
+    Employee[] employees;
+  }
+
+  class File  {
+    String uniqueId;
+    String name;
+    String description;
+  }
+
+  class TimeEntry  {
+    String uniqueId;
+    Date date;
+    Task task;
+    int duration;
+  }
+
+  class Analytics  {
+    int totalTaskTime;
+    int totalTasksCompleted;
+    int totalFilesShared;
+  }
+
+  composition Employee -> Workspace[*];
+  composition Workspace -> Task[*];
+  composition Workspace -> File[*];
+  composition Task -> TimeEntry[*];
+  composition Analytics -> Employee[*];
+}

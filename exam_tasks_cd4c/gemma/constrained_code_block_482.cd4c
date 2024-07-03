@@ -1,0 +1,232 @@
+
+
+classdiagram FoodTraceabilitySystem {
+
+  class Farmer {
+    String identifier;
+    String name;
+  }
+
+  class Distributor {
+    String identifier;
+    String name;
+  }
+
+  class Retailer {
+    String identifier;
+    String name;
+  }
+
+  class Consumer {
+    String identifier;
+    String name;
+  }
+
+  class Product {
+    String identifier;
+    String name;
+    String type;
+    String batchNumber;
+    Date productionDate;
+  }
+
+  class Batch {
+    String number;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Blockchain {
+    List<Transaction> transactions;
+  }
+
+  class Transaction {
+    String sender;
+    String recipient;
+    Product product;
+    int quantity;
+    Date timestamp;
+  }
+
+  composition Farmer -> Product [0..*]
+  abstract  
+  
+  
+
+  {
+    
+  
+
+  ordered
+  }
+
+  
+
+;
+
+  composition Distributor -> Product [0..*]
+  abstract  
+
+  
+
+  {
+
+  
+
+  
+
+  ordered
+  }
+
+  
+
+;
+
+  composition Retailer -> Product [0..*]
+  abstract  
+
+  
+
+  {
+
+  
+
+  
+
+  ordered
+  }
+
+  
+
+;
+
+  composition Consumer -> Product [0..*]
+  abstract  
+
+  
+
+  {
+
+  
+
+  
+
+  ordered
+  }
+
+  
+
+;
+
+  composition Blockchain -> Transaction [0..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Farmer - Product
+  -- Has
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Distributor - Product
+  -- Has
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Retailer - Product
+  -- Has
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Consumer - Product
+  -- Has
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Blockchain - Transaction
+  -- Has
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+;
+
+}

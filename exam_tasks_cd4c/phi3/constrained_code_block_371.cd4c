@@ -1,0 +1,296 @@
+
+classdiagram FoodDeliverySystem {
+
+    class Customer {
+      String customerId;
+      List<Order> orders;
+    }
+
+    class Order {
+      String orderId;
+      Customer customer;
+      List<Item> items;
+      OrderStatus status;
+      double totalCost;
+    }
+
+    class Item {
+      String name;
+      double price;
+      String description;
+    }
+
+    class Restaurant {
+      String name;
+      String address;
+      List<Item> menuItems;
+      List<Order> orders;
+    }
+
+    enum OrderStatus {
+      Pending, InProgress, Delivered
+   
+   
+   (has)
+   
+
+;
+    association Customer 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+    composition Customer 
+   
+   
+
+;
+    composition Order 
+   
+   
+
+;
+    composition Restaurant 
+   
+   
+
+;
+    aggregation Order 
+   
+   
+
+;
+    aggregation Restaurant 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+    composition Order 
+   
+   
+
+;
+    composition Restaurant 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+    association Order 
+   
+   
+
+;
+    association Restaurant 
+   
+   
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+enum OrderStatus {
+  Pending, InProgress, Delivered
+
+ 
+
+;
+   
+
+}
+
+
+
+
+
+}

@@ -1,0 +1,13 @@
+
+classdiagram 
+
+classHome {
+  private
+    interfacenameame;
+    interfacenameomtype;
+    interfacenameolocation;
+  public
+    interfacenameame;
+    interfacenameomtype;
+    interfacenameolocation;
+}

@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram SmartHomeSecurity  {
+
+  class CentralHub  {
+    Sensor  sensor  ; 
+    SecurityPanel securityPanel; 
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier; 
+    SensorStatus status; 
+  }
+
+  class MotionSensor extends Sensor  {
+    boolean isTriggered; 
+  }
+
+  class TemperatureSensor extends Sensor  {
+    double temperature; 
+  }
+
+  class HumiditySensor extends Sensor  {
+    double humidity; 
+  }
+
+  class SecurityPanel  {
+    SecurityStatus status; 
+  }
+
+  class Alarm  {
+    int priority; 
+    NotificationMethod notificationMethod; 
+  }
+
+  class Notification  {
+    String message; 
+    User recipient; 
+  }
+
+  enum SensorStatus  {
+    Triggered, NotTriggered; 
+  }
+
+  enum SecurityStatus  {
+    Armed, Disarmed; 
+  }
+
+  enum NotificationMethod  {
+    Phone, Email; 
+  }
+
+  composition CentralHub -> Sensor  ; 
+  composition CentralHub -> SecurityPanel  ; 
+  composition Alarm -> Notification  ; 
+  composition Notification -> User  ; 
+}

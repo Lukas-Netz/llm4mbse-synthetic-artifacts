@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram CustomerJourneyAnalytics  {
+
+  class Customer  {
+    String name;
+    String email;
+    String phoneNumber;
+    String demographics;
+  }
+
+  class ProductUsage  {
+    String productId;
+    String productName;
+    Date purchaseDate;
+    int quantity;
+  }
+
+  class Interaction  {
+    String interactionId;
+    Customer customer;
+    ProductUsage productUsage;
+    InteractionChannel channel;
+    InteractionOutcome outcome;
+    Date interactionDate;
+    int interactionFrequency;
+  }
+
+  class InteractionChannel  {
+    String channelName;
+  }
+
+  class InteractionOutcome  {
+    String outcomeName;
+  }
+
+  class Report  {
+    String reportId;
+    Customer customer;
+    Date reportDate;
+    String reportType;
+  }
+
+  class Visualization  {
+    String visualizationId;
+    Report report;
+    String visualizationType;
+  }
+
+  class Recommendation  {
+    String recommendationId;
+    Customer customer;
+    String recommendationText;
+  }
+
+  composition Customer -> (has) Interaction[*];
+  composition Interaction -> (has) ProductUsage;
+  composition Interaction -> (has) InteractionChannel;
+  composition Interaction -> (has) InteractionOutcome;
+  composition Report -> (has) Visualization[*];
+  composition Recommendation -> (has) Customer;
+}

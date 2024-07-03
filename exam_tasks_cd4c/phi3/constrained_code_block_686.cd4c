@@ -1,0 +1,73 @@
+
+classdiagram ArtAuction {
+
+    class Artist {
+      String name;
+      String email;
+      List<Artwork> artworks;
+    }
+
+    class Artwork {
+      String title;
+      String description;
+      double price;
+      ArtworkType type;
+      List<Bid> bids;
+      Artist artist;
+    }
+
+    class Bidder {
+      String name;
+      String email;
+      String companyName;
+      String contactPerson;
+      List<Bid> bids;
+    }
+
+    class IndividualBidder extends Bidder {
+      IndividualBidder(String name, String email)
+        throws IllegalArgumentException
+    ;
+    }
+
+    class CorporateBidder extends Bidder {
+      CorporateBidder(String companyName, String contactPerson)
+        throws IllegalArgumentException
+    ;
+    }
+
+    class Bid {
+      Bidder bidder;
+      double bidAmount;
+      Date bidDate;
+    }
+
+    enum ArtworkType {
+      Painting, Sculpture, Print
+    ;
+  }
+
+  association Artist 
+    has 
+      -> List<<Artwork>>
+    ;
+
+  association Artwork 
+    has 
+      -> List<<Bid>>
+    ;
+
+  association Bidder 
+    has 
+      -> List<<Bid>>
+    ;
+
+  association ArtworkType 
+    with 
+      -> Artwork
+    ;
+
+  composition Artist -> List<<Artwork>>;
+  composition Artwork -> List<<Bid>>;
+  composition Bidder -> List<<Bid>>;
+}

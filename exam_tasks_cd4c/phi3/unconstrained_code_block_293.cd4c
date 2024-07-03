@@ -1,0 +1,39 @@
+
+classdiagram AquaticFishTrackingSystem {
+
+    class Drone {
+      String droneId;
+      Sensor[] sensors;
+      WaterBody waterBody;
+      Fish[] fish;
+      void trackFish();
+    }
+
+    class Sensor {
+      String sensorId;
+      String parameter;
+      float value;
+    }
+
+    class Fish {
+      String fishId;
+      String species;
+      double size;
+    }
+
+    class WaterBody {
+      String waterBodyId;
+      String location;
+    }
+
+    class Researcher {
+      String researcherId;
+      void analyzeData();
+    }
+
+    composition Drone -> Sensor [*];
+    composition Drone -> Fish [*];
+    composition Drone -> WaterBody;
+    composition WaterBody -> Fish [*];
+    composition Researcher -> Drone;
+}

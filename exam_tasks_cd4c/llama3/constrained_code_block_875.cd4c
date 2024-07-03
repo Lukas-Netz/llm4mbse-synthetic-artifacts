@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram NeuralInterfaceDevice  {
+
+  class BrainComputerInterface  {
+    String uniqueIdentifier;
+    void detectBrainSignals();
+  }
+
+  class ControlUnit  {
+    String uniqueIdentifier;
+    void interpretBrainSignals();
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    void control();
+  }
+
+  class ProstheticLimbs extends Device  {
+    void move();
+  }
+
+  class Wheelchairs extends Device  {
+    void move();
+  }
+
+  class Computers extends Device  {
+    void type();
+  }
+
+  class UserInterface  {
+    void configureSystem();
+    void monitorPerformance();
+  }
+
+  composition BrainComputerInterface -> ControlUnit [1..*];
+  composition ControlUnit -> Device [1..*];
+  composition Device -> ControlUnit [0..1];
+  composition NeuralInterfaceDevice -> BrainComputerInterface [1];
+  composition NeuralInterfaceDevice -> ControlUnit [1];
+  composition NeuralInterfaceDevice -> UserInterface [1];
+}

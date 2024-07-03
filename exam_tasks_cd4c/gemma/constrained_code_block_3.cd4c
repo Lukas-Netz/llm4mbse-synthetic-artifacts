@@ -1,0 +1,30 @@
+
+
+  classdiagram TradSystem {
+    class TradSystem {
+      Broker broker;
+      List miniatur;
+    }
+    class TradSystem {
+      Broker broker;
+    }
+    class Somal;
+    class Somal;
+    class Somal;
+    class Somal;
+    enum TradeStatus;
+    enum DispStatus;
+    enum TradStatus;
+    enum suspicPcs;
+    enum depic;
+    enum depic;
+    enum depic;
+    enum depic;
+    enum depic;
+    enum depic;
+    enum DispStatus;
+    enum depic;
+    enum DispStatus;
+    enum DispStatus;
+    
+}

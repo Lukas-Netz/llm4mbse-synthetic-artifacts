@@ -1,0 +1,70 @@
+
+classdiagram RetailPOS {
+
+    class Store {
+      String storeId;
+      String storeName;
+    }
+
+    class CashRegister {
+      String cashRegisterId;
+      Store store;
+      CashRegisterStatus status;
+    }
+
+    class Database {
+      Product[] products;
+      Customer[] customers;
+      Transaction[] transactions;
+    }
+
+    class Product {
+      String productId;
+      String productName;
+      double price;
+      int quantity;
+    }
+
+    class Customer {
+      String customerId;
+      String customerName;
+      String contactInfo;
+    }
+
+    class Transaction {
+      String transactionId;
+      Date transactionDate;
+      Time transactionTime;
+      double totalAmount;
+    }
+
+    <<association>> class Store {
+      CashRegister[] cashRegisters;
+      Database database;
+    }
+
+    <<association>> class CashRegister {
+      Store store;
+      Product[] products;
+      Customer[] customers;
+      Transaction[] transactions;
+    }
+
+    <<association>> class Database {
+      Product[] products;
+      Customer[] customers;
+      Transaction[] transactions;
+    }
+
+    <<association>> class Product {
+      Database database;
+    }
+
+    <<association>> class Customer {
+      Database database;
+    }
+
+    <<association>> class Transaction {
+      Database database;
+    }
+}

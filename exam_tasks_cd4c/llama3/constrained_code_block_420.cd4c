@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram WeddingPlatform  {
+
+  class Wedding  {
+    String id;
+    Date date;
+    Location location;
+    Guest[] guests;
+    Vendor[] vendors;
+  }
+
+  class Guest  {
+    String name;
+    String email;
+    RSVPStatus rsvpStatus;
+  }
+
+  class Vendor  {
+    String name;
+    ContactInformation contactInfo;
+    Rating rating;
+    VendorCategory category;
+  }
+
+  class ContactInformation  {
+    String phone;
+    String email;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  class VendorCategory  {
+    String name;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  enum RSVPStatus  {
+    NotResponded,
+    RespondedYes,
+    RespondedNo
+  ;}
+
+  composition Wedding  ->  (has) Guest[*];
+  composition Wedding  ->  (has) Vendor[*];
+  composition Vendor  ->  (has) ContactInformation;
+  composition Vendor  ->  (has) Rating;
+  composition Vendor  ->  (has) VendorCategory;
+  composition Wedding  ->  (has) Location;
+  composition Guest  ->  (has) RSVPStatus;
+  association Wedding  ->  (sends) Reminder;
+  association Wedding  ->  (generates) VendorList;
+}

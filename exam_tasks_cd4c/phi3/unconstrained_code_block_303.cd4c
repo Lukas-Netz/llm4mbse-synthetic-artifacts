@@ -1,0 +1,71 @@
+
+classdiagram VirtualRealityZooTour {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void logout();
+    }
+
+    class Enclosure {
+      String name;
+      String description;
+      List<Animal> animals;
+      EnclosureType type;
+      void addAnimal(Animal animal);
+      void removeAnimal(Animal animal);
+    }
+
+    class Animal {
+      String name;
+      String species;
+      String description;
+      Enclosure enclosure;
+      String habitat;
+      String diet;
+      List<Content> contents;
+      void displayInfo();
+    }
+
+    class Content {
+      String type;
+      String url;
+      String description;
+    }
+
+    class VideoContent extends Content {
+      String url;
+      String duration;
+    }
+
+    class ImageContent extends Content {
+      String url;
+    }
+
+    class Zoo {
+      List<Enclosure> enclosures;
+      void addEnclosure(Enclosure enclosure);
+      void removeEnclosure(Enclosure enclosure);
+      Enclosure getEnclosure(String name);
+    }
+
+    enum EnclosureType {
+      Indoor, Outdoor;
+    }
+
+    enum AnimalType {
+      Mammal, Bird, Reptile;
+    }
+
+    association User -> VirtualRealityZooTour;
+    association VirtualRealityZooTour -> Enclosure;
+    association VirtualRealityZooTour -> Animal;
+    association VirtualRealityZooTour -> Content;
+    association VirtualRealityZooTour -> Zoo;
+    composition VirtualRealityZooTour -> User;
+    composition VirtualRealityZooTour -> Enclosure;
+    composition VirtualRealityZooTour -> Animal;
+    composition VirtualRealityZooTour -> Content;
+    composition VirtualRealityZooTour -> Zoo;
+}

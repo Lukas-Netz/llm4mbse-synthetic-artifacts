@@ -1,0 +1,87 @@
+
+classdiagram EcommerceBuilder {
+
+    class User {
+      String username;
+      String password;
+      String email;
+      String websiteName;
+      String websiteId;
+      List<Website> websites;
+    }
+
+    class Website {
+      String name;
+      String id;
+      List<Product> products;
+      List<Order> orders;
+      List<Setting> settings;
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+      String imageUrl;
+      ProductType type;
+      List<OrderItem> orderItems;
+    }
+
+    class Order {
+      String orderId;
+      String status;
+      List<OrderItem> items;
+    }
+
+    class OrderItem {
+      int quantity;
+      double totalPrice;
+      Product product;
+    }
+
+    class Setting {
+      String settingName;
+      String settingValue;
+    }
+
+    class ProductType {
+      String typeName;
+    }
+
+    association User - [1] hasWebsites
+    
+    -> [many] Website - 
+      {
+        ordered
+     };
+    association Website - [1] hasProducts
+    -> [many] Product - 
+      {
+        ordered
+     };
+    association Website - [1] hasOrders
+    -> [many] Order - 
+      {
+        ordered
+     };
+    association Website - [1] hasSettings
+    -> [many] Setting - 
+      {
+        ordered
+     };
+    composition Website -> Products
+    -
+    {
+      ordered
+    };
+    composition Website -> Orders
+    -
+    {
+      ordered
+    };
+    composition Website -> Settings
+    -
+    {
+      ordered
+    };
+}

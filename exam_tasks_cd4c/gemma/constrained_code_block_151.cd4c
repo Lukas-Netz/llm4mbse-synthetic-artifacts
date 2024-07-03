@@ -1,0 +1,157 @@
+
+
+classdiagram StockTradingSystem {
+
+    class TradingPlatform {
+      User users;
+      StockMarketData marketData;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      double balance;
+      enum Type;
+    }
+
+    enum Type {
+      Individual, Institutional
+    
+    
+
+(Individual & Institutional)  
+  
+;
+
+    class StockMarketData  
+    
+    ;
+
+    class Stock  
+    
+    ;
+
+    class Order  
+    
+    ;
+
+    class Trade  
+    
+    ;
+
+  composition TradingPlatform  (has 
+  users) ;
+  composition TradingPlatform  (has 
+  marketData) ;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsTradingPlatform  (has)  <- User [*];
+
+  associationsTradingPlatform  (has)  <- StockMarketData ;
+
+  associationsTradingPlatform  (has)  <- Order [*];
+
+  associationsTradingPlatform  (has)  <- Trade [*];
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ compositionsTradingPlatform  (has)  <- User [*];
+
+  associationsTradingPlatform  (has)  <- StockMarketData ;
+
+  associationsTradingPlatform  (has)  <- Order [*];
+
+  associationsTradingPlatform  (has)  <- Trade [*];
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ compositionsTradingPlatform  (has)  <- MarketData [*];
+
+  associationsTradingPlatform  (has)  <- MarketData ;
+
+  associationsTradingPlatform  (has)  <- Order [*];
+
+  associationsTradingPlatform  (has)  <- Trade [*];
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ compositionsTradingPlatform  (has)  <- MarketData [*];
+
+  associationsTradingPlatform  (has)  <- MarketData ;
+
+  associationsTradingPlatform  (has)  <- Order [*];
+
+  associationsTradingPlatform  (has)  <- Trade [*];
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ compositionsTradingPlatform  (has)  <- MarketData [*];
+
+  
+ }

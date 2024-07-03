@@ -1,0 +1,32 @@
+
+classdiagram BiometricPaymentSystem {
+
+    class Card {
+      String cardId;
+      User user;
+    }
+
+    class User {
+      String name;
+      String fingerprint;
+      List<Card> cards;
+    }
+
+    class Terminal {
+      String terminalId;
+      List<Transaction> transactions;
+    }
+
+    class Transaction {
+      Card card;
+      User user;
+      Terminal terminal;
+      double amount;
+      String type;
+    }
+
+    association Card -> User [1..*];
+    association User -> Card [0..*];
+    association User -> Terminal [0..*];
+    association Terminal -> Transaction [0..*];
+}

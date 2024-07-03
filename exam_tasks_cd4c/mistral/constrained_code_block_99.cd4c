@@ -1,0 +1,85 @@
+
+classdiagram CloudNativeApp {
+
+  class CloudNativeApp {
+    Microservice [  ] microservices;
+    Database database;
+    LoadBalancer loadBalancer;
+    MonitoringLogging monitoringLogging;
+    Security security;
+    BackupRecovery backupRecovery;
+    DisasterRecovery disasterRecovery;
+    TestingDeployment testingDeployment;
+    CICD CICD;
+  }
+
+  interface Microservice {
+    void handleRequest(Request request);
+    void handleResponse(Response response);
+  }
+
+  class Database {
+    NoSQLDataStore dataStore;
+  }
+
+  class LoadBalancer {
+    CloudBasedLoadBalancingService service;
+  }
+
+  class MonitoringLogging {
+    CloudBasedMonitoringLoggingService service;
+  }
+
+  class Security {
+    CloudBasedSecurityService service;
+  }
+
+  class BackupRecovery {
+    CloudBasedBackupRecoveryService service;
+  }
+
+  class DisasterRecovery {
+    CloudBasedDisasterRecoveryService service;
+  }
+
+  class TestingDeployment {
+    CloudBasedTestingDeploymentService service;
+  }
+
+  class CICD {
+    CloudBasedCICDService service;
+  }
+
+  class Request {
+    String data;
+  }
+
+  class Response {
+    String data;
+  }
+
+  class NoSQLDataStore {
+  }
+
+  class CloudBasedLoadBalancingService {
+  }
+
+  class CloudBasedMonitoringLoggingService {
+  }
+
+  class CloudBasedSecurityService {
+  }
+
+  class CloudBasedBackupRecoveryService {
+  }
+
+  class CloudBasedDisasterRecoveryService {
+  }
+
+  class CloudBasedTestingDeploymentService {
+  }
+
+  class CloudBasedCICDService {
+  }
+
+  }

@@ -1,0 +1,77 @@
+
+classdiagram SmartHomeSecurity {
+
+    class SmartHomeSecurity {
+      Hub hub;
+      Sensor[] sensors;
+      SecurityPanel panel;
+      Alarm alarm;
+      NotificationService notificationService;
+    }
+
+    class Hub {
+      -> Sensor [*];
+      -> SecurityPanel [*];
+      void addSensor(Sensor sensor);
+      void removeSensor(Sensor sensor);
+      void addPanel(SecurityPanel panel);
+      void removePanel(SecurityPanel panel);
+      void armSystem();
+      void disarmSystem();
+      String checkAlarmStatus();
+      void triggerAlarm();
+      void sendNotification(NotificationType type, String message);
+    }
+
+    abstract class Sensor {
+      String uniqueIdentifier;
+      SensorStatus status;
+    }
+
+    class MotionSensor extends Sensor {
+      void triggerMotion();
+    }
+
+    class TemperatureSensor extends Sensor {
+      void triggerTemperature();
+    }
+
+    class HumiditySensor extends Sensor {
+      void triggerHumidity();
+    }
+
+    class SecurityPanel {
+      SecurityStatus status;
+      void armSystem();
+      void disarmSystem();
+      void triggerAlarm();
+    }
+
+    enum SensorStatus {
+      Triggered, NotTriggered;
+    }
+
+    enum SecurityStatus {
+      Armed, Disarmed;
+    }
+
+    class Alarm {
+      int priorityLevel;
+      NotificationMethod notificationMethod;
+      void triggerAlarm();
+    }
+
+    enum NotificationType {
+      Sensor, SecurityPanel, Alarm;
+    }
+
+    class NotificationMethod {
+      String method;
+      void sendNotification(String message);
+    }
+
+    class NotificationService {
+      void sendNotificationToPhone(String message);
+      void sendNotificationToEmail(String message);
+    }
+}

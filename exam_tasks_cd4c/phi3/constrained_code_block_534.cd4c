@@ -1,0 +1,193 @@
+
+classdiagram OilSpillResponseSystem {
+
+    class Sensor {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class Drone {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class CommandCenter {
+      List<Sensor> sensors;
+      List<Drone> drones;
+      void deploySensor(Sensor sensor);
+      void deployDrone(Drone drone);
+      void retrieveSensor(Sensor sensor);
+      void retrieveDrone(Drone drone);
+      void sendCommand(Drone drone, Command command);
+      void sendCommand(Sensor sensor, Command command);
+      Report generateReport();
+    }
+
+    enum OilType {
+      Crude, Refined
+    ;
+
+    enum SeverityLevel
+    ;
+
+    association CommandCenter 
+    (has sensors, has drones);
+
+    association Sensor 
+    (part of) 
+    ;
+
+    association Drone 
+    (part of) 
+    ;
+}
+
+enum SeverityLevel {
+  Low, Medium, High
+;}
+
+enum OilType {
+  Crude, Refined
+;}
+
+classdiagram
+
+    {
+      class Sensor;
+      class Drone;
+      class CommandCenter;
+
+      enum SeverityLevel;
+      enum OilType;
+
+      association CommandCenter
+      ;
+
+      association Sensor
+      ;
+
+      association Drone
+      ;
+    }
+
+    class Sensor {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class Drone {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class CommandCenter {
+      List<Sensor> sensors;
+      List<Drone> drones;
+      void deploySensor(Sensor sensor);
+      void deployDrone(Drone drone);
+      void retrieveSensor(Sensor sensor);
+      void retrieveDrone(Drone drone);
+      void sendCommand(Drone drone, Command command);
+      void sendCommand(Sensor sensor, Command command);
+      Report generateReport();
+    }
+
+enum SeverityLevel {
+  Low, Medium, High
+;}
+
+enum OilType {
+  Crude, Refined
+;}
+
+classdiagram
+
+    {
+      class Sensor;
+      class Drone;
+      class CommandCenter;
+
+      enum SeverityLevel;
+      enum OilType;
+
+      association CommandCenter
+      ;
+
+      association Sensor
+      ;
+
+      association Drone
+      ;
+    }
+
+    class Sensor {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class Drone {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+    class CommandCenter {
+      List<Sensor> sensors;
+      List<Drone> drones;
+      void deploySensor(Sensor sensor);
+      void deployDrone(Drone drone);
+      void retrieveSensor(Sensor sensor);
+      void retrieveDrone(Drone drone);
+      void sendCommand(Drone drone, Command command);
+      void sendCommand(Sensor sensor, Command command);
+      Report generateReport();
+    }
+
+enum SeverityLevel {
+  Low, Medium, High
+;}
+
+enum OilType {
+  Crude, Refined
+;}
+
+classdiagram
+
+    {
+      class Sensor;
+      class Drone;
+      class CommandCenter;
+
+      enum SeverityLevel;
+      enum OilType;
+
+      association CommandCenter
+      ;
+
+      association Sensor
+      ;
+
+      association Drone
+      ;
+    }
+
+    class Sensor {
+      String location;
+      OilType oilType;
+      SeverityLevel severity;
+      boolean isActive;
+    }
+
+   
+}

@@ -1,0 +1,52 @@
+
+classdiagram TelemedicinePlatform {
+
+    class Patient {
+      String uniqueId;
+      List<Appointment> appointments;
+      void rateExperience(int rating);
+      void provideFeedback(String feedback);
+    }
+
+    class Doctor {
+      String uniqueId;
+      DoctorProfile profile;
+      List<Appointment> appointments;
+    }
+
+    class Appointment {
+      Date date;
+      Time time;
+      AppointmentStatus status;
+      VideoConference videoConference;
+      FileSharing fileSharing;
+    }
+
+    class DoctorProfile {
+      String qualifications;
+      String specialties;
+    }
+
+    class VideoConference {
+      boolean isAvailable;
+    }
+
+    class FileSharing {
+      boolean isAvailable;
+    }
+
+    class AppointmentStatus {
+      String value;
+    }
+
+    enum AppointmentStatus {
+      Scheduled, Cancelled, Completed;
+    }
+
+    association Patient -> Appointment [*];
+    association Doctor -> Appointment [*];
+    composition Doctor -> DoctorProfile;
+    composition Patient -> Appointment;
+    composition Appointment -> VideoConference;
+    composition Appointment -> FileSharing;
+}

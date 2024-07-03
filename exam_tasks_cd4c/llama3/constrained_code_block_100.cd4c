@@ -1,0 +1,101 @@
+
+
+
+
+classdiagram InventoryOptimizationSystem  {
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    ProductCategory category;
+  }
+
+  class Warehouse  {
+    String uniqueIdentifier;
+    String name;
+    String location;
+  }
+
+  class Inventory  {
+    Product product;
+    Warehouse warehouse;
+    int quantity;
+    int reorderPoint;
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    Date date;
+    OrderStatus status;
+  }
+
+  class OrderItem  {
+    Order order;
+    Product product;
+    int quantity;
+  }
+
+  class Supplier  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phone;
+    String address;
+  }
+
+  class ProductCategory  {
+    String name;
+  }
+
+  class OrderStatus  {
+    String name;
+  }
+
+  composition Warehouse -> Inventory [*];
+  composition Order -> OrderItem [*];
+  composition Supplier -> ContactInformation [1];
+
+  <<operation>>  -  class Product  {
+    void addProduct();
+    void removeProduct();
+    void updateProduct();
+  }
+
+  <<operation>>  -  class Warehouse  {
+    void addWarehouse();
+    void removeWarehouse();
+    void updateWarehouse();
+  }
+
+  <<operation>>  -  class Order  {
+    void addOrder();
+    void removeOrder();
+    void updateOrder();
+  }
+
+  <<operation>>  -  class Supplier  {
+    void addSupplier();
+    void removeSupplier();
+    void updateSupplier();
+  }
+
+  <<operation>>  -  class Inventory  {
+    void trackInventory();
+    void sendRestockNotification();
+  }
+
+  <<operation>>  -  class OrderItem  {
+    void addOrderItem();
+    void removeOrderItem();
+  }
+
+  <<operation>>  -  class ReportGenerator  {
+    void generateInventoryReport();
+    void generateOrderStatusReport();
+    void generateSupplierPerformanceReport();
+  }
+}

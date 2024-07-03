@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram OceanCleanupSystem  {
+
+  class CentralHub  {
+    -> CollectionUnit[*];
+    -> ProcessingUnit;
+    void monitorSystem();
+  }
+
+  class CollectionUnit  {
+    String location;
+    Sensor plasticWasteSensor;
+    void collectPlasticWaste();
+  }
+
+  class ProcessingUnit  {
+    Sensor plasticWasteProcessedSensor;
+    void processPlasticWaste();
+  }
+
+  class Sensor  {
+    double value;
+  }
+
+  class CommunicationModule  {
+    void sendData(CentralHub centralHub);
+  }
+
+  class PlasticWaste  {
+    double amount;
+  }
+
+  composition CentralHub -> (has) CollectionUnit[*];
+  composition CentralHub -> (has) ProcessingUnit;
+  composition CollectionUnit -> (has) Sensor;
+  composition ProcessingUnit -> (has) Sensor;
+  composition CentralHub -> (has) CommunicationModule;
+  composition CollectionUnit -> (has) PlasticWaste;
+  composition ProcessingUnit -> (has) PlasticWaste;
+}

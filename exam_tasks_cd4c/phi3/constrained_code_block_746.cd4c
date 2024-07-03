@@ -1,0 +1,86 @@
+
+classdiagram MarinePollutionDetection {
+
+    class MarinePollutionDetectionSystem {
+      Sensor[] sensors;
+      Drone[] drones;
+      Hub hub;
+      Database database;
+      UserInterface userInterface;
+    }
+
+    class Sensor {
+      String location;
+      WaterQualityData waterQualityData;
+      TemperatureData temperatureData;
+      PollutantData pollutantData;
+      void collectData();
+    }
+
+    class Drone {
+      String location;
+      VisualData visualData;
+      PollutantSample pollutantSample;
+      void collectData();
+    }
+
+    class Hub {
+      void receiveData(Sensor sensor, Drone drone);
+      PollutionHotspot[] detectPollutionHotspots();
+      void trackPollutantMovement();
+      void alertAuthorities();
+    }
+
+    class Database {
+      HistoricalData[] historicalData;
+      void storeData(Sensor sensor, Drone drone);
+    }
+
+    class UserInterface {
+      void displayData();
+      void visualizePollutionHotspots();
+    }
+
+    class WaterQualityData {
+      float pH;
+      float turbidity;
+      float dissolvedOxygen;
+    }
+
+    class TemperatureData {
+      float temperature;
+    }
+
+    class PollutantData {
+      PollutantType pollutantType;
+      float concentration;
+    }
+
+    class VisualData {
+      String image;
+    }
+
+    class PollutantSample {
+      PollutantType pollutantType;
+      float concentration;
+    }
+
+    class PollutantType {
+      String name;
+    }
+
+    class PollutionHotspot {
+      String location;
+      PollutantType pollutantType;
+      float concentration;
+    }
+
+    composition MarinePollutionDetectionSystem -> (has) Sensor[*];
+    composition MarinePollutionDetectionSystem -> (has) Drone[*];
+    composition MarinePollutionDetectionSystem -> (has) Hub;
+    composition MarinePollutionDetectionSystem -> (has) Database;
+    composition MarinePollutionDetectionSystem -> (has) UserInterface;
+
+    association Hub -> PollutionHotspot [*];
+    association Hub -> PollutantMovement [*];
+}

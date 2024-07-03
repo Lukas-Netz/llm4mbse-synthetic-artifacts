@@ -1,0 +1,65 @@
+
+classdiagram DocumentSharing {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Document {
+    String title;
+    String description;
+    String fileType;
+    User owner;
+    Set<User> sharedWith;
+    AccessLevel accessLevel;
+    int comments;
+    int likes;
+    int rating;
+  }
+
+  enum AccessLevel {
+    ReadOnly, Edit, Delete;
+  }
+
+  class Folder {
+    String name;
+    User owner;
+    Set<Document> documents;
+    Set<Folder> subFolders;
+  }
+
+  composition User [*] Document [many_to_many]
+  -- User_Document
+  <<stereotype>> 																	{
+   								ordered
+					}
+ 				;
+
+  composition User [*] Folder [many_to_many]
+  -- User_Folder
+  <<stereotype>> 																	{
+   								ordered
+					}
+ 				;
+
+  composition Folder [*] Document [many_to_many]
+  -- Folder_Document
+  <<stereotype>> 																	{
+   								ordered
+					}
+ 				;
+
+  composition Folder [*] Folder [many_to_many]
+  -- Folder_Folder
+  <<stereotype>> 																	{
+   								ordered
+					}
+ 				;
+
+  class Search {
+    String query;
+    Set<Document> results;
+  }
+}

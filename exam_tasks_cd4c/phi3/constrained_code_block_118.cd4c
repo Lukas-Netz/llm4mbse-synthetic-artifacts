@@ -1,0 +1,63 @@
+
+classdiagram HealthDataAnalyticsSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      Date dateOfBirth;
+      List<MedicalTestResult> medicalTestResults;
+      List<MedicationRecord> medicationRecords;
+    }
+
+    class MedicalTestResult {
+      String testType;
+      String resultValue;
+      ResultStatus status;
+    }
+
+    class MedicationRecord {
+      String medicationName;
+      String dosage;
+      String frequency;
+      boolean isActive;
+    }
+
+    class HealthReport {
+      String reportType;
+      String content;
+    }
+
+    class Alert {
+      String alertType;
+      String message;
+    }
+
+    <<association>> class Patient {
+      MedicalTestResult medicalTestResults;
+      MedicationRecord medicationRecords;
+    }
+
+    <<association>> class MedicalTestResult {
+      Patient patient;
+    }
+
+    <<association>> class MedicationRecord {
+      Patient patient;
+    }
+
+    <<association>> class HealthReport {
+      Patient patient;
+    }
+
+    <<association>> class Alert {
+      Patient patient;
+    }
+
+    <<aggregation>> class HealthReport {
+      List<HealthReport> reports;
+    }
+
+    <<aggregation>> class Alert {
+      List<Alert> alerts;
+    }
+}

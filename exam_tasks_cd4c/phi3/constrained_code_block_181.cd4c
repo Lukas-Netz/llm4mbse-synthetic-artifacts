@@ -1,0 +1,71 @@
+
+classdiagram QuantumKeyDistribution {
+
+    class QuantumKeyEncoder {
+      int keyLength;
+      String encodingMethod;
+      void encodeKey(QuantumKey key);
+    cvt QuantumKey;
+    }
+
+    class QuantumKeyDecoder {
+      int keyLength;
+      String decodingMethod;
+      QuantumKey decodeKey(QuantumKey key);
+    cvt QuantumKey;
+    }
+
+    class QuantumChannel {
+      int transmissionRate;
+      int transmissionDistance;
+      void transmitKey(QuantumKey key);
+    }
+
+    class ClassicalChannel {
+      int transmissionRate;
+      int transmissionDistance;
+      void transmitKey(QuantumKey key);
+    }
+
+    class CharlieKeyManager {
+      int keyStorageCapacity;
+      String verificationMethod;
+      void storeKey(QuantumKey key);
+      void verifyKey(QuantumKey key);
+    }
+
+    class QuantumKey {
+      int keyLength;
+    }
+
+    class QuantumKeyEncoderAssociation {
+      QuantumKeyEncoder encoder;
+      QuantumKey key;
+    }
+
+    class QuantumKeyDecoderAssociation {
+      QuantumKeyDecoder decoder;
+      QuantumKey key;
+    }
+
+    class QuantumChannelAssociation {
+      QuantumChannel channel;
+      QuantumKey key;
+    }
+
+    class ClassicalChannelAssociation {
+      ClassicalChannel channel;
+      QuantumKey key;
+    }
+
+    class CharlieKeyManagerAssociation {
+      CharlieKeyManager manager;
+      QuantumKey key;
+    }
+
+    association QuantumKeyEncoder -> QuantumKeyEncoderAssociation;
+    association QuantumKeyDecoder -> QuantumKeyDecoderAssociation;
+    association QuantumChannel -> QuantumChannelAssociation;
+    association ClassicalChannel -> ClassicalChannelAssociation;
+    association CharlieKeyManager -> CharlieKeyManagerAssociation;
+}

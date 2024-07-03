@@ -1,0 +1,34 @@
+
+classdiagram ManufacturingExecutionSystem {
+
+  class MES {
+    ProductionPlanning planning;
+    ProductionControl control;
+    QualityControl quality;
+    Database database;
+  }
+
+  class ProductionPlanning {
+    void planProductionSchedule();
+  }
+
+  class ProductionControl {
+    void monitorProduction();
+    void controlProduction();
+  }
+
+  class QualityControl {
+    void monitorQuality();
+  }
+
+  class Database {
+    ProductionSchedule schedule;
+    ProductionStatus status;
+    QualityControlData qualityData;
+  }
+
+  association MES -> ProductionPlanning;
+  association MES -> ProductionControl;
+  association MES -> QualityControl;
+  association MES -> Database;
+}

@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram OnlineCoursePlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Topic topic;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Topic  {
+    String name;
+    Course  [  ] courses;
+  }
+
+  class User  {
+    String username;
+    String password;
+    boolean isAdmin;
+    Instructor  [  ] instructors;
+    Student  [  ] students;
+  }
+
+  class Instructor extends User  {
+    Course  [  ] courses;
+  }
+
+  class Student extends User  {
+    Course  [  ] enrolledCourses;
+  }
+
+  class Quiz  {
+    String name;
+    Course course;
+    Question  [  ] questions;
+  }
+
+  class Assignment  {
+    String name;
+    Course course;
+    Submission  [  ] submissions;
+  }
+
+  class Submission  {
+    Student student;
+    Assignment assignment;
+    Date submittedDate;
+  }
+
+  class Question  {
+    String text;
+    Quiz quiz;
+  }
+
+  class Administrator extends User  {
+    Course  [  ] managedCourses;
+  }
+
+  composition Course -> Topic;
+  composition User -> Instructor;
+  composition User -> Student;
+  composition Course -> Quiz;
+  composition Course -> Assignment;
+  composition Quiz -> Question;
+  composition Assignment -> Submission;
+  composition Administrator -> Course;
+}

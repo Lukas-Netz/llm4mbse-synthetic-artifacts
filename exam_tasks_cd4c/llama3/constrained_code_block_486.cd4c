@@ -1,0 +1,86 @@
+
+
+
+
+classdiagram CareerCoachingSystem  {
+
+  class User  {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    Skills skills;
+    Education education;
+    WorkExperience workExperience;
+  }
+
+  class Skills  {
+    String  skill;
+  }
+
+  class Education  {
+    String institution;
+    String degree;
+    String fieldOfStudy;
+  }
+
+  class WorkExperience  {
+    String company;
+    String position;
+    String duration;
+  }
+
+  class CareerGoal  {
+    JobTitle jobTitle;
+    Industry industry;
+    Location location;
+  }
+
+  class JobTitle  {
+    String title;
+  }
+
+  class Industry  {
+    String name;
+  }
+
+  class Location  {
+    String city;
+    String state;
+    String country;
+  }
+
+  class JobOpening  {
+    Company company;
+    JobTitle jobTitle;
+    Industry industry;
+    Location location;
+  }
+
+  class Company  {
+    String name;
+  }
+
+  class CareerAdvice  {
+    String advice;
+  }
+
+  class Recommendation  {
+    JobOpening jobOpening;
+  }
+
+  class Dashboard  {
+    User user;
+    List<JobOpening> jobOpenings;
+  }
+
+  composition User -> Profile;
+  composition Profile -> Skills;
+  composition Profile -> Education;
+  composition Profile -> WorkExperience;
+  composition CareerGoal -> JobTitle;
+  composition CareerGoal -> Industry;
+  }

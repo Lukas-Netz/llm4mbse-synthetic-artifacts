@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram AUVSystem  {
+
+  class AUV  {
+    String uniqueIdentifier;
+    AUVType type;
+    Location currentLocation;
+    AUVStatus status;
+  }
+
+  enum AUVType  {
+    Research, Exploration, Maintenance;
+  }
+
+  enum AUVStatus  {
+    Operational, NonOperational;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class SurfaceStation  {
+    AUV[] aUVs;
+    void sendCommand(AUV aUV, String command);
+    void receiveData(AUV aUV, String data);
+  }
+
+  class PowerSource  {
+    int powerLevel;
+    void updatePowerLevel(int powerLevel);
+  }
+
+  class AUVSystem  {
+    SurfaceStation surfaceStation;
+    PowerSource powerSource;
+    void alertOperator(AUV aUV);
+  }
+
+  composition AUVSystem -> (has) SurfaceStation;
+  composition AUVSystem -> (has) PowerSource;
+  composition SurfaceStation -> AUV[*];
+  composition AUV -> PowerSource [1];
+  association AUV -> AUVType;
+  association AUV -> AUVStatus;
+  association AUV -> Location;
+  association SurfaceStation -> AUV[*];
+  association PowerSource -> AUV[*];
+}

@@ -1,0 +1,34 @@
+
+classdiagram CybersecuritySystem {
+
+  class NetworkMonitor {
+    String ipAddress;
+    int portNumber;
+    int packetSize;
+    ThreatDetectionEngine[] analyzedData;
+  }
+
+  class ThreatDetectionEngine {
+    String threatLevel;
+    String threatType;
+    String detectionTime;
+    RecommendationEngine[] detectedThreats;
+  }
+
+  class RecommendationEngine {
+    String recommendationType;
+    String recommendationLevel;
+    String implementationStatus;
+    ClientPortal[] clientSettings;
+  }
+
+  class ClientPortal {
+    String clientID;
+    String networkSettings;
+    String securityAlerts;
+  }
+
+  association NetworkMonitor -- ThreatDetectionEngine;
+  association ThreatDetectionEngine -- RecommendationEngine;
+  association RecommendationEngine -- ClientPortal;
+}

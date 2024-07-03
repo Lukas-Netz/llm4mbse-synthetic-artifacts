@@ -1,0 +1,65 @@
+
+classdiagram AI_System {
+
+  class Sensor {
+    String id;
+    String type;
+  }
+
+  class Machine {
+    String id;
+    String type;
+  }
+
+  class DataIngestionModule {
+    -> Sensor [*];
+    -> Machine [*];
+  }
+
+  class DataProcessingModule {
+    DataIngestionModule dataIngestionModule;
+    void analyzeData();
+    void identifyIssues();
+  }
+
+  class PredictiveAnalyticsModule {
+    DataProcessingModule dataProcessingModule;
+    void predictIssues();
+  }
+
+  class RecommendationEngine {
+    PredictiveAnalyticsModule predictiveAnalyticsModule;
+    void provideRecommendations();
+  }
+
+  class IntegrationModule {
+    ERPSystem erpSystem;
+    void integrate();
+  }
+
+  class UserInterface {
+    DataProcessingModule dataProcessingModule;
+    IntegrationModule integrationModule;
+    void displayRealTimeData();
+  }
+
+  interface ERPSystem {
+    void receiveData(Data data);
+  }
+
+  class Data {
+    String timestamp;
+    String sensorId;
+    String machineId;
+    String dataValue;
+  }
+
+  composition DataIngestionModule -> Sensor [*];
+  composition DataIngestionModule -> Machine [*];
+  association DataProcessingModule -> DataIngestionModule;
+  association PredictiveAnalyticsModule -> DataProcessingModule;
+  association RecommendationEngine -> PredictiveAnalyticsModule;
+  association IntegrationModule -> ERPSystem;
+  association UserInterface -> DataProcessingModule;
+  association UserInterface -> IntegrationModule;
+}

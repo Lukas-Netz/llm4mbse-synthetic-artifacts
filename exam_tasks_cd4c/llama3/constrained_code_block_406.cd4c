@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram OnlineTherapyPlatform  {
+
+  class Therapist  {
+    String uniqueIdentifier;
+    String name;
+    String specialization;
+    List<Session> sessions;
+    List<Rating> ratings;
+  }
+
+  class Client  {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+    List<Session> sessions;
+    List<Rating> ratings;
+  }
+
+  class Session  {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+    int duration;
+    Therapist therapist;
+    Client client;
+  }
+
+  class Rating  {
+    int rating;
+    String review;
+    Session session;
+  }
+
+  class Specialization  {
+    String name;
+  }
+
+  composition Therapist -> Session [1..*];
+  composition Client -> Session [1..*];
+  composition Session -> Therapist [1];
+  composition Session -> Client [1];
+  composition Therapist -> Rating [0..*];
+  composition Client -> Rating [0..*];
+  composition Session -> Rating [1];
+  composition Rating -> Session [1];
+  composition Therapist -> Specialization [0..*];
+  composition Client -> Specialization [0..*];
+  composition Session -> Specialization [0..*];
+  composition Specialization -> Therapist [0..*];
+  composition Specialization -> Client [0..*];
+  composition Specialization -> Session [0..*];
+}

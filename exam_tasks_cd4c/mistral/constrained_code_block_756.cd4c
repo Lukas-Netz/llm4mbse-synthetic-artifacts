@@ -1,0 +1,37 @@
+
+classdiagram VoiceControlledWheelchair {
+
+  class Wheelchair {
+    String uniqueIdentifier;
+    WheelchairState state;
+  }
+
+  enum WheelchairState {
+    Idle, Moving, Stopped;
+  }
+
+  class VoiceAssistant {
+    void recognizeVoiceCommand(String command);
+  }
+
+  class ControlPanel {
+    void receiveVoiceCommand(String command);
+    void sendControlSignal(String command);
+    String getWheelchairState();
+  }
+
+  class Display {
+    void showWheelchairState(String state);
+  }
+
+  composition WheelchairControlPanel -> ControlPanel;
+  composition ControlPanel -> Display;
+  association VoiceAssistant -- ControlPanel;
+  association Wheelchair -- ControlPanel;
+
+  class SafetyFeature {
+    void checkSafeArea();
+  }
+
+  composition Wheelchair -- SafetyFeature;
+}

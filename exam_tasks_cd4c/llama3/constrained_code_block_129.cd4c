@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram ConversationalInterface  {
+
+  class User  {
+    String name;
+    boolean isHuman;
+  }
+
+  class Query  {
+    String text;
+    VoiceCommand voiceCommand;
+  }
+
+  class VoiceCommand  {
+    String command;
+  }
+
+  class Response  {
+    String text;
+    Image image;
+    Audio audio;
+  }
+
+  class KnowledgeBase  {
+    Topic  topic;
+  }
+
+  class Topic  {
+    String title;
+    String description;
+  }
+
+  class ExternalAPI  {
+    String url;
+  }
+
+  class Suggestion  {
+    Query query;
+  }
+
+  class Feedback  {
+    Query query;
+    Response response;
+  }
+
+  class Device  {
+    String name;
+  }
+
+  class SmartHome  {
+    Device  device;
+  }
+
+  class Interface  {
+    User user;
+    Query query;
+    Response response;
+    KnowledgeBase knowledgeBase;
+    ExternalAPI externalAPI;
+    Suggestion suggestion;
+    Feedback feedback;
+    SmartHome smartHome;
+  }
+
+  composition Interface  ->  (has) User;
+  composition Interface  ->  (has) Query;
+  composition Interface  ->  (has) Response;
+  composition Interface  ->  (has) KnowledgeBase;
+  composition Interface  ->  (has) ExternalAPI;
+  composition Interface  ->  (has) Suggestion;
+  composition Interface  ->  (has) Feedback;
+  composition Interface  ->  (has) SmartHome;
+  }

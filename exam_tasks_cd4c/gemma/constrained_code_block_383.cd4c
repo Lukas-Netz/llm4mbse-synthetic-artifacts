@@ -1,0 +1,37 @@
+
+
+classdiagram WildlifeTrackingSystems {
+
+  class Sensor {
+    String uniqueIdentifier;
+    List<Animal> animals;
+  }
+
+  class Animal {
+    String uniqueIdentifier;
+    Sensor sensor;
+    Species species;
+  }
+
+  class Species {
+    String name;
+    Habitat habitat;
+    Diet diet;
+    Behavior behavior;
+  }
+
+  class Researcher {
+    List<Sensor> sensors;
+    List<Animal> animals;
+    Reports reports;
+  }
+
+  class Reports {
+    String generateReport(String topic);
+  }
+
+  composition Sensor -> Animal [*];
+  composition Researcher -> Sensor [*];
+  association Animal -> Species;
+  association Species -> Sensor;
+}

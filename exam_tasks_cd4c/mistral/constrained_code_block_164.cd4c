@@ -1,0 +1,75 @@
+
+classdiagram Cybersecurity {
+
+  class Network {
+    Node [][ ] nodes;
+    Edge [][ ] edges;
+  }
+
+  abstract class Node {
+    String uniqueIdentifier;
+  }
+
+  abstract class Edge {
+    Node source;
+    Node destination;
+  }
+
+  class Sensor extends Node {
+    String uniqueIdentifier;
+    AttackType [ ] detectableAttacks;
+  }
+
+  enum AttackType {
+    DDoS, Malware, Phishing, etc;
+  }
+
+  class Anomaly {
+    SeverityLevel severity;
+    Timestamp timestamp;
+  }
+
+  enum SeverityLevel {
+    Low, Medium, High, Critical;
+  }
+
+  class Rule {
+    AttackType attackType;
+    SeverityLevel severity;
+  }
+
+  class Response {
+    Action action;
+    SeverityLevel severity;
+  }
+
+  enum Action {
+    BlockIP, SendAlert, etc;
+  }
+
+  class Logger {
+    void logEvent(Event event);
+  }
+
+  abstract class Event {
+    Timestamp timestamp;
+  }
+
+  class AnomalyDetected extends Event {
+    Anomaly anomaly;
+  }
+
+  class RuleTriggered extends Event {
+    Rule rule;
+  }
+
+  class ResponseTriggered extends Event {
+    Response response;
+  }
+
+  composition Network -> Node [*];
+  composition Network -> Edge [*];
+  association Sensor -- Anomaly;
+  association Rule -- Anomaly;
+  association Response -- Anomaly;
+}

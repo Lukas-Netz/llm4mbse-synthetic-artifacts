@@ -1,0 +1,68 @@
+
+classdiagram DigitalTwin {
+
+  class DigitalTwin {
+    Design design;
+    Prototype prototype;
+    Test test;
+    Manufacturing manufacturing;
+  }
+
+  class Design {
+    Material material;
+    Component component;
+  }
+
+  class Prototype {
+    Material material;
+    Component component;
+    TestResult testResult;
+  }
+
+  class Test {
+    TestResult testResult;
+  }
+
+  class Manufacturing {
+    Material material;
+    Component component;
+    ManufacturingResult manufacturingResult;
+  }
+
+  class Material {
+    String name;
+    double density;
+    double YoungsModulus;
+    double PoissonsRatio;
+  }
+
+  class Component {
+    String name;
+    double size;
+    double weight;
+  }
+
+  class TestResult {
+    double stress;
+    double strain;
+    boolean pass;
+  }
+
+  class ManufacturingResult {
+    double cost;
+    double time;
+    boolean success;
+  }
+
+  composition DigitalTwin -> Design;
+  composition DigitalTwin -> Prototype;
+  composition DigitalTwin -> Test;
+  composition DigitalTwin -> Manufacturing;
+  association Design -> Material;
+  association Prototype -> Material;
+  association Prototype -> Component;
+  association Test -> TestResult;
+  association Manufacturing -> Material;
+  association Manufacturing -> Component;
+  association Manufacturing -> ManufacturingResult;
+}

@@ -1,0 +1,109 @@
+
+classdiagram SmartTextileSystem {
+
+    class SmartTextileSystem {
+      RawMaterials rawMaterials;
+      Machines machines;
+      QualityControl qualityControl;
+      ProductionTeam productionTeam;
+      ReportGenerator reportGenerator;
+    }
+
+    class RawMaterials {
+      String yarnType;
+      String fabricType;
+      String threadType;
+    }
+
+    class Machines {
+      Weaving weavingMachine;
+      Knitting knittingMachine;
+      Cutting cuttingMachine;
+    }
+
+    class QualityControl {
+      Inspection inspection;
+      Testing testing;
+      Certification certification;
+    }
+
+    class ProductionTeam {
+      Worker worker;
+      Supervisor supervisor;
+      QualityControlInspector qualityControlInspector;
+    }
+
+    class ReportGenerator {
+      void generateProductionReport();
+      void generateQualityControlReport();
+    }
+
+    composition SmartTextileSystem -> (has) RawMaterials;
+    composition SmartTextileSystem -> (has) Machines;
+    composition SmartTextileSystem -> (has) QualityControl;
+    composition SmartTextileSystem -> (has) ProductionTeam;
+    composition SmartTextileSystem -> (has) ReportGenerator;
+
+    association RawMaterials -> Machines {
+      ordered
+    }
+
+   
+;
+
+    association Machines -> QualityControl {
+      ordered
+    }
+
+   
+;
+
+    association ProductionTeam -> QualityControl {
+      ordered
+    }
+
+   
+;
+
+    association SmartTextileSystem -> ReportGenerator {
+      ordered
+    }
+
+   
+;
+
+    association RawMaterials -> ProductionTeam {
+      ordered
+    }
+
+   
+;
+
+    association Machines -> ProductionTeam {
+      ordered
+    }
+
+   
+;
+
+    association QualityControl -> ProductionTeam {
+      ordered
+    }
+
+   
+;
+
+    association ProductionTeam -> ReportGenerator {
+      ordered
+    }
+
+   
+;
+
+    association ReportGenerator -> SmartTextileSystem {
+      ordered
+    }
+
+   
+;
+}

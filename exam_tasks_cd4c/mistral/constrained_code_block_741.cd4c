@@ -1,0 +1,67 @@
+
+classdiagram SustainableFisheries {
+
+  class Fishery {
+    String uniqueIdentifier;
+    List<Vessel> vessels;
+  }
+
+  class Vessel {
+    String uniqueIdentifier;
+    String name;
+    List<FishingTrip> fishingTrips;
+  }
+
+  class FishingTrip {
+    String uniqueIdentifier;
+    String status;
+    Date startDate;
+    Date endDate;
+    List<CatchRecord> catchRecords;
+  }
+
+  class CatchRecord {
+    String uniqueIdentifier;
+    String fishType;
+    int weight;
+    Timestamp timestamp;
+  }
+
+  class Certification {
+    String uniqueIdentifier;
+    String type;
+    List<Fishery> fisheries;
+    List<Vessel> vessels;
+  }
+
+  class Auditor {
+    String uniqueIdentifier;
+    String name;
+    List<Certification> certifications;
+  }
+
+  association Fishery --o000o- 											{ 											ordered						}
+   		;
+  association Vessel --o000o- 											{ 											ordered						}
+   		;
+  association FishingTrip --o000o- 											{ 											ordered						}
+   		;
+  association CatchRecord --o000o- 											{ 											ordered						}
+   		;
+  association Certification --o000o- 											{ 											ordered						}
+   		;
+  association Auditor --o000o- 											{ 											ordered						}
+   		;
+
+  enum Status {
+    Planned, Completed;
+  }
+
+  enum FishType {
+    Tuna, Salmon, Shrimp;
+  }
+
+  enum CertificationType {
+    SustainableFishing, Organic;
+  }
+}

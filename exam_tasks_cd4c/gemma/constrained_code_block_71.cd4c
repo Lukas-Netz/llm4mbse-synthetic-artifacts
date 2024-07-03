@@ -1,0 +1,54 @@
+
+
+classdiagram QualityManagementSystem {
+
+    class QualityManagementSystem {
+      QualityPolicy policy;
+      QualityManual manual;
+    }
+
+    class QualityPolicy {
+      String objectives;
+      String procedures;
+    }
+
+    class QualityManual {
+      String procedures;
+    }
+
+    class QualityObjectives {
+      String objective;
+      Measurable target;
+      Achievable target;
+      Relevant target;
+      TimeBound target;
+    }
+
+    class QualityProcedures {
+      String procedure;
+      Steps steps;
+    }
+
+    class QualityRecords {
+      String record;
+      Date date;
+    }
+
+    class QualityMetrics {
+      String metric;
+      Measurement value;
+    }
+
+    class QualityIndicators {
+      String indicator;
+      Measurement value;
+    }
+
+  composition QualityManagementSystem -> (has) QualityPolicy;
+  composition QualityManagementSystem -> (has) QualityManual;
+  association QualityPolicy -> QualityObjectives;
+  association QualityObjectives -> QualityProcedures;
+  association QualityProcedures -> QualityRecords;
+  association QualityRecords -> QualityMetrics;
+  association QualityMetrics -> QualityIndicators;
+}

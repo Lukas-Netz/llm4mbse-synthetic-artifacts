@@ -1,0 +1,62 @@
+
+classdiagram IdentityVerification {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Verifier {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Claim {
+    String uniqueIdentifier;
+    User user;
+    String claimType;
+    String claimValue;
+  }
+
+  class Verification {
+    String uniqueIdentifier;
+    Claim claim;
+    VerificationStatus status;
+    Timestamp timestamp;
+  }
+
+  enum VerificationStatus {
+    Pending, True, False
+ 
+  (User, Verifier, Claim, Verification)
+ 
+  
+;
+}
+
+class User {
+  -> Claim [*];
+}
+
+class Verifier {
+  -> Verification [*];
+}
+
+class Claim {
+  -> Verification [1];
+}
+
+class Verification {
+  Claim claim;
+}
+
+class Timestamp {
+  String date;
+  String time;
+}
+
+}

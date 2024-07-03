@@ -1,0 +1,346 @@
+
+
+classdiagram NeuroStimulationSystem {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    MedicalCondition medicalCondition;
+    List<Session> sessions;
+  }
+
+  class Session {
+    String uniqueIdentifier;
+    Device device;
+    DateTime startTime;
+    DateTime endTime;
+    Duration duration;
+    boolean isCompleted;
+    List<Parameter> parameters;
+    List<Outcome> outcomes;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+    String name;
+    Type type;
+    List<Session> sessions;
+    List<Parameter> parameters;
+  }
+
+  class Parameter {
+    String name;
+    Value value;
+  }
+
+  class Outcome {
+    String name;
+    Value value;
+  }
+
+  enum MedicalCondition {
+    Depression, Anxiety, Other
+  
+
+  
+
+  
+;
+
+  composition Patient  (has 
+  composition  
+
+  
+
+  
+
+  
+
+  )
+
+  
+
+  
+
+  ;
+
+  composition Session  (has 
+  composition  
+
+  
+
+  
+
+  
+
+  )
+
+  
+
+  
+
+  ;
+
+  composition Device  (has 
+  composition  
+
+  
+
+  
+
+  
+
+  )
+
+  
+
+  
+
+  ;
+
+  composition Parameter  (has 
+  composition  
+
+  
+
+  
+
+  
+
+  )
+
+  
+
+  
+
+  ;
+
+  composition Outcome  (has 
+  composition  
+
+  
+
+  
+
+  
+
+  )
+
+  
+
+  
+
+  ;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Patient  (has)  -> Session
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Session  (has)  -> Device
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Device  (has)  -> Session
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Parameter  (has)  -> Session
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Outcome  (has)  -> Session
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Session  (has)  -> Patient
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Patient  (has)  -> Device
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+}

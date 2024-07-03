@@ -1,0 +1,60 @@
+
+classdiagram VPP {
+
+  class VPP {
+    CentralController controller;
+    GridConnection gridConnection;
+    BackupPower backupPower;
+    DER [						]
+ 										DER_status;
+  }
+
+  abstract class DER {
+    String uniqueIdentifier;
+    DER_Status status;
+  }
+
+  class SolarPanel extends DER {
+    PowerGeneration powerGeneration;
+  }
+
+  class WindTurbine extends DER {
+    PowerGeneration powerGeneration;
+  }
+
+  class EnergyStorageSystem extends DER {
+    EnergyStorage energyStorage;
+  }
+
+  class GridConnection {
+    VPP vpp;
+  }
+
+  class CentralController {
+    VPP vpp;
+    void monitorDERStatus();
+    void controlDERPowerOutput();
+    void provideGridServices();
+  }
+
+  class BackupPower {
+    int capacityWh;
+  }
+
+  enum DER_Status {
+    Online, Offline;
+  }
+
+  enum PowerGeneration {
+    MW, kW;
+  }
+
+  enum EnergyStorage {
+    kWh, MWh;
+  }
+
+  composition VPP -> CentralController;
+  composition VPP -> GridConnection;
+  composition VPP -> BackupPower [0..1];
+  composition CentralController -> DER [*];
+}

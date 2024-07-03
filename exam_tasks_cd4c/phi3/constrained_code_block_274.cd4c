@@ -1,0 +1,62 @@
+
+classdiagram DocumentManagementSystem {
+
+    class DocumentRepository {
+      Map<String, Document> documents;
+      void addDocument(Document document);
+      Document getDocument(String id);
+      List<Document> getDocumentVersions(String id);
+    }
+
+    class DocumentType {
+      String name;
+      List<String> fields;
+      void addField(String fieldName);
+    }
+
+    class DocumentVersion {
+      String id;
+      Document document;
+      Date timestamp;
+      DocumentChange[] changes;
+    }
+
+    class Document {
+      String id;
+      String content;
+      DocumentType type;
+      List<DocumentVersion> versions;
+    }
+
+    class User {
+      String id;
+      String name;
+      List<Role> roles;
+    }
+
+    class Role {
+      String name;
+      List<String> permissions;
+    }
+
+    class DocumentChange {
+      String id;
+      String type;
+      String author;
+      String timestamp;
+    }
+
+    association DocumentRepository <-> Document;
+    association DocumentRepository <-> DocumentType;
+    association DocumentRepository <-> DocumentVersion;
+    association DocumentRepository <-> DocumentChange;
+
+    composition DocumentRepository -> Document;
+    composition DocumentRepository -> DocumentType;
+    composition DocumentRepository -> DocumentVersion;
+    composition DocumentRepository -> DocumentChange;
+
+    association User <-> Role;
+    composition User -> Document;
+    composition User -> DocumentChange;
+}

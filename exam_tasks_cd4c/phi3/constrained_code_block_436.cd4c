@@ -1,0 +1,66 @@
+
+classdiagram DigitalMakeupApplications {
+
+    class MakeupProduct {
+      String brand;
+      String category;
+      String ingredients;
+      double price;
+      boolean isAvailable;
+    }
+
+    class MakeupLook {
+      String name;
+      List<MakeupProduct> products;
+      List<Technique> techniques;
+      List<Image> images;
+    }
+
+    class Technique {
+      String name;
+    }
+
+    class Image {
+      String filename;
+      double resolution;
+    }
+
+    class Artist {
+      String username;
+      List<MakeupLook> createdLooks;
+      List<MakeupLook> collaboratedLooks;
+    }
+
+    class RenderingEngine {
+      void generate3DImage(MakeupLook look);
+    }
+
+    class Collaboration {
+      Artist collaborator;
+      MakeupLook makeupLook;
+      void inviteArtist(Artist artist);
+      void assignTask(Artist artist, MakeupLook look);
+      void reviewChanges(Artist artist);
+    }
+
+    class Database {
+      Map<String, MakeupProduct> products;
+      Map<String, MakeupLook> looks;
+    }
+
+    class UserInterface {
+      void createLook(MakeupLook look);
+      void editLook(MakeupLook look);
+      void addProduct(MakeupProduct product);
+      void removeProduct(MakeupProduct product);
+      void adjustProductQuantity(MakeupProduct product, int quantity);
+    }
+
+    association UserInterface -> MakeupLook [*];
+    association UserInterface -> MakeupProduct [*];
+    association UserInterface -> Artist [*];
+    association Artist -> MakeupLook [*];
+    composition Database -> (has) UserInterface;
+    composition Database -> (has) RenderingEngine;
+    composition Database -> (has) Collaboration;
+}

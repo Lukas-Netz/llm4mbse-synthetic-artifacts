@@ -1,0 +1,59 @@
+
+classdiagram RenewableEnergyForecasting {
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    class SolarPanel {
+      String uniqueIdentifier;
+      int capacityKW;
+    }
+
+    class WindTurbine {
+      String uniqueIdentifier;
+      int capacityKW;
+    }
+
+    class ForecastModel {
+      String modelName;
+      double predictionAccuracy;
+      WeatherStation weatherStation;
+      SolarPanel solarPanel;
+      WindTurbine windTurbine;
+      void updateModel(WeatherStation weatherStation, SolarPanel solarPanel, WindTurbine windTurbine);
+    }
+
+    class EnergyStorage {
+      String storageName;
+      int capacityKWH;
+    }
+
+    class RenewableEnergyForecastingSystem {
+      WeatherStation[] weatherStations;
+      SolarPanel[] solarPanels;
+      WindTurbine[] windTurbines;
+      ForecastModel[] forecastModels;
+      EnergyStorage[] energyStorageSystems;
+
+      void addWeatherStation(WeatherStation weatherStation);
+      void removeWeatherStation(WeatherStation weatherStation);
+      void addSolarPanel(SolarPanel solarPanel);
+      void removeSolarPanel(SolarPanel solarPanel);
+      void addWindTurbine(WindTurbine windTurbine);
+      void removeWindTurbine(WindTurbine windTurbine);
+      void addForecastModel(ForecastModel forecastModel);
+      void removeForecastModel(ForecastModel forecastModel);
+      void addEnergyStorage(EnergyStorage energyStorageSystem);
+      void removeEnergyStorage(EnergyStorage energyStorageSystem);
+    }
+
+  composition RenewableEnergyForecastingSystem -> (has) WeatherStation[*];
+  composition RenewableEnergyForecastingSystem -> (has) SolarPanel[*];
+  composition RenewableEnergyForecastingSystem -> (has) WindTurbine[*];
+  composition RenewableEnergyForecastingSystem -> (has) ForecastModel[*];
+  composition RenewableEnergyForecastingSystem -> (has) EnergyStorage[*];
+}

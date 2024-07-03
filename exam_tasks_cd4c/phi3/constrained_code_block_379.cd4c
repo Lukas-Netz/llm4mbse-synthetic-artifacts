@@ -1,0 +1,74 @@
+
+classdiagram OnlineCoursePlatform {
+
+    class Course {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      List<Topic> topics;
+      List<Student> students;
+      Date startDate;
+      Date endDate;
+      List<Quiz> quizzes;
+      List<Assignment> assignments;
+    }
+
+    class Topic {
+      String name;
+      List<Course> courses;
+    }
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class Instructor extends User {
+      void createCourse(Course course);
+      void manageCourse(Course course);
+      void addQuiz(Course course, Quiz quiz);
+      void removeQuiz(Course course, Quiz quiz);
+      void addAssignment(Course course, Assignment assignment);
+      void removeAssignment(Course course, Assignment assignment);
+    }
+
+    class Student extends User {
+      void enrollInCourse(Course course);
+      void submitWork(Course course, Assignment assignment);
+    }
+
+    class Quiz {
+      String quizName;
+      List<Student> students;
+      List<QuizAnswer> answers;
+    }
+
+    class Assignment {
+      String assignmentName;
+      List<Student> students;
+      List<AssignmentAnswer> answers;
+    }
+
+    class AssignmentAnswer {
+      Student student;
+      String answer;
+    }
+
+    class CourseAnalytics {
+      void trackCourseProgress(Course course);
+      void trackUserEngagement(User user);
+    }
+
+    composition Course -> Topic [*];
+    composition Course -> User [*];
+    composition Course -> Quiz [*];
+    composition Course -> Assignment [*];
+    composition Topic -> Course [*];
+    composition User -> Instructor [*];
+    composition User -> Student [*];
+    composition Instructor -> Course [*];
+    composition Instructor -> Quiz [*];
+    composition Instructor -> Assignment [*];
+    composition Student -> Course [*];
+   
+ }

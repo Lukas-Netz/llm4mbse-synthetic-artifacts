@@ -1,0 +1,82 @@
+
+classdiagram VirtualWorkspaceSolutions {
+
+    class VirtualWorkspace {
+      String name;
+      String description;
+      List<Feature> features;
+      boolean isFeatureEnabled(Feature feature);
+    }
+
+    class Feature {
+      String name;
+      boolean enabled;
+    }
+
+    class User {
+      String username;
+      String password;
+      List<Role> roles;
+      List<Team> teams;
+    }
+
+    class Team {
+      String name;
+      String description;
+      List<User> users;
+      List<VirtualWorkspace> virtualWorkspaces;
+    }
+
+    class Role {
+      String name;
+      List<Permission> permissions;
+    }
+
+    class Permission {
+      String name;
+    }
+
+    association VirtualWorkspace 
+      hasMany(Team) -> teams;
+
+    association Team 
+      hasMany(User) -> users;
+
+    association Team 
+      hasMany(VirtualWorkspace) -> virtualWorkspaces;
+
+    association User 
+      hasMany(Role) -> roles;
+
+    association User 
+      hasMany(Team) -> teams;
+
+    association User 
+      hasMany(VirtualWorkspace) -> virtualWorkspaces;
+
+    association Role 
+      hasMany(Permission) -> permissions;
+
+    association VirtualWorkspace 
+      hasMany(Feature) -> features;
+
+    association Feature 
+      belongsTo(VirtualWorkspace) -> virtualWorkspaces;
+
+    association Team 
+      hasMany(Feature) -> features;
+
+    association Feature 
+      belongsTo(VirtualWorkspace) -> virtualWorkspaces;
+
+    association Permission 
+      belongsTo(Role) -> roles;
+
+    association Role 
+      hasMany(User) -> users;
+
+    association Role 
+      hasMany(Team) -> teams;
+
+   
+}

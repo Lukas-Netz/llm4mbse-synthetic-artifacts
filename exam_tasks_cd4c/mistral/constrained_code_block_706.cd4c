@@ -1,0 +1,44 @@
+
+classdiagram WildlifeConservation {
+
+  class Node {
+    String uniqueIdentifier;
+  }
+
+  class Organization {
+    String name;
+  }
+
+  class Species {
+    String name;
+  }
+
+  class Project {
+    String name;
+    Species species;
+    Organization organization;
+  }
+
+  class Transaction {
+    String timestamp;
+    Project project;
+    String data;
+  }
+
+  class Block {
+    String hash;
+    List<Transaction> transactions;
+    Node previousBlock;
+  }
+
+  class Chain {
+    Block genesisBlock;
+    List<Block> blocks;
+  }
+
+  composition Chain -> Block [*];
+  composition Block -> Transaction [*];
+  association Node <-> Transaction;
+  association Organization <-> Project;
+  association Project <-> Species;
+}

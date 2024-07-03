@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram OTEC  {
+
+  class HeatExchanger  {
+    double surfaceArea;
+    double heatTransferCoefficient;
+  }
+
+  class ColdWaterIntake  {
+    double depth;
+    double flowRate;
+  }
+
+  class Turbine  {
+    double rotationalSpeed;
+    double powerOutput;
+  }
+
+  class Generator  {
+    double voltage;
+    double currentOutput;
+  }
+
+  class ControlSystem  {
+    Sensor temperatureSensor;
+    Sensor pressureSensor;
+    Sensor flowRateSensor;
+    void adjustSystemParameters();
+  }
+
+  class Sensor  {
+    double value;
+  }
+
+  composition OTEC  ->  (has) HeatExchanger;
+  composition OTEC  ->  (has) ColdWaterIntake;
+  composition OTEC  ->  (has) Turbine;
+  composition OTEC  ->  (has) Generator;
+  composition OTEC  ->  (has) ControlSystem;
+  composition ControlSystem  ->  (has) Sensor [3];
+}

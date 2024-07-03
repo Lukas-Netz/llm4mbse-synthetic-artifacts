@@ -1,0 +1,59 @@
+
+
+classdiagram MarketResearchCompany {
+
+  class Client {
+    String name;
+    int uniqueId;
+    List<Project> projects;
+  }
+
+  class Project {
+    String name;
+    int uniqueId;
+    Client client;
+    List<Survey> surveys;
+  }
+
+  class Survey {
+    String name;
+    String description;
+    List<Question> questions;
+  }
+
+  class Question {
+    String type;
+    List<String> possibleAnswers;
+  }
+
+  class AnalyticsService {
+    DataVisualization dataVisualization;
+    DataMining dataMining;
+    StatisticalAnalysis statisticalAnalysis;
+  }
+
+  class Analyst {
+    String name;
+    String role;
+    List<Skill> skills;
+  }
+
+  class Tool {
+    String name;
+    Purpose purpose;
+  }
+
+  class Technology {
+    String name;
+    Purpose purpose;
+  }
+
+  composition Client -> Project [0..*];
+  composition Project -> Survey [0..*];
+  composition Survey -> Question [0..*];
+  composition AnalyticsService -> Analyst [0..*];
+  composition Company -> Client [0..*];
+  composition Company -> Project [0..*];
+  composition Company -> Tool [0..*];
+  composition Company -> Technology [0..*];
+}

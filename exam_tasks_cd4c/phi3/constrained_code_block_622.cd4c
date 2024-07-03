@@ -1,0 +1,70 @@
+
+classdiagram SmartCityDigitalTwin {
+
+    class CityModel {
+      TransportationModel transportation;
+      EnergyDistributionModel energyDistribution;
+      WasteManagementModel wasteManagement;
+    }
+
+    class ResidentModel {
+      String address;
+      String behavior;
+    }
+
+    class BusinessModel {
+      String name;
+      String location;
+      String behavior;
+    }
+
+    class InfrastructureModel {
+      String type;
+      String status;
+    }
+
+    class EnergyDistributionModel {
+      int capacity;
+      int demand;
+    }
+
+    class WasteManagementModel {
+      String collectionMethod;
+      String disposalMethod;
+    }
+
+    class TransportationModel {
+      String mode;
+      String route;
+    }
+
+    class DataIntegration {
+      String dataSource;
+      String dataFormat;
+    }
+
+    class AnalysisAndPrediction {
+      String scenario;
+      String impact;
+    }
+
+    class Visualization {
+      String type;
+      String data;
+    }
+
+    composition CityModel -> TransportationModel;
+    composition CityModel -> EnergyDistributionModel;
+    composition CityModel -> WasteManagementModel;
+
+    composition CityModel -> InfrastructureModel;
+
+    composition ResidentModel -> CityModel;
+    composition BusinessModel -> CityModel;
+
+    composition DataIntegration -> CityModel;
+
+    composition AnalysisAndPrediction -> CityModel;
+
+    composition Visualization -> AnalysisAndPrediction;
+}

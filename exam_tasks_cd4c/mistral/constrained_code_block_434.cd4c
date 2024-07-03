@@ -1,0 +1,61 @@
+
+classdiagram VRInteriorDesign {
+
+  class Room {
+    String name;
+    Size size;
+    RoomType type;
+    Furniture [  ] furniture;
+  }
+
+  class Furniture {
+    String name;
+    FurnitureType type;
+    Position position;
+  }
+
+  class FurnitureCatalog {
+    Furniture [ ] furniture;
+  }
+
+  class Renderer {
+    Room room;
+    void render();
+  }
+
+  class User {
+    String username;
+    Design [ ] designs;
+  }
+
+  class Design {
+    Room room;
+    Furniture [ ] furniture;
+  }
+
+  class Size {
+    int width;
+    int height;
+    int depth;
+  }
+
+  class RoomType {
+    String name;
+  }
+
+  class FurnitureType {
+    String name;
+  }
+
+  class Position {
+    int xPosition;
+    int yPosition;
+    int zPosition;
+  }
+
+  composition User -> Design [*];
+  composition Design -> Room;
+  composition Room -> Furniture [*];
+  association FurnitureCatalog -> Furniture [*];
+  association Renderer -> Room;
+}

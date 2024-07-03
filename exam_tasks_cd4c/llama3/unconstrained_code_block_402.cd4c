@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram IndigenousLanguageLearningSystem  {
+
+  class User  {
+    String username;
+    String password;
+    String name;
+    String email;
+  }
+
+  class Course  {
+    String title;
+    String description;
+    Curriculum curriculum;
+    List<User> enrolledUsers;
+  }
+
+  class Curriculum  {
+    List<Lesson> lessons;
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    Exercise exercise;
+  }
+
+  class Exercise  {
+    String description;
+    Submission submission;
+  }
+
+  class Submission  {
+    String content;
+    User user;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+  }
+
+  class DiscussionForum  {
+    List<Post> posts;
+  }
+
+  class Post  {
+    String content;
+    User user;
+  }
+
+  class Report  {
+    String title;
+    String description;
+    List<User> users;
+  }
+
+  composition User -> (has) Course [0..*];
+  composition Course -> (has) Curriculum;
+  composition Curriculum -> (has) Lesson [0..*];
+  composition Lesson -> (has) Exercise;
+  composition Exercise -> (has) Submission;
+  composition Instructor -> (has) Course [0..*];
+  composition DiscussionForum -> (has) Post [0..*];
+  composition Report -> (has) User [0..*];
+}

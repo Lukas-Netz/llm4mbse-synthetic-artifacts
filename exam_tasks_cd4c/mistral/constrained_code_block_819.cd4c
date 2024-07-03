@@ -1,0 +1,75 @@
+
+classdiagram SmartMobility {
+
+  class TrafficManagement {
+    TrafficLightTiming trafficLightTiming;
+    CameraLocation cameraLocations;
+    void adjustTrafficLightTiming(TrafficLight trafficLight);
+    void monitorTrafficFlow();
+  }
+
+  class PublicTransportation {
+    BusSchedule busSchedules;
+    TrainSchedule trainSchedules;
+    void updateSchedules();
+    void monitorPassengerFlow();
+  }
+
+  class RideHailing {
+    DriverInfo driverInfo;
+    PassengerInfo passengerInfo;
+    void matchPassengerWithDriver();
+    void trackRideStatus();
+  }
+
+  class ParkingManagement {
+    ParkingLotCapacity parkingLotCapacity;
+    ParkingLotAvailability parkingLotAvailability;
+    void manageParkingLotAccess();
+    void monitorParkingLotUsage();
+  }
+
+  class TrafficLight {
+    Time greenLightTime;
+    Time yellowLightTime;
+    Time redLightTime;
+  }
+
+  class CameraLocation {
+    String location;
+  }
+
+  class BusSchedule {
+    Time departureTime;
+    String route;
+  }
+
+  class TrainSchedule {
+    Time departureTime;
+    String destination;
+  }
+
+  class DriverInfo {
+    String name;
+    String vehicleType;
+  }
+
+  class PassengerInfo {
+    String name;
+    String destination;
+  }
+
+  class ParkingLotCapacity {
+    int capacity;
+  }
+
+  class ParkingLotAvailability {
+    boolean isAvailable;
+  }
+
+  composition TrafficManagement -> TrafficLight [*];
+  composition TrafficManagement -> CameraLocation [*];
+  association PublicTransportation -> TrafficManagement;
+  association RideHailing -> TrafficManagement;
+  association ParkingManagement -> PublicTransportation;
+}

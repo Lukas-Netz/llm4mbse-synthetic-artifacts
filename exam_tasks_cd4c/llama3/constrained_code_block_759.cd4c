@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram AutonomousGreenhouse  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    Sensor[] sensors;
+    Role role;
+  }
+
+  class ControlSystem  {
+    Robot[] robots;
+    Task[] tasks;
+    Schedule schedule;
+  }
+
+  class Database  {
+    Plant[] plants;
+    EnvironmentalCondition[] conditions;
+  }
+
+  class UserInterface  {
+    Robot[] robots;
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class Task  {
+    String name;
+  }
+
+  class Schedule  {
+    Task[] tasks;
+  }
+
+  class Plant  {
+    String type;
+    GrowthStage stage;
+  }
+
+  class EnvironmentalCondition  {
+    String condition;
+  }
+
+  composition ControlSystem -> Robot[*];
+  composition ControlSystem -> Task[*];
+  composition ControlSystem -> Schedule;
+  composition Database -> Plant[*];
+  composition Database -> EnvironmentalCondition[*];
+  composition UserInterface -> Robot[*];
+  association Robot -> Sensor[*];
+  association Robot -> Role;
+  association Task -> Schedule;
+  association Plant -> GrowthStage;
+  }

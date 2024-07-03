@@ -1,0 +1,39 @@
+
+classdiagram SmartFarm {
+
+  class Sensor {
+    String id;
+    String type;
+    int value;
+  }
+
+  class Camera {
+    String id;
+    String resolution;
+    String capturedImage;
+  }
+
+  class Animal {
+    String id;
+    String breed;
+    int age;
+    String healthStatus;
+  }
+
+  class Hub {
+    -> Sensor [*];
+    -> Camera [*];
+    -> Animal [*];
+    void analyzeData();
+    void generateReport();
+    void provideRecommendations();
+    void detectDisease();
+    void integrateWithWeatherForecasting();
+    void integrateWithCropMonitoring();
+  }
+
+  composition SmartFarm -> (has) Hub;
+  composition Hub -> Sensor [*];
+  composition Hub -> Camera [*];
+  composition Hub -> Animal [*];
+}

@@ -1,0 +1,45 @@
+
+
+classdiagram VirtualDanceClassPlatform {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Instructor extends User {
+    String danceStyleSpecialty;
+    String bio;
+    List<Class> classes;
+  }
+
+  class Student extends User {
+    Profile profile;
+    List<Class> attendingClasses;
+  }
+
+  class Class {
+    String name;
+    String description;
+    Schedule schedule;
+  }
+
+  class Schedule {
+    DateTime startTime;
+    DateTime endTime;
+    Frequency frequency;
+  }
+
+  class Review {
+    String author;
+    String reviewText;
+    int rating;
+  }
+
+  composition User -> (has) Profile [0..1];
+  composition Instructor -> (has) Classes [*];
+  composition Student -> (has) AttendingClasses [*];
+  association Class -> Schedule;
+  association Review -> Class;
+  association Review -> Instructor;
+}

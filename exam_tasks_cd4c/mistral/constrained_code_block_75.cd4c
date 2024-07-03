@@ -1,0 +1,59 @@
+
+classdiagram MarketResearch {
+
+  class MarketResearchCompany {
+    -> Project [*];
+    -> Analyst [*];
+    -> Tool [*];
+  }
+
+  class Project {
+    String uniqueIdentifier;
+    String name;
+    Client client;
+    -> Survey [*];
+  }
+
+  class Client {
+    String name;
+    -> Project [*];
+  }
+
+  class Survey {
+    String name;
+    String description;
+    -> Question [*];
+  }
+
+  class Question {
+    String type;
+    -> Answer [*];
+  }
+
+  class Answer {
+    String text;
+  }
+
+  class Analyst {
+    String name;
+    String role;
+    -> Skill [*];
+  }
+
+  class Skill {
+    String name;
+  }
+
+  class Tool {
+    String type;
+  }
+
+  composition MarketResearchCompany -> Project;
+  composition MarketResearchCompany -> Analyst;
+  composition MarketResearchCompany -> Tool;
+  association Client --oProject;
+  association Project --oSurvey;
+  association Survey --oQuestion;
+  association Question --oAnswer;
+  association Analyst --oSkill;
+}

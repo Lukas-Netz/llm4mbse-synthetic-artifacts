@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram DigitalPaymentSolution  {
+
+  class Customer  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Merchant  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Transaction  {
+    Customer customer;
+    Merchant merchant;
+    TransactionType type;
+    double amount;
+    Currency currency;
+    Date date;
+  }
+
+  enum TransactionType  {
+    CREDIT_CARD,
+    ONLINE_BANKING,
+    MOBILE_WALLET
+  ;}
+
+  enum Currency  {
+    USD,
+    EUR,
+    JPY,
+    CNY
+  ;}
+
+  class PaymentGateway  {
+    String name;
+    String url;
+  }
+
+  class FinancialInstitution  {
+    String name;
+    String url;
+  }
+
+  class Report  {
+    Transaction transaction;
+    Date date;
+    String description;
+  }
+
+  composition Customer -> Transaction[*];
+  composition Merchant -> Transaction[*];
+  composition Transaction -> PaymentGateway [1];
+  composition Transaction -> FinancialInstitution [1];
+  composition Report -> Transaction [1];
+}

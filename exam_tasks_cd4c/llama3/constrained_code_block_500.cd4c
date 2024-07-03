@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram DigitalHealthDiagnostics  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+    MedicalCondition  [  ] medicalConditions;
+  }
+
+  class MedicalCondition  {
+    String name;
+    String description;
+    Symptom  [  ] symptoms;
+  }
+
+  class Symptom  {
+    String name;
+    SymptomType type;
+  }
+
+  enum SymptomType  {
+    Physical, Mental, Environmental;
+  }
+
+  class Test  {
+    String name;
+    String description;
+    TestResult  [  ] results;
+  }
+
+  class TestResult  {
+    String name;
+    ResultType type;
+  }
+
+  enum ResultType  {
+    Normal, Abnormal, Inconclusive;
+  }
+
+  class Recommendation  {
+    String name;
+    String description;
+    Action  [  ] actions;
+  }
+
+  class Action  {
+    String name;
+    ActionType type;
+  }
+
+  enum ActionType  {
+    Medication, LifestyleChanges, FurtherTesting;
+  }
+
+  class HealthProfessional  {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+    Recommendation  [  ] recommendations;
+  }
+
+  class Specialty  {
+    String name;
+  }
+
+  composition Patient  ->  (has) MedicalCondition  [ 1..* ];
+  composition MedicalCondition  ->  (has) Symptom  [ 1..* ];
+  composition Test  ->  (has) TestResult  [ 1..* ];
+  composition Recommendation  ->  (has) Action  [ 1..* ];
+  composition HealthProfessional  ->  (has) Recommendation  [ 1..* ];
+}

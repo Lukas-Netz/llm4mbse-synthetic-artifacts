@@ -1,0 +1,52 @@
+
+classdiagram AutomatedMLSystem {
+
+    class DataIngestion {
+      void collectData(Source source);
+      List<DataRecord> getData();
+    }
+
+    class DataPreprocessing {
+      void cleanData(List<DataRecord> records);
+      void transformData(List<DataRecord> records);
+    }
+
+    class MachineLearning {
+      void trainModel(List<DataRecord> records, ModelType modelType);
+      void evaluateModel(Model model, List<DataRecord> records);
+    }
+
+    class Deployment {
+      void deployModel(Model model);
+    }
+
+    class Model {
+      String modelType;
+      String modelPath;
+    }
+
+    class DataRecord {
+      String customerId;
+      List<String> customerData;
+    }
+
+    enum Source {
+      CustomerDatabase,
+      SocialMedia,
+      OnlineTransactions
+   
+   
+   ;}
+
+    enum ModelType {
+      DecisionTree,
+      RandomForest,
+      NeuralNetwork
+   
+   
+   ;}
+
+  composition DataIngestion -> (has) DataPreprocessing;
+  composition DataIngestion -> (has) MachineLearning;
+  composition MachineLearning -> (has) Deployment;
+}

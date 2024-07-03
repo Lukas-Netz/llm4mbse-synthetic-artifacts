@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram VirtualRealityTherapyPlatform  {
+
+  class Patient  {
+    String name;
+    int age;
+    Phobia phobia;
+  }
+
+  class Therapist  {
+    String name;
+    Qualification qualification;
+    Availability availability;
+  }
+
+  class VRExperience  {
+    String title;
+    Description description;
+  }
+
+  class Session  {
+    Patient patient;
+    Therapist therapist;
+    VRExperience experience;
+    Date date;
+  }
+
+  class ProgressTracking  {
+    Patient patient;
+    List<Session> sessions;
+  }
+
+  class Phobia  {
+    String name;
+  }
+
+  class Qualification  {
+    String type;
+  }
+
+  class Availability  {
+    List<TimeSlot> timeSlots;
+  }
+
+  class TimeSlot  {
+    Date date;
+    Time time;
+  }
+
+  class Description  {
+    String text;
+  }
+
+  composition Patient -> (has) Phobia;
+  composition Therapist -> (has) Qualification;
+  composition Therapist -> (has) Availability;
+  composition Session -> (has) Patient;
+  composition Session -> (has) Therapist;
+  composition Session -> (has) VRExperience;
+  composition ProgressTracking -> (has) Patient;
+  composition ProgressTracking -> (has) Session[*];
+}
+

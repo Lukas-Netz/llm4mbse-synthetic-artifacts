@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram MobileAppAnalytics  {
+
+  class App  {
+    String uniqueIdentifier;
+    int versionNumber;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Segment segment;
+  }
+
+  class Segment  {
+    String name;
+    String description;
+  }
+
+  class Analytics  {
+    App app;
+    User user;
+    Date timestamp;
+    Metric metric;
+  }
+
+  class Metric  {
+    String name;
+    double value;
+  }
+
+  class Report  {
+    App app;
+    Segment segment;
+    Date startDate;
+    Date endDate;
+    List<Metric> metrics;
+  }
+
+  class Anomaly  {
+    App app;
+    User user;
+    Date timestamp;
+    Metric metric;
+  }
+
+  composition App -> Analytics [*];
+  composition User -> Segment [1];
+  composition Analytics -> Metric [1];
+  composition Report -> App [1];
+  composition Report -> Segment [1];
+  composition Report -> Metric [*];
+  composition Anomaly -> App [1];
+  composition Anomaly -> User [1];
+  composition Anomaly -> Metric [1];
+}

@@ -1,0 +1,51 @@
+
+classdiagram DogTrainingSystem {
+
+    class User {
+      String username;
+      String password;
+      List<TrainingPlan> trainingPlans;
+      void createTrainingPlan(TrainingPlan plan);
+      void editTrainingPlan(TrainingPlan plan);
+      void deleteTrainingPlan(TrainingPlan plan);
+    }
+
+    class TrainingPlan {
+      String name;
+      String description;
+      List<Exercise> exercises;
+      Dog dog;
+      User user;
+      void assignDog(Dog dog);
+      void removeDog(Dog dog);
+      void trackProgress(Dog dog);
+      void viewExerciseDetails(Exercise exercise);
+    }
+
+    class Exercise {
+      String name;
+      String description;
+      int difficultyLevel;
+      List<TrainingPlan> assignedPlans;
+      void assignToPlan(TrainingPlan plan);
+      void removeFromPlan(TrainingPlan plan);
+    }
+
+    class Dog {
+      String name;
+      String breed;
+      int age;
+      User owner;
+      List<TrainingPlan> trainingPlans;
+      void participateInPlan(TrainingPlan plan);
+      void viewProgress(TrainingPlan plan);
+    }
+
+    class Progress {
+      Dog dog;
+      TrainingPlan plan;
+      int exercisesCompleted;
+      int difficultyLevelAchieved;
+      void updateProgress(Dog dog, TrainingPlan plan);
+    }
+}

@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram AutomatedTradingPlatform  {
+
+  class Account  {
+    String uniqueIdentifier;
+    double balance;
+    -> Order[*];
+  }
+
+  abstract class Order  {
+    String uniqueIdentifier;
+    Account account;
+  }
+
+  class MarketOrder extends Order  {
+    int quantity;
+    double price;
+  }
+
+  class LimitOrder extends Order  {
+    int quantity;
+    double price;
+    Date timeLimit;
+  }
+
+  class StopOrder extends Order  {
+    int quantity;
+    double price;
+    TriggerType triggerType;
+  }
+
+  class Portfolio  {
+    -> Asset[*];
+  }
+
+  class Asset  {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+  }
+
+  enum TriggerType  {
+    Above,
+    Below,
+    At;
+  }
+
+  composition Account -> Order[*];
+  composition Portfolio -> Asset[*];
+}
+

@@ -1,0 +1,56 @@
+
+
+classdiagram DigitalProductDesignTool {
+
+  class DesignElement {
+    String uniqueIdentifier;
+    Type type;
+  }
+
+  enum Type {
+    Icon, Shape, Color
+  
+
+  
+  
+ ;}
+
+  class Canvas {
+    List<DesignElement> elements;
+  }
+
+  class DesignTools {
+    TextEditor textEditor;
+    ShapeEditor shapeEditor;
+    ColorPicker colorPicker;
+  }
+
+  class VersionControlSystem {
+    List<Version> versions;
+  }
+
+  class Version {
+    String identifier;
+    Design design;
+    Version previousVersion;
+  }
+
+  class Publication {
+    String identifier;
+    Design design;
+    Format format;
+  }
+
+  enum Format {
+    Image, InteractivePrototype
+  
+
+  
+  
+ ;}
+
+  composition DesignElement -> Canvas;
+  composition DesignElement -> DesignTools;
+  composition DesignElement -> VersionControlSystem;
+  composition DesignElement -> Publication;
+}

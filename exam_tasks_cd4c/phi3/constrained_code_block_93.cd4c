@@ -1,0 +1,74 @@
+
+classdiagram CustomerJourneyAnalytics {
+
+    class Customer {
+      String name;
+      String email;
+      String phoneNumber;
+      List<Interaction> interactions;
+    }
+
+    class Interaction {
+      Customer customer;
+      ProductService usage;
+      InteractionChannel channel;
+      InteractionOutcome outcome;
+      DateTime interactionTime;
+      int interactionFrequency;
+    }
+
+    class ProductService {
+      String productName;
+      String serviceName;
+      DateTime purchaseDate;
+    }
+
+    class InteractionChannel {
+      String channelType;
+    }
+
+    class InteractionOutcome {
+      String outcomeType;
+    }
+
+    class Report {
+      String title;
+      String content;
+      DateTime timestamp;
+    }
+
+    class Visualization {
+      String type;
+      String data;
+    }
+
+    class CRMIntegration {
+      void integrateWithCRM();
+      void integrateWithMarketingAutomation();
+    }
+
+    class RealTimeAnalytics {
+      void provideRealTimeAnalytics();
+      void provideRealTimeReporting();
+    }
+
+    class PersonalizedRecommendation {
+      Customer customer;
+      List<ProductService> recommendations;
+    }
+
+    association Customer -> Interaction;
+    association Interaction -> ProductService;
+    association Interaction -> InteractionChannel;
+    association Interaction -> InteractionOutcome;
+    composition Customer -> List<<Interaction>>;
+
+    composition Interaction -> Report;
+    composition Interaction -> Visualization;
+
+    composition CRMIntegration -> CustomerJourneyAnalytics;
+    composition CRMIntegration -> Interaction;
+    composition CRMIntegration -> ProductService;
+   
+
+}

@@ -1,0 +1,43 @@
+
+
+
+classdiagram SpaceBasedSolarPower  {
+
+  class SpaceStation  {
+    SolarPanel  solarPanel  ;
+    PowerTransmissionSystem  powerTransmissionSystem;
+    FaultDetection  faultDetection;
+  }
+
+  class SolarPanel  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+    double surfaceArea;
+    double efficiency;
+    Orientation orientation;
+  }
+
+  class PowerTransmissionSystem  {
+    double capacityMW;
+  }
+
+  class FaultDetection  {
+    void detectMalfunction(SolarPanel solarPanel);
+    void detectMalfunction(PowerTransmissionSystem powerTransmissionSystem);
+  }
+
+  enum DeviceStatus  {
+    Operational, NonOperational;
+  }
+
+  enum Orientation  {
+    North, South, East, West;
+  }
+
+  composition SpaceStation  ->  (has) SolarPanel;
+  composition SpaceStation  ->  (has) PowerTransmissionSystem;
+  composition SpaceStation  ->  (has) FaultDetection;
+  composition PowerTransmissionSystem  ->  (has) SpaceStation;
+  composition SolarPanel  ->  (has) SpaceStation;
+  composition FaultDetection  ->  (has) SpaceStation;
+}

@@ -1,0 +1,50 @@
+
+classdiagram VRPTours {
+
+  class Museum {
+    String name;
+    String location;
+  }
+
+  class Exhibit {
+    String name;
+    String description;
+    ExhibitType type;
+    ExhibitSection section;
+  }
+
+  enum ExhibitType {
+    Dinosaur, Fossil, Artifact;
+  }
+
+  enum ExhibitSection {
+    Dinosaurs, Fossils, Artifacts;
+  }
+
+  class Visitor {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Account {
+    Visitor visitor;
+  }
+
+  class Login {
+    Account account;
+  }
+
+  class ViewExhibit {
+    Exhibit exhibit;
+  }
+
+  class RateAndReview {
+    Exhibit exhibit;
+    int rating;
+    String review;
+  }
+
+  composition Museum -> Exhibit [*];
+  composition Exhibit -> Visitor [*];
+}

@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram DigitalPianoLearningPlatform  {
+
+  class User  {
+    String username;
+    String password;
+    -> Course[*];
+  }
+
+  class Course  {
+    String title;
+    String description;
+    -> Lesson[*];
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    -> Exercise[*];
+  }
+
+  class Exercise  {
+    int difficultyLevel;
+    -> Lesson[*];
+  }
+
+  class Administrator  {
+    -> Course[*];
+    -> User[*];
+  }
+
+  class Progress  {
+    User user;
+    Exercise exercise;
+    int score;
+  }
+
+  composition User -> Course;
+  composition Course -> Lesson;
+  composition Lesson -> Exercise;
+  composition Administrator -> Course;
+  composition Administrator -> User;
+  composition Progress -> User;
+  composition Progress -> Exercise;
+}

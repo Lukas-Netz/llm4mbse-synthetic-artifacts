@@ -1,0 +1,326 @@
+
+classdiagram LegalAdvicePlatform {
+
+    class Lawyer {
+      String name;
+      String expertise;
+      int rating;
+    }
+
+    class Client {
+      String name;
+      String uniqueIdentifier;
+      List<Case> assignedCases;
+    }
+
+    class Case {
+      String uniqueIdentifier;
+      String description;
+      CaseStatus status;
+      List<Document> attachedDocuments;
+      Lawyer assignedLawyer;
+    }
+
+    class Document {
+      String documentType;
+      String content;
+    }
+
+    enum CaseStatus {
+      Open, Closed, Pending
+   
+   
+   ()
+   
+
+;
+    composition Client 
+   
+   
+
+;
+    composition Lawyer 
+   
+   
+
+;
+    composition Case 
+   
+   
+
+;
+    composition Document
+   
+   
+
+;
+    composition ClientCase 
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerClient
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerClientCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerClientCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+    composition LawyerCase
+   
+   
+
+;
+   
+
+}
+
+enum CaseStatus {
+  Open, Closed, Pending
+
+ 
+
+;
+   
+
+}
+
+enum DocumentType {
+  LegalDocument,
+  Contract,
+  Email
+
+ 
+
+;
+   
+
+}
+
+enum LawyerExpertise {
+  FamilyLaw,
+  CriminalLaw,
+  CorporateLaw,
+  IntellectualPropertyLaw
+
+ 
+
+;
+   
+
+}
+
+enum LawyerRating {
+  OneStar,
+  TwoStar,
+  ThreeStar,
+  FourStar,
+  FiveStar
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+ WrittenAnswer
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+enum ClientCaseStatus {
+  CaseOpen,
+  CaseClosed,
+  CasePending
+
+ 
+
+;
+   
+
+}
+
+
+
+
+
+}

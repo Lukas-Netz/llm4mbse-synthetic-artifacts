@@ -1,0 +1,50 @@
+
+
+
+classdiagram GlacierMonitoringSystem  {
+
+  class Glacier  {
+    String uniqueIdentifier;
+    Location location;
+    Size size;
+    Type type;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+    MeasurementType measurementType;
+  }
+
+  class DataLogger  {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+    Sensor associatedSensor;
+  }
+
+  class Researcher  {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class Size  {
+    double value;
+  }
+
+  class Type  {
+    String name;
+  }
+
+  class MeasurementType  {
+    String name;
+  }
+
+  composition Glacier -> (has) Sensor[*];
+  composition Sensor -> (has) DataLogger[*];
+  composition DataLogger -> (has) Researcher[*];
+  composition Researcher -> (has) Glacier;
+}

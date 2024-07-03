@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram OnlinePlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    -> Section[*];
+  }
+
+  class Section  {
+    Date startDate;
+    Date endDate;
+    -> Student[*];
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    Profile profile;
+    -> Assignment[*];
+    -> Discussion[*];
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Assignment  {
+    String title;
+    Date dueDate;
+    -> Submission[*];
+  }
+
+  class Submission  {
+    Date submissionDate;
+    String content;
+  }
+
+  class Discussion  {
+    String title;
+    Date dueDate;
+    -> Post[*];
+  }
+
+  class Post  {
+    Date postDate;
+    String content;
+  }
+
+  class Instructor  {
+    -> Course[*];
+    -> Section[*];
+    -> Assignment[*];
+  }
+
+  class Analytics  {
+    -> Student[*];
+    -> Course[*];
+  }
+
+  composition Course -> Section;
+  composition Section -> Student;
+  composition Student -> Assignment;
+  composition Student -> Discussion;
+  composition Instructor -> Course;
+  composition Instructor -> Section;
+  composition Instructor -> Assignment;
+  composition Analytics -> Student;
+  composition Analytics -> Course;
+}

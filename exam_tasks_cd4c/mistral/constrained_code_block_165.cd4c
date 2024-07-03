@@ -1,0 +1,85 @@
+
+classdiagram MarketingAutomation {
+
+  class Campaign {
+    String name;
+    Set<TargetAudience> targetAudiences;
+    Set<Channel> channels;
+    Content content;
+  }
+
+  class TargetAudience {
+    String segment;
+    String description;
+  }
+
+  class Channel {
+    String name;
+    String type;
+  }
+
+  class Content {
+    String copy;
+    String mediaUrl;
+  }
+
+  class Performance {
+    int impressions;
+    int clicks;
+    int conversions;
+    double conversionRate;
+  }
+
+  class Analytics {
+    Performance performance;
+    Date startDate;
+    Date endDate;
+  }
+
+  class DataSource {
+    String name;
+    String type;
+  }
+
+  class EmailMarketingPlatform extends DataSource {
+    String emailAddress;
+  }
+
+  class SocialMediaPlatform extends DataSource {
+    String handle;
+  }
+
+  class CRMSystem extends DataSource {
+    String accountId;
+  }
+
+  class UserRole {
+    String name;
+    Set<String> permissions;
+  }
+
+  class Administrator extends UserRole {
+    String username;
+    String password;
+  }
+
+  class Marketer extends UserRole {
+    String email;
+  }
+
+  class Analyst extends UserRole {
+    String email;
+  }
+
+  class MarketingAutomationSystem {
+    Set<Campaign> campaigns;
+    Set<DataSource> dataSources;
+    Set<UserRole> userRoles;
+  }
+
+  composition MarketingAutomationSystem -> Administrator [1..*];
+  composition MarketingAutomationSystem -> Marketer [1..*];
+  composition MarketingAutomationSystem -> Analyst [1..*];
+  association MarketingAutomationSystem -> Campaign [*];
+  association MarketingAutomationSystem -> DataSource [*];
+  }

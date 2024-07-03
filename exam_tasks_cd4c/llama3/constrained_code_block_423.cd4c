@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram DancePlatform  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Instructor extends User  {
+    String danceStyleSpecialty;
+    String bio;
+  }
+
+  class Student extends User  {
+    String danceExperience;
+    String danceGoals;
+  }
+
+  class Class  {
+    String name;
+    String description;
+    Schedule schedule;
+  }
+
+  class Schedule  {
+    Date startTime;
+    Date endTime;
+    Frequency frequency;
+  }
+
+  enum Frequency  {
+    Weekly, Biweekly, Monthly;
+  }
+
+  class Review  {
+    String comment;
+    int rating;
+  }
+
+  class Rating  {
+    int rating;
+  }
+
+  composition Instructor  ->  (has) Class[*];
+  composition Student  ->  (has) Class[*];
+  composition Class  ->  (has) Schedule;
+  composition Class  ->  (has) Review[*];
+  composition Instructor  ->  (has) Rating[*];
+  composition Student  ->  (has) Rating[*];
+}

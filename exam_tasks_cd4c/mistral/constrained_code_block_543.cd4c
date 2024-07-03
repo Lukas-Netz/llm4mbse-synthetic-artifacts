@@ -1,0 +1,59 @@
+
+classdiagram HydroponicSystem {
+
+  class HydroponicSystem {
+    ControlUnit controlUnit;
+    NutrientSolutionTank nutrientSolutionTank;
+    GrowingArea growingArea;
+  }
+
+  class ControlUnit {
+    MobileApp mobileApp;
+    UserInterface userInterface;
+    Sensor temperatureSensor;
+    Sensor humiditySensor;
+    Sensor lightSensor;
+    Sensor pHSensor;
+    Sensor ECsensor;
+    Sensor wateringSensor;
+    Sensor pruningSensor;
+    Sensor fertilizationSensor;
+    Sensor pestControlSensor;
+    Sensor diseaseControlSensor;
+    Sensor weedControlSensor;
+    Sensor irrigationSensor;
+    Sensor drainageSensor;
+    Sensor aerationSensor;
+    Sensor oxygenSensor;
+    Sensor carbonDioxideSensor;
+    Sensor nitrogenSensor;
+    Sensor phosphorusSensor;
+   		}
+
+  class NutrientSolutionTank {
+    int capacity;
+  }
+
+  class GrowingArea {
+    int plants;
+  }
+
+  class Sensor {
+    String type;
+  }
+
+  class MobileApp {
+    String platform;
+  }
+
+  class UserInterface {
+    String type;
+  }
+
+  composition HydroponicSystem -> ControlUnit;
+  composition HydroponicSystem -> NutrientSolutionTank;
+  composition HydroponicSystem -> GrowingArea;
+  association ControlUnit --oSensor;
+  association ControlUnit --oMobileApp;
+  association ControlUnit --oUserInterface;
+}

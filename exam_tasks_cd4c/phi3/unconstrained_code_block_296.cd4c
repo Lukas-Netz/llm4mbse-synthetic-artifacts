@@ -1,0 +1,36 @@
+
+classdiagram BlockchainCarbonFootprint {
+
+    class Node {
+      void storeData(CarbonFootprint data);
+      CarbonFootprint verifyData(String dataHash);
+    }
+
+    class User {
+      void createCarbonFootprint(CarbonFootprint data);
+      void updateCarbonFootprint(String dataHash, CarbonFootprint updatedData);
+      CarbonFootprint queryCarbonFootprint(String dataHash);
+    }
+
+    class CarbonFootprint {
+      String dataHash;
+      CarbonFootprintCategory category;
+      CarbonFootprintUnit unit;
+      String emissionData;
+      Date emissionDateTime;
+      String location;
+    }
+
+    class CarbonFootprintCategory {
+      String name;
+    }
+
+    class CarbonFootprintUnit {
+      String unitName;
+      int conversionFactor;
+    }
+
+    composition User -> (has) Node;
+    composition User -> (has) CarbonFootprint;
+    composition Node -> (has) CarbonFootprint [*];
+}

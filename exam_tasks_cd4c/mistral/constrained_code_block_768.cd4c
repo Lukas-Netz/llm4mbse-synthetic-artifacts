@@ -1,0 +1,57 @@
+
+classdiagram NanotechDrugDelivery {
+
+  class Nanoparticle {
+    String uniqueIdentifier;
+    int size;
+    String surfaceModification;
+  }
+
+  class Drug {
+    String uniqueIdentifier;
+    String name;
+    double concentration;
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    Set<MedicalCondition> medicalConditions;
+  }
+
+  enum MedicalCondition {
+    Diabetes,
+    Cancer,
+    HeartDisease;
+  }
+
+  class DrugDelivery {
+    Nanoparticle nanoparticle;
+    Drug drug;
+    DeliveryStatus status;
+  }
+
+  enum DeliveryStatus {
+    InProgress,
+    Delivered,
+    Failed;
+  }
+
+  class NanotechDrugDeliverySystem {
+    Set<Nanoparticle> nanoparticles;
+    Set<Drug> drugs;
+    Set<Patient> patients;
+
+    void createNanoparticle(Nanoparticle nanoparticle);
+    void createDrug(Drug drug);
+    void createPatient(Patient patient);
+    void assignDrugToPatient(Patient patient, Drug drug);
+    void assignDrugToNanoparticle(Nanoparticle nanoparticle, Drug drug);
+    void trackDeliveryStatus(DrugDelivery drugDelivery);
+  }
+
+  composition NanotechDrugDeliverySystem -> Nanoparticle [*];
+  composition NanotechDrugDeliverySystem -> Drug [*];
+  composition NanotechDrugDeliverySystem -> Patient [*];
+  association NanotechDrugDeliverySystem -> DrugDelivery [*];
+}

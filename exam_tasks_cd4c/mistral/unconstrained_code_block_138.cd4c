@@ -1,0 +1,43 @@
+
+classdiagram VerticalFarm {
+
+  class Farm {
+    String name;
+    String location;
+  }
+
+  abstract class Module {
+    String name;
+    String type;
+  }
+
+  class Growing extends Module {
+  }
+
+  class Irrigation extends Module {
+  }
+
+  class Lighting extends Module {
+  }
+
+  class Crop {
+    String name;
+    String type;
+    String growthStage;
+  }
+
+  class Sensor {
+    String type;
+    double reading;
+  }
+
+  class Actuator {
+    String type;
+    double setting;
+  }
+
+  composition Farm -> (has) Module [*];
+  composition Farm -> Crop [*];
+  composition Module -> Sensor [*];
+  composition Module -> Actuator [*];
+}

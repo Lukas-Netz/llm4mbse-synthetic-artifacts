@@ -1,0 +1,73 @@
+
+classdiagram DigitalAssetTradingPlatform {
+
+    class User {
+      String userId;
+      List<Account> accounts;
+    }
+
+    class Account {
+      String accountId;
+      Balance balance;
+      List<Asset> assets;
+    }
+
+    class Asset {
+      String assetId;
+      String name;
+      AssetType type;
+    }
+
+    class Order {
+      String orderId;
+      OrderType type;
+      int quantity;
+      double price;
+    }
+
+    class Trade {
+      String tradeId;
+      TradeType type;
+      int quantity;
+      double price;
+    }
+
+    class Fees {
+      double fee;
+    }
+
+    class Taxes {
+      double tax;
+    }
+
+    class MarketState {
+      List<Asset> assets;
+      List<Order> orders;
+      List<Trade> trades;
+    }
+
+    class Balance {
+      double amount;
+    }
+
+    class AssetType {
+      String type;
+    }
+
+    class OrderType {
+      String type;
+    }
+
+    class TradeType {
+      String type;
+    }
+
+    association User <-> Account;
+    association Account <-> Asset;
+    association Order <-> Trade;
+    composition Order -> Trade;
+    composition Trade -> MarketState;
+    composition Asset -> MarketState;
+    composition Order -> Fees;
+    composition Order -> Taxes;
+}

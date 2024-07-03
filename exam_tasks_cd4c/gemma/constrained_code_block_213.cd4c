@@ -1,0 +1,37 @@
+
+
+classdiagram OnlinePaymentGateway {
+
+    class PaymentGateway {
+      String uniqueIdentifier;
+      String name;
+
+      List<Transaction> transactions;
+
+      void createTransaction(Transaction transaction);
+      void updateTransaction(Transaction transaction);
+      void deleteTransaction(Transaction transaction);
+      Transaction getTransactionStatus(Transaction transaction);
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      DateTime dateTime;
+      TransactionStatus status;
+      PaymentMethod paymentMethod;
+    }
+
+    class TransactionStatus {
+      String name;
+    }
+
+    class PaymentMethod {
+      String uniqueIdentifier;
+      String name;
+      String description;
+    }
+
+  composition PaymentGateway -> (has) Transactions;
+  composition PaymentGateway -> (has) PaymentMethod [0..1];
+  association Transaction -> PaymentMethod;
+}

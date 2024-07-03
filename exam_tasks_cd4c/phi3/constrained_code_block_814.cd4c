@@ -1,0 +1,40 @@
+
+classdiagram HazardousRobotSystem {
+
+    class Robot {
+      String uniqueIdentifier;
+      RobotStatus status;
+    }
+
+    class HazardousEnvironment {
+      void transmitSensorData(Robot robot);
+      void receiveControlSignal(Robot robot);
+      void detectHazard(Robot robot);
+    }
+
+    abstract class RobotType {
+      RobotType(String identifier);
+    }
+
+    class CleaningRobot extends RobotType {
+      int suctionPower;
+      String filterType;
+    }
+
+    class InspectionRobot extends RobotType {
+      int cameraResolution;
+      int lightingLevel;
+    }
+
+    class MaintenanceRobot extends RobotType {
+      int wrenchSize;
+      int torqueSetting;
+    }
+
+    enum RobotStatus {
+      Operational, NonOperational;
+    }
+
+    association Robot -> HazardousEnvironment;
+    composition HazardousEnvironment -> (has) Robot [*];
+}

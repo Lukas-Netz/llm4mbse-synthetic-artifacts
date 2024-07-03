@@ -1,0 +1,58 @@
+
+classdiagram IPManagement {
+
+  class Person {
+    String name;
+    String email;
+  }
+
+  class Organization {
+    String name;
+    String taxID;
+  }
+
+  class IPAsset {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    IPType type;
+    Industry industry;
+    Owner [ ] owners;
+    IPStatus status;
+  }
+
+  enum IPType {
+    Patent, Trademark, Copyright;
+  }
+
+  enum IPStatus {
+    Pending, Approved, Rejected;
+  }
+
+  class Patent extends IPAsset {
+    Date expirationDate;
+  }
+
+  class Trademark extends IPAsset {
+    Date registrationDate;
+  }
+
+  class Copyright extends IPAsset {
+    Date creationDate;
+  }
+
+  class Industry {
+    String name;
+    String description;
+  }
+
+  class Owner {
+    Person person;
+    Organization organization;
+  }
+
+  association IPAsset -- [  Many ] Owner;
+  association IPAsset -- [  Many ] Industry;
+  composition IPManagement -- (has) IPAsset [*];
+  composition IPManagement -- (has) Industry [*];
+}

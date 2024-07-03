@@ -1,0 +1,129 @@
+
+classdiagram DigitalAssetManagementSystem {
+
+    class Asset {
+      String uniqueIdentifier;
+      String name;
+      AssetType type;
+      Folder folder;
+      Folder subfolder;
+      List<Keyword> keywords;
+      Map<String, String> metadata;
+    }
+
+    class Folder {
+      String name;
+      String path;
+      List<Asset> assets;
+    }
+
+    class Subfolder {
+      String name;
+      String path;
+      List<Asset> assets;
+    }
+
+    enum AssetType {
+      Image, Video, Document
+    ;
+
+    enum KeywordType
+   
+    ;
+
+    enum UserRoleType
+   
+    ;
+
+    class User
+   
+    ;
+
+    class Permission
+   
+    ;
+
+    class AssetManager
+   
+    ;
+
+    class AssetTracker
+   
+    ;
+
+    class AssetPreview
+   
+    ;
+
+    class AssetDownloader
+   
+    ;
+
+    class AssetUploader
+   
+    ;
+
+    class AssetDeleter
+   
+    ;
+
+    class AssetRestorer
+   
+    ;
+
+    class AssetBackup
+   
+    ;
+
+    class AssetRestore
+   
+    ;
+
+    class AssetSearch
+   
+    ;
+
+    class AssetDashboard
+   
+    ;
+
+    class AssetNotification
+   
+    ;
+
+    class AssetReport
+   
+    ;
+
+    class AuditTrail
+   
+    ;
+
+    class UserManagement
+   
+    ;
+
+    class RoleBasedAccessControl
+   
+    ;
+
+    }
+
+    composition Asset -> Folder;
+    composition Asset -> Subfolder;
+    composition Asset -> User;
+    composition Asset -> Permission;
+    composition Asset -> AssetManager;
+    composition Asset -> AssetTracker;
+    composition Asset -> AssetPreview;
+    composition Asset -> AssetDownloader;
+    composition Asset -> AssetUploader;
+    composition Asset -> AssetDeleter;
+    composition Asset -> AssetRestorer;
+    composition Asset -> AssetBackup;
+    composition Asset -> AssetRestore;
+    composition Asset -> AssetSearch;
+    composition Asset -> AssetDashboard;
+    composition Asset -> AssetNotification;
+   
+ }

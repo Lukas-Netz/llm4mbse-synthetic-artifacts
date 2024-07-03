@@ -1,0 +1,237 @@
+
+
+classdiagram TelemedicinePlatform {
+
+    class Patient {
+      String uniqueIdentifier;
+      List<Appointment> appointments;
+      int rate;
+      Feedback feedback;
+    }
+
+    class Doctor {
+      String uniqueIdentifier;
+      Profile profile;
+      List<Appointment> appointments;
+    }
+
+    class Appointment {
+      Date date;
+      Time time;
+      Status status;
+    }
+
+    enum Status {
+      Scheduled, Cancelled, Completed
+    
+    
+
+;
+
+    class Profile  
+    
+    ;
+
+    class VideoConference  
+    
+    ;
+
+    class FileSharing  
+    
+    ;
+
+    class Report  
+    
+    ;
+
+  composition Patient  (has one)  
+  
+  
+
+  ;
+
+  composition Doctor  (has one)  
+  
+  
+
+  ;
+
+  composition Appointment  (has one)  
+  
+  
+
+  ;
+
+  association Patient  (has one)  
+  
+  
+
+  ;
+
+  association Doctor  (has one)  
+  
+  
+
+  ;
+
+  association Appointment  (has one)  
+  
+  
+
+  ;
+
+  association Report  (has one)  
+  
+  
+
+  ;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsTelemedicinePlatform -> (has) Patient;
+  compositionsTelemedicinePlatform -> (has) Doctor;
+  compositionsTelemedicinePlatform -> (has) Appointment;
+
+  associationsTelemedicinePlatform -> (has) Patient;
+  associationsTelemedicinePlatform -> (has) Doctor;
+  associationsTelemedicinePlatform -> (has) Appointment;
+
+  associationsTelemedicinePlatform -> (has) Report;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationsTelemedicinePlatform -> (has) Patient;
+  associationsTelemedicinePlatform -> (has) Doctor;
+  associationsTelemedicinePlatform -> (has) Appointment;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Patient;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Doctor;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Appointment;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Report;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Patient;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ associationReport -> (has) Doctor;
+
+  
+ }

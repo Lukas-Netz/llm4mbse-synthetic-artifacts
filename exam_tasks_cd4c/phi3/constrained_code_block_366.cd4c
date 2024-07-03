@@ -1,0 +1,61 @@
+
+classdiagram OnlineBankingSystem {
+
+    class User {
+      String username;
+      String password;
+      Account account;
+    }
+
+    class Account {
+      String accountNumber;
+      double balance;
+      User user;
+    }
+
+    class Administrator {
+      String username;
+      String password;
+      List<Account> accounts;
+    }
+
+    class Notification {
+      String message;
+      String recipient;
+    }
+
+    class OnlineBankingSystem {
+      UserService userService;
+      AccountService accountService;
+      NotificationService notificationService;
+    }
+
+    class UserService {
+      User createUser(String username, String password);
+      Account getAccount(String username);
+      void deposit(Account account, double amount);
+      void withdraw(Account account, double amount);
+      double getBalance(Account account);
+      void sendNotification(Notification notification);
+    }
+
+    class AccountService {
+      Account createAccount(User user);
+      void updateAccount(Account account);
+      void deleteAccount(Account account);
+      Account getAccount(String accountNumber);
+      void sendNotification(Notification notification);
+    }
+
+    class NotificationService {
+      void sendNotification(Notification notification);
+    }
+
+    association OnlineBankingSystem -> UserService;
+    association OnlineBankingSystem -> AccountService;
+    association OnlineBankingSystem -> NotificationService;
+
+    composition User -> Account;
+    composition Administrator -> Account;
+    composition Notification -> NotificationService;
+}

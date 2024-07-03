@@ -1,0 +1,57 @@
+
+classdiagram SmartGrid {
+
+    class SmartGrid {
+      Sensor[] sensors;
+      Meter[] meters;
+      Substation[] substations;
+      CentralControlCenter controlCenter;
+      BackupPower backupPower;
+      Cybersecurity cybersecurity;
+      DataAnalytics dataAnalytics;
+    }
+
+    class Sensor {
+      float voltage;
+      float current;
+      float powerConsumption;
+    }
+
+    class Meter {
+      float energyConsumption;
+    }
+
+    class Substation {
+      float area;
+      float powerFlow;
+    }
+
+    class CentralControlCenter {
+      void receiveData(Sensor[] sensors, Meter[] meters);
+      void sendCommand(Substation substation);
+      void receiveBackupPower(BackupPower backupPower);
+      void alertCybersecurity(Cybersecurity cybersecurity);
+      void analyzeData(DataAnalytics dataAnalytics);
+    }
+
+    class BackupPower {
+      float capacityWh;
+    }
+
+    class Cybersecurity {
+      void detectThreat(Sensor[] sensors, Meter[] meters);
+      void preventThreat(Cybersecurity cybersecurity);
+    }
+
+    class DataAnalytics {
+      void analyzeTrends(Sensor[] sensors, Meter[] meters);
+    }
+
+  composition SmartGrid -> (has) Sensor[*];
+  composition SmartGrid -> (has) Meter[*];
+  composition SmartGrid -> (has) Substation[*];
+  composition SmartGrid -> (has) CentralControlCenter;
+  composition SmartGrid -> (has) BackupPower;
+  composition SmartGrid -> (has) Cybersecurity;
+  composition SmartGrid -> (has) DataAnalytics;
+}

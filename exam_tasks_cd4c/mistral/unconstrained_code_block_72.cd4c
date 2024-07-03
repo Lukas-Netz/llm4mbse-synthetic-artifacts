@@ -1,0 +1,49 @@
+
+classdiagram LegalPlatform {
+
+  class LawFirm {
+    String name;
+  }
+
+  class Client {
+    String uniqueID;
+    String name;
+  }
+
+  class Lawyer {
+    String uniqueID;
+    String name;
+    String expertise;
+    Lawyer(String uniqueID, String name, String expertise);
+  }
+
+  class Case {
+    String uniqueID;
+    String description;
+    CaseStatus status;
+  }
+
+  enum CaseStatus {
+    Open, InProgress, Closed;
+  }
+
+  class LawyerCase {
+    Lawyer lawyer;
+    Case case;
+  }
+
+  class Rating {
+    Client client;
+    Lawyer lawyer;
+    int rating;
+  }
+
+  composition LawFirm -> Lawyer [*];
+  composition LawFirm -> Client [*];
+  association Lawyer -> Case [*];
+  association Case -> LawyerCase [*];
+  association LawyerCase -> Lawyer;
+  association LawyerCase -> Case;
+  association Client -> Rating [*];
+  association Rating -> Lawyer;
+}

@@ -1,0 +1,48 @@
+
+classdiagram VR_DentalTraining {
+
+  class DentalProcedure {
+    String name;
+    ProcedureStep [ ] steps;
+  }
+
+  class Trainee {
+    String name;
+    int id;
+    TraineeProgress progress;
+  }
+
+  class Simulation {
+    DentalProcedure procedure;
+    Feedback feedback;
+  }
+
+  class Feedback {
+    String performance;
+    String errors;
+  }
+
+  class ProcedureStep {
+    String description;
+    boolean completed;
+  }
+
+  class TraineeProgress {
+    int currentProcedure;
+    int totalProcedures;
+    int completedProcedures;
+  }
+
+  class SimulationResult {
+    Trainee trainee;
+    DentalProcedure procedure;
+    Feedback feedback;
+    boolean success;
+  }
+
+  association Trainee --oTraineeProgress;
+  association Simulation --oFeedback;
+  association DentalProcedure --oProcedureStep [*];
+  association SimulationResult --oTrainee [1];
+  association SimulationResult --oDentalProcedure [1];
+}

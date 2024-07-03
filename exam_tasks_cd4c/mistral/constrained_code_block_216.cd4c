@@ -1,0 +1,58 @@
+
+classdiagram RealEstate {
+
+  class User {
+    String username;
+    UserType userType;
+  }
+
+  enum UserType {
+    Buyer, Seller, RealEstateAgent;
+  }
+
+  class Property {
+    String uniqueIdentifier;
+    String location;
+    int price;
+    RealEstateAgent agent;
+  }
+
+  class RealEstateAgent {
+    Property property;
+  }
+
+  class Offer {
+    User buyer;
+    int offerPrice;
+    boolean isAccepted;
+  }
+
+  class SmartContract {
+    Property property;
+    Offer offer;
+  }
+
+  class Transaction {
+    User user;
+    String action;
+    String timestamp;
+  }
+
+  class PropertyUpdate {
+    Property property;
+    String updateType;
+    String timestamp;
+  }
+
+  class Report {
+    String reportType;
+    String generatedDate;
+  }
+
+  composition RealEstateAgent -> Property [1];
+  composition Property -> Offer [*];
+  composition SmartContract -> Property [*];
+  composition Transaction -> User [*];
+  composition PropertyUpdate -> Property [*];
+  composition Report -> String [*];
+}

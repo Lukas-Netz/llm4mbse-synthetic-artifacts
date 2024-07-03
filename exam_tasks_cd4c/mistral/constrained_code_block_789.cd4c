@@ -1,0 +1,33 @@
+
+classdiagram SmartGrid {
+
+  class Server {
+    -> SmartMeter [*];
+  }
+
+  class SmartMeter {
+    String uniqueIdentifier;
+    int energyConsumptionKwh;
+  }
+
+  class Analytics {
+    Server server;
+    void calculateAverageConsumption();
+    void identifyPeakHours();
+    void detectAnomalies();
+  }
+
+  class Visualization {
+    Server server;
+    void displayData(DataFormat format);
+    void setAlerts(boolean isEnabled);
+  }
+
+  enum DataFormat {
+    Chart, Graph, Table;
+  }
+
+  composition Server -> SmartMeter [*];
+  association Analytics -- Server;
+  association Visualization -- Server;
+}

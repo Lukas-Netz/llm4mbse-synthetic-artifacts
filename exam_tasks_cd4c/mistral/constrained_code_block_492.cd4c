@@ -1,0 +1,43 @@
+
+classdiagram WTS {
+
+  class Sensor {
+    String uniqueIdentifier;
+    -> Animal [*];
+  }
+
+  class Animal {
+    String uniqueIdentifier;
+    -> Sensor [*];
+    Species species;
+  }
+
+  abstract class Species {
+    String habitat;
+    String diet;
+    String behavior;
+  }
+
+  class Mammal extends Species {
+  }
+
+  class Bird extends Species {
+  }
+
+  class Reptile extends Species {
+  }
+
+  class Researcher {
+    -> Report [*];
+  }
+
+  class Report {
+    Animal animal;
+    Date date;
+    String location;
+  }
+
+  composition Sensor -> Animal [*];
+  composition Animal -> Species;
+  association Researcher --oReport;
+}

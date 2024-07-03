@@ -1,0 +1,43 @@
+
+classdiagram DrugDiscovery {
+
+  class Compound {
+    String uniqueIdentifier;
+    String name;
+    MolecularStructure molecularStructure;
+  }
+
+  class Target {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Assay {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Experiment {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Result {
+    String uniqueIdentifier;
+    String name;
+    double value;
+  }
+
+  class Predictor {
+    double predictBindingAffinity(Compound compound, Target target);
+  }
+
+  association Compound [*] to [many] -> Target;
+  association Target [*] to [many] <- Compound;
+  association Assay [*] to [many] -> Experiment;
+  association Experiment [*] to [many] <- Assay;
+  association Experiment [*] to [many] -> Result;
+}

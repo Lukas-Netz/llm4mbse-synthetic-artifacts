@@ -1,0 +1,54 @@
+
+classdiagram MusicStreaming {
+
+  class User {
+    String uniqueIdentifier;
+    Playlist [ ] playlists;
+  }
+
+  class Artist {
+    String uniqueIdentifier;
+    Song [ ] songs;
+  }
+
+  class Song {
+    String uniqueIdentifier;
+    String title;
+    String genre;
+  }
+
+  class Playlist {
+    String uniqueIdentifier;
+    Song [ ] songs;
+  }
+
+  class Blockchain {
+    void uploadSong(Song song);
+    Song downloadSong(String uniqueIdentifier);
+  }
+
+  class ArtistAnalytics {
+    int streams;
+    int downloads;
+  }
+
+  class PaymentSystem {
+    void purchaseSong(User user, Song song);
+    void subscribePremium(User user);
+  }
+
+  class PremiumService {
+    boolean isPremium;
+    boolean adFree;
+    boolean exclusiveContent;
+  }
+
+  composition MusicStreaming -> User;
+  composition MusicStreaming -> Artist;
+  composition MusicStreaming -> Song;
+  composition User -> Playlist [*];
+  composition Artist -> Song [*];
+  association ArtistAnalytics -- Artist;
+  association PaymentSystem -- User;
+  association PremiumService -- User;
+}

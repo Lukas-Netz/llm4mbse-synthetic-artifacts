@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram OnlinePhotographyCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Genre genre;
+    Instructor[] instructors;
+    Lesson[] lessons;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Role role;
+  }
+
+  class Instructor extends User  {
+    Course[] courses;
+  }
+
+  class Student extends User  {
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Topic topic;
+    Assignment[] assignments;
+  }
+
+  class Assignment  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Type type;
+  }
+
+  enum Genre  {
+    Landscape, Portrait, Wildlife;
+  }
+
+  enum Role  {
+    Instructor, Student;
+  }
+
+  enum Topic  {
+    CameraSettings, Composition, Editing;
+  }
+
+  enum Type  {
+    Quiz, Project, Discussion;
+  }
+
+  composition Course -> (has) Instructor[*];
+  composition Course -> (has) Lesson[*];
+  composition Lesson -> (has) Assignment[*];
+  composition User -> (has) Course[*];
+  composition Instructor -> (has) Course[*];
+  composition Student -> (has) Course[*];
+}

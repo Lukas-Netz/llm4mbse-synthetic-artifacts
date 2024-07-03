@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram MusicFestivalPlatform  {
+
+  class Festival  {
+    String name;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Stage  {
+    String name;
+    int capacity;
+    -> Performance[*];
+  }
+
+  class Performance  {
+    String name;
+    Date startTime;
+    Date endTime;
+    -> Artist[*];
+  }
+
+  class Artist  {
+    String name;
+    String bio;
+    -> Performance[*];
+  }
+
+  class User  {
+    String username;
+    -> Festival[*];
+  }
+
+  composition Festival -> Stage[*];
+  composition Stage -> Performance[*];
+  composition Performance -> Artist[*];
+  composition User -> Festival[*];
+}

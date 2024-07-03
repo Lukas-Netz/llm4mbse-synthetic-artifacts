@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram VRWildlifeConservation  {
+
+  class Species  {
+    String name;
+    String description;
+    ConservationStatus conservationStatus;
+  }
+
+  class Habitat  {
+    String location;
+    Climate climate;
+    Vegetation vegetation;
+  }
+
+  class Conservationist  {
+    String name;
+    Expertise expertise;
+    Experience experience;
+  }
+
+  class Project  {
+    String name;
+    Goal goal;
+    Budget budget;
+    Conservationist conservationist;
+  }
+
+  class VRExperience  {
+    int duration;
+    DifficultyLevel difficultyLevel;
+    EducationalContent educationalContent;
+    Species species;
+  }
+
+  enum ConservationStatus  {
+    Endangered, Vulnerable, Recovered
+  ;}
+
+  enum Climate  {
+    Tropical, Desert, Temperate
+  ;}
+
+  enum Vegetation  {
+    Forest, Grassland, Wetland
+  ;}
+
+  enum Expertise  {
+    Biology, Ecology, Conservation
+  ;}
+
+  enum Experience  {
+    Beginner, Intermediate, Advanced
+  ;}
+
+  enum DifficultyLevel  {
+    Easy, Medium, Hard
+  ;}
+
+  enum EducationalContent  {
+    Basic, Intermediate, Advanced
+  ;}
+
+  composition Project -> (has) Conservationist;
+  composition VRExperience -> (has) Species;
+  composition Habitat -> (has) Vegetation;
+  composition Habitat -> (has) Climate;
+  composition Species -> (has) ConservationStatus;
+}

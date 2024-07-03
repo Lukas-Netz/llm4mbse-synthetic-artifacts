@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram RealTimeAnalytics  {
+
+  class DataProcessor  {
+    void process(Data data);
+  }
+
+  class DataAnalyzer  {
+    void analyze(Data data);
+  }
+
+  class DataVisualizer  {
+    void visualize(Data data);
+  }
+
+  class DataStorage  {
+    void store(Data data);
+  }
+
+  class DataSources  {
+    SensorData sensorData;
+    DatabaseData databaseData;
+    APIData apiData;
+  }
+
+  class Data  {
+    DataSources sources;
+    DataProcessor processor;
+    DataAnalyzer analyzer;
+    DataVisualizer visualizer;
+    DataStorage storage;
+  }
+
+  class SensorData  {
+    String sensorId;
+    double value;
+  }
+
+  class DatabaseData  {
+    String databaseId;
+    String query;
+  }
+
+  class APIData  {
+    String apiUrl;
+    String data;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Rule  {
+    String ruleName;
+    DataProcessor processor;
+  }
+
+  composition DataSources -> Data [1..*];
+  composition Data -> DataProcessor [1..*];
+  composition Data -> DataAnalyzer [1..*];
+  composition Data -> DataVisualizer [1..*];
+  composition Data -> DataStorage [1..*];
+  composition User -> Rule [1..*];
+}

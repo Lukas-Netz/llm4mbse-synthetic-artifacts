@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram AutonomousIndoorFarmingSystem  {
+
+  class Farm  {
+    String name;
+    Location location;
+    Crop[] crops;
+    EnergyConsumption energyConsumption;
+    WaterUsage waterUsage;
+  }
+
+  class Crop  {
+    String name;
+    CropType type;
+    GrowthStage growthStage;
+  }
+
+  class ControlCenter  {
+    Sensor[] sensors;
+    void adjustEnvironment(Sensor sensor);
+  }
+
+  class Sensor  {
+    Location location;
+    double temperature;
+    double humidity;
+    double lightLevel;
+  }
+
+  class IrrigationSystem  {
+    Location location;
+    void waterCrop(Crop crop);
+  }
+
+  class EnergyConsumption  {
+    double totalEnergyConsumption;
+  }
+
+  class WaterUsage  {
+    double totalWaterUsage;
+  }
+
+  enum CropType  {
+    LeafyGreens, RootVegetables, etc;
+  }
+
+  enum GrowthStage  {
+    Seedling, Mature, etc;
+  }
+
+  composition Farm  ->  (has) Crop[*];
+  composition ControlCenter  ->  (has) Sensor[*];
+  composition ControlCenter  ->  (has) IrrigationSystem[*];
+  composition Farm  ->  (has) EnergyConsumption;
+  composition Farm  ->  (has) WaterUsage;
+}

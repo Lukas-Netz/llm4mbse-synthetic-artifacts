@@ -1,0 +1,68 @@
+
+classdiagram SmartCommunity {
+
+  class Household {
+    String uniqueIdentifier;
+    WasteCollectionStatus wasteCollectionStatus;
+    EnergyConsumptionStatus energyConsumptionStatus;
+  }
+
+  enum WasteCollectionStatus {
+    Collected, NotCollected;
+  }
+
+  enum EnergyConsumptionStatus {
+    WithinNormalRange, AboveNormalRange;
+  }
+
+  class RoadSegment {
+    String uniqueIdentifier;
+    TrafficFlowStatus trafficFlowStatus;
+  }
+
+  enum TrafficFlowStatus {
+    Normal, Congested;
+  }
+
+  class CommunityEvent {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    Location location;
+  }
+
+  class WasteManagement {
+    Household [][] wasteCollectionSchedule;
+  }
+
+  class EnergyConsumption {
+    Household [][ ] energyConsumptionData;
+  }
+
+  class TrafficFlow {
+    RoadSegment [][ ] trafficFlowData;
+  }
+
+  class System {
+    WasteManagement wasteManagement;
+    EnergyConsumption energyConsumption;
+    TrafficFlow trafficFlow;
+    CommunityEvent [ ] communityEvents;
+  }
+
+  class Report {
+    String wasteCollectionReport;
+    String energyConsumptionReport;
+    String trafficFlowReport;
+  }
+
+  class Notification {
+    Household recipient;
+    String message;
+  }
+
+  composition System -> WasteManagement;
+  composition System -> EnergyConsumption;
+  composition System -> TrafficFlow;
+  composition System -> CommunityEvent [*];
+}

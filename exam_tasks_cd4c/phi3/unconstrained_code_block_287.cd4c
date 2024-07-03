@@ -1,0 +1,46 @@
+
+classdiagram PrecisionViticulture {
+
+    class Vineyard {
+      Sensor[] sensors;
+      Drone[] drones;
+    }
+
+    class Sensor {
+      String location;
+      double temperature;
+      double humidity;
+      double soilMoisture;
+    }
+
+    class Drone {
+      String vineyardLocation;
+      String imageData;
+      String issueDetected;
+    }
+
+    class CentralHub {
+      Vineyard[] vineyards;
+      Database grapeVarieties;
+      void collectData();
+      String provideRecommendations();
+    }
+
+    class Database {
+      GrapeVariety[] grapeVarieties;
+      GrapeVariety getVarietyInfo(String varietyName);
+    }
+
+    class GrapeVariety {
+      String varietyName;
+      String optimalTemperature;
+      String optimalHumidity;
+      String optimalSoilMoisture;
+    }
+
+    composition Vineyard -> (has) Sensor[*];
+    composition Vineyard -> (has) Drone[*];
+    composition CentralHub -> Vineyard [*];
+    composition CentralHub -> Database [*];
+    association CentralHub -> GrapeVariety [*];
+}

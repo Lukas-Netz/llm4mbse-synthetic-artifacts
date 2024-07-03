@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram AdvancedProtonTherapySystem  {
+
+  class TreatmentPlanningModule  {
+    TreatmentPlan createTreatmentPlan(Patient patient);
+  }
+
+  class TreatmentDeliveryModule  {
+    void deliverTreatment(TreatmentPlan treatmentPlan);
+  }
+
+  class PatientDatabase  {
+    Patient getPatient(String patientId);
+    void updatePatient(Patient patient);
+  }
+
+  class Patient  {
+    String patientId;
+    MedicalCondition medicalCondition;
+  }
+
+  class MedicalCondition  {
+    String cancerType;
+    int cancerStage;
+  }
+
+  class TreatmentPlan  {
+    Set<Beam> beams;
+    Set<Constraint> constraints;
+  }
+
+  class Beam  {
+    Angle angle;
+    Energy energy;
+    Dose dose;
+  }
+
+  class Constraint  {
+    TumorLocation tumorLocation;
+    NormalTissueSparing normalTissueSparing;
+  }
+
+  class TreatmentDeliveryModuleSettings  {
+    Set<GantryAngle> gantryAngles;
+    Set<CollimatorAngle> collimatorAngles;
+    Set<BeamEnergy> beamEnergies;
+  }
+
+  class QualityControlModule  {
+    void monitorTreatmentDeliveryModule(TreatmentDeliveryModule treatmentDeliveryModule);
+    void monitorTreatmentPlanningModule(TreatmentPlanningModule treatmentPlanningModule);
+  }
+
+  class GantryAngle  {}
+  class CollimatorAngle  {}
+  class BeamEnergy  {}
+  class TumorLocation  {}
+  class NormalTissueSparing  {}
+  class Angle  {}
+  class Energy  {}
+  class Dose  {}
+
+  composition TreatmentPlanningModule -> (has) TreatmentPlan;
+  composition TreatmentDeliveryModule -> (has) TreatmentDeliveryModuleSettings;
+  composition PatientDatabase -> (has) Patient;
+  composition Patient -> (has) MedicalCondition;
+  composition TreatmentPlan -> (has) Beam;
+  composition TreatmentPlan -> (has) Constraint;
+  composition TreatmentDeliveryModuleSettings -> (has) GantryAngle;
+  composition TreatmentDeliveryModuleSettings -> (has) CollimatorAngle;
+  composition TreatmentDeliveryModuleSettings -> (has) BeamEnergy;
+  composition QualityControlModule -> (has) TreatmentDeliveryModule;
+  composition QualityControlModule -> (has) TreatmentPlanningModule;
+}

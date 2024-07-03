@@ -1,0 +1,81 @@
+
+classdiagram PublicSafetyCommunicationSystem {
+
+    class EmergencyCall {
+      String type;
+      String location;
+      EmergencyResponseStatus status;
+    }
+
+    class EmergencyResponder {
+      String name;
+      String badgeNumber;
+      Location location;
+    }
+
+    class Dispatcher {
+      String name;
+      String badgeNumber;
+      Location location;
+    }
+
+    class Stakeholder {
+      String name;
+      String role;
+    }
+
+    class EmergencyResponseStatus {
+      String status;
+    }
+
+    class Communication {
+      String sender;
+      String receiver;
+      String message;
+    }
+
+    class IntegrationSystem {
+      String systemName;
+      String integrationType;
+    }
+
+    class PublicSafetyCommunicationSystem {
+      EmergencyCall[] emergencyCalls;
+      EmergencyResponder[] emergencyResponders;
+      Dispatcher[] dispatchers;
+      Stakeholder[] stakeholders;
+      Communication[] communications;
+      IntegrationSystem[] integrationSystems;
+
+      void addEmergencyCall(EmergencyCall call);
+      void addEmergencyResponder(EmergencyResponder responder);
+      void addDispatcher(Dispatcher dispatcher);
+      void addStakeholder(Stakeholder stakeholder);
+      void addCommunication(Communication communication);
+      void addIntegrationSystem(IntegrationSystem integrationSystem);
+
+      EmergencyCall[] getEmergencyCalls();
+      EmergencyResponder[] getEmergencyResponders();
+      Dispatcher[] getDispatchers();
+      Stakeholder[] getStakeholders();
+      Communication[] getCommunications();
+      IntegrationSystem[] getIntegrationSystems();
+
+      void sendMessage(Communication communication);
+      void receiveMessage(Communication communication);
+      void updateEmergencyResponseStatus(EmergencyCall call, EmergencyResponseStatus status);
+      void trackResponderLocation(EmergencyResponder responder);
+      void trackDispatcherLocation(Dispatcher dispatcher);
+      void storeEmergencyCallData(EmergencyCall call);
+      void retrieveEmergencyCallData(String type, String location);
+      void provideRealTimeUpdates(EmergencyCall call);
+      void integrateWithSystem(IntegrationSystem integrationSystem);
+    }
+
+    composition PublicSafetyCommunicationSystem -> (has) EmergencyCall[*];
+    composition PublicSafetyCommunicationSystem -> (has) EmergencyResponder[*];
+    composition PublicSafetyCommunicationSystem -> (has) Dispatcher[*];
+    composition PublicSafetyCommunicationSystem -> (has) Stakeholder[*];
+    composition PublicSafetyCommunicationSystem -> (has) Communication[*];
+    composition PublicSafetyCommunicationSystem -> (has) IntegrationSystem[*];
+}

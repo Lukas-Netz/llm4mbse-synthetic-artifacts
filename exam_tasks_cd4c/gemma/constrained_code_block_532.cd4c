@@ -1,0 +1,34 @@
+
+
+classdiagram VirtualRealityZooTourSystem {
+
+  class UserAccount {
+    String username;
+    String password;
+  }
+
+  class Enclosure {
+    String name;
+    String description;
+  }
+
+  class Animal {
+    String name;
+    String species;
+    String description;
+  }
+
+  class Zoo {
+    List<Enclosure> enclosures;
+  }
+
+  class Visitor {
+    UserAccount account;
+    Enclosure currentEnclosure;
+  }
+
+  composition UserAccount -> (has) Visitor [0..1];
+  composition Zoo -> (has) Enclosure [*];
+  composition Enclosure -> (has) Animal [*];
+  association Visitor -> (uses) Zoo;
+}

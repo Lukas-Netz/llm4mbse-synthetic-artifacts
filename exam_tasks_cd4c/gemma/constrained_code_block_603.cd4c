@@ -1,0 +1,59 @@
+
+
+classdiagram AutonomousOceanExploration {
+
+  class AUV {
+    String name;
+    String uniqueIdentifier;
+    Sensors sensors;
+    PowerSource powerSource;
+    CommunicationSystem communicationSystem;
+    NavigationSystem navigationSystem;
+    DataStorage dataStorage;
+  }
+
+  class Sensors {
+    CurrentSensors currentSensors;
+    TemperatureSensors temperatureSensors;
+    MarineLifeSensors marineLifeSensors;
+  }
+
+  class CurrentSensors {
+    int range;
+    int accuracy;
+  }
+
+  class TemperatureSensors {
+    int range;
+    int accuracy;
+  }
+
+  class MarineLifeSensors {
+    int range;
+    int accuracy;
+  }
+
+  class PowerSource {
+    int capacity;
+  }
+
+  class CommunicationSystem {
+    void transmitData(String data);
+  }
+
+  class NavigationSystem {
+    GPS gps;
+    Sonar sonar;
+  }
+
+  class DataStorage {
+    void storeData(String data);
+    void retrieveData();
+  }
+
+  composition AUV -> (has) Sensors;
+  composition AUV -> (has) PowerSource;
+  composition AUV -> (has) CommunicationSystem;
+  composition AUV -> (has) NavigationSystem;
+  composition AUV -> (has) DataStorage;
+}

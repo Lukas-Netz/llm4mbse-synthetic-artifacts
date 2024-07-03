@@ -1,0 +1,58 @@
+
+
+classdiagram PermafrostMonitoringSystem {
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorStatus status;
+    int temperature;
+    int humidity;
+  }
+
+  class Hub {
+    -> Sensor [*];
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    String transmitData();
+  }
+
+  class Database {
+    void storeData(Sensor sensor);
+    SensorData getData(Sensor sensor);
+  }
+
+  class Analyzer {
+    SensorData analyzeData();
+    Trend identifyTrends();
+  }
+
+  class Researcher {
+    SensorData accessData();
+    Trend analyzeTrends();
+  }
+
+  enum SensorStatus {
+    Active, Inactive;
+  }
+
+  enum SensorData {
+    Temperature, Humidity;
+  }
+
+  composition Hub -> Sensor [*];
+  composition Hub -> Database [0..1];
+  association Researcher -> Database
+  <<stereotype>> abstract  
+  
+  
+  
+{
+  
+  
+  
+  ordered
+  
+}
+  
+  ;
+}

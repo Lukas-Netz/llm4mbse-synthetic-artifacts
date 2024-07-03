@@ -1,0 +1,46 @@
+
+classdiagram NuclearWasteManagement {
+
+  class WasteRepository {
+    String uniqueIdentifier;
+    int capacity;
+  }
+
+  class WasteTransportation {
+    String uniqueIdentifier;
+    int capacity;
+  }
+
+  class WasteProcessing {
+    String uniqueIdentifier;
+    int capacity;
+  }
+
+  class Monitoring {
+    String uniqueIdentifier;
+  }
+
+  class RadiationSafetyRule {
+    String rule;
+  }
+
+  class RouteSafetyRule {
+    String rule;
+  }
+
+  class NuclearWaste {
+    String uniqueIdentifier;
+  }
+
+  composition NuclearWasteManagement -> WasteRepository [*];
+  composition NuclearWasteManagement -> WasteTransportation [*];
+  composition NuclearWasteManagement -> WasteProcessing [*];
+  composition NuclearWasteManagement -> Monitoring [*];
+
+  association NuclearWasteManagement -> RadiationSafetyRule [*];
+  association NuclearWasteManagement -> RouteSafetyRule [*];
+
+  association WasteRepository -> NuclearWaste [*];
+  association WasteTransportation -> NuclearWaste [*];
+  association WasteProcessing -> NuclearWaste [*];
+}

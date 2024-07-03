@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram SupplyChainVisibility  {
+
+  class SupplyChain  {
+    -> Shipment[*];
+  }
+
+  class Shipment  {
+    String shipmentId;
+    Date shipmentDate;
+    Date expectedDeliveryDate;
+    -> Location;
+    -> InventoryItem;
+  }
+
+  class Location  {
+    String locationId;
+    String locationName;
+    -> Shipment[*];
+  }
+
+  class InventoryItem  {
+    String inventoryItemId;
+    String itemName;
+    int quantity;
+    -> Shipment[*];
+  }
+
+  class ModeOfTransportation  {
+    String modeId;
+    String modeName;
+    -> Shipment[*];
+  }
+
+  class CountryRegion  {
+    String countryRegionId;
+    String countryRegionName;
+    -> Shipment[*];
+  }
+
+  class GoodsType  {
+    String goodsTypeId;
+    String goodsTypeName;
+    -> Shipment[*];
+  }
+
+  class ShipmentType  {
+    String shipmentTypeId;
+    String shipmentTypeName;
+    -> Shipment[*];
+  }
+
+  composition SupplyChain -> Shipment[*];
+  composition Shipment -> Location;
+  composition Shipment -> InventoryItem;
+  composition Shipment -> ModeOfTransportation;
+  composition Shipment -> CountryRegion;
+  composition Shipment -> GoodsType;
+  composition Shipment -> ShipmentType;
+}

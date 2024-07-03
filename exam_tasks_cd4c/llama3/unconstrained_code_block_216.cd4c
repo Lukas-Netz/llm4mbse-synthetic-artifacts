@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram MeditationCoursePlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    List<Lesson> lessons;
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    int duration;
+  }
+
+  class User  {
+    String username;
+    List<CourseEnrollment> courseEnrollments;
+  }
+
+  class CourseEnrollment  {
+    Course course;
+    User user;
+    int progress;
+  }
+
+  class Review  {
+    Course course;
+    User user;
+    int rating;
+    String comment;
+  }
+
+  class Recommendation  {
+    User user;
+    Course course;
+  }
+
+  composition Course -> Lesson[*];
+  composition User -> CourseEnrollment[*];
+  composition Course -> Review[*];
+  composition Recommendation -> User;
+  composition Recommendation -> Course;
+}

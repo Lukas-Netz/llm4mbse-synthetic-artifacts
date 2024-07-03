@@ -1,0 +1,49 @@
+
+classdiagram GamingPlatform {
+
+  class Game {
+    String name;
+    String identifier;
+    Player [ ] players;
+    GameType type;
+  }
+
+  enum GameType {
+    Multiplayer, SinglePlayer, Puzzle;
+  }
+
+  class MultiplayerGame extends Game {
+    int maxPlayers;
+    GameMode mode;
+  }
+
+  enum GameMode {
+    Team, FreeForAll;
+  }
+
+  class Player {
+    String username;
+    String password;
+    Game [ ] games;
+    PlayerRole role;
+  }
+
+  enum PlayerRole {
+    Admin, Moderator, RegularPlayer;
+  }
+
+  class PlatformAdmin {
+    void manageGames();
+    void managePlayers();
+    void manageScores();
+  }
+
+  class Score {
+    Player player;
+    int score;
+  }
+
+  composition PlatformAdmin -> Game [*];
+  composition PlatformAdmin -> Player [*];
+  composition Game -> Player [*];
+}

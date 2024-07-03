@@ -1,0 +1,54 @@
+
+classdiagram OnlineDonationPlatform {
+
+    class Donor {
+      String name;
+      String email;
+      String password;
+      List<Donation> donations;
+    }
+
+    class Charity {
+      String name;
+      String description;
+      String charityId;
+      List<DonationCampaign> donationCampaigns;
+      List<Donation> donations;
+    }
+
+    class DonationCampaign {
+      String campaignName;
+      String campaignDescription;
+      double targetAmount;
+      List<Donation> donations;
+    }
+
+    class Donation {
+      Charity charity;
+      DonationCampaign campaign;
+      Donor donor;
+      double amount;
+      Date donationDate;
+    }
+
+    class DonationReceipt {
+      Donor donor;
+      Charity charity;
+      DonationCampaign campaign;
+      double amount;
+      Date receiptDate;
+    }
+
+    class DonationNotification {
+      Charity charity;
+      Donor donor;
+      Donation donation;
+    }
+
+    association Donor -> List<<Donation>>;
+    association Charity -> List<<DonationCampaign>>;
+    association Charity -> List<<Donation>>;
+    association DonationCampaign -> List<<Donation>>;
+    association Donation -> DonationReceipt;
+    association Donation -> DonationNotification;
+}

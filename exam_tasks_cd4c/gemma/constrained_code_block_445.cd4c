@@ -1,0 +1,49 @@
+
+
+classdiagram PharmaceuticalAI {
+
+  class Compound {
+    String uniqueIdentifier;
+    String name;
+    String molecularStructure;
+  }
+
+  class Target {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Assay {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Experiment {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Result {
+    String uniqueIdentifier;
+    String name;
+    int value;
+  }
+
+  class Predictor {
+    int predictBindingAffinity(Compound compound, Target target);
+  }
+
+  composition Compound -> Target [0..*];
+  composition Target -> Assay [0..*];
+  composition Assay -> Experiment [0..*];
+  composition Experiment -> Result [0..*];
+  association Experiment -> Predictor
+  <<stereotype>> abstract  
+  
+  
+  
+;
+}

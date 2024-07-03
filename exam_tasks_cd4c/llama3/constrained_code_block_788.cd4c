@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram BlockchainGamingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    NFT[] ownedNFTs;
+  }
+
+  class NFT  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    NFTType type;
+  }
+
+  enum NFTType  {
+    Character, Item, Land;
+  }
+
+  class Collection  {
+    String name;
+    NFT[] nfts;
+    boolean isPublic;
+  }
+
+  class Marketplace  {
+    String name;
+    Transaction[] transactions;
+  }
+
+  class Transaction  {
+    User buyer;
+    User seller;
+    Marketplace marketplace;
+    NFT nft;
+    double price;
+    Date timestamp;
+  }
+
+  class SmartContract  {
+    String contractAddress;
+    Transaction[] transactions;
+  }
+
+  class GameWorld  {
+    Region[] regions;
+  }
+
+  class Region  {
+    String name;
+    Rule[] rules;
+  }
+
+  composition User -> NFT[*];
+  composition Collection -> NFT[*];
+  composition Marketplace -> Transaction[*];
+  composition SmartContract -> Transaction[*];
+  composition GameWorld -> Region[*];
+}

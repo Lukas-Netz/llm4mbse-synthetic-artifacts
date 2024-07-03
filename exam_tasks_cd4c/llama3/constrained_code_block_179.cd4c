@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram ConsumerInsightsPlatform  {
+
+  class DataWarehouse  {
+    DataStorage dataStorage;
+    DataSource  [] dataSources;
+  }
+
+  class DataStorage  {
+    Data  [] data;
+  }
+
+  class Data  {
+    String  [] attributes;
+  }
+
+  class DataProcessor  {
+    Data  input;
+    Data  output;
+    DataTransformation  [] transformations;
+  }
+
+  class DataTransformation  {
+    String  name;
+    Data  input;
+    Data  output;
+  }
+
+  class Visualization  {
+    Data  input;
+    Dashboard  [] dashboards;
+  }
+
+  class Dashboard  {
+    String  name;
+    Report  [] reports;
+  }
+
+  class Report  {
+    String  name;
+    Data  input;
+  }
+
+  class MachineLearning  {
+    Data  input;
+    Algorithm  [] algorithms;
+  }
+
+  class Algorithm  {
+    String  name;
+    Data  input;
+    Data  output;
+  }
+
+  class UserInterface  {
+    Data  input;
+    DrillDown  [] drillDowns;
+  }
+
+  class DrillDown  {
+    String  name;
+    Data  input;
+  }
+
+  composition DataWarehouse  ->  (has) DataStorage;
+  composition DataProcessor  ->  (has) Data;
+  composition Visualization  ->  (has) Dashboard;
+  composition MachineLearning  ->  (has) Algorithm;
+  composition UserInterface  ->  (has) DrillDown;
+  association DataWarehouse  ->  (stores) Data;
+  association DataProcessor  ->  (processes) Data;
+  association Visualization  ->  (visualizes) Data;
+  }

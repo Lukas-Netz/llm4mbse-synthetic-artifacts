@@ -1,0 +1,63 @@
+
+classdiagram OnlineSkillAssessmentSystem {
+
+    class Employee {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Skill {
+      String uniqueIdentifier;
+      String name;
+      String description;
+    }
+
+    class Assessment {
+      Employee employee;
+      Skill skill;
+      int score;
+      Date date;
+    }
+
+    class EmployeeSkills {
+      Employee employee;
+      List<Skill> skills;
+    }
+
+    class EmployeeProgress {
+      Employee employee;
+      List<Assessment> assessments;
+    }
+
+    <<association>> class EmployeeSkills {
+      EmployeeSkills employeeSkills;
+      Employee employee;
+    }
+
+    <<association>> class EmployeeProgress {
+      EmployeeProgress employeeProgress;
+      Employee employee;
+    }
+
+    <<aggregation>> class Assessment {
+      Assessment assessment;
+      Employee employee;
+      Skill skill;
+    }
+
+    <<aggregation>> class Employee {
+      Employee employee;
+      EmployeeSkills employeeSkills;
+      EmployeeProgress employeeProgress;
+    }
+
+    <<composition>> class Skill {
+      Skill skill;
+      Employee employeeSkills;
+    }
+
+    <<composition>> class Assessment {
+      Assessment assessment;
+      EmployeeProgress employeeProgress;
+    }
+}

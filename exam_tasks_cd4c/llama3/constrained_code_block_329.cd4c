@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram EcommerceFulfillment  {
+
+  class Warehouse  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    String uniqueIdentifier;
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    Customer customer;
+    List<Product> products;
+  }
+
+  class Shipment  {
+    String uniqueIdentifier;
+    List<Product> products;
+    ShipmentStatus status;
+  }
+
+  class Customer  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  enum ShipmentStatus  {
+    Pending, Shipped, Delivered, Failed;
+  }
+
+  composition Warehouse -> Product[*];
+  composition Order -> Product[*];
+  composition Shipment -> Product[*];
+  composition Warehouse -> Shipment[*];
+  composition Customer -> Order[*];
+}

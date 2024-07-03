@@ -1,0 +1,56 @@
+
+classdiagram RideSharingPlatform {
+
+    class Driver {
+      String name;
+      String uniqueIdentifier;
+      int rating;
+      List<Vehicle> vehicles;
+    }
+
+    class Vehicle {
+      String make;
+      String model;
+      String licensePlate;
+    }
+
+    class Passenger {
+      String name;
+      String uniqueIdentifier;
+      String pickupLocation;
+      String dropLocation;
+      RideRequest rideRequest;
+    }
+
+    class RideRequest {
+      String pickupLocation;
+      String dropLocation;
+      String vehicleType;
+      String requestedTime;
+    }
+
+    class Ride {
+      String type;
+      double price;
+    }
+
+    class RidePlatform {
+      void matchDriverWithRideRequest(Driver driver, RideRequest rideRequest);
+      void updateDriverRating(Driver driver, int newRating);
+      double calculateRidePrice(Ride ride);
+    }
+
+    association Driver 
+      has 
+        (List) <-> Vehicle;
+
+    association Passenger 
+      has 
+        (RideRequest) 
+        <-> Ride;
+
+    association RidePlatform 
+      has 
+        (Ride) 
+        <-> Ride;
+}

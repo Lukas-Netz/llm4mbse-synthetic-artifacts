@@ -1,0 +1,67 @@
+
+classdiagram AIWritingAssistant {
+
+    class AIWritingAssistantSystem {
+      Hub hub;
+      List<Assistant> assistants;
+      KnowledgeBase knowledgeBase;
+    WrittenText userInput;
+      void processInput(WrittenText input);
+      void updateKnowledgeBase();
+      void monitorAssistants();
+    }
+
+    class Hub {
+      -> Assistant [*];
+      WrittenText processInput(WrittenText input);
+      void updateKnowledgeBase();
+      void monitorAssistants();
+    }
+
+    abstract class Assistant {
+      String uniqueIdentifier;
+      String genre;
+      Algorithm grammarCorrection;
+      Algorithm sentenceSuggestion;
+      Algorithm contentGeneration;
+      WrittenText generateText(WrittenText input);
+      void rateText(int rating);
+      void reviewText(String review);
+    }
+
+    class FictionAssistant extends Assistant {
+      String genre = "Fiction";
+      Algorithm fictionAlgorithm;
+    }
+
+    class NonFictionAssistant extends Assistant {
+      String genre = "Non-Fiction";
+      Algorithm nonFictionAlgorithm;
+    }
+
+    class PoetryAssistant extends Assistant {
+      String genre = "Poetry";
+      Algorithm poetryAlgorithm;
+    }
+
+    class Algorithm {
+      String type;
+    }
+
+    class WrittenText {
+      String text;
+    }
+
+    enum AlgorithmType {
+      GrammarCorrection, SentenceSuggestion, ContentGeneration;
+    }
+
+    enum Genre {
+      Fiction, NonFiction, Poetry;
+    }
+
+  composition AIWritingAssistantSystem -> (has) Hub;
+  composition AIWritingAssistantSystem -> (has) KnowledgeBase;
+  composition AIWritingAssistantSystem -> (has) Assistant [*];
+  association Hub -> Assistant [*];
+}

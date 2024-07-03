@@ -1,0 +1,62 @@
+
+classdiagram VehicleManagementSystem {
+
+    class Vehicle {
+      String vehicleId;
+      VehicleStatus status;
+      Location location;
+      int fuelLevel;
+    }
+
+    class Truck extends Vehicle {
+      int cargoCapacity;
+      String trailerType;
+    }
+
+    class Van extends Vehicle {
+      int cargoCapacity;
+      String cargoType;
+    }
+
+    class Car extends Vehicle {
+      String cargoType;
+      int fuelEfficiency;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class VehicleStatus {
+      String status;
+    }
+
+    class FuelConsumption {
+      Vehicle vehicle;
+      double fuelConsumed;
+      double distanceTraveled;
+    }
+
+    class MaintenanceSchedule {
+      Vehicle vehicle;
+      String task;
+      DateTime scheduledDate;
+    }
+
+    class CustomerOrder {
+      Vehicle vehicle;
+      String orderDetails;
+    }
+
+    class CRMIntegration {
+      VehicleManagementSystem vehicleManagementSystem;
+      CustomerOrder[] customerOrders;
+    }
+
+    composition VehicleManagementSystem -> (has) Vehicle;
+    composition VehicleManagementSystem -> (has) FuelConsumption;
+    composition VehicleManagementSystem -> (has) MaintenanceSchedule;
+    composition VehicleManagementSystem -> (has) CustomerOrder;
+    composition CRMIntegration -> (has) VehicleManagementSystem;
+}

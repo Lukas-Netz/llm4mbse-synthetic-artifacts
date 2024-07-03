@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram WearableTechnology  {
+
+  class Smartwatch  {
+    HealthMetrics healthMetrics;
+    FitnessTracker fitnessTracker;
+    NotificationManager notificationManager;
+  }
+
+  class HealthMetrics  {
+    HeartRate heartRate;
+    BloodPressure bloodPressure;
+    SleepQuality sleepQuality;
+  }
+
+  class FitnessTracker  {
+    Steps steps;
+    Distance distance;
+    Calories calories;
+  }
+
+  class NotificationManager  {
+    Phone phone;
+  }
+
+  class Phone  {
+    String phoneNumber;
+  }
+
+  class HeartRate  {
+    int beatsPerMinute;
+  }
+
+  class BloodPressure  {
+    int systolic;
+    int diastolic;
+  }
+
+  class SleepQuality  {
+    int hours;
+  }
+
+  class Steps  {
+    int count;
+  }
+
+  class Distance  {
+    double value;
+  }
+
+  class Calories  {
+    int burned;
+  }
+
+  composition Smartwatch -> (has) HealthMetrics;
+  composition Smartwatch -> (has) FitnessTracker;
+  composition Smartwatch -> (has) NotificationManager;
+  composition NotificationManager -> (has) Phone;
+}
+

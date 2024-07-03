@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram LanguageLearningApp  {
+
+  class User  {
+    String username;
+    String password;
+    Language language;
+    Goal goal;
+  }
+
+  class Language  {
+    String name;
+  }
+
+  class Goal  {
+    String description;
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    Exercise[] exercises;
+  }
+
+  class Exercise  {
+    String description;
+    boolean completed;
+  }
+
+  class Conversation  {
+    User user;
+    NativeSpeaker nativeSpeaker;
+  }
+
+  class NativeSpeaker  {
+    String name;
+  }
+
+  class Dictionary  {
+    String word;
+    String definition;
+  }
+
+  class Thesaurus  {
+    String word;
+    String synonym;
+  }
+
+  class Leaderboard  {
+    User[] users;
+  }
+
+  composition User -> (has) Language;
+  composition User -> (has) Goal;
+  composition Lesson -> Exercise[*];
+  composition Conversation -> (has) User;
+  composition Conversation -> (has) NativeSpeaker;
+  composition Dictionary -> (has) Word;
+  composition Thesaurus -> (has) Word;
+  composition Leaderboard -> User[*];
+}

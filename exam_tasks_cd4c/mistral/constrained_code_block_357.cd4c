@@ -1,0 +1,49 @@
+
+classdiagram InvestmentPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    Portfolio portfolio;
+  }
+
+  class Portfolio {
+    -> FinancialInstrument [*];
+  }
+
+  abstract class FinancialInstrument {
+    String uniqueIdentifier;
+    String type;
+    double price;
+    int quantity;
+  }
+
+  class Stock extends FinancialInstrument {
+  }
+
+  class Bond extends FinancialInstrument {
+  }
+
+  class Transaction {
+    User user;
+    FinancialInstrument financialInstrument;
+    String date;
+    String time;
+    int quantity;
+  }
+
+  class MarketData {
+    double currentPrice;
+    int tradingVolume;
+  }
+
+  class Analytics {
+    double portfolioPerformance;
+    String marketTrends;
+  }
+
+  composition User -> Portfolio;
+  association Transaction <- User;
+  association Transaction <- FinancialInstrument;
+  association MarketData <- FinancialInstrument;
+  association Analytics <- User;
+}

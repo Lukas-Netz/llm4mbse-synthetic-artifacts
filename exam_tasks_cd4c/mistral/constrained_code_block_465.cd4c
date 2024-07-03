@@ -1,0 +1,48 @@
+
+classdiagram LegalDisputeResolution {
+
+  class Case {
+    String uniqueIdentifier;
+    CaseStatus status;
+  }
+
+  enum CaseStatus {
+    Open, Closed, Pending;
+  }
+
+  class Party {
+    String name;
+    PartyType type;
+  }
+
+  enum PartyType {
+    Lawyer, Client;
+  }
+
+  class Lawyer extends Party {
+    Case [ ] representedCases;
+  }
+
+  class Client extends Party {
+    Lawyer [ ] representingLawyers;
+  }
+
+  class Evidence {
+    String type;
+    String associatedCase;
+    boolean isRelevant;
+  }
+
+  class Communication {
+    String type;
+    String associatedCase;
+    boolean isConfidential;
+  }
+
+  composition Case -> (has) Lawyer [*];
+  composition Case -> (has) Client [*];
+  composition Lawyer -> (represents) Case [*];
+  composition Client -> (representedBy) Lawyer [*];
+  association Evidence -- Case;
+  association Communication -- Case;
+}

@@ -1,0 +1,68 @@
+
+
+
+classdiagram FilmDistributionSystem  {
+
+  class Film  {
+    String title;
+    String description;
+    Date releaseDate;
+  }
+
+  class FilmLibrary  {
+    Film[] films;
+  }
+
+  class FilmDistributor  {
+    FilmLibrary filmLibrary;
+    void addFilm(Film film);
+    void removeFilm(Film film);
+  }
+
+  class Customer  {
+    String name;
+    String email;
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+  }
+
+  class Transaction  {
+    Customer customer;
+    Film film;
+    Payment payment;
+  }
+
+  class Payment  {
+    String paymentMethod;
+    double amount;
+  }
+
+  class Blockchain  {
+    Block[] blocks;
+  }
+
+  class Block  {
+    Transaction[] transactions;
+  }
+
+  class RatingSystem  {
+    Film[] films;
+    Rating[] ratings;
+  }
+
+  class Rating  {
+    int rating;
+    Customer customer;
+  }
+
+  composition FilmDistributor -> (has) FilmLibrary;
+  composition FilmDistributor -> (has) Blockchain;
+  composition Customer -> (has) Device;
+  composition Transaction -> (has) Customer;
+  composition Transaction -> (has) Film;
+  composition Transaction -> (has) Payment;
+  composition Blockchain -> Block[*];
+  composition RatingSystem -> Film[*];
+}

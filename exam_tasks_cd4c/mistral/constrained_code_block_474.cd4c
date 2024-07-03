@@ -1,0 +1,39 @@
+
+classdiagram P2PLending {
+
+  class User {
+    String uniqueIdentifier;
+    int creditScore;
+  }
+
+  class Loan {
+    String loanID;
+    int loanAmount;
+    int interestRate;
+    int loanDuration;
+    User borrower;
+  }
+
+  class Investment {
+    String investmentID;
+    int amountInvested;
+    int interestRate;
+    Loan loan;
+  }
+
+  class Payment {
+    String paymentID;
+    User borrower;
+    Investment[] investments;
+  }
+
+  class PlatformAdmin {
+    void viewLoanDetails(Loan loan);
+    void viewInvestmentDetails(Investment investment);
+    void viewUserCreditScores();
+  }
+
+  composition User <- (has) Loan [*];
+  composition Loan <- (has) Investment [*];
+  composition Payment <- (has) Investment [*];
+}

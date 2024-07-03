@@ -1,0 +1,74 @@
+
+classdiagram DisasterResponseCoordination {
+
+    class DisasterResponseCoordination {
+      EmergencyManagementAgency emergencyManagementAgency;
+      FireDepartment fireDepartment;
+      RescueTeam rescueTeam;
+      Database disasterScenarios;
+      ResourceAllocation resourceAllocation;
+      ResponseEffortsReport report;
+    }
+
+    class EmergencyManagementAgency {
+      String uniqueIdentifier;
+      String name;
+      ResourceAllocation resourceAllocation;
+    }
+
+    class FireDepartment {
+      String uniqueIdentifier;
+      String name;
+      ResourceAllocation resourceAllocation;
+    }
+
+    class RescueTeam {
+      String uniqueIdentifier;
+      String name;
+      ResourceAllocation resourceAllocation;
+    }
+
+    class ResourceAllocation {
+      Agencies agencies;
+      Resources resources;
+    }
+
+    class DisasterScenario {
+      String location;
+      String severity;
+      String type;
+    }
+
+    class Resources {
+      Personnel personnel;
+      Equipment equipment;
+      Vehicles vehicles;
+    }
+
+    class Personnel {
+      int numberOfPersonnel;
+    }
+
+    class Equipment {
+      String equipmentType;
+      int quantity;
+    }
+
+    class Vehicles {
+      String vehicleType;
+      int quantity;
+    }
+
+    class ResponseEffortsReport {
+      String reportSummary;
+      String recommendations;
+    }
+
+  composition DisasterResponseCoordination -> (has) EmergencyManagementAgency;
+  composition DisasterResponseCoordination -> (has) FireDepartment;
+  composition DisasterResponseCoordination -> (has) RescueTeam;
+  association DisasterResponseCoordination -> ResourceAllocation [*];
+  association DisasterResponseCoordination -> DisasterScenario [*];
+  association ResourceAllocation -> Agencies [*];
+  association ResourceAllocation -> Resources [*];
+}

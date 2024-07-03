@@ -1,0 +1,44 @@
+
+classdiagram OnlineTicketBookingSystem {
+
+    class User {
+      String userId;
+      String name;
+    }
+
+    class Event {
+      String name;
+      Date date;
+      Time time;
+      List<Seat> availableSeats;
+    }
+
+    class Seat {
+      int row;
+      int column;
+      boolean isAvailable;
+    }
+
+    class Booking {
+      User user;
+      Seat seat;
+    }
+
+    class BookingSystem {
+      Map<Event, List<Seat>> availableSeatsByEvent;
+      Map<User, List<Booking>> userBookings;
+
+      BookingSystem()
+
+     
+    throws BookingException;
+
+      void checkSeatAvailability(Event event, User user, Seat seat) throws BookingException;
+      void bookSeat(Event event, User user, Seat seat) throws BookingException;
+      void cancelBooking(Event event, User user, Seat seat) throws BookingException;
+    }
+
+    association BookingSystem -> Event;
+    association BookingSystem -> User;
+    association BookingSystem -> Seat;
+}

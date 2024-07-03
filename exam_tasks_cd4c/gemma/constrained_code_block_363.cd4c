@@ -1,0 +1,39 @@
+
+
+classdiagram VirtualRealityMarineBiologySimulations {
+
+    class SimulationEnvironment {
+      int simulationTime;
+      int waterTemperature;
+      int salinity;
+
+      void pause();
+      void resume();
+      void reset();
+    }
+
+    class MarineLife {
+      Species species;
+      int size;
+      Behavior behavior;
+    }
+
+    enum Species {
+      Fish, Coral, Seaweed
+    
+
+    
+;
+  }
+
+    class UserInteraction {
+      Swim swim;
+      Dive dive;
+      Observe observeMarineLife;
+    }
+
+    composition SimulationEnvironment -> (has) MarineLife [*];
+    composition SimulationEnvironment -> (has) UserInteraction [*];
+    association MarineLife -> SimulationEnvironment;
+    association UserInteraction -> SimulationEnvironment;
+}

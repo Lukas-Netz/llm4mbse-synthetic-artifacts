@@ -1,0 +1,73 @@
+
+classdiagram OnlineSociologyCourses {
+
+    class Course {
+      String courseID;
+      String title;
+      String description;
+      Instructor instructor;
+      List<Student> enrolledStudents;
+    }
+
+    class Instructor {
+      String instructorID;
+      String name;
+      String email;
+    }
+
+    class Student {
+      String studentID;
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Assignment {
+      String assignmentID;
+      String title;
+      String description;
+      Student student;
+      Instructor instructor;
+      String grade;
+    }
+
+    class Discussion {
+      String discussionID;
+      String title;
+      String description;
+      List<Student> participants;
+    }
+
+    class Grade {
+      String studentID;
+      String courseID;
+      String grade;
+    }
+
+    association Course 
+      -> Instructor [1..*];
+
+    association Course 
+      -> Student [1..];
+
+    association Student 
+      -> Course [1..];
+
+    association Student 
+      -> Assignment [1..];
+
+    association Assignment 
+      -> Instructor [1..];
+
+    association Assignment 
+      -> Student [1..];
+
+    association Discussion 
+      -> Student [1..];
+
+    association Grade 
+      -> Student [1..];
+
+    association Grade 
+      -> Course [1..];
+}

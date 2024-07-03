@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram DataQualitySolution  {
+
+  class DataQuality  {
+    DataCleansing cleansing;
+    DataTransformation transformation;
+    DataValidation validation;
+    void dataProfiling();
+    void dataQualityReporting();
+    void dataQualityMetricsCalculation();
+  }
+
+  class DataCleansing extends DataQuality  {
+    void removeDuplicates();
+    void handleMissingValues();
+    void correctDataFormats();
+  }
+
+  class DataTransformation extends DataQuality  {
+    void aggregateData();
+    void convertDataType();
+    void normalizeData();
+  }
+
+  class DataValidation  {
+    void checkForErrors();
+    void checkForInconsistencies();
+    void checkForInvalidValues();
+  }
+
+  class Customer  {
+    String name;
+    ContactInformation contactInfo;
+    Subscription subscription;
+    void customerSegmentation();
+    void customerProfiling();
+    void customerRetentionAnalysis();
+  }
+
+  class ContactInformation  {
+    String email;
+    String phone;
+    String address;
+  }
+
+  class Subscription  {
+    String plan;
+    Date startDate;
+    Date endDate;
+  }
+
+  composition DataQuality -> (has) DataCleansing;
+  composition DataQuality -> (has) DataTransformation;
+  composition DataQuality -> (has) DataValidation;
+  composition Customer -> (has) ContactInformation;
+  composition Customer -> (has) Subscription;
+}

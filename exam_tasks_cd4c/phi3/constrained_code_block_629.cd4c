@@ -1,0 +1,53 @@
+
+classdiagram HomeBrewingSystem {
+
+    class Controller {
+      void startBrewing();
+      void stopBrewing();
+      void adjustTemperature(int temperature);
+      void adjustDuration(int duration);
+      void cleanVessel();
+      void fillWaterTank(int capacity);
+      void emptyWaterTank();
+      void turnOnHeatingElement();
+      void turnOffHeatingElement();
+      void turnOnCoolingElement();
+      void turnOffCoolingElement();
+      void getSensorData();
+    }
+
+    class WaterTank {
+      int capacity;
+      void fill(int amount);
+      void empty(int amount);
+    }
+
+    class HeatingElement {
+      void turnOn();
+      void turnOff();
+    }
+
+    class CoolingElement {
+      void turnOn();
+      void turnOff();
+    }
+
+    class BrewingVessel {
+      int volume;
+      void clean();
+    }
+
+    class Sensor {
+      int temperature;
+      int pressure;
+      int liquidLevel;
+      void getData();
+    }
+
+    association Controller <-> Sensor;
+    composition Controller -> WaterTank;
+    composition Controller -> HeatingElement;
+    composition Controller -> CoolingElement;
+    composition Controller -> BrewingVessel;
+    composition Controller -> Sensor;
+}

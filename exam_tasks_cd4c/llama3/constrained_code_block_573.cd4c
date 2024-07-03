@@ -1,0 +1,60 @@
+
+
+
+classdiagram LunarExplorationSystems  {
+
+  class Spacecraft  {
+    Rover rover;
+    CommunicationModule communicationModule;
+    FuelLevel fuelLevel;
+    NavigationSystem navigationSystem;
+    void adjustCourse();
+    void communicateWithEarth();
+  }
+
+  class Rover  {
+    Speed speed;
+    Direction direction;
+    Altitude altitude;
+    void move();
+    void stop();
+    void collectSample();
+  }
+
+  class CommunicationModule  {
+    TransmissionPower transmissionPower;
+    Frequency frequency;
+    void sendData();
+    void receiveData();
+  }
+
+  class LunarSurface  {
+    TerrainType terrainType;
+    Hazard[] hazards;
+  }
+
+  class Hazard  {
+    String type;
+    double severity;
+  }
+
+  class FuelLevel  {
+    int level;
+  }
+
+  class NavigationSystem  {
+    Coordinate[] coordinates;
+  }
+
+  class Coordinate  {
+    double xCoordinate;
+    double yCoordinate;
+  }
+
+  composition Spacecraft -> (has) Rover;
+  composition Spacecraft -> (has) CommunicationModule;
+  composition Rover -> LunarSurface;
+  association Rover -> Hazard [0..*];
+  association Spacecraft -> FuelLevel;
+  association Spacecraft -> NavigationSystem;
+}

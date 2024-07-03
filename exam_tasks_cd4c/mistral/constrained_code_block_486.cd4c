@@ -1,0 +1,83 @@
+
+classdiagram MarineTraffic {
+
+  class Hub {
+    -> Vessel [*];
+    -> Buoy [*];
+    void trackVessel(Vessel vessel);
+    void monitorBuoy(Buoy buoy);
+    void sendAlert(Vessel vessel, String message);
+  }
+
+  class Vessel {
+    String uniqueIdentifier;
+    String name;
+    VesselType type;
+    double speed;
+    double direction;
+    double positionX;
+    double positionY;
+  }
+
+  class Buoy {
+    String uniqueIdentifier;
+    Location location;
+    BuoyType type;
+    double speed;
+    double direction;
+    double positionX;
+    double positionY;
+  }
+
+  enum VesselType {
+    CargoShip, Tanker, PassengerShip;
+  }
+
+  enum BuoyType {
+    NavigationBuoy, WarningBuoy;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  abstract class Message {
+    String content;
+  }
+
+  class NavigationMessage extends Message {
+    NavigationData data;
+  }
+
+  class WeatherReport extends Message {
+    WeatherData data;
+  }
+
+  class EmergencyAlert extends Message {
+    EmergencyData data;
+  }
+
+  class NavigationData {
+    double speed;
+    double direction;
+    double positionX;
+    double positionY;
+  }
+
+  class WeatherData {
+    String weatherCondition;
+    double temperature;
+    double humidity;
+    double windSpeed;
+  }
+
+  class EmergencyData {
+    String emergencyType;
+    double latitude;
+    double longitude;
+  }
+
+  composition Hub -> Vessel [*];
+  composition Hub -> Buoy [*];
+}

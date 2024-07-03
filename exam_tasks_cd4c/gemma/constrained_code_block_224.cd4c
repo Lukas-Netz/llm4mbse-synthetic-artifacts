@@ -1,0 +1,235 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  
+  
+  
+  
+  {composition SmartHome  (has  Hub)
+  
+  
+  
+  ;composition SmartHome  (has  BackupPower)  
+  
+  
+  
+;composition Hub  (has  Device)  
+  
+  
+  
+;composition Hub  (has  BackupPower)  
+  
+  
+  
+;enum DeviceStatus
+  
+  
+  
+;enum ThermostatMode
+  
+  
+  
+  ;class Light
+  
+  
+  
+  ;class Thermostat
+  
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;class BackupPower
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;class DonationPlatform
+  
+  
+  
+  ;class Donor
+  
+  
+  
+  ;class Donation
+  
+  
+  
+  ;class DonationReceipt
+  
+  
+  
+  ;class DonationNotification
+  
+  
+  
+  ;association Donor  (has  Donation)  
+  
+  
+  ;association Donation  (has  Charity)  
+  
+  
+  ;association Charity  (has  Donation)  
+  
+  
+  ;association Donation  (has  DonationCampaign)  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class DonationPlatform
+  
+  
+  
+  ;composition SmartHome  (has  Hub)
+  
+  
+  
+  ;composition SmartHome  (has  BackupPower)  
+  
+  
+  
+;association Donor  (has  Donation)  
+  
+  
+  ;association Donation  (has  Charity)  
+  
+  
+  ;association Charity  (has  Donation)  
+  
+  
+  ;association Donation  (has  DonationCampaign)  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class Hub
+  
+  
+  
+  ;association Device  (has  Hub)  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class BackupPower
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class Light
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class Thermostat
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class SecurityCamera
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class Donation
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class DonationReceipt
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class DonationNotification
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class DonationCampaign
+  
+  
+  
+  ;
+}
+
+#  classdiagram  
+
+  
+
+{class Donor
+  
+  
+  
+  ;
+}
+}

@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram RealTimeAnalytics  {
+
+  class DataCollector  {
+    DataSource  dataSources  ; 
+    void collectData(DataSource dataSource); 
+  }
+
+  abstract class DataProcessor  {
+    void process(Data data); 
+  }
+
+  class Filter extends DataProcessor  {
+    String filterCriteria; 
+    void process(Data data); 
+  }
+
+  class Aggregator extends DataProcessor  {
+    String aggregationType; 
+    void process(Data data); 
+  }
+
+  class Transformer extends DataProcessor  {
+    String transformationType; 
+    void process(Data data); 
+  }
+
+  class DataViewer  {
+    void visualize(Data data); 
+  }
+
+  class DataStorage  {
+    void store(Data data); 
+  }
+
+  class Data  {
+    String dataId; 
+    String dataValue; 
+  }
+
+  class DataPoint  {
+    Data data; 
+    Timestamp timestamp; 
+  }
+
+  class DataSource  {
+    String dataSourceId; 
+    String dataSourceType; 
+  }
+
+  class User  {
+    String userId; 
+    String userName; 
+  }
+
+  composition DataCollector  ->  (has) DataProcessor  ; 
+  composition DataProcessor  ->  (has) DataViewer  ; 
+  composition DataViewer  ->  (has) DataStorage  ; 
+  composition DataStorage  ->  (has) Data  ; 
+  composition Data  ->  (has) DataPoint  ; 
+  composition DataPoint  ->  (has) DataSource  ; 
+  composition DataCollector  ->  (has) User  ; 
+  association DataProcessor  ->  (uses) Filter  ; 
+  association DataProcessor  ->  (uses) Aggregator  ; 
+  }

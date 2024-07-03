@@ -1,0 +1,63 @@
+
+classdiagram RemoteLivestockMonitoring {
+
+    class Livestock {
+      String uniqueIdentifier;
+      String breed;
+      int age;
+      double weight;
+      Location location;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      Livestock attachedLivestock;
+      SensorData data;
+    }
+
+    class SensorData {
+      double temperature;
+      double humidity;
+      boolean movementDetected;
+    }
+
+    class Alert {
+      String message;
+      Livestock affectedLivestock;
+    }
+
+    class Farmer {
+      String uniqueIdentifier;
+      List<Alert> receivedAlerts;
+    }
+
+    class Weather {
+      double temperature;
+      double humidity;
+      double windSpeed;
+      double pressure;
+    }
+
+    class RemoteLivestockMonitoring {
+      List<Livestock> livestock;
+      List<Sensor> sensors;
+      List<Farmer> farmers;
+      Weather weather;
+
+      void addLivestock(Livestock livestock);
+      void removeLivestock(String uniqueIdentifier);
+      void addSensor(Sensor sensor);
+      void removeSensor(String uniqueIdentifier);
+      void sendAlert(Alert alert);
+      void receiveWeatherData(Weather weather);
+      void updateLivestockLocation(String uniqueIdentifier, Location location);
+    }
+
+    association RemoteLivestockMonitoring -> [has] Livestock;
+    association RemoteLivestockMonitoring -> [has] Sensor;
+    association RemoteLivestockMonitoring -> [has] Farmer;
+    association RemoteLivestockMonitoring -> [has] Weather;
+
+    composition Livestock -> Sensor [*];
+    composition Sensor -> Alert [*];
+}

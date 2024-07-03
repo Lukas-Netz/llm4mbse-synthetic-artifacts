@@ -1,0 +1,40 @@
+
+classdiagram MassSpectrometry {
+
+  class Experiment {
+    String uniqueIdentifier;
+    String description;
+    List<MassToCharge> data;
+  }
+
+  class MassToCharge {
+    double massToChargeRatio;
+    double intensity;
+  }
+
+  class MassSpectrometrySystem {
+    List<Experiment> experiments;
+  }
+
+  class DataProcessor {
+    void filter(Experiment experiment, double minIntensity);
+    void sort(Experiment experiment);
+    void plot(Experiment experiment);
+  }
+
+  class Result {
+    Experiment experiment;
+    List<MassToCharge> filteredData;
+    List<MassToCharge> sortedData;
+    Plot plot;
+  }
+
+  class ResultRepository {
+    void store(Result result);
+    Result retrieve(String uniqueIdentifier);
+  }
+
+  composition MassSpectrometrySystem -> Experiment [*];
+  association DataProcessor -> Experiment;
+  association Result -> ResultRepository;
+}

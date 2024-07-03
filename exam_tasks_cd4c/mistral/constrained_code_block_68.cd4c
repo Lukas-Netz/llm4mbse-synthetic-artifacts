@@ -1,0 +1,38 @@
+
+classdiagram DigitalTwin {
+
+  class PhysicalSystem {
+    float temperature;
+    float pressure;
+    float vibration;
+  }
+
+  class DigitalTwin {
+    float simulationTime;
+    float simulationSpeed;
+    float simulationAccuracy;
+  }
+
+  class Sensor {
+    PhysicalSystem physicalSystem;
+    DigitalTwin digitalTwin;
+  }
+
+  class AnalyticsEngine {
+    DigitalTwin digitalTwin;
+    void analyzeData();
+    void predictMaintenance();
+    void provideRecommendations();
+  }
+
+  class UserInterface {
+    DigitalTwin digitalTwin;
+    void accessData();
+    void interactWithDigitalTwin();
+  }
+
+  composition PhysicalSystem -- (has) Sensor [*];
+  composition DigitalTwin -- (has) Sensor [*];
+  association DigitalTwin -- AnalyticsEngine;
+  association DigitalTwin -- UserInterface;
+}

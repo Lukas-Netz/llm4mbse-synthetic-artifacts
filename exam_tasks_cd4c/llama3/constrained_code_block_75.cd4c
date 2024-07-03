@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram TicketingSystem  {
+
+  class Ticket  {
+    String uniqueIdentifier;
+    Route route;
+    TicketType type;
+  }
+
+  class Route  {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    Route route;
+    VehicleStatus status;
+  }
+
+  class Stop  {
+    String name;
+  }
+
+  class TicketType  {
+    String name;
+  }
+
+  class VehicleStatus  {
+    String name;
+  }
+
+  composition Route -> (has) List<<Stop>>;
+  composition Vehicle -> (has) Route;
+  composition Route -> (has) List<<Vehicle>>;
+
+  interface TicketingSystem  {
+    void addTicket(Ticket ticket);
+    void removeTicket(Ticket ticket);
+    void updateTicket(Ticket ticket);
+    Ticket getTicket(String uniqueIdentifier);
+    List<Ticket> getAllTickets();
+
+    void addRoute(Route route);
+    void removeRoute(Route route);
+    void updateRoute(Route route);
+    Route getRoute(String name);
+    List<Route> getAllRoutes();
+
+    void addVehicle(Vehicle vehicle);
+    void removeVehicle(Vehicle vehicle);
+    void updateVehicle(Vehicle vehicle);
+    Vehicle getVehicle(String uniqueIdentifier);
+    List<Vehicle> getAllVehicles();
+  }
+}

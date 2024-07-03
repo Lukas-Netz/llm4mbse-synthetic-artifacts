@@ -1,0 +1,63 @@
+
+classdiagram DisasterResponse {
+
+  class Agency {
+    String uniqueIdentifier;
+    String name;
+    AgencyType type;
+    Resource [ ] resources;
+  }
+
+  enum AgencyType {
+    EMERGENCY_MANAGEMENT, FIRE_DEPARTMENT, RESCUE_TEAM;
+  }
+
+  abstract class Resource {
+    String uniqueIdentifier;
+  }
+
+  class Personnel extends Resource {
+    String name;
+    String role;
+  }
+
+  class Equipment extends Resource {
+    String type;
+    int capacity;
+  }
+
+  class Vehicle extends Resource {
+    String type;
+    int capacity;
+  }
+
+  class DisasterScenario {
+    String location;
+    DisasterType type;
+    int severity;
+  }
+
+  enum DisasterType {
+    HURRICANE, EARTHQUAKE, FLOOD;
+  }
+
+  class Response {
+    DisasterScenario disaster;
+    Agency [ ] agencies;
+    Resource [ ] resources;
+  }
+
+  class Report {
+    String date;
+    String findings;
+    String recommendations;
+  }
+
+  composition DisasterResponse -> Agency [*];
+  composition Agency -> Resource [*];
+  association DisasterResponse -> DisasterScenario;
+  association Response -> DisasterScenario;
+  association Response -> Agency [*];
+  association Response -> Resource [*];
+  association Report -> DisasterResponse;
+}

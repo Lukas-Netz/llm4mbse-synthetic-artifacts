@@ -1,0 +1,32 @@
+
+classdiagram QuantumEncryptionSystem {
+
+    class QuantumEncryptionSystem {
+      Human sender;
+      Human receiver;
+      QKDModule qkdModule;
+    }
+
+    class Human {
+      String uniqueIdentifier;
+      String name;
+      String password;
+    }
+
+    class Machine {
+      String uniqueIdentifier;
+      String ipAddress;
+      int portNumber;
+    }
+
+    class QKDModule {
+      void generateKeyPair();
+      void exchangeKeys(Human sender, Human receiver);
+      void encryptData(Human sender, Machine receiver, String data);
+      void decryptData(Human receiver, Machine sender, String encryptedData);
+    }
+
+    association QuantumEncryptionSystem -> Human;
+    association QuantumEncryptionSystem -> Machine;
+    association QuantumEncryptionSystem -> QKDModule;
+}

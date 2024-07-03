@@ -1,0 +1,73 @@
+
+
+
+classdiagram ForestFireDetection  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    TemperatureReading temperature;
+    HumidityReading humidity;
+    SmokeLevelReading smokeLevel;
+  }
+
+  class Drone  {
+    String uniqueIdentifier;
+    Camera camera;
+  }
+
+  class CentralHub  {
+    SensorData sensorData;
+    DroneData droneData;
+    Alert alert;
+    Drone dispatchDrone();
+  }
+
+  class SensorData  {
+    Sensor[] sensors;
+  }
+
+  class DroneData  {
+    Drone[] drones;
+  }
+
+  class Alert  {
+    String message;
+  }
+
+  class Database  {
+    ForestMap forestMap;
+  }
+
+  class ForestMap  {
+    Tree[] trees;
+    Road[] roads;
+  }
+
+  class TemperatureReading  {
+    double temperature;
+  }
+
+  class HumidityReading  {
+    double humidity;
+  }
+
+  class SmokeLevelReading  {
+    double smokeLevel;
+  }
+
+  class Camera  {
+    Image image;
+  }
+
+  class Image  {
+    byte[] data;
+  }
+
+  composition CentralHub -> (has) SensorData;
+  composition CentralHub -> (has) DroneData;
+  composition CentralHub -> (has) Alert;
+  composition CentralHub -> (has) Database;
+  composition Database -> (has) ForestMap;
+  composition ForestMap -> (has) Tree;
+  composition ForestMap -> (has) Road;
+  }

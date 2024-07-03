@@ -1,0 +1,91 @@
+
+classdiagram ParentingClass {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Date startDate;
+    Date endDate;
+    CourseStatus status;
+  }
+
+  enum CourseStatus {
+    Active, Inactive;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    List<Course> enrolledCourses;
+  }
+
+  composition Course [*] enrolledCourses (Student)
+  -- Course
+  - 											{
+ 										ordered
+ 				}
+
+ 			;
+
+  composition Instructor [*] teaches (Course)
+  -- Course
+  - 											{
+ 										ordered
+ 				}
+
+ 			;
+
+  class CourseMaterial {
+    String title;
+    String description;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    Date dueDate;
+    boolean isSubmitted;
+  }
+
+  class DiscussionPost {
+    String title;
+    String content;
+    Date postedDate;
+  }
+
+  class Progress {
+    List<Assignment> completedAssignments;
+    List<DiscussionPost> discussionPosts;
+  }
+
+  class System {
+    List<Instructor> instructors;
+    List<Student> students;
+    List<Course> courses;
+  }
+
+  composition System [*] teaches (Instructor)
+  -- Instructor
+  - 											{
+ 										ordered
+ 				}
+
+ 			;
+
+  composition System [*] enrolls (Student)
+  -- Student
+  - 											{
+ 										ordered
+ 				}
+
+ 			;
+
+}

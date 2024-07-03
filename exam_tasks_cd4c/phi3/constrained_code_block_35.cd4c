@@ -1,0 +1,54 @@
+
+classdiagram SportsAnalyticsSystem {
+
+    class Player {
+        String name;
+        String team;
+        String sport;
+        int points;
+        int rebounds;
+        int assists;
+        List<Statistic> statistics;
+    }
+
+    class Team {
+        String name;
+        String league;
+        List<Player> players;
+    }
+
+    class Game {
+        String homeTeam;
+        String awayTeam;
+        String sport;
+        List<Statistic> gameStatistics;
+    }
+
+    class Statistic {
+        String name;
+        int value;
+    }
+
+    class Report {
+        String title;
+        String content;
+    }
+
+    class Sports {
+        String name;
+        List<Team> teams;
+    }
+
+    composition Player -> Team;
+    composition Player -> Sports;
+    composition Team -> Sports;
+    composition Game -> Team;
+    composition Game -> Sports;
+    composition Game -> Player;
+    composition Player -> Statistic;
+    composition Game -> Statistic;
+    composition Report -> Game;
+    composition Report -> Player;
+    composition Report -> Team;
+    composition Report -> Sports;
+}

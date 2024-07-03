@@ -1,0 +1,69 @@
+
+classdiagram ContentManagementSystem {
+
+  class Content {
+    String uniqueIdentifier;
+    String title;
+  }
+
+  class Article extends Content {
+    String textBody;
+    String topic;
+    String[] tags;
+  }
+
+  class Video extends Content {
+    String filePath;
+    String genre;
+    String[] tags;
+  }
+
+  class Image extends Content {
+    String filePath;
+    String theme;
+    String[] tags;
+  }
+
+  class Admin {
+    String username;
+    String password;
+    void createContent(Content content);
+    void editContent(Content content);
+    void deleteContent(Content content);
+  }
+
+  class User {
+    String username;
+    String password;
+    void viewContent(Content content);
+    void searchContent(String keyword);
+  }
+
+  class Analytics {
+    int views;
+    int engagement;
+  }
+
+  class Database {
+    Content[] content;
+  }
+
+  class CharacterSet {
+    String language;
+    String encoding;
+  }
+
+  class ContentManagementSystem {
+    Database database;
+    CharacterSet characterSet;
+    Analytics analytics;
+    Admin[] admins;
+    User[] users;
+  }
+
+  composition ContentManagementSystem -> Database;
+  composition ContentManagementSystem -> CharacterSet;
+  composition ContentManagementSystem -> Analytics;
+  composition ContentManagementSystem -> Admin [*];
+  composition ContentManagementSystem -> User [*];
+}

@@ -1,0 +1,67 @@
+
+classdiagram ProductionMonitoringSystem {
+
+    class ProductionMonitoringSystem {
+      ControlUnit controlUnit;
+      Database database;
+      UserInterface userInterface;
+    }
+
+    class ControlUnit {
+      -Sensor[
+     ][ ] Actuator;
+      void processSensorData();
+      void sendCommandToActuator(Actuator actuator, Command command);
+    }
+
+    class Sensor {
+      String productionLine;
+      String productType;
+      float[] data;
+    }
+
+    class Actuator {
+      String productionLine;
+      String productType;
+    }
+
+    class Database {
+      ProductionLine[] productionLines;
+      ProductType[] productTypes;
+      float[][] sensorData;
+      Command[] commands;
+    }
+
+    class UserInterface {
+      ProductionLine[] productionLines;
+      ProductType[] productTypes;
+      SensorData[][] sensorData;
+    }
+
+    class SensorData {
+      float[][] data;
+    }
+
+    class Command {
+      String commandType;
+      String target;
+    }
+
+    class ProductionLine {
+      String lineId;
+    }
+
+    class ProductType {
+      String typeId;
+    }
+
+    association ProductionMonitoringSystem -> ControlUnit;
+    association ProductionMonitoringSystem -> Database;
+    association ProductionMonitoringSystem -> UserInterface;
+
+    composition ControlUnit -> Sensor[*];
+    composition ControlUnit -> Actuator[*];
+    composition Database -> SensorData[*];
+    composition Database -> Command[*];
+    composition UserInterface -> SensorData[*];
+}

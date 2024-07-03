@@ -1,0 +1,44 @@
+
+classdiagram SmartMeteringSystem {
+
+    class Server {
+      List<SmartMeter> smartMeters;
+      void analyzeData();
+      void generateReport();
+      void sendAlert(SmartMeter meter);
+    }
+
+    class SmartMeter {
+      String uniqueId;
+      double energyConsumptionKWh;
+      void sendDataToServer();
+    }
+
+    abstract class Device {
+      String uniqueId;
+      void remoteControl();
+    }
+
+    class Thermostat extends Device {
+      int temperatureSetting;
+    }
+
+    class LightingSystem extends Device {
+      int brightnessLevel;
+    }
+
+    class Appliance extends Device {
+      String applianceType;
+    }
+
+    class UI {
+      void displayEnergyData();
+      void setDeviceSchedule(Device device, String schedule);
+      void receiveAlert(SmartMeter meter);
+    }
+
+  composition Server -> (has) SmartMeter;
+  composition Server -> (has) UI;
+  composition UI -> (has) Server;
+  composition UI -> (has) SmartMeter [*];
+}

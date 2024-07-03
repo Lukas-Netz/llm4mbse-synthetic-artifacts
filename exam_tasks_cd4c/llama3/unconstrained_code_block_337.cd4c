@@ -1,0 +1,94 @@
+
+
+
+
+classdiagram AutonomousDeliveryRobot  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    RobotStatus status;
+    NavigationSystem navigationSystem;
+    PackageDeliverySystem packageDeliverySystem;
+    CommunicationSystem communicationSystem;
+    PowerSystem powerSystem;
+    SafetyFeatures safetyFeatures;
+    UserInterface userInterface;
+    Software software;
+    Hardware hardware;
+    Maintenance maintenance;
+  }
+
+  class NavigationSystem  {
+    GPS gps;
+    Sensors sensors;
+    MappingSoftware mappingSoftware;
+  }
+
+  class PackageDeliverySystem  {
+    PackageCompartment packageCompartment;
+    DeliveryMechanism deliveryMechanism;
+  }
+
+  class CommunicationSystem  {
+    Wifi wifi;
+    Bluetooth bluetooth;
+  }
+
+  class PowerSystem  {
+    RechargeableBattery battery;
+    ChargingStation chargingStation;
+  }
+
+  class SafetyFeatures  {
+    ObstacleDetection obstacleDetection;
+    CollisionAvoidance collisionAvoidance;
+    EmergencyShutdown emergencyShutdown;
+  }
+
+  class UserInterface  {
+    TouchscreenDisplay touchscreenDisplay;
+    VoiceCommands voiceCommands;
+  }
+
+  class Software  {
+    NavigationAlgorithms navigationAlgorithms;
+    PackageDeliveryAlgorithms packageDeliveryAlgorithms;
+    CommunicationProtocols communicationProtocols;
+  }
+
+  class Hardware  {
+    RoboticBody roboticBody;
+    Wheels wheels;
+    Sensors sensors;
+  }
+
+  class Maintenance  {
+    SoftwareUpdates softwareUpdates;
+    HardwareMaintenance hardwareMaintenance;
+    Troubleshooting troubleshooting;
+  }
+
+  class FleetManagementSystem  {
+    RobotTracking robotTracking;
+    PackageTracking packageTracking;
+    RouteOptimization routeOptimization;
+  }
+
+  class UserManagementSystem  {
+    UserAuthentication userAuthentication;
+    UserPermissions userPermissions;
+    UserTracking userTracking;
+  }
+
+  composition Robot -> (has) NavigationSystem;
+  composition Robot -> (has) PackageDeliverySystem;
+  composition Robot -> (has) CommunicationSystem;
+  composition Robot -> (has) PowerSystem;
+  composition Robot -> (has) SafetyFeatures;
+  composition Robot -> (has) UserInterface;
+  composition Robot -> (has) Software;
+  composition Robot -> (has) Hardware;
+  composition Robot -> (has) Maintenance;
+  composition FleetManagementSystem -> Robot [1..*];
+  composition UserManagementSystem -> User [1..*];
+}

@@ -1,0 +1,50 @@
+
+classdiagram CustomerDataIntegrationSystem {
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      Date dateOfBirth;
+      String contactInfo;
+    }
+
+    class IndividualCustomer extends Customer {
+      Date dateOfBirth;
+    }
+
+    class CorporateCustomer extends Customer {
+      String companyName;
+    }
+
+    class GovernmentCustomer extends Customer {
+      String governmentID;
+    }
+
+    class CommunicationHistory {
+      String date;
+      CommunicationType type;
+      String description;
+    }
+
+    class CommunicationType {
+      String type;
+    }
+
+    class Communication {
+      CommunicationHistory history;
+    }
+
+    class CustomerPreferences {
+      String preferredCommunicationChannels;
+      String preferredLanguage;
+    }
+
+    class Customer {
+      CustomerPreferences preferences;
+      Communication communicationHistory;
+    }
+
+    composition Customer -> CommunicationHistory;
+    composition Customer -> Communication;
+    composition Customer -> CustomerPreferences;
+}

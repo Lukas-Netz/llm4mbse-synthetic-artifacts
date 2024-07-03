@@ -1,0 +1,91 @@
+
+classdiagram IAM {
+
+  class User {
+    String username;
+    String password;
+    Role [ ] roles;
+    Session [ ] sessions;
+  }
+
+  class Role {
+    String name;
+    Permission [ ] permissions;
+  }
+
+  class Permission {
+    String action;
+    String resource;
+  }
+
+  class Session {
+    User user;
+    boolean isActive;
+    Timestamp startTime;
+    Timestamp lastActivity;
+  }
+
+  class UserSession {
+    User user;
+    Session session;
+  }
+
+  class Login {
+    User user;
+    Session session;
+    Timestamp loginTime;
+  }
+
+  class Logout {
+    User user;
+    Session session;
+    Timestamp logoutTime;
+  }
+
+  class Inactivity {
+    User user;
+    Session session;
+    Timestamp inactivityTime;
+  }
+
+  class Activity {
+    User user;
+    Session session;
+    Timestamp activityTime;
+  }
+
+  class LoginHistory {
+    User user;
+    Login [ ] logins;
+  }
+
+  class LogoutHistory {
+    User user;
+    Logout [ ] logouts;
+  }
+
+  class InactivityHistory {
+    User user;
+    Inactivity [ ] inactivities;
+  }
+
+  class ActivityHistory {
+    User user;
+    Activity [ ] activities;
+  }
+
+  association User --o000o- 											{ 											ordered						}
+   		;
+  association Role --o000o- 											{ 											ordered						}
+   		;
+  association Permission --o000o- 											{ 											ordered						}
+   		;
+  association Session --o000o- 											{ 											ordered						}
+   		;
+  association UserSession --o000o- 											{ 											ordered						}
+   		;
+  association Login --o000o- 											{ 											ordered						}
+   		;
+  association Logout --o000o- 											{ 											ordered						}
+   		;
+ 				}

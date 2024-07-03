@@ -1,0 +1,45 @@
+
+classdiagram FitnessPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Instructor extends User {
+    -> Class [*];
+  }
+
+  class Participant extends User {
+    -> Class [*];
+    int rating;
+  }
+
+  class Class {
+    String name;
+    String description;
+    Schedule schedule;
+    Type type;
+    int duration;
+    DifficultyLevel difficulty;
+    int maxCapacity;
+    Instructor instructor;
+    -> Participant [*];
+  }
+
+  enum Type {
+    Yoga, Pilates, StrengthTraining;
+  }
+
+  enum DifficultyLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Schedule {
+    int startTime;
+    int endTime;
+  }
+
+  composition Instructor -> Class;
+  composition Class -> Participant [*];
+}

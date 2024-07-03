@@ -1,0 +1,49 @@
+
+classdiagram PreciseLivestocManagement {
+
+    class Farm {
+      String name;
+      String farmIdentifier;
+    }
+
+    class Field {
+      String fieldName;
+      int sizeAcres;
+      Farm farm;
+      List<Animal> animals;
+    }
+
+    class Animal {
+      String animalName;
+      String animalIdentifier;
+      Date birthdate;
+      Field field;
+      AnimalType type;
+    }
+
+    enum AnimalType {
+      Cow, Pig, Chicken
+   
+      (Cow, int, double);
+      (Pig)
+      (Chicken)
+    }
+
+    class Veterinarian {
+      String name;
+      String identifier;
+      String specialization;
+      List<Task> tasks;
+    }
+
+    class Task {
+      String taskName;
+      Animal animal;
+      String result;
+    }
+
+    composition Farm -> Field [1..*];
+    composition Field -> Animal [*];
+    composition Animal -> Veterinarian [0..1];
+    composition Veterinarian -> Task [0..*];
+}

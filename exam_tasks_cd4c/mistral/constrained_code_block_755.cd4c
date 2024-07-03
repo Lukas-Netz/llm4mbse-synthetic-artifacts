@@ -1,0 +1,52 @@
+
+classdiagram Astrophotography {
+
+  class CelestialObject {
+    String uniqueIdentifier;
+    String name;
+    Coordinates coordinates;
+  }
+
+  class Coordinates {
+    double ra;
+    double dec;
+  }
+
+  class Telescope {
+    String uniqueIdentifier;
+    String specifications;
+  }
+
+  class CameraInterface {
+    -> Telescope [*];
+    void captureImage(Telescope telescope);
+  }
+
+  class ImageProcessingModule {
+    void applyFilter(Image image);
+    void applyAlgorithm(Image image);
+  }
+
+  class Image {
+    String uniqueIdentifier;
+    ImageType type;
+  }
+
+  enum ImageType {
+    RGB, MONOCHROME;
+  }
+
+  class ReportingModule {
+    void generateReport(Image image, ReportFormat format);
+  }
+
+  enum ReportFormat {
+    TEXT, IMAGE, GRAPH;
+  }
+
+  composition Astrophotography -> CameraInterface;
+  composition Astrophotography -> ImageProcessingModule;
+  composition Astrophotography -> ReportingModule;
+  association CelestialObject --oastore_Astrophotography;
+  association Telescope --oastore_Astrophotography;
+}

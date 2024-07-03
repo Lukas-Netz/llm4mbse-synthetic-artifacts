@@ -1,0 +1,67 @@
+
+classdiagram EmployeeTraining {
+
+  class Employee {
+    String uniqueID;
+    String name;
+    String email;
+    Course [ ] completedCourses;
+  }
+
+  class Course {
+    String uniqueID;
+    String name;
+    String description;
+    Module [ ] modules;
+  }
+
+  class Module {
+    String uniqueID;
+    String name;
+    String content;
+    Quiz [ ] quizzes;
+  }
+
+  class Quiz {
+    String uniqueID;
+    String name;
+    Question [ ] questions;
+  }
+
+  class Question {
+    String uniqueID;
+    String text;
+    Answer [ ] answers;
+  }
+
+  class Answer {
+    String uniqueID;
+    String name;
+    boolean isCorrect;
+  }
+
+  class Administrator {
+    String uniqueID;
+    String name;
+    String email;
+    Course [ ] managedCourses;
+    Employee [ ] employees;
+    Certification [ ] certificationRecords;
+  }
+
+  class Certification {
+    String uniqueID;
+    String name;
+    String description;
+  }
+
+  composition EmployeeTraining -> Employee;
+  composition EmployeeTraining -> Course;
+  composition Course -> Module;
+  composition Module -> Quiz;
+  composition Quiz -> Question;
+  composition Question -> Answer;
+  association Administrator -> Course;
+  association Administrator -> Employee;
+  association Administrator -> Certification;
+}

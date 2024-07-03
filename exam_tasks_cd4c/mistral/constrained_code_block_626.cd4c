@@ -1,0 +1,56 @@
+
+classdiagram Crowdfunding {
+
+  class Project {
+    String name;
+    String description;
+    int fundingGoal;
+    String category;
+    User creator;
+  }
+
+  class User {
+    String uniqueAddress;
+    int balance;
+  }
+
+  class Wallet {
+    User owner;
+    String uniqueAddress;
+    int balance;
+  }
+
+  class Donation {
+    Project project;
+    User donor;
+    int amount;
+    Timestamp timestamp;
+  }
+
+  class Update {
+    Project project;
+    String content;
+    Timestamp timestamp;
+  }
+
+  class Administrator {
+    String uniqueAddress;
+  }
+
+  class Blockchain {
+    void addTransaction(Transaction transaction);
+  }
+
+  class Transaction {
+    User sender;
+    User receiver;
+    int amount;
+    Timestamp timestamp;
+  }
+
+  composition Crowdfunding -> Blockchain;
+  association User [*] has [many]  (has)  -> Wallet [*];
+  association Project [*] has [many]  (has)  -> Donation [*];
+  association Project [*] has [many]  (has)  -> Update [*];
+  association Administrator [*] manages (manages)  -> Crowdfunding [1];
+}

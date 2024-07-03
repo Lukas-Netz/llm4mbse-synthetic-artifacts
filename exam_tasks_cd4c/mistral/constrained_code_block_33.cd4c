@@ -1,0 +1,59 @@
+
+classdiagram Tourism {
+
+  class Hotel {
+    String uniqueIdentifier;
+    String name;
+    List<Room> rooms;
+  }
+
+  abstract class Room {
+    String uniqueIdentifier;
+    RoomType roomType;
+    RoomStatus status;
+    List<Amenity> amenities;
+  }
+
+  enum RoomType {
+    Standard, Suite, LuxurySuite;
+  }
+
+  enum RoomStatus {
+    Occupied, Vacant;
+  }
+
+  class Guest {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  abstract class Booking {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    double totalCost;
+  }
+
+  class SingleNightBooking extends Booking {
+  }
+
+  class MultiNightBooking extends Booking {
+  }
+
+  class PackageBooking extends Booking {
+    List<Service> services;
+  }
+
+  enum Service {
+    Spa, Restaurant, Tour;
+  }
+
+  class Amenity {
+    String name;
+  }
+
+  composition Hotel -> Room [*];
+  composition Hotel -> Guest [*];
+  composition Hotel -> Booking [*];
+}

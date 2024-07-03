@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram VREnvironmentalScienceSimulation  {
+
+  class SimulationEnvironment  {
+    Scenario scenario;
+    Sensor[] sensors;
+    UserInterface userInterface;
+    boolean isPaused;
+  }
+
+  abstract class Scenario  {
+    Object[] objects;
+  }
+
+  class Object  {
+    String name;
+    double positionX;
+    double positionY;
+    double size;
+    String color;
+  }
+
+  abstract class Sensor  {
+    String type;
+  }
+
+  class TemperatureSensor extends Sensor  {
+    double temperature;
+  }
+
+  class HumiditySensor extends Sensor  {
+    double humidity;
+  }
+
+  class LightSensor extends Sensor  {
+    double lightIntensity;
+  }
+
+  class UserInterface  {
+    User[] users;
+  }
+
+  abstract class User  {
+    String role;
+  }
+
+  class Administrator extends User  {
+    boolean isAdmin;
+  }
+
+  class Teacher extends User  {
+    boolean isTeacher;
+  }
+
+  class Student extends User  {
+    boolean isStudent;
+  }
+
+  class Report  {
+    String simulationEnvironmentState;
+    String userInteractions;
+  }
+
+  composition SimulationEnvironment -> (has) Scenario;
+  composition SimulationEnvironment -> (has) Sensor[*];
+  composition SimulationEnvironment -> (has) UserInterface;
+  composition Scenario -> (has) Object[*];
+  composition UserInterface -> (has) User[*];
+  composition Report -> (has) SimulationEnvironment;
+  composition Report -> (has) UserInterface;
+}

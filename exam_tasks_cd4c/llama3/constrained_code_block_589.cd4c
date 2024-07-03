@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram PortableWaterPurificationSystem  {
+
+  class System  {
+    ControlUnit controlUnit;
+    Filter filter;
+    UVModule uvModule;
+    StorageTank storageTank;
+    PowerSource powerSource;
+  }
+
+  abstract class Filter  {
+    String type;
+  }
+
+  class CeramicFilter extends Filter  {
+    String ceramicMaterial;
+  }
+
+  class MembraneFilter extends Filter  {
+    int poreSize;
+  }
+
+  class UVModule  {
+    int powerLevel;
+    boolean isOn;
+  }
+
+  class StorageTank  {
+    int capacityLiters;
+    int currentLevel;
+  }
+
+  class ControlUnit  {
+    void monitorWaterQuality();
+    void alertUser();
+  }
+
+  class PowerSource  {
+    String type;
+  }
+
+  composition System -> (has) ControlUnit;
+  composition System -> (has) Filter;
+  composition System -> (has) UVModule;
+  composition System -> (has) StorageTank;
+  composition System -> (has) PowerSource;
+  association ControlUnit -> (monitors) Filter;
+  association ControlUnit -> (monitors) UVModule;
+  association ControlUnit -> (monitors) StorageTank;
+}

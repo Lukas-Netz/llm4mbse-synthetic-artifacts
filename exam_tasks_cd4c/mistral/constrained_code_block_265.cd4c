@@ -1,0 +1,83 @@
+
+classdiagram EGovPlatform {
+
+  class Citizen {
+    String citizenId;
+    String name;
+    String email;
+  }
+
+  class UserAccount {
+    Citizen citizen;
+    String username;
+    String password;
+  }
+
+  class Service {
+    String serviceId;
+    String description;
+    Requirements requirements;
+  }
+
+  class Requirements {
+    String documents;
+    String information;
+  }
+
+  class ServiceCatalog {
+    Service [ ] services;
+  }
+
+  class Payment {
+    String transactionId;
+    double amount;
+    UserAccount user;
+    Service service;
+  }
+
+  class PaymentGateway {
+    void makePayment(Payment payment);
+  }
+
+  class NotificationSystem {
+    void sendUpdate(UserAccount user, String message);
+  }
+
+  class Feedback {
+    String feedback;
+    UserAccount user;
+  }
+
+  class Administrator {
+    String adminId;
+    String name;
+  }
+
+  class ServiceManager {
+    Administrator administrator;
+    void createService(Service service);
+    void updateService(Service service);
+    void deleteService(Service service);
+  }
+
+  class UserManager {
+    Administrator administrator;
+    void createUserAccount(Citizen citizen);
+    void updateUserAccount(UserAccount userAccount);
+    void deleteUserAccount(UserAccount userAccount);
+  }
+
+  class PaymentManager {
+    Administrator administrator;
+    void viewPaymentTransactions();
+    void managePayment(Payment payment);
+  }
+
+  composition EGovPlatform -> UserAccount [*];
+  composition EGovPlatform -> Service [*];
+  composition EGovPlatform -> Payment [*];
+  association ServiceCatalog --o000o [*]- 											;
+  association PaymentGateway --o000o [*]- 											;
+  association NotificationSystem --o000o [*]- 										;
+  association Feedback --o000o [*]- 											;
+ 				}

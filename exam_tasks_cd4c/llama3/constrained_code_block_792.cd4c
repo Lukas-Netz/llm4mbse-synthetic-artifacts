@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram DigitalHealthWearableSystem  {
+
+  class User  {
+    String username;
+    String password;
+    WearableDevice  [  ] wearableDevices;
+  }
+
+  class WearableDevice  {
+    String uniqueIdentifier;
+    String name;
+    DeviceType type;
+    HealthData healthData;
+    User user;
+  }
+
+  class HealthData  {
+    int heartRate;
+    int stepsTaken;
+    int caloriesBurned;
+  }
+
+  class DeviceType  {
+    String type;
+  }
+
+  class Goal  {
+    int targetValue;
+    String metric;
+  }
+
+  class Reminder  {
+    String message;
+    Date reminderTime;
+  }
+
+  class Notification  {
+    String message;
+    DeviceType deviceType;
+  }
+
+  composition User  ->  (has) WearableDevice  [ 1..* ];
+  composition WearableDevice  ->  (has) HealthData;
+  composition WearableDevice  ->  (has) User;
+  composition HealthData  ->  (has) WearableDevice;
+  association WearableDevice  ->  (sends) Notification;
+  association User  ->  (has) Goal;
+  association User  ->  (has) Reminder;
+  composition Goal  ->  (has) User;
+  composition Reminder  ->  (has) User;
+}

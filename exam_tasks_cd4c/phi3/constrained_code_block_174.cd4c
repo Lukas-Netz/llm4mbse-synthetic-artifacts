@@ -1,0 +1,73 @@
+
+classdiagram BlockchainVotingSystem {
+
+  class Voter {
+    String voterId;
+    void castVote(VotingOption option);
+  }
+
+  class VotingOption {
+    String optionId;
+  }
+
+  class ElectionResult {
+    String electionId;
+    int totalVotes;
+    Map<VotingOption, int> voteCounts;
+  }
+
+  class Administrator {
+    String adminId;
+    void verifyVote(String voterId, String optionId);
+    void verifyElectionResult(String electionId);
+  }
+
+  class Block {
+    String blockId;
+    List<Transaction> transactions;
+  }
+
+  class Transaction {
+    String transactionId;
+    Voter voterId;
+    VotingOption optionId;
+  }
+
+  <<association>> class Voter {
+    VotingOption optionId;
+    Voter voterId;
+  }
+
+  <<association>> class Administrator {
+    ElectionResult electionResult;
+    Administrator adminId;
+  }
+
+  <<association>> class ElectionResult {
+    Voter voterId;
+    ElectionResult electionResult;
+  }
+
+  <<association>> class Block {
+    Voter voterId;
+    Block blockId;
+  }
+
+  <<association>> class Transaction {
+    Voter voterId;
+    Transaction transactionId;
+  }
+
+  <<association>> class VotingOption {
+    VotingOption optionId;
+  }
+
+  <<association>> class Administrator {
+    Administrator adminId;
+  }
+
+  <<association>> class Blockchain {
+    Block block;
+    Block blockId;
+  }
+}

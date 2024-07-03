@@ -1,0 +1,67 @@
+
+classdiagram OnlineTrainingSystem {
+
+    class Employee {
+      String uniqueID;
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+      List<Course> completedCourses;
+    }
+
+    class Course {
+      String uniqueID;
+      String name;
+      String description;
+      List<Module> modules;
+    }
+
+    class Module {
+      String uniqueID;
+      String name;
+      String content;
+      List<Quiz> quizzes;
+    }
+
+    class Quiz {
+      String uniqueID;
+      String name;
+      List<Answer> answers;
+    }
+
+    class Answer {
+      String uniqueID;
+      String name;
+      boolean isCorrect;
+    }
+
+    class Administrator {
+      String uniqueID;
+      String name;
+      String email;
+      List<Course> managedCourses;
+      List<Employee> trackedEmployees;
+      List<Certification> certifications;
+    }
+
+    class Certification {
+      String uniqueID;
+      String name;
+      String description;
+    }
+
+    composition Employee -> (has) Course;
+    composition Employee -> (has) Module;
+    composition Employee -> (has) Quiz;
+    composition Employee -> (has) Answer;
+    composition Employee -> (has) Certification;
+
+    composition Course -> (has) Module;
+    composition Course -> (has) Quiz;
+    composition Module -> (has) Quiz;
+    composition Quiz -> (has) Answer;
+
+    composition Administrator -> (has) Course;
+    composition Administrator -> (has) Employee;
+    composition Administrator -> (has) Certification;
+}

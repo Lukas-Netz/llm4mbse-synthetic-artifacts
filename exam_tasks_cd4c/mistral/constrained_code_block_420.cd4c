@@ -1,0 +1,58 @@
+
+classdiagram DigitalNetworkingPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Profile {
+    String uniqueIdentifier;
+    User user;
+    String bio;
+    String skills;
+    String interests;
+  }
+
+  class Group {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    User [][] members;
+  }
+
+  class Content {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    String topic;
+  }
+
+  class Topic {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Content [][] content;
+  }
+
+  class Webinar {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Presenter [][ ] presenters;
+  }
+
+  class Presenter {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  association User --o00o- 											{ 											ordered						}						;
+  association Profile --o00o- 											{ 											ordered						}						;
+  association Group --o00o- 											{ 											ordered						}						;
+  association Content --o00o- 											{ 											ordered						}						;
+  association Topic --o00o- 											{ 											ordered						}						;
+  association Webinar --o00o- 											{ 											ordered						}						;
+  association Presenter --o00o- 										{ 											ordered						}						;
+}

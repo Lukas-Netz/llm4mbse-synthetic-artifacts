@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram ECommerce  {
+
+  class Customer  {
+    String uniqueId;
+    String name;
+    String email;
+    -> Order[*];
+  }
+
+  class Order  {
+    String uniqueId;
+    Date orderDate;
+    double totalCost;
+    -> Item[*];
+    -> Sale[*];
+  }
+
+  class Item  {
+    String uniqueId;
+    String name;
+    double price;
+    -> Category[*];
+    -> Order[*];
+  }
+
+  class Category  {
+    String uniqueId;
+    String name;
+    String description;
+    -> Item[*];
+  }
+
+  class Sale  {
+    String uniqueId;
+    Date saleDate;
+    int quantitySold;
+    -> Order;
+  }
+
+  class MarketingCampaign  {
+    String uniqueId;
+    String name;
+    String description;
+    -> Customer[*];
+  }
+
+  class Inventory  {
+    String uniqueId;
+    String name;
+    int quantityInStock;
+    -> Item;
+  }
+
+  composition Customer -> Order;
+  composition Order -> Item;
+  composition Item -> Category;
+  composition Item -> Order;
+  composition Category -> Item;
+  composition MarketingCampaign -> Customer;
+  composition Inventory -> Item;
+}

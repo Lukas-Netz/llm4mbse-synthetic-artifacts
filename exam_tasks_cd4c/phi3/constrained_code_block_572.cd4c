@@ -1,0 +1,46 @@
+
+classdiagram TsunamiWarningSystem {
+
+    class Sensor {
+      String sensorId;
+      int waveIntensity;
+      void detectTsunami();
+    }
+
+    class Buoy {
+      String buoyId;
+      List<Sensor> sensors;
+      void receiveAlert(Sensor sensor);
+      void transmitAlert(WarningCenter warningCenter);
+    }
+
+    class WarningCenter {
+      String centerId;
+      List<Buoy> buoys;
+      List<Community> communities;
+      void analyzeData();
+      void issueWarning(Community community);
+    }
+
+    class Community {
+      String name;
+      String location;
+    }
+
+    class HistoricalData {
+      String dataId;
+      String data;
+    }
+
+    class UserInterface {
+      void monitorSystem();
+      void issueFalseAlarm();
+    }
+
+    composition Sensor -> (has) Buoy;
+    composition Buoy -> (has) WarningCenter [*];
+    composition WarningCenter -> (has) Buoy [*];
+    composition WarningCenter -> (has) Community [*];
+    composition Community -> (has) UserInterface [*];
+    composition HistoricalData -> (has) UserInterface [*];
+}

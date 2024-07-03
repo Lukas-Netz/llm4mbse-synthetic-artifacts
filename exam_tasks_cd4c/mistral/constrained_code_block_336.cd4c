@@ -1,0 +1,50 @@
+
+classdiagram VSP {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+  }
+
+  class Channel {
+    String name;
+    String description;
+    ChannelCategory category;
+    User owner;
+    Video [ ] videos;
+  }
+
+  enum ChannelCategory {
+    Music, Movies, Vlogs;
+  }
+
+  class Video {
+    String title;
+    String description;
+    String tags;
+    String fileFormat;
+    VideoRating rating;
+    boolean isPublic;
+    Channel channel;
+  }
+
+  enum VideoRating {
+    One, Two, Three, Four, Five;
+  }
+
+  class ViewingHistory {
+    Video [ ] videos;
+  }
+
+  class Preferences {
+    String preferredGenre;
+    boolean preferNewReleases;
+  }
+
+  composition User [ * ] has (has) -> Channel [ * ];
+  composition Channel [ * ] has (has) -> Video [ * ];
+  association User [ * ] can_have (has) -> ViewingHistory;
+  association User [ * ] can_have (has) -> Preferences;
+}

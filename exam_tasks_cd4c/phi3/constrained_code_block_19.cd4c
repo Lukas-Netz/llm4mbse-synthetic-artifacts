@@ -1,0 +1,53 @@
+
+classdiagram SupplyChainManagement {
+
+    class Supplier {
+      String uniqueIdentifier;
+      String name;
+      List<Product> availableProducts;
+      void orderProduct(Product product);
+      void updateInventory(Product product, int quantity);
+    }
+
+    class Manufacturer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> availableProducts;
+      void produceProduct(Product product);
+      void updateInventory(Product product, int quantity);
+    }
+
+    class Distributor {
+      String uniqueIdentifier;
+      String name;
+      List<Product> availableProducts;
+      void sellProduct(Product product);
+      void updateInventory(Product product, int quantity);
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> availableProducts;
+      void buyProduct(Product product);
+      void updateInventory(Product product, int quantity);
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    association Supplier <-> Manufacturer [*];
+    association Manufacturer <-> Distributor [*];
+    association Distributor <-> Customer [*];
+    composition Supplier -> Product [*];
+    composition Manufacturer -> Product [*];
+    composition Distributor -> Product [*];
+    composition Customer -> Product [*];
+    association Supplier -> Distributor [*];
+    association Manufacturer -> Distributor [*];
+    association Distributor -> Customer [*];
+    association Supplier -> Customer [*];
+    association Manufacturer -> Customer [*];
+}

@@ -1,0 +1,49 @@
+
+classdiagram IDE {
+
+    class Project {
+      String name;
+      String description;
+      List<File> files;
+    }
+
+    class File {
+      String name;
+      String path;
+      String content;
+    }
+
+    class Editor {
+      void openFile(File file);
+      void saveFile(File file);
+      void closeFile(File file);
+    }
+
+    class Compiler {
+      void compileProject(Project project);
+      void runProject(Project project);
+    }
+
+    class Debugger {
+      void setBreakpoint(File file);
+      void stepThroughCode(File file);
+      void inspectVariables(File file);
+    }
+
+    class VersionControl {
+      void checkoutProject(Project project);
+      void checkInProject(Project project);
+      void revertChanges(Project project);
+    }
+
+    association IDE -> Project;
+    association IDE -> Editor;
+    association IDE -> Compiler;
+    association IDE -> Debugger;
+    association IDE -> VersionControl;
+
+    composition Project -> List<<File>>;
+    composition Project -> List<<Compiler>>;
+    composition Project -> List<<Debugger>>;
+    composition Project -> List<<VersionControl>>;
+}

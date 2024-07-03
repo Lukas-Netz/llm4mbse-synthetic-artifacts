@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram BlockchainLandRegistry  {
+
+  class BlockchainNetwork  {
+    LandRecord[] landRecords;
+    User[] users;
+  }
+
+  class LandRecord  {
+    String location;
+    User owner;
+    Transaction[] transactions;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    PermissionSet permissions;
+  }
+
+  class PermissionSet  {
+    boolean isAdmin;
+    boolean canAddRecords;
+    boolean canUpdateRecords;
+    boolean canDeleteRecords;
+  }
+
+  class Transaction  {
+    Date timestamp;
+    String description;
+  }
+
+  class SmartContract  {
+    void addLandRecord(LandRecord landRecord);
+    void updateLandRecord(LandRecord landRecord);
+    LandRecord getLandRecord(String location);
+  }
+
+  composition BlockchainNetwork -> (has) LandRecord[*];
+  composition BlockchainNetwork -> (has) User[*];
+  composition LandRecord -> (has) Transaction[*];
+  composition User -> (has) PermissionSet;
+  composition SmartContract -> (uses) BlockchainNetwork;
+  association BlockchainNetwork -> (uses) SmartContract;
+}

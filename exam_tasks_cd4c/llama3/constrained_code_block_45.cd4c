@@ -1,0 +1,94 @@
+
+
+
+
+classdiagram IVRSystem  {
+
+  class IVRSystem  {
+    Session session;
+    User user;
+  }
+
+  class Session  {
+    String sessionId;
+    User user;
+    Menu currentMenu;
+  }
+
+  abstract class Menu  {
+    String menuId;
+    String menuDescription;
+  }
+
+  class MainMenu extends Menu  {
+    Menu languageSelectionMenu;
+    Menu customerSupportMenu;
+    Menu accountManagementMenu;
+  }
+
+  class LanguageSelectionMenu extends Menu  {
+    Language[] languages;
+  }
+
+  class CustomerSupportMenu extends Menu  {
+    ReportIssueOption reportIssueOption;
+    RequestAssistanceOption requestAssistanceOption;
+    ViewFAQsOption viewFAQsOption;
+  }
+
+  class AccountManagementMenu extends Menu  {
+    ViewAccountInfoOption viewAccountInfoOption;
+    UpdateProfileOption updateProfileOption;
+    ManageSubscriptionsOption manageSubscriptionsOption;
+  }
+
+  class ReportIssueOption  {
+    String issueDescription;
+  }
+
+  class RequestAssistanceOption  {
+    String assistanceDescription;
+  }
+
+  class ViewFAQsOption  {
+    FAQ[] faqs;
+  }
+
+  class ViewAccountInfoOption  {
+    String accountInfo;
+  }
+
+  class UpdateProfileOption  {
+    String profileUpdate;
+  }
+
+  class ManageSubscriptionsOption  {
+    Subscription[] subscriptions;
+  }
+
+  class Language  {
+    String languageCode;
+    String languageName;
+  }
+
+  class User  {
+    String userId;
+    String username;
+    String password;
+    Session[] sessions;
+  }
+
+  class Subscription  {
+    String subscriptionId;
+    String subscriptionName;
+  }
+
+  class FAQ  {
+    String faqId;
+    String faqDescription;
+  }
+
+  composition IVRSystem -> (has) Session;
+  composition Session -> (has) User;
+  composition Session -> (has) Menu;
+  }

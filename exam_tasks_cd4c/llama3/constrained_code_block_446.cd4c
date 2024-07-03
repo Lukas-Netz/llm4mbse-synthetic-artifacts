@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram VirtualTeamBuilding  {
+
+  class Team  {
+    String name;
+    String description;
+    TeamLeader leader;
+  }
+
+  class TeamMember  {
+    String name;
+    String email;
+    Role role;
+  }
+
+  class Activity  {
+    String name;
+    String description;
+    ActivityType type;
+    -> Team;
+  }
+
+  class TeamLeader extends Role;
+  class TeamMember extends Role;
+  class Guest extends Role;
+
+  enum ActivityType  {
+    Meeting, Discussion, Game;
+  }
+
+  enum Role  {
+    TeamLeader, TeamMember, Guest;
+  }
+
+  composition Team -> (has) TeamLeader;
+  composition Team -> (has) TeamMember [*];
+  composition Activity -> (isPartOf) Team;
+  composition TeamMember -> (participatesIn) Activity [*];
+}

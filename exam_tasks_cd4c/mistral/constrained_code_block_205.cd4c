@@ -1,0 +1,88 @@
+
+classdiagram SmartHospital {
+
+  class Department {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Room {
+    String name;
+    String uniqueIdentifier;
+    Department department;
+    MedicalDevice [ ] devices;
+    Patient assignedPatient;
+  }
+
+  abstract class MedicalDevice {
+    String name;
+    String uniqueIdentifier;
+    MedicalDeviceStatus status;
+  }
+
+  class MedicalStaff {
+    String name;
+    String uniqueIdentifier;
+    Department department;
+    Role role;
+    Qualifications qualifications;
+  }
+
+  enum Role {
+    Doctor, Nurse, Technician;
+  }
+
+  enum Qualifications {
+    MD, RN, RT;
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    int age;
+    MedicalRecord medicalRecord;
+    Room assignedRoom;
+    VitalSigns vitalSigns;
+    MedicalTestResults medicalTestResults;
+  }
+
+  class MedicalRecord {
+    String patientUniqueIdentifier;
+    String diagnosis;
+    String treatmentPlan;
+  }
+
+  class VitalSigns {
+    int heartRate;
+    int bloodPressure;
+  }
+
+  class MedicalTestResults {
+    String testName;
+    String result;
+  }
+
+  class SchedulingSystem {
+    PatientAppointment [ ] appointments;
+    SurgerySchedule [ ] surgeries;
+  }
+
+  class BillingSystem {
+    PatientCharges [ ] charges;
+    Payments [ ] payments;
+  }
+
+  class ReportingSystem {
+    PatientOutcomeReport [ ] reports;
+    MedicalDeviceUsageReport [ ] reports;
+    MedicalStaffPerformanceReport [ ] reports;
+  }
+
+  composition Department -> Room [*];
+  composition Room -> MedicalDevice [*];
+  composition Department -> MedicalStaff [*];
+  composition Patient -> Room [1];
+  association SchedulingSystem -> Patient [*];
+  association SchedulingSystem -> Surgery [*];
+  association BillingSystem -> Patient [*];
+  }

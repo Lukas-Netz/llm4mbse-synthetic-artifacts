@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram DigitalArtSystem  {
+
+  class Artist  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Artwork  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Artist artist;
+  }
+
+  class Collector  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Transaction  {
+    Collector collector;
+    Artist artist;
+    Artwork artwork;
+    double amount;
+  }
+
+  class Blockchain  {
+    List<Transaction> transactions;
+    Map<Artwork, List<Transaction>> artworkTransactions;
+  }
+
+  composition Blockchain -> Transaction[*];
+  composition Artwork -> Artist;
+  composition Transaction -> Collector;
+  composition Transaction -> Artwork;
+  composition Blockchain -> Artwork[*];
+}

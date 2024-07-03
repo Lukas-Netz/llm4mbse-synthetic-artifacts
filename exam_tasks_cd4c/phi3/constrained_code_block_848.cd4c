@@ -1,0 +1,52 @@
+
+classdiagram AI_Personalized_Education {
+
+    class StudentProfile {
+      String studentId;
+      List<StudentProfile> profiles;
+      LearningStyle learningStyle;
+      List<Strength> strengths;
+      List<Weakness> weaknesses;
+    }
+
+    class Course {
+      String courseId;
+      String title;
+      String description;
+      Subject subject;
+      CourseLevel level;
+    }
+
+    class Subject {
+      String name;
+    }
+
+    class CourseLevel {
+      String name;
+    }
+
+    class TeacherProfile {
+      String teacherId;
+      List<Course> coursesCreated;
+      TeachingStyle teachingStyle;
+      Expertise expertise;
+    }
+
+    class CourseEnrollment {
+      StudentProfile student;
+      Course course;
+      boolean enrolled;
+    }
+
+    class RecommendationEngine {
+      void analyzeStudentProfile(StudentProfile student);
+      void analyzeCourseCatalog(Course[] courses);
+      List<Course> recommendCourses(StudentProfile student);
+    }
+
+    association StudentProfile -> RecommendationEngine;
+    association Course -> RecommendationEngine;
+    composition StudentProfile -> List<<StudentProfile>>;
+    composition TeacherProfile -> List<<Course>>;
+    composition CourseEnrollment -> List<<CourseEnrollment>>;
+}

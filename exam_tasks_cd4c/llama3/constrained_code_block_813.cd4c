@@ -1,0 +1,77 @@
+
+
+
+classdiagram DeepSeaExplorationSystem  {
+
+  class Submarine  {
+    String name;
+    String uniqueIdentifier;
+    Sensor[] sensors;
+    Camera[] cameras;
+    SubmarineType type;
+  }
+
+  class ROV  {
+    String name;
+    String uniqueIdentifier;
+    ROVType type;
+  }
+
+  class ControlCenter  {
+    String name;
+    String uniqueIdentifier;
+    ControlCenterType type;
+  }
+
+  class Database  {
+    String name;
+    String uniqueIdentifier;
+    Data[] data;
+  }
+
+  class CommunicationSystem  {
+    void transmitData(Data data);
+    void transmitCommand(Command command);
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class Camera  {
+    String type;
+  }
+
+  class Data  {
+    String type;
+  }
+
+  class Command  {
+    String type;
+  }
+
+  enum SubmarineType  {
+    ResearchSubmarine,
+    ExplorationSubmarine
+  ;}
+
+  enum ROVType  {
+    SampleCollector,
+    ExperimentConductor,
+    Explorer
+  ;}
+
+  enum ControlCenterType  {
+    ResearchCenter,
+    ExplorationCenter
+  ;}
+
+  composition Submarine -> (has) Sensor[*];
+  composition Submarine -> (has) Camera[*];
+  composition ROV -> (has) none;
+  composition ControlCenter -> (has) none;
+  composition Database -> (has) Data[*];
+  composition CommunicationSystem -> (has) none;
+  composition Submarine -> (has) SubmarineType;
+  composition ROV -> (has) ROVType;
+  }

@@ -1,0 +1,54 @@
+
+classdiagram MultiCloudManagementSystem {
+
+    class MultiCloudManagementSystem {
+      Hub hub;
+      Storage storage;
+      Network network;
+      VirtualMachine vm;
+      UsageReport report;
+      PerformanceReport report;
+    }
+
+    class Hub {
+      -> MultiCloudManagementSystem;
+      void createResource(Resource resource);
+      void updateResource(Resource resource);
+      void deleteResource(Resource resource);
+      UsageReport getUsageReport();
+      PerformanceReport getPerformanceReport();
+    }
+
+    abstract class Resource {
+      String identifier;
+    }
+
+    class Storage extends Resource {
+      int storageCapacity;
+    }
+
+    class Network extends Resource {
+      String networkType;
+    }
+
+    class VirtualMachine extends Resource {
+      String vmType;
+    }
+
+    class UsageReport {
+      String provider;
+      int resourceUsage;
+    }
+
+    class PerformanceReport {
+      String provider;
+      int resourcePerformance;
+    }
+
+    composition MultiCloudManagementSystem -> (has) Hub;
+    composition MultiCloudManagementSystem -> (has) Storage;
+    composition MultiCloudManagementSystem -> (has) Network;
+    composition MultiCloudManagementSystem -> (has) VirtualMachine;
+    composition MultiCloudManagementSystem -> (has) UsageReport;
+    composition MultiCloudManagementSystem -> (has) PerformanceReport;
+}

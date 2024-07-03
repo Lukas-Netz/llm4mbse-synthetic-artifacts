@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram CollaborativeDesignTool  {
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    Designer, Reviewer, Administrator
+  ;}
+
+  class DesignProject  {
+    String uniqueIdentifier;
+    String title;
+    User assignedUser;
+    List<DesignElement> designElements;
+    List<Version> versions;
+  }
+
+  class DesignElement  {
+    String name;
+    String description;
+    String type;  (ShapeTextImage)
+  }
+
+  class Version  {
+    Date timestamp;
+    List<DesignElement> designElements;
+  }
+
+  class Notification  {
+    User recipient;
+    DesignProject designProject;
+    String message;
+  }
+
+  class Administrator  {
+    void manageUserRoles(User user, Role role);
+  }
+
+  class Designer  {
+    void createDesignElement(DesignElement designElement);
+    void editDesignElement(DesignElement designElement);
+  }
+
+  class Reviewer  {
+    void reviewDesignElement(DesignElement designElement, String feedback);
+  }
+
+  composition DesignProject -> (has) assignedUser;
+  composition DesignProject -> (has) designElements;
+  composition DesignProject -> (has) versions;
+  composition User -> (has) role;
+  composition DesignElement -> (has) type;
+  composition Version -> (has) designElements;
+  composition Notification -> (has) recipient;
+  composition Notification -> (has) designProject;
+  composition Administrator -> (has) manageUserRoles;
+  composition Designer -> (has) createDesignElement;
+  composition Designer -> (has) editDesignElement;
+  }

@@ -1,0 +1,111 @@
+
+
+
+
+classdiagram AerospaceNavigationSystem  {
+
+  class GroundStation  {
+    String name;
+    String uniqueIdentifier;
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Aircraft  {
+    String name;
+    String uniqueIdentifier;
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Satellite  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Pilot  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class WeatherStation  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class RadarStation  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class CommunicationSystem  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class NavigationAlgorithm  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class DataStorage  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class DataProcessing  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class UserInterface  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemManagement  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemMonitoring  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemMaintenance  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemTesting  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemDocumentation  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemTraining  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemSupport  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemUpgrade  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class SystemDowngrade  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+   }

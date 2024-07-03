@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram WarehouseManagementSystem  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    RobotState state;
+  }
+
+  enum RobotState  {
+    Idle,
+    Busy,
+    Malfunctioning
+  ;}
+
+  class Item  {
+    String uniqueIdentifier;
+    String name;
+    int quantity;
+  }
+
+  class Warehouse  {
+    Item  inventory  ;  }
+  class RobotType  {
+    String name;
+  }
+
+  class Forklift extends RobotType  {
+    int liftingCapacity;
+  }
+
+  class PalletJack extends RobotType  {
+    int weightCapacity;
+  }
+
+  class AutonomousMobileRobot extends RobotType  {
+    int navigationRange;
+  }
+
+  class RobotLocation  {
+    Robot robot;
+    Location location;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class RobotAction  {
+    Robot robot;
+    Item item;
+    Action action;
+  }
+
+  enum Action  {
+    PickUp,
+    DropOff
+  ;}
+
+  composition Warehouse  ->  (has) inventory;
+  composition Robot  ->  (has) RobotLocation;
+  composition Robot  ->  (has) RobotType;
+  composition Robot  ->  (has) RobotAction;
+  composition RobotAction  ->  (has) Robot;
+  composition RobotAction  ->  (has) Item;
+  composition RobotLocation  ->  (has) Robot;
+  composition RobotLocation  ->  (has) Location;
+}

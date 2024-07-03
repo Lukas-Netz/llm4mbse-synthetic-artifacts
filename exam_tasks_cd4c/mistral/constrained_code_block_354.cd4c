@@ -1,0 +1,44 @@
+
+classdiagram LegalPlatform {
+
+  class LawFirm {
+    String name;
+  }
+
+  class Client {
+    String uniqueID;
+    String name;
+  }
+
+  class Lawyer {
+    String uniqueID;
+    String name;
+    String expertise;
+    Lawyer(String uniqueID, String name, String expertise);
+  }
+
+  class Case {
+    String uniqueID;
+    String description;
+    CaseStatus status;
+  }
+
+  enum CaseStatus {
+    Open, InProgress, Closed;
+  }
+
+  class Platform {
+    LawFirm lawFirm;
+    -> Client [*];
+    -> Lawyer [*];
+    -> Case [*];
+    void createCase(Client client, Case case);
+    void assignLawyerToCase(Lawyer lawyer, Case case);
+    void rateLawyer(Client client, Lawyer lawyer, int rating);
+  }
+
+  composition LawFirm -> (has) Platform;
+  composition Platform -> Client [*];
+  composition Platform -> Lawyer [*];
+  composition Platform -> Case [*];
+}

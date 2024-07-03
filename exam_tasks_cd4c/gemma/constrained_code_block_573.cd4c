@@ -1,0 +1,146 @@
+
+
+classdiagram DigitalTwin {
+
+  class Site {
+    String identifier;
+    String name;
+    String location;
+    List<Building> buildings;
+  }
+
+  class Building {
+    String identifier;
+    String name;
+    String location;
+    List<Room> rooms;
+  }
+
+  class Room {
+    String identifier;
+    String name;
+    String location;
+    List<Artifact> artifacts;
+  }
+
+  class Artifact {
+    String identifier;
+    String name;
+    String description;
+    List<Room> rooms;
+  }
+
+  class Visitor {
+    String identifier;
+    String name;
+    String contactInformation;
+    List<Site> visitedSites;
+  }
+
+  class Guide {
+    String identifier;
+    String name;
+    List<Expertise> expertise;
+    List<Site> guidedSites;
+  }
+
+  enum Expertise {
+    History, Architecture, Culture
+  
+
+  
+
+  
+;
+
+  composition Site  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+  composition Building  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+  composition Room  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+  composition Artifact  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+  composition Visitor  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+  composition Guide  (has aList)  
+  	  	  	throwson  
+  	  	  	;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Visitor  with  (Site)  
+  	  	  	  	  	  	  	--  
+  association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  association Guide  with  (Site)  
+  	  	  	  	  	  	  	--  
+  association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  association Artifact  with  (Room)  
+  	  	  	  	  	  	  	--  
+  association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  association Room  with  (Building)  
+  	  	  	  	  	  	  	--  
+  association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  association Building  with  (Site)  
+  	  	  	  	  	  	  	--  
+  association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association  Site  with  (Guide)  
+  	  	  	  	  	  	  	--  
+association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+  association  Site  with  (Visitor)  
+  	  	  	  	  	  	  	--  
+association  
+  	  	  	  	  	  	  	  	  	  	  	;
+
+}

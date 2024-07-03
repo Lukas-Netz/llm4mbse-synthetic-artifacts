@@ -1,0 +1,56 @@
+
+classdiagram PredictivePolicing {
+
+  class CrimeDatabase {
+    void storeCrimeData(Crime crime);
+    Crime retrieveCrimeData(Location location, Time time);
+  }
+
+  class MLModel {
+    float predictCrimeLikelihood(Location location, Time time);
+  }
+
+  class GIS {
+    SpatialData getSpatialData(Location location);
+  }
+
+  class UI {
+    void inputPatrolRoute(PatrolRoute patrolRoute);
+    CrimeHotspot[] getPredictedCrimeHotspots();
+  }
+
+  class Crime {
+    Location location;
+    Time time;
+    CrimeType type;
+  }
+
+  class Location {
+    float latitude;
+    float longitude;
+  }
+
+  class Time {
+    int hour;
+    int minute;
+  }
+
+  class CrimeType {
+    String name;
+  }
+
+  class PatrolRoute {
+    Location[] route;
+  }
+
+  class CrimeHotspot {
+    Location location;
+    float crimeLikelihood;
+  }
+
+  composition CrimeDatabase -> Crime;
+  association MLModel -> CrimeDatabase;
+  association GIS -> CrimeDatabase;
+  association UI -> MLModel;
+  association UI -> GIS;
+}

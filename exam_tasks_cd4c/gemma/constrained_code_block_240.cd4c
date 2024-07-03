@@ -1,0 +1,84 @@
+
+
+classdiagram OnlineBillingSystem {
+
+  class Customer {
+    private String id;
+    private String name;
+    private String address;
+    private List<Order> orders;
+
+    public String getId()
+    
+    
+ ;}
+
+  class Order {
+    private String id;
+    private Date date;
+    private double totalAmount;
+    private Customer customer;
+    private List<Item> items;
+    private List<Payment> payments;
+
+    public String getId()
+
+    
+  ;}
+
+  class Item {
+    private String id;
+    private String name;
+    private double price;
+    private Order order;
+
+    public String getId()
+
+    
+  ;}
+
+  class Payment {
+    private String id;
+    private Date date;
+    private double amount;
+    private Order order;
+
+    public String getId()
+
+    
+  ;}
+
+  class PaymentHistory {
+    private Customer customer;
+    private List<Payment> payments;
+
+    public List<Payment> getPayments()
+
+    
+  ;}
+
+  class OrderDetails {
+    private Order order;
+    private List<Item> items;
+
+    public List<Item> getItems()
+
+    
+  ;}
+
+  class PaymentDetails {
+    private Payment payment;
+    private Order order;
+
+    public Payment getPayment()
+
+    
+  ;}
+
+  composition Customer -> (has) Orders;
+  composition Order -> (has) Items;
+  composition Order -> (has) Payments;
+  composition PaymentHistory -> (has) Customer;
+  composition OrderDetails -> (has) Order;
+  composition PaymentDetails -> (has) Payment;
+}

@@ -1,0 +1,49 @@
+
+classdiagram LandOwnership {
+
+  class LandPlot {
+    String uniqueIdentifier;
+    String location;
+    int size;
+    Owner currentOwner;
+    LandPlotHistory ownershipHistory;
+  }
+
+  class Owner {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+    LandPlot ownedLandPlot;
+  }
+
+  class LandPlotHistory {
+    Owner previousOwner;
+    Transaction transaction;
+  }
+
+  class Transaction {
+    LandPlot landPlot;
+    Owner owner;
+    TransactionType transactionType;
+    boolean isAuthentic;
+  }
+
+  enum TransactionType {
+    Purchase, Sale, Lease;
+  }
+
+  class Block {
+    String hash;
+    Block previousBlock;
+    Transaction[] transactions;
+  }
+
+  class Blockchain {
+    Block genesisBlock;
+    Block currentBlock;
+  }
+
+  composition LandOwnership -> Blockchain;
+  composition LandPlot -> LandPlotHistory [*];
+  composition Transaction -> Block [*];
+}

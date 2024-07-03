@@ -1,0 +1,62 @@
+
+classdiagram GameDevelopmentSystem {
+
+    class Game {
+      Level currentLevel;
+      Player player;
+      List<Character> characters;
+      Score score;
+      Mode mode;
+      Leaderboard leaderboard;
+    }
+
+    class Level {
+      String name;
+      List<Feature> features;
+      Game game;
+      void playLevel();
+    }
+
+    class Character {
+      String type;
+      int health;
+      int strength;
+      int speed;
+    }
+
+    class Player extends Character {
+      void playGame();
+    }
+
+    class Enemy extends Character {
+      void attack(Character attacker);
+    }
+
+    class PowerUp extends Character {
+      void activate();
+    }
+
+    class Score {
+      int points;
+      void updateScore(int points);
+    }
+
+    class Mode {
+      String name;
+      Game game;
+      void playMode();
+    }
+
+    class Leaderboard {
+      List<Player> topPlayers;
+      void updateLeaderboard(Player player);
+    }
+
+    composition Game -> Level;
+    composition Game -> Player;
+    composition Game -> Enemy;
+    composition Game -> PowerUp;
+    composition Game -> Score;
+    composition Game -> Mode;
+    composition Game -> Leaderboard;
+}

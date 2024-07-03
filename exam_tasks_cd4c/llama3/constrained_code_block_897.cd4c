@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram NeurostimulationSystem  {
+
+  class Device  {
+    String uniqueIdentifier;
+    String name;
+    DeviceType type;
+  }
+
+  class Session  {
+    Device device;
+    DateTime startTime;
+    DateTime endTime;
+    int duration;
+    SessionStatus status;
+  }
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    MedicalCondition medicalCondition;
+  }
+
+  class Parameter  {
+    String name;
+    String value;
+  }
+
+  class Outcome  {
+    String description;
+    Patient patient;
+    Session session;
+  }
+
+  class DeviceType  {
+    String name;
+  }
+
+  class MedicalCondition  {
+    String name;
+  }
+
+  class SessionStatus  {
+    String name;
+  }
+
+  composition Device -> Parameter[*];
+  composition Session -> Parameter[*];
+  composition Patient -> Session[*];
+  composition Session -> Outcome[*];
+  composition Device -> Session[*];
+
+  <<stereotype>> class Report {
+    Device device;
+    Patient patient;
+    List<Outcome> outcomes;
+  }
+}

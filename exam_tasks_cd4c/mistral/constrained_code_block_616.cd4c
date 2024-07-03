@@ -1,0 +1,48 @@
+
+classdiagram ARTrainingSimulation {
+
+  class ScenarioManager {
+    ScenarioDatabase scenarioDatabase;
+    Scenario currentScenario;
+    void startScenario(Scenario scenario);
+    void stopScenario();
+  }
+
+  class ARDisplay {
+    ScenarioManager scenarioManager;
+    void renderEnvironment();
+    void displayInformation();
+  }
+
+  class PilotInterface {
+    ARDisplay arDisplay;
+    void receiveInput();
+  }
+
+  class PerformanceTracker {
+    Pilot pilot;
+    void trackPerformance();
+    void provideFeedback();
+  }
+
+  class Pilot {
+    PerformanceTracker performanceTracker;
+    void performTask();
+  }
+
+  class ScenarioDatabase {
+    Scenario [ ] scenarios;
+  }
+
+  class Scenario {
+    String name;
+    String description;
+    String data;
+  }
+
+  composition ScenarioManager -> ScenarioDatabase;
+  composition ScenarioManager -> Scenario;
+  composition ARDisplay -> ScenarioManager;
+  composition PilotInterface -> ARDisplay;
+  composition PerformanceTracker -> Pilot;
+}

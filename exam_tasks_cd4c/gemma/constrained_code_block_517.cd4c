@@ -1,0 +1,84 @@
+
+
+classdiagram FineWineTradingPlatform {
+
+  class WineProducer {
+    private String name;
+    private List<WineBatch> batches;
+
+    public WineProducer(String name)
+    
+    
+ ;}
+
+  class WineMerchant {
+    private String name;
+    private Warehouse warehouse;
+    private List<WineBatch> inventory;
+
+    public WineMerchant(String name)
+    
+  
+
+  ;}
+
+  class WineCollector {
+    private String name;
+    private List<WineBatch> collection;
+
+    public WineCollector(String name)
+    
+  
+
+  ;}
+
+  class WineBatch {
+    private String id;
+    private String name;
+    private int vintage;
+    private GrapeVariety grapeVariety;
+    private int quantity;
+
+    public WineBatch(String id, String name, int vintage, GrapeVariety grapeVariety, int quantity)
+  
+
+  ;}
+
+  class WineTransaction {
+    private String buyerId;
+    private String sellerId;
+    private WineBatch wineBatch;
+    private int price;
+
+    public WineTransaction(String buyerId, String sellerId, WineBatch wineBatch, int price)
+  
+
+  ;}
+
+  class WineProvenance {
+    private WineBatch wineBatch;
+    private List<WineTransaction> transactions;
+
+    public WineProvenance(WineBatch wineBatch)
+  
+
+  ;}
+
+  enum GrapeVariety {
+    Red, White, Rose
+  
+
+  ;}
+
+  enum WineTransactionStatus {
+    Pending, Approved, Rejected
+  
+
+  ;}
+
+  composition WineProducer -> (has) WineBatch [*];
+  composition WineMerchant -> (has) Warehouse;
+  composition WineCollector -> (has) WineBatch [*];
+  association WineBatch -> WineTransaction [1..*];
+  association WineProvenance -> WineBatch [1..*];
+}

@@ -1,0 +1,40 @@
+
+classdiagram WebHosting {
+
+  class Website {
+    String domainName;
+    -> User [*];
+    HostingPlan hostingPlan;
+  }
+
+  class User {
+    String username;
+    String password;
+    -> Website [*];
+  }
+
+  abstract class HostingPlan {
+    String name;
+    int storageCapacity;
+    int bandwidth;
+    int emailAccounts;
+  }
+
+  class SharedHosting extends HostingPlan {}
+  class VPS extends HostingPlan {}
+  class DedicatedHosting extends HostingPlan {}
+
+  class WebsiteInvoice {
+    String invoiceNumber;
+    Date dueDate;
+  }
+
+  class BillingSystem {
+    -> WebsiteInvoice [*];
+  }
+
+  composition WebHosting -> Website [*];
+  composition Website -> User [*];
+  composition Website -> HostingPlan;
+  composition BillingSystem -> WebsiteInvoice [*];
+}

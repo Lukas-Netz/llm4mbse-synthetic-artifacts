@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram DigitalRetailAssistant  {
+
+  class DigitalRetailAssistant  {
+    String name;
+    String uniqueIdentifier;
+    Store assignedStore;
+  }
+
+  class Store  {
+    String name;
+    String uniqueIdentifier;
+    Product  [] products;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    Category category;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Customer  {
+    String name;
+    String uniqueIdentifier;
+    LoyaltyPoints loyaltyPoints;
+  }
+
+  class LoyaltyPoints  {
+    int points;
+  }
+
+  class Administrator  {
+    void manageDigitalRetailAssistants();
+    void manageStores();
+    void manageProducts();
+    void manageCustomerData();
+  }
+
+  composition Store -> Product [*];
+  composition DigitalRetailAssistant -> Store;
+  composition Product -> Category;
+  composition Customer -> LoyaltyPoints;
+  association Administrator -> DigitalRetailAssistant;
+  association Administrator -> Store;
+  association Administrator -> Product;
+  association Administrator -> Customer;
+}

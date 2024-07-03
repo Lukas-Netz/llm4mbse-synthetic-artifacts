@@ -1,0 +1,51 @@
+
+classdiagram TrafficManagementSystem {
+
+    class TrafficLight {
+      String intersectionId;
+      TrafficLightState state;
+      void changeState(TrafficLightState state);
+    Writes state;
+    }
+
+    class Sensor {
+      String intersectionId;
+      boolean vehicleDetected;
+      int vehicleSpeed;
+      String vehicleDirection;
+      void updateStatus();
+    }
+
+    class Camera {
+      String intersectionId;
+      String imageData;
+      void captureImage();
+    }
+
+    class TrafficManagementCenter {
+      void monitorTraffic();
+      void detectCongestion();
+      void adjustTrafficLightTiming();
+      void sendEmergencyAlert(String location);
+      void storeData();
+    }
+
+    enum TrafficLightState {
+      Red, Yellow, Green
+   
+   
+   ;}
+
+    enum VehicleDirection {
+      North, South, East, West
+   
+   
+   ;}
+
+    composition TrafficLight -> TrafficManagementCenter;
+    composition Sensor -> TrafficManagementCenter;
+    composition Camera -> TrafficManagementCenter;
+    composition TrafficManagementCenter -> TrafficLight;
+    composition TrafficManagementCenter -> Sensor;
+    composition TrafficManagementCenter -> Camera;
+}

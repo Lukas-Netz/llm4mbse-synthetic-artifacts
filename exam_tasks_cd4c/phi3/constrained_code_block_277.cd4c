@@ -1,0 +1,75 @@
+
+classdiagram VideoConferencing {
+
+    class Conference {
+      String uniqueId;
+      String name;
+      DateTime startTime;
+      DateTime endTime;
+      List<Room> rooms;
+      void joinRoom(Participant participant, Room room);
+      void leaveRoom(Participant participant, Room room);
+      void start();
+      void end();
+    }
+
+    class Participant {
+      String name;
+      String email;
+      ParticipantType type;
+      String uniqueId;
+      void joinConference(Conference conference);
+      void leaveConference(Conference conference);
+      void joinRoom(Room room);
+      void leaveRoom(Room room);
+    }
+
+    enum ParticipantType {
+      User, Guest
+   
+   
+   ;}
+
+    class Room {
+      String uniqueId;
+      int maxCapacity;
+      List<Participant> participants;
+      void addParticipant(Participant participant);
+      void removeParticipant(Participant participant);
+    }
+
+    class VideoTransmission {
+      void transmitVideo(Participant sender, Participant receiver);
+    }
+
+    class AudioTransmission {
+      void transmitAudio(Participant sender, Participant receiver);
+    }
+
+    class FileSharing {
+      void shareFile(Participant sender, Participant receiver, File file);
+    }
+
+    class ChatMessaging {
+      void sendMessage(Participant sender, Participant receiver, String message);
+    }
+
+    class SystemAdmin {
+      void manageConference(Conference conference);
+      void manageParticipants(List<Participant> participants);
+      void manageRooms(List<Room> rooms);
+    }
+
+    composition Conference -> (has) Room;
+    composition Conference -> (has) Participant;
+    composition Participant -> (has) Conference;
+    composition Participant -> (has) Room;
+    composition Room -> (has) Participant;
+    association VideoTransmission -> (uses) Participant;
+    association AudioTransmission -> (uses) Participant;
+    association FileSharing -> (uses) Participant;
+    association ChatMessaging -> (uses) Participant;
+    composition SystemAdmin -> (has) Conference;
+    composition SystemAdmin -> (has) Participant;
+   
+}

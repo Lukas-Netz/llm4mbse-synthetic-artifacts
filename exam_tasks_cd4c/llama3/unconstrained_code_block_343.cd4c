@@ -1,0 +1,64 @@
+
+
+
+classdiagram ClimateModelingSystem  {
+
+  class DataRepository  {
+    ClimateData[] climateData;
+    void filterData(Location location, TimePeriod timePeriod, DataType dataType);
+  }
+
+  class DataProcessor  {
+    void processClimateData(ClimateData[] climateData);
+    Prediction[] generatePredictions();
+  }
+
+  class MLModule  {
+    void analyzeData(ClimateData[] climateData);
+    Prediction[] makePredictions();
+  }
+
+  class Visualization  {
+    void displayPredictions(Prediction[] predictions);
+  }
+
+  class UI  {
+    void selectData(Location location, TimePeriod timePeriod, DataType dataType);
+    void runPredictions();
+    void viewResults();
+  }
+
+  class ClimateData  {
+    Location location;
+    TimePeriod timePeriod;
+    DataType dataType;
+    double temperature;
+    double precipitation;
+    double atmosphericPressure;
+  }
+
+  class Prediction  {
+    double temperature;
+    double precipitation;
+    double atmosphericPressure;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class TimePeriod  {
+    int startYear;
+    int endYear;
+  }
+
+  class DataType  {
+    String name;
+  }
+
+  composition DataRepository -> ClimateData[*];
+  composition DataProcessor -> ClimateData[*];
+  composition MLModule -> ClimateData[*];
+  composition Visualization -> Prediction[*];
+  composition UI -> DataRepository;
+}

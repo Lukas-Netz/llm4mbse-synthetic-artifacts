@@ -1,0 +1,53 @@
+
+classdiagram DroneTrafficControlSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      Location location;
+      double speed;
+      DroneType type;
+    }
+
+    class AirTrafficControlCenter {
+      String name;
+      Location location;
+      List<Drone> drones;
+      void guideDrone(Drone drone);
+      void alertAirport(Drone drone);
+    }
+
+    class Airport {
+      String name;
+      Location location;
+      void receiveDrone(Drone drone);
+      void alertAirport(Drone drone);
+    }
+
+    class CargoDrone extends Drone {
+      double cargoCapacity;
+    }
+
+    class PassengerDrone extends Drone {
+      int passengerCapacity;
+    }
+
+    class SurveillanceDrone extends Drone {
+      boolean surveillanceCapability;
+    }
+
+    class EmergencyProtocol {
+      void handleDroneMalfunction(Drone drone);
+      void handleCollision(Drone drone);
+    }
+
+    enum DroneType {
+      Cargo, Passenger, Surveillance;
+    }
+
+    association DroneTrafficControlSystem -> AirTrafficControlCenter [*];
+    association DroneTrafficControlSystem -> Airport [*];
+    association AirTrafficControlCenter -> Drone [*];
+    association Airport -> Drone [*];
+    composition AirTrafficControlCenter -> Drone [*];
+    composition Airport -> Drone [*];
+}

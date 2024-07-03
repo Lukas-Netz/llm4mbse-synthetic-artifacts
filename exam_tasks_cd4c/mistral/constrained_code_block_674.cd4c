@@ -1,0 +1,30 @@
+
+classdiagram VRTraining {
+
+  class VRHeadset {
+    Computer computer;
+  }
+
+  class Computer {
+    VREnvironment vrEnvironment;
+    TrainingModule [  ] trainingModules;
+  }
+
+  class VREnvironment {
+    String environmentType;
+  }
+
+  class TrainingModule {
+    String name;
+    String description;
+    Objective [ ] objectives;
+  }
+
+  class Objective {
+    String objectiveDescription;
+  }
+
+  composition VRHeadset -> Computer;
+  composition Computer -> VREnvironment;
+  composition Computer -> TrainingModule [*];
+}

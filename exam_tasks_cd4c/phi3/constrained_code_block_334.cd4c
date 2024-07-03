@@ -1,0 +1,99 @@
+
+classdiagram OnlineBillingSystem {
+
+    class Customer {
+      String customerID;
+      String name;
+      String address;
+      List<Order> orders;
+    }
+
+    class Order {
+      String orderID;
+      Date date;
+      BigDecimal totalAmount;
+      Customer customer;
+      List<Item> items;
+      List<Payment> payments;
+    }
+
+    class Item {
+      String itemID;
+      String name;
+      BigDecimal price;
+      Order order;
+    }
+
+    class Payment {
+      String paymentID;
+      Date date;
+      BigDecimal amount;
+      Order order;
+    }
+
+    <<association>> class Customer {
+      Order orders;
+    }
+
+    <<association>> class Order {
+      Customer customer;
+      Item items;
+      Payment payments;
+    }
+
+    <<association>> class Item {
+      Order order;
+    }
+
+    <<association>> class Payment {
+      Order order;
+    }
+
+    <<aggregation>> class Customer {
+      List<Order> orders;
+    }
+
+    <<aggregation>> class Order {
+      List<Item> items;
+      List<Payment> payments;
+    }
+
+    <<aggregation>> class Item {
+      Order order;
+    }
+
+    <<aggregation>> class Payment {
+      Order order;
+    }
+
+    <<operation>> class Customer {
+      void addOrder(Order order);
+    }
+
+    <<operation>> class Order {
+      void addItem(Item item);
+      void makePayment(Payment payment);
+    }
+
+    <<operation>> class Item {
+      void addToOrder(Order order);
+    }
+
+    <<operation>> class Payment {
+      void addToOrder(Order order);
+    }
+
+    <<operation>> class Customer {
+      void viewBillingHistory();
+      void viewOrderDetails();
+    }
+
+    <<operation>> class Order {
+      void viewOrderDetails();
+      void viewPaymentDetails();
+    }
+
+    <<operation>> class Payment {
+      void viewPaymentDetails();
+    }
+}

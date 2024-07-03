@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram OnlineCourses  {
+
+  class Course  {
+    String name;
+    String description;
+    String uniqueId;
+    -> Instructor  [1..*];
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String uniqueId;
+    -> Course  [1..*];
+  }
+
+  class Student  {
+    String name;
+    String email;
+    String uniqueId;
+    -> CourseSection  [0..*];
+  }
+
+  class CourseSection  {
+    String uniqueId;
+    Date startDate;
+    Date endDate;
+    int maxCapacity;
+    -> Student  [0..*];
+    -> Grade  [0..*];
+  }
+
+  class Grade  {
+    String studentId;
+    String sectionId;
+    double grade;
+  }
+
+  composition Course -> Instructor;
+  composition Course -> CourseSection [0..*];
+  composition Student -> CourseSection;
+  composition CourseSection -> Grade [0..*];
+}

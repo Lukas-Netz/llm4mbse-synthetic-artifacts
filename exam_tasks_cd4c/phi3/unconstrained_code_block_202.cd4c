@@ -1,0 +1,35 @@
+
+classdiagram VirtualRealityRenewableEnergy {
+
+    class VRSystem {
+      RenewableEnergySource solar;
+      RenewableEnergySource wind;
+      RenewableEnergySource hydro;
+      Grid grid;
+      VREnvironment vrEnvironment;
+    }
+
+    class RenewableEnergySource {
+      String type;
+      double energyOutput;
+      double efficiency;
+      double cost;
+    }
+
+    class Grid {
+      double totalEnergyOutput;
+      double totalEfficiency;
+      double totalCost;
+      void addEnergySource(RenewableEnergySource source);
+      void removeEnergySource(RenewableEnergySource source);
+      void simulateInteraction();
+    }
+
+    class VREnvironment {
+      void displaySimulationResults(RenewableEnergySource source);
+    }
+
+  composition VRSystem -> (has) Grid;
+  composition VRSystem -> (has) VREnvironment;
+  composition VRSystem -> (has) RenewableEnergySource [*];
+}

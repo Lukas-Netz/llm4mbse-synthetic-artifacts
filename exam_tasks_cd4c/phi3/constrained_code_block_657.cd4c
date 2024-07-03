@@ -1,0 +1,48 @@
+
+classdiagram AgriculturalHarvestingSystem {
+
+    class AgriculturalHarvestingSystem {
+      CentralControlUnit ccU;
+      Tractor tractor;
+      Harvester harvester;
+      Sprayer sprayer;
+    }
+
+    class CentralControlUnit {
+      -> Tractor [*];
+      -> Harvester [*];
+      -> Sprayer [*];
+      void assignTask(AVType type, AV uniqueIdentifier);
+      void monitorStatus(AV uniqueIdentifier);
+      void adjustHarvestingSchedule();
+    }
+
+    abstract class AV {
+      String uniqueIdentifier;
+      AVStatus status;
+    }
+
+    class Tractor extends AV {
+      void plowSoil();
+    }
+
+    class Harvester extends AV {
+      String cropType;
+      int yield;
+      String quality;
+    }
+
+    class Sprayer extends AV {
+      void sprayPesticides();
+      void sprayFertilizers();
+    }
+
+    enum AVStatus {
+      Operational, NotOperational;
+    }
+
+  composition AgriculturalHarvestingSystem -> (has) CentralControlUnit;
+  composition AgriculturalHarvestingSystem -> (has) Tractor;
+  composition AgriculturalHarvestingSystem -> (has) Harvester;
+  composition AgriculturalHarvestingSystem -> (has) Sprayer;
+}

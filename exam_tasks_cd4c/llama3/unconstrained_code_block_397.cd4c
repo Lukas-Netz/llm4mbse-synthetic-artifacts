@@ -1,0 +1,94 @@
+
+
+
+
+classdiagram EnvironmentalMonitoringSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Location location;
+    MeasurementRange measurementRange;
+    CalibrationDate calibrationDate;
+  }
+
+  class Gateway  {
+    String uniqueIdentifier;
+    TransmissionRange transmissionRange;
+    DataStorageCapacity dataStorageCapacity;
+  }
+
+  class CentralServer  {
+    String uniqueIdentifier;
+    DataStorageCapacity dataStorageCapacity;
+    ProcessingPower processingPower;
+  }
+
+  class Measurement  {
+    Sensor sensor;
+    Temperature temperature;
+    Humidity humidity;
+    AirQuality airQuality;
+  }
+
+  class Alert  {
+    AirQuality airQuality;
+    Threshold threshold;
+  }
+
+  class FirmwareUpdate  {
+    Sensor sensor;
+    Gateway gateway;
+    FirmwareVersion firmwareVersion;
+  }
+
+  class FirmwareVersion  {
+    String version;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class MeasurementRange  {
+    double min;
+    double max;
+  }
+
+  class CalibrationDate  {
+    Date date;
+  }
+
+  class TransmissionRange  {
+    double range;
+  }
+
+  class DataStorageCapacity  {
+    int capacity;
+  }
+
+  class ProcessingPower  {
+    int power;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class AirQuality  {
+    double value;
+  }
+
+  class Threshold  {
+    double value;
+  }
+
+  composition Sensor -> (has) Measurement;
+  composition Gateway -> (has) Sensor[*];
+  composition CentralServer -> (has) Gateway[*];
+  composition FirmwareUpdate -> (has) Sensor;
+  composition FirmwareUpdate -> (has) Gateway;
+}

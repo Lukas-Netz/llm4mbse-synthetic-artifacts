@@ -1,0 +1,50 @@
+
+classdiagram OnlineGamingPlatform {
+
+    class Player {
+      String username;
+      String password;
+      List<Game> gamesJoined;
+      String role;
+    }
+
+    class Game {
+      String name;
+      String identifier;
+      GameType type;
+      int maxPlayers;
+      GameMode mode;
+      List<Player> players;
+      String gameStatus;
+    }
+
+    class GameType {
+      String typeName;
+    }
+
+    class GameMode {
+      String modeName;
+    }
+
+    class Score {
+      int scoreValue;
+      String playerUsername;
+    }
+
+    class PlatformAdministrator {
+      void manageGames(Game game);
+      void managePlayers(Player player);
+      void manageScores(Score score);
+    }
+
+    class OnlineGamingPlatform {
+      List<Game> games;
+      PlatformAdministrator admin;
+    }
+
+    composition OnlineGamingPlatform -> (has) Game;
+    composition Player -> (has) Game;
+    composition Game -> (has) Player;
+    composition Game -> (has) Score;
+    composition PlatformAdministrator -> (has) OnlineGamingPlatform;
+}

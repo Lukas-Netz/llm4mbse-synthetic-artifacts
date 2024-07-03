@@ -1,0 +1,48 @@
+
+classdiagram University {
+
+  class Course {
+    String name;
+    String description;
+    int duration;
+    Instructor [  ] instructors;
+  }
+
+  class Instructor {
+    String name;
+    String department;
+    String specialization;
+    Course [ ] courses;
+  }
+
+  class Student {
+    String name;
+    String major;
+    double gpa;
+    Course [ ] courses;
+    Section [ ] sections;
+  }
+
+  class Section {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    Course course;
+    Student [ ] students;
+  }
+
+  class Grade {
+    Student student;
+    int grade;
+    Section section;
+  }
+
+  composition University -> Course [*];
+  composition University -> Instructor [*];
+  composition University -> Student [*];
+  composition Course -> Instructor [*];
+  composition Course -> Section [*];
+  composition Section -> Student [*];
+  association Grade -- Student;
+  association Grade -- Section;
+}

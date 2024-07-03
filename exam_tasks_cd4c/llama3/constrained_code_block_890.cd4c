@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram SupplyChain  {
+
+  class Manufacturer  {
+    String uniqueId;
+    Product[] products;
+    void addProduct(Product product);
+    void removeProduct(Product product);
+  }
+
+  class Product  {
+    String uniqueId;
+    String name;
+    String description;
+  }
+
+  class Order  {
+    String uniqueId;
+    Customer customer;
+    Product[] products;
+    OrderStatus status;
+  }
+
+  class Customer  {
+    String uniqueId;
+    Order[] orders;
+  }
+
+  class Warehouse  {
+    String uniqueId;
+    Shipment[] shipments;
+    void receiveProduct(Product product);
+    void shipProduct(Shipment shipment);
+  }
+
+  class Shipment  {
+    String uniqueId;
+    Order order;
+    Warehouse warehouse;
+    Product[] products;
+    ShipmentStatus status;
+  }
+
+  enum OrderStatus  {
+    Pending, Shipped, Delivered;
+  }
+
+  enum ShipmentStatus  {
+    InTransit, Delivered;
+  }
+
+  composition Manufacturer -> Product[*];
+  composition Order -> Product[*];
+  composition Customer -> Order[*];
+  composition Warehouse -> Shipment[*];
+  composition Shipment -> Product[*];
+}

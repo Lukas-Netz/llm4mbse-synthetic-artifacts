@@ -1,0 +1,63 @@
+
+classdiagram SpaceWeatherPrediction {
+
+  class DataIngestionModule {
+    void collectData(Data data);
+  }
+
+  class DataProcessingModule {
+    void analyzeData(Data data);
+    SolarFlarePrediction predictSolarFlare();
+    CMEPrediction predictCME();
+  }
+
+  class VisualizationModule {
+    void displaySolarFlarePrediction(SolarFlarePrediction prediction);
+    void displayCMEPrediction(CMEPrediction prediction);
+  }
+
+  class NotificationModule {
+    void sendAlert(SolarFlarePrediction prediction);
+    void sendAlert(CMEPrediction prediction);
+  }
+
+  class Data {
+    String source;
+    String timestamp;
+    String solarFlareData;
+    String cmeData;
+  }
+
+  class SolarFlare {
+    String type;
+    int intensity;
+    int duration;
+    String direction;
+  }
+
+  class SolarFlarePrediction {
+    SolarFlare solarFlare;
+    float likelihood;
+  }
+
+  class CME {
+    String type;
+    int intensity;
+    int duration;
+    String direction;
+  }
+
+  class CMEPrediction {
+    CME cme;
+    float likelihood;
+  }
+
+  composition DataIngestionModule -> Data [*];
+  composition DataProcessingModule -> Data [1..*];
+  association DataProcessingModule -> SolarFlarePrediction [0..*];
+  association DataProcessingModule -> CMEPrediction [0..*];
+  association VisualizationModule -> SolarFlarePrediction [0..*];
+  association VisualizationModule -> CMEPrediction [0..*];
+  association NotificationModule -> SolarFlarePrediction [0..*];
+  association NotificationModule -> CMEPrediction [0..*];
+}

@@ -1,0 +1,53 @@
+
+classdiagram SmartFactory {
+
+    class SmartFactory {
+      ProductionLine[] productionLines;
+      Sensor[] sensors;
+      Actuator[] actuators;
+    }
+
+    class ProductionLine {
+      String lineId;
+      String lineName;
+      Machine[] machines;
+    }
+
+    abstract class Machine {
+      String machineId;
+      String machineName;
+      MachineStatus status;
+    }
+
+    class Assembly extends Machine {
+      double productionRate;
+      QualityMetrics metrics;
+    }
+
+    class QualityControl extends Machine {
+      double defectDetectionRate;
+      double rejectionRate;
+    }
+
+    class Packaging extends Machine {
+      double packagingEfficiency;
+      double materialUsage;
+    }
+
+    enum MachineStatus {
+      Operational, NonOperational;
+    }
+
+    enum SensorType {
+      Temperature, Humidity, Pressure;
+    }
+
+    enum ActuatorType {
+      AdjustTemperature, AdjustHumidity, AdjustPressure;
+    }
+
+    association SmartFactory -> ProductionLine [1..*];
+    association ProductionLine -> Machine [*];
+    association SmartFactory -> Sensor [0..*];
+    association SmartFactory -> Actuator [0..*];
+}

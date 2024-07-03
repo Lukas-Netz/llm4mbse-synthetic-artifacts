@@ -1,0 +1,86 @@
+
+classdiagram DigitalAssetManagement {
+
+  class Asset {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  class Image extends Asset {
+    String resolution;
+  }
+
+  class Video extends Asset {
+    int duration;
+  }
+
+  class Document extends Asset {
+    String format;
+  }
+
+  class Folder {
+    String name;
+    String path;
+    Folder parent;
+    Asset [ ] children;
+  }
+
+  class Tag {
+    String keyword;
+    Asset [ ] assets;
+  }
+
+  class Metadata {
+    String title;
+    String author;
+    String description;
+  }
+
+  class UsageHistory {
+    String user;
+    String action;
+    String timestamp;
+  }
+
+  class Report {
+    String type;
+    UsageHistory [ ] history;
+  }
+
+  class Dashboard {
+    Asset [ ] assets;
+    UsageHistory [ ] usageHistory;
+  }
+
+  class User {
+    String username;
+    String password;
+    String role;
+  }
+
+  class AuditTrail {
+    String user;
+    String action;
+    String timestamp;
+  }
+
+  class Notification {
+    String user;
+    String message;
+  }
+
+  class DigitalAssetManagement {
+    Folder rootFolder;
+    User [ ] users;
+    AuditTrail [ ] auditTrail;
+    Notification [ ] notifications;
+  }
+
+  composition DigitalAssetManagement -> Folder;
+  composition DigitalAssetManagement -> User [*];
+  association DigitalAssetManagement -> AuditTrail [*];
+  association DigitalAssetManagement -> Notification [*];
+  composition Folder -> Folder [*];
+  composition Folder -> Asset [*];
+  			}

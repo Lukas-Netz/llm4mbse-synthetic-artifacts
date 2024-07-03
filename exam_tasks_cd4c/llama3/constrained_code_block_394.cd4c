@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram OnlineBankingSystem  {
+
+  class User  {
+    String username;
+    String password;
+    double balance;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class Account  {
+    String username;
+    double balance;
+    boolean active;
+  }
+
+  class Notification  {
+    String message;
+    String recipient;
+  }
+
+  class Login  {
+    String username;
+    String password;
+  }
+
+  class Transaction  {
+    double amount;
+    String type;  (deposit_withdraw)
+  }
+
+  class AccountService  {
+    void createAccount(User user);
+    void deposit(Transaction transaction);
+    void withdraw(Transaction transaction);
+    void viewBalance(User user);
+    void manageAccount(Account account);
+  }
+
+  class AdministratorService  {
+    void createAccount(User user);
+    void viewBalance(User user);
+    void manageAccount(Account account);
+  }
+
+  composition User -> Account [1..1];
+  composition Administrator -> AccountService [1..1];
+  composition AccountService -> Transaction [0..*];
+  composition AdministratorService -> Notification [0..*];
+  composition Notification -> User [0..1];
+  composition Notification -> Administrator [0..1];
+  composition Transaction -> Account [1..1];
+  composition Account -> Transaction [0..*];
+  composition Account -> User [1..1];
+  composition Account -> Administrator [0..1];
+  composition Administrator -> User [0..*];
+  composition User -> Administrator [0..*];
+}

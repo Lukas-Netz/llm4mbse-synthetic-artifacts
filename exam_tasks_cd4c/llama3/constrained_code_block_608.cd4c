@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram RefugeeCampManagementSystem  {
+
+  class Camp  {
+    String name;
+    Location location;
+    Tent  [ ] tents;
+  }
+
+  class Tent  {
+    String name;
+    int capacity;
+    Refugee  [ ] refugees;
+    Activity  [ ] activities;
+  }
+
+  class Refugee  {
+    int id;
+    String name;
+    Date dateOfBirth;
+    Tent tent;
+  }
+
+  class Activity  {
+    String name;
+    String description;
+    Tent tent;
+  }
+
+  class Volunteer  {
+    int id;
+    String name;
+    Role role;
+    Camp camp;
+  }
+
+  class Donation  {
+    int id;
+    String description;
+    int quantity;
+    Camp camp;
+  }
+
+  enum Role  {
+    Manager, Helper, Doctor;
+  }
+
+  enum Location  {
+    Africa, Asia, Europe;
+  }
+
+  composition Camp  ->  (has) Tent  [ * ];
+  composition Tent  ->  (has) Refugee  [ * ];
+  composition Tent  ->  (has) Activity  [ * ];
+  composition Volunteer  ->  (has) Camp;
+  composition Donation  ->  (has) Camp;
+}

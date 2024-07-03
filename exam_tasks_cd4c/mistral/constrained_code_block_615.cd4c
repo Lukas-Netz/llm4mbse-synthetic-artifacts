@@ -1,0 +1,63 @@
+
+classdiagram OceanCleanup {
+
+  class CentralHub {
+    -> CollectionUnit [*];
+    -> ProcessingUnit;
+    void manageCollectionUnits();
+    void manageProcessingUnit();
+    void trackLocation(CollectionUnit unit);
+    void trackLocation(ProcessingUnit unit);
+    void monitorWasteCollection();
+    void monitorWasteProcessing();
+    void alertMalfunction(CollectionUnit unit);
+    void alertMalfunction(ProcessingUnit unit);
+  }
+
+  class CollectionUnit {
+    Sensor sensor;
+    void collectWaste();
+    int getWasteCollected();
+    Location getLocation();
+    void reportMalfunction();
+  }
+
+  class ProcessingUnit {
+    Sensor sensor;
+    void processWaste();
+    int getWasteProcessed();
+    void reportMalfunction();
+  }
+
+  class ProcessingUnitLocation {
+    double latitude;
+    double longitude;
+  }
+
+  class CollectionUnitLocation {
+    double latitude;
+    double longitude;
+  }
+
+  class Sensor {
+    int wasteCollected;
+    int wasteProcessed;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class CommunicationModule {
+    CentralHub centralHub;
+    CollectionUnit [ ] collectionUnits;
+    ProcessingUnit processingUnit;
+    void sendData(CentralHub hub, CollectionUnit unit);
+    void sendData(CentralHub hub, ProcessingUnit unit);
+  }
+
+  composition CentralHub -> CommunicationModule;
+  composition CentralHub -> (has) CollectionUnit [*];
+  composition CentralHub -> (has) ProcessingUnit;
+}

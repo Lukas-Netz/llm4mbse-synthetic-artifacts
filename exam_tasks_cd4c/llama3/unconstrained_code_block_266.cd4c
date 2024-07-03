@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram VirtualRealityMarineBiologySimulations  {
+
+  class SimulationEnvironment  {
+    SimulationTime simulationTime;
+    WaterProperties waterProperties;
+    UserInteraction userInteraction;
+    Database database;
+    void pauseSimulation();
+    void resumeSimulation();
+    void resetSimulation();
+  }
+
+  abstract class MarineLife  {
+    Species species;
+    Size size;
+    Behavior behavior;
+  }
+
+  class Fish extends MarineLife  {
+    Speed speed;
+  }
+
+  class Coral extends MarineLife  {
+    Color color;
+  }
+
+  class Seaweed extends MarineLife  {
+    Flexibility flexibility;
+  }
+
+  class UserInteraction  {
+    Action action;
+    MarineLife marineLife;
+  }
+
+  enum SimulationTime  {
+    DAY, NIGHT;
+  }
+
+  enum WaterProperties  {
+    TEMPERATURE, SALINITY;
+  }
+
+  enum Species  {
+    FISH, CORAL, SEAWEED;
+  }
+
+  enum Size  {
+    SMALL, MEDIUM, LARGE;
+  }
+
+  enum Behavior  {
+    SWIM, REST, FEED;
+  }
+
+  enum Action  {
+    SWIM, DIVE, OBSERVE;
+  }
+
+  composition SimulationEnvironment -> (has) UserInteraction;
+  composition SimulationEnvironment -> (has) Database;
+  composition UserInteraction -> (has) MarineLife;
+  composition MarineLife -> (has) Species;
+  composition MarineLife -> (has) Size;
+  composition MarineLife -> (has) Behavior;
+}

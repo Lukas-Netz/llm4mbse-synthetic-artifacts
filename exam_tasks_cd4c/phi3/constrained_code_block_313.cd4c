@@ -1,0 +1,64 @@
+
+classdiagram CloudCollaborationTool {
+
+    class Team {
+      String username;
+      String email;
+      List<Project> projects;
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<File> files;
+      List<Task> tasks;
+    }
+
+    class File {
+      String name;
+      int size;
+      FileType type;
+    }
+
+    enum FileType {
+      Document, Image, Video
+   
+   
+   ;}
+
+    class Task {
+      String name;
+      String description;
+      List<TeamMember> assignedMembers;
+      List<Comment> comments;
+    }
+
+    class TeamMember {
+      String username;
+      String email;
+      List<Project> assignedProjects;
+    }
+
+    class Comment {
+      String content;
+      CommentType type;
+    }
+
+    enum CommentType {
+      Task, File
+   
+   
+   ;}
+
+    association Team -> Project [1..*];
+    association Project -> File [1..];
+    association Project -> Task [1..];
+    association Task -> TeamMember [0..*];
+    association Task -> Comment [0..*];
+    association TeamMember -> Project [0..*];
+    composition Team -> TeamMember [1..*];
+    composition TeamMember -> Project [1..*];
+    composition Project -> File [1..*];
+    composition Project -> Task [1..*];
+    composition Task -> Comment [1..*];
+}

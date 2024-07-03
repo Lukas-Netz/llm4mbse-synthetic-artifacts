@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram GIS  {
+
+  class City  {
+    String name;
+    Point location;
+  }
+
+  class Country  {
+    String name;
+    Boundary boundary;
+  }
+
+  class Boundary  {
+    Point[] points;
+  }
+
+  class Point  {
+    double latitude;
+    double longitude;
+  }
+
+  class PointOfInterest  {
+    String name;
+    Point location;
+  }
+
+  class Road  {
+    String name;
+    double length;
+    RoadType type;
+    TrafficCondition condition;
+  }
+
+  class RoadType  {
+    String name;
+  }
+
+  class TrafficCondition  {
+    String name;
+  }
+
+  class WeatherStation  {
+    Point location;
+    double temperature;
+    double precipitation;
+  }
+
+  class Query  {
+    String type;  (eagerly)
+  }
+
+  class SpatialQuery extends Query  {
+    Point point;
+  }
+
+  class TemporalQuery extends Query  {
+    TimeRange timeRange;
+  }
+
+  class TimeRange  {
+    Date start;
+    Date end;
+  }
+
+  composition Country -> Boundary;
+  composition City -> Point;
+  composition PointOfInterest -> Point;
+  composition Road -> RoadType;
+  composition Road -> TrafficCondition;
+  composition WeatherStation -> Point;
+  composition Query -> SpatialQuery [0..1];
+  }

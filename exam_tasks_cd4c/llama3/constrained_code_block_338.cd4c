@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram MobileTicketingSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    Ticket  [ ] tickets;
+  }
+
+  class Ticket  {
+    String uniqueIdentifier;
+    TicketType type;
+    Date validityPeriod;
+  }
+
+  class PaymentMethod  {
+    String uniqueIdentifier;
+  }
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    Route route;
+  }
+
+  class Route  {
+    String uniqueIdentifier;
+    Vehicle vehicle;
+    Stop  [ ] stops;
+  }
+
+  class Stop  {
+    String uniqueIdentifier;
+    Route route;
+  }
+
+  class TicketType  {
+    String name;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition User  ->  (has) Ticket  [ * ];
+  composition Ticket  ->  (has) PaymentMethod  [ 1 ];
+  composition Vehicle  ->  (has) Route  [ 1 ];
+  composition Route  ->  (has) Stop  [ * ];
+  composition Route  ->  (has) Vehicle  [ 1 ];
+  composition Stop  ->  (has) Route  [ 1 ];
+
+  <<stereotype>> class Administrator  {
+    void manageRoute(Route route);
+    void manageVehicle(Vehicle vehicle);
+    void managePaymentMethod(PaymentMethod paymentMethod);
+  }
+}

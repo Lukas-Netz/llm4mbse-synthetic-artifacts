@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram ChatbotSystem  {
+
+  class ChatbotSystem  {
+    Hub hub;
+  }
+
+  class Hub  {
+    Chatbot  [ ] chatbots;
+    void addChatbot(Chatbot chatbot);
+    void removeChatbot(Chatbot chatbot);
+    Chatbot getChatbot(String department);
+  }
+
+  abstract class Chatbot  {
+    String uniqueId;
+    Department department;
+    Skill  [ ] skills;
+  }
+
+  class SalesChatbot extends Chatbot  {
+    String salesScript;
+  }
+
+  class MarketingChatbot extends Chatbot  {
+    String marketingPitch;
+  }
+
+  class CustomerServiceChatbot extends Chatbot  {
+    String customerServiceScript;
+  }
+
+  enum Department  {
+    Sales, Marketing, CustomerService;
+  }
+
+  enum Skill  {
+    LanguageUnderstanding, SentimentAnalysis, ResponseGeneration;
+  }
+
+  composition ChatbotSystem  ->  (has) Hub;
+  composition Hub  ->  (has) Chatbot  [ 0..* ];
+  composition Chatbot  ->  (has) Skill  [ 0..* ];
+}

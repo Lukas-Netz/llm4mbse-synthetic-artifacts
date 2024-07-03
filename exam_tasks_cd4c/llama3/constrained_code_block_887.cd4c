@@ -1,0 +1,40 @@
+
+
+
+
+classdiagram QuantumSafeEncryption  {
+
+  class KeyManager  {
+    void generateNewKey();
+    void revokeKey(String keyId);
+    void distributeKey(String keyId, DataEncryptor encryptor);
+  }
+
+  class DataEncryptor  {
+    String keyId;
+    int dataSize;
+    EncryptionAlgorithm algorithm;
+    void encryptData(byte[] data);
+    void decryptData(byte[] data);
+    void retrieveKey(KeyManager manager);
+  }
+
+  class SecureStorage  {
+    int storageCapacity;
+    DataRetrievalMethod retrievalMethod;
+    void storeData(byte[] data);
+    byte[] retrieveData();
+  }
+
+  enum EncryptionAlgorithm  {
+    AES, RSA;
+  }
+
+  enum DataRetrievalMethod  {
+    Sequential, Random;
+  }
+
+  composition KeyManager  ->  (has) DataEncryptor[*];
+  composition DataEncryptor  ->  (has) SecureStorage;
+  composition SecureStorage  ->  (has) DataEncryptor;
+}

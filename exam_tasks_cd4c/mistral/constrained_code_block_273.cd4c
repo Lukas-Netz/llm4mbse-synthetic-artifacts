@@ -1,0 +1,62 @@
+
+classdiagram MobileCommerce {
+
+  class Merchant {
+    -> Product [*];
+    String uniqueIdentifier;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    int price;
+  }
+
+  class Customer {
+    -> Account [*];
+    String uniqueIdentifier;
+    String password;
+  }
+
+  class Account {
+    String uniqueIdentifier;
+    String password;
+  }
+
+  class PaymentGateway {
+    -> PaymentMethod [*];
+    Merchant merchant;
+    Customer customer;
+    Transaction transaction;
+    String transactionStatus;
+  }
+
+  class PaymentMethod {
+    String uniqueIdentifier;
+  }
+
+  enum PaymentMethodType {
+    CreditCard, PayPal, BankTransfer;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Merchant merchant;
+    Customer customer;
+    PaymentGateway paymentGateway;
+    String transactionStatus;
+  }
+
+  class Review {
+    String uniqueIdentifier;
+    Product product;
+    String reviewText;
+    int rating;
+  }
+
+  composition Merchant -> Product [*];
+  composition Customer -> Account [*];
+  association PaymentGateway <-> Customer;
+  association PaymentGateway <-> Merchant;
+  association Transaction <-> PaymentGateway;
+  association Transaction <-> Customer;
+}

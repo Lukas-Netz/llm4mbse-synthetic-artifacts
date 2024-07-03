@@ -1,0 +1,74 @@
+
+classdiagram EnergyForecasting {
+
+  class WeatherStation {
+    TemperatureSensor temperature;
+    HumiditySensor humidity;
+    WindSpeedSensor windSpeed;
+    SolarRadiationSensor solarRadiation;
+  }
+
+  class TemperatureSensor {
+    float reading;
+    TimeStamp timestamp;
+  }
+
+  class HumiditySensor {
+    float reading;
+    TimeStamp timestamp;
+  }
+
+  class WindSpeedSensor {
+    float reading;
+    TimeStamp timestamp;
+  }
+
+  class SolarRadiationSensor {
+    float reading;
+    TimeStamp timestamp;
+  }
+
+  class MLModel {
+    float learningRate;
+    int numberOfHiddenLayers;
+  }
+
+  class Database {
+    WeatherDataTable weatherData;
+    EnergyProductionTable energyProduction;
+    ModelParametersTable modelParameters;
+  }
+
+  class WeatherDataTable {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    SolarRadiation solarRadiation;
+    TimeStamp timestamp;
+  }
+
+  class EnergyProductionTable {
+    float solarEnergy;
+    float windEnergy;
+    TimeStamp timestamp;
+  }
+
+  class ModelParametersTable {
+    MLModel model;
+    TimeStamp timestamp;
+  }
+
+  class UI {
+    Graph energyProductionGraph;
+    Form modelParametersForm;
+  }
+
+  composition WeatherStation -> TemperatureSensor;
+  composition WeatherStation -> HumiditySensor;
+  composition WeatherStation -> WindSpeedSensor;
+  composition WeatherStation -> SolarRadiationSensor;
+  composition Database -> WeatherDataTable;
+  composition Database -> EnergyProductionTable;
+  composition Database -> ModelParametersTable;
+  association UI -> MLModel;
+}

@@ -1,0 +1,143 @@
+
+classdiagram TravelAgency {
+
+    class Customer {
+      String name;
+      String email;
+      String password;
+      List<Booking> bookings;
+      int loyaltyPoints;
+    }
+
+    class Booking {
+      Customer customer;
+      Flight flight;
+      Hotel hotel;
+      CarRental carRental;
+      boolean isCancelled;
+      boolean isModified;
+    }
+
+    class Flight {
+      String departureAirport;
+      String arrivalAirport;
+      Date departureDate;
+      Date arrivalDate;
+      double price;
+    }
+
+    class Hotel {
+      String name;
+      String location;
+      double pricePerNight;
+      int maxGuests;
+    }
+
+    class CarRental {
+      String type;
+      String location;
+      double pricePerDay;
+      int maxDrivers;
+    }
+
+    class Employee {
+      String name;
+      String role;
+      String password;
+      List<Booking> bookingHistory;
+    }
+
+    association Customer 
+      has 
+        -> Booking [1..*];
+
+    association Booking 
+      has 
+        -> Customer;
+      -
+        association Flight 
+          mappedBy
+            -> Booking;
+        association Hotel 
+          mappedBy
+            -> Booking;
+        association CarRental 
+          mappedBy
+            -> Booking;
+      -
+        association Employee 
+          mappedBy
+            -> Booking;
+
+    association Employee 
+      has 
+        -> BookingHistory;
+
+    association Customer 
+      has 
+        -> LoyaltyPoints;
+
+    enum Role {
+      Manager,
+      Agent
+   
+   
+  
+(class, association, and/or 
+
+  -composite)
+
+   
+;
+
+}
+
+class LoyaltyPoints {
+  int points;
+}
+
+enum Role {
+  Manager,
+  Agent
+
+ 
+
+(class, association, and/or 
+
+  -composite)
+
+   
+;
+
+}
+
+class Customer {
+  String name;
+  String email;
+  String password;
+  List<Booking> bookings;
+  int loyaltyPoints;
+}
+
+class Booking {
+  Customer customer;
+  Flight flight;
+  Hotel hotel;
+  CarRental carRental;
+  boolean isCancelled;
+  boolean isModified;
+}
+
+class Flight {
+  String departureAirport;
+  String arrivalAirport;
+  Date departureDate;
+  Date arrivalDate;
+  double price;
+}
+
+
+
+
+
+}

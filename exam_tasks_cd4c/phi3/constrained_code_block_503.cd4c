@@ -1,0 +1,72 @@
+
+classdiagram SustainableAgricultureTechnology {
+
+    class Farm {
+      String farmIdentifier;
+      Farmer farmer;
+      FarmType farmType;
+    }
+
+    class Farmer {
+      String farmerIdentifier;
+    }
+
+    class Crop {
+      String cropIdentifier;
+      Farm farm;
+      CropType cropType;
+    }
+
+    class Sensor {
+      String sensorIdentifier;
+      Farm farm;
+      Crop crop;
+      float soilMoisture;
+      float temperature;
+    }
+
+    class WeatherStation {
+      String weatherStationIdentifier;
+      float temperature;
+      float humidity;
+      float precipitation;
+    }
+
+    class FarmEquipment {
+      String equipmentIdentifier;
+      Farm farm;
+    }
+
+    class PestControl {
+      String pestControlIdentifier;
+      Farm farm;
+      PestType pestType;
+    }
+
+    enum FarmType {
+      Organic, Conventional, Permaculture;
+    }
+
+    enum CropType {
+      Fruits, Vegetables, Grains, Legumes;
+    }
+
+    enum PestType {
+      Insects, Diseases;
+    }
+
+    association Farm -> Farmer;
+    association Farm -> FarmType;
+    association Farm -> Crop;
+    association Farm -> Sensor;
+    association Farm -> FarmEquipment;
+    association Farm -> PestControl;
+
+    association Crop -> Farm;
+    association Crop -> Sensor;
+
+    association Sensor -> Farm;
+    association Sensor -> Crop;
+
+   
+}

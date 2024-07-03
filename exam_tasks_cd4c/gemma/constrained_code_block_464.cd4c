@@ -1,0 +1,92 @@
+
+
+classdiagram DeFi {
+
+    class User {
+      String uniqueIdentifier;
+      String walletAddress;
+    }
+
+    class Loan {
+      String uniqueIdentifier;
+      int loanAmount;
+      double interestRate;
+      RepaymentSchedule repaymentSchedule;
+    }
+
+    class Collateral {
+      String uniqueIdentifier;
+      Type type;
+      int value;
+    }
+
+    enum Type {
+      Cryptocurrency, Token, NFT
+    
+
+    
+;
+    }
+
+    class SmartContract {
+      String uniqueIdentifier;
+      LoanAgreement loanAgreement;
+      CollateralAgreement collateralAgreement;
+    }
+
+    class Oracle {
+      String uniqueIdentifier;
+      DataSource dataSource;
+      DataType dataType;
+    }
+
+    enum DataType {
+      Boolean, Integer, Double, String
+    
+
+    
+;
+    }
+
+  composition User -> (has) Wallet
+  abstract  
+  
+  
+  
+;
+  composition Loan -> (has) RepaymentSchedule
+  
+  
+  
+  
+;
+  composition Collateral -> (has) Type
+  
+  
+  
+  
+;
+  composition SmartContract -> (has) LoanAgreement
+  
+  
+  
+  
+;
+  composition SmartContract -> (has) CollateralAgreement
+  
+  
+  
+  
+;
+  composition Oracle -> (has) DataSource
+  
+  
+  
+  
+;
+  enum DataType
+  
+  
+  
+  ;
+}

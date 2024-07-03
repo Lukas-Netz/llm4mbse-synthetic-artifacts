@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram LanguageInterpretationSystem  {
+
+  class Interpreter  {
+    String id;
+    String name;
+    int expertiseLevel;
+  }
+
+  class Language  {
+    String code;
+    String name;
+  }
+
+  class Assignment  {
+    Interpreter interpreter;
+    Language language;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Appointment  {
+    Interpreter interpreter;
+    Language language;
+    Date date;
+    String description;
+  }
+
+  class Report  {
+    Interpreter interpreter;
+    Language language;
+    Date date;
+    String description;
+  }
+
+  class InterpreterAssignment  {
+    Interpreter interpreter;
+    Language language;
+  }
+
+  class InterpreterHistory  {
+    Interpreter interpreter;
+    Language language;
+    List<Appointment> appointments;
+  }
+
+  class LanguageUsage  {
+    Language language;
+    int usageCount;
+  }
+
+  composition Interpreter -> (has) Assignment[*];
+  composition Language -> (has) Assignment[*];
+  composition Assignment -> (has) Interpreter;
+  composition Assignment -> (has) Language;
+  composition Interpreter -> (has) InterpreterHistory;
+  composition Language -> (has) LanguageUsage;
+  composition InterpreterHistory -> (has) Appointment[*];
+  composition LanguageUsage -> (has) Report[*];
+}

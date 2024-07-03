@@ -1,0 +1,73 @@
+
+classdiagram LegalDocService {
+
+    class LegalDoc {
+      String uniqueId;
+      String title;
+      String description;
+    }
+
+    class DocumentDatabase {
+      LegalDoc[] documents;
+      void addDocument(LegalDoc document);
+      LegalDoc[] searchDocuments(String keyword, String author, String date);
+    }
+
+    class SearchEngine {
+      void searchDocuments(String keyword, String author, String date);
+    }
+
+    class DocumentEditor {
+      void createDocument();
+      void editDocument(LegalDoc document);
+      void modifyDocument(LegalDoc document);
+    }
+
+    class User {
+      String username;
+      String password;
+      boolean isAuthorized;
+    }
+
+    class AccessControl {
+      void grantAccess(User user, LegalDoc document);
+      void revokeAccess(User user, LegalDoc document);
+    }
+
+    class NotificationSystem {
+      void sendNotification(User user, LegalDoc document);
+    }
+
+    <<association>> class LegalDocService {
+      DocumentDatabase database;
+      SearchEngine searchEngine;
+      DocumentEditor editor;
+      AccessControl accessControl;
+      NotificationSystem notificationSystem;
+    }
+
+    <<association>> class DocumentDatabase {
+      LegalDoc[] documents;
+      LegalDocService service;
+    }
+
+    <<association>> class SearchEngine {
+      LegalDocService service;
+    }
+
+    <<association>> class DocumentEditor {
+      LegalDocService service;
+    }
+
+    <<association>> class AccessControl {
+      LegalDocService service;
+    }
+
+    <<association>> class NotificationSystem {
+      LegalDocService service;
+    }
+
+    <<association>> class User {
+      LegalDocService service;
+    }
+}

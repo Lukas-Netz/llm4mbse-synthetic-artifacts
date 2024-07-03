@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram AidDistribution  {
+
+  class Warehouse {
+    AidPackage[] aidPackages;
+  }
+
+  class Vehicle {
+    int capacity;
+    AidPackage[] aidPackages;
+    AidWorker aidWorker;
+  }
+
+  class DistributionCenter {
+    String areaOfOperation;
+    AidPackage[] aidPackages;
+    Vehicle[] vehicles;
+  }
+
+  class AidWorker {
+    Vehicle vehicle;
+    DistributionCenter distributionCenter;
+  }
+
+  class AidPackage {
+    String uniqueIdentifier;
+    String[] items;
+    int weight;
+    String destination;
+  }
+
+  class Database {
+    AidPackage[] aidPackages;
+  }
+
+  composition Warehouse -> AidPackage[*];
+  composition Vehicle -> AidPackage[*];
+  composition DistributionCenter -> AidPackage[*];
+  composition AidWorker -> Vehicle[*];
+  composition AidWorker -> DistributionCenter[*];
+  composition Database -> AidPackage[*];
+}

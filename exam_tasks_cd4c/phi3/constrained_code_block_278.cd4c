@@ -1,0 +1,50 @@
+
+classdiagram OnlineCollaborationTool {
+
+    class Team {
+      String teamName;
+      List<Project> projects;
+      List<Member> members;
+    }
+
+    class Project {
+      String projectName;
+      String projectDescription;
+      List<Task> tasks;
+      Team projectLeader;
+    }
+
+    class Task {
+      String taskName;
+      String taskDescription;
+      Date dueDate;
+      List<Member> assignedMembers;
+    }
+
+    class Member {
+      String username;
+      String emailAddress;
+      List<Project> assignedProjects;
+    }
+
+    class File {
+      String fileName;
+      String fileContent;
+      Project project;
+    }
+
+    class TeamLeader {
+      String leaderName;
+      Team team;
+      List<Project> teamProjects;
+      List<Task> teamTasks;
+    }
+
+    association Team -> Project [1..*];
+    association Team -> Member [1..*];
+    association Team -> TeamLeader;
+    association Project -> TeamLeader;
+    association Project -> Task [1..*];
+    association Task -> Member [1..*];
+    association File -> Project;
+}

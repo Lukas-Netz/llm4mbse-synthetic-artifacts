@@ -1,0 +1,74 @@
+
+classdiagram HealthInformationExchange {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      Date dateOfBirth;
+      String address;
+      MedicalHistory medicalHistory;
+      TestResults testResults;
+      MedicationList medicationList;
+    }
+
+    class MedicalHistory {
+      List<Diagnosis> diagnoses;
+      List<Allergy> allergies;
+      List<Medication> medications;
+    }
+
+    class TestResults {
+      List<LabResult> labResults;
+      List<ImagingResult> imagingResults;
+      List<DiagnosticTest> diagnosticTests;
+    }
+
+    class MedicationList {
+      List<Medication> medications;
+      List<Dosage> dosages;
+    }
+
+    class HealthcareProvider {
+      String providerId;
+      String name;
+      boolean isAuthorized;
+    }
+
+    class Request {
+      HealthcareProvider provider;
+      Patient patient;
+      String requestType;
+    }
+
+    class Authentication {
+      boolean authenticate(HealthcareProvider provider);
+    }
+
+    class Authorization {
+      boolean authorize(Request request);
+    }
+
+    class Report {
+      Patient patient;
+      String reportType;
+      List<DataPoint> dataPoints;
+    }
+
+    class Analytics {
+      Patient patient;
+      String analysisType;
+      List<AnalysisResult> analysisResults;
+    }
+
+    association Patient -> MedicalHistory;
+    association Patient -> TestResults;
+    association Patient -> MedicationList;
+    composition HealthcareProvider -> Request [*];
+    composition Request -> Patient;
+    composition Request -> MedicalHistory;
+    composition Request -> TestResults;
+    composition Request -> MedicationList;
+    composition Request -> Authentication;
+    composition Request -> Authorization;
+   
+ }

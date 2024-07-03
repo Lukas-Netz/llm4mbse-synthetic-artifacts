@@ -1,0 +1,89 @@
+
+
+
+
+classdiagram WildlifeConservation  {
+
+  class Species  {
+    String uniqueIdentifier;
+    String name;
+    SpeciesClassification classification;
+  }
+
+  class Sensor  {
+    Location location;
+    Species trackedSpecies;
+  }
+
+  class Camera  {
+    Location location;
+    Species trackedSpecies;
+  }
+
+  class Analytics  {
+    Sensor[] sensors;
+    Camera[] cameras;
+  }
+
+  class DecisionSupport  {
+    Analytics analytics;
+  }
+
+  class Conservationist  {
+    DecisionSupport decisionSupport;
+  }
+
+  class SpeciesMovement  {
+    Species species;
+    Location location;
+    Date timestamp;
+  }
+
+  class Habitat  {
+    Location location;
+    Species[] species;
+  }
+
+  class MigrationPattern  {
+    Species species;
+    Location[] locations;
+  }
+
+  class Threat  {
+    Species species;
+    String description;
+  }
+
+  enum SpeciesClassification  {
+    Mammal, Bird, Reptile;
+  }
+
+  enum LocationType  {
+    Land, Water;
+  }
+
+  class Location  {
+    LocationType type;
+    Coordinates coordinates;
+  }
+
+  class Coordinates  {
+    double latitude;
+    double longitude;
+  }
+
+  composition Species -> (has) Sensor [0..*];
+  composition Species -> (has) Camera [0..*];
+  composition Sensor -> (has) Location;
+  composition Camera -> (has) Location;
+  composition Analytics -> (has) Sensor [0..*];
+  composition Analytics -> (has) Camera [0..*];
+  composition DecisionSupport -> (has) Analytics;
+  composition Conservationist -> (has) DecisionSupport;
+  composition SpeciesMovement -> (has) Species;
+  composition Habitat -> (has) Location;
+  composition Habitat -> (has) Species [0..*];
+  composition MigrationPattern -> (has) Species;
+  composition MigrationPattern -> (has) Location [0..*];
+  composition Threat -> (has) Species;
+}

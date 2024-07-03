@@ -1,0 +1,55 @@
+
+classdiagram DigitalMakeup {
+
+  class Product {
+    String name;
+    String brand;
+    String category;
+    String ingredients;
+    float price;
+    boolean isAvailable;
+  }
+
+  class Look {
+    String name;
+    Product [ ] products;
+    String techniques;
+    String image;
+  }
+
+  class UI {
+    void createLook();
+    void editLook();
+  }
+
+  class RenderEngine {
+    void render(Look look);
+    void adjustLighting();
+    void adjustCamera();
+  }
+
+  class Collaboration {
+    void inviteArtist(String artist);
+    void assignTask(String artist, String task);
+    void reviewChanges();
+    void approveChanges();
+  }
+
+  class Database {
+    void storeProduct(Product product);
+    void storeLook(Look look);
+  }
+
+  class Analytics {
+    void trackPopularity();
+    void trackProductUsage();
+    void trackCollaboration();
+  }
+
+  composition Database -> Product [*];
+  composition Database -> Look [*];
+  association UI -- Look;
+  association RenderEngine -- Look;
+  association Collaboration -- Look;
+  association Collaboration -- Artist [*];
+}

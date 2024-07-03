@@ -1,0 +1,81 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- classdiagramComplete
+  
+  
+  
+  
+  
+  {class A_Hub_Hub_BackupPower_Device_Light_Thermostat_SecurityCamera_BackupPower_DeviceStatus_ThermostatMode_Light_Device_SoundSystem_VRSystem_VRSoftware_Game_Application_Network_Server_VRSystem_SoundSystem_Network_Server_BackupPower_Hub_SmartHome_BackupPower_Hub_Device_SmartHome
+
+  
+  
+  
+ ;}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  composition SmartHome -> Hub
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  {
+
+  
+  
+  
+ ordered
+  
+  }
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  composition SmartHome -> BackupPower [0..1]
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;}

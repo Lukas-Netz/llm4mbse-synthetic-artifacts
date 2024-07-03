@@ -1,0 +1,58 @@
+
+classdiagram CollaborativeDesignTool {
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class DesignProject {
+      String uniqueId;
+      String title;
+      List<User> assignedUsers;
+      List<DesignElement> designElements;
+      VersionControl versionControl;
+      NotificationSystem notificationSystem;
+    }
+
+    class DesignElement {
+      String elementId;
+      String type;
+      String content;
+      User creator;
+      User lastModifiedBy;
+    }
+
+    class VersionControl {
+      List<DesignElement> versions;
+      String currentVersionId;
+      void revertToVersion(String versionId);
+    }
+
+    class NotificationSystem {
+      void notifyUser(User user, String message);
+    }
+
+    class Admin {
+      void assignRole(User user, String role);
+      void changePermission(User user, String permission);
+    }
+
+    class Designer extends User {
+      void createDesignElement(DesignElement element);
+      void editDesignElement(DesignElement element);
+    }
+
+    class Reviewer extends User {
+      void reviewDesignElement(DesignElement element);
+    }
+
+    composition CollaborativeDesignTool -> (has) DesignProject;
+    composition DesignProject -> User [*];
+    composition DesignProject -> DesignElement [*];
+    composition DesignProject -> VersionControl;
+    composition DesignProject -> NotificationSystem;
+    composition DesignProject -> Admin;
+    composition DesignProject -> Designer;
+    composition DesignProject -> Reviewer;
+}

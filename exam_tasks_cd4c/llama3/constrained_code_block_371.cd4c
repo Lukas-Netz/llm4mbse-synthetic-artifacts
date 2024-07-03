@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram OnlineAuctionSite  {
+
+  class Category  {
+    String name;
+    String description;
+    -> Item[*];
+  }
+
+  abstract class Item  {
+    String name;
+    String description;
+    double startingPrice;
+    double currentBid;
+    User highestBidder;
+    AuctionStatus status;
+  }
+
+  class Product extends Item  {
+    double weight;
+    double dimensions;
+    String material;
+  }
+
+  class Service extends Item  {
+    int duration;
+    User provider;
+  }
+
+  class Collectible extends Item  {
+    int rarity;
+    int editionNumber;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    Buyer, Seller, Admin
+  ;}
+
+  class Auction  {
+    -> Item;
+    -> Bid[*];
+    -> Payment[*];
+  }
+
+  class Bid  {
+    double amount;
+    User bidder;
+    Auction auction;
+  }
+
+  class Payment  {
+    double amount;
+    User buyer;
+    Auction auction;
+  }
+
+  enum AuctionStatus  {
+    Active, Closed
+  ;}
+
+  composition OnlineAuctionSite -> (has) Category[*];
+  composition Category -> (has) Item[*];
+  composition Item -> (has) User;
+  composition User -> (has) Role;
+  composition Auction -> (has) Item;
+  composition Auction -> (has) Bid[*];
+  composition Auction -> (has) Payment[*];
+}

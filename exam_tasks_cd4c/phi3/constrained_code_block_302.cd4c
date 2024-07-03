@@ -1,0 +1,84 @@
+
+classdiagram CommunityManagementSystem {
+
+    class Member {
+        String uniqueID;
+        String name;
+        String email;
+        MemberType type;
+        Date dateOfBirth;
+        String companyName;
+    }
+
+    class MembershipPlan {
+        String planName;
+        String planDescription;
+        PricingTier tier;
+        List<Benefit> benefits;
+    }
+
+    class PricingTier {
+        String tierName;
+        double price;
+        List<Benefit> benefits;
+    }
+
+    class Benefit {
+        String benefitName;
+        String benefitDescription;
+    }
+
+    class Payment {
+        String paymentID;
+        String memberID;
+        String planID;
+        double amount;
+        String paymentMethod;
+    }
+
+    class Invoice {
+        String invoiceID;
+        Date invoiceDate;
+        double totalAmount;
+    }
+
+    class Discount {
+        String discountID;
+        String planID;
+        double discountAmount;
+    }
+
+    class MemberType {
+        String typeName;
+    }
+
+    enum MemberType {
+        Individual, Organization
+   
+   
+   ()
+   
+
+;
+    MemberType memberType;
+    MembershipPlan membershipPlan;
+    Payment payment;
+    Invoice invoice;
+    Discount discount;
+}
+
+composition CommunityManagementSystem -> (has) Member;
+composition CommunityManagementSystem -> (has) MembershipPlan;
+composition CommunityManagementSystem -> (has) PricingTier;
+composition CommunityManagementSystem -> (has) Benefit;
+composition CommunityManagementSystem -> (has) Payment;
+composition CommunityManagementSystem -> (has) Invoice;
+composition CommunityManagementSystem -> (has) Discount;
+
+association CommunityManagementSystem -> (uses) Member;
+association CommunityManagementSystem -> (uses) MembershipPlan;
+association CommunityManagementSystem -> (uses) PricingTier;
+association CommunityManagementSystem -> (uses) Benefit;
+
+
+   }

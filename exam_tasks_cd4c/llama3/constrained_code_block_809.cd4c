@@ -1,0 +1,80 @@
+
+
+
+
+classdiagram MarinePollutionDetectionSystem  {
+
+  class Sensor  {
+    String sensorId;
+    WaterQualityData waterQualityData;
+    TemperatureData temperatureData;
+  }
+
+  class Drone  {
+    String droneId;
+    VisualData visualData;
+    SampleData sampleData;
+  }
+
+  class CentralHub  {
+    SensorData sensorData;
+    DroneData droneData;
+    PollutionHotspotData pollutionHotspotData;
+    Database database;
+    UserInterface userInterface;
+  }
+
+  class Database  {
+    List<PollutionHotspot> pollutionHotspots;
+  }
+
+  class UserInterface  {
+    void displayPollutionHotspots();
+  }
+
+  class PollutionHotspot  {
+    String hotspotId;
+    String pollutantType;
+    Location location;
+    Time time;
+  }
+
+  class WaterQualityData  {
+    double pH;
+    double salinity;
+    double turbidity;
+  }
+
+  class TemperatureData  {
+    double temperature;
+  }
+
+  class VisualData  {
+    String image;
+  }
+
+  class SampleData  {
+    String sampleType;
+    String sampleDescription;
+  }
+
+  class SensorData  {
+    List<Sensor> sensors;
+  }
+
+  class DroneData  {
+    List<Drone> drones;
+  }
+
+  class PollutionHotspotData  {
+    List<PollutionHotspot> pollutionHotspots;
+  }
+
+  composition CentralHub -> (has) SensorData;
+  composition CentralHub -> (has) DroneData;
+  composition CentralHub -> (has) PollutionHotspotData;
+  composition CentralHub -> (has) Database;
+  composition CentralHub -> (has) UserInterface;
+  composition Database -> (has) PollutionHotspot;
+  composition UserInterface -> (displays) PollutionHotspot;
+}

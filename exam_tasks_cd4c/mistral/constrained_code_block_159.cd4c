@@ -1,0 +1,43 @@
+
+classdiagram ConversationalMarketing {
+
+  class Customer {
+    String uniqueIdentifier;
+  }
+
+  class Agent {
+    String uniqueIdentifier;
+    String name;
+    boolean isAvailable;
+    String areaOfExpertise;
+  }
+
+  class Conversation {
+    String uniqueIdentifier;
+    Customer customer;
+    Agent assignedAgent;
+    String topic;
+    int priorityLevel;
+    ConversationStatus status;
+  }
+
+  enum ConversationStatus {
+    Active, Inactive;
+  }
+
+  class ConversationHistory {
+    Conversation conversation;
+    String notes;
+  }
+
+  class Analytics {
+    Conversation conversation;
+    String outcome;
+  }
+
+  composition Customer [*] has (initiates)  -> Conversation [*];
+  composition Agent [*] has (handles) -> Conversation [*];
+  association Agent <-> Conversation;
+  association Conversation has (history) -> ConversationHistory [*];
+  association Conversation has (analytics) -> Analytics;
+}

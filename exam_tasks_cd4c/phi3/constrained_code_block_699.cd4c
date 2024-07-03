@@ -1,0 +1,42 @@
+
+classdiagram PersonalizedDNAAnalysis {
+
+    class User {
+      String uniqueIdentifier;
+      DNAData userDNAData;
+      List<Recommendation> personalizedRecommendations;
+      void uploadDNAData();
+      void viewRecommendations();
+    }
+
+    class DNAData {
+      String userID;
+      String geneticInformation;
+    }
+
+    class Recommendation {
+      String recommendationType;
+      String recommendationDetails;
+    }
+
+    class HealthRecommendation extends Recommendation {
+      String healthCondition;
+    }
+
+    class WellnessRecommendation extends Recommendation {
+      String wellnessMetric;
+    }
+
+    class LifestyleRecommendation extends Recommendation {
+      String lifestyleHabit;
+    }
+
+    class Expert {
+      String expertiseArea;
+      List<Recommendation> expertAdvice;
+    }
+
+    composition User -> DNAData;
+    composition User -> List<<HealthRecommendation, WellnessRecommendation, LifestyleRecommendation>>;
+    association User -> List<<Expert>>;
+}

@@ -1,0 +1,40 @@
+
+classdiagram VirtualBusinessCardSystem {
+
+    class VirtualBusinessCard {
+      String uniqueId;
+      String name;
+      ContactInfo contactInfo;
+      List<Skill> skills;
+    }
+
+    class ContactInfo {
+      String email;
+      String phoneNumber;
+      String linkedInProfileUrl;
+    }
+
+    class Skill {
+      String category;
+      String name;
+    }
+
+    class User {
+      String username;
+      VirtualBusinessCard virtualCard;
+    }
+
+    class BusinessCardManager {
+      void createCard(User user, VirtualBusinessCard card);
+      void editCard(User user, VirtualBusinessCard card);
+      VirtualBusinessCard findCardBySkill(Skill skill);
+      VirtualBusinessCard findCardByName(String name);
+      VirtualBusinessCard findCardByContactInfo(ContactInfo contactInfo);
+      void addSkill(User user, VirtualBusinessCard card, Skill skill);
+      void removeSkill(User user, VirtualBusinessCard card, Skill skill);
+    }
+
+    composition User -> VirtualBusinessCard;
+    composition User -> BusinessCardManager;
+    composition BusinessCardManager -> VirtualBusinessCard;
+}

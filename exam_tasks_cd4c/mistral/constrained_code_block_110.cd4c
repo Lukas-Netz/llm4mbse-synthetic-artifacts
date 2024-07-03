@@ -1,0 +1,57 @@
+
+classdiagram QuantumCryptography {
+
+  class Sender {
+    KeyGenerationModule keyGeneration;
+    QuantumChannel quantumChannel;
+    ClassicalChannel classicalChannel;
+  }
+
+  class Receiver {
+    KeyVerificationModule keyVerification;
+    QuantumChannel quantumChannel;
+    ClassicalChannel classicalChannel;
+  }
+
+  class QuantumChannel {
+    EncodingScheme encoding;
+    void transmit(Qubit qubit);
+  }
+
+  class Qubit {
+    void encode(EncodingScheme encoding);
+    Qubit decode();
+  }
+
+  class KeyGenerationModule {
+    void generateSharedSecretKey();
+  }
+
+  class KeyVerificationModule {
+    void verifySharedSecretKey();
+  }
+
+  class ClassicalChannel {
+    void transmit(ClassicalBit classicalBit);
+  }
+
+  class ClassicalBit {
+    void encrypt(SharedSecretKey key);
+    void decrypt(SharedSecretKey key);
+  }
+
+  class EncodingScheme {
+    void encode(Qubit qubit);
+    Qubit decode(Qubit qubit);
+  }
+
+  class SharedSecretKey {
+    void encrypt(ClassicalBit classicalBit);
+    void decrypt(ClassicalBit classicalBit);
+  }
+
+  composition Sender -> QuantumChannel;
+  composition Sender -> ClassicalChannel;
+  composition Receiver -> QuantumChannel;
+  composition Receiver -> ClassicalChannel;
+}

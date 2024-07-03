@@ -1,0 +1,52 @@
+
+classdiagram RenewableEnergyPlatform {
+
+    class Course {
+      String title;
+      String description;
+      List<String> topics;
+      CourseType type;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Course> coursesTaught;
+      InstructorRole role;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+      StudentProficiency level;
+    }
+
+    class CourseType {
+      String name;
+    }
+
+    class InstructorRole {
+      String name;
+    }
+
+    class StudentProficiency {
+      String level;
+    }
+
+    class Platform {
+      List<Course> courses;
+      List<Instructor> instructors;
+      List<Student> students;
+      Admin admin;
+    }
+
+    composition Platform -> (has) Course;
+    composition Platform -> (has) Instructor;
+    composition Platform -> (has) Student;
+    composition Platform -> (has) Admin;
+
+    association Instructor -> Course [*];
+    association Student -> Course [*];
+    association Admin -> Platform [*];
+}

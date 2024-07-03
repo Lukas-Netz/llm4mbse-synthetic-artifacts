@@ -1,0 +1,64 @@
+
+classdiagram CyberDefense {
+
+  class Sensor {
+    String uniqueIdentifier;
+    Network [ ] monitoredNetworks;
+  }
+
+  class Analyzer {
+    int priority;
+    Threat [ ] analyzedThreats;
+  }
+
+  class Responder {
+    ResponseType responseType;
+    Threat [ ] respondedThreats;
+  }
+
+  class Database {
+    int capacityGb;
+    Threat [ ] storedThreats;
+  }
+
+  class AI {
+    double learningRate;
+    Threat [ ] learnedThreats;
+  }
+
+  enum Network {
+    ;
+  }
+
+  enum ResponseType {
+    Block, Quarantine, Alert;
+  }
+
+  class Threat {
+    String uniqueIdentifier;
+    Vulnerability [ ] vulnerabilities;
+  }
+
+  class Vulnerability {
+    String name;
+    String description;
+  }
+
+  class SystemAdministrator {
+    void configureSystem();
+    void addComponent(Component component);
+    void removeComponent(Component component);
+    void monitorPerformance();
+  }
+
+  interface Component {
+    void execute();
+  }
+
+  composition CyberDefense -> (has) SystemAdministrator;
+  composition Sensor -> Network [*];
+  composition Analyzer -> Threat [*];
+  composition Responder -> Threat [*];
+  composition Database -> Threat [*];
+  composition AI -> Threat [*];
+}

@@ -1,0 +1,24 @@
+
+classdiagram SmartCityAirQuality {
+
+  class Sensor {
+    String location;
+    String parameter;
+    float value;
+  }
+
+  class MonitoringStation {
+    String location;
+    Sensor [ ] sensors;
+  }
+
+  class CentralHub {
+    MonitoringStation [ ] stations;
+    void transmitData();
+    void createCustomAlert(float threshold, String pollutant);
+    void analyzeHistoricalData();
+  }
+
+  composition CentralHub -> MonitoringStation [*];
+  composition MonitoringStation -> Sensor [*];
+}

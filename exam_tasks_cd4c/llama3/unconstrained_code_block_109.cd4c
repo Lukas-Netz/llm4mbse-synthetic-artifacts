@@ -1,0 +1,83 @@
+
+
+
+
+classdiagram CustomerInsights  {
+
+  class CustomerProfile  {
+    String customerID;
+    String name;
+    String email;
+    String demographics;
+    Behavior behavior;
+  }
+
+  class Behavior  {
+    String purchaseHistory;
+    String browsingHistory;
+    String searchHistory;
+  }
+
+  class DataIntegration  {
+    SocialMedia socialMedia;
+    Email email;
+    CustomerFeedback customerFeedback;
+  }
+
+  class SocialMedia  {
+    String socialMediaHandle;
+    String socialMediaProfile;
+  }
+
+  class Email  {
+    String emailAddress;
+    String emailContent;
+  }
+
+  class CustomerFeedback  {
+    String feedbackText;
+    String feedbackRating;
+  }
+
+  class PredictiveAnalytics  {
+    MachineLearningAlgorithm machineLearningAlgorithm;
+  }
+
+  class MachineLearningAlgorithm  {
+    String algorithmType;
+    String algorithmParameters;
+  }
+
+  class PersonalizedRecommendation  {
+    String recommendationText;
+    String recommendationRating;
+  }
+
+  class InsightsGeneration  {
+    Report report;
+  }
+
+  class Report  {
+    String reportTitle;
+    String reportContent;
+  }
+
+  class Collaboration  {
+    Team team;
+  }
+
+  class Team  {
+    String teamName;
+    String teamMembers;
+  }
+
+  composition CustomerInsights -> (has) CustomerProfile;
+  composition CustomerInsights -> (has) DataIntegration;
+  composition DataIntegration -> (has) SocialMedia;
+  composition DataIntegration -> (has) Email;
+  composition DataIntegration -> (has) CustomerFeedback;
+  composition PredictiveAnalytics -> (has) MachineLearningAlgorithm;
+  composition PersonalizedRecommendation -> (has) recommendationText;
+  composition InsightsGeneration -> (has) Report;
+  composition Collaboration -> (has) Team;
+}

@@ -1,0 +1,109 @@
+
+classdiagram TherapyPlatform {
+
+    class Therapist {
+      String name;
+      String email;
+      String password;
+      List<Patient> patients;
+    }
+
+    class Patient {
+      String name;
+      String email;
+      String password;
+      List<TherapySession> therapySessions;
+    }
+
+    class TherapySession {
+      Date date;
+      Time time;
+      int duration;
+      Therapist therapist;
+      Patient patient;
+      List<Goal> goals;
+    }
+
+    class Goal {
+      String description;
+      String status;
+    }
+
+    association Therapist 
+      has
+      (List) <-> Patient;
+
+    association Patient 
+      has
+      (List) <-> TherapySession;
+
+    association TherapySession 
+      has
+      (Therapist)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (List) <-> Goal;
+
+    association Patient 
+      has
+      (List) <-> Goal;
+
+    association TherapySession 
+      has
+      (Date)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (Time)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (int)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (Goal)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (Therapist)
+      -> Patient;
+
+    association TherapySession 
+      has
+      (Date)
+      -> Therapist;
+
+    association TherapySession 
+      has
+      (Time)
+      -> Therapist;
+
+    association TherapySession 
+      has
+      (int)
+      -> Therapist;
+
+    association TherapySession 
+      has
+      (Goal)
+      -> Therapist;
+
+    association TherapySession 
+      has
+      (Date)
+      -> Therapist;
+
+    association TherapySession 
+      has
+      (Time)
+      -> Therapist;
+
+   
+}

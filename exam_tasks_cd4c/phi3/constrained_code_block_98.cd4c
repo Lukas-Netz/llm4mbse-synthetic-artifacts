@@ -1,0 +1,56 @@
+
+classdiagram DigitalHealthPlatform {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      Date dateOfBirth;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class MedicalCondition {
+      String name;
+      String description;
+      List<Symptom> symptoms;
+    }
+
+    class Symptom {
+      String type;
+      String description;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+      List<Patient> patients;
+    }
+
+    class Medication {
+      String name;
+      String description;
+      List<SideEffect> sideEffects;
+    }
+
+    class SideEffect {
+      String description;
+    }
+
+    class Appointment {
+      Date date;
+      Time time;
+      List<Attendee> attendees;
+    }
+
+    class Attendee {
+      String type;
+      String name;
+    }
+
+    composition Patient -> MedicalCondition [*];
+    composition Patient -> Medication [*];
+    composition Doctor -> Patient [*];
+    composition Doctor -> Appointment [*];
+    composition Medication -> Patient [*];
+    composition Appointment -> Attendee [*];
+}

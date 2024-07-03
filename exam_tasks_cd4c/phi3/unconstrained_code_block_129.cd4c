@@ -1,0 +1,88 @@
+
+classdiagram RetailManagement {
+
+    class Store {
+      String name;
+      String storeId;
+      List<Department> departments;
+    }
+
+    class Department {
+      String departmentName;
+      String departmentId;
+      List<Product> products;
+    }
+
+    class Product {
+      String productName;
+      String productId;
+      double price;
+      ProductType type;
+    }
+
+    class Clothing extends Product {
+      String size;
+      String color;
+      String material;
+    }
+
+    class Electronics extends Product {
+      String brand;
+      String model;
+      String warranty;
+    }
+
+    class HomeGoods extends Product {
+      String material;
+      String size;
+      String color;
+    }
+
+    class Customer {
+      String customerName;
+      List<Order> orders;
+    }
+
+    class Order {
+      String orderId;
+      Customer customer;
+      List<Product> orderedProducts;
+    }
+
+    class SalesReport {
+      String reportId;
+      List<Sale> sales;
+    }
+
+    class InventoryReport {
+      String reportId;
+      List<Product> inventory;
+    }
+
+    class CustomerInformationReport {
+      String reportId;
+      List<Customer> customers;
+    }
+
+    class StoreAdmin {
+      void addDepartment(Department department);
+      void removeDepartment(Department department);
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      SalesReport generateSalesReport();
+      InventoryReport generateInventoryReport();
+      CustomerInformationReport generateCustomerReport();
+    }
+
+    enum ProductType {
+      Clothing, Electronics, HomeGoods;
+    }
+
+    association Store -> Department [*];
+    association Department -> Product [*];
+    association Customer -> Order [*];
+    association Order -> Product [*];
+    composition StoreAdmin -> Store;
+}

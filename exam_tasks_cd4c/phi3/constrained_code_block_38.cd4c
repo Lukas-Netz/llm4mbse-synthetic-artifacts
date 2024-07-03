@@ -1,0 +1,69 @@
+
+classdiagram DroneSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      DroneType type;
+      int cameraResolution;
+      int cargoCapacity;
+      int surveillayerange;
+      DroneState state;
+    }
+
+    class Controller {
+      String controllerIdentifier;
+      ControllerState state;
+      void sendCommand(Command command);
+    }
+
+    class CommunicationSystem {
+      String systemIdentifier;
+      CommunicationState state;
+      void sendMessage(Message message);
+      void receiveMessage(Message message);
+    }
+
+    class WeatherStation {
+      String stationIdentifier;
+      WeatherData data;
+    }
+
+    enum DroneType {
+      Reconnaissance, Cargo, Surveillance;
+    }
+
+    enum DroneState {
+      Idle, Flying, Landed;
+    }
+
+    enum ControllerState {
+      Connected, Disconnected;
+    }
+
+    enum CommunicationState {
+      Connected, Disconnected;
+    }
+
+    enum WeatherData {
+      Temperature, Humidity, WindSpeed;
+    }
+
+    class Command {
+      void changeAltitude(int altitude);
+      void changeSpeed(int speed);
+      void changeDirection(String direction);
+    }
+
+    class Message {
+      String content;
+    }
+
+    composition DroneSystem -> (has) Drone;
+    composition DroneSystem -> (has) Controller;
+    composition DroneSystem -> (has) CommunicationSystem;
+    composition DroneSystem -> (has) WeatherStation;
+
+    association Drone -> Controller [*];
+    association Drone -> CommunicationSystem [*];
+    association DroneSystem -> WeatherStation [*];
+}

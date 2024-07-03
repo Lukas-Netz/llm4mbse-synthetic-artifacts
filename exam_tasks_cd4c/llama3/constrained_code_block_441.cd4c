@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram ActingClasses  {
+
+  class Student  {
+    String uniqueId;
+    String name;
+    String email;
+    -> Enrollment[*];
+  }
+
+  class Instructor  {
+    String uniqueId;
+    String name;
+    String expertise;
+    -> Course[*];
+  }
+
+  class Course  {
+    String uniqueId;
+    String name;
+    String description;
+    -> Lesson[*];
+    -> Enrollment[*];
+    Instructor instructor;
+  }
+
+  class Enrollment  {
+    Student student;
+    Course course;
+    int lessonsCompleted;
+    double grade;
+  }
+
+  class Lesson  {
+    Course course;
+    String material;
+    Assignment assignment;
+  }
+
+  class Assignment  {
+    Lesson lesson;
+    String description;
+  }
+}

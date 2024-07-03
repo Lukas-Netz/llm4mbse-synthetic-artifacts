@@ -1,0 +1,70 @@
+
+classdiagram VRSimulation {
+
+  class SimulationEnvironment {
+    String uniqueIdentifier;
+    Scenario scenario;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+    Position position;
+    Orientation orientation;
+    Velocity velocity;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String role;
+  }
+
+  class Scenario {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    SimulationEnvironment environment;
+  }
+
+  class Task {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Date deadline;
+  }
+
+  class Position {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Orientation {
+    double pitch;
+    double yaw;
+    double roll;
+  }
+
+  class Velocity {
+    double linearVelocity;
+    double angularVelocity;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition SimulationEnvironment [*] Scenario [has_one]
+  -- composition/ 											{ 											ordered
+ 				}
+ 				;
+  composition SimulationEnvironment -> Device [*];
+  association User [*] SimulationEnvironment [has_one]
+  -- association/
+ 				;
+  association Task [*] Scenario [has_one]
+  -- association/
+ 				;
+}

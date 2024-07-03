@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram RecipeManagementSystem  {
+
+  class Recipe  {
+    String name;
+    String description;
+    int cookingTime;
+    Cuisine cuisine;
+  }
+
+  class Ingredient  {
+    String name;
+    int quantity;
+    UnitOfMeasurement unit;
+    Category category;
+  }
+
+  class CookingInstruction  {
+    String step;
+  }
+
+  class ShoppingList  {
+    Recipe recipe;
+    Ingredient ingredient;
+  }
+
+  class MealPlan  {
+    Date date;
+    Recipe recipe;
+    Ingredient ingredient;
+  }
+
+  class Cuisine  {
+    String name;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class UnitOfMeasurement  {
+    String name;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Recipe recipe;
+    Ingredient ingredient;
+    CookingInstruction cookingInstruction;
+  }
+
+  composition Recipe -> (has) Cuisine;
+  composition Recipe -> (has) CookingInstruction;
+  composition Ingredient -> (has) Category;
+  composition Ingredient -> (has) UnitOfMeasurement;
+  composition ShoppingList -> (has) Recipe;
+  composition ShoppingList -> (has) Ingredient;
+  composition MealPlan -> (has) Date;
+  composition MealPlan -> (has) Recipe;
+  composition MealPlan -> (has) Ingredient;
+  composition User -> Recipe;
+  composition User -> Ingredient;
+  }

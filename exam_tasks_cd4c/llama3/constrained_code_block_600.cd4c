@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram LunarColonizationInfrastructure  {
+
+  class LunarBase  {
+    String name;
+    String location;
+    boolean status;
+  }
+
+  class Module  {
+    String uniqueIdentifier;
+    ModuleType type;
+    boolean status;
+  }
+
+  enum ModuleType  {
+    LivingQuarters,
+    LifeSupport,
+    Communication,
+    ResourceManagement
+  ;}
+
+  class ControlSystem  {
+    -> Module[*];
+    void monitorModuleStatus(Module module);
+    void sendCommandToModule(Module module, String command);
+    void updateModuleConfiguration(Module module, String configuration);
+  }
+
+  class Sensor  {
+    -> Module[*];
+    String sensorData;
+  }
+
+  class Actuator  {
+    -> Module[*];
+    void executeCommand(String command);
+  }
+
+  class ResourceManagement extends Module  {
+    int oxygenLevel;
+    int waterLevel;
+    int foodLevel;
+  }
+
+  composition LunarBase -> Module[*];
+  composition ControlSystem -> Module[*];
+  composition ResourceManagement -> Sensor[*];
+  composition ResourceManagement -> Actuator[*];
+  composition Module -> Sensor[*];
+  composition Module -> Actuator[*];
+}

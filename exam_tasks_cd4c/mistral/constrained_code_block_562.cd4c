@@ -1,0 +1,54 @@
+
+classdiagram RoboticFishFarming {
+
+  class Tank {
+    String name;
+    int capacity;
+    Fish [ ] fish;
+    Sensor sensor;
+  }
+
+  class Fish {
+    HealthStatus health;
+    GrowthStatus growth;
+    FeedingStatus feeding;
+  }
+
+  enum HealthStatus {
+    Healthy, Sick;
+  }
+
+  enum GrowthStatus {
+    Growing, Stunted;
+  }
+
+  enum FeedingStatus {
+    Fed, Hungry;
+  }
+
+  class Feeder {
+    String name;
+    int capacity;
+  }
+
+  class Sensor {
+    String type;
+    WaterQuality waterQuality;
+    Temperature temperature;
+  }
+
+  class WaterQuality {
+    int pH;
+    int nitrate;
+  }
+
+  class Temperature {
+    int value;
+    boolean isWithinRange;
+  }
+
+  composition Tank [*] RoboticFishFarming [partOf]
+  -- Association
+  - 											;
+  - 																							association Feeder --[ assignTo ] Tank;
+}

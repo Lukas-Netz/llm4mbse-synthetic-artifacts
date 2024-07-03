@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram UndergroundTransportationSystem  {
+
+  class Line  {
+    String name;
+    Station[] stations;
+    Direction direction;
+  }
+
+  class Station  {
+    String name;
+    String uniqueIdentifier;
+    Platform[] platforms;
+  }
+
+  class Platform  {
+    Track[] tracks;
+  }
+
+  class Track  {
+    Train[] trains;
+  }
+
+  class Train  {
+    String uniqueIdentifier;
+    Car[] cars;
+  }
+
+  class Car  {
+    int capacity;
+  }
+
+  class ControlCenter  {
+    Sensor[] sensors;
+    void sendCommand(Train train, Command command);
+  }
+
+  class Sensor  {
+    String type;
+    String status;
+  }
+
+  class Command  {
+    String type;
+  }
+
+  enum Direction  {
+    NorthSouth, EastWest;
+  }
+
+  composition Line -> Station[*];
+  composition Station -> Platform[*];
+  composition Platform -> Track[*];
+  composition Track -> Train[*];
+  composition Train -> Car[*];
+  composition ControlCenter -> Sensor[*];
+}

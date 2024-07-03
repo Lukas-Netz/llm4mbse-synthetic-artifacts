@@ -1,0 +1,170 @@
+
+classdiagram DigitalUrbanFarmingPlatform {
+
+    class Farm {
+      String farmId;
+      String location;
+      Plot[] plots;
+    }
+
+    class Plot {
+      String plotId;
+      int size;
+      String plotType;
+      Crop[] crops;
+    }
+
+    class Crop {
+      String cropId;
+      String cropType;
+      GrowthStage growthStage;
+    }
+
+    class WeatherStation {
+      String stationId;
+      WeatherData weatherData;
+    }
+
+    class WeatherData {
+      int temperature;
+      int humidity;
+      double precipitation;
+    }
+
+    class Admin {
+      void addFarm(Farm farm);
+      void removeFarm(Farm farm);
+      void addPlot(Plot plot);
+      void removePlot(Plot plot);
+      void addCrop(Crop crop);
+      void removeCrop(Crop crop);
+      void sendNotification(String message);
+    }
+
+    enum GrowthStage {
+      Seedling, Mature, Harvest
+   
+   
+  
+(composition)
+   
+ ;
+
+  association Admin 
+   
+   
+  ;
+
+  association WeatherStation
+   
+   
+  ;
+
+  association Farm
+   
+   
+  ;
+
+  association Plot
+   
+   
+  ;
+
+  association Crop
+   
+   
+  ;
+
+  association WeatherData
+   
+   
+  ;
+}
+
+enum WeatherData {
+  temperature, humidity, precipitation
+
+  ;
+}
+
+enum GrowthStage {
+  seedling, mature, harvest
+
+  ;
+}
+
+enum CropType {
+  tomato, lettuce, basil
+
+  ;
+}
+
+enum PlotType {
+  vegetable, fruit, herb
+
+  ;
+}
+
+class Admin {
+  void addFarm(Farm farm);
+  void removeFarm(Farm farm);
+  void addPlot(Plot plot);
+  void removePlot(Plot plot);
+  void addCrop(Crop crop);
+  void removeCrop(Crop crop);
+  void sendNotification(String message);
+}
+
+class Farm {
+  String farmId;
+  String location;
+  Plot[] plots;
+}
+
+class Plot {
+  String plotId;
+  int size;
+  String plotType;
+  Crop[] crops;
+}
+
+class Crop {
+  String cropId;
+  String cropType;
+  GrowthStage growthStage;
+}
+
+class WeatherStation {
+  String stationId;
+  WeatherData weatherData;
+}
+
+class WeatherData {
+  int temperature;
+  int humidity;
+  double precipitation;
+}
+
+enum GrowthStage {
+  Seedling, Mature, Harvest
+
+  ;
+}
+
+enum CropType {
+  tomato, lettuce, basil
+
+  ;
+}
+
+enum PlotType {
+  vegetable, fruit, herb
+
+  ;
+}
+
+
+
+
+
+}

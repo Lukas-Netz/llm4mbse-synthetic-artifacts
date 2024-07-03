@@ -1,0 +1,57 @@
+
+classdiagram CryptocurrencyExchange {
+
+    class CryptocurrencyExchange {
+      String name;
+      String uniqueIdentifier;
+      List<Account> accounts;
+      List<Cryptocurrency> cryptocurrencies;
+    }
+
+    class Account {
+      String uniqueIdentifier;
+      String accountType;
+      String balance;
+    }
+
+    class UserAccount extends Account {
+      String username;
+      String password;
+    }
+
+    class BusinessAccount extends Account {
+      String businessName;
+      String taxID;
+    }
+
+    class Cryptocurrency {
+      String uniqueIdentifier;
+      String name;
+      double price;
+      double tradingVolume;
+    }
+
+    class Order {
+      String uniqueIdentifier;
+      String orderType;
+      int quantity;
+      double price;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      Order order;
+      double fee;
+    }
+
+    class Notification {
+      String uniqueIdentifier;
+      String message;
+    }
+
+    association CryptocurrencyExchange -> (has) Account [*];
+    association CryptocurrencyExchange -> (has) Cryptocurrency [*];
+    association CryptocurrencyExchange -> (has) Order [*];
+    association CryptocurrencyExchange -> (has) Transaction [*];
+    association CryptocurrencyExchange -> (has) Notification [*];
+}

@@ -1,0 +1,31 @@
+
+classdiagram TranslationSystem {
+
+  class Dictionary {
+    Map<String, Map<String, String>> translations;
+    void addTranslation(String word, String language, String translation);
+    String getTranslation(String word, String language);
+  }
+
+  class GrammarModule {
+    void parseText(String text);
+    SentenceStructure parseSentenceStructure(String text);
+  }
+
+  class TranslationModule {
+    SentenceStructure sentenceStructure;
+    Dictionary dictionary;
+    String translate(SentenceStructure structure, Dictionary dictionary);
+  }
+
+  class UserInterface {
+    void inputText(String text);
+    String selectLanguage(String language);
+    String translateText(String text, String language);
+  }
+
+  association UserInterface -> TranslationSystem;
+  association TranslationSystem -> Dictionary;
+  association TranslationSystem -> GrammarModule;
+  association TranslationSystem -> TranslationModule;
+}

@@ -1,0 +1,69 @@
+
+classdiagram CoralReefSystem {
+
+    class CoralReef {
+      String uniqueIdentifier;
+      Location location;
+      double size;
+      HealthStatus healthStatus;
+      CoralPolyp[] polyps;
+      Fish[] fish;
+      WaterQuality waterQuality;
+      HumanActivity[] humanActivities;
+    }
+
+    class CoralPolyp {
+      String uniqueIdentifier;
+      double growthRate;
+      Color color;
+      HealthStatus healthStatus;
+      CoralPolyp(String id, double growthRate, Color color);
+    }
+
+    class Fish {
+      String uniqueIdentifier;
+      String species;
+      double size;
+      Behavior behavior;
+      Fish(String id, String species, double size, Behavior behavior);
+    }
+
+    class WaterQuality {
+      double temperature;
+      double pH;
+      double nutrientLevels;
+      WaterQuality(double temperature, double pH, double nutrientLevels);
+    }
+
+    class HumanActivity {
+      String activityType;
+      double impactLevel;
+      HumanActivity(String activityType, double impactLevel);
+    }
+
+    class Location {
+      String latitude;
+      String longitude;
+      Location(String latitude, String longitude);
+    }
+
+    class HealthStatus {
+      String status;
+      HealthStatus(String status);
+    }
+
+    class Color {
+      String colorValue;
+      Color(String colorValue);
+    }
+
+    class Behavior {
+      String behaviorType;
+      Behavior(String behaviorType);
+    }
+
+    association CoralReef -> CoralPolyp [*];
+    association CoralReef -> Fish [*];
+    association CoralReef -> WaterQuality [*];
+    association CoralReef -> HumanActivity [*];
+}

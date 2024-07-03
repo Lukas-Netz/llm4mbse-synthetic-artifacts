@@ -1,0 +1,85 @@
+
+classdiagram HealthRecordSystem {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      Date dateOfBirth;
+      ContactInfo contactInfo;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+    }
+
+    class Nurse {
+      String uniqueId;
+      String name;
+      String role;
+    }
+
+    class Medication {
+      String uniqueId;
+      String name;
+      String dosageInstructions;
+    }
+
+    class Test {
+      String uniqueId;
+      String name;
+      String result;
+    }
+
+    class Appointment {
+      String uniqueId;
+      Date date;
+      Time time;
+    }
+
+    class Report {
+      String uniqueId;
+      Date date;
+      String content;
+    }
+
+    class PatientRecord {
+      Patient patient;
+      List<Appointment> appointments;
+      List<Test> testResults;
+      List<Medication> medications;
+    }
+
+    class DoctorRecord {
+      Doctor doctor;
+      List<Patient> patients;
+    }
+
+    class NurseRecord {
+      Nurse nurse;
+      List<Patient> patients;
+    }
+
+    class MedicationRecord {
+      Medication medication;
+      List<Patient> patients;
+    }
+
+    class TestRecord {
+      Test test;
+      List<Patient> patients;
+    }
+
+    class ReportGenerator {
+      void generatePatientReport(Patient patient);
+      void generateTestResultAlert(Test test);
+    }
+
+    association PatientRecord -> Patient;
+    association DoctorRecord -> Doctor;
+    association NurseRecord -> Nurse;
+    association MedicationRecord -> Medication;
+    association TestRecord -> Test;
+    association ReportGenerator -> Report;
+}

@@ -1,0 +1,45 @@
+
+classdiagram AirQualityManagement {
+
+  class City {
+    UrbanAirQualityManagement system;
+  }
+
+  class UrbanAirQualityManagement {
+    MonitoringStation [ ] stations;
+    void addStation(MonitoringStation station);
+    void removeStation(MonitoringStation station);
+    AirQualityData getAirQualityData();
+    HistoricalData getHistoricalData();
+    void sendAlerts();
+  }
+
+  class MonitoringStation {
+    String location;
+    void reportData();
+  }
+
+  class AirQualityData {
+    float PM;
+    float NO2;
+    float O3;
+  }
+
+  class HistoricalData {
+    float PMHistory;
+    float NO2History;
+    float O3History;
+  }
+
+  class Recommendation {
+    String message;
+    RecommendationType type;
+  }
+
+  enum RecommendationType {
+    StayIndoors, WearMask, ReduceOutdoorActivities;
+  }
+
+  composition City -> UrbanAirQualityManagement;
+  composition UrbanAirQualityManagement -> MonitoringStation [*];
+}

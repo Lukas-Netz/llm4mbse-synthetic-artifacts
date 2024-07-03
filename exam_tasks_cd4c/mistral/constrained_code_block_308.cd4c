@@ -1,0 +1,46 @@
+
+classdiagram MobileTicketing {
+
+  class User {
+    String uniqueIdentifier;
+    -> Ticket [*];
+  }
+
+  class Ticket {
+    String uniqueIdentifier;
+    TicketType type;
+    LocalDateTime validityPeriod;
+  }
+
+  enum TicketType {
+    SingleRide, DayPass, WeekPass, MonthPass;
+  }
+
+  class PaymentMethod {
+    String uniqueIdentifier;
+  }
+
+  class Vehicle {
+    String uniqueIdentifier;
+    Route associatedRoute;
+  }
+
+  class Route {
+    String uniqueIdentifier;
+    Vehicle associatedVehicle;
+    -> Stop [*];
+  }
+
+  class Stop {
+    String uniqueIdentifier;
+    Route associatedRoute;
+  }
+
+  association User --o00o- 											{ 											ordered						}						;
+  association User --o00o- 											{ 											ordered						}						;
+  association Ticket --o00o- 											{ 											ordered						}						;
+  association PaymentMethod --o00o- 											;
+  association Vehicle --o00o- 											;
+  association Route --o00o- 											;
+  association Stop --o00o- 											;
+}

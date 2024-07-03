@@ -1,0 +1,77 @@
+
+classdiagram MusicCollaborationPlatform {
+
+    class Project {
+      List<Track> tracks;
+      List<Collaborator> collaborators;
+      void shareProject(Collaborator collaborator);
+      void addCollaborator(Collaborator collaborator);
+      void removeCollaborator(Collaborator collaborator);
+      List<Rating> getRatings();
+      List<Review> getReviews();
+    }
+
+    class Track {
+      String name;
+      List<Version> versions;
+      List<Artist> artists;
+      void addArtist(Artist artist);
+      void removeArtist(Artist artist);
+      void addVersion(Version version);
+      void removeVersion(Version version);
+    }
+
+    class Version {
+      String name;
+      List<Instrument> instruments;
+      void addInstrument(Instrument instrument);
+      void removeInstrument(Instrument instrument);
+    }
+
+    class Instrument {
+      String name;
+      List<Setting> settings;
+      void addSetting(Setting setting);
+      void removeSetting(Setting setting);
+    }
+
+    class Setting {
+      String name;
+      int value;
+    }
+
+    class Artist {
+      String name;
+      List<Project> projects;
+      void addProject(Project project);
+      void removeProject(Project project);
+    }
+
+    class Collaborator {
+      String name;
+      List<Project> projects;
+      void addProject(Project project);
+      void removeProject(Project project);
+    }
+
+    class Rating {
+      int score;
+      String comment;
+    }
+
+    class Review {
+      String comment;
+    }
+
+  composition Project -> Track [*];
+  composition Project -> Collaborator [*];
+  composition Project -> Rating [*];
+  composition Project -> Review [*];
+  composition Track -> Artist [*];
+  composition Track -> Version [*];
+  composition Version -> Instrument [*];
+  composition Instrument -> Setting [*];
+  composition Artist -> Project [*];
+  composition Collaborator -> Project [*];
+  composition Collaborator -> Project [*];
+}

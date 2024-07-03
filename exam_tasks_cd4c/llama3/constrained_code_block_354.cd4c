@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram MobileAppAnalytics  {
+
+  class App  {
+    String uniqueIdentifier;
+    int versionNumber;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Segment segment;
+  }
+
+  class Segment  {
+    String name;
+    String description;
+  }
+
+  class Analytics  {
+    Session session;
+    Report report;
+  }
+
+  class Session  {
+    int duration;
+    boolean isBounced;
+  }
+
+  class Report  {
+    String title;
+    String description;
+    List<AnalyticsData> data;
+  }
+
+  class AnalyticsData  {
+    String metric;
+    double value;
+  }
+
+  class Anomaly  {
+    String description;
+    Date timestamp;
+  }
+
+  class Alert  {
+    String description;
+    Date timestamp;
+  }
+
+  composition App -> Analytics [1..*];
+  composition User -> Segment [1..*];
+  composition Analytics -> Report [1..*];
+  composition Report -> AnalyticsData [*];
+  composition Analytics -> Anomaly [0..*];
+  composition Analytics -> Alert [0..*];
+  association App -> User [1..*];
+  association Report -> Filter [0..*];
+  association Filter -> App [1..*];
+  association Filter -> Segment [1..*];
+  association Filter -> TimePeriod [1..*];
+  }

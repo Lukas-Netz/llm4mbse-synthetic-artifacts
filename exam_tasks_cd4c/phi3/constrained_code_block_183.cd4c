@@ -1,0 +1,42 @@
+
+classdiagram FleetManagementSystem {
+
+    class Fleet {
+      String name;
+      String description;
+      List<Device> devices;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+      Fleet fleet;
+      String type;
+      Map<String, String> maintenanceHistory;
+    }
+
+    class Sensor extends Device {
+      String dataType;
+    }
+
+    class Tracker extends Device {
+      String location;
+    }
+
+    class Actuator extends Device {
+      String action;
+    }
+
+    enum DeviceStatus {
+      Online, Offline;
+    }
+
+    enum FleetType {
+      Sensors, Trackers, Actuators;
+    }
+
+    association Fleet -> List<<Device>>;
+    association Device -> Fleet;
+    association Device -> FleetType;
+    composition Device -> Map<<String, String>>;
+}

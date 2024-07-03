@@ -1,0 +1,42 @@
+
+classdiagram TeleoperatedSurgicalRobotSystem {
+
+    class SurgeonConsole {
+      UserInterface userInterface;
+      void controlRobotArm();
+    }
+
+    class RobotArm {
+      InstrumentSet instruments;
+      RobotArmState state;
+      void performTask(String task);
+    }
+
+    class PatientTable {
+      Patient patient;
+      void adjustPosition();
+    }
+
+    class Patient {
+      MedicalRecord record;
+      PatientState state;
+    }
+
+    enum RobotArmState {
+      Idle, Moving, TaskPerforming
+   
+   
+   ;}
+
+    enum PatientState {
+      Awake, Asleep, UnderAnesthesia
+   
+   
+   ;}
+
+    association SurgeonConsole -> RobotArm [*];
+    association PatientTable -> Patient [*];
+    association PatientTable -> RobotArm [*];
+    association Patient -> MedicalRecord [*];
+    association Patient -> PatientState [*];
+}

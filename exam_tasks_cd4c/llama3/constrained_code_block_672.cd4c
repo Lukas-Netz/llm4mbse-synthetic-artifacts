@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram DigitalIdentity  {
+
+  class User  {
+    String uniqueIdentifier;
+    -> Identity[*];
+  }
+
+  class Identity  {
+    String uniqueIdentifier;
+    -> Attribute[*];
+  }
+
+  class Attribute  {
+    String name;
+    String value;
+    Date timestamp;
+  }
+
+  enum AttributeType  {
+    Personal,
+    Professional,
+    Public;
+  }
+
+  class PersonalAttribute extends Attribute  {
+    String name;
+    Date dateOfBirth;
+    String address;
+  }
+
+  class ProfessionalAttribute extends Attribute  {
+    String jobTitle;
+    String employer;
+    String workExperience;
+  }
+
+  class PublicAttribute extends Attribute  {
+    String socialMediaProfile;
+    String onlinePresence;
+  }
+
+  class Verification  {
+    boolean isValid;
+  }
+
+  composition User -> Identity;
+  composition Identity -> Attribute;
+  composition Attribute -> Verification;
+}

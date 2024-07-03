@@ -1,0 +1,220 @@
+
+
+
+
+classdiagram DigitalArtMarketplace  {
+
+  class DigitalArt  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Artist artist;
+  }
+
+  class Artist  {
+    String name;
+    String email;
+  }
+
+  class PaymentMethod  {
+    String type;  # credit card; cryptocurrency
+  class
+
+  (class Payment  )  
+
+
+
+
+
+  ;
+
+  class Sale  
+
+
+
+
+
+  ;
+
+  class Analytics  
+
+
+
+
+
+  ;
+
+  class DigitalArtType  
+
+
+
+
+
+  ;
+
+  class DigitalArtwork  
+
+
+
+
+
+  ;
+
+  class Marketplace  
+
+
+
+
+
+  ;
+
+  composition Marketplace  
+
+
+
+
+
+  ;
+
+  composition Artist  
+
+
+
+
+
+  ;
+
+  composition DigitalArt 
+
+
+
+
+
+  ;
+
+  composition PaymentMethod 
+
+
+
+
+
+  ;
+
+  composition Sale 
+
+
+
+
+
+  ;
+
+  composition Analytics 
+
+
+
+
+
+  ;
+
+  composition DigitalArtType 
+
+
+
+
+
+  ;
+
+  composition DigitalArtwork 
+
+
+
+
+
+  ;
+
+  composition Marketplace 
+
+
+
+
+
+  ;
+
+  composition Artist 
+
+
+
+
+
+  ;
+
+  composition DigitalArt 
+
+
+
+
+
+  ;
+
+  composition PaymentMethod 
+
+
+
+
+
+  ;
+
+    }
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+composition Marketplace  ->  (has) DigitalArtwork[*];
+composition Artist  ->  (has) DigitalArt[*];
+composition DigitalArt  ->  (has) Artist;
+composition PaymentMethod  ->  (has) Payment[*];
+composition Sale  ->  (has) DigitalArt;
+composition Analytics  ->  (has) DigitalArtType[*];
+composition DigitalArtType  ->  (has) DigitalArtwork[*];
+composition DigitalArtwork  ->  (has) DigitalArt;
+composition Marketplace  ->  (has) PaymentMethod[*];
+composition Artist  ->  (has) Payment[*];
+composition DigitalArt  ->  (has) Sale[*];
+composition Payment  ->  (has) PaymentMethod;
+composition Sale  ->  (has) Analytics;
+composition Analytics  ->  (has) DigitalArtType[*];
+composition DigitalArtType  ->  (has) DigitalArtwork[*];
+composition DigitalArtwork  ->  (has) DigitalArt;
+composition Marketplace  ->  (has) PaymentMethod[*];
+  }

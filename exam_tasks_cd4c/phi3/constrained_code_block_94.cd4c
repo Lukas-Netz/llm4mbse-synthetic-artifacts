@@ -1,0 +1,73 @@
+
+classdiagram RenewableEnergyForecasting {
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    class SolarPanel {
+      String uniqueIdentifier;
+      int capacityKW;
+    }
+
+    class WindTurbine {
+      String uniqueIdentifier;
+      int capacityKW;
+    }
+
+    class ForecastModel {
+      String modelIdentifier;
+      double predictionAccuracy;
+      WeatherStation weatherStation;
+      SolarPanel solarPanel;
+      WindTurbine windTurbine;
+      void updateModel(WeatherStation weatherStation, SolarPanel solarPanel, WindTurbine windTurbine);
+    }
+
+    class EnergyStorage {
+      String storageIdentifier;
+      int capacityKWH;
+    }
+
+    class RenewableEnergyForecastingSystem {
+      WeatherStation[] weatherStations;
+      SolarPanel[] solarPanels;
+      WindTurbine[] windTurbines;
+      ForecastModel[] forecastModels;
+      EnergyStorage[] energyStorageSystems;
+      void addWeatherStation(WeatherStation weatherStation);
+      void removeWeatherStation(String uniqueIdentifier);
+      void addSolarPanel(SolarPanel solarPanel);
+      void removeSolarPanel(String uniqueIdentifier);
+      void addWindTurbine(WindTurbine windTurbine);
+      void removeWindTurbine(String uniqueIdentifier);
+      void addForecastModel(ForecastModel forecastModel);
+      void removeForecastModel(String modelIdentifier);
+      void addEnergyStorage(EnergyStorage energyStorageSystem);
+      void removeEnergyStorage(String storageIdentifier);
+}
+
+composition RenewableEnergyForecastingSystem -> (has) WeatherStation[*];
+composition RenewableEnergyForecastingSystem -> (has) SolarPanel[*];
+composition RenewableEnergyForecastingSystem -> (has) WindTurbine[*];
+composition RenewableEnergyForecastingSystem -> (has) ForecastModel[*];
+composition RenewableEnergyForecastingSystem -> (has) EnergyStorage[*];
+
+association RenewableEnergyForecastingSystem -> (uses) WeatherStation;
+association RenewableEnergyForecastingSystem -> (uses) SolarPanel;
+association RenewableEnergyForecastingSystem -> (uses) WindTurbine;
+association RenewableEnergyForecastingSystem -> (uses) ForecastModel;
+association RenewableEnergyForecastingSystem -> (uses) EnergyStorage;
+
+association ForecastModel -> (uses) WeatherStation;
+association ForecastModel -> (uses) SolarPanel;
+association ForecastModel -> (uses) WindTurbine;
+
+association EnergyStorage -> (uses) RenewableEnergyForecastingSystem;
+
+ 
+
+ }

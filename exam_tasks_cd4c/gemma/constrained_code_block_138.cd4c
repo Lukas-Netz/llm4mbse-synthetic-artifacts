@@ -1,0 +1,102 @@
+
+
+classdiagram SmartEmailMarketingSystem {
+
+  class CustomerDatabase {
+    private Map<String, Customer> customers;
+
+    public void addCustomer(Customer customer);
+    public Customer getCustomer(String emailAddress);
+  }
+
+  class EmailTemplateLibrary {
+    private Map<String, EmailTemplate> templates;
+
+    public EmailTemplate getTemplate(String name);
+    public void addTemplate(EmailTemplate template);
+  }
+
+  class CampaignManager {
+    private List<Campaign> campaigns;
+
+    public void createCampaign(Campaign campaign);
+    public void sendCampaign(Campaign campaign);
+    public void trackCampaignPerformance(Campaign campaign);
+  }
+
+  class CustomerSegmentationModule {
+    private Map<String, CustomerSegment> segments;
+
+    public void createSegment(CustomerSegment segment);
+    public void assignCustomersToSegment(CustomerSegment segment, List<Customer> customers);
+  }
+
+  class ReportingModule {
+    private Map<String, CampaignReport> reports;
+
+    public CampaignReport getReport(String campaignName);
+    public void generateReport(Campaign campaign);
+  }
+
+  class Customer {
+    private String name;
+    private String emailAddress;
+    private List<Purchase> purchases;
+
+    public String getName();
+    public String getEmailAddress();
+    public List<Purchase> getPurchases();
+  }
+
+  class Purchase {
+    private String product;
+    private int quantity;
+
+    public String getProduct();
+    public int getQuantity();
+  }
+
+  class EmailTemplate {
+    private String subject;
+    private String content;
+
+    public String getSubject();
+    public String getContent();
+  }
+
+  class Campaign {
+    private String name;
+    private EmailTemplate template;
+    private List<CustomerSegment> segments;
+
+    public String getName();
+    public EmailTemplate getTemplate();
+    public void setSegments(List<CustomerSegment> segments);
+  }
+
+  class CustomerSegment {
+    private String name;
+    private List<Customer> customers;
+
+    public String getName();
+    public List<Customer> getCustomers();
+  }
+
+  class CampaignReport {
+    private String campaignName;
+    private int opens;
+    private int clicks;
+    private int conversions;
+
+    public String getCampaignName();
+    public int getOpens();
+    public int getClicks();
+    public int getConversions();
+  }
+
+  composition CustomerDatabase -> (has) Customer;
+  composition EmailTemplateLibrary -> (has) EmailTemplate;
+  composition CampaignManager -> (has) Campaign;
+  composition CustomerSegmentationModule -> (has) CustomerSegment;
+  composition ReportingModule -> (has) CampaignReport;
+}

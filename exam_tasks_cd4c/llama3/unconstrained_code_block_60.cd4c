@@ -1,0 +1,43 @@
+
+
+
+classdiagram VideoSurveillance  {
+
+  class Camera  {
+    String uniqueIdentifier;
+    Location location;
+    CameraType type;
+  }
+
+  class Monitor  {
+    String uniqueIdentifier;
+    int resolution;
+    Camera camera;
+  }
+
+  class CentralControlUnit  {
+    Camera[] cameras;
+    Monitor[] monitors;
+    void addCamera(Camera camera);
+    void removeCamera(Camera camera);
+    void setCameraResolution(Camera camera, int resolution);
+    void setMonitorDisplaySettings(Monitor monitor, int resolution);
+    void receiveMotionAlert(Camera camera);
+  }
+
+  enum CameraType  {
+    Indoor, Outdoor;
+  }
+
+  enum CameraResolution  {
+    Low, Medium, High;
+  }
+
+  enum MonitorResolution  {
+    Low, Medium, High;
+  }
+
+  composition CentralControlUnit -> (has) Camera[*];
+  composition CentralControlUnit -> (has) Monitor[*];
+  composition Monitor -> (has) Camera [1];
+}

@@ -1,0 +1,64 @@
+
+classdiagram VRRealEstate {
+
+  class Property {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+  }
+
+  enum PropertyType {
+    Residential, Commercial, Industrial;
+  }
+
+  class Room {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    RoomType type;
+  }
+
+  enum RoomType {
+    LivingRoom, Bedroom, Office, Kitchen, Bathroom, Other;
+  }
+
+  class Object {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ObjectType type;
+  }
+
+  enum ObjectType {
+    Furniture, Decoration, Appliance, Other;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String password;
+  }
+
+  class Tour {
+    String uniqueIdentifier;
+    String name;
+    Room [ ] rooms;
+    Object [ ] objects;
+  }
+
+  class VRDevice {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  composition Property [*] has [  many ] (Room)
+  -- compositionRoom [*]  -  {  ordered }  ;
+  composition Room [*] has [  many ] (Object)
+  -- compositionObject [*]  -  {  ordered }  ;
+  association User [*] has [  one ] (Tour)
+  -- associationTour [*]  -  {  ordered }  ;
+  association VRDevice [*] has [  one ] (Tour)
+  -- associationTour [*]  -  {  ordered }  ;
+}

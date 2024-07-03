@@ -1,0 +1,37 @@
+
+
+
+classdiagram CloudOrchestration  {
+
+  class CloudProvider  {
+    String name;
+    String description;
+    CloudService  CloudService  ;  }
+  class CloudService  {
+    String name;
+    String description;
+    Region  Region  ;  }
+  class Customer  {
+    String name;
+    CloudService  CloudService  ;  }
+  class VirtualMachine extends CloudService  {
+    int cpu;
+    int memory;
+    int storage;  }
+  class Storage extends CloudService  {
+    int capacity;
+    String type;  }
+  class Database extends CloudService  {
+    int size;
+    String type;  }
+  class Region  {
+    String name;
+    String description;  }
+  class Operation  {
+    String name;
+    String description;  }
+  class CloudProviderOperation extends Operation  {
+    CloudProvider cloudProvider;  }
+  class CustomerOperation extends Operation  {
+    Customer customer;  }
+  composition CloudProvider  ->  (has) CloudService  ;  composition CloudService  ->  (has) Region  ;  composition Customer  ->  (has) CloudService  ;  composition CloudService  ->  (has) VirtualMachine  ;  composition CloudService  ->  (has) Storage  ;  composition CloudService  ->  (has) Database  ;  association CloudProvider  ->  (performs) CloudProviderOperation  ;  association Customer  ->  (performs) CustomerOperation  ;  }

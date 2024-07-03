@@ -1,0 +1,49 @@
+
+classdiagram CustomerSupportSystem {
+
+    class CustomerSupportSystem {
+      CustomerRequest[] customerRequests;
+      CustomerSupportAgent[] customerSupportAgents;
+      CustomerSupportAgentSkills[] agentSkills;
+      CustomerSupportAgentPerformance[] agentPerformance;
+      ReportGenerator reportGenerator;
+    }
+
+    class CustomerRequest {
+      String product;
+      Customer customer;
+      CustomerSupportAgent assignedAgent;
+      CustomerSupportRequestStatus status;
+    }
+
+    class CustomerSupportAgent {
+      String agentId;
+      String name;
+      CustomerSupportAgentSkills skills;
+    }
+
+    class CustomerSupportAgentSkills {
+      String skill;
+      int expertiseLevel;
+    }
+
+    class CustomerSupportRequestStatus {
+      String status;
+    }
+
+    class CustomerSupportAgentPerformance {
+      CustomerSupportAgent agent;
+      int totalTimeSpent;
+      int resolvedRequests;
+    }
+
+    class ReportGenerator {
+      void generatePerformanceReport();
+    }
+
+    association CustomerSupportSystem -> CustomerRequest [*];
+    association CustomerSupportSystem -> CustomerSupportAgent [*];
+    association CustomerSupportSystem -> CustomerSupportAgentSkills [*];
+    association CustomerSupportSystem -> CustomerSupportAgentPerformance [*];
+    composition CustomerSupportSystem -> ReportGenerator;
+}

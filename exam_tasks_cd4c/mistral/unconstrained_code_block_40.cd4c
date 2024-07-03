@@ -1,0 +1,61 @@
+
+classdiagram PredictiveSupplyChain {
+
+  class Supplier {
+    String uniqueID;
+    String name;
+    String location;
+    -> Product [*];
+  }
+
+  class Product {
+    String uniqueID;
+    String name;
+    String category;
+    -> Supplier [*];
+    -> Warehouse [*];
+  }
+
+  class Warehouse {
+    String uniqueID;
+    String name;
+    String location;
+    -> Product [*];
+  }
+
+  class Order {
+    String uniqueID;
+    String customerName;
+    String orderDate;
+    -> Product [*];
+  }
+
+  class InventoryItem {
+    String uniqueID;
+    String productID;
+    String warehouseID;
+    int quantity;
+  }
+
+  class TransportationItem {
+    String uniqueID;
+    String orderID;
+    String supplierID;
+    String warehouseID;
+  }
+
+  class PredictiveSupplyChainSystem {
+    void predictBottlenecks();
+    void identifyDisruptions();
+    void analyzeImpact();
+    void updateRealTime();
+    void inputNewData();
+  }
+
+  composition PredictiveSupplyChainSystem -> Supplier;
+  composition PredictiveSupplyChainSystem -> Product;
+  composition PredictiveSupplyChainSystem -> Warehouse;
+  composition PredictiveSupplyChainSystem -> Order;
+  composition PredictiveSupplyChainSystem -> InventoryItem;
+  composition PredictiveSupplyChainSystem -> TransportationItem;
+}

@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram OnlineDesignCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    -> Topic[*];
+  }
+
+  class Instructor  {
+    String name;
+    String bio;
+    -> Course[*];
+  }
+
+  class Student  {
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Topic  {
+    String name;
+    -> Course[*];
+  }
+
+  class Assignment  {
+    String description;
+    -> Student[*];
+  }
+
+  class Feedback  {
+    String comment;
+    -> Assignment[*];
+  }
+
+  class CourseMaterial  {
+    String name;
+    -> Course[*];
+  }
+
+  class Grade  {
+    int score;
+    -> Assignment[*];
+  }
+
+  class Progress  {
+    boolean completed;
+    -> Course[*];
+  }
+
+  composition Course -> Topic;
+  composition Instructor -> Course;
+  composition Student -> Course;
+  composition Topic -> Course;
+  composition Assignment -> Student;
+  composition Feedback -> Assignment;
+  composition CourseMaterial -> Course;
+  composition Grade -> Assignment;
+  composition Progress -> Course;
+}

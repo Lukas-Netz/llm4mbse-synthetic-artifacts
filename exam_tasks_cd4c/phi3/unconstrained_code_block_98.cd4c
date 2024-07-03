@@ -1,0 +1,99 @@
+
+classdiagram SmartHospitalSystem {
+
+    class Department {
+      String name;
+      String uniqueIdentifier;
+      List<Room> rooms;
+    }
+
+    class Room {
+      String name;
+      String uniqueIdentifier;
+      List<Device> devices;
+      Patient patient;
+    }
+
+    class Device {
+      String name;
+      String uniqueIdentifier;
+      boolean isFunctioning;
+    }
+
+    class Patient {
+      String name;
+      int age;
+      MedicalRecord medicalRecord;
+      Room room;
+    }
+
+    class MedicalRecord {
+      List<VitalSign> vitalSigns;
+      List<TestResult> testResults;
+    }
+
+    class VitalSign {
+      String name;
+      double value;
+    }
+
+    class TestResult {
+      String name;
+      String result;
+    }
+
+    class MedicalStaff {
+      String name;
+      String role;
+      String qualifications;
+      Department department;
+      Schedule schedule;
+      PatientAssignment patientAssignment;
+    }
+
+    class Schedule {
+      List<Appointment> appointments;
+    }
+
+    class PatientAssignment {
+      Patient patient;
+      MedicalStaff staff;
+    }
+
+    class Appointment {
+      String date;
+      String time;
+      Patient patient;
+    }
+
+    class Billing {
+      Patient patient;
+      double charge;
+      boolean paymentReceived;
+    }
+
+    class Report {
+      String type;
+      String content;
+    }
+
+    composition Department -> (has) Room [*];
+    composition Department -> (has) MedicalStaff [*];
+    composition Department -> (has) PatientAssignment [*];
+    composition Department -> (has) Billing [*];
+    composition Department -> (has) Report [*];
+    composition Room -> (has) Device [*];
+    composition Room -> (has) Patient [*];
+    composition MedicalStaff -> (has) Schedule [*];
+    composition MedicalStaff -> (has) PatientAssignment [*];
+    composition MedicalStaff -> (has) Billing [*];
+    composition MedicalStaff -> (has) Report [*];
+    composition Patient -> (has) MedicalRecord [*];
+    composition Patient -> (has) VitalSign [*];
+    composition Patient -> (has) TestResult [*];
+    composition Patient -> (has) Billing [*];
+    composition Patient -> (has) Report [*];
+    composition Appointment -> (has) Patient [*];
+    composition Billing -> (has) Patient [*];
+    composition Report -> (has) Department [*];
+}

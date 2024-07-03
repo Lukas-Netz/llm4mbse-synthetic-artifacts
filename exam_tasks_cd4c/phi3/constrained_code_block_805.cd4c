@@ -1,0 +1,40 @@
+
+classdiagram DroneBasedCropSprayingSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      DroneType type;
+    }
+
+    class SprayingDrone extends Drone {
+      int sprayCapacity;
+    }
+
+    class MonitoringDrone extends Drone {
+      String cameraImage;
+    }
+
+    class Field {
+      String name;
+      int size;
+    }
+
+    class WeatherStation {
+      double temperature;
+      double humidity;
+      double windSpeed;
+    }
+
+    class SprayingSystem {
+      Drone sprayingDrones;
+      Field fields;
+      WeatherStation weatherStation;
+      void sprayField(Drone drone, Field field);
+      void getSprayUsage(Field field);
+    }
+
+    composition Drone -> SprayingSystem;
+    composition Drone -> MonitoringSystem;
+    composition SprayingSystem -> Field;
+    composition SprayingSystem -> WeatherStation;
+}

@@ -1,0 +1,41 @@
+
+
+<<h1>>
+  classdiagram HealthcareManagement {
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      <<collection>> MedicalCondition medicalConditions;
+      <<collection>> Prescription prescriptionList;
+    }
+    class MedicalRecord {
+      <<collection>> Diagnose diagnosisList;
+      <<collection>> Prescription prescriptionList;
+    }
+    class Doctor {
+      String uniqueIdentifier;
+      String name;
+      String specialty;
+      <<collection>> Patient assignedPatients;
+      Patient primaryDoctor;
+    }
+    class DoctorPatientInteraction {
+      Doctor primaryDoctor;
+      Patient primaryPatient;
+      String greate;
+      String greate;
+      String greate;
+    }
+    class Prescription {
+      String krak;
+       krak krak;
+       krak krak;
+    }
+    class Diagnose {
+       krak krak;
+    }
+    enum krak {
+       krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak; krak krak;
+    }
+  }

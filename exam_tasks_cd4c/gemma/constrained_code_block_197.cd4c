@@ -1,0 +1,93 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  
+  
+  
+  
+  {composition SmartHome  (has  Hub)
+  
+  
+  
+  ;composition SmartHome  (has  BackupPower)  
+  
+  
+  
+;composition Hub  (has  Device)  
+  
+  
+  
+;enumeration DeviceStatus
+  
+  
+  
+;enumeration ThermostatMode
+  
+  
+  
+  ;class Light
+  
+  
+  
+  ;class Thermostat
+  
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;class BackupPower
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;enum DeviceStatus
+  
+  
+  ;enum ThermostatMode
+  
+  
+  
+  ;association Hub  (has  BackupPower)  
+  
+  
+  
+;association Hub  (has  Device)  
+  
+  
+  
+;association SmartHome  (has  Hub)  
+  
+  
+  
+;association SmartHome  (has  BackupPower)  
+  
+  
+  
+;association Light  (has  Hub)  
+  
+  
+  
+;association Thermostat  (has  Hub)  
+  
+  
+  
+;association SecurityCamera  (has  Hub)  
+  
+  
+  
+;association BackupPower  (has  Hub)  
+  
+  
+  
+; }
+}

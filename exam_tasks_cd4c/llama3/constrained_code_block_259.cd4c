@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram BusinessIntelligence  {
+
+  class Product  {
+    String name;
+    String category;
+  }
+
+  class Store  {
+    String name;
+    String location;
+  }
+
+  class SalesData  {
+    Date date;
+    Product product;
+    Store store;
+    int quantity;
+  }
+
+  class Report  {
+    String title;
+    String description;
+  }
+
+  class Alert  {
+    Product product;
+    int threshold;
+    Date date;
+  }
+
+  class TrendAnalysis  {
+    List<SalesData> salesData;
+    String trend;
+  }
+
+  class RealTimeSalesTracker  {
+    -> SalesData [*];
+    void trackSales(SalesData salesData);
+  }
+
+  class ReportGenerator  {
+    -> Report [*];
+    void generateReport(Report report);
+  }
+
+  class AlertManager  {
+    -> Alert [*];
+    void sendAlert(Alert alert);
+  }
+
+  class TrendAnalyzer  {
+    -> TrendAnalysis [*];
+    void analyzeTrend(TrendAnalysis trendAnalysis);
+  }
+
+  composition RealTimeSalesTracker  ->  (tracks) SalesData;
+  composition ReportGenerator  ->  (generates) Report;
+  composition AlertManager  ->  (sends) Alert;
+  composition TrendAnalyzer  ->  (analyzes) TrendAnalysis;
+}

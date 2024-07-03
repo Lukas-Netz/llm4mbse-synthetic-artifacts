@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Plant  {
+    String uniqueIdentifier;
+    PlantStatus status;
+  }
+
+  class ProductionLine  {
+    String uniqueIdentifier;
+    Plant parent;
+    Machine  [  ] machines;
+  }
+
+  class Machine  {
+    String uniqueIdentifier;
+    MachineType type;
+    MachineStatus status;
+  }
+
+  class Sensor  {
+    Machine parent;
+    String data;
+  }
+
+  class MachineType  {
+    String name;
+  }
+
+  class MachineStatus  {
+    String name;
+  }
+
+  class PlantStatus  {
+    String name;
+  }
+
+  composition Plant -> ProductionLine [ 1..* ];
+  composition ProductionLine -> Machine [ 1..* ];
+  composition Machine -> Sensor [ 0..1 ];
+  composition ProductionLine -> Machine [ 1..* ];
+
+  <<stereotype>> interface Simulation  {
+    void simulateProduction();
+  }
+
+  <<stereotype>> interface Monitoring  {
+    void monitorProduction();
+  }
+
+  <<stereotype>> interface Alerting  {
+    void sendAlert();
+  }
+
+  class SimulationImpl implements Simulation  {
+    void simulateProduction();
+  }
+
+  class MonitoringImpl implements Monitoring  {
+    void monitorProduction();
+  }
+
+  class AlertingImpl implements Alerting  {
+    void sendAlert();
+  }
+}

@@ -1,0 +1,41 @@
+
+
+classdiagram AutomatedMachineLearningSystem {
+
+  class DataIngestionModule {
+    -> DataPreprocessingModule [*];
+    collectDataFromSources();
+  }
+
+  class DataPreprocessingModule {
+    handleMissingValues();
+    encodeCategoricalVariables();
+    scaleNumericalVariables();
+  }
+
+  class MachineLearningModule {
+    trainDecisionTreeModel();
+    evaluateRandomForestModel();
+    trainNeuralNetworkModel();
+  }
+
+  class DeploymentModule {
+    deployModelsToProduction();
+  }
+
+  class Data {
+    private String id;
+    private String name;
+    private int age;
+  }
+
+  class Model {
+    private String name;
+    private String type;
+    private int accuracy;
+  }
+
+  composition DataIngestionModule -> DataPreprocessingModule [1..*];
+  composition DataPreprocessingModule -> MachineLearningModule [1..*];
+  composition MachineLearningModule -> DeploymentModule [1..*];
+}

@@ -1,0 +1,77 @@
+
+
+classdiagram DigitalMediaPlatforms {
+
+    class ContentLibrary {
+      Content contentList;
+    }
+
+    class UserProfile {
+      User userProfile;
+    }
+
+    class ContentRecommendationEngine {
+      RecommendationEngine recommendationEngine;
+    }
+
+    class ContentDeliveryNetwork {
+      CDN cdn;
+    }
+
+    class Content {
+      String id;
+      String title;
+      String description;
+      Genre genre;
+      Rating rating;
+      List<Tag> tags;
+    }
+
+    class User {
+      String id;
+      String username;
+      Preferences preferences;
+      ViewingHistory history;
+    }
+
+    class Preferences {
+      List<FavoriteGenre> favoriteGenres;
+      List<FavoriteActor> favoriteActors;
+      List<FavoriteDirector> favoriteDirectors;
+    }
+
+    class ViewingHistory {
+      List<Content> viewedContent;
+    }
+
+    class RecommendationEngine {
+      CollaborativeFilteringAlgorithm algorithm;
+      List<Content> recommendContent(User user);
+    }
+
+    class CDN {
+      DistributionNetwork network;
+      Content distributeContent(Content content);
+    }
+
+    class Tag {
+      String name;
+    }
+
+    class FavoriteGenre {
+      String name;
+    }
+
+    class FavoriteActor {
+      String name;
+    }
+
+    class FavoriteDirector {
+      String name;
+    }
+
+  composition ContentLibrary -> (has) Content;
+  composition UserProfile -> (has) User;
+  composition ContentRecommendationEngine -> (has) RecommendationEngine;
+  composition ContentDeliveryNetwork -> (has) CDN;
+}

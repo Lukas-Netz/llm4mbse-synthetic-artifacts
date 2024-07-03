@@ -1,0 +1,54 @@
+
+classdiagram MedicalImageProcessing {
+
+  class MedicalImageProcessingSystem {
+    MedicalImageProcessor processor;
+    MedicalImagingEquipment equipment;
+    MedicalSoftware software;
+  }
+
+  class MedicalImageProcessor {
+    void processImage(MedicalImage image);
+    void analyzeImage(MedicalImage image);
+    void highlightFeatures(MedicalImage image);
+    Report generateReport(MedicalImage image);
+  }
+
+  class MedicalImage {
+    String type;
+    ImageData data;
+  }
+
+  class ImageData {
+    byte[] pixels;
+    int width;
+    int height;
+  }
+
+  class Report {
+    String location;
+    int size;
+    List<Feature> features;
+  }
+
+  class Feature {
+    String type;
+    int locationX;
+    int locationY;
+    int size;
+  }
+
+  class MedicalImagingEquipment {
+    String manufacturer;
+    String model;
+  }
+
+  class MedicalSoftware {
+    String vendor;
+    String version;
+  }
+
+  composition MedicalImageProcessingSystem -> MedicalImageProcessor;
+  association MedicalImageProcessingSystem -> MedicalImagingEquipment [0..1];
+  association MedicalImageProcessingSystem -> MedicalSoftware [0..1];
+}

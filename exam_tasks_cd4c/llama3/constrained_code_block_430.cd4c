@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram OnlineLanguageExchange  {
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    Language targetLanguage;
+    Language nativeLanguage;
+  }
+
+  class Language  {
+    String code;
+    String name;
+  }
+
+  class Conversation  {
+    String uniqueId;
+    User  participants  ;
+  }
+
+  class Message  {
+    String uniqueId;
+    String text;
+    Date timestamp;
+    Conversation conversation;
+  }
+
+  class Rating  {
+    int rating;
+    User user;
+    Conversation conversation;
+  }
+
+  class MatchingAlgorithm  {
+    void matchUsers(User user);
+  }
+
+  composition User -> (has) Language;
+  composition Conversation -> (has) Message;
+  composition Rating -> (has) User;
+  composition Rating -> (has) Conversation;
+  association User -> (many) Conversation;
+  association Conversation -> (many) Message;
+  association User -> (many) Rating;
+  association Language -> (many) User;
+  association Conversation -> (many) User;
+}

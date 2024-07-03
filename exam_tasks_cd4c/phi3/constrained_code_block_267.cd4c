@@ -1,0 +1,62 @@
+
+classdiagram DigitalWorkspace {
+
+    class DigitalAsset {
+      String name;
+      String type;
+      String content;
+      String tags;
+      int version;
+      Permission permission;
+    }
+
+    class AssetManager {
+      void addAsset(DigitalAsset asset);
+      void removeAsset(DigitalAsset asset);
+      DigitalAsset getAsset(String name);
+      void updateAsset(DigitalAsset asset);
+      Report generateReport();
+      Analytics generateAnalytics();
+    }
+
+    class Permission {
+      String user;
+      String role;
+      boolean canRead;
+      boolean canWrite;
+      boolean canDelete;
+    }
+
+    class Report {
+      String title;
+      String content;
+    }
+
+    class Analytics {
+      String title;
+      String content;
+    }
+
+    class User {
+      String username;
+      String role;
+      List<DigitalAsset> assets;
+    }
+
+    class ContentManagementSystem {
+      void integrate(DigitalWorkspace workspace);
+    }
+
+    class ProjectManagementTool {
+      void integrate(DigitalWorkspace workspace);
+    }
+
+    association DigitalWorkspace -> AssetManager;
+    association DigitalWorkspace -> User;
+    composition DigitalWorkspace -> DigitalAsset [*];
+    composition DigitalWorkspace -> Permission [*];
+    composition DigitalWorkspace -> Report;
+    composition DigitalWorkspace -> Analytics;
+    composition DigitalWorkspace -> ContentManagementSystem;
+    composition DigitalWorkspace -> ProjectManagementTool;
+}

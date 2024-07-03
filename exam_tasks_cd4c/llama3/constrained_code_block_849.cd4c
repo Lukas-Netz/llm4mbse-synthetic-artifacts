@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram QuantumCryptography  {
+
+  class KeyGenerator  {
+    public KeyPair generateKeyPair();
+  }
+
+  class KeyDistributor  {
+    public void distributePublicKey(KeyPair keyPair, Recipient recipient);
+    public void revokePublicKey(KeyPair keyPair);
+  }
+
+  class MessageEncryptor  {
+    public void encryptMessage(Message message, PublicKey publicKey);
+  }
+
+  class Recipient  {
+    public void receivePublicKey(PublicKey publicKey);
+    public void decryptMessage(Message message, PrivateKey privateKey);
+  }
+
+  class KeyPair  {
+    public PublicKey publicKey;
+    public PrivateKey privateKey;
+  }
+
+  class PublicKey  {
+    public String value;
+  }
+
+  class PrivateKey  {
+    public String value;
+  }
+
+  class Message  {
+    public String content;
+  }
+
+  composition KeyDistributor -> KeyPair [1..*];
+  composition KeyDistributor -> Recipient [1..*];
+  composition MessageEncryptor -> PublicKey [1..*];
+  composition Recipient -> PrivateKey [1..*];
+  composition KeyGenerator -> KeyPair [1..*];
+  association KeyDistributor -> KeyRevocationRequest [0..*];
+  class KeyRevocationRequest  {
+    public KeyPair keyPair;
+  }
+}

@@ -1,0 +1,44 @@
+
+
+classdiagram EmployeeTraining
+
+  
+
+{class EmployeeRequest {
+  String employeeName;
+  String trainingTopic;
+  String requestedDate;
+}
+
+class TrainingManager {
+  void reviewRequest(EmployeeRequest request);
+  void approveRequest(EmployeeRequest request);
+  void rejectRequest(EmployeeRequest request);
+  void assignTrainer(EmployeeRequest request);
+}
+
+class TrainerAssignment {
+  void assignTrainer(EmployeeRequest request);
+}
+
+class TrainingPlan {
+  String trainingPlanContent;
+  Trainer trainer;
+  Employee employee;
+  void createTrainingPlan(EmployeeRequest request);
+}
+
+class EmployeeCompletion {
+  void completeTraining(TrainingPlan plan);
+}
+
+class TrainerEvaluation {
+  void evaluateEmployee(EmployeeRequest request);
+  boolean isEmployeeCertified();
+}
+
+class TrainingCertification {
+  void certifyEmployee(EmployeeRequest request);
+}
+
+}

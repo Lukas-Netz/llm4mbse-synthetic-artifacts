@@ -1,0 +1,88 @@
+
+classdiagram UrbanPlanning {
+
+    class City {
+      String name;
+      GeoLocation location;
+      District[] districts;
+    }
+
+    class District {
+      String name;
+      Block[] blocks;
+    }
+
+    class Block {
+      String identifier;
+      BlockType type;
+      Building[] buildings;
+    }
+
+    class Building {
+      String identifier;
+      String name;
+      BuildingType type;
+      FloorPlan floorPlan;
+    }
+
+    class Road {
+      String identifier;
+      String name;
+      RoadType type;
+    }
+
+    class PublicSpace {
+      String identifier;
+      String name;
+      PublicSpaceType type;
+    }
+
+    enum CityName {
+      NewCity, OldCity;
+    }
+
+    enum DistrictName {
+      Downtown, Suburb;
+    }
+
+    enum BlockType {
+      Residential, Commercial, Industrial, Public;
+    }
+
+    enum BuildingType {
+      Residential, Commercial, Industrial, Public;
+    }
+
+    enum RoadType {
+      Highway, Street, Alleyway, PedestrianPath;
+    }
+
+    enum PublicSpaceType {
+      Park, Square, Plaza, Other;
+    }
+
+    class GeoLocation {
+      double latitude;
+      double longitude;
+    }
+
+    class FloorPlan {
+      String layout;
+    }
+
+    association City 
+      has -> Districts [*];
+      compositions_of Districts -> Blocks [*];
+      compositions_of Blocks -> Buildings [*];
+
+    association District 
+      has -> Blocks [*];
+
+    association Block 
+      has -> Buildings [*];
+
+    association Building 
+      has -> FloorPlans [*];
+
+   
+}

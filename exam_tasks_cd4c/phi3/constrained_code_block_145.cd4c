@@ -1,0 +1,58 @@
+
+classdiagram EnterpriseMobilityManagement {
+
+    class Device {
+      String uniqueIdentifier;
+      String deviceType;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      List<Device> devices;
+    }
+
+    class Application {
+      String uniqueIdentifier;
+      String applicationType;
+    }
+
+    class Policy {
+      String policyType;
+      Map<Device, List<Application>> deviceApplications;
+    }
+
+    class Report {
+      String reportType;
+      Map<Device, Map<Application, Integer>> usageData;
+    }
+
+    class EMMSystem {
+      Device device;
+      User user;
+      Application application;
+      Policy policy;
+      Report report;
+
+      EMMSystem(Device device, User user, Application application, Policy policy, Report report);
+
+      void registerDevice(Device device);
+      void registerUser(User user);
+      void registerApplication(Application application);
+      void assignPolicy(Policy policy);
+      void generateReport();
+      void enforceSecurityPolicies();
+      void sendAlert(String message);
+    }
+
+    composition EMMSystem -> (has) Device;
+    composition EMMSystem -> (has) User;
+    composition EMMSystem -> (has) Application;
+    composition EMMSystem -> (has) Policy;
+    composition EMMSystem -> (has) Report;
+
+    association User -> Device [*];
+    association Policy -> Device [*];
+    association Policy -> Application [*];
+    association Report -> Device [*];
+    association Report -> Application [*];
+}

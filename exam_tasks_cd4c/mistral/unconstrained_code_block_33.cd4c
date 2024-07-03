@@ -1,0 +1,45 @@
+
+classdiagram DataQualitySystem {
+
+  class DataQuality {
+    DataCleansing dataCleansing;
+    DataTransformation dataTransformation;
+    DataValidation dataValidation;
+  }
+
+  class DataCleansing {
+    void removeDuplicates();
+    void handleMissingValues();
+    void correctDataFormats();
+  }
+
+  class DataTransformation {
+    void aggregateData();
+    void convertDataTypes();
+    void normalizeData();
+  }
+
+  class DataValidation {
+    void checkForErrors();
+    void checkForInconsistencies();
+    void checkForInvalidValues();
+  }
+
+  class Customer {
+    String customerName;
+    String contactInformation;
+    Subscription subscription;
+  }
+
+  class Subscription {
+    String subscriptionType;
+    String startDate;
+    String endDate;
+  }
+
+  composition DataQualitySystem -> DataQuality;
+  composition DataQuality -> DataCleansing;
+  composition DataQuality -> DataTransformation;
+  composition DataQuality -> DataValidation;
+  composition Customer -> Subscription;
+}

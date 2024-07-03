@@ -1,0 +1,107 @@
+
+classdiagram HealthcareManagement {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+    MedicalCondition [ ] medicalConditions;
+  }
+
+  class ContactInfo {
+    String phoneNumber;
+    String email;
+    String address;
+  }
+
+  class MedicalCondition {
+    Date diagnosisDate;
+    TreatmentPlan treatmentPlan;
+    MedicationList medicationList;
+  }
+
+  class TreatmentPlan {
+    String description;
+  }
+
+  class MedicationList {
+    Medication [ ] medications;
+  }
+
+  class Medication {
+    String uniqueIdentifier;
+    String name;
+    DosageInstruction dosageInstruction;
+    Date prescriptionDate;
+    Date expirationDate;
+  }
+
+  class DosageInstruction {
+    String dosageForm;
+    int dosageFrequency;
+    int dosageAmount;
+  }
+
+  class Doctor {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+    Patient [ ] assignedPatients;
+    Patient primaryPatient;
+  }
+
+  enum Specialty {
+    GeneralPractitioner,
+    Cardiologist,
+    Neurologist,
+    Oncologist,
+    Pediatrician,
+    Psychiatrist,
+    Surgeon,
+    Other;
+  }
+
+  class MedicalRecord {
+    Patient patient;
+    Date creationDate;
+    Diagnosis diagnosis;
+    TestResult [ ] testResults;
+  }
+
+  class Diagnosis {
+    String description;
+  }
+
+  class TestResult {
+    String testName;
+    String result;
+    Date resultDate;
+  }
+
+  class DoctorPatientInteraction {
+    Doctor doctor;
+    Patient patient;
+    Date interactionDate;
+    InteractionType interactionType;
+  }
+
+  enum InteractionType {
+    Consultation,
+    Examination,
+    Prescription,
+    Other;
+  }
+
+  association Patient --o000o- 											{ 											ordered						}
+     ;
+  association Doctor --o000o- 											{ 											ordered						}
+     ;
+  association MedicalRecord --o000o- 									{ 											ordered						}
+     ;
+  association DoctorPatientInteraction --o000o- 						{ 											ordered						}
+     ;
+  association MedicalCondition --o000o- 								{ 											ordered						}
+     ;
+  association MedicationList --o000o- 									{ 											ordered						}
+     ;
+ 				}

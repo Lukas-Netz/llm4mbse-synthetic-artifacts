@@ -1,0 +1,224 @@
+
+classdiagram OnlineAuction {
+
+    class OnlineAuctionSite {
+      Category category;
+      Item item;
+      User user;
+      Payment payment;
+      BidHistory bidHistory;
+    }
+
+    class Category {
+      String name;
+      String description;
+      List<Item> items;
+    }
+
+    abstract class Item {
+      String name;
+      String description;
+      double startingPrice;
+      ItemStatus status;
+      Bid bid;
+    }
+
+    class Product extends Item {
+      double weight;
+      double dimensions;
+      String material;
+    }
+
+    class Service extends Item {
+      int duration;
+      String provider;
+    }
+
+    class Collectible extends Item {
+      int rarity;
+      int editionNumber;
+    }
+
+    class User {
+      String username;
+      String password;
+      Role role;
+    }
+
+    class Role {
+      String name;
+    }
+
+    enum ItemStatus {
+      Active, Closed
+   
+   
+   ()
+   
+
+;
+    association OnlineAuctionSite 
+     
+   
+;
+    association Category 
+     
+   
+;
+    association Item 
+     
+   
+;
+    association User 
+     
+   
+;
+    association Role 
+     
+   
+;
+    association Payment 
+     
+   
+;
+    association BidHistory 
+     
+   
+;
+    composition Category 
+     
+   
+;
+    composition Item 
+     
+   
+;
+    composition User 
+     
+   
+;
+    composition Role 
+     
+   
+;
+    composition Payment 
+     
+   
+;
+    composition BidHistory 
+     
+   
+;
+    association OnlineAuctionSite 
+     
+   
+;
+    association Category 
+     
+   
+;
+    association Item 
+     
+   
+;
+    association User 
+     
+   
+;
+    association Role 
+     
+   
+;
+    association Payment 
+     
+   
+;
+    association BidHistory 
+     
+   
+;
+   
+}
+
+enum ItemStatus {
+  Active, Closed
+
+;
+   
+}
+
+enum Role {
+  Buyer, Seller, Admin
+
+;
+   
+}
+
+enum BidStatus {
+  Placed, Won
+
+;
+   
+}
+
+enum PaymentStatus {
+  Paid, Pending
+
+;
+   
+}
+
+enum BidHistoryStatus {
+  Added, Removed
+
+;
+   
+}
+
+enum UserRole {
+  Buyer, Seller, Admin
+
+;
+   
+}
+
+enum UserStatus {
+  Active, Inactive
+
+;
+   
+}
+
+enum PaymentStatus {
+  Paid, Pending
+
+;
+   
+}
+
+enum PaymentHistoryStatus {
+  Added, Removed
+
+;
+   
+}
+
+enum BidHistoryStatus {
+  Added, Removed
+
+;
+   
+}
+
+enum ItemStatus {
+  Active, Closed
+
+;
+   
+}
+
+
+
+
+
+}

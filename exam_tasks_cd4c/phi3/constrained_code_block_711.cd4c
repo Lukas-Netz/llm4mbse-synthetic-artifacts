@@ -1,0 +1,74 @@
+
+classdiagram LanguageRevitalizationSystem {
+
+    class LanguageDatabase {
+      Map<String, Language> languages;
+      void addLanguage(Language language);
+      Language getLanguage(String languageName);
+    WrittenText processTextData(WrittenText textData);
+    }
+
+    class Language {
+      String name;
+      Grammar grammar;
+      Vocabulary vocabulary;
+      Syntax syntax;
+    }
+
+    class Grammar {
+      String structure;
+      void analyzeStructure();
+    }
+
+    class Vocabulary {
+      Map<String, String> words;
+      void addWord(String word, String meaning);
+      String getWordMeaning(String word);
+    }
+
+    class Syntax {
+      String structure;
+      void analyzeStructure();
+    }
+
+    class AIChatbot {
+      Language language;
+      void learnLanguage(Language language);
+      String converseWithUser(String userInput);
+    }
+
+    class LanguageLearningApp {
+      Language language;
+      void practiceLanguage(Language language);
+    }
+
+    class LanguageDocumentation {
+      Audio audioRecording;
+      Video videoRecording;
+      void storeRecording(Audio audio, Video video);
+    }
+
+    class LanguageExchangePlatform {
+      List<User> nativeSpeakers;
+      List<User> learners;
+      void matchNativeSpeakersWithLearners();
+    }
+
+    class User {
+      String name;
+      String nativeLanguage;
+      String targetLanguage;
+    }
+
+    class LanguageMonitor {
+      Map<String, User> languageUsage;
+      void trackProficiency(User user);
+    }
+
+    association LanguageDatabase -> Language;
+    association LanguageDatabase -> AIChatbot;
+    association LanguageDatabase -> LanguageLearningApp;
+    association LanguageDatabase -> LanguageDocumentation;
+    association LanguageDatabase -> LanguageExchangePlatform;
+    association LanguageDatabase -> LanguageMonitor;
+}

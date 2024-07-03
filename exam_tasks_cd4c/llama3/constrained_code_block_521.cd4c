@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram MentalHealthPlatform  {
+
+  class User  {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Therapist extends User  {
+    String qualifications;
+    int experience;
+    Availability availability;
+  }
+
+  class Resource  {
+    String title;
+    String description;
+    String[] tags;
+  }
+
+  class Profile  {
+    String goals;
+    String progress;
+    String achievements;
+  }
+
+  class Availability  {
+    String days;
+    String hours;
+  }
+
+  class Session  {
+    User user;
+    Therapist therapist;
+    Date date;
+  }
+
+  class Platform  {
+    User[] users;
+    Therapist[] therapists;
+    Resource[] resources;
+  }
+
+  composition Platform -> (has) User[*];
+  composition Platform -> (has) Therapist[*];
+  composition Platform -> (has) Resource[*];
+  composition User -> (has) Profile;
+  composition Therapist -> (has) Availability;
+  composition Session -> (has) User;
+  composition Session -> (has) Therapist;
+  composition Resource -> (has) tags[*];
+  association User -> (searches) Resource[*];
+  association Therapist -> (creates) Resource[*];
+  association User -> (rates) Resource[*];
+  association User -> (books) Session[*];
+  association Therapist -> (provides) Session[*];
+}

@@ -1,0 +1,36 @@
+
+
+
+
+classdiagram QuantumMetrologySystem  {
+
+  class Laboratory  {
+    MeasurementDevice[] measurementDevices;
+    DataProcessingUnit dataProcessingUnit;
+    void calibrate(MeasurementDevice device);
+    void update(DataProcessingUnit unit);
+  }
+
+  abstract class MeasurementDevice  {
+    String physicalQuantity;
+  }
+
+  class AtomicClock extends MeasurementDevice  {
+    double precision;
+    double accuracy;
+  }
+
+  class Interferometer extends MeasurementDevice  {
+    double resolution;
+    double sensitivity;
+  }
+
+  class DataProcessingUnit  {
+    void process(MeasurementDevice device);
+    void provideResults();
+  }
+
+  composition Laboratory -> (has) MeasurementDevice[*];
+  composition Laboratory -> (has) DataProcessingUnit;
+  composition DataProcessingUnit -> (uses) MeasurementDevice;
+}

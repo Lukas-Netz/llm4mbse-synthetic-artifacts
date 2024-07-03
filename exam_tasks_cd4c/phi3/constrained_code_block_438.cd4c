@@ -1,0 +1,67 @@
+
+classdiagram OnlineVoiceActingPlatform {
+
+  class Student {
+    String studentId;
+    List<ClassEnrollment> classEnrollments;
+    List<Rating> instructorRatings;
+  }
+
+  class Instructor {
+    String instructorId;
+    List<Class> classesTaught;
+    List<Rating> instructorRatings;
+  }
+
+  class Class {
+    String classId;
+    String className;
+    String classDescription;
+    String schedule;
+    List<Student> enrolledStudents;
+    Instructor instructor;
+  }
+
+  class Enrollment {
+    Student student;
+    Class class;
+  }
+
+  class Rating {
+    Instructor instructor;
+    Student student;
+    int ratingValue;
+  }
+
+  class Admin {
+    void manageInstructors();
+    void manageClasses();
+    void manageStudents();
+    void generateReports();
+  }
+
+  <<association>> class Student 
+    implements ClassEnrollment, Rating;
+
+  <<association>> class Instructor 
+    implements Class, Rating;
+
+  <<association>> class Class 
+    implements Enrollment, Rating;
+
+  <<association>> class Admin;
+
+  <<association>> class Student 
+    implements Enrollment;
+
+  <<association>> class Instructor 
+    implements Enrollment;
+
+  <<association>> class Class 
+    implements Enrollment;
+
+  <<association>> class Rating;
+
+  <<association>> class Admin 
+    implements Class, Instructor, Student;
+}

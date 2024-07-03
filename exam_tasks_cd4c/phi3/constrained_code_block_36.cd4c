@@ -1,0 +1,47 @@
+
+classdiagram EnvironmentalMonitoringSystem {
+
+    class EnvironmentalMonitoringSystem {
+      Hub centralServer;
+      Database database;
+      ReportingModule reportingModule;
+    }
+
+    class Sensor {
+      String sensorType;
+      EnvironmentalData data;
+    }
+
+    class DataLogger {
+      String loggerID;
+      List<EnvironmentalData> dataLog;
+    }
+
+    class EnvironmentalData {
+      String timestamp;
+      double temperature;
+      double humidity;
+      double airQuality;
+    }
+
+    class CentralServer {
+      void processData(List<EnvironmentalData> data);
+      void analyzeData();
+      void generateReport();
+      void alertCriticalConditions();
+      UserInterface userInterface;
+    }
+
+    class Database {
+      void storeHistoricalData(EnvironmentalData data);
+    }
+
+    class ReportingModule {
+      void generateReports();
+    }
+
+    association EnvironmentalMonitoringSystem -> (uses) CentralServer;
+    association EnvironmentalMonitoringSystem -> (uses) Database;
+    association EnvironmentalMonitoringSystem -> (uses) ReportingModule;
+    association Sensor -> (uses) DataLogger;
+}

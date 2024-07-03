@@ -1,0 +1,54 @@
+
+classdiagram EnergyOptimizationSystem {
+
+    class Building {
+      String buildingId;
+      List<Sensor> sensors;
+      List<Meter> meters;
+      List<Controller> controllers;
+    }
+
+    class Sensor {
+      String sensorId;
+      double temperature;
+      double humidity;
+      double lightLevel;
+      List<Meter> meters;
+      List<Controller> controllers;
+    }
+
+    class Meter {
+      String meterId;
+      double kWh;
+      List<Sensor> sensors;
+      List<Controller> controllers;
+    }
+
+    class Controller {
+      String controllerId;
+      double adjustmentFactor;
+      List<Sensor> sensors;
+      List<Meter> meters;
+    }
+
+    class Server {
+      List<Building> buildings;
+      void collectData();
+      void sendNotification(String buildingId, double threshold);
+    }
+
+    composition Building -> (has) Sensor;
+    composition Building -> (has) Meter;
+    composition Building -> (has) Controller;
+
+    composition Sensor -> (has) Meter;
+    composition Sensor -> (has) Controller;
+
+    composition Meter -> (has) Sensor;
+    composition Meter -> (has) Controller;
+
+    composition Controller -> (has) Sensor;
+    composition Controller -> (has) Meter;
+
+    association Server -> (aggregation) Buildings;
+}

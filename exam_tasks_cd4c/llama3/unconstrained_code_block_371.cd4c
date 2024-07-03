@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram DigitalSkateboardControlUnit  {
+
+  class MainBoard  {
+    -> Sensor [*];
+    -> Motor;
+    void readSensorData();
+    void controlMotor();
+    void adjustSettings();
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier;
+    SensorStatus status;
+  }
+
+  class Accelerometer extends Sensor  {
+    float acceleration;
+    float orientation;
+  }
+
+  class Gyroscope extends Sensor  {
+    float rotation;
+    float orientation;
+  }
+
+  class GPS extends Sensor  {
+    float latitude;
+    float longitude;
+    float speed;
+  }
+
+  class Motor  {
+    float speed;
+    MotorDirection direction;
+  }
+
+  enum SensorStatus  {
+    Connected, Disconnected;
+  }
+
+  enum MotorDirection  {
+    Forward, Reverse;
+  }
+
+  composition MainBoard -> Sensor [*];
+  composition MainBoard -> Motor;
+}

@@ -1,0 +1,77 @@
+
+classdiagram CloudServiceProvider {
+
+  class Service {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    Set<String> features;
+    PricingPlan pricingPlan;
+  }
+
+  enum ServiceType {
+    Storage, Processing, Networking
+ 	 	 	 	 	 ;
+  }
+
+  class StorageService extends Service {
+    StorageType storageType;
+  }
+
+  class ProcessingService extends Service {
+    ProcessingType processingType;
+  }
+
+  enum ProcessingType {
+    VirtualMachines, Containerization, ServerlessComputing
+ 	 	 	 	 	 ;
+  }
+
+  class NetworkingService extends Service {
+    NetworkingType networkingType;
+  }
+
+  enum NetworkingType {
+    LoadBalancing, ContentDeliveryNetwork, VirtualPrivateNetwork
+ 	 	 	 	 	 ;
+  }
+
+  class PricingPlan {
+    double basePrice;
+    double usageBasedPrice;
+  }
+
+  class LoyaltyProgram {
+    Set<Rule> rules;
+    RewardSystem rewardSystem;
+  }
+
+  class Rule {
+    String condition;
+    Reward reward;
+  }
+
+  class Reward {
+    String type;
+    double value;
+  }
+
+  class CustomerSupportTeam {
+    Set<Skill> skills;
+    Set<KnowledgeBase> knowledgeBases;
+  }
+
+  enum Skill {
+    TechnicalExpertise1, TechnicalExpertise2, TechnicalExpertise3
+ 	 	 	 	 	 ;
+  }
+
+  class KnowledgeBase {
+    String technicalInformation;
+  }
+
+  class Policy {
+    String rule;
+    String guideline;
+  }
+}

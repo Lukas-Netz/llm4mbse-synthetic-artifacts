@@ -1,0 +1,63 @@
+
+classdiagram PrintingServices {
+
+    class Branch {
+      String name;
+      String address;
+      List<Device> devices;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    class Printer extends Device {
+      String type;
+    }
+
+    class Copier extends Device {
+      String type;
+    }
+
+    class Scanner extends Device {
+      String type;
+    }
+
+    class Service {
+      String uniqueIdentifier;
+      String description;
+      double price;
+    }
+
+    class Customer {
+      String name;
+      String address;
+      String contactInformation;
+    }
+
+    class Payment {
+      String uniqueIdentifier;
+      String paymentMethod;
+    }
+
+    class BranchService {
+      List<Service> services;
+      void addService(Service service);
+      void removeService(Service service);
+    }
+
+    class CustomerService {
+      List<Customer> customers;
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+    }
+
+    association Branch -> BranchService;
+    association Branch -> Payment;
+    association Branch -> CustomerService;
+    association Device -> Branch;
+    association Service -> BranchService;
+    association Customer -> CustomerService;
+    association Payment -> Branch;
+}

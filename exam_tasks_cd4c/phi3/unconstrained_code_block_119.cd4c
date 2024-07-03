@@ -1,0 +1,74 @@
+
+classdiagram EbookPlatform {
+
+    class Author {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+      List<Book> books;
+    }
+
+    class Book {
+      String title;
+      Author[] authors;
+      Date publicationDate;
+      String genre;
+      String summary;
+      int sales;
+      List<Review> reviews;
+    }
+
+    class Reader {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+      Account account;
+      List<Book> readBooks;
+    }
+
+    class Account {
+      String username;
+      String password;
+      boolean isLoggedIn;
+    }
+
+    class Payment {
+      String transactionId;
+      double amount;
+      String status;
+    }
+
+    class Review {
+      String reviewerName;
+      String rating;
+      String comment;
+    }
+
+    class Notification {
+      String message;
+      String recipient;
+    }
+
+    class EbookPlatform {
+      List<Author> authors;
+      List<Book> books;
+      List<Reader> readers;
+      PaymentSystem paymentSystem;
+      NotificationSystem notificationSystem;
+
+      void searchBooks(String query);
+      void readBookSummary(String bookId);
+      void purchaseBook(String bookId, String readerId);
+      void submitManuscript(Author author, String manuscript);
+      void manageBookMetadata(Book book);
+      void trackBookSales(Book book);
+      void rateBook(String bookId, Review review);
+      void sendNotification(Notification notification);
+    }
+
+  association EbookPlatform -> (has) Authors;
+  association EbookPlatform -> (has) Books;
+  association EbookPlatform -> (has) Readers;
+  association EbookPlatform -> (has) PaymentSystem;
+  association EbookPlatform -> (has) NotificationSystem;
+}

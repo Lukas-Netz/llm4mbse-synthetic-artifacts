@@ -1,0 +1,126 @@
+
+classdiagram IndustrialRobotics {
+
+  class Robot {
+    String uniqueIdentifier;
+    RobotStatus status;
+    String type;
+    Tool [ ] tools;
+  }
+
+  class Tool {
+    String name;
+    String description;
+    String type;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Step [ ] steps;
+  }
+
+  class Step {
+    String name;
+    String description;
+    Action [ ] actions;
+  }
+
+  class Action {
+    String name;
+    String description;
+    Parameter [ ] parameters;
+  }
+
+  class Parameter {
+    String name;
+    String description;
+    Value [ ] values;
+  }
+
+  class Value {
+    String name;
+    String description;
+  }
+
+  class Sensor {
+    String name;
+    String description;
+    Reading [ ] readings;
+  }
+
+  class Reading {
+    String name;
+    String description;
+    Value [ ] values;
+  }
+
+  class Actuator {
+    String name;
+    String description;
+    Command [ ] commands;
+  }
+
+  class Command {
+    String name;
+    String description;
+    Parameter [ ] parameters;
+  }
+
+  class Controller {
+    String name;
+    String description;
+    Rule [ ] rules;
+  }
+
+  class Rule {
+    String name;
+    String description;
+    Condition [ ] conditions;
+  }
+
+  class Condition {
+    String name;
+    String description;
+    Value [ ] values;
+  }
+
+  class User {
+    String name;
+    String description;
+    Permission [ ] permissions;
+  }
+
+  class Permission {
+    String name;
+    String description;
+    Action [ ] actions;
+  }
+
+  class Log {
+    String name;
+    String description;
+    Entry [ ] entries;
+  }
+
+  class Entry {
+    String name;
+    String description;
+    Value [ ] values;
+  }
+
+  class Report {
+    String name;
+    String description;
+    Section [ ] sections;
+  }
+
+  class Section {
+    String name;
+    String description;
+    Value [ ] values;
+  }
+
+ 
+ 
+}

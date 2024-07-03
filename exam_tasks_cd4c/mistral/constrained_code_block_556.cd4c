@@ -1,0 +1,36 @@
+
+classdiagram PermafrostMonitoring {
+
+  class Sensor {
+    String uniqueIdentifier;
+    String location;
+    void transmitData();
+  }
+
+  class Hub {
+    -> Sensor [*];
+    void receiveData();
+    void transmitDataToDatabase();
+  }
+
+  class Database {
+    -> Hub [*];
+    void storeData();
+    void retrieveData();
+  }
+
+  class Analyzer {
+    -> Database;
+    void analyzeData();
+  }
+
+  class Researcher {
+    -> Database;
+    void accessData();
+  }
+
+  association Sensor -- Hub;
+  association Hub -- Database;
+  association Analyzer -- Database;
+  association Researcher -- Database;
+}

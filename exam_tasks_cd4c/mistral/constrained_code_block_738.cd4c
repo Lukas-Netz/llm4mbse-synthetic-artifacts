@@ -1,0 +1,45 @@
+
+classdiagram BiomedicalResearch {
+
+  class Researcher {
+    String uniqueIdentifier;
+    String name;
+    String affiliation;
+  }
+
+  class ResearchProject {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Researcher leader;
+  }
+
+  class ResearchData {
+    String uniqueIdentifier;
+    String type;
+    String content;
+    ResearchProject associatedProject;
+  }
+
+  class Collaboration {
+    ResearchProject associatedProject;
+    Researcher [  ] collaborators;
+  }
+
+  class DataSharing {
+    Researcher sender;
+    Researcher receiver;
+    ResearchData sharedData;
+  }
+
+  class DataIntegrity {
+    ResearchData data;
+    boolean tamperProof;
+  }
+
+  composition ResearchProject -> Researcher [1];
+  association Collaboration -> Researcher [*];
+  association DataSharing -> Researcher [2];
+  association ResearchData -> ResearchProject;
+  association DataIntegrity -> ResearchData;
+}

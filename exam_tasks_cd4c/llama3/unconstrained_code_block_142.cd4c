@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram MobileCommerce  {
+
+  class Merchant  {
+    Product[] products;
+    Service[] services;
+  }
+
+  class Customer  {
+    Account[] accounts;
+  }
+
+  class Account  {
+    String uniqueIdentifier;
+    String password;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    double price;
+  }
+
+  class Service  {
+    String uniqueIdentifier;
+    double price;
+  }
+
+  class PaymentGateway  {
+    PaymentMethod[] paymentMethods;
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  class Transaction  {
+    Status status;
+    Product product;
+    Service service;
+    Account account;
+  }
+
+  enum Status  {
+    Pending, Successful, Failed;
+  }
+
+  class Review  {
+    String rating;
+    String comment;
+    Product product;
+  }
+
+  composition Merchant  ->  (offers) Product[*];
+  composition Merchant  ->  (offers) Service[*];
+  composition Customer  ->  (has) Account[*];
+  composition PaymentGateway  ->  (uses) PaymentMethod[*];
+  composition Transaction  ->  (involves) Product;
+  composition Transaction  ->  (involves) Service;
+  composition Transaction  ->  (involves) Account;
+  composition Review  ->  (for) Product;
+}

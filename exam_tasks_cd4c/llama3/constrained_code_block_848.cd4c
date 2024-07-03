@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram ProstheticEyeCompany  {
+
+  class Engineer  {
+    String name;
+    int id;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    -> Engineer [*];  # multiple engineers
+  ;}
+
+  class Patient  {
+    int id;
+    String name;
+  }
+
+  class ProstheticEye  {
+    -> Patient;  # one patient
+    ;}
+  class Feature  {
+    String name;
+  }
+
+  class PupilSize extends Feature  {}
+  class IrisColor extends Feature  {}
+  class EyeShape extends Feature  {}
+
+  class Tester  {
+    String name;
+    int id;
+  }
+
+  class QualityControl  {
+    -> Tester [*];  # multiple testers
+  ;}
+
+  composition Project -> Engineer [*];
+  composition ProstheticEye -> Feature [*];
+  composition QualityControl -> Tester [*];
+  composition ProstheticEye -> Patient;
+  composition Engineer -> Project [*];
+  composition Patient -> ProstheticEye [*];
+  composition Tester -> QualityControl [*];
+}

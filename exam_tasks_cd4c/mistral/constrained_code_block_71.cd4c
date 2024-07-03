@@ -1,0 +1,85 @@
+
+classdiagram CommunityManagement {
+
+  class User {
+    String uniqueID;
+    String name;
+    String email;
+    UserType type;
+  }
+
+  enum UserType {
+    Resident, Administrator, Guest;
+  }
+
+  abstract class Event {
+    String title;
+    String description;
+    Date date;
+    User organizer;
+  }
+
+  class Meeting extends Event {}
+  class Party extends Event {}
+  class Workshop extends Event {}
+
+  abstract class Group {
+    String name;
+    String description;
+    User creator;
+    GroupType type;
+  }
+
+  enum GroupType {
+    Sports, Cultural, Social;
+  }
+
+  class Message {
+    String sender;
+    String receiver;
+    MessageType type;
+    String content;
+  }
+
+  enum MessageType {
+    Text, Image, Video;
+  }
+
+  class Notification {
+    User recipient;
+    NotificationType type;
+    String content;
+  }
+
+  enum NotificationType {
+    Event, Message, GroupActivity;
+  }
+
+  class Permission {
+    User user;
+    PermissionLevel level;
+  }
+
+  enum PermissionLevel {
+    Admin, Resident, Guest;
+  }
+
+  composition User [*] UserType [enum]
+  --  User [*] -  {ordered} 
+ 			;
+  composition Event [*] User [one]
+  --  Event [*] -  {ordered} 
+ 			;
+  composition Group [*] User [one]
+  --  Group [*] -  {ordered}
+ 			;
+  association Message [*] User [one]
+  --  Message [*] -  {ordered}
+ 			;
+  association Notification [*] User [one]
+  --  Notification [*] -  {ordered}
+ 			;
+  association Permission [*] User [one]
+  --  Permission [*] -  {ordered}
+ 			;
+}

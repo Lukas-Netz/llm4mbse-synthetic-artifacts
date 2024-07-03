@@ -1,0 +1,65 @@
+
+classdiagram MuseumARSystem {
+
+    class Exhibit {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      ExhibitType type;
+    }
+
+    class InteractiveExperience {
+      String uniqueIdentifier;
+      Exhibit exhibit;
+      String activityType;
+    }
+
+    class VisitorProfile {
+      String uniqueIdentifier;
+      String name;
+      String emailAddress;
+      String preferredLanguage;
+    }
+
+    class ARExperience {
+      String uniqueIdentifier;
+      Exhibit exhibit;
+      String activityType;
+    }
+
+    class MuseumStaff {
+      String uniqueIdentifier;
+      String name;
+      String role;
+    }
+
+    class MuseumARSystem {
+      Exhibit[] exhibits;
+      InteractiveExperience[] interactiveExperiences;
+      ARExperience[] arExperiences;
+      VisitorProfile[] visitorProfiles;
+      MuseumStaff[] museumStaff;
+
+      void addExhibit(Exhibit exhibit);
+      void removeExhibit(Exhibit exhibit);
+      void updateExhibit(Exhibit exhibit);
+      void assignInteractiveExperience(InteractiveExperience interactiveExperience, Exhibit exhibit);
+      void createVisitorProfile(VisitorProfile visitorProfile);
+      void assignARExperience(ARExperience arExperience, Exhibit exhibit);
+      void manageMuseumStaff(MuseumStaff staffMember);
+      void provideExhibitInformation(Exhibit exhibit);
+      void provideInteractiveExperienceInformation(InteractiveExperience interactiveExperience);
+      void createARExperience(ARExperience arExperience);
+      void trackVisitorInteractions(VisitorProfile visitorProfile);
+    }
+
+    composition MuseumARSystem -> (has) Exhibit[*];
+    composition MuseumARSystem -> (has) InteractiveExperience[*];
+    composition MuseumARSystem -> (has) ARExperience[*];
+    composition MuseumARSystem -> (has) VisitorProfile[*];
+    composition MuseumARSystem -> (has) MuseumStaff[*];
+
+    association Exhibit -> InteractiveExperience [*];
+    association Exhibit -> ARExperience [*];
+    association VisitorProfile -> MuseumStaff [*];
+}

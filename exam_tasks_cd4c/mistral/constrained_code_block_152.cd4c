@@ -1,0 +1,52 @@
+
+classdiagram SupplyChain {
+
+  class Supplier {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] products;
+  }
+
+  class Manufacturer {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] products;
+  }
+
+  class Distributor {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] products;
+  }
+
+  class Retailer {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] products;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    double price;
+    double weight;
+    String dimensions;
+  }
+
+  class EndCustomer {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  composition Supplier --o_Provides_RawMaterials_To_Manufacturer;
+  composition Manufacturer --o_Produces_Products_For_Distributors;
+  composition Distributor --o_Sells_Products_To_Retailers;
+  composition Retailer --o_Sells_Products_To_EndCustomers;
+
+  class SupplyChainReport {
+    double totalCostOfGoodsSold;
+    double totalRevenue;
+    double profitMargin;
+  }
+}

@@ -1,0 +1,42 @@
+
+classdiagram HydraulicPressControlSystem {
+
+  class Press {
+    String name;
+    String type;
+    PressStatus status;
+  }
+
+  class ControlUnit {
+    Press press;
+    Sensor [ ] sensors;
+    Actuator [ ] actuators;
+
+    void setOperatingMode(String mode);
+    void monitorSensors();
+    void sendCommandToActuators();
+  }
+
+  abstract class Sensor {
+    String uniqueIdentifier;
+    Parameter parameter;
+    double reading;
+  }
+
+  abstract class Actuator {
+    String uniqueIdentifier;
+    void receiveCommand(String command);
+  }
+
+  enum PressStatus {
+    Operational, NonOperational;
+  }
+
+  enum Parameter {
+    Pressure, Temperature, Position;
+  }
+
+  composition ControlUnit -> Press;
+  composition ControlUnit -> Sensor [*];
+  composition ControlUnit -> Actuator [*];
+}

@@ -1,0 +1,64 @@
+
+classdiagram RetailPlatform {
+
+  class CentralHub {
+    SalesChannel [][] salesChannels;
+  }
+
+  abstract class SalesChannel {
+    String uniqueIdentifier;
+    SalesChannelType type;
+  }
+
+  enum SalesChannelType {
+    Online, Offline;
+  }
+
+  abstract class Product {
+    String uniqueIdentifier;
+    ProductType type;
+  }
+
+  enum ProductType {
+    Clothing, Electronics, HomeGoods;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    CustomerType type;
+  }
+
+  enum CustomerType {
+    Individual, Business;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Customer customer;
+    Product [][] products;
+  }
+
+  class Inventory {
+    Product [][] products;
+  }
+
+  class CustomerInfo {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String phone;
+  }
+
+  class SalesReport {
+    String sales;
+    String customerBehavior;
+    String inventoryLevels;
+  }
+
+  composition CentralHub -> SalesChannel [*];
+  composition SalesChannel -> Product [*];
+  composition Customer -> CustomerInfo;
+  association Order -> Customer;
+  association Order -> Product;
+  association Inventory -> Product;
+}

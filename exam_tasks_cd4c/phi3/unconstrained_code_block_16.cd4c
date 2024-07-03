@@ -1,0 +1,36 @@
+
+classdiagram BlockchainSystem {
+
+    class Node {
+      String role;
+      void createTransaction(Transaction transaction);
+      void validateTransaction(Transaction transaction);
+      void voteOnBlock(Block block);
+    }
+
+    class Block {
+      List<Transaction> transactions;
+      String blockId;
+      Block(List<Transaction> transactions);
+      void addTransaction(Transaction transaction);
+      void removeTransaction(Transaction transaction);
+    }
+
+    class Transaction {
+      String sender;
+      String recipient;
+      String asset;
+      Transaction(String sender, String recipient, String asset);
+    }
+
+    class Consensus {
+      void voteOnBlock(Block block);
+      boolean isBlockValid();
+    }
+
+    composition Node -> Block [*];
+    composition Node -> Transaction [*];
+    composition Node -> Consensus [*];
+    composition Block -> Transaction [*];
+    composition Consensus -> Block [*];
+}

@@ -1,0 +1,63 @@
+
+classdiagram CloudMusicStorage {
+
+  class User {
+    String username;
+    String password;
+    MusicFile [ ] musicFiles;
+  }
+
+  abstract class MusicFile {
+    String title;
+    String artist;
+    String genre;
+    String mood;
+    String tempo;
+    String format;
+    int duration;
+    int size;
+  }
+
+  class MP3 extends MusicFile {
+  }
+
+  class WAV extends MusicFile {
+  }
+
+  class FLAC extends MusicFile {
+  }
+
+  class Device {
+    String deviceType;
+    String operatingSystem;
+    String browser;
+    MusicPlayer player;
+    MusicStreamingService [ ] streamingServices;
+    SmartDevice [ ] smartDevices;
+  }
+
+  class SmartDevice {
+    String deviceType;
+    String operatingSystem;
+  }
+
+  class MusicPlayer {
+    String name;
+  }
+
+  class MusicStreamingService {
+    String name;
+  }
+
+  class MusicLibrary {
+    User [ ] users;
+    MusicFile [ ] musicFiles;
+  }
+
+  composition User -- MusicFile [*];
+  composition Device -- MusicPlayer [1];
+  composition Device -- MusicStreamingService [*];
+  composition Device -- SmartDevice [*];
+  association MusicLibrary -- User [*];
+  association MusicLibrary -- MusicFile [*];
+}

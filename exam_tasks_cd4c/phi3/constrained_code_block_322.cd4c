@@ -1,0 +1,298 @@
+
+classdiagram EmailCampaignManager {
+
+    class Campaign {
+      String name;
+      Date startDate;
+      Date endDate;
+      CampaignType type;
+      List<Email> emails;
+      List<Recipient> recipients;
+    }
+
+    class Recipient {
+      String emailAddress;
+      List<Campaign> campaigns;
+    }
+
+    class Email {
+      String subject;
+      String body;
+      Sender sender;
+      Campaign campaign;
+      double openRate;
+      double clickThroughRate;
+      double conversionRate;
+    }
+
+    class Sender {
+      String emailAddress;
+    }
+
+    enum CampaignType {
+      Promotional, Transactional
+   
+   
+   ()
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+    composition Campaign 
+   
+   
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+enum CampaignType {
+  Promotional, Transactional
+
+ 
+
+;
+   
+
+}
+
+
+
+
+
+}

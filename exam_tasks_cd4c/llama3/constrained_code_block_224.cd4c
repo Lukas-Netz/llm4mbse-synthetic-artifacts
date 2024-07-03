@@ -1,0 +1,54 @@
+
+
+
+classdiagram CyberDefenseSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    -> Network[*];
+  }
+
+  class Analyzer  {
+    int priorityLevel;
+    -> Threat[*];
+  }
+
+  class Responder  {
+    ResponseType responseType;
+    -> Threat[*];
+  }
+
+  class Database  {
+    int capacityGb;
+    -> Threat[*];
+  }
+
+  class AI  {
+    double learningRate;
+    -> Threat[*];
+  }
+
+  class SystemAdministrator  {
+    void configureSystem();
+    void addComponent(Component component);
+    void removeComponent(Component component);
+    void monitorSystemPerformance();
+  }
+
+  abstract class Component  {
+  }
+
+  class Threat  {
+  }
+
+  enum ResponseType  {
+    Block, Quarantine, Alert;
+  }
+
+  composition SystemAdministrator -> Component[*];
+  composition Sensor -> Network[*];
+  composition Analyzer -> Threat[*];
+  composition Responder -> Threat[*];
+  composition Database -> Threat[*];
+  composition AI -> Threat[*];
+}

@@ -1,0 +1,103 @@
+
+
+
+
+classdiagram SEOPlatform  {
+
+  class Dashboard  {
+    User user;
+    Goal goal;
+    Performance performance;
+  }
+
+  class KeywordResearch  {
+    Keyword[] keywords;
+    Business business;
+  }
+
+  class ContentOptimization  {
+    Content content;
+    Readability readability;
+    Grammar grammar;
+    SEOscore seoscore;
+  }
+
+  class LinkBuilding  {
+    Link[] links;
+    Business business;
+  }
+
+  class CompetitorAnalysis  {
+    Competitor[] competitors;
+    Business business;
+  }
+
+  class Reporting  {
+    Report[] reports;
+    Business business;
+  }
+
+  class WorkflowEngine  {
+    Workflow[] workflows;
+  }
+
+  class Workflow  {
+    Task[] tasks;
+  }
+
+  class Task  {
+    String name;
+    String description;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Business  {
+    String name;
+    String website;
+  }
+
+  class Keyword  {
+    String text;
+    int relevance;
+  }
+
+  class Content  {
+    String text;
+    int length;
+  }
+
+  class Readability  {
+    int score;
+  }
+
+  class Grammar  {
+    int score;
+  }
+
+  class SEOscore  {
+    int score;
+  }
+
+  class Link  {
+    String url;
+    int quality;
+  }
+
+  class Competitor  {
+    String name;
+    String website;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition Dashboard -> (has) User;
+  
+
+}

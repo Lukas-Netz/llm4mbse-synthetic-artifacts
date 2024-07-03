@@ -1,0 +1,41 @@
+
+classdiagram ScentRecognitionSystem {
+
+    class Sensor {
+      void detectScent();
+      ScentData data;
+    }
+
+    class Algorithm {
+      void processData(ScentData data);
+      ScentClassification classifyScent(ScentData data);
+    }
+
+    class Database {
+      Map<String, ScentEntry> scents;
+      void addScent(ScentEntry entry);
+      void updateScent(String key, ScentEntry entry);
+      ScentEntry getScent(String key);
+    }
+
+    class ScentData {
+      String scentId;
+      double[] scentProfile;
+    }
+
+    class ScentEntry {
+      String scentId;
+      String chemicalComposition;
+      String origin;
+      String classification;
+    }
+
+    class ScentClassification {
+      String classification;
+    }
+
+    composition Sensor -> Algorithm [*];
+    composition Sensor -> Database [*];
+    composition Algorithm -> Database [*];
+    composition Database -> Sensor [*];
+}

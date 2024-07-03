@@ -1,0 +1,133 @@
+
+classdiagram GlacierMonitoringSystem {
+
+    class Glacier {
+      String uniqueIdentifier;
+      Location location;
+      Size size;
+      GlacierType type;
+    }
+
+    class Sensor {
+      String sensorID;
+      Glacier glacier;
+      float temperature;
+      float humidity;
+      float otherFactors;
+    }
+
+    class DataLogger {
+      String loggerID;
+      Glacier glacier;
+      Sensor sensor;
+      List<float> dataPoints;
+    }
+
+    class Researcher {
+      String researcherID;
+      Glacier glacier;
+    }
+
+    association Glacier 
+      has
+        -> Sensor [*];
+      - 
+        associationsSensor
+      - 
+        DataLogger [has]
+          -> Sensor
+      - 
+        {
+         
+
+ordered
+
+  }
+
+ 
+ 
+;
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+composition Glacier -> Sensor [*];
+composition Glacier -> DataLogger [*];
+composition Glacier -> Researcher [*];
+
+class AssociationSensor {
+  Sensor sensor;
+  List<Sensor> associatedSensors;
+}
+
+enum GlacierType {
+  Alpine, Continental, IceSheet;
+}
+
+enum Location {
+  Mountain, Valley, Polar, Antarctic;
+}
+
+enum Size {
+  Small, Medium, Large;
+}
+
+enum ResearcherRole {
+  Analyst, Scientist, Technician;
+}
+
+class OrderedAssociationSensor {
+  Sensor sensor;
+  List<Sensor> orderedAssociatedSensors;
+}
+
+class OrderedAssociationDataLogger {
+  DataLogger logger;
+  List<DataLogger> orderedAssociatedLoggers;
+}
+
+class OrderedAssociationResearcher {
+  Researcher researcher;
+  List<Researcher> orderedAssociatedResearchers;
+}
+
+class OrderedAssociationGlacier {
+  Glacier glacier;
+  List<Glacier> orderedAssociatedGlaciers;
+}
+
+class OrderedAssociationSensorAssociation {
+  Sensor sensor;
+  List<Sensor> orderedAssociatedSensors;
+}
+
+class OrderedAssociationDataLoggerAssociation {
+  DataLogger logger;
+  List<DataLogger> orderedAssociatedLoggers;
+}
+
+
+
+
+
+}

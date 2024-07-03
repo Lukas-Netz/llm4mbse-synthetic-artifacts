@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram CraftMarketplace  {
+
+  class User  {
+    String username;
+    String password;
+    List<craft> favoriteCrafts;
+    List<rating> ratings;
+  }
+
+  class Craft  {
+    String name;
+    String description;
+    double price;
+    List<material> materials;
+  }
+
+  class Material  {
+    String name;
+  }
+
+  class Rating  {
+    int rating;
+    craft craft;
+  }
+
+  class Collection  {
+    String name;
+    List<craft> crafts;
+    User user;
+  }
+
+  class Administrator  {
+    void addUser(User user);
+    void removeUser(User user);
+    void addCraft(Craft craft);
+    void removeCraft(Craft craft);
+    void addCollection(Collection collection);
+    void removeCollection(Collection collection);
+    void viewReports();
+  }
+
+  composition User -> (has) favoriteCrafts;
+  composition User -> (has) ratings;
+  composition Craft -> (has) materials;
+  composition Collection -> (has) crafts;
+  composition Collection -> (has) user;
+  composition Administrator -> User [0..*];
+  composition Administrator -> Craft [0..*];
+  composition Administrator -> Collection [0..*];
+}

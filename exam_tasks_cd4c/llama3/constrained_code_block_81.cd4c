@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram TimeTrackingSystem  {
+
+  class Employee  {
+    String employeeId;
+    String name;
+    -> Task[*];
+  }
+
+  class Project  {
+    String name;
+    String description;
+    -> Task[*];
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    -> Employee[*];
+  }
+
+  class TimeEntry  {
+    Date date;
+    Employee employee;
+    Task task;
+    int hours;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition Employee -> Project[*];
+  composition Project -> Task[*];
+  composition Task -> Employee[*];
+  composition TimeEntry -> Employee;
+  composition TimeEntry -> Task;
+  composition Report -> TimeEntry[*];
+}

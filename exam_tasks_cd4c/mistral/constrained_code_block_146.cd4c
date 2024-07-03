@@ -1,0 +1,68 @@
+
+classdiagram MultiCloudManagement {
+
+  class MultiCloudManager {
+    CloudProvider [ ] providers;
+  }
+
+  interface CloudProvider {
+    String name;
+    void connect();
+    void disconnect();
+  }
+
+  class AWSProvider implements CloudProvider {
+    void createVM(VMSpec spec);
+    void deleteVM(String id);
+    Storage getStorage(StorageSpec spec);
+    Network getNetwork(NetworkSpec spec);
+  }
+
+  class AzureProvider implements CloudProvider {
+    void createVM(VMSpec spec);
+    void deleteVM(String id);
+    Storage getStorage(StorageSpec spec);
+    Network getNetwork(NetworkSpec spec);
+  }
+
+  class GoogleCloudProvider implements CloudProvider {
+    void createVM(VMSpec spec);
+    void deleteVM(String id);
+    Storage getStorage(StorageSpec spec);
+    Network getNetwork(NetworkSpec spec);
+  }
+
+  class VM {
+    String id;
+    String status;
+  }
+
+  class Storage {
+    String id;
+    String usage;
+  }
+
+  class Network {
+    String id;
+    String status;
+  }
+
+  class VMSpec {
+    String name;
+    String image;
+    int memory;
+    int vCPUs;
+  }
+
+  class StorageSpec {
+    String name;
+    int size;
+  }
+
+  class NetworkSpec {
+    String name;
+    String subnet;
+  }
+
+  composition MultiCloudManager -> CloudProvider [*];
+}

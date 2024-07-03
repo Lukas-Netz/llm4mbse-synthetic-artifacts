@@ -1,0 +1,52 @@
+
+classdiagram IntellectualProperty {
+
+  class Creator {
+    String name;
+    String contact;
+  }
+
+  class Owner extends Creator {
+    IntellectualPropertyRight [ ] intellectualProperty;
+  }
+
+  class User {
+    String name;
+    String contact;
+  }
+
+  class Authority {
+    String name;
+    String contact;
+  }
+
+  abstract class IntellectualPropertyRight {
+    String id;
+    Creator creator;
+    Authority authority;
+    Owner owner;
+    User [ ] users;
+    boolean isAuthentic;
+  }
+
+  class Patent extends IntellectualPropertyRight {
+    String description;
+    String filingDate;
+  }
+
+  class Trademark extends IntellectualPropertyRight {
+    String description;
+    String registrationDate;
+  }
+
+  class Copyright extends IntellectualPropertyRight {
+    String description;
+    String publicationDate;
+  }
+
+  association Creator --o00o- 											{ 											ordered						}						;
+  association Owner --o00o- 											{ 											ordered						}						;
+  association User --o00o- 											{ 											ordered						}						;
+  association Authority --o00o- 										{ 											ordered						}						;
+  composition IntellectualPropertyRight --o00o- 											;
+}

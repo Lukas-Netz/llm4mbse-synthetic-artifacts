@@ -1,0 +1,67 @@
+
+classdiagram ResearchStation {
+
+  class ResearchStation {
+    LivingQuarters livingQuarters;
+    Laboratories laboratories;
+    MedicalCenter medicalCenter;
+    LogisticsCenter logisticsCenter;
+    CommunicationCenter communicationCenter;
+  }
+
+  class LivingQuarters {
+    privateRooms [ ][  ] privateRooms;
+    sharedKitchens [  ] sharedKitchens;
+    commonAreas [  ] commonAreas;
+  }
+
+  class Laboratories {
+    equipment [ ][  ] equipment;
+    sampleStorage [ ][  ] sampleStorage;
+    workstations [ ][  ] workstations;
+  }
+
+  class MedicalCenter {
+    examinationRooms [ ][  ] examinationRooms;
+    medicalEquipment [ ][  ] medicalEquipment;
+    medicalSuppliesStorage [ ][  ] medicalSuppliesStorage;
+  }
+
+  class LogisticsCenter {
+    storageRooms [ ][  ] storageRooms;
+    warehouse [  ] warehouse;
+    maintenanceWorkshop [  ] maintenanceWorkshop;
+  }
+
+  class CommunicationCenter {
+    communicationEquipment [  ] communicationEquipment;
+    satelliteDish [  ] satelliteDish;
+    backupPowerSystem [  ] backupPowerSystem;
+  }
+
+  class Equipment {
+    String name;
+    String type;
+  }
+
+  class Sample {
+    String name;
+    String type;
+  }
+
+  class MedicalEquipment {
+    String name;
+    String type;
+  }
+
+  class MedicalSupply {
+    String name;
+    String type;
+  }
+
+  composition ResearchStation -> LivingQuarters;
+  composition ResearchStation -> Laboratories;
+  composition ResearchStation -> MedicalCenter;
+  composition ResearchStation -> LogisticsCenter;
+  composition ResearchStation -> CommunicationCenter;
+}

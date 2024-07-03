@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram SmartKiosk  {
+
+  class Kiosk  {
+    String uniqueIdentifier;
+    Location location;
+    Advertisement[] advertisements;
+  }
+
+  class Advertisement  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+  }
+
+  class Customer  {
+    String contactInformation;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class TimeSlot  {
+    String time;
+  }
+
+  class DayOfWeek  {
+    String day;
+  }
+
+  class Analytics  {
+    int views;
+    int clicks;
+  }
+
+  composition Kiosk -> (has) Location;
+  composition Kiosk -> (has) Advertisement[*];
+  composition Advertisement -> (has) Customer[*];
+  composition Kiosk -> (has) Analytics;
+  composition Kiosk -> (has) TimeSlot[*];
+  composition Kiosk -> (has) DayOfWeek[*];
+}

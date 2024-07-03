@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram VirtualRealityInteriorDesignSystem  {
+
+  class Room  {
+    String name;
+    int size;
+    RoomType type;
+    -> Furniture  [*];
+  }
+
+  class Furniture  {
+    String name;
+    FurnitureType type;
+    Position position;
+  }
+
+  class FurnitureCatalog  {
+    -> Furniture  [*];
+  }
+
+  class Renderer  {
+    void render(Room room);
+  }
+
+  class Design  {
+    Room room;
+    -> Furniture  [*];
+  }
+
+  class Position  {
+    int xCoord;
+    int yCoord;
+  }
+
+  enum RoomType  {
+    LivingRoom, Bedroom, etc;
+  }
+
+  enum FurnitureType  {
+    Chair, Table, etc;
+  }
+
+  composition Room -> Furniture [*];
+  composition Design -> Room;
+  composition Design -> Furniture [*];
+  composition FurnitureCatalog -> Furniture [*];
+  composition Renderer -> Room;
+}

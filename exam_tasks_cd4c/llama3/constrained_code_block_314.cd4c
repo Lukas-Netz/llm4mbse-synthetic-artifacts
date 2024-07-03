@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram EmailPlatform  {
+
+  class EmailPlatform  {
+    List<EmailCampaign> emailCampaigns;
+  }
+
+  class EmailCampaign  {
+    String name;
+    Date startDate;
+    Date endDate;
+    List<EmailMessage> emailMessages;
+  }
+
+  class EmailMessage  {
+    String content;
+    List<Content> contents;
+  }
+
+  class Content  {
+    String type;  (text   )
+    String text;
+    String image;
+    String link;
+  }
+
+  class Recipient  {
+    String demographics;
+    String interests;
+    String previousInteractions;
+  }
+
+  class EmailCampaignMetrics  {
+    double openRate;
+    double clickThroughRate;
+    double conversionRate;
+  }
+
+  class Personalization  {
+    Recipient recipient;
+    String profile;
+    String behavior;
+  }
+
+  composition EmailPlatform  ->  (has) EmailCampaign[*];
+  composition EmailCampaign  ->  (has) EmailMessage[*];
+  composition EmailMessage  ->  (has) Content[*];
+  composition EmailCampaign  ->  (has) Recipient[*];
+  composition EmailCampaign  ->  (has) EmailCampaignMetrics;
+  composition EmailMessage  ->  (has) Personalization[*];
+}

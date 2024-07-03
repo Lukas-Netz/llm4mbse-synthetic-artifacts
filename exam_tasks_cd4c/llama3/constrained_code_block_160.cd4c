@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram MobileIdentitySolution  {
+
+  class Server  {
+    UserAccountManager userAccountManager;
+    OTPGenerator otpGenerator;
+    NotificationSender notificationSender;
+  }
+
+  class MobileApp  {
+    UserAuthenticator userAuthenticator;
+    DataRetriever dataRetriever;
+    OTPVerifier otpVerifier;
+  }
+
+  class Database  {
+    UserDataTable userDataTable;
+  }
+
+  class UserAccountManager  {
+    void createUserAccount(UserAccount userAccount);
+    void authenticateUser(UserAccount userAccount);
+  }
+
+  class OTPGenerator  {
+    String generateOTP();
+  }
+
+  class NotificationSender  {
+    void sendNotification(String notification);
+  }
+
+  class UserAuthenticator  {
+    boolean authenticateUser(UserAccount userAccount);
+  }
+
+  class DataRetriever  {
+    UserAccount retrieveUserAccount(String username);
+  }
+
+  class OTPVerifier  {
+    boolean verifyOTP(String otp);
+  }
+
+  class UserDataTable  {
+    void storeUserAccount(UserAccount userAccount);
+    UserAccount retrieveUserAccount(String username);
+  }
+
+  class UserAccount  {
+    String username;
+    String password;
+    String name;
+    String address;
+    String phoneNumber;
+  }
+
+  composition Server -> (has) UserAccountManager;
+  composition Server -> (has) OTPGenerator;
+  composition Server -> (has) NotificationSender;
+  composition MobileApp -> (has) UserAuthenticator;
+  composition MobileApp -> (has) DataRetriever;
+  composition MobileApp -> (has) OTPVerifier;
+  composition Database -> (has) UserDataTable;
+  association Server -> UserAccount [1..*];
+  association MobileApp -> UserAccount [1..*];
+  }

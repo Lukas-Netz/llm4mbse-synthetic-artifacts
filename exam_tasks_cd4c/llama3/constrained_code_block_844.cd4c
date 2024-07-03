@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram NanotechnologyDrugDelivery  {
+
+  class Nanoparticle  {
+    String uniqueIdentifier;
+    int size;
+    SurfaceModification surfaceModification;
+  }
+
+  class Drug  {
+    String uniqueIdentifier;
+    String name;
+    double concentration;
+  }
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Set<MedicalCondition> medicalConditions;
+  }
+
+  class MedicalCondition  {
+    String name;
+  }
+
+  class SurfaceModification  {
+    String type;
+  }
+
+  class DrugDelivery  {
+    Nanoparticle nanoparticle;
+    Drug drug;
+    Patient patient;
+    DeliveryStatus status;
+  }
+
+  class DeliveryStatus  {
+    String status;
+  }
+
+  composition Patient -> (has) MedicalCondition[*];
+  composition Nanoparticle -> (has) SurfaceModification;
+  composition Drug -> (has) DrugDelivery[*];
+  composition Patient -> (has) DrugDelivery[*];
+  composition Nanoparticle -> (has) DrugDelivery[*];
+  composition DrugDelivery -> (has) Nanoparticle;
+  composition DrugDelivery -> (has) Drug;
+  composition DrugDelivery -> (has) Patient;
+}

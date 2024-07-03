@@ -1,0 +1,42 @@
+
+
+classdiagram GameDevelopment {
+
+  class Game {
+    Level level;
+    Character character;
+    ScoringSystem scoringSystem;
+  }
+
+  class Level {
+    UniqueID uniqueID;
+    Features features;
+  }
+
+  class Character {
+    UniqueID uniqueID;
+    Attributes attributes;
+  }
+
+  class ScoringSystem {
+    Points points;
+    Leaderboard leaderboard;
+  }
+
+  class UniqueID {
+  }
+
+  class Attributes {
+    Health health;
+    Strength strength;
+    Speed speed;
+  }
+
+  composition Game -> (has) Level;
+  composition Game -> (has) Character;
+  composition Game -> (has) ScoringSystem;
+  association Level -> Features;
+  association Character -> Attributes;
+  association ScoringSystem -> Points;
+  association ScoringSystem -> Leaderboard;
+}

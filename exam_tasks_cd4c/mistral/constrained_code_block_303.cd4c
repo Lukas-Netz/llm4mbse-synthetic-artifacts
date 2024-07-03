@@ -1,0 +1,34 @@
+
+classdiagram GrocerySystem {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String category;
+    double price;
+  }
+
+  enum Category {
+    Fruits, Vegetables, Dairy, Meat, Others;
+  }
+
+  class Order {
+    Customer customer;
+    List<Product> products;
+  }
+
+  class Inventory {
+    Product product;
+    int quantity;
+  }
+
+  composition Customer <- Order;
+  composition Order <- Product [*];
+  association Inventory <-> Product;
+}

@@ -1,0 +1,44 @@
+
+
+
+classdiagram SmartGridDemandResponseSystem  {
+
+  class Controller  {
+    -> SmartMeter[*];
+    -> WeatherStation;
+    -> DemandResponseManager;
+    void adjustEnergySupply();
+    void sendNotifications();
+    void monitorEnergyConsumption();
+  }
+
+  class SmartMeter  {
+    String uniqueIdentifier;
+    EnergyConsumptionData energyConsumptionData;
+    void reportEnergyConsumption();
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class DemandResponseManager  {
+    void manageDemandResponseProgram();
+    void sendNotificationsToHouseholds();
+  }
+
+  class EnergyConsumptionData  {
+    double energyConsumption;
+  }
+
+  class WeatherData  {
+    double temperature;
+    double humidity;
+  }
+
+  composition Controller -> (has) SmartMeter[*];
+  composition Controller -> (has) WeatherStation;
+  composition Controller -> (has) DemandResponseManager;
+  composition SmartMeter -> (reports) EnergyConsumptionData;
+  composition WeatherStation -> (provides) WeatherData;
+}

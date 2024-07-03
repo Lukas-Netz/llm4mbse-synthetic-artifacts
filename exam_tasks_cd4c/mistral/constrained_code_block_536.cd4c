@@ -1,0 +1,48 @@
+
+classdiagram CyberPhysicalSystem {
+
+  class ProductionLine {
+    String id;
+    ProductType productType;
+    Sensor [][ ] sensors;
+    Actuator [][ ] actuators;
+  }
+
+  class ProductType {
+    String name;
+    Sensor [ ] specificSensors;
+    Actuator [ ] specificActuators;
+  }
+
+  abstract class Sensor {
+    String id;
+    void sendData();
+  }
+
+  abstract class Actuator {
+    String id;
+    void receiveCommand();
+  }
+
+  class ControlUnit {
+    ProductionLine [ ] productionLines;
+    Database database;
+    UserInterface userInterface;
+    void processData();
+    void sendCommands();
+  }
+
+  class Database {
+    ProductionLine [ ] productionLines;
+  }
+
+  class UserInterface {
+    ProductionLine [ ] productionLines;
+    void displayData();
+    void controlProduction();
+  }
+
+  composition ControlUnit -> ProductionLine [*];
+  composition ProductionLine -> Sensor [*];
+  composition ProductionLine -> Actuator [*];
+}

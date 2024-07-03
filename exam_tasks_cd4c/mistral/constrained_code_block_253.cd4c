@@ -1,0 +1,70 @@
+
+classdiagram PaymentProcessing {
+
+  class Customer {
+    String customerId;
+    String name;
+    String email;
+    String phone;
+    PaymentMethod [ ] paymentMethods;
+  }
+
+  enum PaymentMethod {
+    CreditCard, BankAccount, DigitalWallet;
+  }
+
+  class Transaction {
+    String transactionId;
+    Customer customer;
+    PaymentMethod paymentMethod;
+    Currency currency;
+    TransactionStatus status;
+    Gateway gateway;
+  }
+
+  enum TransactionStatus {
+    Pending, Processing, Completed;
+  }
+
+  interface Gateway {
+    void processPayment(Transaction transaction);
+  }
+
+  class PayPal implements Gateway {
+  }
+
+  class Stripe implements Gateway {
+  }
+
+  class AuthorizeNet implements Gateway {
+  }
+
+  class Currency {
+    String currencyCode;
+    double exchangeRate;
+  }
+
+  class Receipt {
+    String receiptId;
+    Transaction transaction;
+    String invoiceNumber;
+    LocalDate date;
+    double total;
+  }
+
+  class Invoice {
+    String invoiceId;
+    Transaction transaction;
+    LocalDate date;
+    double total;
+    String description;
+  }
+
+  class PaymentHistory {
+    String customerId;
+    Transaction [ ] transactions;
+  }
+
+  composition Customer has [  multiple ] (has) 																							-> PaymentMethod;
+  composition Transaction has (has) 																							-> Gateway;
+}

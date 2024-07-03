@@ -1,0 +1,58 @@
+
+classdiagram MobileAppAnalytics {
+
+  class App {
+    String uniqueIdentifier;
+    int versionNumber;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    UserSegment segment;
+  }
+
+  enum UserSegment {
+    Age_18_24, Age_25_34, Age_35_44, Age_45_54, Age_55_64, Age_65_plus,
+    Location_NorthAmerica, Location_Europe, Location_Asia, Location_Other,
+    Interest_Gaming, Interest_Social, Interest_News, Interest_Shopping,
+    Interest_Music, Interest_Other;
+  }
+
+  class Analytics {
+    App app;
+    User user;
+    int sessionDuration;
+    float bounceRate;
+    float conversionRate;
+  }
+
+  class Report {
+    App app;
+    UserSegment userSegment;
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    AnalyticsData analyticsData;
+  }
+
+  class AnalyticsData {
+    int sessionDuration;
+    float bounceRate;
+    float conversionRate;
+  }
+
+  class AnomalyDetector {
+    void detectAnomalies();
+  }
+
+  class AppDeveloper {
+    void viewAnalyticsData();
+    void viewReports();
+  }
+
+  composition AppDeveloper -> Analytics;
+  composition AppDeveloper -> Report;
+  association App -> User [*];
+  association App -> Analytics [*];
+  association User -> UserSegment;
+  association Report -> Analytics;
+}

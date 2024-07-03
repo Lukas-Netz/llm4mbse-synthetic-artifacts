@@ -1,0 +1,44 @@
+
+classdiagram VehicleTrackingSystem {
+
+    class Vehicle {
+      String vehicleId;
+      Location location;
+      double speed;
+      Direction direction;
+      VehicleStatus status;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class Direction {
+      enum DirectionType
+        ;
+    }
+
+    class VehicleStatus {
+      enum StatusType
+        ;
+    }
+
+    class TrafficManagementSystem {
+      void integrate(VehicleTrackingSystem system);
+    }
+
+    class EmergencyServicesSystem {
+      void integrate(VehicleTrackingSystem system);
+    }
+
+    class VehicleTrackingSystem {
+      List<Vehicle> vehicles;
+      void trackVehicle(Vehicle vehicle);
+      void reportVehicleStatus(String vehicleId);
+      void alertOutOfArea(Vehicle vehicle);
+      void alertStationaryVehicle(Vehicle vehicle);
+      void integrate(TrafficManagementSystem trafficSystem);
+      void integrate(EmergencyServicesSystem emergencySystem);
+    }
+}

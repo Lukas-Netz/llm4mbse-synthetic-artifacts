@@ -1,0 +1,82 @@
+
+classdiagram VirtualPropertyTours {
+
+    class Property {
+      String uniqueId;
+      String name;
+      String description;
+      PropertyType type;
+    }
+
+    class Tour {
+      String uniqueId;
+      Property property;
+      List<Scene> scenes;
+      User creator;
+    }
+
+    class Scene {
+      String uniqueId;
+      Tour tour;
+      List<Object> objects;
+    }
+
+    class Object {
+      String uniqueId;
+      String name;
+      String description;
+      double price;
+    }
+
+    class User {
+      String uniqueId;
+      String username;
+      List<Tour> createdTours;
+      List<Tour> ratedTours;
+      List<Comment> comments;
+    }
+
+    <<association>> class Property 
+      implements Tour {
+      Tour tour;
+    }
+
+    <<association>> class Tour 
+      implements Scene {
+      Scene scene;
+      Property property;
+    }
+
+    <<association>> class Scene 
+      implements Object {
+      List<Object> objects;
+      Tour tour;
+    }
+
+    <<association>> class Object 
+      implements Scene {
+      Object object;
+      Scene scene;
+    }
+
+    <<association>> class User 
+      implements Tour {
+      List<Tour> createdTours;
+      List<Tour> ratedTours;
+      List<Comment> comments;
+    }
+
+    <<association>> class Comment 
+      implements Tour {
+      Tour tour;
+      String content;
+    }
+
+    <<association>> class PropertyType {
+      String name;
+    }
+
+    <<association>> class PropertyType {
+      String name;
+    }
+}

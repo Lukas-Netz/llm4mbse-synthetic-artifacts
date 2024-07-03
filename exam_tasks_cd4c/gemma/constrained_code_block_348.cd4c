@@ -1,0 +1,44 @@
+
+
+classdiagram OceanographySimulation {
+
+  class SimulationEngine {
+    String name;
+    String description;
+    void runSimulation();
+  }
+
+  class UserInterface {
+    void selectSimulation(String name);
+    void adjustParameters();
+    void startSimulation();
+    void displayResults();
+  }
+
+  class DataRepository {
+    void storeData(OceanData data);
+    OceanData getData(String name);
+  }
+
+  class DataAnalyzer {
+    void analyzeData();
+    void generateInsights();
+  }
+
+  class OceanData {
+    String name;
+    int temperature;
+    int salinity;
+    MarineLife marineLife;
+  }
+
+  class MarineLife {
+    String type;
+    int population;
+  }
+
+  composition SimulationEngine -> (has) DataRepository;
+  composition UserInterface -> (has) DataRepository;
+  composition DataRepository -> (has) OceanData;
+  composition DataAnalyzer -> (has) DataRepository;
+}

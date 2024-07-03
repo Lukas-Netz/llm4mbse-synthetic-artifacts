@@ -1,0 +1,71 @@
+
+classdiagram MobileHealthApp {
+
+  class Patient {
+    String uniqueIdentifier;
+    Profile [  ] profiles;
+  }
+
+  class Profile {
+    Patient patient;
+    String medicalHistory;
+    MedicationList medicationList;
+  }
+
+  class Symptom {
+    Profile profile;
+    String symptomName;
+    String symptomDescription;
+  }
+
+  class Medication {
+    MedicationName name;
+    MedicationDosage dosage;
+  }
+
+  class MedicationList {
+    Medication [ ] medications;
+  }
+
+  class MedicationReminder {
+    Profile profile;
+    Medication medication;
+    String reminderTime;
+  }
+
+  class Doctor {
+    String uniqueIdentifier;
+    Patient [ ] patients;
+  }
+
+  class LabResult {
+    Profile profile;
+    String testName;
+    String result;
+  }
+
+  enum MedicationName {
+    Acetaminophen, Ibuprofen, Aspirin;
+  }
+
+  enum MedicationDosage {
+    OneTablet, TwoTablets, ThreeTablets;
+  }
+
+  association Patient --o001o- 											{ 											ordered						}
+   		;
+  association Profile --o001o- 											{ 											ordered						}
+   		;
+  association Symptom --o001o- 											{ 											ordered						}
+   		;
+  association Medication --o001o- 											{ 											ordered						}
+   		;
+  association MedicationList --o001o- 											{ 											ordered						}
+   		;
+  association MedicationReminder --o001o- 											{ 											ordered						}
+   		;
+  association Doctor --o001o- 											{ 											ordered						}
+   		;
+  association LabResult --o001o- 											{ 											ordered						}
+   		;
+}

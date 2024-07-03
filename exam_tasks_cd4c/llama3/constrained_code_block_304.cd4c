@@ -1,0 +1,40 @@
+
+
+
+classdiagram CDN  {
+
+  class Node  {
+    String uniqueIdentifier;
+    String ipAddress;
+  }
+
+  class Origin extends Node  {
+    String content;
+  }
+
+  class Edge extends Node  {
+    String cachedContent;
+  }
+
+  class Router  {
+    String routingAlgorithm;
+  }
+
+  class CDN  {
+    Node  node  ; 
+    Router router;
+  }
+
+  composition CDN  ->  (has) Node  ; 
+  composition CDN  ->  (has) Router  ; 
+  composition Node  ->  (has) Node  [0..*]; 
+  association Origin  ->  (stores) content;
+  association Edge  ->  (caches) cachedContent;
+  association Router  ->  (uses) routingAlgorithm;
+  classmethod  {
+    void addNode(Node node);
+    void removeNode(Node node);
+    void updateContent(Origin origin, String newContent);
+    void checkNodeStatus(Node node);
+  }
+}

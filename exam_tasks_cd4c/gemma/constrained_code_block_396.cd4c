@@ -1,0 +1,60 @@
+
+
+classdiagram LunarExplorationSystems {
+
+    class Spacecraft {
+      Rover rover;
+      CommunicationModule communicationModule;
+      int fuelLevel;
+      NavigationSystem navigationSystem;
+
+      void adjustCourse(double course);
+      void communicateWithEarth();
+    }
+
+    class Rover {
+      String speed;
+      String direction;
+      int altitude;
+
+      void move(String direction, int distance);
+      void stop();
+      void collectSamples();
+    }
+
+    class CommunicationModule {
+      int transmissionPower;
+      int frequency;
+
+      void sendData(String data);
+      void receiveData(String data);
+    }
+
+    class LunarSurface {
+      TerrainType terrainType;
+      Hazards hazards;
+
+      boolean isSafeForRoverMovement();
+      int getHazardLevel(Rover rover);
+    }
+
+    enum TerrainType {
+      Rocky, Sandy, LunarDust
+    
+
+    
+;
+    }
+
+    enum Hazards {
+      Crater, Rock, Hole
+    
+
+    
+;
+    }
+
+  composition Spacecraft -> (has) Rover;
+  composition Spacecraft -> (has) CommunicationModule;
+  composition LunarSurface -> (has) Spacecraft;
+}

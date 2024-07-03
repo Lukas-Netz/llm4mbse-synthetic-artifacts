@@ -1,0 +1,191 @@
+
+classdiagram EventTicketingSystem {
+
+    class Event {
+      String name;
+      Date date;
+      String location;
+      List<Ticket> tickets;
+      EventType type;
+    }
+
+    class Ticket {
+      String ticketId;
+      double price;
+      String seatNumber;
+      TicketType type;
+    }
+
+    class Artist {
+      String name;
+      List<String> songs;
+    }
+
+    class Team {
+      String name;
+      List<String> players;
+    }
+
+    class Speaker {
+      String name;
+      List<String> talks;
+    }
+
+    class EventType {
+      String typeName;
+    }
+
+    class TicketType {
+      String typeName;
+    }
+
+    enum EventType {
+      Concert, Sports, Conference
+   
+   
+   ()
+   
+
+;
+    composition EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+    association EventTicketingSystem
+      ;
+   
+
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+eGeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+enum TicketType {
+  GeneralAdmission, ReservedSeating, VIP
+
+  ;
+  void calculateRevenue();
+  int getTicketsSold();
+}
+
+
+}

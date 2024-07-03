@@ -1,0 +1,44 @@
+
+classdiagram SelfDrivingTractorSystem {
+
+    class Tractor {
+      String uniqueIdentifier;
+      Location location;
+      SensorData sensorData;
+      Attachment currentAttachment;
+      TractorStatus status;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class SensorData {
+      boolean obstaclesDetected;
+      boolean otherVehiclesDetected;
+      boolean adverseWeatherConditions;
+    }
+
+    class Attachment {
+      String type;
+    }
+
+    class TractorStatus {
+      boolean isOperational;
+      String currentTask;
+    }
+
+    class CentralHub {
+      void sendCommand(Tractor tractor, Command command);
+      TractorStatus getTractorStatus(String uniqueIdentifier);
+    }
+
+    enum Command {
+      Move, Stop, SwitchAttachment, ReportStatus;
+    }
+
+    composition SelfDrivingTractorSystem -> (has) CentralHub;
+    composition SelfDrivingTractorSystem -> (has) Tractor [*];
+    composition CentralHub -> Tractor [*];
+}

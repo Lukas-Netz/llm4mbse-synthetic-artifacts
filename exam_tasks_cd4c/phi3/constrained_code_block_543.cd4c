@@ -1,0 +1,41 @@
+
+classdiagram PortableWaterPurificationSystem {
+
+    class PortableWaterPurificationSystem {
+      Filter filter;
+      UVModule uvModule;
+      StorageTank tank;
+      ControlUnit controlUnit;
+      PowerSource powerSource;
+    }
+
+    class Filter {
+      String filterType;
+    }
+
+    class UVModule {
+      int powerLevel;
+      boolean isOn;
+    }
+
+    class StorageTank {
+      int capacityLiters;
+      void fillTank(int liters);
+      void emptyTank(int liters);
+    }
+
+    class ControlUnit {
+      void monitorWaterQuality();
+      void alertUnsafeWater();
+    }
+
+    class PowerSource {
+      String sourceType;
+    }
+
+    composition PortableWaterPurificationSystem -> (has) Filter;
+    composition PortableWaterPurificationSystem -> (has) UVModule;
+    composition PortableWaterPurificationSystem -> (has) StorageTank;
+    composition PortableWaterPurificationSystem -> (has) ControlUnit;
+    composition PortableWaterPurificationSystem -> (has) PowerSource;
+}

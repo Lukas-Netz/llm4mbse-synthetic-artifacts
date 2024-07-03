@@ -1,0 +1,52 @@
+
+classdiagram ForestFireDetectionSystem {
+
+    class ForestFireDetectionSystem {
+      Hub centralHub;
+      List<Sensor> sensors;
+      List<Drone> drones;
+      Database forestDatabase;
+    }
+
+    class Sensor {
+      String uniqueId;
+      int temperature;
+      int humidity;
+      boolean smokeDetected;
+      void transmitData(Hub hub);
+    }
+
+    class Drone {
+      String uniqueId;
+      Camera camera;
+      void flyOverForest(Hub hub);
+      void transmitData(Hub hub);
+    }
+
+    class Hub {
+      void receiveData(Sensor sensor);
+      void receiveData(Drone drone);
+      void analyzeData();
+      void sendAlert(String alertMessage);
+      void dispatchDrone(Drone drone);
+    }
+
+    class Database {
+      List<Tree> trees;
+      List<Road> roads;
+      void analyzeData(Sensor sensorData, Drone droneData);
+    }
+
+    class Tree {
+      String location;
+    }
+
+    class Road {
+      String location;
+    }
+
+  composition ForestFireDetectionSystem -> (has) Hub;
+  composition ForestFireDetectionSystem -> (has) List<<Sensor>>;
+  composition ForestFireDetectionSystem -> (has) List<<Drone>>;
+  composition ForestFireDetectionSystem -> (has) Database;
+}

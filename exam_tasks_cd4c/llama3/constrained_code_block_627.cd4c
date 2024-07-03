@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram BiofuelProduction  {
+
+  class ProductionLine  {
+    Equipment equipment;
+    ProductionCapacity capacity;
+    BiofuelType[] biofuels;
+  }
+
+  class Equipment  {
+    String type;
+  }
+
+  class ProductionCapacity  {
+    int capacity;
+  }
+
+  class BiofuelType  {
+    String type;
+  }
+
+  enum BiofuelType  {
+    Ethanol, Biodiesel, Biogas;
+  }
+
+  class CentralControlSystem  {
+    ProductionLine[] productionLines;
+    Sensor[] sensors;
+    Actuator[] actuators;
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class Actuator  {
+    String type;
+  }
+
+  composition CentralControlSystem -> ProductionLine[*];
+  composition ProductionLine -> Equipment;
+  composition ProductionLine -> ProductionCapacity;
+  composition ProductionLine -> BiofuelType[*];
+  composition CentralControlSystem -> Sensor[*];
+  composition CentralControlSystem -> Actuator[*];
+}

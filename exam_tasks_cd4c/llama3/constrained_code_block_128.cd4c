@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram HealthDataAnalytics  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+    -> MedicalTestResult[*];
+    -> MedicationRecord[*];
+  }
+
+  class MedicalTestResult  {
+    String testType;
+    double resultValue;
+    TestStatus status;
+  }
+
+  class MedicationRecord  {
+    String medicationName;
+    double dosage;
+    Frequency frequency;
+    boolean isActive;
+  }
+
+  enum TestStatus  {
+    Normal,
+    Abnormal,
+    Pending
+  ;}
+
+  enum Frequency  {
+    Daily,
+    Weekly,
+    Monthly
+  ;}
+
+  class Report  {
+    String patientName;
+    String testType;
+    double averageResultValue;
+  }
+
+  class Alert  {
+    String patientName;
+    String testType;
+    String message;
+  }
+
+  composition Patient -> MedicalTestResult[*];
+  composition Patient -> MedicationRecord[*];
+  composition MedicalTestResult -> Report[*];
+  composition MedicationRecord -> Alert[*];
+}

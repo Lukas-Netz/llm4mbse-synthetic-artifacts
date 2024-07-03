@@ -1,0 +1,238 @@
+
+
+classdiagram LandRegistry {
+
+  class LandRecord {
+    String location;
+    String owner;
+    List<Transaction> transactionHistory;
+  }
+
+  class User {
+    String identifier;
+    Permissions permissions;
+  }
+
+  enum Permissions {
+    Admin, Regular
+  
+
+  
+
+  
+;
+
+  class Administrator  
+  
+  
+
+  ;
+
+  class SmartContract  
+  
+  
+
+  ;
+
+  class Transaction  
+  
+  
+
+  ;
+
+  composition LandRegistry  
+  
+  
+  
+;
+
+  association LandRecord  
+  
+  
+  
+;
+
+  association User  
+  
+  
+  
+;
+
+  association SmartContract  
+  
+  
+  
+;
+
+  association Transaction  
+  
+  
+  
+;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association LandRecord - LandRegistry
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  -- Composition
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association User - LandRegistry
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  -- Composition
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association SmartContract - LandRegistry
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  -- Composition
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association Transaction - LandRegistry
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  -- Composition
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+
+}

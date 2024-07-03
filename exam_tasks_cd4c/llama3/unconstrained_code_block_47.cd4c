@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram DigitalPaymentSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    String password;
+    -> Account[*];
+  }
+
+  abstract class Account  {
+    double balance;
+    AccountStatus status;
+  }
+
+  class PersonalAccount extends Account  {
+  }
+
+  class BusinessAccount extends Account  {
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    String description;
+  }
+
+  class Deposit extends Transaction  {
+  }
+
+  class Withdrawal extends Transaction  {
+  }
+
+  class AccountHistory  {
+    -> Transaction[*];
+  }
+
+  enum AccountStatus  {
+    Active, Inactive;
+  }
+
+  composition User -> Account[*];
+  composition Account -> Transaction[*];
+  composition Account -> AccountHistory [1];
+}
+

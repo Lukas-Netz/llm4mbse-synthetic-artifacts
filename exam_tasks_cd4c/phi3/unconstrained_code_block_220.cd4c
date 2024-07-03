@@ -1,0 +1,65 @@
+
+classdiagram PrecisionFarmingSystem {
+
+    class Farm {
+      PrecisionFarmingSystem system;
+    }
+
+    class Animal {
+      String uniqueIdentifier;
+      VitalSigns vitalSigns;
+      Location location;
+      MovementPatterns movementPatterns;
+    }
+
+    class VitalSigns {
+      double temperature;
+      double heartRate;
+      double respiratoryRate;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class MovementPatterns {
+      List<Location> movementData;
+    }
+
+    class Sensor {
+      String sensorType;
+      String dataType;
+      void collectData(Animal animal);
+    }
+
+    class TemperatureSensor extends Sensor {
+      void collectData(Animal animal);
+    }
+
+    class Accelerometer extends Sensor {
+      void collectData(Animal animal);
+    }
+
+    class GPSDevice extends Sensor {
+      void collectData(Animal animal);
+    }
+
+    class AlertSystem {
+      void sendAlert(Animal animal);
+    }
+
+    class Analytics {
+      void generateHeatMap(List<Animal> animals);
+      void generateHealthReport(Animal animal);
+    }
+
+    composition Farm -> PrecisionFarmingSystem;
+    composition Animal -> VitalSigns;
+    composition Animal -> Location;
+    composition Animal -> MovementPatterns;
+    composition Animal -> Sensor;
+    composition Sensor -> Animal;
+    composition PrecisionFarmingSystem -> AlertSystem;
+    composition PrecisionFarmingSystem -> Analytics;
+}

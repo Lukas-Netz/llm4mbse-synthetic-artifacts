@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram QuantumSatellite  {
+
+  class Satellite  {
+    QuantumCryptography quantumCryptography;
+    void encryptMessage(Message message);
+    void decryptMessage(Message message);
+  }
+
+  class GroundStation  {
+    Satellite satellite;
+    void sendRequest(User user, Message message);
+    void receiveResponse(User user, Message message);
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    void sendMessage(Message message);
+    void receiveMessage(Message message);
+  }
+
+  class Message  {
+    String content;
+  }
+
+  class KeyManagementSystem  {
+    void generateKeyPair();
+    void distributeKeyPair(User user);
+  }
+
+  class QuantumCryptography  {
+    void encrypt(Message message);
+    void decrypt(Message message);
+  }
+
+  composition Satellite -> (has) QuantumCryptography;
+  composition GroundStation -> (has) Satellite;
+  composition User -> (has) KeyManagementSystem;
+  composition KeyManagementSystem -> (has) User [1..*];
+  association Satellite -> GroundStation;
+  association GroundStation -> User [1..*];
+  association User -> Message [1..*];
+}

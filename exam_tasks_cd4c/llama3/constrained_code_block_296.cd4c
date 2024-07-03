@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram RemoteLearningPlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Topic topic;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    Course[] coursesTaught;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    CourseEnrollment[] courseEnrollments;
+  }
+
+  class CourseEnrollment  {
+    Course course;
+    Student student;
+    Date startDate;
+    Date endDate;
+    Grade grade;
+  }
+
+  class Grade  {
+    double score;
+    String feedback;
+  }
+
+  class Topic  {
+    String name;
+  }
+
+  composition Course -> Topic;
+  composition Instructor -> Course;
+  composition Student -> CourseEnrollment;
+  composition CourseEnrollment -> Course;
+  composition CourseEnrollment -> Student;
+  composition Grade -> CourseEnrollment;
+}

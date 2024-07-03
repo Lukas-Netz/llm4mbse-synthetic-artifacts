@@ -1,0 +1,90 @@
+
+classdiagram CarRentalSystem {
+
+    class CarRentalSystem {
+      List<Branch> branches;
+      VehicleService vehicleService;
+      CustomerService customerService;
+      RentalService rentalService;
+      ReportService reportService;
+    }
+
+    class Branch {
+      String name;
+      List<Vehicle> vehicles;
+      List<Customer> customers;
+      CarRentalSystem carRentalSystem;
+    }
+
+    class Vehicle {
+      String id;
+      String type;
+      String features;
+      boolean isAvailable;
+    }
+
+    class Sedan extends Vehicle {
+      int seatingCapacity;
+      int fuelEfficiency;
+    }
+
+    class SUV extends Vehicle {
+      int seatingCapacity;
+      int cargoSpace;
+    }
+
+    class Truck extends Vehicle {
+      int payloadCapacity;
+      boolean isDeliveryVehicle;
+    }
+
+    class Customer {
+      String id;
+      String name;
+      List<Rental> rentals;
+    }
+
+    class Rental {
+      Vehicle rentedVehicle;
+      Customer renter;
+      Date rentalStartDate;
+      Date rentalEndDate;
+      double rentalPrice;
+    }
+
+    class VehicleService {
+      void addVehicle(Vehicle vehicle);
+      void removeVehicle(Vehicle vehicle);
+      Vehicle getAvailableVehicle(String type);
+    }
+
+    class CustomerService {
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      Customer getCustomer(String id);
+    }
+
+    class RentalService {
+      void addRental(Rental rental);
+      void removeRental(Rental rental);
+      Rental getRental(String vehicleId);
+      void updateRentalStatus(String vehicleId, RentalStatus status);
+    }
+
+    class ReportService {
+      void generateVehicleReport();
+      void generateCustomerReport();
+      void generateRevenueReport();
+    }
+
+  composition CarRentalSystem -> (has) Branch;
+  composition CarRentalSystem -> (has) VehicleService;
+  composition CarRentalSystem -> (has) CustomerService;
+  composition CarRentalSystem -> (has) RentalService;
+  composition CarRentalSystem -> (has) ReportService;
+
+  association Branch -> Vehicle [*];
+  association Branch -> Customer [*];
+  association Customer -> Rental [*];
+  association Rental -> Vehicle [*];
+}

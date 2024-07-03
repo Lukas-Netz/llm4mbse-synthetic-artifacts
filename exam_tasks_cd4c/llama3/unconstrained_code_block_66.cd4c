@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram IntelligentTrafficSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    double trafficSpeed;
+    int trafficVolume;
+    int trafficOccupancy;
+  }
+
+  class Camera  {
+    String uniqueIdentifier;
+    String trafficImage;
+  }
+
+  class TrafficLight  {
+    String uniqueIdentifier;
+    TrafficLightState state;
+  }
+
+  enum TrafficLightState  {
+    Red, Yellow, Green;
+  }
+
+  class CentralUnit  {
+    Sensor[] sensors;
+    Camera[] cameras;
+    TrafficLight[] trafficLights;
+    void adjustTrafficLightStates();
+  }
+
+  class Database  {
+    TrafficLight[] trafficLights;
+    Sensor[] sensors;
+    Camera[] cameras;
+    TrafficPattern[] trafficPatterns;
+    TrafficStatistic[] trafficStatistics;
+  }
+
+  class TrafficPattern  {
+    String patternName;
+    Sensor[] sensors;
+    Camera[] cameras;
+  }
+
+  class TrafficStatistic  {
+    String statisticName;
+    double value;
+  }
+
+  composition CentralUnit -> (has) Sensor[*];
+  composition CentralUnit -> (has) Camera[*];
+  composition CentralUnit -> (has) TrafficLight[*];
+  composition Database -> (has) TrafficLight[*];
+  composition Database -> (has) Sensor[*];
+  composition Database -> (has) Camera[*];
+  composition Database -> (has) TrafficPattern[*];
+  composition Database -> (has) TrafficStatistic[*];
+}

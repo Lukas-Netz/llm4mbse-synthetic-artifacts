@@ -1,0 +1,65 @@
+
+classdiagram AI_System {
+
+  class DataIngestionModule {
+    void collectData(Sensor sensor);
+  }
+
+  class DataProcessingModule {
+    void analyzeData(Data data);
+    PotentialIssue[] identifyPotentialIssues(Data data);
+  }
+
+  class PredictiveAnalyticsModule {
+    void predictIssues(Data data);
+  }
+
+  class RecommendationEngine {
+    void provideRecommendations(PotentialIssue[] potentialIssues);
+  }
+
+  class IntegrationModule {
+    void integrateWithERP();
+  }
+
+  class UserInterface {
+    void displayRealTimeData();
+  }
+
+  class Sensor {
+    String sensorType;
+  }
+
+  class Machine {
+    String machineType;
+  }
+
+  class Data {
+    Sensor sensor;
+    Machine machine;
+    Timestamp timestamp;
+  }
+
+  class PotentialIssue {
+    String issueType;
+    String recommendedAction;
+  }
+
+  class Timestamp {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second;
+  }
+
+  composition AI_System -> DataIngestionModule;
+  composition AI_System -> DataProcessingModule;
+  composition AI_System -> PredictiveAnalyticsModule;
+  composition AI_System -> RecommendationEngine;
+  composition AI_System -> IntegrationModule;
+  composition AI_System -> UserInterface;
+  association AI_System -> Sensor [*];
+  association AI_System -> Machine [*];
+}

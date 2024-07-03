@@ -1,0 +1,54 @@
+
+
+classdiagram ClinicalDecisionSupport {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      DemographicInfo demographicInfo;
+      List<MedicalCondition> medicalConditions;
+      List<Medication> medications;
+      List<TestResult> testResults;
+    }
+
+    class MedicalCondition {
+      String name;
+      String description;
+      SeverityLevel severityLevel;
+      boolean isAcute;
+    }
+
+    class Medication {
+      String name;
+      String description;
+      DosageInstructions dosageInstructions;
+      List<MedicalCondition> prescribedFor;
+    }
+
+    class TestResult {
+      String name;
+      String description;
+      String value;
+    }
+
+    class Recommendation {
+      String category;
+      String content;
+    }
+
+    class HealthcareProfessional {
+      String uniqueIdentifier;
+      String name;
+      Role role;
+      List<Patient> patients;
+      List<Recommendation> recommendations;
+    }
+
+    enum SeverityLevel {
+      Low, Medium, High
+    
+
+  
+
+ ;}
+}

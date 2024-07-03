@@ -1,0 +1,61 @@
+
+classdiagram SolarVehicles {
+
+    class VehicleModel {
+      String name;
+      String identifier;
+      Set<SolarPanel> solarPanels;
+      int batteryCapacity;
+      int maxSpeed;
+      VehicleModelStatus status;
+
+      VehicleModel(String name, String identifier, Set<SolarPanel> solarPanels, int batteryCapacity, int maxSpeed);
+      void upgradeSolarPanel(SolarPanel panel);
+      void addBattery(int capacity);
+      void adjustMaxSpeed(SolarPanel panel);
+    CVehicleModelStatus status;
+    }
+
+    class SolarPanel {
+      String type;
+      double efficiency;
+      SolarPanel upgrade(double newEfficiency);
+    }
+
+    class Battery {
+      int capacity;
+      Battery battery;
+      void addBattery(Battery battery);
+    }
+
+    class Vehicle {
+      String identifier;
+      String currentLocation;
+      VehicleModel model;
+      VehicleStatus status;
+
+      Vehicle(String identifier, String currentLocation, VehicleModel model, VehicleStatus status);
+      void moveTo(String newLocation);
+    }
+
+    class Fleet {
+      Set<Vehicle> vehicles;
+      void addVehicle(Vehicle vehicle);
+      void removeVehicle(Vehicle vehicle);
+    }
+
+    enum VehicleStatus {
+      Available, InUse;
+    }
+
+    enum VehicleModelStatus {
+      Available, InUse;
+    }
+
+  composition Fleet -> (has) Vehicle;
+  composition Vehicle -> VehicleModel;
+  composition VehicleModel -> (has) Set<<SolarPanel>>;
+  composition VehicleModel -> (has) Battery;
+  composition VehicleModel -> (has) VehicleModelStatus;
+  composition VehicleModel -> (has) VehicleStatus;
+}

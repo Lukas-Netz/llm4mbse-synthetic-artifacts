@@ -1,0 +1,44 @@
+
+
+classdiagram SmartMeteringSystem {
+
+  class Server {
+    -> SmartMeter [*];
+    -> Device [*];
+    void collectAndStoreData();
+    void generateReports();
+    void sendAlerts();
+  }
+
+  class SmartMeter {
+    String uniqueIdentifier;
+    int energyConsumptionkWh;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+  }
+
+  class Thermostat extends Device {
+    int temperature;
+  }
+
+  class LightingSystem extends Device {
+    int brightnessLevel;
+  }
+
+  class Appliance extends Device {
+    String type;
+  }
+
+  class UserInterface {
+    -> Server;
+    void viewEnergyConsumptionData();
+    void setSchedulesForDevices();
+    void receiveAlerts();
+  }
+
+  composition Server -> SmartMeter [*];
+  composition Server -> Device [*];
+  composition UserInterface -> Server;
+}

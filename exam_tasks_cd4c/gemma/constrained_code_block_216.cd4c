@@ -1,0 +1,52 @@
+
+
+classdiagram EmailPlatform {
+
+  class EmailCampaign {
+    String name;
+    Date startDate;
+    Date endDate;
+    List<EmailMessage> messages;
+  }
+
+  class EmailMessage {
+    String content;
+    List<Recipient> recipients;
+  }
+
+  class Recipient {
+    String name;
+    String emailAddress;
+    String demographics;
+    List<Interest> interests;
+    List<PreviousInteraction> previousInteractions;
+  }
+
+  class Interest {
+    String name;
+  }
+
+  class PreviousInteraction {
+    String type;
+    Date date;
+  }
+
+  class Company {
+    List<EmailCampaign> campaigns;
+    List<Recipient> recipients;
+  }
+
+  class EmailPlatform {
+    List<EmailCampaign> campaigns;
+    List<Recipient> recipients;
+  }
+
+  composition Company -> (has) EmailCampaign [*];
+  composition EmailCampaign -> (has) EmailMessage [*];
+  composition EmailCampaign -> (has) List<<EmailMessage>>
+  abstract  
+  
+  
+  
+;
+}

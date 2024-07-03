@@ -1,0 +1,48 @@
+
+classdiagram VirtualRealityJournalism {
+
+    class Newsroom {
+      Journalist journalist;
+    }
+
+    class Journalist {
+      String name;
+      String email;
+      String password;
+      Studio studio;
+    }
+
+    class Studio {
+      String name;
+      String description;
+      List<Model> models;
+      List<Video> videos;
+      Journalist journalist;
+      Studio(Journalist journalist);
+      void addModel(Model model);
+      void addVideo(Video video);
+      void assignJournalist(Journalist journalist);
+    }
+
+    class Model {
+      String name;
+      String description;
+      String ndfFile;
+    }
+
+    class Video {
+      String name;
+      String description;
+      String file;
+    }
+
+    class Player {
+      String name;
+      String description;
+      List<Model> models;
+      List<Video> videos;
+      Studio studio;
+      Player(Studio studio);
+      void playVRExperience();
+    }
+}

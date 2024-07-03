@@ -1,0 +1,95 @@
+
+classdiagram RecruitmentPlatform {
+
+    class JobSeeker {
+      String name;
+      String email;
+      String resume;
+    }
+
+    class Employer {
+      String name;
+      String email;
+      String companyInfo;
+    }
+
+    class JobPosting {
+      String title;
+      String description;
+      List<String> requirements;
+      String jobCategory;
+      JobSeeker applicant;
+      boolean isApplied;
+    }
+
+    class JobSeekerProfile {
+      JobSeeker jobSeeker;
+    }
+
+    class EmployerProfile {
+      Employer employer;
+    }
+
+    <<association>> class JobSeekerProfile {
+      JobSeeker jobSeeker;
+    }
+
+    <<association>> class EmployerProfile {
+      Employer employer;
+    }
+
+    <<association>> class JobPosting {
+      JobSeeker applicant;
+      boolean isApplied;
+    }
+
+    <<association>> class JobPosting {
+      JobCategory jobCategory;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+    <<association>> class JobCategory {
+      String name;
+    }
+
+   
+}

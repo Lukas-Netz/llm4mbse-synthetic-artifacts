@@ -1,0 +1,82 @@
+
+classdiagram AIDrivenSEO {
+
+  class Dashboard {
+    Goals goals;
+    Progress progress;
+  }
+
+  class KeywordResearch {
+    SuggestedKeywords suggestedKeywords;
+  }
+
+  class ContentOptimization {
+    Readability readability;
+    Grammar grammar;
+    SEOscore seoScore;
+  }
+
+  class LinkBuilding {
+    Backlinks backlinks;
+  }
+
+  class CompetitorAnalysis {
+    CompetitorStrategies competitorStrategies;
+  }
+
+  class Reporting {
+    Reports reports;
+  }
+
+  class WorkflowEngine {
+    Tasks tasks;
+  }
+
+  class Goals {
+    String goalName;
+    String goalDescription;
+  }
+
+  class Progress {
+    String progressStatus;
+    double progressPercentage;
+  }
+
+  class SuggestedKeywords {
+    List suggestedKeywords;
+  }
+
+  class Readability {
+    double readabilityScore;
+  }
+
+  class Grammar {
+    List grammarErrors;
+  }
+
+  class SEOscore {
+    double seoScore;
+  }
+
+  class Backlinks {
+    List backlinks;
+  }
+
+  class CompetitorStrategies {
+    List competitorStrategies;
+  }
+
+  class Reports {
+    List reports;
+  }
+
+  class Tasks {
+    List tasks;
+  }
+
+  composition Dashboard -> Goals;
+  composition Dashboard -> Progress;
+  composition KeywordResearch -> SuggestedKeywords;
+ 
+ 
+ }

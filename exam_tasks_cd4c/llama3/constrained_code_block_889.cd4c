@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram DrugDeliverySystem  {
+
+  class CentralHub  {
+    -> Robot[*];
+    -> Database;
+    void scheduleDelivery(Robot robot);
+    void monitorPatientHealth();
+    void updatePatientRecords();
+  }
+
+  abstract class Robot  {
+    String uniqueIdentifier;
+    RobotType type;
+  }
+
+  class MedicineRobot extends Robot  {
+    int dosage;
+    int frequency;
+  }
+
+  class VaccineRobot extends Robot  {
+    int storageCapacity;
+    Vaccine[] vaccines;
+  }
+
+  class DiagnosticRobot extends Robot  {
+    int resolution;
+    boolean isRecording;
+  }
+
+  class Vaccine  {
+    String name;
+    int quantity;
+  }
+
+  class Database  {
+    Patient[] patients;
+  }
+
+  class Patient  {
+    String name;
+    MedicalHistory medicalHistory;
+    Allergy[] allergies;
+    Medication[] currentMedication;
+  }
+
+  enum RobotType  {
+    Medicine, Vaccine, Diagnostic;
+  }
+
+  composition CentralHub -> (has) Robot[*];
+  composition CentralHub -> (has) Database;
+  composition Robot -> (has) Vaccine[*];
+  composition Database -> (has) Patient[*];
+}

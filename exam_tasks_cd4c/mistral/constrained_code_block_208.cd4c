@@ -1,0 +1,36 @@
+
+classdiagram DigitalTalentPlatform {
+
+  class JobSeeker {
+    String uniqueIdentifier;
+    String name;
+    Resume resume;
+    JobOpening [ ] appliedJobs;
+  }
+
+  class Resume {
+    String content;
+  }
+
+  class JobOpening {
+    String title;
+    String description;
+    String deadline;
+    JobSeeker [ ] applicants;
+    boolean isOpen;
+  }
+
+  class Employer {
+    String uniqueIdentifier;
+    String name;
+    JobOpening [ ] jobOpenings;
+  }
+
+  association JobSeeker --o000o- 											;
+  association Employer --o000o-											;
+  association JobOpening --o000o-											;
+
+  composition JobSeeker --has- 											;
+  composition Employer --has-												;
+  composition JobOpening --has-											;
+}

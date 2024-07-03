@@ -1,0 +1,39 @@
+
+
+
+classdiagram CognitiveRadioNetwork  {
+
+  class CognitiveRadio  {
+    String uniqueIdentifier;
+    State state;
+    FrequencyBand currentBand;
+  }
+
+  class CentralController  {
+    void manageCognitiveRadios(CognitiveRadio[] crs);
+    void detectAndAdaptToEnvironment();
+  }
+
+  class FrequencyBand  {
+    String name;
+  }
+
+  class State  {
+    enum Idle;
+    enum Active;
+    enum Sleeping;
+  }
+
+  class DataPacket  {
+    String type;  (voiceVideoData)
+    int bandwidth;
+    int latency;
+  }
+
+  composition CognitiveRadioNetwork -> (has) CentralController;
+  composition CentralController -> (manages) CognitiveRadio[*];
+  composition CognitiveRadio -> (uses) FrequencyBand;
+  composition CognitiveRadio -> (transmits) DataPacket[*];
+  composition DataPacket -> (requires) Bandwidth;
+  composition DataPacket -> (requires) Latency;
+}

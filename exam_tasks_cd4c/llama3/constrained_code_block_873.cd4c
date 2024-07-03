@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram VirtualRealityEducation  {
+
+  class VRHeadset  {
+    int displayResolution;
+    float fieldOfView;
+  }
+
+  class VRScene  {
+    String name;
+    String description;
+    VRObj[] vrobjects;
+  }
+
+  class VRObj  {
+    String name;
+    String description;
+    ObjectType type;
+  }
+
+  class User  {
+    String name;
+    UserRole role;
+  }
+
+  class Teacher extends User  {
+    String name;
+    UserRole role;
+  }
+
+  enum UserRole  {
+    Student, Teacher
+  ;}
+
+  enum ObjectType  {
+    ThreeDModel, Video, Audio
+  ;}
+
+  composition VRHeadset -> (has) VRScene;
+  composition VRScene -> VRObj[*];
+  composition Teacher -> VRScene[*];
+  composition User -> VRHeadset [1..1];
+  composition Teacher -> User[*];
+}

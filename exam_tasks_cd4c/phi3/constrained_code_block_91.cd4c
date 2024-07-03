@@ -1,0 +1,53 @@
+
+classdiagram VoiceCommerce {
+
+    class User {
+      String uniqueId;
+      String name;
+      String email;
+      String password;
+      void register();
+      void login();
+    }
+
+    class Product {
+      String uniqueId;
+      String name;
+      String description;
+      double price;
+    }
+
+    class Order {
+      User user;
+      List<Product> products;
+      OrderState state;
+      void placeOrder();
+      void cancelOrder();
+      void updateOrderStatus();
+    }
+
+    class Payment {
+      Order order;
+      String paymentMethod;
+      double amount;
+      void processPayment();
+    }
+
+    class VoiceAssistant {
+      void processVoiceCommand(String command);
+      void integrateWithDevice(Device device);
+    }
+
+    class Device {
+      void receiveVoiceCommand(String command);
+    }
+
+    enum OrderState {
+      Pending, Shipped, Cancelled;
+    }
+
+    association VoiceAssistant -> Device [*];
+    association User -> Order [1];
+    association Order -> Payment [1];
+    association Product -> Order [*];
+}

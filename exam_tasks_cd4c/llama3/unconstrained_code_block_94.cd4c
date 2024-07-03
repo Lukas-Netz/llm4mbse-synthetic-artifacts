@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram TaxSystem  {
+
+  class TaxReturn  {
+    TaxType type;
+    Income income;
+    Deductions deductions;
+    Credits credits;
+  }
+
+  enum TaxType  {
+    Personal, Corporate, Estate;
+  }
+
+  class Income  {
+    double amount;
+  }
+
+  class Deductions  {
+    double amount;
+  }
+
+  class Credits  {
+    double amount;
+  }
+
+  class TaxReturnData  {
+    TaxReturn taxReturn;
+    Date submittedDate;
+  }
+
+  class Report  {
+    TaxReturnData taxReturnData;
+    String reportType;
+  }
+
+  class Notification  {
+    TaxReturnData taxReturnData;
+    String notificationType;
+  }
+
+  class AccountingSoftware  {
+    void integrateWith(TaxSystem taxSystem);
+  }
+
+  class PaymentGateway  {
+    void integrateWith(TaxSystem taxSystem);
+  }
+
+  class TaxSystem  {
+    List<TaxReturnData> taxReturnDataList;
+    void storeTaxReturnData(TaxReturnData taxReturnData);
+    void retrieveTaxReturnData(TaxReturnData taxReturnData);
+    void generateReport(Report report);
+    void sendNotification(Notification notification);
+  }
+
+  composition TaxSystem -> (has) TaxReturnData [1..*];
+  composition TaxReturnData -> (has) TaxReturn [1];
+  composition TaxSystem -> (has) Report [0..*];
+  composition TaxSystem -> (has) Notification [0..*];
+  composition TaxSystem -> (has) AccountingSoftware [0..1];
+  composition TaxSystem -> (has) PaymentGateway [0..1];
+}

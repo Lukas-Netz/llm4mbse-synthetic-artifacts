@@ -1,0 +1,45 @@
+
+classdiagram GardeningPlatform {
+
+    class Garden {
+      String name;
+      String description;
+      String location;
+      List<Plant> plants;
+      List<User> users;
+    }
+
+    class Plant {
+      String name;
+      String type;
+      String growthStage;
+    }
+
+    class User {
+      String name;
+      String email;
+      String experienceLevel;
+      List<Garden> gardens;
+    }
+
+    class Flower extends Plant;
+    class Vegetable extends Plant;
+    class Herb extends Plant;
+
+    enum UserExperienceLevel {
+      Beginner, Intermediate, Advanced;
+    }
+
+    association GardeningPlatform -> Garden;
+    association GardeningPlatform -> User;
+    association GardeningPlatform -> Plant;
+    association GardeningPlatform -> Flower;
+    association GardeningPlatform -> Vegetable;
+    association GardeningPlatform -> Herb;
+    composition GardeningPlatform -> Garden;
+    composition GardeningPlatform -> User;
+    composition GardeningPlatform -> Plant;
+    composition GardeningPlatform -> Flower;
+    composition GardeningPlatform -> Vegetable;
+    composition GardeningPlatform -> Herb;
+}

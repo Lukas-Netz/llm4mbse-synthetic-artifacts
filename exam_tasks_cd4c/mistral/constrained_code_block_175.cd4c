@@ -1,0 +1,49 @@
+
+classdiagram SpeechTranslation {
+
+  class Microphone {
+    int samplingRate;
+    int bitDepth;
+  }
+
+  class SpeechRecognition {
+    float recognitionAccuracy;
+    float processingTime;
+  }
+
+  class NLP {
+    float languageDetectionAccuracy;
+    float syntaxAnalysisTime;
+  }
+
+  class MachineTranslation {
+    float translationAccuracy;
+    float processingTime;
+  }
+
+  class TextToSpeech {
+    float speechQuality;
+    float processingTime;
+  }
+
+  class Speaker {
+    float volume;
+    float playbackSpeed;
+  }
+
+  class SpeechTranslationSystem {
+    Microphone microphone;
+    SpeechRecognition speechRecognition;
+    NLP nlp;
+    MachineTranslation machineTranslation;
+    TextToSpeech textToSpeech;
+    Speaker speaker;
+  }
+
+  composition SpeechTranslationSystem -> Microphone;
+  composition SpeechTranslationSystem -> SpeechRecognition;
+  composition SpeechTranslationSystem -> NLP;
+  composition SpeechTranslationSystem -> MachineTranslation;
+  composition SpeechTranslationSystem -> TextToSpeech;
+  composition SpeechTranslationSystem -> Speaker;
+}

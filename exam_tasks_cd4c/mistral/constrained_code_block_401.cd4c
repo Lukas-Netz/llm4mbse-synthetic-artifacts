@@ -1,0 +1,44 @@
+
+classdiagram LanguageTranslation {
+
+  class Dictionary {
+    Map<String, Map<String, String>> words;
+  }
+
+  class GrammarModule {
+    void parse(String text);
+    SentenceStructure getSentenceStructure();
+  }
+
+  class SentenceStructure {
+    List<WordStructure> words;
+    GrammaticalStructure grammar;
+  }
+
+  class WordStructure {
+    String word;
+    PartOfSpeech partOfSpeech;
+  }
+
+  enum PartOfSpeech {
+    Noun, Verb, Adjective, Adverb, Pronoun, Preposition, Conjunction, Interjection;
+  }
+
+  class TranslationModule {
+    Dictionary dictionary;
+    SentenceStructure sentence;
+    String translate();
+  }
+
+  class UserInterface {
+    void inputText(String text);
+    void selectTargetLanguage(String language);
+  }
+
+  association UserInterface --text;
+  association UserInterface --targetLanguage;
+  association Dictionary --words;
+  association GrammarModule --text;
+  association TranslationModule --dictionary;
+  association TranslationModule --sentence;
+}

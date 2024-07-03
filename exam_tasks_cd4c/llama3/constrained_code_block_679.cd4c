@@ -1,0 +1,86 @@
+
+
+
+classdiagram SmartCityDigitalTwin  {
+
+  class CityModel  {
+    Infrastructure infrastructure;
+    EnergyDistribution energyDistribution;
+    WasteManagement wasteManagement;
+    Transportation transportation;
+  }
+
+  class ResidentModel  {
+    Behavior behavior;
+  }
+
+  class BusinessModel  {
+    Behavior behavior;
+  }
+
+  abstract class Infrastructure  {
+    CityModel city;
+  }
+
+  class EnergyDistribution extends Infrastructure  {
+    EnergySource energySource;
+  }
+
+  class WasteManagement extends Infrastructure  {
+    WasteCollection wasteCollection;
+  }
+
+  class Transportation extends Infrastructure  {
+    Vehicle vehicle;
+  }
+
+  class DataIntegration  {
+    DataSource  dataSource;
+  }
+
+  class AnalysisAndPrediction  {
+    Scenario scenario;
+    Impact impact;
+  }
+
+  class Visualization  {
+    Insight insight;
+  }
+
+  class Infrastructure {
+    CityModel city;
+  }
+
+  class EnergySource {
+    EnergyType energyType;
+  }
+
+  class WasteCollection {
+    WasteType wasteType;
+  }
+
+  class Vehicle {
+    TransportationType transportationType;
+  }
+
+  class Data {
+    DataValue dataValue;
+  }
+
+  class Scenario {
+    CityModel city;
+  }
+
+  class Impact {
+    CityModel city;
+  }
+
+  class Insight {
+    Visualization visualization;
+  }
+
+  composition CityModel -> (has) Infrastructure;
+  composition CityModel -> (has) EnergyDistribution;
+  
+
+}

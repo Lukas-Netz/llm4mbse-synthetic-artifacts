@@ -1,0 +1,91 @@
+
+classdiagram FinancialPlanning {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class FinancialGoal {
+    String type;
+    double targetAmount;
+    double currentProgress;
+  }
+
+  class InvestmentPortfolio {
+    InvestmentOption [ ] options;
+  }
+
+  abstract class InvestmentOption {
+    String name;
+    double riskLevel;
+  }
+
+  class Stock extends InvestmentOption {
+    String tickerSymbol;
+  }
+
+  class Bond extends InvestmentOption {
+    double yield;
+  }
+
+  class MutualFund extends InvestmentOption {
+    double expenseRatio;
+  }
+
+  class FinancialSituation {
+    double income;
+    double expenses;
+    double savings;
+  }
+
+  class PersonalizedAdvice {
+    FinancialGoal goal;
+    InvestmentPortfolio portfolio;
+    String advice;
+  }
+
+  class FinancialProgress {
+    FinancialSituation currentSituation;
+    FinancialSituation previousSituation;
+    double progress;
+  }
+
+  class Notification {
+    String event;
+    String message;
+    String date;
+  }
+
+  class Integration {
+    String institution;
+    String apiKey;
+  }
+
+  class Report {
+    String type;
+    String date;
+    String content;
+  }
+
+  class UserAccount {
+    User user;
+    FinancialGoal [ ] goals;
+    InvestmentPortfolio portfolio;
+    FinancialSituation financialSituation;
+    PersonalizedAdvice personalizedAdvice;
+    FinancialProgress financialProgress;
+    Notification [ ] notifications;
+    Integration [ ] integrations;
+    Report [ ] reports;
+  }
+
+  composition UserAccount <- User;
+  composition UserAccount -> FinancialGoal [*];
+  composition UserAccount -> InvestmentPortfolio;
+  composition UserAccount -> FinancialSituation;
+  composition UserAccount -> PersonalizedAdvice;
+  composition UserAccount -> FinancialProgress;
+  
+ 
+}

@@ -1,0 +1,52 @@
+
+classdiagram DroneSwarm {
+
+    class DroneSwarm {
+      Swarm swarm;
+      Mission mission;
+    }
+
+    class Swarm {
+      Drone[] drones;
+      Mission[] missions;
+      void assignMission(Mission mission);
+      void removeMission(Mission mission);
+      void trackDroneLocation(Drone drone);
+    }
+
+    class Drone {
+      String uniqueIdentifier;
+      DroneType type;
+      DroneStatus status;
+    }
+
+    class ReconnaissanceDrone extends Drone {
+      Camera camera;
+    }
+
+    class SurveillanceDrone extends Drone {
+      Sensor sensor;
+    }
+
+    class CommunicationDrone extends Drone {
+      Transmitter transmitter;
+    }
+
+    class Mission {
+      String name;
+      String description;
+      Mission[] assignedDrones;
+    }
+
+    enum DroneType {
+      Reconnaissance, Surveillance, Communication;
+    }
+
+    enum DroneStatus {
+      Active, Inactive;
+    }
+
+  composition DroneSwarm -> (has) Swarm;
+  composition Swarm -> (has) Mission [*];
+  composition Swarm -> (has) Drone [*];
+}

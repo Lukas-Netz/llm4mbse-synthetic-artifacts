@@ -1,0 +1,48 @@
+
+
+classdiagram AutomatedDocumentReviewSystem {
+
+  class DocumentRepository {
+    Document document;
+  }
+
+  class Document {
+    String id;
+    String title;
+    String content;
+  }
+
+  class DocumentAnalyzer {
+    Document document;
+    String analyzeContent();
+  }
+
+  class Categorizer {
+    Document document;
+    Category categorizeDocument();
+  }
+
+  class Category {
+    String name;
+    List<Document> documents;
+  }
+
+  class UserInterface {
+    SearchQuery query;
+    List<Category> searchResults;
+  }
+
+  composition DocumentRepository -> Document [0..*]
+  abstract  
+  
+  
+
+  {
+    
+  
+  
+ordered
+  }
+
+  
+ ;}

@@ -1,0 +1,53 @@
+
+classdiagram MusicFestival {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Festival {
+    String name;
+    Date startDate;
+    Date endDate;
+    User creator;
+    Stage [ ] stages;
+  }
+
+  class Stage {
+    String name;
+    int capacity;
+    Festival festival;
+    Performance [ ] performances;
+  }
+
+  class Performance {
+    String name;
+    Time startTime;
+    Time endTime;
+    Stage stage;
+    Artist [ ] artists;
+  }
+
+  class Artist {
+    String name;
+    String bio;
+    Performance [ ] performances;
+  }
+
+  class Time {
+    int hour;
+    int minute;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition User -> Festival [*];
+  composition Festival -> Stage [*];
+  composition Stage -> Performance [*];
+  composition Performance -> Artist [*];
+}

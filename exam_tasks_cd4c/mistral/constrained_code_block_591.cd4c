@@ -1,0 +1,61 @@
+
+classdiagram MusicCollaboration {
+
+  class User {
+    String username;
+    String email;
+  }
+
+  class Project {
+    String title;
+    User creator;
+    ProjectStatus status;
+    Track [][] tracks;
+  }
+
+  enum ProjectStatus {
+    Draft, InProgress, Completed;
+  }
+
+  class Track {
+    String title;
+    User [][] artists;
+    Version [][] versions;
+  }
+
+  class Version {
+    String title;
+    Instrument [][] instruments;
+  }
+
+  class Instrument {
+    String name;
+    Setting [][] settings;
+  }
+
+  class Setting {
+    String settingName;
+    String settingValue;
+  }
+
+  class Collaborator {
+    User user;
+    Project [][] projects;
+  }
+
+  class Rating {
+    User rater;
+    int rating;
+    String review;
+  }
+
+  composition User -> Project [*];
+  composition Project -> Track [*];
+  composition Track -> Artist [*];
+  composition Track -> Version [*];
+  composition Version -> Instrument [*];
+  composition Instrument -> Setting [*];
+  composition Project -> Collaborator [*];
+  composition Collaborator -> Project [*];
+  composition Project -> Rating [*];
+}

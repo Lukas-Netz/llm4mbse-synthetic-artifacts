@@ -1,0 +1,114 @@
+
+
+classdiagram SocialMediaManagementSystem {
+
+  class User {
+    private String name;
+    private String password;
+    private List<Post> posts;
+  }
+
+  class Post {
+    private String content;
+    private PostType type;
+    private List<Tag> tags;
+    private int likes;
+    private int comments;
+    private int shares;
+  }
+
+  enum PostType {
+    ProductPromotion, CompanyNews, CustomerTestimonial
+  
+
+  
+
+  
+;
+
+  class PostManager  
+  
+
+  
+
+ ;}
+
+  class Tag {
+    private String name;
+  }
+
+  class Analytics {
+    private Map<Post, PerformanceMetrics> postMetrics;
+  }
+
+  class PerformanceMetrics {
+    private int likes;
+    private int comments;
+    private int shares;
+  }
+
+  class Administrator {
+    private List<User> users;
+    private List<Post> posts;
+    private Analytics analytics;
+  }
+
+  composition User -> (has) PostManager [0..1]
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association Administrator -> PostManager
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+;
+
+}

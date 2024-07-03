@@ -1,0 +1,49 @@
+
+classdiagram PredictiveAnalytics {
+
+  class Customer {
+    String customerId;
+    String name;
+    String email;
+    String phone;
+    String address;
+    int age;
+    int accountType;
+    int monthlySpend;
+    int churnRiskScore;
+  }
+
+  class DataIngestionModule {
+    -> Customer [*];
+  }
+
+  class DataProcessingModule {
+    DataIngestionModule dataIngestionModule;
+    -> Customer [*];
+    void cleanData();
+    void preprocessData();
+  }
+
+  class MachineLearningModule {
+    DataProcessingModule dataProcessingModule;
+    void trainModel();
+    void predictChurn(Customer customer);
+  }
+
+  class RecommendationModule {
+    MachineLearningModule machineLearningModule;
+    void provideRecommendations(Customer customer);
+  }
+
+  class PredictiveAnalyticsSystem {
+    DataIngestionModule dataIngestionModule;
+    DataProcessingModule dataProcessingModule;
+    MachineLearningModule machineLearningModule;
+    RecommendationModule recommendationModule;
+  }
+
+  composition PredictiveAnalyticsSystem -> DataIngestionModule;
+  composition PredictiveAnalyticsSystem -> DataProcessingModule;
+  composition PredictiveAnalyticsSystem -> MachineLearningModule;
+  composition PredictiveAnalyticsSystem -> RecommendationModule;
+}

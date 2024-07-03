@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram CloudBackup  {
+
+  class User  {
+    String username;
+    String password;
+    -> BackupAccount[*];
+  }
+
+  class BackupAccount  {
+    String id;
+    User user;
+    BackupAccountType type;
+    -> File[*];
+    -> BackupJob[*];
+  }
+
+  enum BackupAccountType  {
+    Personal,
+    Business
+  ;}
+
+  class File  {
+    String id;
+    BackupAccount account;
+    FileTypes type;
+  }
+
+  enum FileTypes  {
+    Document,
+    Image,
+    Video
+  ;}
+
+  class BackupJob  {
+    String id;
+    BackupAccount account;
+    JobSchedule schedule;
+  }
+
+  class JobSchedule  {
+    Date start;
+    Date end;
+    Frequency frequency;
+  }
+
+  enum Frequency  {
+    Daily,
+    Weekly,
+    Monthly
+  ;}
+
+  class Storage  {
+    int capacityPB;
+    -> Node[*];
+  }
+
+  class Node  {
+    String id;
+    int capacityPB;
+  }
+
+  composition Storage  ->  (has) Node[*];
+  composition BackupAccount  ->  (has) File[*];
+  composition BackupAccount  ->  (has) BackupJob[*];
+  composition User  ->  (has) BackupAccount[*];
+  composition BackupJob  ->  (has) BackupAccount;
+  composition Node  ->  (has) Storage;
+}

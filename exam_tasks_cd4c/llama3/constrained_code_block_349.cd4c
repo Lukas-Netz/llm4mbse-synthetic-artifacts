@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram OnlineReputationManagement  {
+
+  class Company  {
+    String name;
+    String industry;
+  }
+
+  class SocialMediaProfile  {
+    String platform;
+    String username;
+    String password;
+  }
+
+  class Review  {
+    String content;
+    int rating;
+    Date date;
+  }
+
+  class Rating  {
+    int value;
+    Date date;
+  }
+
+  class Comment  {
+    String content;
+    Date date;
+  }
+
+  class Issue  {
+    String type;  (e_g_fake_review)
+    String description;
+  }
+
+  class Insight  {
+    String recommendation;
+    Date date;
+  }
+
+  class User  {
+    String username;
+    String password;
+    PermissionLevel permissionLevel;
+  }
+
+  enum PermissionLevel  {
+    Admin, Moderator, Viewer
+  ;}
+
+  class CRMIntegration  {
+    String crmSystem;
+    String apiKey;
+  }
+
+  class OnlineReputationAnalysis  {
+    Company company;
+    List<SocialMediaProfile> socialMediaProfiles;
+    List<Review> reviews;
+    List<Rating> ratings;
+    List<Comment> comments;
+    List<Issue> issues;
+    List<Insight> insights;
+  }
+
+  composition OnlineReputationAnalysis -> Company;
+  composition OnlineReputationAnalysis -> SocialMediaProfile[*];
+  composition OnlineReputationAnalysis -> Review[*];
+  composition OnlineReputationAnalysis -> Rating[*];
+  composition OnlineReputationAnalysis -> Comment[*];
+  composition OnlineReputationAnalysis -> Issue[*];
+  composition OnlineReputationAnalysis -> Insight[*];
+  composition OnlineReputationAnalysis -> User[*];
+  composition OnlineReputationAnalysis -> CRMIntegration [0..1];
+}

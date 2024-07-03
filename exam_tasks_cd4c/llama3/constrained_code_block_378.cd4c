@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram PodcastHostingPlatform  {
+
+  class PodcastHostingPlatform  {
+    Podcast  [ ] podcasts;
+  }
+
+  class Podcast  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Genre genre;
+    Episode  [ ] episodes;
+  }
+
+  class Episode  {
+    String title;
+    String description;
+    File audioFile;
+  }
+
+  class Genre  {
+    String name;
+  }
+
+  class User  {
+    Playlist  [ ] playlists;
+  }
+
+  class Playlist  {
+    Podcast  [ ] podcasts;
+  }
+
+  class Comment  {
+    String text;
+    PodcastEpisode episode;
+  }
+
+  class Rating  {
+    int value;
+    PodcastEpisode episode;
+  }
+
+  class PodcastEpisode  {
+    Podcast podcast;
+  }
+
+  class Analytics  {
+    int listeners;
+    int downloads;
+    EngagementMetrics engagement;
+  }
+
+  class EngagementMetrics  {
+    int likes;
+    int shares;
+    int comments;
+  }
+
+  composition PodcastHostingPlatform -> Podcast [1..*];
+  composition Podcast -> Episode [1..*];
+  composition User -> Playlist [0..*];
+  composition Playlist -> Podcast [0..*];
+  composition Podcast -> PodcastEpisode [1..*];
+  composition PodcastEpisode -> Podcast [1..*];
+  composition Analytics -> PodcastEpisode [1..*];
+}

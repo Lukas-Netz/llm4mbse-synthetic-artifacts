@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram OnlineLiteratureCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    Date startDate;
+    Date endDate;
+    -> Instructor  [1];
+    -> Section  [*];
+  }
+
+  class Instructor  {
+    String name;
+    String department;
+    -> Course  [*];
+  }
+
+  class Student  {
+    String name;
+    String studentID;
+    -> Course  [*];
+  }
+
+  class Section  {
+    Date startDate;
+    Date endDate;
+    int capacity;
+    -> Student  [*];
+    -> Course  [1];
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Course -> Instructor;
+  composition Course -> Section;
+  composition Instructor -> Course;
+  composition Student -> Course;
+  composition Section -> Course;
+  composition Section -> Student;
+}

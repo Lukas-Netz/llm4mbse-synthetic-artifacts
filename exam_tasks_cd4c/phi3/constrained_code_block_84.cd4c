@@ -1,0 +1,73 @@
+
+classdiagram RatingsReviewsPlatform {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void createAccount();
+      void searchProduct();
+      void searchService();
+      void searchBusiness();
+      void reviewProduct();
+      void reviewService();
+      void reviewBusiness();
+    }
+
+    class Product {
+      String name;
+      String description;
+      List<Review> reviews;
+      double getAverageRating();
+      int getNumberOfReviews();
+      void displayTopRated();
+    }
+
+    class Service {
+      String name;
+      String description;
+      List<Review> reviews;
+      double getAverageRating();
+      int getNumberOfReviews();
+      void displayTopRated();
+    }
+
+    class Business {
+      String name;
+      String address;
+      List<Review> reviews;
+      double getAverageRating();
+      int getNumberOfReviews();
+      void displayTopRated();
+    }
+
+    class Review {
+      int rating;
+      String reviewText;
+      Date reviewDate;
+      String reviewerUsername;
+    }
+
+    class Admin {
+      void manageReviews();
+      void manageUsers();
+      void approveAccount();
+      void rejectAccount();
+      void removeAccount();
+    }
+
+    class ReviewManager {
+      void approveReview();
+      void rejectReview();
+      void removeReview();
+    }
+
+    association User <-> ReviewManager;
+    association Admin <-> ReviewManager;
+    composition User -> Review;
+    composition Product -> Review;
+    composition Service -> Review;
+    composition Business -> Review;
+    composition Admin -> ReviewManager;
+    composition Admin -> ReviewManager;
+}

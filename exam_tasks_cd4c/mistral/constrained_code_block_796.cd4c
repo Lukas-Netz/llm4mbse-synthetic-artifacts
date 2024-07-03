@@ -1,0 +1,62 @@
+
+classdiagram WildlifeConservation {
+
+  class Species {
+    String uniqueIdentifier;
+    String name;
+    String classification;
+  }
+
+  class Sensor {
+    String location;
+    Species [  ] trackedSpecies;
+  }
+
+  class Camera {
+    String location;
+    Species [  ] capturedSpecies;
+  }
+
+  class Analytics {
+    void analyze(Sensor sensor, Camera camera);
+  }
+
+  class DecisionSupport {
+    void provideRecommendations(Analytics analytics);
+  }
+
+  class Conservationist {
+    void makeDecisions();
+  }
+
+  class SpeciesMovement {
+    String animalIdentifier;
+    String location;
+    String timestamp;
+  }
+
+  class Habitat {
+    String location;
+    Species [  ] foundSpecies;
+  }
+
+  class MigrationPattern {
+    String speciesIdentifier;
+    String origin;
+    String destination;
+    String frequency;
+  }
+
+  class Threat {
+    String threatType;
+    String location;
+    String severity;
+  }
+
+  composition Species [*] trackedSpecies -> Sensor;
+  composition Species [*] capturedSpecies -> Camera;
+  association SpeciesMovement -- Species;
+  association Habitat -- Species [*];
+  association MigrationPattern -- Species;
+  association Threat -- Species [*];
+}

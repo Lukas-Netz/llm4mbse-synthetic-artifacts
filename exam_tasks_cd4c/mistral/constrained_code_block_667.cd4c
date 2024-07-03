@@ -1,0 +1,62 @@
+
+classdiagram PLM {
+
+  class Farm {
+    String name;
+    String identifier;
+  }
+
+  class Field {
+    String uniqueIdentifier;
+    String name;
+    int sizeAcres;
+  }
+
+  class Animal {
+    String uniqueIdentifier;
+    String name;
+    String birthdate;
+    Field field;
+  }
+
+  class Cow extends Animal {
+    String breed;
+    int weight;
+  }
+
+  class Pig extends Animal {
+    String breed;
+    int weight;
+  }
+
+  class Chicken extends Animal {
+    String breed;
+    int eggProduction;
+  }
+
+  class Veterinarian {
+    String name;
+    String identifier;
+    String specialization;
+  }
+
+  class Vaccination {
+    Animal animal;
+    Veterinarian veterinarian;
+    String vaccineName;
+    String date;
+  }
+
+  class Treatment {
+    Animal animal;
+    Veterinarian veterinarian;
+    String treatmentName;
+    String date;
+  }
+
+  composition Farm -> Field [*];
+  association Farm -> Veterinarian [*];
+  association Field -> Animal [*];
+  association Animal -> Vaccination [0..*];
+  association Animal -> Treatment [0..*];
+}

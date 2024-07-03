@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram EBookPlatform  {
+
+  class EBook  {
+    String title;
+    Author author;
+    List<Chapter> chapters;
+  }
+
+  class Chapter  {
+    String title;
+    String content;
+    List<Page> pages;
+  }
+
+  class Page  {
+    String text;
+    Image image;
+    Video video;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    Author, Editor, Reader
+  ;}
+
+  class Comment  {
+    String text;
+    User user;
+    EBook ebook;
+  }
+
+  class Rating  {
+    int rating;
+    User user;
+    EBook ebook;
+  }
+
+  class Bookmark  {
+    User user;
+    EBook ebook;
+  }
+
+  class ChangeLog  {
+    Date timestamp;
+    User user;
+    EBook ebook;
+    String changeDescription;
+  }
+
+  class Report  {
+    String title;
+    String description;
+    List<EBook> ebooks;
+  }
+
+  composition EBook -> (has) Author;
+  composition EBook -> (has) chapters;
+  composition Chapter -> (has) pages;
+  composition User -> (has) role;
+  composition Comment -> (has) user;
+  composition Comment -> (has) ebook;
+  composition Rating -> (has) user;
+  composition Rating -> (has) ebook;
+  composition Bookmark -> (has) user;
+  composition Bookmark -> (has) ebook;
+  }

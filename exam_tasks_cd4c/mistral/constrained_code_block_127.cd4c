@@ -1,0 +1,84 @@
+
+classdiagram EmployeeTraining {
+
+  class Employee {
+    String name;
+    String employeeId;
+  }
+
+  class EmployeeRequest {
+    Employee employee;
+    String trainingType;
+    String requestDate;
+  }
+
+  class TrainingManager {
+    void approveRequest(EmployeeRequest request);
+    void rejectRequest(EmployeeRequest request);
+  }
+
+  class TrainerAssignment {
+    Employee employee;
+    Trainer trainer;
+  }
+
+  class Trainer {
+    String name;
+    String trainerId;
+  }
+
+  class TrainingPlan {
+    Employee employee;
+    String planContent;
+    String startDate;
+    String endDate;
+  }
+
+  class EmployeeCompletion {
+    Employee employee;
+    String completionDate;
+  }
+
+  class TrainerEvaluation {
+    Employee employee;
+    String evaluationContent;
+    String evaluationDate;
+  }
+
+  class TrainingCertification {
+    Employee employee;
+    boolean isCertified;
+    String certificationDate;
+  }
+
+  association EmployeeRequest -- TrainingManager [0..1] - 											{
+   								ordered
+					}
+
+ 			;
+  association TrainerAssignment -- Trainer [1] - 											{
+   								ordered
+					}
+
+ 			;
+  association TrainingPlan -- Employee [1] - 											{
+   								ordered
+					}
+
+ 			;
+  association EmployeeCompletion -- Employee [1] - 											{
+   								ordered
+					}
+
+ 			;
+  association TrainerEvaluation -- Employee [1] - 											{
+   								ordered
+					}
+
+ 			;
+  association TrainingCertification -- Employee [1] - 											{
+   								ordered
+					}
+
+ 			;
+}

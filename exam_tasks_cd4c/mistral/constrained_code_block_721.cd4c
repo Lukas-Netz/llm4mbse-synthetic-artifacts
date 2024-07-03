@@ -1,0 +1,64 @@
+
+classdiagram FilmDistribution {
+
+  class FilmLibrary {
+    Film [][] films;
+  }
+
+  class Film {
+    String title;
+    String description;
+    Date releaseDate;
+    Rating rating;
+  }
+
+  class FilmDistributor {
+    FilmLibrary filmLibrary;
+    Customer [][] customers;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    Device device;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+  }
+
+  class Transaction {
+    Customer customer;
+    Film film;
+    Date transactionDate;
+    PaymentDetails paymentDetails;
+  }
+
+  class Blockchain {
+    Transaction [][] blocks;
+  }
+
+  class RatingSystem {
+    Film [][] films;
+    Rating [][] ratings;
+    Rating calculateRating(Film film);
+  }
+
+  class Rating {
+    Film film;
+    int ratingValue;
+  }
+
+  class PaymentDetails {
+    String paymentMethod;
+    String transactionId;
+  }
+
+  composition FilmLibrary -> Film [*];
+  composition FilmDistributor -> Customer [*];
+  composition Customer -> Device;
+  association FilmDistributor -> FilmLibrary;
+  association Customer -> Transaction;
+  association Blockchain -> Transaction [*];
+  association RatingSystem -> Film [*];
+  association RatingSystem -> Rating [*];
+}

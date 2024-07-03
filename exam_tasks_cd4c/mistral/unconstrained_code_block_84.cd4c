@@ -1,0 +1,49 @@
+
+classdiagram OnlineRoboticsCourses {
+
+  class Course {
+    String title;
+    String description;
+    List<String> topics;
+    List<Course> prerequisites;
+  }
+
+  class Instructor {
+    String name;
+    String bio;
+    List<Course> taughtCourses;
+  }
+
+  class Student {
+    String name;
+    String email;
+    List<Course> enrolledCourses;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    String submissionDate;
+    String feedback;
+  }
+
+  class CourseMaterial {
+    String title;
+    String description;
+  }
+
+  class Platform {
+    void search(String query);
+    void enrollStudent(Student student, Course course);
+    void submitAssignment(Student student, Assignment assignment);
+    void uploadCourseMaterial(Instructor instructor, CourseMaterial material);
+  }
+
+  composition Platform -> Course;
+  composition Platform -> Instructor;
+  composition Platform -> Student;
+  association Instructor -> Course [*];
+  association Student -> Course [*];
+  association Course -> Topic [*];
+  association Course -> Prerequisite [*];
+}

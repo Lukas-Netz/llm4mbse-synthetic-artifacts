@@ -1,0 +1,72 @@
+
+classdiagram RapidDNASystem {
+
+    class DNAAnalyzer {
+      Type analyzerType;
+      void extractDNA(DNASample sample);
+      void amplifyDNA(DNASample sample);
+      void analyzeDNA(DNASample sample);
+    }
+
+    class DNADatabase {
+      Type databaseType;
+      void storeProfile(DNAProfile profile);
+      DNAProfile retrieveProfile(String identifier);
+    }
+
+    class UserInterface {
+      Type interfaceType;
+      void inputSample(DNASample sample);
+      DNAProfile retrieveResults(String identifier);
+    }
+
+    class QualityControl {
+      Type controlType;
+      void checkSampleIntegrity(DNASample sample);
+      void verifyResultsAccuracy(DNAProfile profile);
+    }
+
+    class DNASample {
+      String identifier;
+      DNAData data;
+    }
+
+    class DNAProfile {
+      String identifier;
+      DNAData profileData;
+    }
+
+    class DNAData {
+      String sequence;
+      String quality;
+    }
+
+    enum DNAAnalyzerType {
+      PCR, STR
+   
+   
+   ;}
+
+    enum DNADatabaseType {
+      Local, Remote
+   
+   
+   ;}
+
+    enum UserInterfaceType {
+      WebBased, DesktopBased
+   
+   
+   ;}
+
+    enum QualityControlType {
+      Manual, Automated
+   
+   
+   ;}
+
+  association RapidDNASystem -> DNAAnalyzer;
+  association RapidDNASystem -> DNADatabase;
+  association RapidDNASystem -> UserInterface;
+  association RapidDNASystem -> QualityControl;
+}

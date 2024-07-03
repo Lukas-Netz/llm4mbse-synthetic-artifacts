@@ -1,0 +1,95 @@
+
+classdiagram FinancialPlanningSystem {
+
+    class User {
+      String username;
+      String password;
+      Account account;
+      FinancialGoals goals;
+      InvestmentPortfolio portfolio;
+    }
+
+    class Account {
+      String accountNumber;
+      BankAccount bankAccount;
+      CreditCard creditCard;
+    }
+
+    class FinancialGoals {
+      String goalDescription;
+      double goalAmount;
+      Date goalDate;
+    }
+
+    class InvestmentPortfolio {
+      List<InvestmentOption> options;
+    }
+
+    class InvestmentOption {
+      String name;
+      double riskLevel;
+      double returnRate;
+    }
+
+    class FinancialAdvice {
+      String adviceText;
+      Date adviceDate;
+    }
+
+    class FinancialReport {
+      String reportType;
+      double income;
+      double expenses;
+      double savings;
+      Date reportDate;
+    }
+
+    class Notification {
+      String message;
+      Date sendDate;
+    }
+
+    class BankAccount {
+      double balance;
+      void deposit(double amount);
+      void withdraw(double amount);
+    }
+
+    class CreditCard {
+      double creditLimit;
+      double balance;
+      void charge(double amount);
+      void payBill(double amount);
+    }
+
+    association User 
+      has 
+      -> Account;
+
+    association User 
+      has 
+      -> FinancialGoals;
+
+    association User 
+      has 
+      -> InvestmentPortfolio;
+
+    association FinancialGoals 
+      -> FinancialAdvice;
+
+    association InvestmentPortfolio 
+      -> FinancialAdvice;
+
+    association FinancialReport 
+      -> FinancialAdvice;
+
+    association User 
+      -> Notification;
+
+    composition Account -> (has) BankAccount;
+    composition Account -> (has) CreditCard;
+
+    composition FinancialGoals -> (has) FinancialAdvice;
+   
+
+}

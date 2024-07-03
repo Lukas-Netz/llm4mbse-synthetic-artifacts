@@ -1,0 +1,47 @@
+
+classdiagram BlockchainArtSystem {
+
+    class Artist {
+      String uniqueIdentifier;
+      String name;
+      List<Artwork> artworks;
+      void createArtwork(Artwork artwork);
+    }
+
+    class Artwork {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      Artist artist;
+      void verifyArtwork();
+    }
+
+    class Collector {
+      String uniqueIdentifier;
+      String name;
+      List<Transaction> transactions;
+      void purchaseArtwork(Artwork artwork, Transaction transaction);
+    }
+
+    class Transaction {
+      Artist artist;
+      Collector collector;
+      Artwork artwork;
+      int amount;
+      void executeTransaction();
+    }
+
+    class Blockchain {
+      List<Transaction> transactions;
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+      void trackOwnership(Artwork artwork);
+    }
+
+    composition Artist -> Artwork [*];
+    composition Artist -> Blockchain;
+    composition Collector -> Transaction [*];
+    composition Collector -> Blockchain;
+    composition Transaction -> Blockchain;
+    composition Blockchain -> Artwork;
+}

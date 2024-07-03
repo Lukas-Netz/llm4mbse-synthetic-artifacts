@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram RetailInventoryManagement  {
+
+  class Store  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Product  {
+    String name;
+    String uniqueIdentifier;
+    Category category;
+    Supplier supplier;
+    int quantityInStock;
+  }
+
+  class Supplier  {
+    String name;
+    String uniqueIdentifier;
+    ContactInformation contactInfo;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phoneNumber;
+    String email;
+  }
+
+  class Notification  {
+    Product product;
+    int threshold;
+  }
+
+  composition Store -> Product[*];
+  composition Product -> Supplier;
+  composition Supplier -> Product[*];
+  association Product -> Notification [0..*];
+  association Product -> Category;
+
+  <<operation>> 
+  class StoreOperations  {
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void updateProduct(Product product);
+    void addSupplier(Supplier supplier);
+    void removeSupplier(Supplier supplier);
+  }
+
+  <<operation>> 
+  class InventoryManagement  {
+    void trackInventory();
+    void sendNotification(Notification notification);
+  }
+}

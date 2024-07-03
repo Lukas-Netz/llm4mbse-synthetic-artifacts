@@ -1,0 +1,37 @@
+
+classdiagram VirtualRealityFlightTraining {
+
+    class Simulator {
+      String name;
+      String type;
+    }
+
+    class FlightPlan {
+      String name;
+      Location startLocation;
+      Location endLocation;
+      List<Location> waypoints;
+    }
+
+    class Pilot {
+      String name;
+      LicenseType licenseType;
+      List<Skill> skills;
+    }
+
+    class ScoringMechanism {
+      int evaluatePerformance(Pilot pilot, FlightPlan flightPlan);
+    }
+
+    association Pilot 
+      has 
+        -> FlightPlan [0..1];
+
+    association Simulator 
+      has 
+        -> FlightPlan [1..];
+
+    association FlightPlan 
+      has 
+        -> ScoringMechanism;
+}

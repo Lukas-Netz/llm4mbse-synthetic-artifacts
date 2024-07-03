@@ -1,0 +1,49 @@
+
+classdiagram CarbonCreditsTrading {
+
+  class Registry {
+    CarbonCredit [][] credits;
+  }
+
+  class Holder {
+    String name;
+    String address;
+    String contact;
+    CarbonCredit [][] credits;
+    int maxCredits;
+  }
+
+  class Transaction {
+    String dateTime;
+    CarbonCredit [][] credits;
+    Holder sender;
+    Holder receiver;
+  }
+
+  class Certificate {
+    String serialNumber;
+    CarbonCredit [][] credits;
+    String type;
+    String expirationDate;
+  }
+
+  class CarbonCredit {
+    String type;
+    int quantity;
+    String expirationDate;
+    boolean isTransferred;
+    boolean isCertified;
+  }
+
+  composition Registry -> CarbonCredit [*];
+  association Holder <- CarbonCredit [*];
+  association Transaction <- CarbonCredit [*];
+  association Certificate <- CarbonCredit [*];
+
+  enum CarbonCreditType {
+    VERIFIED,
+    OFFSET,
+    REDUCED
+  ;
+}
+}

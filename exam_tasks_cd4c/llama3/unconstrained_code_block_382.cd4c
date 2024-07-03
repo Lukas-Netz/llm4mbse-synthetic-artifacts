@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram AirQualityMonitor  {
+
+  class WearableDevice  {
+    double temperature;
+    double humidity;
+    int airQualityIndex;
+    void sendAirQualityData(MobileApp mobileApp);
+  }
+
+  class MobileApp  {
+    String userId;
+    String deviceId;
+    AlertSettings alertSettings;
+    void displayAirQualityData(WearableDevice wearableDevice);
+    void setAlerts(WearableDevice wearableDevice);
+  }
+
+  class CloudServer  {
+    int dataStorageCapacity;
+    AnalyticsAlgorithm analyticsAlgorithm;
+    void storeAirQualityData(WearableDevice wearableDevice);
+    void provideAnalytics(WearableDevice wearableDevice);
+  }
+
+  class AlertSettings  {
+    int poorAirQualityThreshold;
+    String notificationMessage;
+  }
+
+  class AnalyticsAlgorithm  {
+    void analyzeAirQualityData(WearableDevice wearableDevice);
+  }
+
+  composition WearableDevice -> MobileApp;
+  composition MobileApp -> CloudServer;
+  composition CloudServer -> WearableDevice;
+}

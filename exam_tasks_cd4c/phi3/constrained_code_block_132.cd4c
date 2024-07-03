@@ -1,0 +1,49 @@
+
+classdiagram CustomerAdvocacyPlatform {
+
+    class Customer {
+      String uniqueIdentifier;
+      Set<Review> reviews;
+      Set<Segment> segments;
+    }
+
+    class Review {
+      int rating;
+      String description;
+    }
+
+    class Segment {
+      String name;
+      Set<Rule> rules;
+      Set<Customer> customers;
+    }
+
+    class Rule {
+      String criteria;
+    }
+
+    class Analytics {
+      SentimentAnalysis sentiment;
+      TrendAnalysis trends;
+      CustomerClustering clustering;
+    }
+
+    class SentimentAnalysis;
+    class TrendAnalysis;
+    class CustomerClustering;
+
+    class Integration {
+      CRM crm;
+      MarketingAutomation marketingAutomation;
+    }
+
+    class CRM;
+    class MarketingAutomation;
+
+    association Customer -> Segment [*];
+    association Customer -> Analytics;
+    association Segment -> Rule [*];
+    association Segment -> Customer [*];
+    composition Analytics -> Customer;
+    composition Integration -> Customer;
+}

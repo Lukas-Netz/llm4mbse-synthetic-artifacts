@@ -1,0 +1,52 @@
+
+
+classdiagram MenuBoardSystem {
+
+    class MenuBoard {
+      String name;
+      String uniqueIdentifier;
+      List<MenuItem> menuItems;
+      Restaurant restaurant;
+    }
+
+    class MenuItem {
+      String name;
+      String description;
+      double price;
+      Type type;
+
+      enum Type  
+      
+  ;
+
+      Food foodItem;
+      Drink drinkItem;
+    }
+
+    class Food extends MenuItem {
+      int calories;
+      List<String> ingredients;
+    }
+
+    class Drink extends MenuItem {
+      int size;
+      String flavor;
+    }
+
+    class Restaurant {
+      String name;
+      String uniqueIdentifier;
+      List<MenuBoard> menuBoards;
+    }
+
+    class MenuBoardSystem {
+      List<MenuBoard> menuBoards;
+      Map<MenuItem, Integer> orderCounts;
+      Map<MenuItem, Double> totalRevenue;
+    }
+
+  composition MenuBoard -> Restaurant [0..1];
+  composition MenuBoard -> MenuItems [*];
+  association MenuBoardSystem -> MenuBoard;
+  association MenuBoardSystem -> MenuItem;
+}

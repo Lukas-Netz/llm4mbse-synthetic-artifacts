@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram RecyclingSystem  {
+
+  class Hub  {
+    RecyclingBin  [] recyclingBins;
+    Sensor  [] sensors;
+    SortingMachine sortingMachine;
+    Database database;
+    void addRecyclingBin(RecyclingBin bin);
+    void removeRecyclingBin(RecyclingBin bin);
+    void sortMaterials();
+  }
+
+  class RecyclingBin  {
+    String uniqueIdentifier;
+    BinType type;
+    boolean isEmpty;
+    int capacity;
+    void addMaterial(Material material);
+    void empty();
+  }
+
+  class Sensor  {
+    RecyclingBin associatedBin;
+    boolean isFull();
+  }
+
+  class SortingMachine  {
+    void sortMaterials(Material[] materials);
+  }
+
+  class Database  {
+    void storeMaterial(Material material);
+    Material[] getMaterials();
+  }
+
+  class Material  {
+    BinType type;
+    int quantity;
+  }
+
+  enum BinType  {
+    Plastic, Glass, Paper;
+  }
+
+  composition Hub  ->  (has) RecyclingBin  [*];
+  composition Hub  ->  (has) Sensor  [*];
+  composition Hub  ->  (has) SortingMachine;
+  composition Hub  ->  (has) Database;
+  composition RecyclingBin  ->  (has) Sensor;
+  composition SortingMachine  ->  (has) Material  [*];
+  composition Database  ->  (has) Material  [*];
+}

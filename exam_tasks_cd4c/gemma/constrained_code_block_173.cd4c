@@ -1,0 +1,94 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  
+  
+  
+  
+  {composition SmartHome  (has  Hub)
+  
+  
+  
+  ;composition SmartHome  (has  BackupPower)  
+  
+  
+  
+;composition Hub  (has  Device)  
+  
+  
+  
+;composition Hub  (has  BackupPower)  
+  
+  
+  
+;enum DeviceStatus
+  
+  
+  
+;enum ThermostatMode
+  
+  
+  
+  ;class Light
+  
+  
+  
+  ;class Thermostat
+  
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;class BackupPower
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;class Account
+  
+  
+  
+  ;class User
+  
+  
+  
+  ;class Report
+  
+  
+  
+  ;class FinancialReportGenerator
+  
+  
+  
+  ;class FinancialReport
+  
+  
+  
+  ;class FinancialMetrics
+  
+  
+  
+  ;class TimePeriod
+  
+  
+  
+  ;class AccountReport
+  
+  
+  ;class UserReport
+  
+  
+  ;
+}
+
+}

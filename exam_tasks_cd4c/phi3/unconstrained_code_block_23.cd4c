@@ -1,0 +1,42 @@
+
+classdiagram DigitalSignage {
+
+    class CMS {
+      String[] contentTypes;
+      Schedule schedule;
+      Performance tracking;
+      void playContent(Content content);
+      void remoteControl();
+    WritableContent content;
+    }
+
+    class Player {
+      void playContent(Content content);
+      void remoteControl();
+    }
+
+    class Screen {
+      void displayContent(Content content);
+      void remoteControl();
+      void configureContentTypes(String[] types);
+    }
+
+    class Network {
+      void connectCMS(CMS cms);
+      void connectPlayer(Player player);
+      void connectScreen(Screen screen);
+      void prioritizeContentTypes(String[] types);
+      void secureConnection();
+    }
+
+    class Content {
+      String type;
+      String data;
+    }
+
+    association CMS -> Player [*];
+    association CMS -> Screen [*];
+    association CMS -> Network [*];
+    association Player -> Screen [*];
+    association Screen -> Network [*];
+}

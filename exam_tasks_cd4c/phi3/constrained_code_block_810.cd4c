@@ -1,0 +1,79 @@
+
+classdiagram WildlifeConservationSystem {
+
+    class Species {
+      String uniqueIdentifier;
+      String name;
+      String classification;
+    }
+
+    class Sensor {
+      String location;
+      Species species;
+      SpeciesMovement movementData;
+    }
+
+    class Camera {
+      String location;
+      Species species;
+      SpeciesMovement movementData;
+    }
+
+    class Analytics {
+      void analyzeData(Sensor sensor, Camera camera);
+      PatternsTrends trends;
+    }
+
+    class DecisionSupport {
+      void provideRecommendations(Analytics analytics);
+      Recommendation recommendation;
+    }
+
+    class Conservationist {
+      void accessSystem();
+      void makeDecision(DecisionSupport decisionSupport);
+    }
+
+    class SpeciesMovement {
+      String speciesIdentifier;
+      DateTime timestamp;
+      Location location;
+    }
+
+    class Habitat {
+      String location;
+      Species species;
+    }
+
+    class MigrationPattern {
+      Species species;
+      DateTime startDate;
+      DateTime endDate;
+    }
+
+    class Threat {
+      String description;
+      DateTime detected;
+    }
+
+    association Species -> Sensor [*];
+    association Species -> Camera [*];
+    composition SpeciesMovement {
+      ordered
+     } Species -> SpeciesMovement [*];
+    composition Habitat {
+      ordered
+     } Species -> Habitat [*];
+    composition MigrationPattern {
+      ordered
+     } Species -> MigrationPattern [*];
+    composition Threat {
+      ordered
+     } Species -> Threat [*];
+    composition DecisionSupport {
+      ordered
+     } Analytics -> DecisionSupport [*];
+    composition Conservationist {
+      ordered
+     } DecisionSupport -> Conservationist [*];
+}

@@ -1,0 +1,35 @@
+
+classdiagram TravelBooking {
+
+  class TravelAgency {
+    -> TravelPackage [*];
+    void offerDiscount(TravelPackage package);
+  }
+
+  class TravelPackage {
+    String name;
+    String description;
+    int price;
+    -> BookingOption [*];
+  }
+
+  class BookingOption {
+    String name;
+    String description;
+    int price;
+  }
+
+  class Customer {
+    String name;
+    String email;
+    String phoneNumber;
+    -> TravelPackage [*];
+  }
+
+  enum BookingStatus {
+    Pending, Confirmed, Cancelled;
+  }
+
+  composition TravelAgency -> TravelPackage [*];
+  composition Customer -> TravelPackage [*];
+}

@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram MedicalImagingSystem  {
+
+  class Image  {
+    String uniqueIdentifier;
+    ImageType type;
+    int resolution;
+  }
+
+  class Algorithm  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class ImageAnalysis  {
+    String uniqueIdentifier;
+    Image image;
+    Algorithm algorithm;
+    String analysisResult;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    String name;
+    String specialty;
+  }
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    String medicalHistory;
+  }
+
+  class ImageUpload  {
+    String uniqueIdentifier;
+    Image image;
+    Patient patient;
+  }
+
+  composition Doctor -> ImageUpload[*];
+  composition Patient -> ImageUpload[*];
+  composition Image -> ImageAnalysis[*];
+  composition Algorithm -> ImageAnalysis[*];
+
+  enum ImageType  {
+    MRI, CT, Xray;
+  }
+}

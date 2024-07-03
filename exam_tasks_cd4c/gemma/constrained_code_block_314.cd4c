@@ -1,0 +1,40 @@
+
+
+classdiagram JobSeekerPortfolio {
+
+  class User {
+    String name;
+    String email;
+    String password;
+    Portfolio portfolio;
+  }
+
+  class Portfolio {
+    List<Project> projects;
+    List<Skill> skills;
+    List<Achievement> achievements;
+  }
+
+  class Project {
+    String title;
+    String description;
+    String gitHubLink;
+  }
+
+  class Skill {
+    String name;
+    ProgrammingLanguage language;
+    Framework framework;
+    Tools tools;
+  }
+
+  class Achievement {
+    String name;
+    String description;
+  }
+
+  composition User -> (has) Portfolio;
+  association Portfolio -> Project;
+  association Portfolio -> Skill;
+  association Portfolio -> Achievement;
+}

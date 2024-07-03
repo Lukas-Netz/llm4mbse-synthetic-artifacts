@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram DNAAnalysis  {
+
+  class User  {
+    String uniqueIdentifier;
+    DNAData dnaData;
+    Recommendations recommendations;
+  }
+
+  class DNAData  {
+    String geneticMakeup;
+    User user;
+  }
+
+  class Recommendations  {
+    HealthRecommendation health;
+    WellnessRecommendation wellness;
+    LifestyleRecommendation lifestyle;
+  }
+
+  class HealthRecommendation  {
+    HealthCondition condition;
+    String advice;
+  }
+
+  class WellnessRecommendation  {
+    WellnessMetric metric;
+    String advice;
+  }
+
+  class LifestyleRecommendation  {
+    LifestyleHabit habit;
+    String advice;
+  }
+
+  class HealthCondition  {
+    String name;
+  }
+
+  class WellnessMetric  {
+    String name;
+  }
+
+  class LifestyleHabit  {
+    String name;
+  }
+
+  class Expert  {
+    String areaOfExpertise;
+  }
+
+  composition User -> (has) DNAData;
+  composition User -> (has) Recommendations;
+  composition Recommendations -> (has) HealthRecommendation;
+  composition Recommendations -> (has) WellnessRecommendation;
+  composition Recommendations -> (has) LifestyleRecommendation;
+  composition HealthRecommendation -> (has) HealthCondition;
+  composition WellnessRecommendation -> (has) WellnessMetric;
+  composition LifestyleRecommendation -> (has) LifestyleHabit;
+  composition Expert -> (has) areaOfExpertise;
+}

@@ -1,0 +1,63 @@
+
+classdiagram BlockchainFilmDistribution {
+
+    class FilmLibrary {
+      List<Film> films;
+    }
+
+    class Film {
+      String title;
+      String description;
+      Date releaseDate;
+    }
+
+    class FilmDistributor {
+      FilmLibrary filmLibrary;
+      List<Customer> customers;
+      List<Device> devices;
+      void distributeFilm(Film film, Customer customer, Device device);
+      void createTransaction(Customer customer, Film film, PaymentDetails paymentDetails);
+    }
+
+    class Customer {
+      String customerId;
+      List<Transaction> transactions;
+      void purchaseFilm(Film film, PaymentDetails paymentDetails);
+      void rateFilm(Film film, int rating);
+    }
+
+    class Device {
+      String deviceId;
+      void playFilm(Transaction transaction);
+    }
+
+    class Transaction {
+      Customer customer;
+      Film film;
+      PaymentDetails paymentDetails;
+    }
+
+    class PaymentDetails {
+      String paymentMethod;
+      double amount;
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+    }
+
+    class Block {
+      List<Transaction> transactions;
+    }
+
+    association FilmDistributor -> FilmLibrary [*];
+    association FilmDistributor -> Customer [*];
+    association FilmDistributor -> Device [*];
+    association Customer -> Transaction [*];
+    association Customer -> Film [*];
+    association Customer -> RatingSystem [*];
+    composition Blockchain -> Block [*];
+    composition Blockchain -> Transaction [*];
+}

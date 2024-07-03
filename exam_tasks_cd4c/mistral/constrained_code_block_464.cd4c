@@ -1,0 +1,43 @@
+
+classdiagram CourseManagement {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    CourseMaterial [ ] materials;
+    Instructor [ ] instructors;
+    Student [ ] students;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] courses;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] courses;
+    double grade;
+    boolean isEnrolled;
+  }
+
+  class CourseMaterial {
+    String uniqueIdentifier;
+    String type;
+    String resource;
+    Course [ ] courses;
+  }
+
+  enum CourseMaterialType {
+    Video, Image, TextFile;
+  }
+
+  composition Course -> Instructor [*];
+  composition Course -> Student [*];
+  composition Course -> CourseMaterial [*];
+}

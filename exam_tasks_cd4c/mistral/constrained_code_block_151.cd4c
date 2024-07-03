@@ -1,0 +1,76 @@
+
+classdiagram ConsumerDataManagement {
+
+  class Consumer {
+    String uniqueIdentifier;
+    String name;
+    Preferences preferences;
+    Interaction [  ] interactions;
+  }
+
+  class Preferences {
+    FavoriteProducts favoriteProducts;
+    CommunicationChannels preferredCommunicationChannels;
+    Language preferredLanguage;
+  }
+
+  class FavoriteProducts {
+    Product [  ] products;
+  }
+
+  class CommunicationChannels {
+    Channel [  ] channels;
+  }
+
+  enum Channel {
+    Phone, Email, SocialMedia;
+  }
+
+  class Language {
+    String language;
+  }
+
+  class Product {
+    String productName;
+  }
+
+  class Interaction {
+    String interactionType;
+    DateTime dateTime;
+    String details;
+  }
+
+  class DateTime {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second;
+  }
+
+  class SuspiciousBehavior {
+    String behavior;
+  }
+
+  class Report {
+    String reportType;
+    String data;
+  }
+
+  class DataProtectionRegulations {
+    String regulations;
+  }
+
+  class Security {
+    String securityMeasures;
+  }
+
+  association Consumer --o00o- 											;
+  association Consumer --o00o-												;
+  association Consumer --o00o-												;
+  association Interaction --o00o-											;
+  association SuspiciousBehavior --o00o-									;
+  association Report --o00o-												;
+  association DataProtectionRegulations --o00o-							;
+ 				}

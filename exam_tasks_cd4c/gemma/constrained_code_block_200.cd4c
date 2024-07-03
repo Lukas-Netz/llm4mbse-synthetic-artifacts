@@ -1,0 +1,74 @@
+
+
+classdiagram RetailSystem {
+
+    class Store {
+      String name;
+      String uniqueIdentifier;
+      CashRegister cashRegisters;
+    }
+
+    class CashRegister {
+      String name;
+      String uniqueIdentifier;
+      Store store;
+      Transaction transactions;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      Product product;
+      Customer customer;
+      double amount;
+    }
+
+    class Product {
+      String name;
+      double price;
+      String uniqueIdentifier;
+      Category category;
+    }
+
+    enum Category {
+      Food, Beverages, Merchandise
+    
+
+    
+;
+    }
+
+    class Customer {
+      String name;
+      String uniqueIdentifier;
+      LoyaltyProgram loyaltyPrograms;
+    }
+
+    class LoyaltyProgram {
+      String name;
+      String uniqueIdentifier;
+      Set<Reward> rewards;
+      Set<Rule> rules;
+    }
+
+    class Reward {
+      String name;
+      String uniqueIdentifier;
+      LoyaltyProgram loyaltyProgram;
+    }
+
+    class Rule {
+      String name;
+      String uniqueIdentifier;
+      LoyaltyProgram loyaltyProgram;
+      Conditions conditions;
+      Rewards reward;
+    }
+
+  composition Store -> (has) CashRegister [*];
+  composition CashRegister -> (has) Transaction [*];
+  composition Transaction -> (has) Product;
+  composition Transaction -> (has) Customer;
+  composition Customer -> (has) LoyaltyProgram [*];
+  composition LoyaltyProgram -> (has) Reward [*];
+  composition LoyaltyProgram -> (has) Rule [*];
+}

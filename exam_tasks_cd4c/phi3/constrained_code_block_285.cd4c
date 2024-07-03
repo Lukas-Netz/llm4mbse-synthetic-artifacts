@@ -1,0 +1,50 @@
+
+classdiagram CustomerFeedbackSystem {
+
+  class Customer {
+    String customerId;
+    List<Feedback> feedbacks;
+  }
+
+  class Feedback {
+    String customerId;
+    String productOrServiceId;
+    String category;
+    String subcategory;
+    String feedbackText;
+    boolean isAcknowledged;
+  }
+
+  class ProductOrService {
+    String id;
+    String name;
+    List<Category> categories;
+  }
+
+  class Category {
+    String id;
+    String name;
+    List<Subcategory> subcategories;
+  }
+
+  class Subcategory {
+    String id;
+    String name;
+  }
+
+  <<association>> class CustomerFeedbackSystem {
+    Customer customer;
+    List<Feedback> feedbacks;
+    void storeFeedback(Feedback feedback);
+    void categorizeFeedback(Feedback feedback);
+    void acknowledgeFeedback(Feedback feedback);
+    void sendNotification(Feedback feedback);
+    Summary getFeedbackSummary(String productOrServiceId);
+    Summary getFeedbackSummary(String category);
+    Summary getFeedbackSummary(String subcategory);
+    Summary getFeedbackSummary(String customerId);
+  }
+
+  association CustomerFeedbackSystem -> Customer;
+  association CustomerFeedbackSystem -> Feedback;
+}

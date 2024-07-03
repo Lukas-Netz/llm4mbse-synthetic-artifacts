@@ -1,0 +1,43 @@
+
+classdiagram UnderwaterExploration {
+
+  class Mission {
+    String name;
+    Date startDate;
+    Date endDate;
+    TeamLeader teamLeader;
+  }
+
+  class TeamLeader {
+    String name;
+    Mission [ ][  ] assignedMissions;
+  }
+
+  class Drone {
+    String uniqueIdentifier;
+    String name;
+    DroneStatus status;
+    Mission assignedMission;
+  }
+
+  enum DroneStatus {
+    Active, Inactive;
+  }
+
+  class Artifact {
+    String name;
+    String description;
+    Location location;
+    Drone discoveringDrone;
+  }
+
+  class Location {
+    String latitude;
+    String longitude;
+  }
+
+  association Mission --o000o- 											;
+  association TeamLeader --o000o- 										;
+  association Drone --o000o- 											;
+  association Artifact --o000o- 										;
+}

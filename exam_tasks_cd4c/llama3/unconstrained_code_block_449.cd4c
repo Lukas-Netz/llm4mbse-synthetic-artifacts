@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram GeneticCounselingService  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+  }
+
+  class GeneticTest  {
+    String uniqueIdentifier;
+    String name;
+    boolean result;
+  }
+
+  class CounselingSession  {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+    -> Patient;
+    -> GeneticTest;
+  }
+
+  class Report  {
+    String uniqueIdentifier;
+    Date date;
+    String content;
+    -> Patient;
+    -> CounselingSession;
+  }
+
+  class Recommendation  {
+    String uniqueIdentifier;
+    String content;
+    boolean status;
+    -> Patient;
+    -> GeneticTest;
+  }
+
+  class ReportGenerator  {
+    void generateReport(Patient patient, CounselingSession session);
+  }
+
+  class RecommendationProvider  {
+    void provideRecommendation(Patient patient, GeneticTest test);
+  }
+
+  composition Patient -> (has) GeneticTest [0..*];
+  composition CounselingSession -> (has) Patient;
+  composition CounselingSession -> (has) GeneticTest;
+  composition Report -> (has) Patient;
+  composition Report -> (has) CounselingSession;
+  composition Recommendation -> (has) Patient;
+  composition Recommendation -> (has) GeneticTest;
+}

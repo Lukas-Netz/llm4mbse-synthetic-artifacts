@@ -1,0 +1,61 @@
+
+classdiagram AgriculturalDroneSwarm {
+
+  class Drone {
+    String uniqueIdentifier;
+    DroneStatus status;
+    DroneType type;
+    Crop assignedCrop;
+  }
+
+  enum DroneStatus {
+    Active, Inactive;
+  }
+
+  enum DroneType {
+    Monitoring, Spraying;
+  }
+
+  class MonitoringDrone extends Drone {
+    Camera camera;
+  }
+
+  class SprayingDrone extends Drone {
+    Tank tank;
+  }
+
+  class Camera {
+    void captureImage();
+  }
+
+  class Tank {
+    int capacity;
+  }
+
+  class Crop {
+    CropType type;
+    Location location;
+  }
+
+  enum CropType {
+    Wheat, Corn, Soybeans;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class BaseStation {
+    PowerSource powerSource;
+    Drone [ ] drones;
+  }
+
+  class PowerSource {
+    void rechargeDrones();
+  }
+
+  composition DroneSwarm -> BaseStation;
+  composition BaseStation -> Drone [*];
+  composition Drone -> Crop [0..1];
+}

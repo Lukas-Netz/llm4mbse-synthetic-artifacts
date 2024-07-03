@@ -1,0 +1,50 @@
+
+classdiagram UrbanFarming {
+
+  class Farm {
+    String uniqueIdentifier;
+    String location;
+    Plot [ ] plots;
+  }
+
+  class Plot {
+    String uniqueIdentifier;
+    int size;
+    String type;
+    Crop [ ] crops;
+  }
+
+  class Crop {
+    String uniqueIdentifier;
+    String type;
+    GrowthStage growthStage;
+  }
+
+  enum GrowthStage {
+    Seedling, Sprout, Mature, ReadyForHarvest;
+  }
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    double temperature;
+    double humidity;
+    double precipitation;
+  }
+
+  class Admin {
+    String uniqueIdentifier;
+    void addFarm(Farm farm);
+    void removeFarm(Farm farm);
+    void addPlot(Plot plot);
+    void removePlot(Plot plot);
+    void addCrop(Crop crop);
+    void removeCrop(Crop crop);
+  }
+
+  class NotificationSystem {
+    void sendAlert(String message);
+  }
+
+  composition Farm -> Plot [*];
+  composition Plot -> Crop [*];
+}

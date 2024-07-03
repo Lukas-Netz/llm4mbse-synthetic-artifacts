@@ -1,0 +1,41 @@
+
+classdiagram ContentDeliveryNetwork {
+
+    class Node {
+      String uniqueIdentifier;
+      String location;
+      NodeType type;
+      NodeStatus status;
+    }
+
+    class Origin {
+      String content;
+      int bandwidth;
+      Node originNode;
+    }
+
+    class Edge {
+      String cachedContent;
+      int bandwidth;
+      Node edgeNode;
+    }
+
+    class Request {
+      String requestId;
+      String userId;
+      String contentId;
+    }
+
+    enum NodeType {
+      Origin, Edge
+   
+   
+  
+(has)
+   
+ ;}
+
+  association Origin -> Node [*];
+  association Edge -> Node [*];
+  association Request -> Node [*];
+}

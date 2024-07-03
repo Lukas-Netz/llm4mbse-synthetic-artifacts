@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram PredictiveHealthcare  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Demographic demographic;
+  }
+
+  class Demographic  {
+    int age;
+    String gender;
+    String address;
+  }
+
+  class MedicalCondition  {
+    String uniqueIdentifier;
+    String name;
+    List<Symptom> symptoms;
+  }
+
+  class Symptom  {
+    String name;
+  }
+
+  class LabResult  {
+    String uniqueIdentifier;
+    Patient patient;
+    double value;
+  }
+
+  class Medication  {
+    String uniqueIdentifier;
+    String name;
+    List<SideEffect> sideEffects;
+  }
+
+  class SideEffect  {
+    String name;
+  }
+
+  class PredictiveModel  {
+    String uniqueIdentifier;
+    String name;
+    List<InputVariable> inputVariables;
+    List<OutputVariable> outputVariables;
+  }
+
+  class InputVariable  {
+    String name;
+  }
+
+  class OutputVariable  {
+    String name;
+  }
+
+  class Dashboard  {
+    List<Patient> patients;
+  }
+
+  composition Patient -> Demographic;
+  composition MedicalCondition -> Symptom;
+  composition LabResult -> Patient;
+  composition Medication -> SideEffect;
+  composition PredictiveModel -> InputVariable;
+  composition PredictiveModel -> OutputVariable;
+  composition Dashboard -> Patient;
+}

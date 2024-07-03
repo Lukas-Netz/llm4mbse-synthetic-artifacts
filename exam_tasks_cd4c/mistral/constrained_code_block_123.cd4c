@@ -1,0 +1,40 @@
+
+classdiagram EmployeeRecognition {
+
+  class Employee {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+  }
+
+  class RecognitionEvent {
+    RecognitionType recognitionType;
+    String description;
+    Date date;
+    Employee [  ] assignees;
+  }
+
+  class RecognitionType {
+    String name;
+  }
+
+  class Administrator extends Employee {
+    void createRecognitionType(RecognitionType recognitionType);
+    void editRecognitionType(RecognitionType recognitionType);
+    void deleteRecognitionType(RecognitionType recognitionType);
+  }
+
+  class Employee extends User {
+    void createRecognitionEvent(RecognitionEvent recognitionEvent);
+    void editRecognitionEvent(RecognitionEvent recognitionEvent);
+    void deleteRecognitionEvent(RecognitionEvent recognitionEvent);
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  association Employee -- RecognitionEvent [*];
+  association Administrator -- RecognitionType [*];
+}

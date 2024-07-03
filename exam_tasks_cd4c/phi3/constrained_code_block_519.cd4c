@@ -1,0 +1,52 @@
+
+classdiagram HumanitarianAidDistribution {
+
+    class Warehouse {
+      List<AidPackage> aidPackages;
+      void receiveAidPackages(AidPackage aidPackage);
+      void dispatchAidPackages(Vehicle vehicle);
+    }
+
+    class Vehicle {
+      int capacity;
+      List<AidPackage> aidPackages;
+      void loadAidPackages(AidPackage aidPackage);
+      void unloadAidPackages(AidPackage aidPackage);
+      void travelTo(DistributionCenter distributionCenter);
+    }
+
+    class DistributionCenter {
+      String areaOfOperation;
+      List<Vehicle> vehicles;
+      void receiveAidPackages(Vehicle vehicle);
+      void distributeAidPackages(AidWorker aidWorker);
+    }
+
+    class AidWorker {
+      String assignedVehicleOrCenter;
+      void loadAidPackages(AidPackage aidPackage);
+      void unloadAidPackages(AidPackage aidPackage);
+    }
+
+    class AidPackage {
+      String uniqueIdentifier;
+      List<Item> contents;
+      int weight;
+      String destination;
+    }
+
+    class Item {
+      String name;
+      int quantity;
+    }
+
+    association Warehouse -> (has) AidPackage;
+    association Vehicle -> (has) AidPackage;
+    association DistributionCenter -> (has) Vehicle;
+    association DistributionCenter -> (has) AidWorker;
+    association AidWorker -> (has) AidPackage;
+    composition Warehouse -> (has) List<<AidPackage>>;
+    composition Vehicle -> (has) List<<AidPackage>>;
+    composition DistributionCenter -> (has) List<<Vehicle>>;
+    composition DistributionCenter -> (has) List<<AidWorker>>;
+}

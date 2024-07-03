@@ -1,0 +1,11 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  	  	  	  	  {Hub hub; BackupPower backupPower;}
+  
+  }

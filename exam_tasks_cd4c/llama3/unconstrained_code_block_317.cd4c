@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VerticalFarmingSystem  {
+
+  class Module  {
+    String uniqueIdentifier;
+    ModuleStatus status;
+  }
+
+  class HydroponicModule extends Module  {
+    String nutrientSolution;
+  }
+
+  class AeroponicModule extends Module  {
+    String mistType;
+  }
+
+  class SoilBasedModule extends Module  {
+    String soilType;
+  }
+
+  class ControlUnit  {
+    void manageClimate(Module module);
+    void manageIrrigation(Module module);
+    void manageLighting(Module module);
+  }
+
+  class Sensor  {
+    double temperature;
+    double humidity;
+    double lightLevel;
+  }
+
+  class Database  {
+    void storePlantInfo(Module module, String plantType, double growthRate);
+    void storeMaintenanceTask(Module module, String task);
+  }
+
+  class VerticalFarmingSystem  {
+    ControlUnit controlUnit;
+    Database database;
+    Module[] modules;
+  }
+
+  composition VerticalFarmingSystem -> ControlUnit;
+  composition VerticalFarmingSystem -> Database;
+  composition VerticalFarmingSystem -> Module[*];
+  composition ControlUnit -> Sensor[*];
+  composition Database -> Module[*];
+}

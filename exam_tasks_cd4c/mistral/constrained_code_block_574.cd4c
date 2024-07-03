@@ -1,0 +1,49 @@
+
+classdiagram IndoorFarming {
+
+  class Farm {
+    String name;
+    String location;
+    -> Crop [*];
+  }
+
+  class Crop {
+    String name;
+    CropType type;
+    CropGrowthStage stage;
+  }
+
+  enum CropType {
+    LeafyGreens, RootVegetables, Fruits, Herbs;
+  }
+
+  enum CropGrowthStage {
+    Seedling, Mature, Harvest;
+  }
+
+  class ControlCenter {
+    -> Farm;
+    -> Sensor [*];
+    -> IrrigationSystem [*];
+    void adjustTemperature(double temperature);
+    void adjustHumidity(double humidity);
+    void adjustLightLevel(double lightLevel);
+  }
+
+  class Sensor {
+    String location;
+    double temperature;
+    double humidity;
+    double lightLevel;
+  }
+
+  class IrrigationSystem {
+    String location;
+    boolean isActive;
+  }
+
+  association ControlCenter -- Farm;
+  association ControlCenter -- Sensor;
+  association ControlCenter -- IrrigationSystem;
+  composition Farm -- Crop [*];
+}

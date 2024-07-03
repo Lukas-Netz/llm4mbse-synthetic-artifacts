@@ -1,0 +1,66 @@
+
+
+classdiagram IntelligentTrafficSystem {
+
+    class TrafficLight {
+      String identifier;
+      State state;
+    }
+
+    enum State {
+      Red, Yellow, Green
+    
+    
+	;
+    }
+
+    class Sensor {
+      String identifier;
+      TrafficData data;
+    }
+
+    class Camera {
+      String identifier;
+      Image image;
+    }
+
+    class TrafficManagementSystem {
+      CentralUnit centralUnit;
+      Database database;
+    }
+
+    class CentralUnit {
+      TrafficLightController trafficLightController;
+      SensorController sensorController;
+      CameraController cameraController;
+    }
+
+    class TrafficLightController {
+      void updateTrafficLightState();
+    }
+
+    class SensorController {
+      void updateTrafficData();
+    }
+
+    class CameraController {
+      void updateImage();
+    }
+
+    class Database {
+      void storeTrafficLightData();
+      void storeSensorData();
+      void storeCameraData();
+    }
+
+  composition TrafficManagementSystem -> (has) CentralUnit;
+  composition CentralUnit -> (has) TrafficLightController;
+  composition CentralUnit -> (has) SensorController;
+  composition CentralUnit -> (has) CameraController;
+  composition TrafficLightController -> (has) TrafficLight;
+  composition SensorController -> (has) Sensor;
+  composition CameraController -> (has) Camera;
+  association TrafficLightController -> TrafficLight;
+  association SensorController -> Sensor;
+  association CameraController -> Camera;
+}

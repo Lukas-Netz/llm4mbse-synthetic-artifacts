@@ -1,0 +1,53 @@
+
+
+classdiagram SmarthomeBackup {
+
+    class User {
+      String username;
+      String password;
+      BackupAccount account;
+    }
+
+    class BackupAccount {
+      int id;
+      String type;
+      User user;
+      int storageCapacity;
+    }
+
+    class PersonalBackupAccount extends BackupAccount {
+      int storageCapacity = 100 * 1024 * 1024;
+    }
+
+    class BusinessBackupAccount extends BackupAccount {
+      int storageCapacity = 1000 * 1024 * 1024;
+    }
+
+    class File {
+      int id;
+      BackupAccount account;
+      String type;
+    }
+
+    class BackupJob {
+      int id;
+      BackupAccount account;
+      String schedule;
+    }
+
+    class Storage {
+      int totalCapacity = 10 * 1024 * 1024 * 1024;
+      int currentUsage;
+      Node[] nodes;
+    }
+
+    class Node {
+      int id;
+      int storageCapacity;
+    }
+
+  composition User -> (has) BackupAccount;
+  composition BackupAccount -> (has) File;
+  composition BackupAccount -> (has) BackupJob;
+  composition Storage -> (has) Node;
+}

@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram DigitalAuctionPlatform  {
+
+  class Auction  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    AuctionStatus status;
+  }
+
+  class Item  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Bidder  {
+    String uniqueIdentifier;
+    String name;
+    String contactEmail;
+  }
+
+  class Bid  {
+    String uniqueIdentifier;
+    Bidder bidder;
+    Item item;
+    double bidAmount;
+  }
+
+  class AuctionType  {
+    String type;  (fixedPriceTimedProxy)
+  }
+
+  class ItemType  {
+    String type;  (physicalDigitalService)
+  }
+
+  class AuctionStatus  {
+    String status;  (activeClosedCancelled)
+  }
+
+  class ItemStatus  {
+    String status;  (availableSoldCancelled)
+  }
+
+  class BidderStatus  {
+    String status;  (activeInactiveBanned)
+  }
+
+  class BidStatus  {
+    String status;  (validInvalidCancelled)
+  }
+
+  composition Auction -> (has) Item;
+  composition Auction -> (has) Bidder;
+  composition Auction -> (has) AuctionType;
+  composition Item -> (has) ItemType;
+  composition Bid -> (has) Bidder;
+  composition Bid -> (has) Item;
+  composition Auction -> (has) AuctionStatus;
+  composition Item -> (has) ItemStatus;
+  composition Bidder -> (has) BidderStatus;
+  composition Bid -> (has) BidStatus;
+
+  }

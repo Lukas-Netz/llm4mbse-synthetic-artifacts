@@ -1,0 +1,62 @@
+
+classdiagram DigitalFarming {
+
+  class Crop {
+    String name;
+    String type;
+    CropGrowthStage growthStage;
+    IrrigationRequirements irrigationRequirements;
+    FertilizationRequirements fertilizationRequirements;
+  }
+
+  enum CropGrowthStage {
+    SEEDLING, MATURE;
+  }
+
+  class FarmEquipment {
+    String name;
+    EquipmentType type;
+    EquipmentCondition condition;
+  }
+
+  enum EquipmentType {
+    TRACTOR, PLOW, HARVESTER;
+  }
+
+  enum EquipmentCondition {
+    NEW, USED, BROKEN;
+  }
+
+  class Weather {
+    double temperature;
+    double humidity;
+    double precipitation;
+  }
+
+  class CropGrowthTracker {
+    Crop crop;
+    Weather currentWeather;
+    IrrigationRecommendation irrigationRecommendation;
+    FertilizationRecommendation fertilizationRecommendation;
+  }
+
+  class EquipmentUsageTracker {
+    FarmEquipment equipment;
+    int usageCount;
+    String lastMaintenanceDate;
+  }
+
+  class ReportGenerator {
+    List<CropGrowthTracker> cropGrowthReports;
+    List<EquipmentUsageTracker> equipmentUsageReports;
+    List<Weather> weatherReports;
+  }
+
+  association Farm -> Crop [*];
+  association Farm -> FarmEquipment [*];
+  association CropGrowthTracker <- Crop;
+  association EquipmentUsageTracker <- FarmEquipment;
+  association ReportGenerator <- CropGrowthTracker;
+  association ReportGenerator <- EquipmentUsageTracker;
+  association ReportGenerator <- Weather;
+}

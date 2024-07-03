@@ -1,0 +1,47 @@
+
+classdiagram VR_RenewableEnergy {
+
+  class VRSystem {
+    RenewableEnergySource [ ] sources;
+    Grid grid;
+    VREnvironment vrEnvironment;
+  }
+
+  interface RenewableEnergySource {
+    String name;
+    double energyOutput;
+    double efficiency;
+    double cost;
+  }
+
+  class SolarPower implements RenewableEnergySource {
+    double area;
+    double sunlightIntensity;
+  }
+
+  class WindPower implements RenewableEnergySource {
+    double windSpeed;
+    double rotorDiameter;
+  }
+
+  class HydroPower implements RenewableEnergySource {
+    double waterFlowRate;
+    double head;
+  }
+
+  class Grid {
+    double totalPower;
+    double powerDemand;
+  }
+
+  class VREnvironment {
+    void displaySolarOutput(SolarPower solar);
+    void displayWindOutput(WindPower wind);
+    void displayHydroOutput(HydroPower hydro);
+    void displayGridInfo(Grid grid);
+  }
+
+  composition VRSystem -> (has) RenewableEnergySource [*];
+  composition VRSystem -> Grid;
+  composition VRSystem -> VREnvironment;
+}

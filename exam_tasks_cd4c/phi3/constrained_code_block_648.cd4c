@@ -1,0 +1,46 @@
+
+classdiagram IndustrialEquipmentMaintenance {
+
+    class Equipment {
+      String uniqueId;
+      String type;
+      EquipmentStatus status;
+    }
+
+    class Sensor {
+      String equipmentId;
+      String sensorType;
+      float dataValue;
+    }
+
+    class PredictiveModel {
+      void trainModel(List<Sensor> sensorData);
+      EquipmentStatus predictFailure(Sensor sensorData);
+    }
+
+    class MaintenanceTeam {
+      void receiveNotification(Equipment equipment);
+      void scheduleMaintenance(Equipment equipment, DateTime scheduledTime);
+    }
+
+    class MaintenanceTask {
+      Equipment equipment;
+      DateTime scheduledTime;
+      String status;
+    }
+
+    class EquipmentStatus {
+      On operational;
+      Failed failed;
+    }
+
+    class SensorType {
+      String type;
+    }
+
+    composition Equipment -> (has) Sensor [*];
+    composition Equipment -> (has) PredictiveModel [0..1];
+    composition Equipment -> (has) MainteninasMaintenanceTeam [0..1];
+    composition MaintenanceTeam -> (has) MaintenanceTask [*];
+    association Sensor -> PredictiveModel [*];
+}

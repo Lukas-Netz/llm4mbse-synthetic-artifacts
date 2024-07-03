@@ -1,0 +1,54 @@
+
+classdiagram BehavioralTherapy {
+
+  class Therapist {
+    String name;
+    String email;
+    String password;
+    -> Patient [*];
+  }
+
+  class Patient {
+    String name;
+    String email;
+    String password;
+    -> TherapySession [*];
+  }
+
+  class TherapySession {
+    DateTime dateTime;
+    int duration;
+    Therapist therapist;
+    Patient patient;
+    -> Goal [*];
+  }
+
+  class Goal {
+    String description;
+    GoalStatus status;
+  }
+
+  enum GoalStatus {
+    InProgress, Completed, Cancelled;
+  }
+
+  abstract class DateTime {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+  }
+
+  class Reminder {
+    DateTime dateTime;
+    String message;
+    Therapist therapist;
+    Patient patient;
+  }
+
+  composition TherapySession -> Therapist;
+  composition TherapySession -> Patient;
+  composition Patient -> TherapySession [*];
+  composition Therapist -> Patient [*];
+}

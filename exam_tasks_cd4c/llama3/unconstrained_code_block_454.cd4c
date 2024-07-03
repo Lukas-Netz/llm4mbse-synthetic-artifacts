@@ -1,0 +1,92 @@
+
+
+
+
+classdiagram SmartMobility  {
+
+  class TrafficManagement  {
+    TrafficLightTiming timing;
+    CameraLocation[] cameraLocations;
+    void adjustTiming();
+    void monitorTrafficFlow();
+  }
+
+  class PublicTransportation  {
+    BusSchedule[] busSchedules;
+    TrainSchedule[] trainSchedules;
+    void updateSchedules();
+    void monitorPassengerFlow();
+  }
+
+  class RideHailing  {
+    Driver[] drivers;
+    Passenger[] passengers;
+    void matchPassengersWithDrivers();
+    void trackRideStatus();
+  }
+
+  class ParkingManagement  {
+    ParkingLot[] parkingLots;
+    int[] parkingLotCapacity;
+    void manageParkingLotAccess();
+    void monitorParkingLotUsage();
+  }
+
+  class TrafficLight  {
+    TrafficLightTiming timing;
+  }
+
+  class TrafficSign  {
+    String message;
+  }
+
+  class Camera  {
+    CameraLocation location;
+  }
+
+  class Bus  {
+    BusSchedule schedule;
+  }
+
+  class Train  {
+    TrainSchedule schedule;
+  }
+
+  class Driver  {
+    String name;
+    Vehicle vehicle;
+  }
+
+  class Passenger  {
+    String name;
+  }
+
+  class Vehicle  {
+    String make;
+    String model;
+  }
+
+  class ParkingLot  {
+    int capacity;
+    boolean[] availability;
+  }
+
+  composition TrafficManagement -> (has) TrafficLight[*];
+  composition TrafficManagement -> (has) TrafficSign[*];
+  composition TrafficManagement -> (has) Camera[*];
+
+  composition PublicTransportation -> (has) Bus[*];
+  composition PublicTransportation -> (has) Train[*];
+
+  composition RideHailing -> (has) Driver[*];
+  composition RideHailing -> (has) Passenger[*];
+
+  composition ParkingManagement -> (has) ParkingLot[*];
+
+  association TrafficManagement -> TrafficLightTiming;
+  association PublicTransportation -> BusSchedule;
+  association PublicTransportation -> TrainSchedule;
+  association RideHailing -> Driver;
+  association RideHailing -> Passenger;
+  association ParkingManagement -> ParkingLot;
+}

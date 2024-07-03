@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram TravelPlatform  {
+
+  class Destination  {
+    String name;
+    Location location;
+    List<Activity> activities;
+  }
+
+  class TransportationOption  {
+    String type;
+    Location departureLocation;
+    Location arrivalLocation;
+    Date departureTime;
+    Date arrivalTime;
+    double price;
+  }
+
+  class Activity  {
+    String name;
+    String description;
+    int rating;
+  }
+
+  class User  {
+    String username;
+    List<Preference> preferences;
+  }
+
+  class Preference  {
+    String type;
+    String value;
+  }
+
+  class Recommendation  {
+    Destination destination;
+    TransportationOption transportationOption;
+    Activity activity;
+  }
+
+  class WeatherForecast  {
+    String forecast;
+  }
+
+  class TravelRestriction  {
+    String restriction;
+  }
+
+  class Location  {
+    String city;
+    String country;
+  }
+
+  composition User -> Preference [*];
+  composition Destination -> Activity [*];
+  composition TransportationOption -> Recommendation [*];
+  composition Recommendation -> User [1];
+  composition Destination -> WeatherForecast [1];
+  composition Destination -> TravelRestriction [1];
+}

@@ -1,0 +1,68 @@
+
+classdiagram EAM {
+
+  class Asset {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    AssetClass assetClass;
+    Department department;
+    Location location;
+    MaintenanceStatus maintenanceStatus;
+  }
+
+  enum AssetClass {
+    IT, Manufacturing, RealEstate;
+  }
+
+  class Equipment extends Asset {
+    String softwareSpecifications;
+    String hardwareSpecifications;
+  }
+
+  class Vehicle extends Asset {
+    int numberOfSeats;
+    String fuelType;
+  }
+
+  class Building extends Asset {
+    int numberOfFloors;
+    int squareFootage;
+  }
+
+  class Department {
+    String name;
+    Asset [ ] assets;
+  }
+
+  class Location {
+    String name;
+    Asset [ ] assets;
+  }
+
+  enum MaintenanceStatus {
+    Scheduled, InProgress, Completed, Overdue;
+  }
+
+  class Maintenance {
+    Asset asset;
+    LocalDate date;
+    MaintenanceType type;
+  }
+
+  enum MaintenanceType {
+    Preventive, Corrective, Predictive;
+  }
+
+  class Report {
+    String reportType;
+    LocalDate date;
+    Asset [ ] assets;
+  }
+
+  composition Department -> Asset [*];
+  composition Location -> Asset [*];
+  association Asset -- AssetClass;
+  association Asset -- Maintenance [*];
+  association Maintenance -- Report [*];
+}

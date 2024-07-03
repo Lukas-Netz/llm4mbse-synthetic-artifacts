@@ -1,0 +1,36 @@
+
+classdiagram RealEstate {
+
+  class Property {
+    String uniqueIdentifier;
+    String address;
+    List<Feature> features;
+    PropertyType type;
+  }
+
+  enum PropertyType {
+    Residential, Commercial, Industrial;
+  }
+
+  class Feature {
+    String name;
+    int value;
+  }
+
+  class Agent {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+    List<Property> managedProperties;
+  }
+
+  class Client {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  composition RealEstateSystem -> Agent [*];
+  composition RealEstateSystem -> Client [*];
+  composition Agent -> Property [*];
+}

@@ -1,0 +1,79 @@
+
+classdiagram HomeAutomation {
+
+  class Controller {
+    String uniqueIdentifier;
+    ControllerType type;
+  }
+
+  enum ControllerType {
+    Hub, Router;
+  }
+
+  class Hub extends Controller {
+    -> Device [*];
+    -> Sensor [*];
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    String checkPowerSupplyStatus();
+  }
+
+  class Router extends Controller {
+    Hub parentHub;
+    -> Device [*];
+    -> Sensor [*];
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  enum DeviceType {
+    Light, Thermostat, SecurityCamera;
+  }
+
+  class Light extends Device {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Thermostat extends Device {
+    int temperature;
+    ThermostatMode mode;
+  }
+
+  class SecurityCamera extends Device {
+    String resolution;
+    boolean isRecording;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+    Device assignedDevice;
+    Area assignedArea;
+  }
+
+  enum SensorType {
+    Motion, Temperature, Light;
+  }
+
+  class Area {
+    String name;
+  }
+
+  class PowerSupply {
+    int capacityWh;
+    void recharge();
+  }
+
+  composition HomeAutomation -> Controller [*];
+  composition Hub -> Device [*];
+  composition Hub -> Sensor [*];
+  composition Router -> Device [*];
+  composition Router -> Sensor [*];
+  association PowerSupply --oController [*];
+}

@@ -1,0 +1,96 @@
+
+classdiagram CloudInfraServices {
+
+    class Customer {
+      Subscription[] subscriptions;
+    }
+
+    class Subscription {
+      String uniqueId;
+      String name;
+      String description;
+      SubscriptionType subscriptionType;
+      Customer customer;
+    }
+
+    class SubscriptionType {
+      String type;
+    }
+
+    class Service {
+      String name;
+      String description;
+    }
+
+    class VirtualMachine extends Service {
+      String uniqueId;
+      String name;
+      String description;
+      VMType type;
+    }
+
+    class Storage extends Service {
+      String name;
+      String description;
+      StorageType type;
+      int capacity;
+      double price;
+    }
+
+    class Network extends Service {
+      String name;
+      String description;
+      NetworkType type;
+      RuleSet rules;
+    }
+
+    class Security extends Service {
+      String name;
+      String description;
+      SecurityType type;
+      RuleSet rules;
+    }
+
+    class Monitoring extends Service {
+      String name;
+      String description;
+      MonitoringType type;
+      MetricSet metrics;
+    }
+
+    class VMType {
+      String value;
+    }
+
+    class StorageType {
+      String value;
+    }
+
+    class NetworkType {
+      String value;
+    }
+
+    class SecurityType {
+      String value;
+    }
+
+    class MonitoringType {
+      String value;
+    }
+
+    class RuleSet {
+      String rules;
+    }
+
+    class MetricSet {
+      String metrics;
+    }
+
+    composition Customer -> Subscription [*];
+    composition Subscription -> Service [*];
+    composition Service -> VMType [*];
+    composition Service -> StorageType [*];
+    composition Service -> NetworkType [*];
+    composition Service -> SecurityType [*];
+    composition Service -> MonitoringType [*];
+}

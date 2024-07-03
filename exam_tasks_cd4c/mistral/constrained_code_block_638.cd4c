@@ -1,0 +1,45 @@
+
+classdiagram CarbonOffsetting {
+
+  class User {
+    String uniqueIdentifier;
+    void createProject();
+    void editProject();
+    void deleteProject();
+  }
+
+  class Project {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    CarbonOffsetType type;
+  }
+
+  enum CarbonOffsetType {
+    Reforestation, RenewableEnergy, EnergyEfficiency, Others;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Project associatedProject;
+    int carbonCredits;
+    Validator verifier;
+  }
+
+  class Validator {
+    String uniqueIdentifier;
+    void verifyTransaction();
+  }
+
+  class Blockchain {
+    Transaction [ ] transactions;
+  }
+
+  composition User [*] Project [  many ]
+  -- Association
+  - 											{ 											ordered }
+ 				;
+ 																																														composition Blockchain -> Transaction [*];
+ 																																														association Transaction -- Project;
+ 																																														association Transaction -- Validator;
+}

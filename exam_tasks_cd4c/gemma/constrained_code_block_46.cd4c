@@ -1,0 +1,60 @@
+
+
+classdiagram ESystem {
+
+  class PatientDB {
+    private Map<String, Patient> patients;
+
+    public void addPatient(Patient patient);
+    public Patient getPatient(String name);
+  }
+
+  class DoctorDB {
+    private Map<String, Doctor> doctors;
+
+    public void addDoctor(Doctor doctor);
+    public Doctor getDoctor(String name);
+  }
+
+  class PrescriptionDB {
+    private Map<String, Prescription> prescriptions;
+
+    public void addPrescription(Prescription prescription);
+    public Prescription getPrescription(String id);
+  }
+
+  class PharmacyDB {
+    private Map<String, Pharmacy> pharmacies;
+
+    public void addPharmacy(Pharmacy pharmacy);
+    public Pharmacy getPharmacy(String name);
+  }
+
+  class PrescriptionOrder {
+    private String patientName;
+    private String medicationName;
+    private int dosage;
+    private Date expirationDate;
+
+    public PrescriptionOrder(String patientName, String medicationName, int dosage, Date expirationDate);
+  }
+
+  class PrescriptionFulfillment {
+    public void fillPrescription(PrescriptionOrder order);
+  }
+
+  class PatientMedicationList {
+    private List<PrescriptionOrder> prescriptions;
+
+    public void addPrescription(PrescriptionOrder order);
+    public List<PrescriptionOrder> getPrescriptions();
+  }
+
+  composition PatientDB -> (has) Patient;
+  composition DoctorDB -> (has) Doctor;
+  composition PrescriptionDB -> (has) Prescription;
+  composition PharmacyDB -> (has) Pharmacy;
+  composition PrescriptionOrder -> (has) Patient;
+  composition PrescriptionFulfillment -> (has) PrescriptionOrder;
+  composition PatientMedicationList -> (has) Patient;
+}

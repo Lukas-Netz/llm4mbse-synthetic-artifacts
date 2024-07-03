@@ -1,0 +1,73 @@
+
+
+classdiagram FurnitureDesignCourseSystem {
+
+  class Company {
+    Courses courses;
+    Instructors instructors;
+  }
+
+  class Courses {
+    Beginner beginnerCourses;
+    Intermediate intermediateCourses;
+    Advanced advancedCourses;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    Expertise expertise;
+  }
+
+  class Course {
+    String title;
+    String description;
+    Duration duration;
+  }
+
+  class Duration {
+    int hours;
+    int minutes;
+  }
+
+  class Student {
+    String name;
+    String email;
+    List<CompletedCourse> completedCourses;
+    OverallScore overallScore;
+  }
+
+  class CompletedCourse {
+    Course course;
+    List<TopicsCompleted> topicsCompleted;
+  }
+
+  class TopicsCompleted {
+    String title;
+    String description;
+    List<SubtopicsCompleted> subtopicsCompleted;
+  }
+
+  class SubtopicsCompleted {
+    String title;
+    String description;
+  }
+
+  class OverallScore {
+    int points;
+    Grade grade;
+  }
+
+  composition Company -> (has) Courses;
+  composition Company -> (has) Instructors;
+  composition Courses -> (has) Beginner;
+  composition Courses -> (has) Intermediate;
+  composition Courses -> (has) Advanced;
+  composition Instructor -> (has) Courses;
+  composition Student -> (has) CompletedCourse;
+  composition CompletedCourse -> (has) Course;
+  composition CompletedCourse -> (has) TopicsCompleted;
+  composition TopicsCompleted -> (has) SubtopicsCompleted;
+  
+
+}

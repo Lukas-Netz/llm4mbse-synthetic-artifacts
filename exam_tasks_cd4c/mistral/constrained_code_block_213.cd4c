@@ -1,0 +1,53 @@
+
+classdiagram IPA {
+
+  class Workflow {
+    String uniqueIdentifier;
+    Task [ ] tasks;
+  }
+
+  abstract class Task {
+    String name;
+    Activity [ ] activities;
+    TaskType type;
+  }
+
+  class ManualTask extends Task {
+  }
+
+  class AutomatedTask extends Task {
+  }
+
+  abstract class Activity {
+    String name;
+  }
+
+  class DataProcessingActivity extends Activity {
+  }
+
+  class DecisionMakingActivity extends Activity {
+    Condition condition;
+  }
+
+  class CommunicationActivity extends Activity {
+    String recipient;
+    String message;
+  }
+
+  class Condition {
+    String ifCondition;
+    String elseCondition;
+  }
+
+  class UserInterface {
+    Workflow [ ] workflows;
+  }
+
+  association Workflow --o000- 											{ 											ordered						}						;
+  association Workflow --o000- 											{ 											ordered						}						;
+  association Task --o000- 											{ 											ordered						}						;
+  association Activity --o000- 											{ 											ordered						}						;
+  composition Workflow --o000- 											{ 											ordered						}						;
+  composition Task --o000- 											{ 											ordered						}						;
+  composition Activity --o000- 											{ 											ordered						}						;
+}

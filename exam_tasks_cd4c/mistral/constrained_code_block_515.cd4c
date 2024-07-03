@@ -1,0 +1,62 @@
+
+classdiagram DeepSeaExploration {
+
+  class Vehicle {
+    String id;
+    Location location;
+    Status status;
+    Communication communication;
+  }
+
+  class Equipment {
+    String id;
+    Location location;
+    Status status;
+    Communication communication;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+    double depth;
+  }
+
+  enum Status {
+    Operational, Malfunction, LostConnection;
+  }
+
+  class Communication {
+    String frequency;
+    String encryptionKey;
+  }
+
+  class Headquarters {
+    -> Vehicle [*];
+    -> Equipment [*];
+  }
+
+  class NavigationSystem {
+    Headquarters headquarters;
+    Vehicle vehicle;
+  }
+
+  class CommunicationSystem {
+    Headquarters headquarters;
+    Vehicle vehicle;
+  }
+
+  class BackupSystem {
+    Headquarters headquarters;
+  }
+
+  class DataAnalytics {
+    Headquarters headquarters;
+  }
+
+  composition Headquarters -> Vehicle [*];
+  composition Headquarters -> Equipment [*];
+  association NavigationSystem <-> Headquarters;
+  association CommunicationSystem <-> Headquarters;
+  association BackupSystem <-> Headquarters;
+  association DataAnalytics <-> Headquarters;
+}

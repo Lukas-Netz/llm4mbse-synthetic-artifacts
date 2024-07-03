@@ -1,0 +1,73 @@
+
+classdiagram VirtualFashionShowroom {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Showroom {
+    User owner;
+    String name;
+    String description;
+    ShowroomItem [][] items;
+  }
+
+  class ShowroomItem {
+    FashionItem item;
+    int position;
+  }
+
+  abstract class FashionItem {
+    String name;
+    String brand;
+    String category;
+    double price;
+  }
+
+  class Clothing extends FashionItem {
+    String size;
+  }
+
+  class Accessory extends FashionItem {
+    String type;
+  }
+
+  class FashionShow {
+    User owner;
+    String name;
+    String description;
+    String startDate;
+    String endDate;
+    FashionShowItem [][] items;
+  }
+
+  class FashionShowItem {
+    FashionItem item;
+    int position;
+  }
+
+  class FashionDesigner {
+    String name;
+    String bio;
+    FashionItem [][] items;
+  }
+
+  class FashionItemCollection {
+    FashionDesigner designer;
+    String name;
+    String description;
+    FashionItem [][] items;
+  }
+
+  association User --o00o- 											;
+  association Showroom --o00o- 										;
+  association ShowroomItem --o00o- 									;
+  association FashionItem --o00o- 									;
+  association Clothing --o00o- 										;
+  association Accessory --o00o- 										;
+  association FashionShow --o00o- 									;
+  association FashionShowItem --o00o- 								;
+  association FashionDesigner --o00o- 								;
+  association FashionItemCollection --o00o- 							;
+}

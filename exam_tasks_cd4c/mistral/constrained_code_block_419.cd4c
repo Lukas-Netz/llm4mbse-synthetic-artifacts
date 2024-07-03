@@ -1,0 +1,63 @@
+
+classdiagram DigitalFarmingMarketplace {
+
+  class Farmer {
+    String name;
+    String email;
+    String password;
+    Product [][] products;
+  }
+
+  class Product {
+    String name;
+    String description;
+    float price;
+    int quantity;
+    Farmer farmer;
+  }
+
+  class Buyer {
+    String name;
+    String email;
+    String password;
+    Order [][] orders;
+  }
+
+  class Order {
+    Buyer buyer;
+    Product product;
+    int quantity;
+  }
+
+  association Farmer --o00o- 											;
+  association Product --o00o- 											;
+  association Buyer --o00o- 											;
+  association Order --o00o- 											;
+
+  composition Farmer --o00o- 											;
+  composition Buyer --o00o- 											;
+  composition Order --o00o- 											;
+
+  interface InventoryTracker {
+    void updateInventory(Product product, int newQuantity);
+  }
+
+  interface SearchEngine {
+    List<Product> searchProducts(String name, String description, float price);
+  }
+
+  interface OrderProcessor {
+    void placeOrder(Order order);
+  }
+
+  interface NotificationService {
+    void sendNotification(String message, String recipient);
+  }
+
+  class DigitalFarmingMarketplace {
+    InventoryTracker inventoryTracker;
+    SearchEngine searchEngine;
+    OrderProcessor orderProcessor;
+    NotificationService notificationService;
+  }
+}

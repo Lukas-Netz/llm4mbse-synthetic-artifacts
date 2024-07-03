@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram NewsPlatform  {
+
+  class NewsArticle  {
+    String title;
+    String content;
+    Date publicationDate;
+    Category category;
+    Author author;
+    boolean isFeatured;
+  }
+
+  class Author  {
+    String name;
+    String email;
+    NewsArticle  [  ] newsArticles;
+  }
+
+  class Category  {
+    String name;
+    NewsArticle  [  ] newsArticles;
+  }
+
+  class Comment  {
+    String text;
+    NewsArticle newsArticle;
+    User user;
+  }
+
+  class User  {
+    String username;
+    Comment  [  ] comments;
+  }
+
+  composition NewsArticle -> (has) Category;
+  composition NewsArticle -> (has) Author;
+  composition Comment -> (has) NewsArticle;
+  composition Comment -> (has) User;
+  composition Author -> (has) NewsArticle [ 1..* ];
+  composition Category -> (has) NewsArticle [ 1..* ];
+  composition User -> (has) Comment [ 1..* ];
+}

@@ -1,0 +1,257 @@
+
+classdiagram QuantumMetrologySystem {
+
+    class Laboratory {
+      void calibrateDevice(Device device);
+      void updateDataProcessingUnit();
+    }
+
+    class MeasurementDevice {
+      String physicalQuantity;
+      DeviceType type;
+    }
+
+    class AtomicClock extends MeasurementDevice {
+      double precision;
+      double accuracy;
+    }
+
+    class Interferometer extends MeasurementDevice {
+      double resolution;
+      double sensitivity;
+    }
+
+    class DataProcessingUnit {
+      void processData(MeasurementDevice device);
+      String getMeasurementResult(MeasurementDevice device);
+    }
+
+    enum DeviceType {
+      AtomicClock, Interferometer
+   
+   
+   ()
+   
+
+;
+    association Laboratory 
+   
+   
+
+;
+    association MeasurementDevice 
+   
+   
+
+;
+    association DataProcessingUnit 
+   
+   
+
+;
+    composition Laboratory 
+   
+   
+
+;
+    composition MeasurementDevice 
+   
+   
+
+;
+    composition DataProcessingUnit 
+   
+   
+
+;
+    generalization MeasurementDevice 
+   
+   
+
+;
+    generalization AtomicClock 
+   
+   
+
+;
+    generalization Interferometer 
+   
+   
+
+;
+    generalization DataProcessingUnit 
+   
+   
+
+;
+    generalization Laboratory 
+   
+   
+
+;
+    generalization DeviceType 
+   
+   
+
+;
+    generalization PhysicalQuantity 
+   
+   
+
+;
+    generalization Precision 
+   
+   
+
+;
+    generalization Accuracy 
+   
+   
+
+;
+    generalization Resolution 
+   
+   
+
+;
+    generalization Sensitivity 
+   
+   
+
+;
+    generalization MeasurementResult 
+   
+   
+
+;
+    generalization PhysicalQuantityMeasurementResult 
+   
+   
+
+;
+    generalization MeasurementDeviceResult 
+   
+   
+
+;
+   
+
+}
+
+enum PhysicalQuantity {
+  Length, Mass, Time
+
+;
+   
+
+}
+
+enum Precision {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum Accuracy {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum Resolution {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum Sensitivity {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum PhysicalQuantityMeasurementResult {
+  LengthResult, MassResult, TimeResult
+
+;
+   
+
+}
+
+enum MeasurementDeviceResult {
+  AtomicClockResult, InterferometerResult
+
+;
+   
+
+}
+
+enum DeviceType {
+  AtomicClock, Interferometer
+
+;
+   
+
+}
+
+enum PhysicalQuantity {
+  Length, Mass, Time
+
+;
+   
+
+}
+
+enum Precision {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum Accuracy {
+easy, Medium, Low
+
+;
+   
+
+}
+
+enum Resolution {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum Sensitivity {
+  High, Medium, Low
+
+;
+   
+
+}
+
+enum PhysicalQuantityMeasurementResult {
+  LengthResult, MassResult, TimeResult
+
+;
+   
+
+}
+
+
+
+
+
+}

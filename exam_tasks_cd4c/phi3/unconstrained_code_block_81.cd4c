@@ -1,0 +1,45 @@
+
+classdiagram AutomatedCustomerSupportSystem {
+
+    class KnowledgeBase {
+      Product product;
+      Service service;
+      String productName;
+      String description;
+      double price;
+    }
+
+    class Customer {
+      String name;
+      String email;
+      String phoneNumber;
+      InteractionHistory history;
+    }
+
+    class InteractionHistory {
+      String inquiry;
+      String response;
+      DateTime timestamp;
+    }
+
+    class NLPModule {
+      String analyzeInquiry(String inquiry);
+    }
+
+    class Chatbot {
+      String interactWithCustomer(String inquiry);
+    }
+
+    class Database {
+      Customer customer;
+      InteractionHistory history;
+      void storeCustomerInfo(Customer customer);
+      void storeInteractionHistory(InteractionHistory history);
+    }
+
+    association Customer -> Database;
+    association InteractionHistory -> Database;
+    composition Database -> Chatbot;
+    composition Database -> NLPModule;
+    composition KnowledgeBase -> Chatbot;
+}

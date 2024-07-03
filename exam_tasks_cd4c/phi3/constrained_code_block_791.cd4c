@@ -1,0 +1,108 @@
+
+classdiagram RetailAnalyticsSystem {
+
+  class RetailAnalyticsSystem {
+    Hub hub;
+    Store store;
+    Product product;
+    Category category;
+    Customer customer;
+    SalesData salesData;
+    CustomerBehavior behavior;
+    PredictiveAnalytics analytics;
+    BusinessIntelligenceBI bibt;
+    DataVisualizationDV dv;
+  }
+
+  class Hub {
+    -> RetailAnalyticsSystem;
+    void integrateDataSources();
+    void provideRealTimeAnalytics();
+    void providePredictiveAnalytics();
+    void provideForecasting();
+    void provideInsights();
+  }
+
+  class Store {
+    String storeId;
+    Store(String storeId);
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void addCustomer(Customer customer);
+    void removeCustomer(Customer customer);
+    SalesData getSalesData();
+  }
+
+  class Product {
+    String productId;
+    String productName;
+    double price;
+    Product(String productId, String productName, double price);
+    void addSalesData(SalesData salesData);
+    void removeSalesData(SalesData salesData);
+  }
+
+  class Category {
+    String categoryId;
+    String categoryName;
+    Category(String categoryId, String categoryName);
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    SalesData getSalesData();
+  }
+
+  class Customer {
+    String customerId;
+    String customerName;
+    Customer(String customerId, String customerName);
+    void addSalesData(SalesData salesData);
+    void removeSalesData(SalesData salesData);
+  }
+
+  class SalesData {
+    int salesCount;
+    double totalSales;
+    SalesData(int salesCount, double totalSales);
+    void addProductSales(Product product);
+    void removeProductSales(Product product);
+  }
+
+  class CustomerBehavior {
+    String customerId;
+    String behaviorData;
+    CustomerBehavior(String customerId, String behaviorData);
+    void analyzeBehavior();
+  }
+
+  class PredictiveAnalytics {
+    double forecastSales;
+    PredictiveAnalytics(double forecastSales);
+    void provideForecasting();
+  }
+
+  class BusinessIntelligenceBI {
+    String bibtId;
+    BusinessIntelligenceBI(String bibtId);
+    void integrateBI();
+    void provideInsights();
+  }
+
+  class DataVisualizationDV {
+    String dvId;
+    DataVisualizationDV(String dvId);
+    void integrateDV();
+    void provideVisualizations();
+  }
+
+  composition RetailAnalyticsSystem -> (has) Hub;
+  composition RetailAnalyticsSystem -> (has) Store;
+  composition RetailAnalyticsSystem -> (has) Product;
+  composition RetailAnalyticsSystem -> (has) Category;
+  composition RetailAnalyticsSystem -> (has) Customer;
+  composition RetailAnalyticsSystem -> (has) SalesData;
+  composition RetailAnalyticsSystem -> (has) CustomerBehavior;
+  composition RetailAnalyticsSystem -> (has) PredictiveAnalytics;
+  composition RetailAnalyticsSystem -> (has) BusinessIntelligenceBI;
+ 
+ 
+ }

@@ -1,0 +1,96 @@
+
+
+
+
+classdiagram AerospaceManufacturing  {
+
+  class ProductionProcess  {
+    Design design;
+    Prototyping prototyping;
+    Testing testing;
+    Manufacturing manufacturing;
+  }
+
+  class Design  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Prototyping  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Testing  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Manufacturing  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Material  {
+    String name;
+    Properties properties;
+  }
+
+  class Geometry  {
+    String name;
+    Dimensions dimensions;
+  }
+
+  class Properties  {
+    Strength strength;
+    Weight weight;
+  }
+
+  class Dimensions  {
+    Length length;
+    Width width;
+    Height height;
+  }
+
+  class Strength  {
+    int value;
+  }
+
+  class Weight  {
+    int value;
+  }
+
+  class Length  {
+    int value;
+  }
+
+  class Width  {
+    int value;
+  }
+
+  class Height  {
+    int value;
+  }
+
+  composition ProductionProcess -> (has) Design;
+  composition ProductionProcess -> (has) Prototyping;
+  composition ProductionProcess -> (has) Testing;
+  composition ProductionProcess -> (has) Manufacturing;
+  composition Design -> (has) Material;
+  composition Prototyping -> (has) Material;
+  composition Testing -> (has) Material;
+  composition Manufacturing -> (has) Material;
+  composition Material -> (has) Properties;
+  composition Geometry -> (has) Dimensions;
+  composition Properties -> (has) Strength;
+  composition Properties -> (has) Weight;
+  composition Dimensions -> (has) Length;
+  composition Dimensions -> (has) Width;
+  composition Dimensions -> (has) Height;
+  composition Strength -> (has) int;
+  composition Weight -> (has) int;
+  composition Length -> (has) int;
+  composition Width -> (has) int;
+  composition Height -> (has) int;
+}
+

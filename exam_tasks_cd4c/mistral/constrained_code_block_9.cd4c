@@ -1,0 +1,56 @@
+
+classdiagram EducationSystem {
+
+  class University {
+    String name;
+    Department [  ] departments;
+  }
+
+  class Department {
+    String name;
+    Instructor [ ] instructors;
+    Course [ ] courses;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String office;
+    Semester [ ] semesters;
+  }
+
+  class Course {
+    String name;
+    String code;
+    Major [ ] majors;
+    Department department;
+    Semester semester;
+    Instructor instructor;
+    Student [ ] students;
+  }
+
+  class Major {
+    String name;
+    String code;
+  }
+
+  class Student {
+    String name;
+    String id;
+    Major major;
+    Course [ ] courses;
+  }
+
+  class Semester {
+    String name;
+    String startDate;
+    String endDate;
+  }
+
+  composition University -> Department [*];
+  composition Department -> Instructor [*];
+  composition Department -> Course [*];
+  composition Course -> Student [*];
+  composition Instructor -> Semester [*];
+  composition Semester -> Course [*];
+}

@@ -1,0 +1,210 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- class SmartHome
+  
+  	{
+  		Hub hub;
+  		BackupPower backupPower;
+  	}
+  
+  class Hub
+  
+  	{
+  		-> Device [*];
+  		void addDevice(Device device);
+  		void removeDevice(Device device);
+  		String checkBackupPowerStatus();
+  	}
+  
+  abstract class Device
+  
+  	{
+  		String uniqueIdentifier;
+  		DeviceStatus status;
+  	}
+  
+  class Light extends Device
+  
+  	{
+  		int brightnessLevel;
+  		String color;
+  	}
+  
+  class Thermostat extends Device
+  
+  	{
+  		int temperature;
+  		ThermostatMode mode;
+  	}
+  
+  class SecurityCamera extends Device
+  
+  	{
+  		String resolution;
+  		boolean isRecording;
+  	}
+  
+  class BackupPower
+  
+  	{
+  		int capacityWh;
+  	}
+  
+  enum DeviceStatus
+  
+  	{
+  		On, Off
+  	
+  	
+  	()
+  	
+	;
+  
+  enum ThermostatMode
+  
+  	
+  	
+;
+
+  composition SmartHome  (has  Hub);
+  composition SmartHome  (has  BackupPower)  ;
+  composition Hub  (has  Device)  ;
+
+}
+
+#  classdiagram  
+
+  
+ {- class SmartHomeContentCurationTool
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class ContentCurationTool
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Category
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Tag
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Recommendation
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Analytics
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Insights
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class Content
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class ContentPiece
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class ContentRelevance
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class ContentRecommendation
+  
+  	
+  	
+;
+
+}
+
+#  classdiagram  
+
+  
+ {- class ContentPerformance
+  
+  	
+  	
+;
+
+}
+
+}

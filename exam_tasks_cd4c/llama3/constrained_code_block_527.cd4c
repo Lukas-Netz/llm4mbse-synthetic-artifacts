@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram ForensicSimulations  {
+
+  class CrimeScene  {
+    String location;
+    String description;
+  }
+
+  class Suspect  {
+    String name;
+    int age;
+    List<String> aliases;
+  }
+
+  class Evidence  {
+    EvidenceType type;
+    String description;
+  }
+
+  enum EvidenceType  {
+    DNA, Fingerprint, etc;
+  }
+
+  class ForensicScientist  {
+    String name;
+    List<ForensicSkill> skills;
+  }
+
+  enum ForensicSkill  {
+    DNAAnalysis, FingerprintAnalysis, etc;
+  }
+
+  class Simulation  {
+    List<CrimeScene> crimeScenes;
+    List<Suspect> suspects;
+    List<Evidence> evidence;
+    boolean isRunning;
+    List<ForensicScientist> forensicScientists;
+  }
+
+  composition Simulation  ->  (has) CrimeScene[*];
+  composition Simulation  ->  (has) Suspect[*];
+  composition Simulation  ->  (has) Evidence[*];
+  composition Simulation  ->  (has) ForensicScientist[*];
+  composition ForensicScientist  ->  (has) ForensicSkill[*];
+}

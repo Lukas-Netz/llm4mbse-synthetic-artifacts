@@ -1,0 +1,54 @@
+
+classdiagram GestureRecognition {
+
+  class Camera {
+    void captureImage();
+  }
+
+  class ProcessingUnit {
+    void processImage(Image image);
+    Gesture recognizeGesture(Image image);
+  }
+
+  class Database {
+    void storeGesture(Gesture gesture);
+    Gesture getGesture(String gestureName);
+  }
+
+  class Image {
+    List<Pixel> pixels;
+  }
+
+  class Pixel {
+    int xCoordinate;
+    int yCoordinate;
+    int color;
+  }
+
+  abstract class Gesture {
+    String name;
+  }
+
+  class Pointing extends Gesture {
+    PointingLocation location;
+  }
+
+  class Swiping extends Gesture {
+    SwipeDirection direction;
+  }
+
+  class Tapping extends Gesture {}
+
+  class Rotating extends Gesture {}
+
+  enum PointingLocation {
+    TopLeft, TopRight, BottomLeft, BottomRight, Center
+ 	 	 	 	 	 ;}
+
+  enum SwipeDirection {
+    Up, Down, Left, Right
+ 	 	 	 	 	 ;}
+
+  composition Camera -> ProcessingUnit;
+  association ProcessingUnit -> Database;
+}

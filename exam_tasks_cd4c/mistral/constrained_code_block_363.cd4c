@@ -1,0 +1,34 @@
+
+classdiagram ComicPlatform {
+
+  class ComicBook {
+    String title;
+    Date publicationDate;
+    String description;
+    Publisher publisher;
+    Author [  ] authors;
+  }
+
+  class Author {
+    String name;
+    String bio;
+    ComicBook comicBook;
+  }
+
+  class Publisher {
+    String name;
+    String contactEmail;
+    ComicBook [ ] comicBooks;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  association ComicBook -- Publishers;
+  association ComicBook -- Authors [*];
+  association Authors -- ComicBook;
+  association Publishers -- ComicBook;
+}

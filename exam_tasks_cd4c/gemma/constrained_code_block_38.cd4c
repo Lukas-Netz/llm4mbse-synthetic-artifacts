@@ -1,0 +1,63 @@
+
+
+classdiagram IVRSystem {
+
+  class IVRSystem {
+    MainMenu mainMenu;
+    LanguageSelectionMenu languageSelectionMenu;
+    CustomerSupportMenu customerSupportMenu;
+    AccountManagementMenu accountManagementMenu;
+  }
+
+  class MainMenu {
+    List<MenuOption> options;
+  }
+
+  class MenuOption {
+    String identifier;
+    String description;
+  }
+
+  class LanguageSelectionMenu {
+    List<LanguageOption> options;
+  }
+
+  class LanguageOption {
+    String languageName;
+  }
+
+  class CustomerSupportMenu {
+    List<CustomerSupportOption> options;
+  }
+
+  class CustomerSupportOption {
+    String optionName;
+  }
+
+  class AccountManagementMenu {
+    List<AccountManagementOption> options;
+  }
+
+  class AccountManagementOption {
+    String optionName;
+  }
+
+  class UserSession {
+    String sessionID;
+    UserPreferences preferences;
+  }
+
+  class UserPreferences {
+    String language;
+    String preferredMenuLanguage;
+    List<String> preferredOptions;
+  }
+
+  composition IVRSystem -> (has) MainMenu;
+  composition IVRSystem -> (has) LanguageSelectionMenu;
+  composition IVRSystem -> (has) CustomerSupportMenu;
+  composition IVRSystem -> (has) AccountManagementMenu;
+  association UserSession with  (has)  
+  	  	  	  	  	  	  	-- UserPreferences
+  	  	  	  	  	  	  	  	  	  	  	  ;
+}

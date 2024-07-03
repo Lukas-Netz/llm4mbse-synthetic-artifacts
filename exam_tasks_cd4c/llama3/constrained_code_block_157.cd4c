@@ -1,0 +1,88 @@
+
+
+
+
+classdiagram VisualizationSoftware  {
+
+  class Model  {
+    String name;
+    List<Face> faces;
+  }
+
+  abstract class Face  {
+    Point3D[] vertices;
+  }
+
+  class Vertex extends Point3D  {
+    double xCoord;
+    double yCoord;
+    double zCoord;
+  }
+
+  class Point3D  {
+    double xCoord;
+    double yCoord;
+    double zCoord;
+  }
+
+  class Operation  {
+    String name;
+    void execute(Model model);
+  }
+
+  class Rotation extends Operation  {
+    double angle;
+  }
+
+  class Scaling extends Operation  {
+    double factor;
+  }
+
+  class Translation extends Operation  {
+    double dx;
+    double dy;
+    double dz;
+  }
+
+  class DisplayMode  {
+    String name;
+  }
+
+  class Wireframe extends DisplayMode  {
+  }
+
+  class Solid extends DisplayMode  {
+  }
+
+  class TextureMapped extends DisplayMode  {
+  }
+
+  class FileFormat  {
+    String name;
+  }
+
+  class STL extends FileFormat  {
+  }
+
+  class OBJ extends FileFormat  {
+  }
+
+  class Collada extends FileFormat  {
+  }
+
+  class ImportSource  {
+    String name;
+  }
+
+  class CADSoftware extends ImportSource  {
+  }
+
+  class Scanner extends ImportSource  {
+  }
+
+  class AnalysisOperation  {
+    String name;
+    void execute(Model model);
+  }
+
+  }

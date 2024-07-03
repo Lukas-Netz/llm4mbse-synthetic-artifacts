@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram AIProductionSystem  {
+
+  class DataIngestionModule  {
+    void collectData(SensorData[] sensorData);
+  }
+
+  class DataProcessingModule  {
+    void analyzeData(SensorData[] sensorData);
+  }
+
+  class PredictiveAnalyticsModule  {
+    void predictIssues(DataAnalysis dataAnalysis);
+  }
+
+  class RecommendationEngine  {
+    void provideRecommendations(PredictedIssue predictedIssue);
+  }
+
+  class IntegrationModule  {
+    void integrateWithERPSystem(ERPSystem erpSystem);
+  }
+
+  class UserInterface  {
+    void displayRealTimeData(ProductionData productionData);
+  }
+
+  class SensorData  {
+    String sensorId;
+    double value;
+  }
+
+  class DataAnalysis  {
+    SensorData[] sensorData;
+    DataAnalysisResult result;
+  }
+
+  class DataAnalysisResult  {
+    boolean issueDetected;
+    String issueDescription;
+  }
+
+  class PredictedIssue  {
+    DataAnalysisResult dataAnalysisResult;
+    Recommendation recommendation;
+  }
+
+  class Recommendation  {
+    String action;
+    String description;
+  }
+
+  class ERPSystem  {
+    void receiveDataFromAI(ProductionData productionData);
+  }
+
+  class ProductionData  {
+    SensorData[] sensorData;
+    DataAnalysisResult dataAnalysisResult;
+  }
+
+  composition DataIngestionModule -> SensorData[*];
+  composition DataProcessingModule -> DataAnalysis[*];
+  composition PredictiveAnalyticsModule -> PredictedIssue[*];
+  composition RecommendationEngine -> Recommendation[*];
+  composition IntegrationModule -> ERPSystem[*];
+  composition UserInterface -> ProductionData[*];
+}

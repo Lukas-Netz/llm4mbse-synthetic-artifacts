@@ -1,0 +1,57 @@
+
+classdiagram VirtualYogaStudio {
+
+  class Studio {
+    String name;
+    String description;
+  }
+
+  class Class {
+    String name;
+    String description;
+    Instructor instructor;
+    Set<Student> students;
+    Set<Session> sessions;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String phone;
+  }
+
+  class Student {
+    String name;
+    String email;
+    Set<Class> attendedClasses;
+    Set<Session> attendedSessions;
+  }
+
+  class Session {
+    String id;
+    Date dateTime;
+    SessionType type;
+    boolean isRecorded;
+  }
+
+  enum SessionType {
+    Live, Recorded;
+  }
+
+  class Payment {
+    Student student;
+    PaymentType type;
+    BigDecimal amount;
+  }
+
+  enum PaymentType {
+    Package, IndividualSession;
+  }
+
+  composition Studio -> Class [*];
+  composition Class -> Instructor;
+  composition Class -> Student [*];
+  composition Class -> Session [*];
+  composition Session -> Student [*];
+  association Payment -> Student;
+}

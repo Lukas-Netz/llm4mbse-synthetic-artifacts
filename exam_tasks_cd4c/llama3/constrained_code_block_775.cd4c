@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram LanguageRevitalization  {
+
+  class Language  {
+    String name;
+    Grammar grammar;
+    Vocabulary vocabulary;
+    Syntax syntax;
+  }
+
+  class Grammar  {
+    RuleSet rules;
+    Morphology morphology;
+  }
+
+  class Vocabulary  {
+    WordList words;
+  }
+
+  class Syntax  {
+    SentenceStructure sentences;
+  }
+
+  class TextData  {
+    String text;
+    Language language;
+  }
+
+  class LanguageLearningTool  {
+    Chatbot chatbot;
+    LanguageLearningApp app;
+  }
+
+  class Chatbot  {
+    DialogueManager dialogue;
+  }
+
+  class LanguageLearningApp  {
+    LessonPlan lesson;
+  }
+
+  class LanguageDocumentation  {
+    AudioRecording audio;
+    VideoRecording video;
+  }
+
+  class LanguageExchange  {
+    OnlinePlatform platform;
+    ImmersionProgram program;
+  }
+
+  class LanguageMonitoring  {
+    LanguageUsageTracker tracker;
+    LearnerProficiencyMonitor monitor;
+  }
+
+  composition Language -> (has) Grammar;
+  composition Language -> (has) Vocabulary;
+  composition Language -> (has) Syntax;
+  composition LanguageLearningTool -> (has) Chatbot;
+  composition LanguageLearningTool -> (has) LanguageLearningApp;
+  composition LanguageDocumentation -> (has) AudioRecording;
+  composition LanguageDocumentation -> (has) VideoRecording;
+  composition LanguageExchange -> (has) OnlinePlatform;
+  composition LanguageExchange -> (has) ImmersionProgram;
+  }

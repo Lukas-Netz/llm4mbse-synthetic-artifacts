@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram VRTherapySystem  {
+
+  class VRHeadset  {
+    -> Controller;
+  }
+
+  class Controller  {
+    -> VRHeadset;
+  }
+
+  class Scenario  {
+    String uniqueIdentifier;
+    String description;
+  }
+
+  class ScenarioLibrary  {
+    -> Scenario[*];
+  }
+
+  class ScenarioType  {
+    String name;
+    -> Scenario[*];
+  }
+
+  class NatureScenarioType extends ScenarioType  {
+    -> Scenario[*];
+  }
+
+  class UrbanScenarioType extends ScenarioType  {
+    -> Scenario[*];
+  }
+
+  class AbstractScenarioType extends ScenarioType  {
+    -> Scenario[*];
+  }
+
+  class Computer  {
+    -> VRHeadset;
+    -> Controller;
+    PatientProgress patientProgress;
+    TherapyGoals therapyGoals;
+  }
+
+  class PatientProgress  {
+    -> Patient;
+  }
+
+  class TherapyGoals  {
+    -> Patient;
+  }
+
+  class Patient  {
+    -> PatientProgress;
+    -> TherapyGoals;
+  }
+
+  composition Computer -> (has) VRHeadset;
+  composition Computer -> (has) Controller;
+  composition ScenarioLibrary -> (has) Scenario[*];
+  composition ScenarioType -> (has) Scenario[*];
+  composition Computer -> (has) PatientProgress;
+  composition Computer -> (has) TherapyGoals;
+}

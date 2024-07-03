@@ -1,0 +1,42 @@
+
+classdiagram SpaceDebrisTrackingSystem {
+
+    class Database {
+      void addDebris(Debris debris);
+      Debris getDebris(String identifier);
+    }
+
+    class Satellite {
+      String identifier;
+      List<Debris> trackedDebris;
+      SatelliteStatus status;
+      void trackDebris(Debris debris);
+      void updateStatus(SatelliteStatus newStatus);
+    }
+
+    class GroundStation {
+      String identifier;
+      Satellite satellite;
+      void sendCommand(Satellite satellite, String command);
+      Debris receiveData(Satellite satellite);
+    }
+
+    class Debris {
+      String identifier;
+      double positionX;
+      double positionY;
+      double velocityX;
+      double velocityY;
+      double size;
+    }
+
+    enum SatelliteStatus {
+      Operational, NonOperational;
+    }
+
+  composition SpaceDebrisTrackingSystem -> (has) Database;
+  composition SpaceDebrisTrackingSystem -> (has) GroundStation;
+  composition SpaceDebrisTrackingSystem -> (has) Satellite [*];
+  association Satellite -> Debris [*];
+  association GroundStation -> Satellite [*];
+}

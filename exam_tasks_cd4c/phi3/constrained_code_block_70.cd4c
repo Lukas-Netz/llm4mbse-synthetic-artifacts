@@ -1,0 +1,262 @@
+
+classdiagram CommunityManagementSystem {
+
+    class User {
+      String uniqueID;
+      String name;
+      String email;
+      UserType type;
+    }
+
+    class Event {
+      String title;
+      String description;
+      Date date;
+      User organizer;
+    }
+
+    class Group {
+      String name;
+      String description;
+      List<User> members;
+    }
+
+    class Message {
+      String content;
+      MessageType type;
+      User sender;
+      User receiver;
+    }
+
+    class Notification {
+      Event event;
+      Message message;
+      Group group;
+    }
+
+    enum UserType {
+      Resident, Administrator, Guest
+   
+   
+   ()
+   
+
+;
+    association User 
+   
+   
+
+;
+    association Event 
+   
+   
+
+;
+    association Group 
+   
+   
+
+;
+    association Message 
+   
+   
+
+;
+    association Notification 
+   
+   
+
+;
+    role UserType
+   
+   
+
+;
+    role Organizer
+   
+   
+
+;
+    role Participant
+   
+   
+
+;
+    role Member
+   
+   
+
+;
+    role Sender
+   
+   
+
+;
+    role Receiver
+   
+   
+
+;
+    role OrganizerRole
+   
+   
+
+;
+    role ParticipantRole
+   
+   
+
+;
+    role MemberRole
+   
+   
+
+;
+    role SenderRole
+   
+   
+
+;
+    role ReceiverRole
+   
+   
+
+;
+    composition User 
+   
+   
+
+;
+    composition Event 
+   
+   
+
+;
+    composition Group 
+   
+   
+
+;
+    composition Message 
+   
+   
+
+;
+   
+
+}
+
+enum MessageType {
+  Text, Image, Video
+
+;
+   
+
+}
+
+enum EventType {
+  Meeting, Party, Workshop
+
+;
+   
+
+}
+
+enum Role {
+  Organizer, Participant, Sender, Receiver
+
+;
+   
+
+}
+
+enum UserType {
+  Resident, Administrator, Guest
+
+;
+   
+
+}
+
+enum EventType {
+  Meeting, Party, Workshop
+
+;
+   
+
+}
+
+enum MessageType {
+  Text, Image, Video
+
+;
+   
+
+}
+
+enum Role {
+  Organizer, Participant, Sender, Receiver
+
+;
+   
+
+}
+
+enum UserType {
+  Resident, Administrator, Guest
+
+;
+   
+
+}
+
+enum EventType {
+  Meeting, Party, Workshop
+
+;
+   
+
+}
+
+enum MessageType {
+  Text, Image, Video
+
+;
+   
+
+}
+
+enum Role {
+  Organizer, Participant, Sender, Receiver
+
+;
+   
+
+}
+
+enum UserType {
+  Resident, Administrator, Guest
+
+;
+   
+
+}
+
+enum EventType {
+  Meeting, Party, Workshop
+
+;
+   
+
+}
+
+enum MessageType {
+  Text, Image, Video
+
+;
+   
+
+}
+
+
+}

@@ -1,0 +1,51 @@
+
+classdiagram FreelancePlatform {
+
+    class Freelancer {
+      String name;
+      List<String> skills;
+      Profile profile;
+    }
+
+    class Client {
+      String name;
+      int budget;
+    }
+
+    class Project {
+      String title;
+      String description;
+      Date deadline;
+      List<Freelancer> freelancers;
+    }
+
+    class Rating {
+      int score;
+      String comment;
+    }
+
+    class Payment {
+      String paymentMethod;
+      int paymentAmount;
+    }
+
+    class Notification {
+      String message;
+    }
+
+    class Profile {
+      String bio;
+      String photoUrl;
+    }
+
+    association Freelancer -> Project [*];
+    association Project -> Freelancer [*];
+    association Project -> Rating [*];
+    association Project -> Payment [*];
+    association Project -> Notification [*];
+    association Client -> Project [*];
+    association Client -> Payment [*];
+    association Client -> Notification [*];
+    composition Freelancer -> Profile;
+    composition Client -> Profile;
+}

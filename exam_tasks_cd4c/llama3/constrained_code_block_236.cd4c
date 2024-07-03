@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram TechCorp  {
+
+  class Equipment  {
+    String uniqueIdentifier;
+    EquipmentStatus status;
+  }
+
+  class Sensor extends Equipment  {
+    double measurementRange;
+  }
+
+  class Actuator extends Equipment  {
+    double controlRange;
+  }
+
+  class Controller extends Equipment  {
+    int dataTransmissionRate;
+    int dataStorageCapacity;
+  }
+
+  class HistoricalData  {
+    Date timestamp;
+    Equipment equipment;
+    String data;
+  }
+
+  class Alert  {
+    Equipment equipment;
+    String message;
+  }
+
+  class Technician  {
+    String name;
+  }
+
+  class RemoteAccess  {
+    Technician technician;
+    Equipment equipment;
+  }
+
+  composition Equipment  ->  (has) HistoricalData;
+  composition Equipment  ->  (has) Alert;
+  composition Technician  ->  (has) RemoteAccess;
+  composition RemoteAccess  ->  (has) Equipment;
+  association Sensor  ->  (measures) HistoricalData;
+  association Actuator  ->  (controls) HistoricalData;
+  association Controller  ->  (transmits) HistoricalData;
+  association Technician  ->  (accesses) RemoteAccess;
+  association Equipment  ->  (has) Sensor [0..*];
+  association Equipment  ->  (has) Actuator [0..*];
+  association Equipment  ->  (has) Controller [0..1];
+}

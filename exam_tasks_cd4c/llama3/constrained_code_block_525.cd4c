@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram OnlinePlatform  {
+
+  class Course  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Level level;
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Assignment  {
+    String uniqueIdentifier;
+    String title;
+    Date submissionDeadline;
+    -> Course;
+  }
+
+  class Grade  {
+    String uniqueIdentifier;
+    Student student;
+    Course course;
+    Assignment assignment;
+    double score;
+  }
+
+  class Instructor  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    -> Course[*];
+    -> Assignment[*];
+    -> Grade[*];
+  }
+
+  enum Level  {
+    Introductory,
+    Intermediate,
+    Advanced;
+  }
+
+  composition Instructor -> (has) Course;
+  composition Instructor -> (has) Assignment;
+  composition Instructor -> (has) Grade;
+  composition Student -> (enrolls) Course;
+  composition Assignment -> (is) Course;
+  composition Grade -> (is) Student;
+  composition Grade -> (is) Course;
+  composition Grade -> (is) Assignment;
+}

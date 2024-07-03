@@ -1,0 +1,42 @@
+
+classdiagram ArtExhibition {
+
+  class Artist {
+    String name;
+    String email;
+  }
+
+  class Exhibition {
+    String title;
+    String description;
+    Artist creator;
+    Artwork [ ] artworks;
+    int views;
+  }
+
+  class Artwork {
+    String title;
+    String description;
+    File artworkFile;
+  }
+
+  class Visitor {
+    String name;
+    String email;
+  }
+
+  class Administrator {
+    String name;
+    String email;
+  }
+
+  association Artist --o00o- 											;
+  association Exhibition --o00o- 										;
+  association Artwork --o00o- 											;
+  association Visitor --o00o- 											;
+  association Administrator --o00o- 									;
+
+  composition Artist --o00o- 											;
+  composition Exhibition --o00o- 										;
+  composition Artwork --o00o- 											;
+}

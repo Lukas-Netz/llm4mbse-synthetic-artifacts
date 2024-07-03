@@ -1,0 +1,103 @@
+
+classdiagram FleetTelematics {
+
+  class Vehicle {
+    String vehicleId;
+    Location location;
+    Speed speed;
+    Direction direction;
+    FuelLevel fuelLevel;
+    EngineTemperature engineTemperature;
+    VehicleType vehicleType;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed {
+    double value;
+    SpeedUnit unit;
+  }
+
+  enum SpeedUnit {
+    MPH, KMH;
+  }
+
+  class Direction {
+    double heading;
+    DirectionUnit unit;
+  }
+
+  enum DirectionUnit {
+    DEGREES, RADIANS;
+  }
+
+  class FuelLevel {
+    double value;
+    FuelUnit unit;
+  }
+
+  enum FuelUnit {
+    GALLONS, LITERS;
+  }
+
+  class EngineTemperature {
+    double value;
+    EngineTemperatureUnit unit;
+  }
+
+  enum EngineTemperatureUnit {
+    CELSIUS, FAHRENHEIT;
+  }
+
+  abstract class VehicleType {
+    String name;
+    Set<String> attributes;
+    Set<String> behaviors;
+  }
+
+  class Car extends VehicleType {
+    Set<String> attributes = newHashSet("Number of Doors", "Engine Size");
+    Set<String> behaviors = newHashSet("Parking Assist", "Adaptive Cruise");
+  }
+
+  class Truck extends VehicleType {
+    Set<String> attributes = newHashSet("Payload Capacity", "Towing Capacity");
+    Set<String> behaviors = newHashSet("Blind Spot Monitor", "Lane Departure War");
+  }
+
+  class Bus extends VehicleType {
+    Set<String> attributes = newHashSet("Seating Capacity", "Wheelbase");
+    Set<String> behaviors = newHashSet("Passenger Count", "Door Open Alert");
+  }
+
+  class FleetManager {
+    Vehicle [ ] fleet;
+    void addVehicle(Vehicle vehicle);
+    void removeVehicle(Vehicle vehicle);
+    void checkVehicleStatus(Vehicle vehicle);
+    void sendAlert(String message);
+  }
+
+  interface GPS {
+    Location getLocation();
+  }
+
+  interface FuelPump {
+    FuelLevel getFuelLevel();
+  }
+
+  interface MaintenanceScheduling {
+    void scheduleMaintenance(Vehicle vehicle);
+  }
+
+  <<stereotype>> interface Integration {
+    GPS getGPS();
+    FuelPump getFuelPump();
+    MaintenanceScheduling getMaintenanceScheduling();
+  }
+
+  composition FleetManager -> Vehicle [*];
+  }

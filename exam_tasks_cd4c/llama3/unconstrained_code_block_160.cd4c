@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram CustomerLoyaltyProgram  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    CustomerType type;
+  }
+
+  enum CustomerType  {
+    Individual, Corporate;
+  }
+
+  class IndividualCustomer extends Customer  {
+    PersonalAccount personalAccount;
+  }
+
+  class CorporateCustomer extends Customer  {
+    CompanyAccount companyAccount;
+  }
+
+  class PersonalAccount  {
+    int points;
+  }
+
+  class CompanyAccount  {
+    int points;
+  }
+
+  class Reward  {
+    String name;
+    String description;
+    int pointValue;
+  }
+
+  class DiscountReward extends Reward  {}
+
+  class FreeProductReward extends Reward  {}
+
+  class ExclusiveServiceReward extends Reward  {}
+
+  class PurchaseHistory  {
+    List<Purchase> purchases;
+  }
+
+  class Purchase  {
+    Date date;
+    Product product;
+    int quantity;
+  }
+
+  class Product  {
+    String name;
+  }
+
+  class Administrator  {
+    void addReward(Reward reward);
+    void removeReward(Reward reward);
+    void modifyReward(Reward reward);
+    void trackProgramPerformance();
+  }
+
+  composition Customer -> (has) PersonalAccount [1];
+  composition Customer -> (has) CompanyAccount [1];
+  composition Customer -> (has) PurchaseHistory [1];
+  composition Administrator -> (has) Reward [0..*];
+}

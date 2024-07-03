@@ -1,0 +1,61 @@
+
+classdiagram UrbanAquaponicsSystem {
+
+    class UrbanAquaponicsSystem {
+      Tank tank;
+      Pipes pipes;
+      ControlCenter controlCenter;
+      StorageTank storageTank;
+      FiltrationSystem filtrationSystem;
+    }
+
+    class Tank {
+      String tankID;
+      Fish fish;
+      Plant plants;
+      Pipes connectedPipes;
+    }
+
+    class Fish {
+      String fishID;
+      String species;
+    }
+
+    class Plant {
+      String plantID;
+      String species;
+    }
+
+    class Pipes {
+      Tank sourceTank;
+      Tank destinationTank;
+    }
+
+    class ControlCenter {
+      Sensor[] sensors;
+      Pump[] pumps;
+      Valve[] valves;
+      void monitorWaterQuality();
+      void regulateTemperature();
+      void regulatePHLevel();
+      void receiveSensorInput();
+      void sendCommandToPumpsAndValves();
+    }
+
+    class StorageTank {
+      String tankID;
+      Water water;
+    }
+
+    class FiltrationSystem {
+      Water impureWater;
+      Water filteredWater;
+      void filterWater();
+    }
+
+  composition UrbanAquaponicsSystem -> (has) Tank;
+  composition UrbanAquaponicsSystem -> (has) Pipes;
+  composition UrbanAquaponicsSystem -> (has) ControlCenter;
+  composition UrbanAquaponicsSystem -> (has) StorageTank;
+  composition UrbanAquaponicsSystem -> (has) FiltrationSystem;
+}

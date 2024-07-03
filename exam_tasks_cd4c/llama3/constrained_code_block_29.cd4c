@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram TransportationManagementSystem  {
+
+  class Vehicle  {
+    String vehicleId;
+    VehicleType type;
+    Route route;
+    Driver driver;
+  }
+
+  enum VehicleType  {
+    Bus, Tram, Train;
+  }
+
+  class Route  {
+    String routeId;
+    List<Stop> stops;
+  }
+
+  class Stop  {
+    String stopId;
+    Location location;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Driver  {
+    String driverId;
+    Vehicle vehicle;
+  }
+
+  class Schedule  {
+    String scheduleId;
+    Vehicle vehicle;
+    List<TimeTableEntry> timeTableEntries;
+  }
+
+  class TimeTableEntry  {
+    String timeTableEntryId;
+    Time time;
+    Stop stop;
+  }
+
+  class Maintenance  {
+    String maintenanceId;
+    Vehicle vehicle;
+    Date dueDate;
+  }
+
+  class PerformanceMetrics  {
+    int passengersCarried;
+    double averageSpeed;
+    int delays;
+  }
+
+  class Alert  {
+    String alertId;
+    String message;
+    Vehicle vehicle;
+  }
+
+  composition Vehicle -> (has) Route;
+  composition Vehicle -> (has) Driver;
+  composition Route -> (has) Stop;
+  composition Schedule -> (has) Vehicle;
+  composition Maintenance -> (has) Vehicle;
+  composition PerformanceMetrics -> (has) Vehicle;
+  composition Alert -> (has) Vehicle;
+}

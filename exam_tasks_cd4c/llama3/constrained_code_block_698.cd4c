@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram NaturalDisasterPredictionSystem  {
+
+  class DataCollector  {
+    void collectData(WeatherStation weatherStation, SeismicSensor seismicSensor, SatelliteImage satelliteImage);
+  }
+
+  class WeatherStation  {
+    String location;
+    WeatherData weatherData;
+  }
+
+  class SeismicSensor  {
+    String location;
+    SeismicData seismicData;
+  }
+
+  class SatelliteImage  {
+    String location;
+    SatelliteImageData satelliteImageData;
+  }
+
+  class NaturalDisaster  {
+    String type;  (eclipse)
+    double likelihood;
+  }
+
+  class AlertSystem  {
+    void sendAlert(NaturalDisaster naturalDisaster);
+  }
+
+  class EmergencyResponder  {
+    void receiveAlert(NaturalDisaster naturalDisaster);
+  }
+
+  class DataAnalyzer  {
+    NaturalDisaster analyzeData(Data data);
+  }
+
+  class DataVisualization  {
+    void visualizeData(NaturalDisaster naturalDisaster);
+  }
+
+  class LearningAlgorithm  {
+    void learnFromPastDisasters();
+  }
+
+  class IntegrationLayer  {
+    void integrateWithEmergencyResponseSystem();
+  }
+
+  composition DataCollector -> (has) WeatherStation;
+  composition DataCollector -> (has) SeismicSensor;
+  composition DataCollector -> (has) SatelliteImage;
+  composition NaturalDisaster -> (has) Data;
+  composition AlertSystem -> (has) NaturalDisaster;
+  composition EmergencyResponder -> (has) AlertSystem;
+  composition DataAnalyzer -> (has) Data;
+  composition DataVisualization -> (has) NaturalDisaster;
+  composition LearningAlgorithm -> (has) PastDisasters;
+  }

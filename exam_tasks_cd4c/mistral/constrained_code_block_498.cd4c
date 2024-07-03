@@ -1,0 +1,33 @@
+
+classdiagram EnvironmentalImpactAssessment {
+
+  class EnvironmentalFactor {
+    String name;
+    String unit;
+    double value;
+  }
+
+  class Calculator {
+    EnvironmentalFactor [ ] factors;
+    double calculateImpact();
+  }
+
+  class Report {
+    String title;
+    String content;
+  }
+
+  class Database {
+    EnvironmentalFactor [ ] factors;
+  }
+
+  class EnvironmentalImpactAssessmentTool {
+    Database database;
+    Calculator calculator;
+    Report report;
+  }
+
+  composition EnvironmentalImpactAssessmentTool -> Database;
+  composition EnvironmentalImpactAssessmentTool -> Calculator;
+  composition EnvironmentalImpactAssessmentTool -> Report;
+}

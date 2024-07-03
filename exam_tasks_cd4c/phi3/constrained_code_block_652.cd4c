@@ -1,0 +1,79 @@
+
+classdiagram AutonomousEquipment {
+
+    class AutonomousEquipment {
+      String name;
+      EquipmentType type;
+      Location location;
+      EquipmentState state;
+      MaintenanceSchedule maintenanceSchedule;
+      List<Attachment> attachments;
+    }
+
+    class Location {
+      String name;
+      LocationType type;
+    }
+
+    class EquipmentState {
+      StateType type;
+    }
+
+    class MaintenanceSchedule {
+      String maintenanceType;
+      String frequency;
+      Date nextMaintenanceDate;
+    }
+
+    enum EquipmentType {
+      Excavator, Crane, Truck, etc;
+    }
+
+    enum LocationType {
+      ConstructionSite, Warehouse, MaintenanceFacility;
+    }
+
+    enum StateType {
+      Idle, InUse, UnderMaintenance;
+    }
+
+    enum MaintenanceType {
+      Routine, Repair, Upgrade;
+    }
+
+    class Attachment {
+      String name;
+      AttachmentType type;
+    }
+
+    class Excavator extends AutonomousEquipment {
+      void attachBucket();
+      void detachBucket();
+    }
+
+    class Crane extends AutonomousEquipment {
+      void attachWinch();
+      void detachWinch();
+    }
+
+    class Truck extends AutonomousEquipment {
+      void attachLoader();
+      void detachLoader();
+    }
+
+    class Bucket extends Attachment {
+      void setBrightnessLevel(int level);
+    }
+
+    class Winch extends Attachment {
+      void setTensionLevel(int level);
+    }
+
+    class Loader extends Attachment {
+      void setCapacity(int capacity);
+    }
+
+    composition AutonomousEquipment -> (has) Location;
+    composition AutonomousEquipment -> (has) Mainteninaschedule;
+    composition AutonomousEquipment -> (has) Attachment [*];
+}

@@ -1,0 +1,173 @@
+
+classdiagram BioInspiredRobotics {
+
+    class Colony {
+      Queen queen;
+      List<Robot> robots;
+      FoodSource foodSource;
+    }
+
+    class Queen {
+      String uniqueIdentifier;
+      void layEggs(int number);
+      String currentLocation;
+    }
+
+    class Robot {
+      String uniqueIdentifier;
+      RobotType type;
+      Location currentLocation;
+      Location targetLocation;
+    }
+
+    class WorkerRobot extends Robot {
+      int foodStored;
+      void forage();
+      void storeFood(FoodSource food);
+    }
+
+    class ScoutRobot extends Robot {
+      Map<Location, Map<Location, Integer>> map;
+      void explore();
+      void updateMap(Location from, Location to, int distance);
+    }
+
+    class FoodSource {
+      Location location;
+      int quantity;
+    }
+
+    enum RobotType {
+      WorkerRobot, ScoutRobot
+    (
+    composition
+    <<association>>
+    Colony
+    <<association>>
+    Queen
+    <<association>>
+    Robot
+    <<association>>
+    FoodSource
+    );
+
+    association
+    Colony
+    (
+    has
+    Queen
+    ,
+    has
+    List
+    )
+    ;
+
+    association
+    Robot
+    (
+    has
+    RobotType
+    ,
+    has
+    Location
+    ,
+    has
+    Location
+    )
+    ;
+
+    association
+    Queen
+    (
+    has
+    currentLocation
+    )
+    ;
+
+    association
+    FoodSource
+    (
+    has
+    location
+    ,
+    has
+    quantity
+    )
+    ;
+
+    composition
+    Colony
+    (
+    has
+    Queen
+    ,
+    has
+    List
+    )
+    ;
+}
+
+enum Location {
+  xCoordinate, yCoordinate;
+}
+
+class Location {
+  int xCoordinate;
+  int yCoordinate;
+}
+
+class Map {
+  Map<Location, Map<Location, Integer>> map;
+}
+
+class Distance {
+  int value;
+}
+
+class MapEntry {
+  Location from;
+  Location to;
+  Distance distance;
+}
+
+class Distance {
+  int value;
+}
+
+class Map {
+  Map<Location, Map<Location, Integer>> map;
+}
+
+class MapEntry {
+  Location from;
+  Location to;
+  int distance;
+}
+
+class Distance {
+  int value;
+}
+
+class Map {
+  Map<Location, Map<Location, Integer>> map;
+}
+
+class MapEntry {
+  Location from;
+  Location to;
+  int distance;
+}
+
+class Distance {
+  int value;
+}
+
+class Map {
+  Map<Location, Map<Location, Integer>> map;
+}
+
+
+
+
+
+}

@@ -1,0 +1,37 @@
+
+
+classdiagram RealTimeTranslationDevice {
+
+  class RealTimeTranslationDevice {
+    Microphone microphone;
+    Speaker speaker;
+    TranslationModule translationModule;
+  }
+
+  class Microphone {
+    void recordAudio();
+  }
+
+  class Speaker {
+    void playAudio();
+  }
+
+  class TranslationModule {
+    void translateLanguage();
+    void storeTranslation();
+    void recallTranslation();
+  }
+
+  class Battery {
+    int capacityWh;
+  }
+
+  class Controller {
+    void controlDevice();
+  }
+
+  composition RealTimeTranslationDevice -> (has) Battery [0..1];
+  composition RealTimeTranslationDevice -> (has) Controller;
+  association TranslationModule -> Language;
+  association Language -> RealTimeTranslationDevice;
+}

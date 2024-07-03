@@ -1,0 +1,97 @@
+
+classdiagram HealthcareManagementSystem {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      String contactInfo;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+      List<Patient> assignedPatients;
+    }
+
+    class MedicalRecord {
+      Patient patient;
+      List<Diagnosis> diagnoses;
+      List<Treatment> treatments;
+      List<TestResult> testResults;
+    }
+
+    class MedicalCondition {
+      String conditionId;
+      String diagnosisDate;
+      String treatmentPlan;
+      List<Medication> medications;
+    }
+
+    class Medication {
+      String medicationId;
+      String medicationName;
+      String dosageInstructions;
+      String prescriptionDate;
+      String expirationDate;
+    }
+
+    class DoctorPatientInteraction {
+      String interactionDate;
+      String interactionType;
+      Doctor doctor;
+      Patient patient;
+    }
+
+    class Patient {
+      String uniqueId;
+      String name;
+      String contactInfo;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+      List<Patient> assignedPatients;
+    }
+
+    class MedicalRecord {
+      Patient patient;
+      List<Diagnosis> diagnoses;
+      List<Treatment> treatments;
+      List<TestResult> testResults;
+    }
+
+    class MedicalCondition {
+      String conditionId;
+      String diagnosisDate;
+      String treatmentPlan;
+      List<Medication> medications;
+    }
+
+    class Medication {
+      String medicationId;
+      String medicationName;
+      String dosageInstructions;
+      String prescriptionDate;
+      String expirationDate;
+    }
+
+    class DoctorPatientInteraction {
+      String interactionDate;
+      String interactionType;
+      Doctor doctor;
+      Patient patient;
+    }
+
+    association Patient -> MedicalRecord [*];
+    association Doctor -> Patient [*];
+    association Doctor -> DoctorPatientInteraction [*];
+    association MedicalRecord -> MedicalCondition [*];
+    association MedicalRecord -> TestResult [*];
+    association MedicalRecord -> Treatment [*];
+    association Medication -> MedicalCondition [*];
+}

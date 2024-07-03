@@ -1,0 +1,75 @@
+
+classdiagram DocumentCollaboration {
+
+  class User {
+    String username;
+    String email;
+  }
+
+  class Document {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    DocumentType type;
+    VersionHistory versionHistory;
+  }
+
+  enum DocumentType {
+    Text, Image, Video;
+  }
+
+  class VersionHistory {
+    -> Version [*];
+  }
+
+  class Version {
+    int versionNumber;
+    String timestamp;
+    String author;
+    String content;
+  }
+
+  class Collaboration {
+    Document document;
+    User [ ] collaborators;
+  }
+
+  class Comment {
+    User author;
+    String content;
+    Document document;
+    String timestamp;
+  }
+
+  class Task {
+    User assignee;
+    String description;
+    Document document;
+  }
+
+  association User --o00o- 											{
+   								ordered
+   }
+
+ 			;
+  association Document --o00o- 											{
+   								ordered
+   }
+
+ 			;
+  association Collaboration --o00o- 											{
+   								ordered
+   }
+
+ 			;
+  association Comment --o00o- 											{
+   								ordered
+   }
+
+ 			;
+  association Task --o00o- 											{
+   								ordered
+   }
+
+ 			;
+}

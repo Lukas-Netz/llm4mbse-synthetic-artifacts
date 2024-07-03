@@ -1,0 +1,402 @@
+
+classdiagram AgriculturalTech {
+
+    class Farm {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Equipment {
+      String uniqueIdentifier;
+      String type;
+      EquipmentStatus status;
+    }
+
+    class Crop {
+      String uniqueIdentifier;
+      String cropType;
+      Date plantingDate;
+      Date harvestDate;
+    }
+
+    class Sensor {
+      String type;
+      String readingFrequency;
+    }
+
+    class WeatherStation {
+      String location;
+      WeatherData data;
+    }
+
+    class FarmOperator {
+      String name;
+      String contactInfo;
+    }
+
+    enum EquipmentStatus {
+      Available, InUse, Broken
+   
+   
+   ()
+   
+
+;
+    association Farm 
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    composition FarmOperator
+     
+   
+;
+    composition Farm
+     
+   
+;
+    composition Equipment
+     
+   
+;
+    composition Crop
+     
+   
+;
+    composition Sensor
+     
+   
+;
+    composition WeatherStation
+     
+   
+;
+    aggregation FarmOperator
+     
+   
+;
+    aggregation Equipment
+     
+   
+;
+    aggregation Crop
+     
+   
+;
+    aggregation Sensor
+     
+   
+;
+    aggregation WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+   
+}
+
+class WeatherData {
+  String temperature;
+  String humidity;
+  String precipitation;
+}
+
+enum EquipmentStatus {
+  Available, InUse, Broken
+
+ 
+
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+   
+}
+
+enum EquipmentStatus {
+  Available, InUse, Broken
+
+ 
+
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+   
+}
+
+enum EquipmentStatus {
+  Available, InUse, Broken
+
+ 
+
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+    association Equipment
+     
+   
+;
+    association Crop
+     
+   
+;
+    association Sensor
+     
+   
+;
+    association WeatherStation
+     
+   
+;
+    association Farm
+     
+   
+;
+    association FarmOperator
+     
+   
+;
+   
+}
+
+   
+}

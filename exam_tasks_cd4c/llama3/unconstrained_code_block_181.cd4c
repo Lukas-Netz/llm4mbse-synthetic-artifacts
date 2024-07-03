@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram FleetManagement  {
+
+  class FleetManager  {
+    Vehicle[] vehicles;
+    MaintenanceRecord[] maintenanceRecords;
+    void addVehicle(Vehicle vehicle);
+    void removeVehicle(Vehicle vehicle);
+    void updateVehicle(Vehicle vehicle);
+    void addMaintenanceRecord(MaintenanceRecord record);
+    void removeMaintenanceRecord(MaintenanceRecord record);
+  }
+
+  abstract class Vehicle  {
+    String uniqueIdentifier;
+    String make;
+    String model;
+    int year;
+    Location currentLocation;
+    MaintenanceRecord[] maintenanceHistory;
+  }
+
+  class Car extends Vehicle  {
+    int passengerCapacity;
+  }
+
+  class Truck extends Vehicle  {
+    int cargoCapacity;
+  }
+
+  class Motorcycle extends Vehicle  {
+    int engineSize;
+  }
+
+  class MaintenanceRecord  {
+    Date date;
+    String description;
+    Vehicle vehicle;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  composition FleetManager  ->  (has) Vehicle[*];
+  composition FleetManager  ->  (has) MaintenanceRecord[*];
+  composition Vehicle  ->  (has) MaintenanceRecord[*];
+}

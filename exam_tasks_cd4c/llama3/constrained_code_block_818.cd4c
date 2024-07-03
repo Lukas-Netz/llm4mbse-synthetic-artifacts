@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram RenewableEnergyTrainingSystem  {
+
+  class Course  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Level level;
+    -> Module[*];
+  }
+
+  class Module  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Topic topic;
+    -> Quiz[*];
+  }
+
+  class Quiz  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    QuestionType type;
+  }
+
+  enum Level  {
+    Beginner, Intermediate, Advanced;
+  }
+
+  enum Topic  {
+    Solar, Wind, Hydro;
+  }
+
+  enum QuestionType  {
+    MultipleChoice, TrueFalse, ShortAnswer;
+  }
+
+  class User  {
+    String username;
+    Role role;
+  }
+
+  class Admin extends User  {
+    -> Course[*];
+    -> Module[*];
+    -> Quiz[*];
+  }
+
+  class Instructor extends User  {
+    -> Quiz[*];
+  }
+
+  class Student extends User  {
+    -> Quiz[*];
+  }
+
+  composition Course -> Module[*];
+  composition Module -> Quiz[*];
+  composition User -> Quiz[*];
+  composition Admin -> Course[*];
+  composition Instructor -> Quiz[*];
+  composition Student -> Quiz[*];
+}

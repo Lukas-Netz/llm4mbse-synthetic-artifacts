@@ -1,0 +1,58 @@
+
+classdiagram SNS {
+
+  class User {
+    String username;
+    String password;
+    List<User> friends;
+  }
+
+  class Post {
+    String content;
+    PostVisibility visibility;
+    User author;
+    List<User> sharedWith;
+    List<Comment> comments;
+    List<Link> links;
+  }
+
+  enum PostVisibility {
+    Public, Private, Friends;
+  }
+
+  class Comment {
+    String text;
+    User author;
+  }
+
+  class Link {
+    String url;
+  }
+
+  class NewsFeed {
+    List<Post> posts;
+  }
+
+  class Block {
+    User blockedUser;
+  }
+
+  class Search {
+    List<User> users;
+    List<Post> posts;
+  }
+
+  class Notification {
+    String content;
+    User recipient;
+  }
+
+  composition SNS -> User [*];
+  composition User -> Post [*];
+  composition User -> Comment [*];
+  composition User -> Link [*];
+  composition NewsFeed -> Post [*];
+  composition Block -> User [*];
+  composition Search -> User [*];
+  composition Search -> Post [*];
+}

@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram SmartHome  {
+
+  class SmartHome  {
+    Hub hub;
+    BackupPower backupPower;
+  }
+
+  class Hub  {
+    Device  device  ;
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    void sendCommand(Device device, Command command);
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Light extends Device  {
+    int brightnessLevel;
+  }
+
+  class Thermostat extends Device  {
+    int temperature;
+  }
+
+  class SecurityCamera extends Device  {
+    boolean isRecording;
+  }
+
+  class BackupPower  {
+    int capacityWh;
+  }
+
+  enum DeviceStatus  {
+    On, Off;
+  }
+
+  enum Command  {
+    TurnOn, TurnOff, SetBrightness, SetTemperature, StartRecording, StopRecording;
+  }
+
+  composition SmartHome  ->  (has) Hub;
+  composition SmartHome  ->  (has) BackupPower  [0..1];
+  composition Hub  ->  Device  [*];
+  composition Device  ->  Command  [1..*];
+}

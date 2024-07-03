@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram WaterQualityMonitoringSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    WaterQualityParameter  parameter;
+  }
+
+  class DataLogger  {
+    Sensor sensor;
+    int storagePeriod;
+  }
+
+  class Analyzer  {
+    WaterQualityStation station;
+    Sensor  sensor;
+  }
+
+  class WaterQualityStation  {
+    String uniqueIdentifier;
+    Sensor  sensor;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+  }
+
+  class WaterQualityParameter  {
+    String name;
+    double threshold;
+  }
+
+  class Alert  {
+    WaterQualityParameter parameter;
+    double value;
+  }
+
+  composition Sensor  ->  (has) WaterQualityParameter;
+  composition DataLogger  ->  (has) Sensor;
+  composition Analyzer  ->  (has) WaterQualityStation;
+  composition WaterQualityStation  ->  (has) Sensor;
+  composition User  ->  (has) WaterQualityMonitoringSystem;
+  composition WaterQualityMonitoringSystem  ->  (has) Sensor;
+  composition WaterQualityMonitoringSystem  ->  (has) DataLogger;
+  composition WaterQualityMonitoringSystem  ->  (has) Analyzer;
+  composition WaterQualityMonitoringSystem  ->  (has) WaterQualityStation;
+  composition WaterQualityMonitoringSystem  ->  (has) User;
+  composition WaterQualityMonitoringSystem  ->  (has) Alert;
+}

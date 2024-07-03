@@ -1,0 +1,51 @@
+
+classdiagram AutonomousMedicalDiagnosisSystems {
+
+    class AMDS {
+      CPU cpu;
+      Sensor[] sensors;
+      Database database;
+    }
+
+    class CPU {
+      -> Sensor [*];
+      void analyzeData(Sensor sensor);
+      String makeDiagnosis(Sensor sensor);
+      String planTreatment(Sensor sensor);
+    }
+
+    abstract class Sensor {
+      String uniqueIdentifier;
+      String medicalParameter;
+    }
+
+    class BloodGlucose extends Sensor {
+      double glucoseLevel;
+      double insulinDosage;
+    }
+
+    class BloodPressure extends Sensor {
+      double systolicPressure;
+      double diastolicPressure;
+    }
+
+    class PulseOximeter extends Sensor {
+      double oxygenSaturation;
+      double heartRate;
+    }
+
+    class Patient {
+      String patientId;
+      String medicalHistory;
+      String diagnosisResults;
+    }
+
+    class Database {
+      Patient[] patients;
+      String patientId;
+    }
+
+  composition AMDS -> (has) CPU;
+  composition AMDS -> (has) Sensor [*];
+  composition AMDS -> (has) Database;
+}

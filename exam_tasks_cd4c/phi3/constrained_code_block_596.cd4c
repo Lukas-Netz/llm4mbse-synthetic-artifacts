@@ -1,0 +1,35 @@
+
+classdiagram WearableHealthSystem {
+
+    class WearableDevice {
+      String deviceID;
+      String deviceType;
+      SensorData sensorData;
+    }
+
+    class DataStorage {
+      int storageCapacity;
+      void storeData(SensorData data);
+      SensorData retrieveData(String deviceID);
+    }
+
+    class DataAnalysis {
+      AnalysisAlgorithm algorithm;
+      void analyzeData(SensorData data);
+      void visualizeData(SensorData data);
+    }
+
+    class UserInterface {
+      AuthenticationMethod authentication;
+      void displayData(SensorData data);
+    }
+
+    association WearableDevice 
+      -> DataStorage [*];
+
+    association DataStorage 
+      -> DataAnalysis [*];
+
+    association DataAnalysis 
+      -> UserInterface [*];
+}

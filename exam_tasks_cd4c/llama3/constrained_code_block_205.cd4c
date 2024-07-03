@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram AutomatedThreatDetection  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    ThreatType[] detectableThreats;
+  }
+
+  class CPU  {
+    void analyzeData(SensorData data);
+    Threat[] detectThreats(SensorData data);
+  }
+
+  class Database  {
+    Threat[] getThreats();
+    void storeThreat(Threat threat);
+  }
+
+  class NotificationSystem  {
+    void sendAlert(Threat threat, Recipient recipient);
+  }
+
+  class LogDatabase  {
+    void storeLog(Threat threat, LogEntry logEntry);
+  }
+
+  class SensorData  {
+    Sensor[] sensors;
+    Data[] data;
+  }
+
+  class Threat  {
+    String uniqueIdentifier;
+    String description;
+    SeverityLevel severity;
+  }
+
+  class LogEntry  {
+    Date date;
+    SeverityLevel severity;
+    Action action;
+  }
+
+  class Recipient  {
+    String name;
+    String email;
+  }
+
+  enum ThreatType  {
+    Malware, Virus, Ransomware;
+  }
+
+  enum SeverityLevel  {
+    Low, Medium, High;
+  }
+
+  enum Action  {
+    Quarantine, Delete, Alert;
+  }
+
+  composition CPU -> SensorData;
+  composition Database -> Threat;
+  composition NotificationSystem -> Recipient;
+  composition LogDatabase -> LogEntry;
+  association Sensor -> CPU;
+  association CPU -> Database;
+  association Database -> NotificationSystem;
+  association NotificationSystem -> LogDatabase;
+  }

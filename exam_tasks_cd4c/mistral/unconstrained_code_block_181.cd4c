@@ -1,0 +1,43 @@
+
+classdiagram VRTraining {
+
+  class VirtualEnvironment {
+    String size;
+    String shape;
+    String terrainType;
+  }
+
+  class PlayerAvatar {
+    Vector3D position;
+    Vector3D velocity;
+    Quaternion orientation;
+  }
+
+  class Exercise {
+    String name;
+    String description;
+    int difficultyLevel;
+  }
+
+  class ScoringSystem {
+    int playerScore;
+  }
+
+  class Coach {
+    int expertiseLevel;
+    String coachingStyle;
+  }
+
+  class VRTrainingSystem {
+    VirtualEnvironment virtualEnvironment;
+    PlayerAvatar playerAvatar;
+    Exercise[] exercises;
+    ScoringSystem scoringSystem;
+    Coach coach;
+  }
+
+  association VRTrainingSystem -- PlayerAvatar;
+  association VRTrainingSystem -- VirtualEnvironment;
+  association VRTrainingSystem -- ScoringSystem;
+  association VRTrainingSystem -- Coach;
+}

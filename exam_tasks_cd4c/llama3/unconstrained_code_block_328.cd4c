@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram GeneTherapy  {
+
+  class Device  {
+    Carrier carrier;
+    Target target;
+    Control control;
+  }
+
+  class Carrier  {
+    GeneticMaterial geneticMaterial;
+  }
+
+  class Target  {
+    GeneticMaterial geneticMaterial;
+  }
+
+  class Control  {
+    Sensor sensor;
+    Database database;
+  }
+
+  class Sensor  {
+    Environment environment;
+  }
+
+  class Database  {
+    GeneticMaterial geneticMaterial;
+    Carrier carrier;
+    Target target;
+  }
+
+  class GeneticMaterial  {
+    String sequence;
+  }
+
+  composition Device -> (has) Carrier;
+  composition Device -> (has) Target;
+  composition Device -> (has) Control;
+  composition Control -> (has) Sensor;
+  composition Control -> (has) Database;
+  composition Database -> (has) GeneticMaterial;
+  composition Database -> (has) Carrier;
+  composition Database -> (has) Target;
+}
+

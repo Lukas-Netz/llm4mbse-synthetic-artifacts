@@ -1,0 +1,31 @@
+
+classdiagram OCR {
+
+  class Image {
+    String uniqueIdentifier;
+    int resolution;
+  }
+
+  class Text {
+    String uniqueIdentifier;
+    String recognizedText;
+  }
+
+  class Algorithm {
+    String uniqueIdentifier;
+    double recognitionAccuracy;
+  }
+
+  class ImageProcessor {
+    -> Image [*];
+    -> Text [*];
+  }
+
+  class TextAnalyzer {
+    -> Text [*];
+  }
+
+  composition ImageProcessor -> Image [*];
+  composition ImageProcessor -> Text [*];
+  composition TextAnalyzer -> Text [*];
+}

@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram SupplyChain  {
+
+  class Blockchain  {
+    Transaction[] transactions;
+  }
+
+  class ContractCreator  {
+    void createContract(Contract contract);
+    void deployContract(Contract contract);
+    void manageContract(Contract contract);
+  }
+
+  abstract class Contract  {
+    String uniqueId;
+    Party[] parties;
+    Transaction[] transactions;
+    ContractStatus status;
+  }
+
+  class Party  {
+    String uniqueId;
+    WalletAddress walletAddress;
+  }
+
+  class Transaction  {
+    String uniqueId;
+    Timestamp timestamp;
+    TransactionStatus status;
+  }
+
+  enum ContractStatus  {
+    Active, Inactive;
+  }
+
+  enum TransactionStatus  {
+    Pending, Confirmed, Rejected;
+  }
+
+  class WalletAddress  {
+    String address;
+  }
+
+  composition Blockchain  ->  (has) Transaction[*];
+  composition Contract  ->  (has) Party[*];
+  composition Contract  ->  (has) Transaction[*];
+  composition ContractCreator  ->  (has) Contract[*];
+  composition Party  ->  (has) WalletAddress;
+  composition Transaction  ->  (has) Blockchain;
+}

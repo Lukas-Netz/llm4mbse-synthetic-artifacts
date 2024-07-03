@@ -1,0 +1,64 @@
+
+classdiagram VirtualRealmMilitaryTraining {
+
+    class VirtualRealm {
+      Simulation simulation;
+      BackupSystem backupSystem;
+    }
+
+    class Simulation {
+      -> Scenario [*];
+      void startScenario(Scenario scenario);
+      void stopScenario(Scenario scenario);
+      int getUserScore(User user);
+    }
+
+    class Scenario {
+      String id;
+      String name;
+      String description;
+      Scenario(String id, String name, String description);
+      void addObject(Object object);
+      void removeObject(Object object);
+    }
+
+    class User {
+      String name;
+      String rank;
+      String role;
+    }
+
+    class Trainee extends User {
+      int score;
+      Trainee(String name, String rank, String role);
+    }
+
+    class Instructor extends User {
+      String role;
+      Instructor(String name, String rank, String role);
+    }
+
+    class Object {
+      String id;
+      String name;
+      String description;
+      Object(String id, String name, String description);
+      void move(int x1, int y1, int z1, int x2, int y2, int z2);
+      void scale(double factor);
+      void rotate(double angle);
+    }
+
+    class BackupSystem {
+      void backupData();
+      void recoverData();
+    }
+
+  composition VirtualRealm -> (has) VirtualRealm;
+  composition VirtualRealm -> (has) BackupSystem;
+  composition VirtualRealm -> (has) Simulation;
+  composition Simulation -> (has) Scenario;
+  composition Scenario -> (has) Object;
+  association User -> (has) Scenario;
+  association Trainee -> (has) User;
+  association Instructor -> (has) User;
+}

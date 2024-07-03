@@ -1,0 +1,70 @@
+
+classdiagram LanguageLearningSystem {
+
+    class UserAccount {
+      String username;
+      String password;
+    }
+
+    class Course {
+      String courseID;
+      String courseName;
+      String courseDescription;
+      List<Lesson> lessons;
+      List<VocabularyWord> vocabularyWords;
+      List<GrammarRule> grammarRules;
+      List<PracticeExercise> practiceExercises;
+    }
+
+    class Lesson {
+      String lessonID;
+      String lessonName;
+      String lessonDescription;
+    }
+
+    class VocabularyWord {
+      String wordID;
+      String meaning;
+      String translation;
+    }
+
+    class GrammarRule {
+      String ruleID;
+      String ruleDescription;
+      String example;
+    }
+
+    class PracticeExercise {
+      String exerciseID;
+      String exerciseName;
+      String exerciseDescription;
+    }
+
+    class Score {
+      String userID;
+      String courseID;
+      int score;
+    }
+
+    class LanguageLearningSystem {
+      List<UserAccount> users;
+      List<Course> courses;
+      List<Score> scores;
+
+      void createCourse(UserAccount user, Course course);
+      void addLessonToCourse(UserAccount user, Course course, Lesson lesson);
+      void removeLessonFromCourse(UserAccount user, Course course, Lesson lesson);
+      void addVocabularyWordToCourse(UserAccount user, Course course, VocabularyWord vocabularyWord);
+      void removeVocabularyWordFromCourse(UserAccount user, Course course, VocabularyWord vocabularyWord);
+      void addGrammarRuleToCourse(UserAccount user, Course course, GrammarRule grammarRule);
+      void removeGrammarRuleFromCourse(UserAccount user, Course course, GrammarRule grammarRule);
+      void addPracticeExerciseToCourse(UserAccount user, Course course, PracticeExercise practiceExercise);
+      void removePracticeExerciseFromCourse(UserAccount user, Course course, PracticeExercise practiceExercise);
+      void trackProgress(UserAccount user, Course course);
+      void viewScores(UserAccount user);
+    }
+
+    composition LanguageLearningSystem -> (has) Users;
+    composition LanguageLearningSystem -> (has) Courses;
+    composition LanguageLearningSystem -> (has) Scores;
+}

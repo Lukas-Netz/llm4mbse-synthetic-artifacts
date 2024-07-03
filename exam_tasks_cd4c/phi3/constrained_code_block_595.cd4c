@@ -1,0 +1,68 @@
+
+classdiagram VirtualRealityTherapyPlatform {
+
+    class PatientProfile {
+      String name;
+      int age;
+      String phobia;
+    }
+
+    class TherapistProfile {
+      String name;
+      String qualifications;
+      String availability;
+    }
+
+    class VRExperience {
+      String experienceID;
+      String description;
+      String effectivenessRating;
+    }
+
+    class TherapySession {
+      PatientProfile patient;
+      TherapistProfile therapist;
+      VRExperience experience;
+      DateTime sessionStart;
+      DateTime sessionEnd;
+    }
+
+    class ProgressTracker {
+      PatientProfile patient;
+      List<TherapySession> sessions;
+      String progressSummary;
+    }
+
+    class VirtualRealityTherapyPlatform {
+      Map<String, PatientProfile> patientProfiles;
+      Map<String, TherapistProfile> therapistProfiles;
+      List<VRExperience> vrExperiences;
+      Map<String, TherapySession> therapySessions;
+      Map<String, ProgressTracker> progressTrackers;
+
+      void addVRExperience(VRExperience experience);
+      void addTherapistProfile(TherapistProfile therapist);
+      void addPatientProfile(PatientProfile patient);
+      void scheduleSession(String patientID, String therapistID, VRExperience experience);
+      String getPatientProgress(String patientID);
+}
+
+composition VirtualRealityTherapyPlatform -> (has) PatientProfile;
+composition VirtualRealityTherapyPlatform -> (has) TherapistProfile;
+association VirtualRealityTherapyPlatform -> (uses) VRExperience;
+association VirtualRealityTherapyPlatform -> (uses) TherapySession;
+association VirtualRealityTherapyPlatform -> (uses) ProgressTracker;
+
+association VirtualRealityTherapyPlatform -> (uses) PatientProfile;
+association VirtualRealityTherapyPlatform -> (uses) TherapistProfile;
+association VirtualRealityTherapyPlatform -> (uses) VRExperience;
+association VirtualRealityTherapyPlatform -> (uses) TherapySession;
+association VirtualRealityTherapyPlatform -> (uses) ProgressTracker;
+
+composition VirtualRealityTherapyPlatform -> (has) TherapySession;
+composition VirtualRealityTherapyPlatform -> (has) ProgressTracker;
+
+association TherapySession -> (uses) VRExperience;
+association TherapySession -> (uses) PatientProfile;
+
+}

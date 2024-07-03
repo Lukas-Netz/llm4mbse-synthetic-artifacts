@@ -1,0 +1,51 @@
+
+classdiagram SelfHealingMaterials {
+
+    class SelfHealingMaterialsSystem {
+      Sensor[] sensors;
+      Actuator[] actuators;
+      ControlUnit controlUnit;
+    }
+
+    class Sensor {
+      String materialType;
+      String crackLocation;
+      void detectCrack();
+    }
+
+    class ControlUnit {
+      void analyzeSignals(Sensor[] sensors);
+      void commandActuators(Actuator[] actuators, String repairMethod);
+      void receiveUserInput(String materialType, String repairMethod);
+    }
+
+    class Actuator {
+      String actuatorType;
+      void applyPressure();
+    }
+
+    class MechanicalActuator extends Actuator {
+      void applyPressure()
+    ;
+    }
+
+    class ChemicalActuator extends Actuator {
+      void applyPressure()
+    ;
+    }
+
+    association SelfHealingMaterialsSystem 
+    uses 
+    (Sensor)
+    -> Sensor[*];
+
+    association SelfHealingMaterialsSystem 
+    uses 
+    (Actuator)
+    -> Actuator[*];
+
+    association SelfHealingMaterialsSystem 
+    uses 
+    (ControlUnit)
+    -> ControlUnit;
+}

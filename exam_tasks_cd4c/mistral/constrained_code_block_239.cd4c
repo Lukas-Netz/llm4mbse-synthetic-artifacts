@@ -1,0 +1,67 @@
+
+classdiagram DigitalContentCuration {
+
+  class Library {
+    Content [][] content;
+    Curator curator;
+  }
+
+  class Curator {
+    void addContent(Content content);
+    void removeContent(Content content);
+    void assignTag(Content content, Tag tag);
+    void updateRating(Content content, int rating);
+  }
+
+  abstract class Content {
+    String uniqueIdentifier;
+    ContentType type;
+  }
+
+  enum ContentType {
+    Image, Video, Document
+ 
+  
+  
+ 
+ ;
+  }
+
+  class Image extends Content {
+    int resolution;
+    String format;
+  }
+
+  class Video extends Content {
+    int duration;
+    String format;
+  }
+
+  class Document extends Content {
+    String fileType;
+    int size;
+  }
+
+  class Tag {
+    String name;
+    Content [][] associatedContent;
+  }
+
+  class Rating {
+    int rating;
+    Content content;
+  }
+
+  class Search {
+    void searchByKeyword(String keyword);
+    void searchByTag(Tag tag);
+    void searchByRating(int rating);
+  }
+
+  composition Library -> Content [*];
+  composition Content [*] Tag.associatedContent [manyToMany]
+  -- composition/ 											;
+  composition Content  Rating [manyToOne]
+  -- association/
+ 										;
+}

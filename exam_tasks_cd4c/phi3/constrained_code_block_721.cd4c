@@ -1,0 +1,48 @@
+
+classdiagram WildlifeIdentificationSystem {
+
+    class Species {
+      String uniqueIdentifier;
+      List<Characteristic> characteristics;
+      List<Image> images;
+      Habitat habitat;
+    }
+
+    class Characteristic {
+      String name;
+      String value;
+    }
+
+    class Image {
+      String imageId;
+      String speciesId;
+    }
+
+    class Habitat {
+      String name;
+      String description;
+    }
+
+    class User {
+      String username;
+      boolean isAuthorized;
+    }
+
+    class ImageRecognitionService {
+      void recognizeImage(Image image);
+    }
+
+    class Database {
+      Species getSpeciesById(String id);
+      void addSpecies(Species species);
+      void removeSpecies(String id);
+      List<Species> getAllSpecies();
+    }
+
+    composition WildlifeIdentificationSystem -> (has) Database;
+    composition WildlifeIdentificationSystem -> (has) ImageRecognitionService;
+    composition WildlifeIdentificationSystem -> (has) User;
+    association Species -> Characteristic [*];
+    association Species -> Image [*];
+    association Species -> Habitat [*];
+}

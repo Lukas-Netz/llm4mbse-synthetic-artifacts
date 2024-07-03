@@ -1,0 +1,50 @@
+
+classdiagram EnergyManagement {
+
+  class Sensor {
+    String type;
+    float value;
+  }
+
+  class Meter {
+    float energyConsumption;
+    float kWh;
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  enum DeviceType {
+    Lighting, Refrigeration, Heating;
+  }
+
+  class Lighting extends Device {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Refrigeration extends Device {
+    float temperatureSetting;
+    float coolingCapacity;
+  }
+
+  class Heating extends Device {
+    float temperatureSetting;
+    float heatingCapacity;
+  }
+
+  class CentralUnit {
+    Sensor [ ] sensors;
+    Meter meter;
+    Device [ ] devices;
+    void readSensorData();
+    void monitorEnergyConsumption();
+    void controlDevice(Device device);
+  }
+
+  composition CentralUnit -> Sensor [*];
+  composition CentralUnit -> Meter;
+  composition CentralUnit -> Device [*];
+}

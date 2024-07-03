@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram PersonalTrainingPlatform  {
+
+  class Trainer  {
+    String name;
+    String email;
+    String password;
+    Profile profile;
+    List<Session> sessions;
+    List<Client> clients;
+  }
+
+  class Client  {
+    String name;
+    String email;
+    String password;
+    Profile profile;
+    List<Session> sessions;
+  }
+
+  class Session  {
+    Date date;
+    Time time;
+    int duration;
+    Trainer trainer;
+    Client client;
+    Status status;
+  }
+
+  class Profile  {
+    String name;
+    String bio;
+    List<Skill> skills;
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class Goal  {
+    String description;
+    Date deadline;
+  }
+
+  class WorkoutHistory  {
+    List<Session> sessions;
+  }
+
+  enum Status  {
+    Scheduled,
+    Cancelled,
+    Rescheduled
+  ;}
+
+  composition Trainer -> Profile;
+  composition Trainer -> List<<Client>>;
+  composition Trainer -> List<<Session>>;
+  composition Client -> Profile;
+  composition Client -> List<<Session>>;
+  composition Session -> Trainer;
+  composition Session -> Client;
+  composition Profile -> List<<Skill>>;
+  composition Goal -> Date;
+  composition WorkoutHistory -> List<<Session>>;
+}

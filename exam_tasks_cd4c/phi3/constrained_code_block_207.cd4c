@@ -1,0 +1,180 @@
+
+classdiagram RealTimeStockTrading {
+
+    class TradingPlatform {
+      User[] users;
+      StockMarketData[] stockMarketData;
+      void placeOrder(Order order);
+      Order getOrderStatus(String orderId);
+      StockMarketData[] getStockMarketData();
+    }
+
+    class User {
+      String uniqueIdentifier;
+      double balance;
+      UserType userType;
+    }
+
+    class IndividualUser extends User {
+      Portfolio personalPortfolio;
+    }
+
+    class InstitutionalUser extends User {
+      Portfolio[] clientPortfolios;
+    }
+
+    class Portfolio {
+      List<Stock> stocks;
+    }
+
+    class Stock {
+      String tickerSymbol;
+      double currentPrice;
+      double tradingVolume;
+    }
+
+    class Order {
+      Stock stock;
+      double quantity;
+      double price;
+    }
+
+    class Trade {
+      Stock stock;
+      double quantity;
+      double price;
+    }
+
+    enum UserType {
+      Individual, Institutional
+   
+    (has)
+   
+ ;
+
+  composition TradingPlatform 
+  (has one)
+ 
+ 
+ 
+ 
+ 
+ ;
+}
+
+
+enum UserType {
+  Individual, Institutional
+
+  (has)
+ 
+ 
+ ;
+
+  composition TradingPlatform 
+  (has one)
+ 
+ 
+ 
+ 
+ 
+ ;
+}
+
+
+class Portfolio {
+  List<Stock> stocks;
+}
+
+
+class Stock {
+  String tickerSymbol;
+  double currentPrice;
+  double tradingVolume;
+}
+
+
+class Order {
+  Stock stock;
+  double quantity;
+  double price;
+}
+
+
+class Trade {
+  Stock stock;
+  double quantity;
+  double price;
+}
+
+
+class TradingPlatform {
+  User[] users;
+  StockMarketData[] stockMarketData;
+
+  void placeOrder(Order order)
+
+ 
+ 
+ 
+ 
+ 
+;
+
+  void getOrderStatus(String orderId)
+
+ 
+ 
+ 
+ 
+ 
+;
+
+  StockMarketData[] getStockMarketData()
+
+ 
+ 
+ 
+ 
+;
+}
+
+
+class StockMarketData {
+  Stock stock;
+  double currentPrice;
+  double tradingVolume;
+}
+
+
+class Stock {
+  String tickerSymbol;
+  double currentPrice;
+  double tradingVolume;
+}
+
+
+class Order {
+  Stock stock;
+  double quantity;
+  double price;
+}
+
+
+class Trade {
+  Stock stock;
+  double quantity;
+  double price;
+}
+
+
+class User {
+  String uniqueIdentifier;
+  double balance;
+  UserType userType;
+}
+
+
+
+
+ }

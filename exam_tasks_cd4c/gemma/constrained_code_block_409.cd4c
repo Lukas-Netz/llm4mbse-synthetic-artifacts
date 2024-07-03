@@ -1,0 +1,50 @@
+
+
+classdiagram AstronomicalInstrumentSystem {
+
+  class Instrument {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class DataPoint {
+    Timestamp timestamp;
+    int value;
+    String unitOfMeasurement;
+  }
+
+  class Analysis {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Result {
+    String uniqueIdentifier;
+    String name;
+    int value;
+  }
+
+  composition Instrument -> DataPoint [*];
+  composition Sensor -> DataPoint [*];
+  association Analysis -> DataPoint [*];
+  association Result -> DataPoint [*];
+
+  class AstronomicalInstrumentSystem {
+    Hub hub;
+  }
+
+  class Hub {
+    void createInstrument(Instrument instrument);
+    void modifyInstrument(Instrument instrument);
+    void deleteInstrument(Instrument instrument);
+    void addDataPoint(DataPoint dataPoint);
+    void runAnalysis(Analysis analysis);
+    void retrieveResult(Result result);
+  }
+}

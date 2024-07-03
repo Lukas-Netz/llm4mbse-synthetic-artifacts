@@ -1,0 +1,56 @@
+
+classdiagram AWT {
+
+  class ArtificialWomb {
+    WombChamber wombChamber;
+    ControlUnit controlUnit;
+    MonitoringSystem monitoringSystem;
+  }
+
+  class WombChamber {
+    void setEnvironment(Temperature temperature, Humidity humidity, GasComposition gasComposition);
+  }
+
+  class ControlUnit {
+    void controlTemperature(Temperature temperature);
+    void controlHumidity(Humidity humidity);
+    void controlGasComposition(GasComposition gasComposition);
+  }
+
+  class MonitoringSystem {
+    void monitorEmbryoHealth();
+    void monitorEmbryoDevelopment();
+  }
+
+  class Sensor {
+    void detectAnomaly();
+  }
+
+  class ClinicalSetting {
+    ArtificialWomb artificialWomb;
+    MedicalDevice [						] medicalDevices;
+  }
+
+  class MedicalDevice {
+    void connectToArtificialWomb();
+  }
+
+  class Temperature {
+    float value;
+  }
+
+  class Humidity {
+    float value;
+  }
+
+  class GasComposition {
+    float oxygen;
+    float carbonDioxide;
+  }
+
+  composition ArtificialWomb -> WombChamber;
+  composition ArtificialWomb -> ControlUnit;
+  composition ArtificialWomb -> MonitoringSystem;
+  composition ClinicalSetting -> ArtificialWomb;
+  association ArtificialWomb -> MedicalDevice [*];
+}

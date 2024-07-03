@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class PhysicalSystem  {
+    double temperature;
+    double pressure;
+    double vibration;
+  }
+
+  class DigitalTwin  {
+    double simulationTime;
+    double simulationSpeed;
+    double simulationAccuracy;
+    PhysicalSystem physicalSystem;
+  }
+
+  class Sensor  {
+    PhysicalSystem physicalSystem;
+    void sendData(PhysicalSystem physicalSystem);
+  }
+
+  class AnalyticsEngine  {
+    void analyzeData(PhysicalSystem physicalSystem);
+    String provideInsights(PhysicalSystem physicalSystem);
+    String provideRecommendations(PhysicalSystem physicalSystem);
+  }
+
+  class UserInterface  {
+    DigitalTwin digitalTwin;
+    void displayData(DigitalTwin digitalTwin);
+    void interactWithDigitalTwin(DigitalTwin digitalTwin);
+  }
+
+  composition DigitalTwin -> (has) PhysicalSystem;
+  composition Sensor -> (has) PhysicalSystem;
+  composition AnalyticsEngine -> (has) PhysicalSystem;
+  composition UserInterface -> (has) DigitalTwin;
+  association PhysicalSystem -> Sensor [1..*];
+  association PhysicalSystem -> AnalyticsEngine [1..*];
+  association DigitalTwin -> UserInterface [1..*];
+}

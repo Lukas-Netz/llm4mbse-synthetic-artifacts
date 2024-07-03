@@ -1,0 +1,94 @@
+
+
+
+
+classdiagram InfotainmentSystem  {
+
+  class CentralUnit  {
+    AudioProcessor audioProcessor;
+    VideoProcessor videoProcessor;
+  }
+
+  class TouchscreenDisplay  {
+    UserInterface userInterface;
+  }
+
+  class Speakers  {
+    AudioPlayer audioPlayer;
+  }
+
+  class ClimateControl  {
+    TemperatureController temperatureController;
+    FanController fanController;
+  }
+
+  class NavigationSystem  {
+    MapDisplay mapDisplay;
+    TurnByTurnDirections turnByTurnDirections;
+  }
+
+  class VehicleData  {
+    Speedometer speedometer;
+    FuelLevelIndicator fuelLevelIndicator;
+  }
+
+  class AudioSource  {
+    CDPlayer cdPlayer;
+    UsbDrive usbDrive;
+    OnlineStreamingService onlineStreamingService;
+  }
+
+  class AudioProcessor  {
+    void playAudio(AudioSource source);
+  }
+
+  class VideoProcessor  {
+    void displayVideo();
+  }
+
+  class AudioPlayer  {
+    void playAudio();
+  }
+
+  class TemperatureController  {
+    void setTemperature(int temperature);
+  }
+
+  class FanController  {
+    void setFanSpeed(int speed);
+  }
+
+  class MapDisplay  {
+    void displayMap();
+  }
+
+  class TurnByTurnDirections  {
+    void provideDirections();
+  }
+
+  class Speedometer  {
+    int getSpeed();
+  }
+
+  class FuelLevelIndicator  {
+    int getFuelLevel();
+  }
+
+  composition InfotainmentSystem -> CentralUnit;
+  composition InfotainmentSystem -> TouchscreenDisplay;
+  composition InfotainmentSystem -> Speakers;
+  composition InfotainmentSystem -> ClimateControl;
+  composition InfotainmentSystem -> NavigationSystem;
+  composition InfotainmentSystem -> VehicleData;
+  composition CentralUnit -> AudioSource;
+  composition CentralUnit -> AudioProcessor;
+  composition CentralUnit -> VideoProcessor;
+  composition TouchscreenDisplay -> UserInterface;
+  composition Speakers -> AudioPlayer;
+  composition ClimateControl -> TemperatureController;
+  composition ClimateControl -> FanController;
+  composition NavigationSystem -> MapDisplay;
+  composition NavigationSystem -> TurnByTurnDirections;
+  composition VehicleData -> Speedometer;
+  composition VehicleData -> FuelLevelIndicator;
+}

@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram AcademicCredentials  {
+
+  class Student  {
+    String uniqueIdentifier;
+    Set<AcademicRecord> academicRecords;
+  }
+
+  class Institution  {
+    String uniqueIdentifier;
+    Set<Student> students;
+    Set<AcademicRecord> academicRecords;
+  }
+
+  abstract class AcademicRecord  {
+    String type;
+    Map<String, String> attributes;
+  }
+
+  class Diploma extends AcademicRecord  {
+    String degree;
+    double GPA;
+    Date dateOfIssuance;
+  }
+
+  class Transcript extends AcademicRecord  {
+    String degree;
+    double GPA;
+    Date dateOfIssuance;
+  }
+
+  class Certificate extends AcademicRecord  {
+    String name;
+    Date dateOfIssuance;
+  }
+
+  class Blockchain  {
+    Set<AcademicRecord> academicRecords;
+  }
+
+  composition Student -> AcademicRecord [1..*];
+  composition Institution -> Student [1..*];
+  composition Institution -> AcademicRecord [1..*];
+  composition Blockchain -> AcademicRecord [1..*];
+}

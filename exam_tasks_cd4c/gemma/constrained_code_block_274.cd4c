@@ -1,0 +1,49 @@
+
+
+classdiagram DigitalNewsPlatform {
+
+  class NewsArticle {
+    String title;
+    String content;
+    Date publicationDate;
+    Category category;
+    Author author;
+    boolean isFeatured;
+  }
+
+  class Author {
+    String name;
+    String email;
+    List<NewsArticle> articles;
+  }
+
+  class Category {
+    String name;
+    List<NewsArticle> articles;
+  }
+
+  class NewsArticleComment {
+    NewsArticle article;
+    User author;
+    String content;
+  }
+
+  class User {
+    String username;
+    List<NewsArticleComment> comments;
+  }
+
+  composition NewsArticle -> (has) Category;
+  composition NewsArticle -> (has) Author;
+  composition Author -> (has) List<<NewsArticle>>;
+  composition Category -> (has) List<<NewsArticle>>;
+  association NewsArticleComment -> NewsArticle;
+  association NewsArticleComment -> User;
+  association User -> (has) List<<NewsArticleComment>>
+  
+  
+  
+  
+  
+  ;
+}

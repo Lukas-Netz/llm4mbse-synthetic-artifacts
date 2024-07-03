@@ -1,0 +1,76 @@
+
+classdiagram DevOpsToolchain {
+
+    class ProjectManager {
+      List<Project> projects;
+      void addProject(Project project);
+      void removeProject(Project project);
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<Task> tasks;
+      List<TeamMember> teamMembers;
+    }
+
+    class Task {
+      String name;
+      String description;
+      TaskStatus status;
+      TeamMember assignedTo;
+    }
+
+    class TeamMember {
+      String name;
+      String email;
+      List<Project> projects;
+    }
+
+    class VersionControlSystem {
+      List<Repository> repositories;
+      void addRepository(Repository repository);
+      void removeRepository(Repository repository);
+    }
+
+    class Repository {
+      String name;
+      List<File> files;
+    }
+
+    class File {
+      String name;
+      String content;
+    }
+
+    class CI_CD {
+      BuildTool buildTool;
+      TestingFramework testingFramework;
+      void configureBuildTool(BuildTool buildTool);
+      void configureTestingFramework(TestingFramework testingFramework);
+      void buildProject(Project project);
+      void testProject(Project project);
+      void deployProject(Project project);
+    }
+
+    enum TaskStatus {
+      ToDo, InProgress, Done;
+    }
+
+    enum BuildTool {
+      Maven, Gradle, Jenkins;
+    }
+
+    enum TestingFramework {
+      JUnit, Selenium, TestNG;
+    }
+
+  composition ProjectManager -> (has) Project;
+  composition ProjectManager -> (has) VersionControlSystem;
+  composition Project -> (has) Task;
+  composition Project -> (has) TeamMember;
+  composition Project -> (has) CI_CD;
+  composition CI_CD -> (has) BuildTool;
+  composition CI_CD -> (has) TestingFramework;
+  composition CI_CD -> (has) Project;
+}

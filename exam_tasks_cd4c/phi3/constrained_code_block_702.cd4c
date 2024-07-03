@@ -1,0 +1,66 @@
+
+classdiagram ClothesARApp {
+
+    class ClothingItem {
+      String identifier;
+      String name;
+      String description;
+      ClothingType type;
+      ClothingAttributes attributes;
+    }
+
+    class ClothingType {
+      enum TypeEnum
+        ;
+    }
+
+    class ClothingAttributes {
+      String color;
+      String size;
+      String material;
+      double price;
+    }
+
+    class User {
+      String name;
+      String email;
+      String password;
+    }
+
+    class Order {
+      Date orderDate;
+      OrderStatus status;
+      List<ClothingItem> orderItems;
+    }
+
+    class OrderStatus {
+      enum StatusEnum
+        ;
+    }
+
+    class Catalog {
+      List<ClothingItem> items;
+      void addItem(ClothingItem item);
+      ClothingItem getItem(String identifier);
+    }
+
+    class ARApp {
+      Catalog catalog;
+      User user;
+      BackupPower backupPower;
+      void browseCatalog();
+      void selectItem(String identifier);
+      void viewItemInAR();
+      void purchaseItem(String identifier);
+      void loginUser(String email, String password);
+      void logoutUser();
+      void placeOrder(List<String> itemIdentifiers);
+    }
+
+    composition ARApp -> (has) Catalog;
+    composition ARApp -> (has) User;
+    composition ARApp -> (has) BackupPower;
+    association Catalog -> ClothingItem [*];
+    association ARApp -> ClothingItem [*];
+    association ARApp -> Order [*];
+}

@@ -1,0 +1,79 @@
+
+classdiagram CrowdfundingPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      void createProject(Project project);
+      void backProject(Project project);
+      void viewProjectUpdates(Project project);
+    }
+
+    class Project {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      double fundingGoal;
+      ProjectType type;
+      Campaign campaign;
+      void createCampaign(Campaign campaign);
+      void updateCampaign(Campaign campaign);
+      void updateProject(Project project);
+      void trackProgress();
+      void sendNotifications();
+    }
+
+    class Campaign {
+      String uniqueIdentifier;
+      String startDate;
+      String endDate;
+      boolean isActive;
+      boolean isCompleted;
+      void manageSchedule();
+      void sendNotifications();
+    }
+
+    class Backer {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      void pledgeFunds(Project project, double amount);
+      void viewProjectUpdates(Project project);
+    }
+
+    class Pledge {
+      String uniqueIdentifier;
+      double amount;
+      String status;
+      Backer backer;
+      Project project;
+      void fulfillPledge();
+      void cancelPledge();
+    }
+
+    class Update {
+      String uniqueIdentifier;
+      String date;
+      String description;
+      Project project;
+      void sendNotification();
+    }
+
+    enum ProjectType {
+      ProductDevelopment, Charity, CommunityBased;
+    }
+
+    enum PledgeStatus {
+      Pending, Fulfilled, Cancelled;
+    }
+
+  composition User -> (has) Project;
+  composition User -> (has) Campaign;
+  composition User -> (has) Backer;
+  composition Backer -> (has) Pledge;
+  composition Backer -> (has) Update;
+  composition Project -> (has) Campaign;
+  composition Project -> (has) Pledge;
+  composition Project -> (has) Update;
+}

@@ -1,0 +1,63 @@
+
+classdiagram SmartFarmIrrigation {
+
+    class SmartFarmIrrigation {
+      Sensor[] sensors;
+      Pump[] pumps;
+      Valve[] valves;
+      ControlUnit controlUnit;
+      WeatherStation weatherStation;
+      Crop[] crops;
+      Soil[] soils;
+    }
+
+    class Sensor {
+      String type;
+      String location;
+      float soilMoisture;
+      float temperature;
+      float humidity;
+    }
+
+    class Pump {
+      String location;
+      float waterFlowRate;
+    }
+
+    class Valve {
+      String location;
+      boolean isOpen;
+    }
+
+    class ControlUnit {
+      void receiveSensorData();
+      void sendCommandToPump(Pump pump, float flowRate);
+      void sendCommandToValve(Valve valve, boolean open);
+      void optimizeIrrigationSchedule();
+      void recordWaterUsage();
+      void recordCropGrowth();
+    }
+
+    class WeatherStation {
+      String location;
+      String forecast;
+    }
+
+    class Crop {
+      String type;
+      float growthRate;
+    }
+
+    class Soil {
+      String location;
+      float moistureLevel;
+    }
+
+    composition SmartFarmIrrigation -> (has) Sensor[*];
+    composition SmartFarmIrrigation -> (has) Pump[*];
+    composition SmartFarmIrrigation -> (has) Valve[*];
+    composition SmartFarmIrrigation -> (has) ControlUnit;
+    composition SmartFarmIrrigation -> (has) WeatherStation;
+    composition SmartFarmIrrigation -> (has) Crop[*];
+    composition SmartFarmIrrigation -> (has) Soil[*];
+}

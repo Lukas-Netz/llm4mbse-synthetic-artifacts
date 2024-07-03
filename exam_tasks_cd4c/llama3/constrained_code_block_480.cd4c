@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram PianoLearningPlatform  {
+
+  class User  {
+    String username;
+    String password;
+    -> Course[*];
+  }
+
+  class Course  {
+    String title;
+    String description;
+    -> Lesson[*];
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    -> Exercise[*];
+  }
+
+  class Exercise  {
+    int difficultyLevel;
+    -> Lesson[*];
+  }
+
+  class Progress  {
+    User user;
+    Exercise exercise;
+    int score;
+  }
+
+  class Administrator  {
+    -> Course[*];
+    -> User[*];
+  }
+
+  composition User -> Course [0..*];
+  composition Course -> Lesson [0..*];
+  composition Lesson -> Exercise [0..*];
+  composition Exercise -> Lesson [0..*];
+  composition Progress -> User;
+  composition Progress -> Exercise;
+  composition Administrator -> User [0..*];
+  composition Administrator -> Course [0..*];
+}

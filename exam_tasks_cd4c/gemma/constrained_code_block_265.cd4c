@@ -1,0 +1,55 @@
+
+
+classdiagram OnlineTutoringPlatform {
+
+  class Student {
+    private String id;
+    private String name;
+    private String email;
+    private List<Subject> subjects;
+  }
+
+  class Tutor {
+    private String id;
+    private String name;
+    private String email;
+    private List<Subject> subjects;
+  }
+
+  class Session {
+    private String id;
+    private Date startTime;
+    private Date endTime;
+    private Subject subject;
+    private Tutor tutor;
+  }
+
+  class Subject {
+    private String id;
+    private String name;
+  }
+
+  class Rating {
+    private int value;
+  }
+
+  class Review {
+    private String text;
+  }
+
+  composition Student -> (has) List<<Subject>>
+  abstract  
+  
+  
+
+  {
+    
+  
+
+  ordered
+  }
+
+  
+
+;
+}

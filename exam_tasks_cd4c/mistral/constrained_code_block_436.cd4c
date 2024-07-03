@@ -1,0 +1,81 @@
+
+classdiagram DIYCraftPlatform {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Project {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    String description;
+    List<String> materials;
+    List<String> steps;
+  }
+
+  class Collection {
+    String uniqueIdentifier;
+    String name;
+    User owner;
+    List<Project> projects;
+  }
+
+  class Rating {
+    User rater;
+    int rating;
+  }
+
+  class Review {
+    User author;
+    String content;
+  }
+
+  class Comment {
+    User author;
+    String content;
+  }
+
+  class Material {
+    String name;
+    String supplier;
+    float price;
+  }
+
+  class ProjectRepository {
+    Map<String, Project> projects;
+  }
+
+  class CollectionRepository {
+    Map<String, Collection> collections;
+  }
+
+  class RatingRepository {
+    Map<String, List<Rating>> ratings;
+  }
+
+  class ReviewRepository {
+    Map<String, List<Review>> reviews;
+  }
+
+  class CommentRepository {
+    Map<String, List<Comment>> comments;
+  }
+
+  class MaterialSupplier {
+    String name;
+    List<Material> materials;
+  }
+
+  class MaterialMarket {
+    List<MaterialSupplier> suppliers;
+  }
+
+  composition User -> Project [*];
+  composition Collection -> Project [*];
+  association ProjectRepository -> Project [*];
+  association CollectionRepository -> Collection [*];
+  association RatingRepository -> Rating [*];
+  association ReviewRepository -> Review [*];
+ 				}

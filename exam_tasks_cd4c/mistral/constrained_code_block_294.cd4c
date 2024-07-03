@@ -1,0 +1,66 @@
+
+classdiagram Ecommerce {
+
+  class User {
+    String username;
+    String password;
+    Website website;
+  }
+
+  class Website {
+    String name;
+    String identifier;
+    Product [][] products;
+    Order [][] orders;
+    Settings settings;
+  }
+
+  class Product {
+    String name;
+    String description;
+    double price;
+    String image;
+    Type type;
+  }
+
+  enum Type {
+    Electronics, Clothing, HomeGoods;
+  }
+
+  class Order {
+    String orderId;
+    User user;
+    Item [][] items;
+    OrderStatus status;
+  }
+
+  enum OrderStatus {
+    Pending, Shipped, Delivered, Cancelled;
+  }
+
+  class Item {
+    Product product;
+    int quantity;
+    double totalPrice;
+  }
+
+  class Settings {
+    PaymentMethod [][ ] paymentMethods;
+    ShippingOption [][ ] shippingOptions;
+  }
+
+  enum PaymentMethod {
+    CreditCard, PayPal, CashOnDelivery;
+  }
+
+  enum ShippingOption {
+    Standard, Express, Overnight;
+  }
+
+  association User --o00o- 											{ 											ordered						}						;
+  association User --o00o- 											{ 											ordered						}						;
+  association Website --o00o- 										{ 											ordered						}						;
+  association Product --o00o- 										{ 											ordered						}						;
+  association Order --o00o- 											{ 											ordered						}						;
+  association Item --o00o- 											{ 											ordered						}						;
+}

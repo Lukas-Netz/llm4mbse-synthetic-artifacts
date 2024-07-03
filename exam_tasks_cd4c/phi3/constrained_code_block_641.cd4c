@@ -1,0 +1,69 @@
+
+classdiagram VerticalFarmSystem {
+
+    class Farm {
+      String name;
+      String location;
+    }
+
+    class Module {
+      String name;
+      String type;
+    }
+
+    class Crop {
+      String name;
+      String type;
+      String growthStage;
+    }
+
+    class Sensor {
+      String type;
+      double reading;
+    }
+
+    class Actuator {
+      String type;
+      double setting;
+    }
+
+    association Farm 
+        has
+        [multiplicity 
+        
+
+<aname>
+
+
+   ]-> Module [*];
+
+    association Farm 
+        has
+        [multiplicity 
+        
+
+<aone>
+
+
+   ]-> Sensor [*];
+
+    association Farm 
+        has
+        [multiplicity 
+        
+
+<aone>
+
+
+   ]-> Actuator [*];
+
+    association Farm 
+        has
+        [multiplicity 
+        
+
+<one>
+
+
+   ]-> Crop [*];
+}

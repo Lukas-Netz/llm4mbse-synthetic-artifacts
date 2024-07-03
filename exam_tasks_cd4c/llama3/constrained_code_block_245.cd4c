@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram SmartWasteRecyclingSystem  {
+
+  class WasteCollectionVehicle  {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+  }
+
+  class WasteContainer  {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+  }
+
+  enum WasteType  {
+    Recyclable,
+    NonRecyclable,
+    Hazardous
+  ;}
+
+  class RecyclingFacility  {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+  }
+
+  class WasteCollectionSchedule  {
+    WasteContainer wasteContainer;
+    Frequency frequency;
+    Time time;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  enum Frequency  {
+    Daily,
+    Weekly,
+    Monthly
+  ;}
+
+  enum Time  {
+    Morning,
+    Afternoon,
+    Evening
+  ;}
+
+  composition WasteCollectionVehicle -> WasteContainer [0..*];
+  composition WasteContainer -> WasteCollectionSchedule [0..*];
+  composition RecyclingFacility -> WasteType [0..*];
+  composition WasteCollectionSchedule -> WasteCollectionVehicle [1];
+  composition WasteCollectionSchedule -> WasteContainer [1];
+  composition RecyclingFacility -> WasteType [0..*];
+}

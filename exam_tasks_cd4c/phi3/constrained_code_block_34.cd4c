@@ -1,0 +1,54 @@
+
+classdiagram HotelManagementSystem {
+
+    class Hotel {
+      String hotelName;
+      List<Room> rooms;
+      List<Guest> guests;
+      List<Booking> bookings;
+      void generateReports();
+    }
+
+    class Room {
+      String roomId;
+      RoomType roomType;
+      boolean isOccupied;
+      List<Amenity> amenities;
+      void checkIn(Guest guest);
+      void checkOut(Guest guest);
+    }
+
+    class Guest {
+      String guestId;
+      String name;
+      String contactInfo;
+      void makeReservation(Room room, Booking booking);
+    }
+
+    class Booking {
+      String bookingId;
+      Date startDate;
+      Date endDate;
+      double totalCost;
+      void generateReport();
+    }
+
+    enum RoomType {
+      Standard, Suite, LuxurySuites;
+    }
+
+    enum GuestType {
+      Individual, Couple, Family;
+    }
+
+    enum Amenity {
+      AirConditioning, TV, WiFi;
+    }
+
+    association Hotel -> List<<Room>>;
+    association Hotel -> List<<Guest>>;
+    association Hotel -> List<<Booking>>;
+    association Room -> List<<Amenity>>;
+    association Guest -> List<<Booking>>;
+    association Booking -> List<<Room>>;
+}

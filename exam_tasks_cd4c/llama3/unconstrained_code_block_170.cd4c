@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram Ecommerce  {
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    double price;
+    -> Category[*];
+  }
+
+  class Category  {
+    String name;
+    -> Category[*];
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    -> Product[*];
+    OrderStatus status;
+  }
+
+  class Administrator  {
+    -> Product[*];
+    -> Category[*];
+    -> Order[*];
+  }
+
+  class Customer  {
+    -> Order[*];
+  }
+
+  enum OrderStatus  {
+    Pending,
+    Shipped,
+    Delivered,
+    Cancelled;
+  }
+
+  composition Administrator  ->  (has) Product;
+  composition Administrator  ->  (has) Category;
+  composition Administrator  ->  (has) Order;
+  composition Customer  ->  (has) Order;
+}

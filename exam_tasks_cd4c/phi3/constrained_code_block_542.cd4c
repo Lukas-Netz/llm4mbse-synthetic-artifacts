@@ -1,0 +1,172 @@
+
+classdiagram AQMN {
+
+    class Sensor {
+      String sensorId;
+      SensorType type;
+    }
+
+    class Station {
+      String stationId;
+      List<Sensor> sensors;
+    }
+
+    class DataCenter {
+      String dataCenterId;
+      List<Station> stations;
+    }
+
+    class User {
+      String userId;
+      List<Role> roles;
+    }
+
+    class Role {
+      String roleName;
+    }
+
+    class SensorType {
+      String typeName;
+    }
+
+    class TemperatureSensor extends Sensor {
+      int temperature;
+    }
+
+    class HumiditySensor extends Sensor {
+      int humidity;
+    }
+
+    class PollutantSensor extends Sensor {
+      double pollutantConcentration;
+    }
+
+    association Station 
+      has
+      -> List<< Sensor
+
+    ,
+
+    association
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    association DataCenter
+      has
+      -> List<< Station
+
+    ,
+
+    association
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    association User
+      has
+      -> List<< Role
+
+    ,
+
+    association
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition Sensor -> SensorType;
+    composition Station -> List<< Sensor
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition DataCenter -> List<< Station
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition User -> List<< Role
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition Sensor -> SensorType
+
+    ;
+    composition Station -> List<< Sensor
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition DataCenter -> List<< Station
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+    composition User -> List<< Role
+
+    ,
+
+    composition
+      >>
+      {
+       
+   ordered
+     }
+
+   
+;
+   
+}

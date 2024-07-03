@@ -1,0 +1,42 @@
+
+classdiagram VirtualRealitySurgerySimulation {
+
+    class SimulationEnvironment {
+      String surgeryType;
+      String difficultyLevel;
+      void provideFeedback(Surgeon surgeon);
+      void startSimulation(Surgeon surgeon, Patient patient, Procedure procedure);
+    }
+
+    class Surgeon {
+      String name;
+      int experienceLevel;
+      int skillLevel;
+      void performSurgery(SurgicalTool tool, Procedure procedure);
+    }
+
+    class Patient {
+      String name;
+      String medicalHistory;
+      VitalSigns vitalSigns;
+    }
+
+    class SurgicalTool {
+      String type;
+      String condition;
+      String usageHistory;
+    }
+
+    class Procedure {
+      String name;
+      String description;
+      List<String> stepInstructions;
+    }
+
+    composition SimulationEnvironment -> (has) Surgeon;
+    composition SimulationEnvironment -> (has) Patient;
+    composition SimulationEnvironment -> (has) Procedure;
+    composition Surgeon -> (uses) SurgicalTool;
+    composition Surgeon -> (uses) Procedure;
+    composition Patient -> (uses) VitalSigns;
+}

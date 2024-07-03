@@ -1,0 +1,56 @@
+
+classdiagram DigitalForensics {
+
+  class DigitalForensicsSystem {
+    UserInterface ui;
+    Database db;
+
+    void importEvidence(Evidence evidence);
+    Report analyzeEvidence(Evidence evidence);
+  }
+
+  interface Evidence {
+    String getSource();
+  }
+
+  class FileEvidence implements Evidence {
+    String fileName;
+    String fileContent;
+  }
+
+  class EmailEvidence implements Evidence {
+    String sender;
+    String recipient;
+    String subject;
+    String emailContent;
+  }
+
+  class NetworkPacketEvidence implements Evidence {
+    String sourceIP;
+    String destinationIP;
+    String protocol;
+    String payload;
+  }
+
+  class UserInterface {
+    void importEvidence();
+    void analyzeEvidence();
+    void viewReport();
+  }
+
+  class Database {
+    void storeEvidence(Evidence evidence);
+    void storeAnalysisResults(Report report);
+  }
+
+  class Report {
+    String summary;
+    String conclusions;
+  }
+
+  association DigitalForensicsSystem -> UserInterface [1];
+  association DigitalForensicsSystem -> Database [1];
+  association UserInterface -> Evidence [*];
+  association Database -> Evidence [*];
+  association DigitalForensicsSystem -> Report [1];
+}

@@ -1,0 +1,33 @@
+
+classdiagram ElectionSystem {
+
+    class VotingStation {
+      List<Voter> voters;
+      void castVote(Voter voter, Candidate candidate);
+    cvvotingStation VotingStation;
+    }
+
+    class Voter {
+      String voterId;
+      void castVote(Candidate candidate);
+      Voter();
+    }
+
+    class Candidate {
+      String candidateId;
+      String candidateName;
+      int voteCount;
+      Candidate(String candidateId, String candidateName);
+    }
+
+    class ElectionReport {
+      Map<Candidate, Integer> voteCounts;
+      Candidate winner;
+      ElectionReport();
+      void generateReport();
+    }
+
+    association VotingStation -> Voter [*];
+    association Voter -> Candidate [1];
+    association Candidate -> ElectionReport [1];
+}

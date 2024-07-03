@@ -1,0 +1,30 @@
+
+classdiagram NID {
+
+  class BCI {
+    String uniqueIdentifier;
+    -> ControlUnit [*];
+  }
+
+  class ControlUnit {
+    String uniqueIdentifier;
+    -> Device [*];
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    -> ControlUnit [*];
+  }
+
+  class ProstheticLimb extends Device {}
+  class Wheelchair extends Device {}
+  class Computer extends Device {}
+
+  class UserInterface {
+    void configure();
+    void monitorPerformance();
+  }
+
+  composition BCI -> ControlUnit [*];
+  composition ControlUnit -> Device [*];
+}

@@ -1,0 +1,37 @@
+
+
+
+
+classdiagram VirtualArtExhibition  {
+
+  class Exhibition  {
+    String title;
+    String description;
+    List<Artwork> artworks;
+  }
+
+  class Artwork  {
+    String title;
+    String description;
+    File file;
+    int views;
+  }
+
+  class Artist  {
+    String name;
+    List<Exhibition> exhibitions;
+  }
+
+  class Administrator  {
+    String name;
+  }
+
+  class File  {
+    String path;
+  }
+
+  composition Exhibition -> Artwork[*];
+  composition Artist -> Exhibition[*];
+  composition Administrator -> Exhibition[*];
+}
+

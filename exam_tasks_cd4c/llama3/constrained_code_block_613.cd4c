@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram MaglevTransportationSystem  {
+
+  class Station  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Track  {
+    Station from;
+    Station to;
+    boolean isStraight;
+  }
+
+  class Train  {
+    String uniqueIdentifier;
+    int capacity;
+    boolean isPassenger;
+  }
+
+  class PassengerTrain extends Train  {
+    int numSeats;
+    int speed;
+  }
+
+  class CargoTrain extends Train  {
+    String cargoType;
+    int weight;
+  }
+
+  class Sensor  {
+    Track track;
+    double speed;
+    double position;
+  }
+
+  class ControlCenter  {
+    void manageTrain(Train train);
+    void monitorSensor(Sensor sensor);
+  }
+
+  composition Station -> Track[*];
+  composition Track -> Sensor[*];
+  composition ControlCenter -> Train[*];
+  composition ControlCenter -> Sensor[*];
+}

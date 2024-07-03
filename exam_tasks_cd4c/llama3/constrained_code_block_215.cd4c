@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram DocumentReviewSystem  {
+
+  class DocumentRepository  {
+    Document[] documents;
+  }
+
+  class DocumentAnalyzer  {
+    void analyze(Document document);
+  }
+
+  class Categorizer  {
+    void categorize(Document document);
+  }
+
+  class UserInterface  {
+    void search(String query);
+    void viewDocuments();
+  }
+
+  class Document  {
+    String uniqueId;
+    String title;
+    String content;
+  }
+
+  class User  {
+    String username;
+  }
+
+  composition DocumentRepository -> Document[*];
+  composition DocumentAnalyzer -> Document[*];
+  composition Categorizer -> Document[*];
+  composition UserInterface -> User[*];
+  association Document -> DocumentAnalyzer;
+  association Document -> Categorizer;
+  association User -> UserInterface;
+}

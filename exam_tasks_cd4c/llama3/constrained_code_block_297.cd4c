@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram DocumentManagementSystem  {
+
+  class DocumentRepository {
+    Document[] documents;
+  }
+
+  abstract class Document {
+    String title;
+    DocumentType type;
+    DocumentVersion[] versions;
+  }
+
+  class DocumentType {
+    String name;
+    String description;
+  }
+
+  class DocumentVersion {
+    String content;
+    Document previousVersion;
+  }
+
+  class User {
+    String username;
+    Role role;
+  }
+
+  abstract class Role {
+    String name;
+    String description;
+  }
+
+  class DocumentChange {
+    Document document;
+    String changeDescription;
+  }
+
+  composition DocumentRepository -> Document[*];
+  composition Document -> DocumentType;
+  composition Document -> DocumentVersion[*];
+  composition User -> Role;
+  composition DocumentChange -> Document;
+}

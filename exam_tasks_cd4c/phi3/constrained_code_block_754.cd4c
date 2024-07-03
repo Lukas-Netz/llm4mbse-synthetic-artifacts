@@ -1,0 +1,53 @@
+
+classdiagram VRAmusementPark {
+
+    class ParkManagement {
+      Attraction[] attractions;
+      Budget budget;
+      void addAttraction(Attraction attraction);
+      void removeAttraction(Attraction attraction);
+      Attraction getAttractionStatus(String attractionName);
+      void updateAttractionStatus(Attraction attraction);
+      void purchaseAttraction(Attraction attraction);
+      void upgradeAttraction(Attraction attraction);
+    Writes remainingBudget();
+    }
+
+    class Budget {
+      int totalAmount;
+      int remainingAmount;
+      void addAmount(int amount);
+      void deductAmount(int amount);
+    }
+
+    abstract class Attraction {
+      String name;
+      String description;
+      String type;
+      String uniqueIdentifier;
+      boolean isOperational;
+    }
+
+    class RollerCoaster extends Attraction {
+      int speed;
+      int acceleration;
+      int gForce;
+    }
+
+    class DarkRide extends Attraction {
+      int duration;
+      int darknessLevel;
+      String specialEffects;
+    }
+
+    class InteractiveGame extends Attraction {
+      int difficultyLevel;
+      int score;
+      String gameMode;
+    }
+
+    association ParkManagement -> Attraction [*];
+    association ParkManagement -> Budget [*];
+    composition Attraction -> ParkManagement;
+    composition Budget -> ParkManagement;
+}

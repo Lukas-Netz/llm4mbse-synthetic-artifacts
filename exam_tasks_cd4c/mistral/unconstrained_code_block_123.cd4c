@@ -1,0 +1,46 @@
+
+classdiagram IndoorAirQuality {
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, Humidity, AirQuality;
+  }
+
+  class TemperatureSensor extends Sensor {
+    float temperature;
+  }
+
+  class HumiditySensor extends Sensor {
+    float humidity;
+  }
+
+  class AirQualitySensor extends Sensor {
+    float pollutantConcentration;
+  }
+
+  class Hub {
+    -> Sensor [*];
+    void collectData();
+    void displayData();
+  }
+
+  class Database {
+    void storeData(Sensor sensor);
+    void analyzeData();
+  }
+
+  class MobileApp {
+    Hub hub;
+    void turnOnSensor(Sensor sensor);
+    void turnOffSensor(Sensor sensor);
+    void adjustSamplingRate(Sensor sensor);
+    void viewData();
+  }
+
+  composition Hub -> Sensor [*];
+  association MobileApp -> Hub;
+}

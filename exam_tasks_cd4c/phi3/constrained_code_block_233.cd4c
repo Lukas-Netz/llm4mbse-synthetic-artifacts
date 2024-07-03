@@ -1,0 +1,48 @@
+
+classdiagram FinancialReportingSystem {
+
+    class FinancialReport {
+      String reportType;
+      DateTime startDate;
+      DateTime endDate;
+      Account account;
+      User user;
+      Map<String, Double> financialMetrics;
+    }
+
+    class Account {
+      String accountNumber;
+      double balance;
+    }
+
+    class User {
+      String userID;
+      String password;
+    }
+
+    class FinancialMetric {
+      String name;
+      double value;
+    }
+
+    class ReportGenerator {
+      void generateReport(FinancialReport report);
+    }
+
+    class FinancialMetrics {
+      Map<String, FinancialMetric> metrics;
+    }
+
+    class FinancialReportingSystem {
+      ReportGenerator reportGenerator;
+      List<Account> accounts;
+      List<User> users;
+    }
+
+    association FinancialReportingSystem -> ReportGenerator;
+    association FinancialReportingSystem -> List<<Account>>;
+    association FinancialReportingSystem -> List<<User>>;
+    composition FinancialReport -> Account;
+    composition FinancialReport -> User;
+    composition FinancialReport -> FinancialMetrics;
+}

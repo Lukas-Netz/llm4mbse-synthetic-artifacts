@@ -1,0 +1,106 @@
+
+
+
+
+classdiagram ERPSystem  {
+
+  class ERPSystem  {
+    Module  module;
+    Database database;
+  }
+
+  abstract class Module  {
+    String name;
+    Feature  feature;
+  }
+
+  class HumanResourcesModule extends Module  {
+    EmployeeProfile  employeeProfile;
+    JobPosting  jobPosting;
+    PerformanceEvaluation  performanceEvaluation;
+  }
+
+  class SupplyChainManagementModule extends Module  {
+    InventoryManagement  inventoryManagement;
+    OrderTracking  orderTracking;
+    Logistics  logistics;
+  }
+
+  class FinancialManagementModule extends Module  {
+    Budgeting  budgeting;
+    Accounting  accounting;
+    Reporting  reporting;
+  }
+
+  class Database  {
+    Data  data;
+  }
+
+  class Feature  {
+    String name;
+  }
+
+  class EmployeeProfile  {
+    String name;
+    String department;
+  }
+
+  class JobPosting  {
+    String title;
+    String description;
+  }
+
+  class PerformanceEvaluation  {
+    String rating;
+    String feedback;
+  }
+
+  class InventoryManagement  {
+    Product  product;
+    Quantity  quantity;
+  }
+
+  class OrderTracking  {
+    Order  order;
+    Status  status;
+  }
+
+  class Logistics  {
+    Shipment  shipment;
+    TrackingNumber  trackingNumber;
+  }
+
+  class Budgeting  {
+    Amount  amount;
+    Category  category;
+  }
+
+  class Accounting  {
+    Transaction  transaction;
+    Date  date;
+  }
+
+  class Reporting  {
+    Report  report;
+    Date  date;
+  }
+
+  class Data  {
+    String value;
+  }
+
+  class Product  {
+    String name;
+    String description;
+  }
+
+  class Quantity  {
+    int value;
+  }
+
+  class Order  {
+    String customerName;
+    String orderDate;
+  }
+
+   }

@@ -1,0 +1,65 @@
+
+classdiagram AntiquesMarketplace {
+
+    class Marketplace {
+      String name;
+      String uniqueIdentifier;
+      List<Category> categories;
+    WritableList<Listing> listings;
+      Admin admin;
+    }
+
+    class Category {
+      String name;
+      String description;
+      List<Subcategory> subcategories;
+    }
+
+    class Subcategory {
+      String name;
+      List<Antique> antiques;
+    }
+
+    class Antique {
+      String name;
+      String description;
+      double price;
+      Listing listing;
+      Status status;
+    }
+
+    class Listing {
+      Antique antique;
+      User seller;
+      User buyer;
+      Status status;
+    }
+
+    class User {
+      String name;
+      String email;
+      String password;
+      List<Listing> listings;
+      Rating rating;
+    }
+
+    class Admin {
+      void manageCategories();
+      void manageSubcategories();
+      void manageAntiques();
+      void monitorActivity();
+      void monitorRatings();
+    }
+
+    enum Status {
+      Active, Inactive;
+    }
+
+    enum PaymentMethod {
+      Cash, CreditCard, PayPal;
+    }
+
+    enum Rating {
+      OneStar, TwoStars, ThreeStars, FourStars, FiveStars;
+    }
+}

@@ -1,0 +1,40 @@
+
+
+
+
+classdiagram BiometricSecuritySystem  {
+
+  class CPU  {
+    void authenticate(Sensor sensor, BiometricData biometricData);
+    void identify(Sensor sensor, BiometricData biometricData);
+  }
+
+  abstract class Sensor  {
+    BiometricData biometricData;
+  }
+
+  class FaceRecognitionSensor extends Sensor  {
+    int resolution;
+    double accuracy;
+  }
+
+  class FingerprintSensor extends Sensor  {
+    int resolution;
+    double accuracy;
+  }
+
+  class Database  {
+    void store(BiometricData biometricData);
+    BiometricData retrieve(String id);
+  }
+
+  class BiometricData  {
+    String id;
+    byte[] faceImage;
+    byte[] fingerprintPattern;
+  }
+
+  composition CPU -> Sensor [1..*];
+  composition Database -> BiometricData [1..*];
+  association Sensor -> BiometricData;
+}

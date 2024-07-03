@@ -1,0 +1,64 @@
+
+classdiagram AdvancedProtonTherapySystem {
+
+    class TreatmentPlanningModule {
+      void createTreatmentPlan(Patient patient);
+      TreatmentPlan plan;
+    }
+
+    class TreatmentDeliveryModule {
+      void deliverTreatment(TreatmentPlan plan);
+      Gantry gantry;
+      Collimator collimator;
+    }
+
+    class PatientDatabase {
+      Patient patient;
+      void addPatient(Patient patient);
+      Patient getPatient(String patientId);
+    }
+
+    class Patient {
+      String patientId;
+      Set<MedicalCondition> medicalConditions;
+    }
+
+    class MedicalCondition {
+      String conditionType;
+      String conditionDetails;
+    }
+
+    class TreatmentPlan {
+      Set<BeamAngle> beamAngles;
+      Set<Energy> energies;
+      Set<Dose> doses;
+      Set<Constraint> constraints;
+    }
+
+    class Gantry {
+      void setGantryAngle(double angle);
+    }
+
+    class Collimator {
+      void setCollimatorAngle(double angle);
+    }
+
+    class Energy {
+      double energyLevel;
+    }
+
+    class Dose {
+      double doseLevel;
+    }
+
+    class Constraint {
+      String constraintType;
+      String constraintDetails;
+    }
+
+    association PatientDatabase -> Patient [*];
+    association TreatmentPlanningModule -> TreatmentPlan [*];
+    association TreatmentDeliveryModule -> TreatmentPlan [*];
+    composition TreatmentDeliveryModule -> (has) Gantry;
+    composition TreatmentDeliveryModule -> (has) Collimator;
+}

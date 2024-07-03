@@ -1,0 +1,42 @@
+
+classdiagram TherapyPlatform {
+
+  class Therapist {
+    String name;
+    String email;
+    String password;
+    -> Patient [*];
+  }
+
+  class Patient {
+    String name;
+    String email;
+    String password;
+    -> TherapySession [*];
+  }
+
+  class TherapySession {
+    DateTime dateTime;
+    int duration;
+    Therapist therapist;
+    Patient patient;
+    -> Goal [*];
+  }
+
+  class Goal {
+    String description;
+    GoalStatus status;
+  }
+
+  enum GoalStatus {
+    InProgress, Completed, Cancelled;
+  }
+
+  class DateTime {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+  }
+}

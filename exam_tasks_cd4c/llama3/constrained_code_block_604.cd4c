@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram AirQualityManagementSystem  {
+
+  class AirQualityData  {
+    double pm;
+    double no2;
+    double o3;
+  }
+
+  class MonitoringStation  {
+    String id;
+    AirQualityData airQualityData;
+    void reportAirQualityData(AirQualityData data);
+  }
+
+  class AirQualityAlert  {
+    AirQualityData airQualityData;
+    String recommendation;
+  }
+
+  class AirQualityAnalysis  {
+    AirQualityData airQualityData;
+    AirQualityAlert airQualityAlert;
+  }
+
+  class AirQualitySystem  {
+    MonitoringStation  monitoringStation;
+    AirQualityAnalysis airQualityAnalysis;
+    void analyzeAirQualityData(AirQualityData data);
+    AirQualityAlert getAirQualityAlert(AirQualityData data);
+  }
+
+  composition AirQualitySystem  ->  (has) MonitoringStation;
+  composition AirQualitySystem  ->  (has) AirQualityAnalysis;
+  composition MonitoringStation  ->  (has) AirQualityData;
+  composition AirQualityAnalysis  ->  (has) AirQualityData;
+  composition AirQualityAnalysis  ->  (has) AirQualityAlert;
+}

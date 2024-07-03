@@ -1,0 +1,75 @@
+
+classdiagram ParentingPlatform {
+
+  class Instructor {
+    String name;
+    String email;
+    String uniqueIdentifier;
+  }
+
+  class Class {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    Instructor instructor;
+    Topic [ ] topics;
+  }
+
+  class Topic {
+    String name;
+    String description;
+  }
+
+  class Parent {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+  }
+
+  class Enrollment {
+    Parent parent;
+    Class class;
+    Progress progress;
+  }
+
+  class Progress {
+    int completedTopics;
+    int totalTopics;
+  }
+
+  class DiscussionForum {
+    Topic topic;
+    Parent [ ] parents;
+    String message;
+  }
+
+  class Messaging {
+    Parent parent;
+    Instructor instructor;
+    String message;
+  }
+
+  class Administrator {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Analytics {
+    Administrator administrator;
+    int totalUsers;
+    int totalClasses;
+    int totalTopics;
+  }
+
+  composition Instructor teaches [many] -> Class;
+  composition Class has [many] -> Topic;
+  composition Enrollment enrolls [one] -> Parent;
+  composition DiscussionForum belongsTo [one] -> Topic;
+  composition Messaging sentBy [one] -> Parent;
+  composition Messaging receivedBy [one] -> Instructor;
+  composition Administrator manages [many] -> Class;
+  composition Administrator manages [many] -> Topic;
+  composition Administrator manages [many] -> Analytics;
+}

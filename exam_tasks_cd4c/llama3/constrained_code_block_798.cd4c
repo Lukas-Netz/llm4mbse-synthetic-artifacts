@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram IPManagement  {
+
+  class IPAsset  {
+    String uniqueIdentifier;
+    String description;
+  }
+
+  class Patent extends IPAsset  {
+    Date filingDate;
+    Date expirationDate;
+    List<Inventor> inventors;
+  }
+
+  class Trademark extends IPAsset  {
+    Date registrationDate;
+    Date expirationDate;
+    List<Owner> owners;
+  }
+
+  class Copyright extends IPAsset  {
+    Date creationDate;
+    Date expirationDate;
+    List<Author> authors;
+  }
+
+  class Category  {
+    String name;
+    List<IPAsset> ipAssets;
+  }
+
+  class Inventor  {
+    String name;
+  }
+
+  class Owner  {
+    String name;
+  }
+
+  class Author  {
+    String name;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    ADMIN, USER
+  ;}
+
+  composition IPAsset -> Category [1..*];
+  composition Category -> IPAsset [1..*];
+  composition Patent -> Inventor [1..*];
+  composition Trademark -> Owner [1..*];
+  composition Copyright -> Author [1..*];
+  composition User -> Role [1..1];
+  composition IPAsset -> User [1..1];
+  composition IPAsset -> ChangeLog [1..*];
+  class ChangeLog  {
+    Date timestamp;
+    String description;
+  }
+}

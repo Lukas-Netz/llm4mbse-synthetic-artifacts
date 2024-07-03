@@ -1,0 +1,41 @@
+
+classdiagram ParticleAccelerator {
+
+    class ParticleAccelerator {
+      String name;
+      String uniqueIdentifier;
+      List<Beamline> beamlines;
+      ControlSystem controlSystem;
+    }
+
+    class Beamline {
+      String name;
+      String uniqueIdentifier;
+      List<Magnet> magnets;
+      List<Detector> detectors;
+    }
+
+    class Magnet {
+      String name;
+      String type;
+      Map<String, Double> properties;
+    }
+
+    class Detector {
+      String name;
+      String type;
+      Map<String, Double> properties;
+    }
+
+    class ControlSystem {
+      void start();
+      void stop();
+      void adjust(String command);
+      void receiveStatusUpdate(String update);
+    }
+
+  composition ParticleAccelerator -> (has) ControlSystem;
+  composition ParticleAccelerator -> (has) Beamline [*];
+  composition Beamline -> Magnet [*];
+  composition Beamline -> Detector [*];
+}

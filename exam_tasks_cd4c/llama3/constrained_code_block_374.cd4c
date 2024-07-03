@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram RideSharing  {
+
+  class Driver  {
+    String name;
+    String uniqueIdentifier;
+    int rating;
+    Vehicle  Vehicle  ;  }
+  class Vehicle  {
+    String make;
+    String model;
+    String licensePlateNumber;
+  }
+
+  class Passenger  {
+    String name;
+    String uniqueIdentifier;
+    Location pickupLocation;
+    Location dropOffLocation;
+    VehicleType preferredVehicleType;
+  }
+
+  class RideRequest  {
+    Location pickupLocation;
+    Location dropOffLocation;
+    VehicleType preferredVehicleType;
+    DateTime requestedTime;
+  }
+
+  class Ride  {
+    RideType rideType;
+    double price;
+  }
+
+  enum RideType  {
+    Economy, Premium, Luxury;
+  }
+
+  enum VehicleType  {
+    Economy, Premium, Luxury;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class DateTime  {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+  }
+
+  composition Driver  ->  Vehicle  [0..*];
+  composition Passenger  ->  RideRequest  [1];
+  composition RideRequest  ->  Ride  [1];
+  composition Ride  ->  RideType  [1];
+  composition Ride  ->  double  [1];
+  composition Location  ->  String  [1];
+  composition DateTime  ->  int  [5];
+}

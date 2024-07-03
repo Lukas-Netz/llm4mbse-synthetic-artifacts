@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram OnlineGroceryDelivery  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    Address address;
+  }
+
+  class Order  {
+    Customer customer;
+    List<Product> products;
+    OrderStatus status;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    double price;
+    int quantity;
+    UnitPrice unitPrice;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Address  {
+    String street;
+    String city;
+    String state;
+    String zip;
+  }
+
+  class UnitPrice  {
+    double value;
+    Currency currency;
+  }
+
+  class Currency  {
+    String symbol;
+  }
+
+  class OrderStatus  {
+    String status;
+  }
+
+  composition Customer -> Order [1..*];
+  composition Order -> Product [*];
+  composition Product -> Category [1];
+  composition Product -> UnitPrice [1];
+  composition Category -> Product [*];
+  composition Address -> Customer [1];
+  composition UnitPrice -> Currency [1];
+  composition OrderStatus -> Order [1];
+}

@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Patient  {
+    String name;
+    MedicalHistory medicalHistory;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class MedicalHistory  {
+    List<Condition> conditions;
+    List<Medication> medications;
+  }
+
+  class Condition  {
+    String name;
+    String description;
+  }
+
+  class Medication  {
+    String name;
+    String description;
+  }
+
+  class TreatmentPlan  {
+    List<PlanStep> planSteps;
+  }
+
+  class PlanStep  {
+    String action;
+    String description;
+  }
+
+  class MedicalDevice  {
+    String name;
+    String description;
+  }
+
+  class SystemIntegration  {
+    List<MedicalDevice> devices;
+  }
+
+  class Analytics  {
+    List<Insight> insights;
+  }
+
+  class Insight  {
+    String description;
+    String recommendation;
+  }
+
+  class HealthcareProfessional  {
+    List<Patient> patients;
+  }
+
+  composition Patient -> (has) MedicalHistory;
+  composition Patient -> (has) TreatmentPlan;
+  composition MedicalHistory -> (has) Condition;
+  composition MedicalHistory -> (has) Medication;
+  composition TreatmentPlan -> (has) PlanStep;
+  composition SystemIntegration -> (has) MedicalDevice;
+  composition Analytics -> (has) Insight;
+  composition HealthcareProfessional -> (has) Patient;
+}

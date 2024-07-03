@@ -1,0 +1,96 @@
+
+classdiagram SDLC {
+
+  class Project {
+    String id;
+    String name;
+    String description;
+    ProjectState state;
+  }
+
+  enum ProjectState {
+    Planning, InProgress, Completed;
+  }
+
+  class Task {
+    String id;
+    String name;
+    String description;
+    TaskState state;
+    Project project;
+  }
+
+  enum TaskState {
+    Open, InProgress, Completed;
+  }
+
+  class TeamMember {
+    String id;
+    String name;
+    String role;
+    Set<Project> projects;
+  }
+
+  class Milestone {
+    String id;
+    String name;
+    String description;
+    MilestoneState state;
+    Project project;
+  }
+
+  enum MilestoneState {
+    Planned, InProgress, Completed;
+  }
+
+  class Dashboard {
+    Set<Project> projects;
+  }
+
+  class Report {
+    String projectProgress;
+    String taskCompletionRate;
+    String teamMemberPerformance;
+  }
+
+  composition Project [*] Dashboard.projects
+  -- Association
+  <<stereotype>>  -  {
+    ordered
+  }
+  			;
+ 																																														composition Project -> Task [*];
+ 																																														composition Project -> Milestone [*];
+ 																																														composition TeamMember [*] Project.projects
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Task [*] Dashboard.projects.tasks
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Milestone [*] Dashboard.projects.milestones
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Report.projectProgress
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Report.taskCompletionRate
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Report.teamMemberPerformance
+
+ 																																	-- Association
+ 																																		;
+ 																																														composition Dashboard.projects [Project]
+
+ 																											-- Association
+ 																												;
+ 																																														composition Task.project [Project]
+
+ 																											-- Association
+ 																												;
+ 				}

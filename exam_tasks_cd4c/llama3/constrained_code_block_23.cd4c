@@ -1,0 +1,56 @@
+
+
+
+classdiagram WeatherForecastingSystem  {
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    City location;
+    WeatherData temperature;
+    WeatherData humidity;
+    WeatherData windSpeed;
+    WeatherData otherConditions;
+  }
+
+  class WeatherAlgorithm  {
+    WeatherForecastingModel model;
+    WeatherData input;
+    WeatherForecast output;
+  }
+
+  class UserInterface  {
+    WeatherForecast display(WeatherForecast forecast);
+  }
+
+  class WeatherDatabase  {
+    WeatherData[] historicalData;
+    WeatherData getWeatherData(String date);
+  }
+
+  class WeatherForecastingModel  {
+    String name;
+    WeatherForecast predict(WeatherData input);
+  }
+
+  class WeatherData  {
+    double value;
+    String unit;
+  }
+
+  class WeatherForecast  {
+    double temperature;
+    double humidity;
+    double windSpeed;
+    double precipitation;
+  }
+
+  class City  {
+    String name;
+  }
+
+  composition WeatherStation -> WeatherData [4];
+  composition WeatherAlgorithm -> WeatherForecastingModel;
+  composition UserInterface -> WeatherForecast;
+  composition WeatherDatabase -> WeatherData;
+  composition WeatherForecastingModel -> WeatherData;
+}

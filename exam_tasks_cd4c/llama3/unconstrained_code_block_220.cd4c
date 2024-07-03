@@ -1,0 +1,85 @@
+
+
+
+
+classdiagram VirtualMeetingPlatform  {
+
+  class Meeting  {
+    String uniqueIdentifier;
+    String title;
+    DateTime startDateTime;
+    DateTime endDateTime;
+    String location;
+    -> Attendee[*];
+    -> File[*];
+  }
+
+  class Attendee  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class File  {
+    String uniqueIdentifier;
+    String name;
+    String fileType;
+  }
+
+  class MeetingOrganizer  {
+    -> Meeting[*];
+  }
+
+  class MeetingAttendee  {
+    -> Meeting[*];
+    -> Attendee[*];
+  }
+
+  class MeetingFile  {
+    -> Meeting[*];
+    -> File[*];
+  }
+
+  class MeetingHistory  {
+    -> Meeting[*];
+  }
+
+  class MeetingMinutes  {
+    -> Meeting[*];
+  }
+
+  class MeetingReminder  {
+    -> Meeting[*];
+  }
+
+  class MeetingMessage  {
+    -> Meeting[*];
+    -> Attendee[*];
+  }
+
+  class MeetingScreenShare  {
+    -> Meeting[*];
+    -> Attendee[*];
+  }
+
+  class MeetingRecording  {
+    -> Meeting[*];
+  }
+
+  class MeetingView  {
+    -> Meeting[*];
+  }
+
+  composition Meeting -> Attendee[*];
+  composition Meeting -> File[*];
+  composition Meeting -> MeetingOrganizer[*];
+  composition Meeting -> MeetingAttendee[*];
+  composition Meeting -> MeetingFile[*];
+  composition Meeting -> MeetingHistory[*];
+  composition Meeting -> MeetingMinutes[*];
+  composition Meeting -> MeetingReminder[*];
+  composition Meeting -> MeetingMessage[*];
+  composition Meeting -> MeetingScreenShare[*];
+  composition Meeting -> MeetingRecording[*];
+  composition Meeting -> MeetingView[*];
+}

@@ -1,0 +1,61 @@
+
+classdiagram DanceClassPlatform {
+
+  class User {
+    String username;
+    String password;
+    UserType userType;
+  }
+
+  enum UserType {
+    Instructor, Student;
+  }
+
+  class Instructor extends User {
+    String danceStyleSpecialty;
+    String bio;
+  }
+
+  class Student extends User {
+    DanceExperience danceExperience;
+    DanceGoals danceGoals;
+  }
+
+  class DanceExperience {
+    int years;
+    String danceStyle;
+  }
+
+  class DanceGoals {
+    String shortTerm;
+    String longTerm;
+  }
+
+  class Class {
+    String name;
+    String description;
+    Schedule schedule;
+    Instructor instructor;
+  }
+
+  class Schedule {
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    Frequency frequency;
+  }
+
+  enum Frequency {
+    Weekly, Biweekly, Monthly, Custom;
+  }
+
+  class Review {
+    User reviewer;
+    int rating;
+    String comment;
+  }
+
+  composition DanceClassPlatform -> User [*];
+  composition Class -> Instructor [1];
+  association Student <- Class [*];
+  association Review <-> Class [*];
+}

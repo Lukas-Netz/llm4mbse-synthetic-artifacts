@@ -1,0 +1,71 @@
+
+classdiagram Ecommerce {
+
+  class Customer {
+    String uniqueID;
+    String name;
+    String email;
+    -> Order [*];
+  }
+
+  class Order {
+    String uniqueID;
+    String orderDate;
+    double totalCost;
+    Customer customer;
+    -> Item [*];
+  }
+
+  class Item {
+    String uniqueID;
+    String name;
+    double price;
+    -> Order [*];
+    -> Category [*];
+  }
+
+  class Category {
+    String uniqueID;
+    String name;
+    String description;
+    -> Item [*];
+  }
+
+  class Sales {
+    String uniqueID;
+    String saleDate;
+    int quantity;
+    Order order;
+    Item item;
+  }
+
+  class MarketingCampaign {
+    String uniqueID;
+    String name;
+    String description;
+    -> Customer [*];
+  }
+
+  class Inventory {
+    String uniqueID;
+    String name;
+    int quantity;
+    Item item;
+  }
+
+  composition Customer -> Order [*];
+  composition Order -> Item [*];
+  composition Item -> Category [*];
+  composition Sales -> Order;
+  composition Sales -> Item;
+  composition MarketingCampaign -> Customer [*];
+  composition Inventory -> Item;
+
+  class Analysis {
+    void analyzeCustomerPurchasingHabits();
+    void trackSalesTrends();
+    void updateInventoryLevels();
+    void assignMarketingCampaigns();
+    void generateReports();
+  }
+}

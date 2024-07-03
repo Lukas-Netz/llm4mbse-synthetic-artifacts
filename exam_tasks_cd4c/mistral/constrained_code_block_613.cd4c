@@ -1,0 +1,55 @@
+
+classdiagram DrugDelivery {
+
+  class CentralHub {
+    -> Robot [*];
+    -> Database;
+    void updateRobotStatus(Robot robot);
+    String getRobotInfo(Robot robot);
+    void sendCommand(Robot robot);
+  }
+
+  abstract class Robot {
+    String uniqueIdentifier;
+    RobotStatus status;
+    Location location;
+  }
+
+  class Medicine extends Robot {
+    String medicineType;
+    int dosage;
+  }
+
+  class Sample extends Robot {
+    String sampleType;
+    String sampleID;
+  }
+
+  class Test extends Robot {
+    String testType;
+    TestResults results;
+  }
+
+  class Database {
+    void storeRobotInfo(Robot robot);
+    Robot getRobotInfo(String uniqueIdentifier);
+    void updateRobotError(Robot robot);
+  }
+
+  enum RobotStatus {
+    Active, Inactive, Error;
+  }
+
+  class Location {
+    String xCoordinate;
+    String yCoordinate;
+  }
+
+  class TestResults {
+    String result;
+    String timestamp;
+  }
+
+  composition CentralHub -> Robot [*];
+  composition CentralHub -> Database;
+}

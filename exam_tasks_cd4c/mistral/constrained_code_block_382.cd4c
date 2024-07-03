@@ -1,0 +1,62 @@
+
+classdiagram DigitalArtMarketplace {
+
+  class Artist {
+    String name;
+    String email;
+  }
+
+  class Artwork {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Artist creator;
+    ArtworkType type;
+  }
+
+  enum ArtworkType {
+    Painting, Photography, ThreeDimensionalModel
+ 
+ 
+ 
+ 
+ 
+ ;
+  }
+
+  class PaymentMethod {
+    String name;
+    String paymentProcessor;
+  }
+
+  class Sale {
+    Artwork artwork;
+    Customer buyer;
+    PaymentMethod paymentMethod;
+    LocalDateTime date;
+  }
+
+  class Revenue {
+    Artwork artwork;
+    BigDecimal totalRevenue;
+  }
+
+  class Analytics {
+    List<ArtworkType> popularArtTypes;
+    List<Artist> topSellingArtists;
+  }
+
+  class Customer {
+    String name;
+    String email;
+  }
+
+  composition DigitalArtMarketplace -> Artist [*];
+  composition DigitalArtMarketplace -> Artwork [*];
+  composition DigitalArtMarketplace -> PaymentMethod [*];
+  composition Sale -> Artwork [1];
+  composition Sale -> Customer [1];
+  composition Revenue -> Artwork [1];
+  composition Analytics -> ArtworkType [*];
+  composition Analytics -> Artist [*];
+}

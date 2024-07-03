@@ -1,0 +1,74 @@
+
+classdiagram DRM {
+
+  class ContentCreator {
+    String name;
+    void uploadContent(DigitalContent content);
+  }
+
+  class User {
+    String username;
+    String password;
+    void purchaseContent(DigitalContent content);
+    void rentContent(DigitalContent content);
+  }
+
+  class DigitalContent {
+    String title;
+    String creator;
+    int copiesAllowed;
+    int plays;
+    int downloads;
+    void play();
+    void download();
+  }
+
+  class Ownership {
+    User owner;
+    DigitalContent content;
+    boolean isPurchased;
+    boolean isRented;
+  }
+
+  class Usage {
+    User user;
+    DigitalContent content;
+    int plays;
+    int downloads;
+  }
+
+  interface PaymentGateway {
+    void processPayment(float amount);
+  }
+
+  interface CDN {
+    void distributeContent(DigitalContent content);
+  }
+
+  interface DRM {
+    void enforceCopyRestrictions(DigitalContent content);
+  }
+
+  class Report {
+    String usageReport;
+    String ownershipReport;
+  }
+
+  composition ContentCreator [*] DigitalContent [o_o]
+  -- User [*] -{ordered} 					;
+  association Ownership [*] User [o_o]
+  -- Usage [*] 						;
+  association Usage [*] DigitalContent [o_o]
+  -- PaymentGateway [1] -{ordered} 			;
+  association PaymentGateway [1] SmartSystem [o_o]
+  -- CDN [1] -{ordered} 					;
+  association CDN [1] SmartSystem [o_o]
+  -- DRM [1] -{ordered} 					;
+  association DRM [1] SmartSystem [o_o]
+  -- SmartSystem [1] -{ordered} 				;
+  class SmartSystem {
+    PaymentGateway paymentGateway;
+    CDN cdn;
+    DRM drm;
+  }
+}

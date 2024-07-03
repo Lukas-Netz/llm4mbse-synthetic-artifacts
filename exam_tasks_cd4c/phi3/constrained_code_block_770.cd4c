@@ -1,0 +1,41 @@
+
+classdiagram VoiceControlledWheelchairSystem {
+
+    class Wheelchair {
+      String uniqueIdentifier;
+      WheelchairState state;
+    }
+
+    class VoiceAssistant {
+      void recognizeCommand(String command);
+      void sendCommandToControlPanel(String command);
+    }
+
+    class ControlPanel {
+      void receiveCommand(String command);
+      void sendSignalToWheelchair(String direction);
+      String displayWheelchairState();
+    }
+
+    enum WheelchairState {
+      Idle, Moving, Stopped
+   
+   
+   ;}
+
+    enum WheelchairDirection {
+      Forward, Backward, Left, Right, None
+   
+   
+   ;}
+
+    association VoiceAssistant -> ControlPanel {
+     
+   
+
+ordered
+
+    }
+
+   
+;}

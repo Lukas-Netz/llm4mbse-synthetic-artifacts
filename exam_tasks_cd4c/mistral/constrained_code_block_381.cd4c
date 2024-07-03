@@ -1,0 +1,44 @@
+
+classdiagram GroceryDelivery {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String address;
+  }
+
+  class Order {
+    Customer customer;
+    -> Product [*];
+  }
+
+  abstract class Product {
+    String uniqueIdentifier;
+    String name;
+    double price;
+  }
+
+  class FreshProduce extends Product {
+  }
+
+  class DairyProduct extends Product {
+  }
+
+  class PackagedGoods extends Product {
+  }
+
+  class ProductCategory {
+    String name;
+    -> Product [*];
+  }
+
+  class Administrator {
+    void manageProducts();
+    void manageCategories();
+    void manageCustomers();
+  }
+
+  composition Customer <- Order;
+  composition Order <- Product;
+  composition ProductCategory <- Product [*];
+}

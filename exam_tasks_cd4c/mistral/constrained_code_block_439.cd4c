@@ -1,0 +1,55 @@
+
+classdiagram VRPhysicsSimulation {
+
+  class SimulationEngine {
+    void updateSimulationState();
+    void renderScene();
+    void handleUserInput();
+  }
+
+  class Scene {
+    Object [ ] objects;
+    void save();
+    void load();
+    void pause();
+    void resume();
+  }
+
+  abstract class Object {
+    void update();
+  }
+
+  class RigidBody extends Object {
+    double mass;
+    Vector3D position;
+    Vector3D velocity;
+    Vector3D acceleration;
+  }
+
+  class SoftBody extends Object {
+    double elasticity;
+    double viscosity;
+    double density;
+  }
+
+  class Light extends Object {
+    double intensity;
+    Color color;
+    Vector3D direction;
+  }
+
+  class Vector3D {
+    double xCoord;
+    double yCoord;
+    double zCoord;
+  }
+
+  class Color {
+    double red;
+    double green;
+    double blue;
+  }
+
+  composition SimulationEngine -> Scene;
+  composition Scene -> Object [*];
+}

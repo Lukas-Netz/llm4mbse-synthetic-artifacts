@@ -1,0 +1,61 @@
+
+classdiagram CollaborationTool {
+
+  class Team {
+    String name;
+    String description;
+    TeamStatus status;
+  }
+
+  enum TeamStatus {
+    InProgress, Completed, Cancelled;
+  }
+
+  class Member {
+    String uniqueIdentifier;
+    MemberRole role;
+  }
+
+  enum MemberRole {
+    Admin, Member, Guest;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Team team;
+    ProjectStatus status;
+    File [ ] files;
+    Task [ ] tasks;
+  }
+
+  enum ProjectStatus {
+    InProgress, Completed, Cancelled;
+  }
+
+  class File {
+    String name;
+    long size;
+    FileType type;
+    boolean isPublic;
+    Member [ ] sharers;
+  }
+
+  enum FileType {
+    Image, Document, Video;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Date dueDate;
+    Member assignee;
+    boolean isCompleted;
+  }
+
+  composition Team -> Project [*];
+  composition Project -> File [*];
+  composition Project -> Task [*];
+  association Member --o00o- 											;
+  association Task --o00o- 											;
+}

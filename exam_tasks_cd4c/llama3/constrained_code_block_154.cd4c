@@ -1,0 +1,246 @@
+
+
+
+classdiagram EMM  {
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Device  [  ]
+  class  ;
+
+  class Application  ;
+
+  class Policy  ;
+
+  class Report  ;
+
+  class DeviceType  ;
+
+  class ApplicationType  ;
+
+  class PolicyType  ;
+
+  composition Device  ;
+
+  composition User  ;
+
+  composition Application  ;
+
+  composition Policy  ;
+
+  composition Report  ;
+
+  association Device   ;
+
+  association User   ;
+
+  association Application   ;
+
+  association Policy   ;
+
+  association Report  ;
+
+  operation Device   ;
+
+  operation User   ;
+
+    }
+
+  class DeviceType  {
+    String name;
+  }
+
+  class ApplicationType  {
+    String name;
+  }
+
+  class PolicyType  {
+    String name;
+  }
+
+  class ReportType  {
+    String name;
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Device  [  ]
+  class  ;
+
+  class Application  ;
+
+  class Policy  ;
+
+  class Report  ;
+
+  class DeviceType  ;
+
+  class ApplicationType  ;
+
+  class PolicyType  ;
+
+  class ReportType  ;
+
+  composition Device  ;
+
+  composition User  ;
+
+  composition Application  ;
+
+  composition Policy  ;
+
+  composition Report  ;
+
+  association Device   ;
+
+  association User   ;
+
+  association Application  ;
+
+  association Policy  ;
+
+  association Report  ;
+
+  operation Device   ;
+
+   }
+
+  class DeviceType  {
+    String name;
+  }
+
+  class ApplicationType  {
+    String name;
+  }
+
+  class PolicyType  {
+    String name;
+  }
+
+  class ReportType  {
+    String name;
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Device  [  ]
+  class  ;
+
+  class Application  ;
+
+  class Policy  ;
+
+  class Report  ;
+
+  class DeviceType  ;
+
+  class ApplicationType  ;
+
+  class PolicyType  ;
+
+  class ReportType  ;
+
+  composition Device  ;
+
+  composition User  ;
+
+  composition Application  ;
+
+  composition Policy  ;
+
+  composition Report  ;
+
+  association Device   ;
+
+  association User   ;
+
+  association Application  ;
+
+  association Policy  ;
+
+  association Report  ;
+
+  operation Device   ;
+
+   }
+
+  class DeviceType  {
+    String name;
+  }
+
+  class ApplicationType  {
+    String name;
+  }
+
+  class PolicyType  {
+    String name;
+  }
+
+  class ReportType  {
+    String name;
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Device  [  ]
+  class  ;
+
+  class Application  ;
+
+  class Policy  ;
+
+  class Report  ;
+
+  class DeviceType  ;
+
+  class ApplicationType  ;
+
+  class PolicyType  ;
+
+  class ReportType  ;
+
+  composition Device  ;
+
+  composition User  ;
+
+  composition Application  ;
+
+  composition Policy  ;
+
+  composition Report  ;
+
+  association Device   ;
+
+  association User   ;
+
+  association Application  ;
+
+  association Policy  ;
+
+  association Report  ;
+
+  operation Device   ;
+
+   }
+
+   }

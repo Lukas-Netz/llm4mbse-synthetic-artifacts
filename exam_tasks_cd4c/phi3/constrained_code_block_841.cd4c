@@ -1,0 +1,61 @@
+
+classdiagram DigitalTwin {
+
+    class Infrastructure {
+      String uniqueIdentifier;
+      InfrastructureStatus status;
+    }
+
+    class Sensor {
+      String sensorId;
+      Infrastructure infrastructure;
+      float temperature;
+      float humidity;
+      float vibration;
+    }
+
+    class Actuator {
+      String actuatorId;
+      Infrastructure infrastructure;
+      void adjustTemperature(float temperature);
+      void adjustHumidity(float humidity);
+    }
+
+    class Simulation {
+      Infrastructure infrastructure;
+      void runSimulation();
+    }
+
+    class Monitoring {
+      Infrastructure infrastructure;
+      void monitorStatus();
+      void alert();
+    }
+
+    class Mainteninasmall
+    {
+      Infrastructure infrastructure;
+      void scheduleMaintenance();
+      void performMaintenance();
+    }
+
+    enum InfrastructureStatus {
+      Operational, NonOperational;
+    }
+
+    enum InfrastructureType {
+      Road, Bridge, Building;
+    }
+
+    composition Infrastructure -> (has) Sensor [*];
+    composition Infrastructure -> (has) Actuator [*];
+    composition Infrastructure -> (has) Simulation [*];
+    composition Infrastructure -> (has) Monitoring [*];
+    composition Infrastructure -> (has) Maintenance [*];
+
+    association Sensor -> Infrastructure [*];
+    association Actuator -> Infrastructure [*];
+    association Simulation -> Infrastructure [*];
+    association Monitoring -> Infrastructure [*];
+    association Maintenance -> Infrastructure [*];
+}

@@ -1,0 +1,46 @@
+
+
+classdiagram VirtualTradeShow {
+
+    class Exhibitor {
+      String uniqueIdentifier;
+      String name;
+      boolean isSponsor;
+      int sponsorshipAmount;
+      String sponsorshipType;
+    }
+
+    class Product {
+      String name;
+      String description;
+      int price;
+      Exhibitor exhibitor;
+    }
+
+    class Attendee {
+      String name;
+      String email;
+      String company;
+    }
+
+    class Interaction {
+      String attendeeName;
+      String exhibitorName;
+      String productInquire;
+      String demoRequest;
+    }
+
+    class Report {
+      String exhibitorPerformanceReport;
+      String productPopularityReport;
+      String attendeeEngagementReport;
+    }
+
+  composition Exhibitor -> Product [*];
+  composition Attendee -> Interaction [*];
+  association Interaction -> Exhibitor;
+  association Interaction -> Product;
+  association Report -> Exhibitor;
+  association Report -> Product;
+  association Report -> Attendee;
+}

@@ -1,0 +1,65 @@
+
+classdiagram Telehealth {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    String contactInfo;
+    Appointment [ ] scheduledAppointments;
+    MedicalRecord medicalRecord;
+  }
+
+  class HealthcareProfessional {
+    String uniqueIdentifier;
+    String name;
+    String specialty;
+    Appointment [ ] scheduledAppointments;
+  }
+
+  class Appointment {
+    String uniqueIdentifier;
+    String date;
+    String time;
+    AppointmentStatus status;
+    Patient patient;
+    HealthcareProfessional healthcareProfessional;
+  }
+
+  enum AppointmentStatus {
+    Pending, Confirmed, Cancelled;
+  }
+
+  class MedicalRecord {
+    TestResult [ ] testResults;
+    MedicationList medications;
+    Allergy [ ] allergies;
+  }
+
+  class TestResult {
+    String testName;
+    String result;
+    String date;
+  }
+
+  class MedicationList {
+    Medication [ ] medications;
+  }
+
+  class Allergy {
+    String allergen;
+    String severity;
+  }
+
+  class Medication {
+    String name;
+    String dosage;
+    String frequency;
+  }
+
+  composition Telehealth -> Patient [*];
+  composition Telehealth -> HealthcareProfessional [*];
+  association Patient --oAppointment;
+  association HealthcareProfessional --oAppointment;
+  association Appointment --oPatient;
+  association Appointment --oHealthcareProfessional;
+}

@@ -1,0 +1,63 @@
+
+classdiagram DeepSeaExplorationSystem {
+
+    class Submarine {
+      String name;
+      String uniqueIdentifier;
+      SubmarineType type;
+      Database database;
+      CommunicationSystem communicationSystem;
+    }
+
+    class ROV {
+      String name;
+      String uniqueIdentifier;
+      ROVType type;
+      CommunicationSystem communicationSystem;
+    }
+
+    class ControlCenter {
+      String name;
+      String uniqueIdentifier;
+      ControlCenterType type;
+      CommunicationSystem communicationSystem;
+    }
+
+    class Database {
+      String name;
+      DatabaseType type;
+      String dataType;
+      String imageType;
+    }
+
+    class CommunicationSystem {
+      String name;
+      CommunicationSystemType type;
+    }
+
+    enum SubmarineType {
+      ResearchSubmarine, ExplorationSubmarine;
+    }
+
+    enum ROVType {
+      SampleCollector, ExperimentConductor, Explorer;
+    }
+
+    enum ControlCenterType {
+      ResearchCenter, ExplorationCenter;
+    }
+
+    enum DatabaseType {
+      Video, Audio, Image;
+    }
+
+    enum CommunicationSystemType {
+      Transmission, Control;
+    }
+
+    association Submarine -> Database;
+    association Submarine -> CommunicationSystem;
+    association ROV -> CommunicationSystem;
+    association ControlCenter -> CommunicationSystem;
+    association Database -> CommunicationSystem;
+}

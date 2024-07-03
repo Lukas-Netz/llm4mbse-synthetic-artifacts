@@ -1,0 +1,36 @@
+
+classdiagram RealTimeTranslationSystem {
+
+    class DictionaryDatabase {
+      Map<String, Map<String, String>> translations;
+      void addTranslation(String word, String language, String translation);
+      String getTranslation(String word, String language);
+    }
+
+    class TextProcessingModule {
+      String processText(String text);
+    }
+
+    class TranslationModule {
+      String translateText(String text, String sourceLanguage, String targetLanguage);
+    }
+
+    class UserInterface {
+      void displayText(String text);
+      void inputText(String text);
+    }
+
+    class TranslationSystem {
+      DictionaryDatabase dictionaryDatabase;
+      TextProcessingModule textProcessingModule;
+      TranslationModule translationModule;
+      UserInterface userInterface;
+
+      void translateText(String text, String sourceLanguage, String targetLanguage);
+    }
+
+  composition TranslationSystem -> DictionaryDatabase;
+  composition TranslationSystem -> TextProcessingModule;
+  composition TranslationSystem -> TranslationModule;
+  composition TranslationSystem -> UserInterface;
+}

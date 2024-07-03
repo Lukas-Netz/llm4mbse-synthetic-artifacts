@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram ElderCareRobot  {
+
+  class Robot  {
+    String name;
+    RobotType type;
+    Sensor[] sensors;
+    ControlUnit controlUnit;
+    State state;
+  }
+
+  class Sensor  {
+    String name;
+    SensorType type;
+  }
+
+  class ControlUnit  {
+    void processSensorData(SensorData data);
+  }
+
+  class SensorData  {
+    String sensorName;
+    double value;
+  }
+
+  class RobotType  {
+    String name;
+  }
+
+  class SensorType  {
+    String name;
+  }
+
+  class State  {
+    String value;
+  }
+
+  composition Robot -> Sensor[*];
+  composition ControlUnit -> SensorData[*];
+  association Robot -> ControlUnit;
+  association Sensor -> SensorData;
+  association Robot -> State;
+  association Sensor -> SensorType;
+  association Robot -> RobotType;
+}

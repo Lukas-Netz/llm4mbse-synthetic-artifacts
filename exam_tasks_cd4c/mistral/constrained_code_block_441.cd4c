@@ -1,0 +1,47 @@
+
+classdiagram DigitalArchives {
+
+  class Archive {
+    String uniqueIdentifier;
+    String name;
+    Document [ ] documents;
+  }
+
+  abstract class Document {
+    String title;
+    String description;
+    String dateOfCreation;
+  }
+
+  class TextDocument extends Document {
+    String textContent;
+  }
+
+  class ImageDocument extends Document {
+    String imageFile;
+  }
+
+  class AudioDocument extends Document {
+    String audioFile;
+  }
+
+  class Collection {
+    String name;
+    String description;
+    Archive [ ] archives;
+    CollectionType type;
+  }
+
+  enum CollectionType {
+    Historical, Cultural, Scientific;
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  composition Archive [ * ] in (has) -> Collection [ * ];
+  composition Collection [ * ] in (has) -> Archive [ * ];
+  composition Archive [ * ] in (has) -> Document [ * ];
+}

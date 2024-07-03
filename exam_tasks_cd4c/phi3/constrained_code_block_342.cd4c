@@ -1,0 +1,50 @@
+
+classdiagram OnlineTradingPlatform {
+
+    class OTP {
+      List<Exchange> exchanges;
+      List<TradingAccount> tradingAccounts;
+      NotificationSystem notificationSystem;
+    }
+
+    class Exchange {
+      String name;
+      List<TradingAccount> tradingAccounts;
+      void addTradingAccount(TradingAccount tradingAccount);
+      void removeTradingAccount(TradingAccount tradingAccount);
+      void addFinancialInstrument(FinancialInstrument financialInstrument);
+      void removeFinancialInstrument(FinancialInstrument financialInstrument);
+    }
+
+    class TradingAccount {
+      String userId;
+      String accountId;
+      double balance;
+      List<Transaction> transactions;
+      void buy(FinancialInstrument financialInstrument, double quantity, double price);
+      void sell(FinancialInstrument financialInstrument, double quantity, double price);
+    }
+
+    class FinancialInstrument {
+      String identifier;
+      String name;
+      double price;
+    }
+
+    class Transaction {
+      FinancialInstrument instrument;
+      String type;
+      double quantity;
+      double price;
+    }
+
+    class Notification {
+      String type;
+      String message;
+    }
+
+    association OTP -> List<<Exchange, TradingAccount>>;
+    association OTP -> List<<TradingAccount, Transaction>>;
+    association OTP -> List<<FinancialInstrument, Transaction>>;
+    composition OTP -> NotificationSystem;
+}

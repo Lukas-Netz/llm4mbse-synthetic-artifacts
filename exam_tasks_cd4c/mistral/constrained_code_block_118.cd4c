@@ -1,0 +1,63 @@
+
+classdiagram ConversationalInterface {
+
+  class User {
+    String name;
+    boolean isBot;
+  }
+
+  class Query {
+    String text;
+    String language;
+    boolean isVoiceCommand;
+  }
+
+  class Response {
+    String text;
+    String format;
+    String language;
+  }
+
+  class KnowledgeBase {
+    Map<String, String> topics;
+  }
+
+  class ExternalAPI {
+    String url;
+  }
+
+  class Suggestion {
+    Query query;
+    Response response;
+  }
+
+  class Feedback {
+    Query query;
+    Response response;
+    String rating;
+  }
+
+  class SmartDevice {
+    String deviceType;
+  }
+
+  class ConversationalInterface {
+    User user;
+    Query query;
+    Response response;
+    KnowledgeBase knowledgeBase;
+    ExternalAPI externalAPI;
+    Set<Suggestion> suggestions;
+    Set<Feedback> feedback;
+    SmartDevice[] devices;
+  }
+
+  composition User -> ConversationalInterface;
+  composition Query -> ConversationalInterface;
+  composition Response -> ConversationalInterface;
+  composition KnowledgeBase -> ConversationalInterface;
+  composition ExternalAPI -> ConversationalInterface;
+  composition Suggestion -> ConversationalInterface [*];
+  composition Feedback -> ConversationalInterface [*];
+  composition ConversationalInterface -> SmartDevice [*];
+}

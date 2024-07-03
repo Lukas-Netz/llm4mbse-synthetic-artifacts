@@ -1,0 +1,40 @@
+
+classdiagram UrbanAirQualitySystem {
+
+  class UrbanAirQualitySystem {
+    List<MonitoringStation> monitoringStations;
+    List<Pollutant> pollutants;
+    AlertSystem alertSystem;
+    RecommendationSystem recommendationSystem;
+  }
+
+  class MonitoringStation {
+    String location;
+    List<PollutantData> pollutantData;
+    void reportData();
+  }
+
+  class Pollutant {
+    String name;
+    double concentration;
+  }
+
+  class PollutantData {
+    Pollutant pollutant;
+    double value;
+    DateTime timestamp;
+  }
+
+  class AlertSystem {
+    void sendAlert(PollutantData data);
+  }
+
+  class RecommendationSystem {
+    void provideRecommendation(PollutantData data);
+  }
+
+  composition UrbanAirQualitySystem -> (has) MonitoringStation;
+  composition UrbanAirQualitySystem -> (has) Pollutant;
+  composition UrbanAirQualitySystem -> (has) AlertSystem;
+  composition UrbanAirQualitySystem -> (has) RecommendationSystem;
+}

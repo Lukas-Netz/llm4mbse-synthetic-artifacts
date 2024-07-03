@@ -1,0 +1,37 @@
+
+
+classdiagram MaritimeNavigationSystem {
+
+    class Vessel {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class NavigationSystem {
+      void provideNavigationData(Vessel vessel);
+    }
+
+    class GPS extends NavigationSystem {
+      double latitude;
+      double longitude;
+    }
+
+    class Radar extends NavigationSystem {
+      int range;
+      int bearing;
+    }
+
+    class Compass extends NavigationSystem {
+      int heading;
+    }
+
+    class WeatherStation {
+      int windSpeed;
+      int windDirection;
+      int precipitation;
+    }
+
+    composition Vessel -> (has) NavigationSystem [*];
+    composition Vessel -> (has) WeatherStation [0..1];
+}

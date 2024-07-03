@@ -1,0 +1,52 @@
+
+classdiagram DNAanalysis {
+
+  class User {
+    String uniqueIdentifier;
+    DNAData dnaData;
+    Recommendations recommendations;
+  }
+
+  class DNAData {
+    User user;
+    String geneticInfo;
+  }
+
+  abstract class Recommendations {
+    User user;
+    Health health;
+    Wellness wellness;
+    Lifestyle lifestyle;
+  }
+
+  class Health {
+    User user;
+    String healthCondition;
+    String advice;
+  }
+
+  class Wellness {
+    User user;
+    String wellnessMetric;
+    String advice;
+  }
+
+  class Lifestyle {
+    User user;
+    String lifestyleHabit;
+    String advice;
+  }
+
+  class Expert {
+    String areaOfExpertise;
+    String advice;
+  }
+
+  association User --o000o- 											;
+  association DNAData --o000o- 										;
+  association Recommendations --o000o- 								;
+  association Health --o000o- 										;
+  association Wellness --o000o- 										;
+  association Lifestyle --o000o- 									;
+  association Expert --o000o- 										;
+}

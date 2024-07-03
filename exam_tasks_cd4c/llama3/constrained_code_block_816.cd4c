@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram SecureHealthcareSystem  {
+
+  class PatientRecord  {
+    String uniqueIdentifier;
+    String patientName;
+    Date dateOfBirth;
+    MedicalHistory medicalHistory;
+  }
+
+  class MedicalHistory  {
+    List<Diagnosis> diagnoses;
+    List<Treatment> treatments;
+    List<Medication> medications;
+  }
+
+  class Diagnosis  {
+    String diagnosisName;
+    Date diagnosisDate;
+  }
+
+  class Treatment  {
+    String treatmentName;
+    Date treatmentDate;
+  }
+
+  class Medication  {
+    String medicationName;
+    Date prescriptionDate;
+  }
+
+  class HealthcareProvider  {
+    String username;
+    String password;
+  }
+
+  class Patient  {
+    String username;
+    String password;
+  }
+
+  class SecureDatabase  {
+    List<PatientRecord> patientRecords;
+  }
+
+  class QuantumResistantEncryption  {
+    void encrypt(PatientRecord patientRecord);
+    void decrypt(PatientRecord patientRecord);
+  }
+
+  class AuditLog  {
+    List<AuditEvent> auditEvents;
+  }
+
+  class AuditEvent  {
+    Date timestamp;
+    String eventDescription;
+  }
+
+  class SecureHealthcareSystem  {
+    SecureDatabase secureDatabase;
+    QuantumResistantEncryption quantumResistantEncryption;
+    AuditLog auditLog;
+  }
+
+  composition SecureHealthcareSystem -> SecureDatabase;
+  composition SecureHealthcareSystem -> QuantumResistantEncryption;
+  composition SecureHealthcareSystem -> AuditLog;
+  composition SecureDatabase -> PatientRecord[*];
+  composition PatientRecord -> MedicalHistory;
+  composition MedicalHistory -> Diagnosis[*];
+  composition MedicalHistory -> Treatment[*];
+  composition MedicalHistory -> Medication[*];
+  }

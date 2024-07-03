@@ -1,0 +1,81 @@
+
+
+
+
+classdiagram FinancialPlanningSystem  {
+
+  class UserProfile  {
+    String username;
+    String password;
+    FinancialGoal financialGoal;
+    RiskTolerance riskTolerance;
+  }
+
+  class FinancialData  {
+    BankAccount bankAccount;
+    CreditCard creditCard;
+    InvestmentPortfolio investmentPortfolio;
+  }
+
+  class FinancialGoal  {
+    String goalType;
+    double goalAmount;
+    Date goalDeadline;
+  }
+
+  class RiskTolerance  {
+    String riskLevel;
+    double riskPercentage;
+  }
+
+  class AnalysisEngine  {
+    FinancialData financialData;
+    UserProfile userProfile;
+    FinancialAdvice financialAdvice;
+  }
+
+  class FinancialAdvice  {
+    String investmentRecommendation;
+    String savingsRecommendation;
+    String budgetingRecommendation;
+  }
+
+  class RecommendationEngine  {
+    FinancialAdvice financialAdvice;
+    UserProfile userProfile;
+  }
+
+  class TransactionManager  {
+    FinancialData financialData;
+    UserProfile userProfile;
+    Transaction transaction;
+  }
+
+  class Transaction  {
+    String transactionType;
+    double transactionAmount;
+    Date transactionDate;
+  }
+
+  class Reporting  {
+    UserProfile userProfile;
+    FinancialData financialData;
+    FinancialAdvice financialAdvice;
+  }
+
+  composition UserProfile -> FinancialGoal;
+  composition UserProfile -> RiskTolerance;
+  composition FinancialData -> BankAccount;
+  composition FinancialData -> CreditCard;
+  composition FinancialData -> InvestmentPortfolio;
+  composition AnalysisEngine -> FinancialData;
+  composition AnalysisEngine -> UserProfile;
+  composition RecommendationEngine -> FinancialAdvice;
+  composition RecommendationEngine -> UserProfile;
+  composition TransactionManager -> FinancialData;
+  composition TransactionManager -> UserProfile;
+  composition Reporting -> UserProfile;
+  composition Reporting -> FinancialData;
+  composition Reporting -> FinancialAdvice;
+}
+

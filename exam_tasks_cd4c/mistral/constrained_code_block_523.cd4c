@@ -1,0 +1,72 @@
+
+classdiagram VolcanoMonitoring {
+
+  class Volcano {
+    String uniqueIdentifier;
+    String name;
+    String location;
+    VolcanoStatus status;
+  }
+
+  enum VolcanoStatus {
+    Active, Dormant;
+  }
+
+  class Eruption {
+    String uniqueIdentifier;
+    Volcano volcano;
+    Date startDate;
+    Date endDate;
+    EruptionMagnitude magnitude;
+    EruptionType type;
+  }
+
+  enum EruptionMagnitude {
+    Low, Medium, High;
+  }
+
+  enum EruptionType {
+    Effusive, Explosive;
+  }
+
+  class MonitoringStation {
+    String uniqueIdentifier;
+    String name;
+    String location;
+    MonitoringStationStatus status;
+    Volcano volcano;
+  }
+
+  enum MonitoringStationStatus {
+    Online, Offline;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String type;
+    MonitoringStation monitoringStation;
+    SensorReading reading;
+  }
+
+  class SensorReading {
+    double value;
+  }
+
+  class Alert {
+    String uniqueIdentifier;
+    Volcano volcano;
+    AlertSeverity severity;
+    String message;
+    Date timestamp;
+  }
+
+  enum AlertSeverity {
+    Low, Medium, High;
+  }
+
+  composition VolcanoMonitoring -> Volcano [*];
+  composition Volcano -> Eruption [*];
+  composition MonitoringStation -> Sensor [*];
+  association Volcano -> MonitoringStation [*];
+  association VolcanoMonitoring -> Alert [*];
+}

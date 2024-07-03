@@ -1,0 +1,30 @@
+
+classdiagram FraudDetectionSystem {
+
+    class CentralDatabase {
+      void receiveTransactionData(TransactionData data);
+      void storeTransactionData(TransactionData data);
+      void analyzeTransactions();
+      void generateReports();
+    }
+
+    class Sensor {
+      String sensorType;
+      void sendTransactionData(TransactionData data);
+    }
+
+    class SecurityTeam {
+      void receiveAlert(TransactionData data);
+    }
+
+    class TransactionData {
+      String transactionId;
+      String transactionType;
+      double amount;
+      DateTime timestamp;
+    }
+
+    composition CentralDatabase -> (has) Sensor;
+    composition CentralDatabase -> (has) SecurityTeam;
+    association Sensor -> TransactionData [*];
+}

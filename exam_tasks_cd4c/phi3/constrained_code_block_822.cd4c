@@ -1,0 +1,51 @@
+
+classdiagram VRTherapySystem {
+
+    class VRTherapySystem {
+      VRHeadset vrHeadset;
+      VRController vrController;
+      ScenarioLibrary scenarioLibrary;
+      Computer computer;
+    }
+
+    class VRHeadset {
+      void connectToComputer(Computer computer);
+      void disconnectFromComputer(Computer computer);
+      void displayScenario(Scenario scenario);
+    }
+
+    class VRController {
+      void interactWithScenario(Scenario scenario);
+      void sendFeedbackToComputer(String feedback);
+    }
+
+    class Scenario {
+      String identifier;
+      String description;
+      ScenarioType type;
+    }
+
+    class ScenarioLibrary {
+      List<Scenario> scenarios;
+      void addScenario(Scenario scenario);
+      Scenario getScenario(String identifier);
+    }
+
+    class Computer {
+      List<Patient> patients;
+      void storePatientProgress(Patient patient);
+      void generateNewScenario(Patient patient);
+      void adjustTherapyPlan(Patient patient);
+    }
+
+    class Patient {
+      String name;
+      String progress;
+      String therapyGoals;
+    }
+
+  association VRTherapySystem -> Computer;
+  composition VRTherapySystem -> VRHeadset;
+  composition VRTherapySystem -> VRController;
+  composition VRTherapySystem -> ScenarioLibrary;
+}

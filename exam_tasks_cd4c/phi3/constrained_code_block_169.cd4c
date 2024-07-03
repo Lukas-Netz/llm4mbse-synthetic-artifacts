@@ -1,0 +1,47 @@
+
+classdiagram FinancialComplianceSystem {
+
+    class ComplianceRequirement {
+      String identifier;
+      String description;
+      Set<String> criteria;
+    }
+
+    class FinancialInstitution {
+      String identifier;
+      String name;
+      Set<ComplianceRequirement> requirements;
+    }
+
+    class ComplianceStatus {
+      String status;
+    }
+
+    class Alert {
+      String message;
+      String institutionIdentifier;
+    }
+
+    class ComplianceSystem {
+      FinancialInstitution[] institutions;
+      ComplianceRequirement[] requirements;
+      ComplianceStatus[] statuses;
+      Alert[] alerts;
+
+      void addInstitution(FinancialInstitution institution);
+      void removeInstitution(FinancialInstitution institution);
+      void addRequirement(ComplianceRequirement requirement);
+      void removeRequirement(ComplianceRequirement requirement);
+      void updateStatus(FinancialInstitution institution, ComplianceStatus status);
+      void sendAlert(Alert alert);
+      void integrateWithSystem(FinancialInstitution institution, String systemName);
+      void viewComplianceRequirements(FinancialInstitution institution);
+      void trackComplianceStatus(FinancialInstitution institution);
+      void receiveAlerts(Alert alert);
+    }
+
+    composition FinancialInstitution -> ComplianceSystem;
+    composition ComplianceSystem -> FinancialInstitution [*];
+    composition ComplianceSystem -> ComplianceRequirement [*];
+    composition ComplianceSystem -> Alert [*];
+}

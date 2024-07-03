@@ -1,0 +1,81 @@
+
+classdiagram RecyclingSystem {
+
+    class RecyclingSystem {
+      Hub hub;
+      List<RecyclingBin> bins;
+      List<Sensor> sensors;
+      SortingMachine sortingMachine;
+      Database database;
+    }
+
+    class Hub {
+      -> RecyclingSystem;
+      void addBin(RecyclingBin bin);
+      void removeBin(RecyclingBin bin);
+      void addSensor(Sensor sensor);
+      void removeSensor(Sensor sensor);
+      void addSortingMachine(SortingMachine machine);
+      void removeSortingMachine(SortingMachine machine);
+      void addDatabase(Database db);
+      void removeDatabase(Database db);
+      void notifyAdmin(RecyclingBin bin);
+      List<RecyclingBin> getBins();
+      List<Sensor> getSensors();
+      SortingMachine getSortingMachine();
+      Database getDatabase();
+    }
+
+    abstract class RecyclingBin {
+      String uniqueIdentifier;
+      BinType type;
+      int capacity;
+      boolean isFull;
+      void emptyBin();
+    }
+
+    class PlasticBin extends RecyclingBin {
+      int plasticQuantity;
+    }
+
+    class GlassBin extends RecyclingBin {
+      int glassQuantity;
+    }
+
+    class PaperBin extends RecyclingBin {
+      int paperQuantity;
+    }
+
+    class Sensor {
+      String location;
+      boolean isFull;
+      void detectFull();
+    }
+
+    class SortingMachine {
+      void sortMaterials(RecyclingBin bin);
+    }
+
+    class Database {
+      Map<String, BinData> binDataMap;
+      void addBinData(String binId, BinData data);
+      void removeBinData(String binId);
+      BinData getBinData(String binId);
+    }
+
+    enum BinType {
+      Plastic, Glass, Paper;
+    }
+
+    class BinData {
+      String type;
+      int quantity;
+      String location;
+    }
+
+  composition RecyclingSystem -> (has) Hub;
+  composition RecyclingSystem -> (has) List<<RecyclingBin>>;
+  composition RecyclingSystem -> (has) List<<Sensor>>;
+  composition RecyclingSystem -> (has) SortingMachine;
+  composition RecyclingSystem -> (has) Database;
+}

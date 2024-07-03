@@ -1,0 +1,67 @@
+
+
+
+classdiagram SmartCity  {
+
+  class City  {
+    String name;
+    int population;
+    Location location;
+  }
+
+  class Infrastructure  {
+    RoadNetwork roadNetwork;
+    PublicTransportation publicTransportation;
+    UtilityServices utilityServices;
+  }
+
+  class Building  {
+    String address;
+    int size;
+    int occupancy;
+    Device  device;
+  }
+
+  abstract class Device  {
+    String id;
+  }
+
+  class Sensor extends Device  {
+    SensorType type;
+    Location location;
+    DataReading dataReading;
+  }
+
+  class Camera extends Device  {
+    CameraType type;
+    Location location;
+    VideoFeed videoFeed;
+  }
+
+  class Lighting extends Device  {
+    LightingType type;
+    Location location;
+    BrightnessLevel brightnessLevel;
+  }
+
+  class Utility  {
+    String serviceName;
+    ServiceStatus serviceStatus;
+  }
+
+  class Service  {
+    String serviceName;
+    ServiceStatus serviceStatus;
+  }
+
+  composition City  ->  (has) Infrastructure;
+  composition Building  ->  (has) Device;
+  composition Infrastructure  ->  (has) RoadNetwork;
+  composition Infrastructure  ->  (has) PublicTransportation;
+  composition Infrastructure  ->  (has) UtilityServices;
+  composition Utility  ->  (has) Service;
+  composition Service  ->  (has) Utility;
+  composition Device  ->  (has) Sensor;
+  composition Device  ->  (has) Camera;
+  composition Device  ->  (has) Lighting;
+}

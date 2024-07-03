@@ -1,0 +1,94 @@
+
+classdiagram LegalResearchSystem {
+
+  class LegalResearchSystem {
+    CaseRepository caseRepository;
+    LawRepository lawRepository;
+    ConceptRepository conceptRepository;
+    DocumentRepository documentRepository;
+    LanguageRepository languageRepository;
+    SearchEngine searchEngine;
+    AnalysisEngine analysisEngine;
+    UserInterface userInterface;
+  }
+
+  class CaseRepository {
+    void addCase(Case case);
+    Case getCaseById(String caseId);
+  }
+
+  class LawRepository {
+    void addLaw(Law law);
+    Law getLawById(String lawId);
+  }
+
+  class ConceptRepository {
+    void addConcept(Concept concept);
+    Concept getConceptById(String conceptId);
+  }
+
+  class DocumentRepository {
+    void addDocument(Document document);
+    Document getDocumentById(String documentId);
+  }
+
+  class LanguageRepository {
+    void addLanguage(Language language);
+    Language getLanguageById(String languageId);
+  }
+
+  <<association>> class SearchEngine {
+    LegalResearchSystem system;
+    String searchQuery;
+    List<Document> searchResults;
+  }
+
+  <<association>> class AnalysisEngine {
+    LegalResearchSystem system;
+    List<Document> analysisResults;
+  }
+
+  <<association>> class UserInterface {
+    LegalResearchSystem system;
+    SearchEngine searchEngine;
+    AnalysisEngine analysisEngine;
+  }
+
+  class Case {
+    String caseId;
+    String caseDetails;
+  }
+
+  class Law {
+    String lawId;
+    String lawDetails;
+  }
+
+  class Concept {
+    String conceptId;
+    String conceptDetails;
+  }
+
+  class Document {
+    String documentId;
+    String documentDetails;
+  }
+
+  class Language {
+    String languageId;
+    String languageDetails;
+  }
+
+  class SearchQuery {
+    String query;
+  }
+
+  class AnalysisResult {
+    String resultDetails;
+  }
+
+  class User {
+    String userId;
+    String userDetails;
+  }
+}

@@ -1,0 +1,82 @@
+
+classdiagram ForumSystem {
+
+  class User {
+    String username;
+    String password;
+    List<Topic> ownedTopics;
+    List<Post> createdPosts;
+  }
+
+  class Topic {
+    String title;
+    String description;
+    List<Post> posts;
+    List<User> moderators;
+    int views;
+    int likes;
+  }
+
+  class Post {
+    String content;
+    String timestamp;
+    User author;
+    Topic topic;
+    boolean canReply;
+    int likes;
+  }
+
+  association User 
+    -> Topic [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+  association Topic 
+    -> User [1..*];
+
+  association Topic 
+    -> Post [1..*];
+
+ 
+ 
+}

@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram HydrogenFuelCellSystem  {
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    String name;
+    VehicleType type;
+  }
+
+  class FuelCell  {
+    String uniqueIdentifier;
+    double capacityKWh;
+    FuelCellState state;
+  }
+
+  class ChargingStation  {
+    String uniqueIdentifier;
+    String location;
+    double capacityKWh;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    UserRole role;
+  }
+
+  enum VehicleType  {
+    PassengerCar, Truck, Bus;
+  }
+
+  enum FuelCellState  {
+    Charging, Discharging, Idle;
+  }
+
+  enum UserRole  {
+    Administrator, RegularUser;
+  }
+
+  composition Vehicle -> FuelCell [1..*];
+  composition FuelCell -> Vehicle [1..1];
+  composition ChargingStation -> Vehicle [1..*];
+  composition Vehicle -> ChargingStation [1..1];
+}
+

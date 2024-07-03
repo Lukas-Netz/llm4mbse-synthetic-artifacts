@@ -1,0 +1,50 @@
+
+
+classdiagram AquacultureManagementSystem {
+
+  class FishFarm {
+    FishTank[] fishTanks;
+    WaterQuality waterQuality;
+    Equipment equipment;
+    MaintenanceSchedule maintenanceSchedule;
+  }
+
+  class FishTank {
+    String identifier;
+    Fish fish;
+    WaterQuality waterQuality;
+  }
+
+  class Fish {
+    String identifier;
+    int weight;
+    int length;
+    int age;
+  }
+
+  class WaterQuality {
+    int pH;
+    int temperature;
+    int oxygenLevels;
+  }
+
+  class Equipment {
+    String identifier;
+    FishTank assignedTank;
+  }
+
+  class MaintenanceSchedule {
+    Equipment equipment;
+    MaintenanceTask task;
+  }
+
+  class MaintenanceTask {
+    String description;
+    Date dueDate;
+  }
+
+  composition FishFarm -> (has) FishTank [*];
+  composition FishFarm -> (has) WaterQuality;
+  composition FishFarm -> (has) Equipment;
+  composition FishFarm -> (has) MaintenanceSchedule [0..1];
+}

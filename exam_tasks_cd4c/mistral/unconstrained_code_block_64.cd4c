@@ -1,0 +1,44 @@
+
+classdiagram SmartHomeSecurity {
+
+  class CentralHub {
+    -> Sensor [*];
+    -> SecurityPanel;
+    void arm();
+    void disarm();
+    void triggerAlarm(Sensor sensor);
+  }
+
+  abstract class Sensor {
+    String uniqueIdentifier;
+    SensorStatus status;
+  }
+
+  class MotionSensor extends Sensor {}
+  class TemperatureSensor extends Sensor {}
+  class HumiditySensor extends Sensor {}
+
+  class SecurityPanel {
+    SecurityPanelStatus status;
+  }
+
+  enum SensorStatus {
+    Triggered, NotTriggered;
+  }
+
+  enum SecurityPanelStatus {
+    Armed, Disarmed;
+  }
+
+  class Alarm {
+    int priority;
+    NotificationMethod notificationMethod;
+  }
+
+  enum NotificationMethod {
+    Email, Phone;
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> SecurityPanel;
+}

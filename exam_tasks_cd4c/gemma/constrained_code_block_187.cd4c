@@ -1,0 +1,81 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{classdiagram  
+  
+  
+
+  
+
+  
+
+{class SmartHome  
+  
+  
+  
+; Hub
+Hub
+  
+  
+  
+  ; BackupPower
+BackupPower
+  
+  
+  
+
+; Device
+Device
+  
+  
+  
+  ; Light
+Light
+  
+  
+  ; Thermostat
+Thermostat
+  
+  
+  ; SecurityCamera
+SecurityCamera
+  
+  
+  
+
+; BackupPower
+BackupPower
+  
+  
+
+; DeviceStatus
+DeviceStatus
+  
+  
+
+; ThermostatMode
+ThermostatMode
+  
+  
+
+  
+
+; Composition
+SmartHome  (has  Hub)
+  
+  
+  ; Composition
+SmartHome  (has  BackupPower)  
+  
+  
+  ; Composition
+Hub  (has  Device)  
+  
+  
+  
+; }
+
+}

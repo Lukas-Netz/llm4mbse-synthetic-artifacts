@@ -1,0 +1,39 @@
+
+classdiagram CryoEM {
+
+    class CryoEM {
+      Workstation workstation;
+      Microscope[] microscopes;
+      DataProcessingUnit dataProcessingUnit;
+    }
+
+    class Workstation {
+      Microscope[] microscopes;
+      void addMicroscope(Microscope microscope);
+      void removeMicroscope(Microscope microscope);
+      String checkDataProcessingUnitStatus();
+    }
+
+    abstract class Microscope {
+      String uniqueIdentifier;
+      MicroscopeStatus status;
+    }
+
+    class TransmissionMicroscope extends Microscope {
+      int resolution;
+      int magnification;
+    }
+
+    class ScanningMicroscope extends Microscope {
+      int resolution;
+      int scanningSpeed;
+    }
+
+    class DataProcessingUnit {
+      int capacityGB;
+    }
+
+    enum MicroscopeStatus {
+      Operational, NotOperational;
+    }
+}

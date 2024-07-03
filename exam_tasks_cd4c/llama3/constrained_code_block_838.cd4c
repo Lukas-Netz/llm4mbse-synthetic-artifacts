@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram UnderwaterMappingSystem  {
+
+  class UnderwaterVehicle  {
+    String name;
+    String uniqueIdentifier;
+    Sensor depthSensor;
+    Sensor temperatureSensor;
+    Sensor waterQualitySensor;
+    Memory memory;
+  }
+
+  class SurfaceVessel  {
+    String name;
+    String uniqueIdentifier;
+    Communication communication;
+    Navigation navigation;
+  }
+
+  class Seafloor  {
+    TerrainType terrainType;
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class Memory  {
+    Data data;
+  }
+
+  class Communication  {
+    Data data;
+  }
+
+  class Navigation  {
+    Position position;
+  }
+
+  class Data  {
+    String value;
+  }
+
+  class Position  {
+    double latitude;
+    double longitude;
+  }
+
+  class TerrainType  {
+    String type;
+  }
+
+  composition UnderwaterVehicle -> Sensor [3];
+  composition UnderwaterVehicle -> Memory;
+  composition SurfaceVessel -> Communication;
+  composition SurfaceVessel -> Navigation;
+  composition Seafloor -> TerrainType;
+  association UnderwaterVehicle -> Seafloor;
+  association SurfaceVessel -> UnderwaterVehicle;
+}

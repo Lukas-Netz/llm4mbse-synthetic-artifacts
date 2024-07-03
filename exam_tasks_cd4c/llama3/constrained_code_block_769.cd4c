@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram AquaticDroneFishTrackingSystem  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    Sensor[] sensors;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    String parameter;  (eWaterTemperature)
+  }
+
+  class Fish  {
+    String uniqueIdentifier;
+    String species;
+    int size;
+  }
+
+  class WaterBody  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Researcher  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class AquaticDroneFishTrackingSystem  {
+    Drone[] drones;
+    WaterBody[] waterBodies;
+    Researcher[] researchers;
+  }
+
+  composition AquaticDroneFishTrackingSystem -> (has) Drone[*];
+  composition AquaticDroneFishTrackingSystem -> (has) WaterBody[*];
+  composition AquaticDroneFishTrackingSystem -> (has) Researcher[*];
+  composition Drone -> (has) Sensor[*];
+  composition Drone -> (tracks) Fish[*];
+  composition WaterBody -> (hosts) Drone[*];
+  composition Researcher -> (operates) Drone[*];
+}

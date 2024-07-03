@@ -1,0 +1,51 @@
+
+classdiagram OceanographicDataAnalysis {
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, Salinity, Pressure;
+  }
+
+  class DataLogger {
+    String uniqueIdentifier;
+    Sensor [ ] sensors;
+  }
+
+  class AnalysisSoftware {
+    void analyzeData(Sensor [ ] sensors);
+  }
+
+  class Database {
+    String uniqueIdentifier;
+    AnalysisResult [ ] results;
+  }
+
+  class AnalysisResult {
+    Sensor sensor;
+    double average;
+    boolean isAnomaly;
+  }
+
+  class OceanographicDataAnalysisSystem {
+    Sensor [ ] sensors;
+    DataLogger [ ] dataLoggers;
+    AnalysisSoftware analysisSoftware;
+    Database database;
+
+    void addSensor(Sensor sensor);
+    void addDataLogger(DataLogger dataLogger);
+    void collectData();
+    void analyzeData();
+    void storeData();
+    void retrieveData();
+  }
+
+  composition OceanographicDataAnalysisSystem -> Sensor [*];
+  composition OceanographicDataAnalysisSystem -> DataLogger [*];
+  association OceanographicDataAnalysisSystem -> AnalysisSoftware;
+  association OceanographicDataAnalysisSystem -> Database;
+}

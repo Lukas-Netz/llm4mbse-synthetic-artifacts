@@ -1,0 +1,41 @@
+
+classdiagram CloudIntegrationServices {
+
+    class Client {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class CloudService {
+      String uniqueIdentifier;
+      String name;
+      CloudServiceType type;
+      double storageSpace;
+      double processingPower;
+      double bandwidth;
+      boolean status;
+    }
+
+    class StorageService extends CloudService {
+      double storageSpace;
+    }
+
+    class ComputingService extends CloudService {
+      double processingPower;
+    }
+
+    class NetworkingService extends CloudService {
+      double bandwidth;
+    }
+
+    class BillingSystem {
+      Map<Client, List<CloudService>> clientServices;
+      Map<CloudService, double> serviceCosts;
+      void calculateInvoice(Client client);
+    }
+
+    association Client <-> BillingSystem;
+    association CloudService <-> BillingSystem;
+    composition Client -> List<<CloudService>>;
+    composition CloudService -> List<<BillingSystem>>;
+}

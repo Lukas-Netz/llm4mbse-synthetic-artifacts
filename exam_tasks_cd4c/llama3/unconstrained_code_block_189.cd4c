@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram VRPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    List<VRExperience> createdExperiences;
+  }
+
+  class VRExperience  {
+    String title;
+    String description;
+    List<Scene> scenes;
+    List<User> sharedWith;
+  }
+
+  class Scene  {
+    String name;
+    String description;
+    List<Object> objects;
+  }
+
+  class Object  {
+    String name;
+    String description;
+    List<Property> properties;
+  }
+
+  class Property  {
+    String name;
+    String value;
+  }
+
+  class Rating  {
+    User user;
+    VRExperience experience;
+    int rating;
+  }
+
+  class Review  {
+    User user;
+    VRExperience experience;
+    String review;
+  }
+
+  composition User -> VRExperience [1..*];
+  composition VRExperience -> Scene [1..*];
+  composition Scene -> Object [1..*];
+  composition VRExperience -> Rating [0..*];
+  composition VRExperience -> Review [0..*];
+  association User -> Rating [0..*];
+  association User -> Review [0..*];
+  association VRExperience -> SearchKeyword [0..*];
+}
+

@@ -1,0 +1,68 @@
+
+classdiagram AdPlatform {
+
+    class AdCampaign {
+      String uniqueIdentifier;
+      String name;
+      AdType type;
+      Budget budget;
+      TargetAudience targetAudience;
+    }
+
+    class DisplayAd extends AdCampaign {
+      String image;
+      String headline;
+      String description;
+    }
+
+    class VideoAd extends AdCampaign {
+      String videoUrl;
+      String title;
+      String description;
+    }
+
+    class SponsoredContent extends AdCampaign {
+      String text;
+      String image;
+      String link;
+    }
+
+    class Budget {
+      double amount;
+    }
+
+    class TargetAudience {
+      String demographics;
+      String interests;
+    }
+
+    class AdPerformanceMetrics {
+      int impressions;
+      int clicks;
+      int conversions;
+      double cost;
+    }
+
+    class OptimizationInsights {
+      String adRotation;
+      String adScheduling;
+      String adTargeting;
+    }
+
+    class AdCampaign {
+      AdType type;
+      Budget budget;
+      TargetAudience targetAudience;
+      AdPerformanceMetrics performanceMetrics;
+      OptimizationInsights optimizationInsights;
+    }
+
+    enum AdType {
+      Display, Video, SponsoredContent;
+    }
+
+  composition AdCampaign -> (has) Budget;
+  composition AdCampaign -> (has) TargetAudience;
+  composition AdCampaign -> (has) AdPerformanceMetrics;
+  composition AdCampaign -> (has) OptimizationInsights;
+}

@@ -1,0 +1,61 @@
+
+classdiagram TradingPlatform {
+
+    class Account {
+      String uniqueIdentifier;
+      double balance;
+    }
+
+    class Order {
+      String uniqueIdentifier;
+      double quantity;
+      double price;
+    }
+
+    class Asset {
+      String uniqueIdentifier;
+      double currentPrice;
+    }
+
+    class Trader {
+      void createOrder(Order order);
+      void modifyOrder(Order order);
+      void cancelOrder(Order order);
+    }
+
+    class Analyst {
+      void viewAssetPrice(Asset asset);
+      void viewAccountBalance(Account account);
+    }
+
+    class Administrator {
+      void createAccount(Account account);
+      void deleteAccount(Account account);
+      void createAsset(Asset asset);
+      void deleteAsset(Asset asset);
+    }
+
+    class TradingEngine {
+      void executeOrder(Order order);
+      void viewTradeHistory();
+      void viewAccountState(Account account);
+    }
+
+    association Account -> Trader;
+    association Account -> Analyst;
+    association Account -> TradingEngine;
+
+    association Order -> Trader;
+    association Order -> TradingEngine;
+
+    association Asset -> Analyst;
+    association Asset -> TradingEngine;
+
+    composition Administrator -> TradingPlatform;
+    composition TradingPlatform -> Trader;
+    composition TradingPlatform -> Analyst;
+    composition TradingPlatform -> Asset;
+    composition TradingPlatform -> Order;
+    composition TradingPlatform -> Account;
+   
+ }

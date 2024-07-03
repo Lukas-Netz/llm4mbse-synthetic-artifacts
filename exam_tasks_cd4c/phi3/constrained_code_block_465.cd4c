@@ -1,0 +1,52 @@
+
+classdiagram ContractManagementSystem {
+
+    class Contract {
+      String uniqueIdentifier;
+      Date startDate;
+      Date endDate;
+      ContractType type;
+      String contractDetails;
+    }
+
+    class EmploymentContract extends Contract {
+      String jobTitle;
+      int salary;
+      int employmentDuration;
+    }
+
+    class ServiceContract extends Contract {
+      String serviceDescription;
+      int serviceDuration;
+      String paymentTerms;
+    }
+
+    class Party {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class ContractHistory {
+      Contract contract;
+      Date changeDate;
+      String changeDetails;
+    }
+
+    class ContractManagementSystem {
+      List<Contract> contracts;
+      Map<String, Party> parties;
+      Map<String, ContractHistory> contractHistory;
+
+      void addContract(Contract contract);
+      void removeContract(String uniqueIdentifier);
+      List<Contract> getAllContracts();
+      List<Contract> getContractsByParty(String partyName);
+      List<Contract> getContractsByType(ContractType type);
+      void addContractChange(String uniqueIdentifier, ContractHistory change);
+      void generateReport(String reportType);
+    }
+
+    association ContractManagementSystem -> Contract [*];
+    association ContractManagementSystem -> ContractHistory [*];
+    association ContractManagementSystem -> Party [*];
+}

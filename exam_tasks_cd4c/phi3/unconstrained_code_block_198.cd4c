@@ -1,0 +1,49 @@
+
+classdiagram VirtualRealityForensicScienceSimulations {
+
+    class CrimeScene {
+      String location;
+      String description;
+    }
+
+    class Suspect {
+      String name;
+      int age;
+      List<String> aliases;
+    }
+
+    class Evidence {
+      String type;
+      String description;
+    }
+
+    class ForensicScientist {
+      String name;
+      List<String> skills;
+    }
+
+    class Simulation {
+      List<CrimeScene> crimeScenes;
+      List<Suspect> suspects;
+      List<Evidence> evidence;
+      ForensicScientist forensicScientist;
+      String status;
+
+      void start();
+      void pause();
+      void stop();
+      void addCrimeScene(CrimeScene crimeScene);
+      void removeCrimeScene(CrimeScene crimeScene);
+      void addSuspect(Suspect suspect);
+      void removeSuspect(Suspect suspect);
+      void addEvidence(Evidence evidence);
+      void removeEvidence(Evidence evidence);
+      void setForensicScientist(ForensicScientist forensicScientist);
+      void updateForensicScientistSkills(List<String> skills);
+    }
+
+    composition Simulation -> (has) CrimeScene;
+    composition Simulation -> (has) Suspect;
+    composition Simulation -> (has) Evidence;
+    composition Simulation -> (has) ForensicScientist;
+}

@@ -1,0 +1,71 @@
+
+classdiagram IndigenousLearning {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Course {
+    String name;
+    String curriculum;
+    String[] lessons;
+  }
+
+  class Instructor {
+    String name;
+    String qualifications;
+  }
+
+  class Enrollment {
+    User user;
+    Course course;
+    int progress;
+  }
+
+  class InteractiveLesson {
+    String content;
+    String type;
+  }
+
+  class Quiz {
+    String questions;
+    String answers;
+  }
+
+  class Exercise {
+    String instructions;
+    String solution;
+  }
+
+  class Assignment {
+    User user;
+    Course course;
+    String submission;
+    Instructor feedback;
+  }
+
+  class DiscussionForum {
+    String topic;
+    User[] participants;
+    String[] messages;
+  }
+
+  class Report {
+    User user;
+    Course course;
+    String progress;
+    String effectiveness;
+  }
+
+  composition UserSystem -> User [*];
+  composition UserSystem -> Course [*];
+  composition Enrollment -> User [1];
+  composition Enrollment -> Course [1];
+  composition Course -> InteractiveLesson [*];
+  composition Course -> Quiz [*];
+  composition Course -> Exercise [*];
+  composition Assignment -> User [1];
+  composition Assignment -> Course [1];
+  composition DiscussionForum -> User [*];
+  			}

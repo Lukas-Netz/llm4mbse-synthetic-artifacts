@@ -1,0 +1,50 @@
+
+classdiagram HydrogenFuelCellSystem {
+
+  class Factory {
+    -> FuelCell [*];
+    String type;
+  }
+
+  class Warehouse {
+    -> FuelCell [*];
+    int size;
+    int capacity;
+  }
+
+  class DistributionNetwork {
+    -> Truck [*];
+    -> DeliveryPersonnel [*];
+  }
+
+  class Truck {
+    String uniqueIdentifier;
+  }
+
+  class DeliveryPersonnel {
+    String uniqueIdentifier;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String order;
+    String paymentStatus;
+  }
+
+  abstract class FuelCell {
+    String uniqueIdentifier;
+    String type;
+    int powerOutput;
+    int efficiency;
+    int durability;
+  }
+
+  class AlkalineFuelCell extends FuelCell {}
+  class PolymerElectrolyteFuelCell extends FuelCell {}
+  class SolidOxideFuelCell extends FuelCell {}
+
+  composition Factory -> FuelCell [*];
+  composition Warehouse -> FuelCell [*];
+  association DistributionNetwork -- Customer;
+  association DistributionNetwork -- FuelCell [*];
+}

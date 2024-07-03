@@ -1,0 +1,50 @@
+
+classdiagram LogisticsFleet {
+
+    class Vehicle {
+      String uniqueIdentifier;
+      String make;
+      String model;
+      int yearOfManufacture;
+    }
+
+    class Driver {
+      String name;
+      String personnelNumber;
+      JobTitle jobTitle;
+    }
+
+    class JobTitle {
+      enum Type;
+      boolean canCombineWith(JobTitle other);
+    }
+
+    class Task {
+      String taskIdentifier;
+      String description;
+      TaskStatus status;
+      List<Vehicle> assignedVehicles;
+    }
+
+    class Warehouse {
+      String warehouseIdentifier;
+      String location;
+      int capacity;
+      List<Good> storedGoods;
+    }
+
+    class Good {
+      String goodIdentifier;
+      String name;
+      int quantity;
+    }
+
+    composition LogisticsFleet -> (has) Vehicle;
+    composition LogisticsFleet -> (has) Driver;
+    composition LogisticsFleet -> (has) Task;
+    composition LogisticsFleet -> (has) Warehouse;
+    composition Vehicle -> (has) Driver;
+    composition Task -> (has) Vehicle;
+    composition Task -> (has) Warehouse;
+    composition Warehouse -> (has) Good;
+}

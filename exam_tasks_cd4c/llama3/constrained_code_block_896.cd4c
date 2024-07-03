@@ -1,0 +1,87 @@
+
+
+
+
+classdiagram HomeDesignSystem  {
+
+  class Home  {
+    String name;
+    HomeType type;
+    Location location;
+  }
+
+  class HomeType  {
+    String name;
+    Set<Feature> features;
+    Set<Specification> specifications;
+  }
+
+  class Feature  {
+    String name;
+    String description;
+  }
+
+  class Specification  {
+    String name;
+    String description;
+  }
+
+  class Material  {
+    String name;
+    MaterialType type;
+    Set<Property> properties;
+  }
+
+  class MaterialType  {
+    String name;
+    String description;
+  }
+
+  class Property  {
+    String name;
+    String description;
+  }
+
+  class PrintingProcess  {
+    String name;
+    PrintingProcessType type;
+    Set<Setting> settings;
+  }
+
+  class PrintingProcessType  {
+    String name;
+    String description;
+  }
+
+  class Setting  {
+    String name;
+    String description;
+  }
+
+  class Location  {
+    String address;
+    String city;
+    String state;
+    String zip;
+  }
+
+  class Design  {
+    Home home;
+    Set<Material> materials;
+    Set<PrintingProcess> printingProcesses;
+  }
+
+  class Simulation  {
+    Design design;
+    boolean success;
+    String report;
+  }
+
+  composition Home -> HomeType;
+  composition HomeType -> Feature;
+  composition HomeType -> Specification;
+  composition Material -> MaterialType;
+  composition Material -> Property;
+  composition PrintingProcess -> PrintingProcessType;
+  composition PrintingProcess -> Setting;
+  }

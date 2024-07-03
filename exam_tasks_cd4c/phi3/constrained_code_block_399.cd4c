@@ -1,0 +1,47 @@
+
+classdiagram FinancialPlanningSystem {
+
+    class User {
+      String username;
+      String password;
+      List<UserAccount> userAccounts;
+    }
+
+    class UserAccount {
+      User user;
+      Transaction transaction;
+    }
+
+    class Transaction {
+      Date date;
+      double amount;
+      TransactionType type;
+      UserAccount account;
+    }
+
+    class FinancialGoal {
+      String name;
+      String description;
+      double targetAmount;
+      Budget budget;
+      List<Transaction> transactions;
+    }
+
+    class Budget {
+      double amount;
+      double spentAmount;
+      double remainingAmount;
+    }
+
+    class Recommendation {
+      FinancialGoal goal;
+      String message;
+    }
+
+    association User -> UserAccount [*];
+    association UserAccount -> Transaction [*];
+    association FinancialGoal -> Transaction [*];
+    composition FinancialGoal -> Budget;
+    association FinancialGoal -> Recommendation [0..*];
+    composition FinancialGoal -> User [0..1];
+}

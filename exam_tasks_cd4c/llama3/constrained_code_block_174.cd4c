@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram MedicalDiagnosticSystem  {
+
+  class Patient  {
+    String medicalHistory;
+    Symptom[] symptoms;
+    TestResult[] testResults;
+  }
+
+  class DiagnosisEngine  {
+    void analyzePatient(Patient patient);
+    Diagnosis diagnose(Patient patient);
+  }
+
+  class TestResult  {
+    String testName;
+    String testResult;
+    Date testDate;
+  }
+
+  class Symptom  {
+    String name;
+    String description;
+    int severity;
+  }
+
+  class Treatment  {
+    String name;
+    String description;
+    double effectiveness;
+  }
+
+  class Diagnosis  {
+    String diagnosis;
+    double likelihood;
+  }
+
+  composition Patient -> (has) Symptom[*];
+  composition Patient -> (has) TestResult[*];
+  composition DiagnosisEngine -> (uses) Patient;
+  composition DiagnosisEngine -> (uses) Symptom[*];
+  composition DiagnosisEngine -> (uses) TestResult[*];
+  composition Patient -> (has) Treatment[*];
+}

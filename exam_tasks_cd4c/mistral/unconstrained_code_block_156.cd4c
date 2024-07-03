@@ -1,0 +1,36 @@
+
+classdiagram RoboticBeePollinator {
+
+  class Hub {
+    -> RoboticBee [*];
+    -> WeatherStation;
+    void assignTask(RoboticBee bee);
+    String checkRoboticBeeStatus();
+    void adjustWeatherStationSettings();
+  }
+
+  abstract class RoboticBee {
+    String uniqueIdentifier;
+  }
+
+  class Honeybee extends RoboticBee {
+    int pollenCapacity;
+  }
+
+  class Bumblebee extends RoboticBee {
+    int pollenCapacity;
+  }
+
+  class Butterfly extends RoboticBee {
+    String flowerType;
+  }
+
+  class WeatherStation {
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  composition Hub -> RoboticBee [*];
+  composition Hub -> WeatherStation;
+}

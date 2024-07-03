@@ -1,0 +1,53 @@
+
+classdiagram AI_Code_Review_System {
+
+    class CodeAnalyzer {
+      String language;
+      int complexity;
+      boolean securityVulnerability;
+      boolean maintainabilityIssue;
+      void analyzeCode(String codeSnippet);
+    }
+
+    class VersionControlSystemIntegration {
+      String repository;
+      String branch;
+      String commit;
+      void retrieveCodeSnippet(String commitId);
+    }
+
+    class Dashboard {
+      CodeQuality codeQuality;
+      Trends trends;
+      Recommendations recommendations;
+      void displayMetrics();
+    }
+
+    class AIModel {
+      String algorithm;
+      String trainingData;
+      void analyzeCodeSnippet(String codeSnippet);
+    }
+
+    class CodeReviewer {
+      Feedback feedback;
+      Suggestions suggestions;
+      void provideFeedback(String codeSnippet);
+    }
+
+    class Feedback {
+      String message;
+    }
+
+    class Suggestions {
+      String suggestion;
+    }
+
+    association CodeAnalyzer -> CodeReviewer [*];
+    association VersionControlSystemIntegration -> CodeAnalyzer [*];
+    association CodeAnalyzer -> Dashboard [*];
+    association AIModel -> CodeAnalyzer [*];
+    composition Dashboard -> CodeQuality;
+    composition Dashboard -> Trends;
+    composition Dashboard -> Recommendations;
+}

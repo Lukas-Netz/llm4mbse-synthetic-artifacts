@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram Smartwatch  {
+
+  class Smartwatch  {
+    User user;
+    HealthMetrics healthMetrics;
+    FitnessTracker fitnessTracker;
+    NotificationManager notificationManager;
+  }
+
+  class User  {
+    String name;
+    String email;
+  }
+
+  class HealthMetrics  {
+    HeartRate heartRate;
+    BloodPressure bloodPressure;
+    SleepQuality sleepQuality;
+  }
+
+  class HeartRate  {
+    int value;
+  }
+
+  class BloodPressure  {
+    int systolic;
+    int diastolic;
+  }
+
+  class SleepQuality  {
+    int quality;
+  }
+
+  class FitnessTracker  {
+    Steps steps;
+    Distance distance;
+    Calories calories;
+  }
+
+  class Steps  {
+    int count;
+  }
+
+  class Distance  {
+    double value;
+  }
+
+  class Calories  {
+    int burned;
+  }
+
+  class NotificationManager  {
+    Notification[] notifications;
+  }
+
+  class Notification  {
+    String type;
+    String message;
+  }
+
+  composition Smartwatch -> (has) User;
+  composition Smartwatch -> (has) HealthMetrics;
+  composition Smartwatch -> (has) FitnessTracker;
+  composition Smartwatch -> (has) NotificationManager;
+  composition HealthMetrics -> (has) HeartRate;
+  composition HealthMetrics -> (has) BloodPressure;
+  composition HealthMetrics -> (has) SleepQuality;
+  composition FitnessTracker -> (has) Steps;
+  }

@@ -1,0 +1,71 @@
+
+classdiagram LegalCaseManagement {
+
+  class Case {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Client client;
+    Lawyer lawyer;
+    Role [ ] parties;
+    Event [ ] events;
+  }
+
+  class Client {
+    String name;
+    Address address;
+    ContactInfo contactInfo;
+  }
+
+  class Lawyer {
+    String name;
+    Address address;
+    ContactInfo contactInfo;
+  }
+
+  class Judge {
+    String name;
+    Address address;
+    ContactInfo contactInfo;
+  }
+
+  class Address {
+    String street;
+    String city;
+    String state;
+    String zipCode;
+  }
+
+  class ContactInfo {
+    String phone;
+    String email;
+  }
+
+  enum Role {
+    Plaintiff, Defendant, Witness;
+  }
+
+  class Event {
+    Date date;
+    Time time;
+    Location location;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  class Time {
+    int hour;
+    int minute;
+  }
+
+  class Location {
+    String street;
+    String city;
+    String state;
+    String zipCode;
+  }
+}

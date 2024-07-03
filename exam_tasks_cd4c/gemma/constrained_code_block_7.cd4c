@@ -1,0 +1,65 @@
+
+
+classdiagram HealthcareManagementSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class MedicalCondition {
+      String diagnosisDate;
+      TreatmentPlan treatmentPlan;
+      List<Medication> medicationList;
+    }
+
+    class TreatmentPlan {
+      List<Treatment> treatments;
+    }
+
+    class Treatment {
+      String name;
+      Dosage dosage;
+    }
+
+    class Medication {
+      String uniqueIdentifier;
+      String name;
+      Dosage dosageInstructions;
+      PrescriptionDate prescriptionDate;
+      ExpirationDate expirationDate;
+    }
+
+    class Doctor {
+      String uniqueIdentifier;
+      String name;
+      String specialty;
+      List<Patient> assignedPatients;
+    }
+
+    class MedicalRecord {
+      Patient patient;
+      List<Diagnosis> diagnoses;
+      List<Treatment> treatments;
+      List<TestResult> testResults;
+    }
+
+    class Diagnosis {
+      String date;
+      String diagnosis;
+    }
+
+    class TestResult {
+      String date;
+      String result;
+    }
+
+  composition Patient -> (has) MedicalCondition [*];
+  composition MedicalCondition -> (has) TreatmentPlan;
+  composition TreatmentPlan -> (has) Treatment [*];
+  composition Doctor -> (has) MedicalRecord [*];
+  composition MedicalRecord -> (has) Diagnosis [*];
+  composition MedicalRecord -> (has) TestResult [*];
+}

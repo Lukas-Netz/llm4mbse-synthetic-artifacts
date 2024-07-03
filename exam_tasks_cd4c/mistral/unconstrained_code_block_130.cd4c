@@ -1,0 +1,52 @@
+
+classdiagram AdvancedProsthetics {
+
+  class ProstheticLimb {
+    ProstheticLimbType type;
+    ProstheticLimbStatus status;
+  }
+
+  enum ProstheticLimbType {
+    Arm, Leg, Hand, Foot;
+  }
+
+  enum ProstheticLimbStatus {
+    Active, Inactive, Maintenance;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    Set<ProstheticLimb> prostheticLimbs;
+  }
+
+  class Sensor {
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, Pressure, Movement;
+  }
+
+  class Algorithm {
+    AlgorithmType type;
+  }
+
+  enum AlgorithmType {
+    MachineLearning, RuleBased, ExpertSystem;
+  }
+
+  class MaintenanceRecord {
+    MaintenanceType maintenanceType;
+    Date maintenanceDate;
+    ProstheticLimbStatus statusAfterMaintenance;
+  }
+
+  enum MaintenanceType {
+    Repair, Replacement, Upgrade;
+  }
+
+  composition User -> ProstheticLimb [*];
+  composition ProstheticLimb -> Sensor [*];
+  composition ProstheticLimb -> Algorithm [*];
+  composition MaintenanceRecord -> ProstheticLimb [*];
+}

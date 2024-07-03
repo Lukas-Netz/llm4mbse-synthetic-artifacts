@@ -1,0 +1,35 @@
+
+
+classdiagram CarbonFootprintSystem {
+
+  class Node {
+    List<CarbonFootprint> carbonFootprints;
+  }
+
+  class User {
+    String username;
+    List<CarbonFootprint> carbonFootprints;
+  }
+
+  class CarbonFootprint {
+    String id;
+    DateTime timestamp;
+    Location location;
+    int amount;
+    CarbonFootprintCategory category;
+    CarbonFootprintUnit unit;
+  }
+
+  class CarbonFootprintCategory {
+    String name;
+  }
+
+  class CarbonFootprintUnit {
+    String name;
+  }
+
+  composition User -> (has) CarbonFootprint [*];
+  composition Node -> (has) CarbonFootprint [*];
+  association CarbonFootprint -> CarbonFootprintCategory;
+  association CarbonFootprint -> CarbonFootprintUnit;
+}

@@ -1,0 +1,46 @@
+
+classdiagram CloudVideoEditing {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Video {
+    String id;
+    String title;
+    String description;
+    User uploader;
+  }
+
+  class Clip {
+    Video video;
+    int startTime;
+    int endTime;
+  }
+
+  abstract class Effect {
+    String name;
+    String description;
+  }
+
+  class VisualEffect extends Effect {
+    void applyToClip(Clip clip);
+  }
+
+  abstract class Transition extends Effect {
+    void applyToProject(Project project);
+  }
+
+  class Project {
+    String title;
+    String description;
+    User creator;
+    Clip [ ] clips;
+    Effect [ ] effects;
+  }
+
+  composition User [*] hashes (has) -> Video [*];
+  composition Video [*] contains (has) -> Clip [*];
+  composition Effect [*] belongsTo (isPartOf) -> Project [*];
+}

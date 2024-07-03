@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram CryptocurrencyWallet  {
+
+  class Wallet  {
+    String uniqueIdentifier;
+    String password;
+    Account  [  ] accounts;
+  }
+
+  class Account  {
+    String address;
+    int balance;
+    Transaction  [  ] transactions;
+  }
+
+  class Transaction  {
+    Date date;
+    int amount;
+    String type;
+  }
+
+  class Contact  {
+    String address;
+    String label;
+  }
+
+  class ContactList  {
+    Contact  [  ] contacts;
+  }
+
+  class TransactionList  {
+    Transaction  [  ] transactions;
+  }
+
+  composition Wallet  ->  (has) Account  [ 1..* ];
+  composition Account  ->  (has) Transaction  [ 1..* ];
+  composition Wallet  ->  (has) ContactList  [ 0..1 ];
+  composition Wallet  ->  (has) TransactionList  [ 0..1 ];
+
+  association Wallet  ->  (has) Contact  [ 0..* ];
+  association Account  ->  (has) Transaction  [ 1..* ];
+  association ContactList  ->  (has) Contact  [ 1..* ];
+  association TransactionList  ->  (has) Transaction  [ 1..* ];
+
+  enum Date  {
+    DAY, MONTH, YEAR;
+  }
+}

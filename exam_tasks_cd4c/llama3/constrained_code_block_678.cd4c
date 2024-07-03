@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram SpaceProbeSystem  {
+
+  class SpaceProbe  {
+    String uniqueIdentifier;
+    ProbeType type;
+    Position position;
+    Velocity velocity;
+    Trajectory trajectory;
+    SensorData sensors;
+    Communication communication;
+  }
+
+  enum ProbeType  {
+    Scientific,
+    Exploratory
+  ;}
+
+  class Position  {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Velocity  {
+    double xVelocity;
+    double yVelocity;
+    double zVelocity;
+  }
+
+  class Trajectory  {
+    List<Position> positions;
+  }
+
+  class SensorData  {
+    double temperature;
+    double pressure;
+    double radiationLevel;
+  }
+
+  class Communication  {
+    boolean isConnected;
+  }
+
+  class SpaceProbeSystem  {
+    List<SpaceProbe> probes;
+    void updateProbePosition(SpaceProbe probe, Position position);
+    void sendCommand(SpaceProbe probe, String command);
+    SensorData receiveData(SpaceProbe probe);
+    void handleEmergency(SpaceProbe probe, EmergencyType emergencyType);
+  }
+
+  enum EmergencyType  {
+    SystemFailure,
+    CommunicationLoss
+  ;}
+
+  composition SpaceProbeSystem  ->  (has) SpaceProbe[*];
+  composition SpaceProbe  ->  (has) SensorData;
+  composition SpaceProbe  ->  (has) Communication;
+  composition SpaceProbe  ->  (has) Position;
+  composition SpaceProbe  ->  (has) Velocity;
+  composition SpaceProbe  ->  (has) Trajectory;
+}

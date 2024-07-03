@@ -1,0 +1,43 @@
+
+classdiagram GamingTournament {
+
+  class TournamentOrganizer {
+    -> Game [*];
+    -> Player [*];
+    void createGame(Game game);
+    void addPlayerToGame(Player player, Game game);
+    void removePlayerFromGame(Player player, Game game);
+    void updateGameState(Game game);
+  }
+
+  class Game {
+    String uniqueIdentifier;
+    String name;
+    Date startDate;
+    Date endDate;
+    int maxParticipants;
+    GameState state;
+    Player winner;
+  }
+
+  class Player {
+    String uniqueIdentifier;
+    String name;
+    int ranking;
+    -> Game [*];
+  }
+
+  enum GameState {
+    Ongoing, Finished;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition TournamentOrganizer -> Game [*];
+  composition TournamentOrganizer -> Player [*];
+  association Player -> Game [*];
+}

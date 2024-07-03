@@ -1,0 +1,40 @@
+
+
+classdiagram SmartWasteManagement {
+
+    class WasteCollectionVehicle {
+      String uniqueIdentifier;
+      String type;
+      int capacity;
+    }
+
+    class WasteCollectionPoint {
+      String uniqueIdentifier;
+      Location location;
+      String type;
+    }
+
+    class WasteStream {
+      String uniqueIdentifier;
+      String type;
+      int volume;
+    }
+
+    class WasteContainer {
+      String uniqueIdentifier;
+      String type;
+      int capacity;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+      String password;
+    }
+
+  composition WasteCollectionVehicle -> WasteContainer [0..1];
+  composition WasteCollectionPoint -> WasteStream [0..1];
+  association User -> WasteCollectionVehicle [0..1];
+  association User -> WasteCollectionPoint [0..1];
+  association User -> WasteStream [0..1];
+}

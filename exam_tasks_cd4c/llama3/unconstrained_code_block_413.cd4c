@@ -1,0 +1,80 @@
+
+
+
+
+classdiagram WildlifeConservation  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Location location;
+  }
+
+  class Animal  {
+    String uniqueIdentifier;
+    Species species;
+    Location location;
+    MovementPattern movementPattern;
+    Behavior behavior;
+  }
+
+  class Species  {
+    String uniqueIdentifier;
+    Habitat habitat;
+    Diet diet;
+    ConservationStatus conservationStatus;
+  }
+
+  class ConservationEffort  {
+    String uniqueIdentifier;
+    Type type;
+  }
+
+  class Recommendation  {
+    String uniqueIdentifier;
+    ConservationEffort conservationEffort;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class MovementPattern  {
+    String type;
+  }
+
+  class Behavior  {
+    String type;
+  }
+
+  class Habitat  {
+    String type;
+  }
+
+  class Diet  {
+    String type;
+  }
+
+  class ConservationStatus  {
+    String type;
+  }
+
+  class Type  {
+    String name;
+  }
+
+  composition WildlifeConservation  ->  (has) Sensor[*];
+  composition WildlifeConservation  ->  (has) Animal[*];
+  composition WildlifeConservation  ->  (has) ConservationEffort[*];
+  composition WildlifeConservation  ->  (has) Recommendation[*];
+  composition Sensor  ->  (has) Location;
+  composition Animal  ->  (has) Species;
+  composition Animal  ->  (has) Location;
+  composition Animal  ->  (has) MovementPattern;
+  composition Animal  ->  (has) Behavior;
+  composition Species  ->  (has) Habitat;
+  composition Species  ->  (has) Diet;
+  composition Species  ->  (has) ConservationStatus;
+  composition ConservationEffort  ->  (has) Type;
+  composition Recommendation  ->  (has) ConservationEffort;
+}

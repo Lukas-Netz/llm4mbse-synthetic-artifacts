@@ -1,0 +1,43 @@
+
+classdiagram SpaceTourism {
+
+    class Spacecraft {
+      String identifier;
+      int capacity;
+      String type;
+      String status;
+    }
+
+    class Astronaut {
+      String identifier;
+      String name;
+      int experienceLevel;
+    }
+
+    class Passenger {
+      String name;
+      String contactInfo;
+      String travelPreferences;
+    }
+
+    class Booking {
+      String passengerName;
+      String spacecraftIdentifier;
+      String bookingStatus;
+    }
+
+    class SpaceTourismSystem {
+      Spacecraft[] spacecrafts;
+      Astronaut[] astronauts;
+      Booking[] bookings;
+
+      void bookSpacecraft(Passenger passenger, String spacecraftIdentifier);
+      void assignAstronaut(Astronaut astronaut, String spacecraftIdentifier);
+      String checkSpacecraftAvailability(String spacecraftIdentifier);
+      void generateReport();
+    }
+
+    composition Spacecraft -> SpaceTourismSystem;
+    composition SpaceTourismSystem -> Astronaut [*];
+    composition SpaceTourismSystem -> Booking [*];
+}

@@ -1,0 +1,42 @@
+
+
+classdiagram University {
+
+    class Instructor {
+      String name;
+      String email;
+      List<Course> courses;
+    }
+
+    class Course {
+      String name;
+      String description;
+      List<Instructor> instructors;
+      List<Student> students;
+      Date startDate;
+      Date endDate;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class StudentEnrolment {
+      Student student;
+      Course course;
+    }
+
+    class University {
+      List<Instructor> instructors;
+      List<Course> courses;
+      List<Student> students;
+    }
+
+  composition University -> (has) Instructor [*];
+  composition University -> (has) Course [*];
+  composition University -> (has) Student [*];
+  association StudentEnrolment -> Student;
+  association StudentEnrolment -> Course;
+}

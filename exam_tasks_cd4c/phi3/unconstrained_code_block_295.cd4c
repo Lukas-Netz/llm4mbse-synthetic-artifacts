@@ -1,0 +1,33 @@
+
+classdiagram CognitiveRadioSpectrumManagement {
+
+    class CognitiveRadio {
+      String uniqueIdentifier;
+      CognitiveRadioStatus status;
+      List<TransmitterReceiver> transmittersReceivers;
+    }
+
+    class TransmitterReceiver {
+      String frequencyBand;
+    }
+
+    class SpectrumManager {
+      List<FrequencyBand> allocatedBands;
+      void allocateBand(CognitiveRadio cr, FrequencyBand band);
+      void deallocateBand(CognitiveRadio cr, FrequencyBand band);
+      void monitorCRActivity(CognitiveRadio cr);
+      void detectInterference();
+    }
+
+    class FrequencyBand {
+      int frequency;
+    }
+
+    enum CognitiveRadioStatus {
+      Active, Inactive;
+    }
+
+  composition CognitiveRadio -> (has) SpectrumManager;
+  composition SpectrumManager -> (has) FrequencyBand [*];
+  composition SpectrumManager -> (has) CognitiveRadio [*];
+}

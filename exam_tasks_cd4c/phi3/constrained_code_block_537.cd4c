@@ -1,0 +1,45 @@
+
+classdiagram SatelliteCommunicationNetwork {
+
+    class SatelliteCommunicationNetwork {
+      Hub centralHub;
+      List<Satellite> satellites;
+      BackupSystem backupSystem;
+    }
+
+    class Hub {
+      -> Satellite [*];
+      void addSatellite(Satellite satellite);
+      void removeSatellite(Satellite satellite);
+      void checkSatelliteStatus(Satellite satellite);
+      void manageCommunicationChannel();
+    }
+
+    class Satellite {
+      String uniqueIdentifier;
+      Orbit orbit;
+      SatelliteRole role;
+      int transmissionCapacity;
+      int receptionCapacity;
+    }
+
+    class Orbit {
+      String name;
+    }
+
+    class SatelliteRole {
+      String role;
+    }
+
+    class BackupSystem {
+      Satellite backupSatellite;
+    }
+
+    enum SatelliteRole {
+      DataTransmission, DataReception, Both;
+    }
+
+    composition SatelliteCommunicationNetwork -> (has) Hub;
+    composition SatelliteCommunicationNetwork -> (has) BackupSystem [0..1];
+    composition Hub -> Satellite [*];
+}

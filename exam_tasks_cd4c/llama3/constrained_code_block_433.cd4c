@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram ParentingPlatform  {
+
+  class Class  {
+    String name;
+    String description;
+    String uniqueId;
+    Instructor instructor;
+    Topic  [] topics;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String uniqueId;
+  }
+
+  class Topic  {
+    String name;
+    String description;
+  }
+
+  class Parent  {
+    String uniqueId;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Administrator  {
+    String name;
+    String email;
+  }
+
+  composition Class -> Instructor;
+  composition Class -> Topic  [*];
+  composition Parent -> Profile;
+  composition Administrator -> Instructor;
+  composition Administrator -> Class;
+  composition Administrator -> Topic;
+}

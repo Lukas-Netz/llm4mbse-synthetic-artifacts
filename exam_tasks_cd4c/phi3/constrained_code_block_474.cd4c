@@ -1,0 +1,103 @@
+
+classdiagram OnlineMarketing {
+
+    class Course {
+      String uniqueIdentifier;
+      String name;
+      CourseType type;
+      List<Topic> topics;
+      Certification certification;
+      List<Student> enrolledStudents;
+    }
+
+    class Topic {
+      String name;
+      String description;
+      Course course;
+    }
+
+    class Certification {
+      String name;
+      String description;
+      List<Course> certifiedCourses;
+    }
+
+    class Student {
+      String uniqueIdentifier;
+      String name;
+      List<Course> enrolledCourses;
+    }
+
+    enum CourseType {
+      Video, Text, Live
+   
+    (has)
+   
+ ;
+    composition CourseTypeCourseAssociation
+  (has aka)
+  ;
+}
+
+enum CourseType {
+  Video, Text, Live
+
+    (has)
+   
+ ;
+    composition CourseTypeCourseAssociation
+  (has aka)
+  ;
+}
+
+enum Topic {
+  ;
+    (has)
+   
+  Course course;
+}
+
+enum Certification {
+  ;
+    (has)
+   
+  List<Course> certifiedCourses;
+}
+
+enum Student {
+  ;
+    (has)
+   
+  List<Course> enrolledCourses;
+}
+
+class CourseTypeCourseAssociation {
+  Course course;
+  CourseType type;
+}
+
+class TopicCourseAssociation {
+  Topic topic;
+  Course course;
+}
+
+class CertificationCourseAssociation {
+  Certification certification;
+  Course course;
+}
+
+class StudentCourseAssociation {
+  Student student;
+  Course course;
+}
+
+class OnlineMarketingSystem {
+  List<Course> courses;
+  List<Student> students;
+}
+
+    composition OnlineMarketingSystem -> (has)
+    List<<Course, CourseType>>;
+    composition OnlineMarketingSystem -> (has)
+    List<<Student, Course>>;
+}

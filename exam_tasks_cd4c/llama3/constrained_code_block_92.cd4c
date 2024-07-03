@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram MachineVisionSystem  {
+
+  class Camera  {
+    String uniqueIdentifier;
+    CameraType type;
+  }
+
+  enum CameraType  {
+    RGB, Thermal
+  ;}
+
+  class Lens  {
+    int focalLength;
+  }
+
+  class ProcessingUnit  {
+    int processingPower;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    String classification;
+  }
+
+  class Database  {
+    Product  product;
+  }
+
+  class System  {
+    Camera  camera;
+    Lens  lens;
+    ProcessingUnit  processingUnit;
+    Database  database;
+  }
+
+  composition System  ->  (has) Camera;
+  composition System  ->  (has) Lens;
+  composition System  ->  (has) ProcessingUnit;
+  composition System  ->  (has) Database;
+  composition ProcessingUnit  ->  (uses) Camera;
+  composition Database  ->  (stores) Product;
+  composition Product  ->  (has) classification;
+}

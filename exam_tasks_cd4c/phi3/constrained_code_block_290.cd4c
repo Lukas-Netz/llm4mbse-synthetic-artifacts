@@ -1,0 +1,53 @@
+
+classdiagram RecipeManagementSystem {
+
+    class Recipe {
+        String name;
+        String description;
+        int cookingTime;
+        Cuisine cuisine;
+        List<Ingredient> ingredients;
+        List<CookingInstruction> instructions;
+    }
+
+    class Ingredient {
+        String name;
+        double quantity;
+        String unit;
+        Category category;
+    }
+
+    class CookingInstruction {
+        String step;
+    }
+
+    class Cuisine {
+        String type;
+    }
+
+    class Category {
+        String type;
+    }
+
+    class User {
+        void createRecipe(Recipe recipe);
+        void editRecipe(Recipe recipe);
+        void deleteRecipe(Recipe recipe);
+        void createIngredient(Ingredient ingredient);
+        void editIngredient(Ingredient ingredient);
+        void deleteIngredient(Ingredient ingredient);
+        void createCookingInstruction(CookingInstruction instruction);
+        void editCookingInstruction(CookingInstruction instruction);
+        void deleteCookingInstruction(CookingInstruction instruction);
+        List<Recipe> generateShoppingList(Recipe recipe);
+        List<Recipe> generateMealPlan(List<Recipe> recipes, List<Ingredient> availableIngredients);
+    }
+
+    composition Recipe -> Ingredient [*];
+    composition Recipe -> CookingInstruction [*];
+    composition Recipe -> Cuisine;
+    composition Ingredient -> Category;
+    composition User -> Recipe;
+    composition User -> Ingredient;
+    composition User -> CookingInstruction;
+}

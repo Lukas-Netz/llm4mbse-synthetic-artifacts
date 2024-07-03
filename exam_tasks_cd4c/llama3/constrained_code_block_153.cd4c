@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram ClinicalDecisionSupport  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Demographic demographic;
+    MedicalCondition  medicalCondition  ;
+    Medication  medication  ;
+    TestResult  testResult  ;
+  }
+
+  class MedicalCondition  {
+    String name;
+    String description;
+    SeverityLevel severity;
+  }
+
+  class Medication  {
+    String name;
+    String description;
+    Dosage dosage;
+  }
+
+  class TestResult  {
+    String name;
+    String description;
+    double value;
+  }
+
+  class Recommendation  {
+    String text;
+    Priority priority;
+  }
+
+  class HealthcareProfessional  {
+    String uniqueIdentifier;
+    String name;
+    Role role;
+  }
+
+  class Demographic  {
+    String address;
+    String phone;
+  }
+
+  class SeverityLevel  {
+    String name;
+  }
+
+  class Dosage  {
+    String instructions;
+  }
+
+  class Priority  {
+    String name;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  composition Patient  ->  (has) MedicalCondition  [0..*];
+  composition Patient  ->  (has) Medication  [0..*];
+  composition Patient  ->  (has) TestResult  [0..*];
+  composition Patient  ->  (has) Recommendation  [0..*];
+  composition HealthcareProfessional  ->  (has) Patient  [0..*];
+  composition ClinicalDecisionSupport  ->  (has) Patient  [0..*];
+  composition ClinicalDecisionSupport  ->  (has) HealthcareProfessional  [0..*];
+}

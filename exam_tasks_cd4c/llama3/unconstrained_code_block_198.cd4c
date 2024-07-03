@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram CarBuyingPlatform  {
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    void createAccount();
+    void login();
+    void logout();
+  }
+
+  class Car  {
+    String uniqueId;
+    String make;
+    String model;
+    int year;
+    int mileage;
+    double price;
+    List<String> features;
+  }
+
+  class Dealership  {
+    String uniqueId;
+    String name;
+    String location;
+    List<Car> cars;
+  }
+
+  class Order  {
+    String uniqueId;
+    User user;
+    Car car;
+    OrderStatus status;
+  }
+
+  class Payment  {
+    String uniqueId;
+    Order order;
+    PaymentMethod method;
+  }
+
+  enum OrderStatus  {
+    Pending, Shipped, Delivered;
+  }
+
+  enum PaymentMethod  {
+    CreditCard, PayPal;
+  }
+
+  composition Dealership -> Car[*];
+  composition User -> Order[*];
+  composition Order -> Payment[*];
+  composition Car -> Dealership[*];
+}

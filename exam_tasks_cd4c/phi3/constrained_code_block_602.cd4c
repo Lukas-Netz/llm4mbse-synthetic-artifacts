@@ -1,0 +1,65 @@
+
+classdiagram HydrogenFuelCellSystem {
+
+    class Factory {
+      void produceFuelCell(FuelCellType type);
+      FuelCellType getFuelCellType();
+    }
+
+    class Warehouse {
+      FuelCellStorage storage;
+      void storeFuelCell(FuelCell fuelCell);
+      FuelCell retrieveFuelCell(String uniqueIdentifier);
+    }
+
+    class DistributionNetwork {
+      Truck truck;
+      DeliveryPerson deliveryPerson;
+      void dispatchFuelCell(FuelCell fuelCell);
+      void deliverFuelCell(FuelCell fuelCell);
+    }
+
+    class CustomerDatabase {
+      Customer customer;
+      void addCustomer(Customer customer);
+      Customer getCustomer(String uniqueIdentifier);
+      void processOrder(String uniqueIdentifier);
+      void processPayment(String uniqueIdentifier);
+    }
+
+    class FuelCell {
+      String uniqueIdentifier;
+      FuelCellType type;
+      double powerOutput;
+      double efficiency;
+      double durability;
+    }
+
+    class FuelCellType {
+      String name;
+      double powerOutput;
+      double efficiency;
+      double durability;
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String address;
+      List<Order> orders;
+    }
+
+    class Order {
+      String uniqueIdentifier;
+      FuelCell fuelCell;
+      boolean status;
+    }
+
+    association Factory -> Warehouse [*];
+    association Factory -> DistributionNetwork [*];
+    association Warehouse -> DistributionNetwork [*];
+    composition CustomerDatabase -> Customer [*];
+    composition CustomerDatabase -> Order [*];
+    composition CustomerDatabase -> FuelCell [*];
+    composition CustomerDatabase -> Customer [*];
+}

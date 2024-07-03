@@ -1,0 +1,75 @@
+
+classdiagram EbookPlatform {
+
+    class Ebook {
+      String title;
+      String author;
+      List<Chapter> chapters;
+    }
+
+    class Chapter {
+      String title;
+      List<Page> pages;
+    }
+
+    class Page {
+      String content;
+      List<ContentElement> elements;
+    }
+
+    class ContentElement {
+      String type;
+      String content;
+    }
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class Comment {
+      String content;
+      User commenter;
+      Date timestamp;
+    }
+
+    class Rating {
+      int value;
+      User rater;
+      Date timestamp;
+    }
+
+    class Bookmark {
+      String content;
+      User bookmarker;
+      Date timestamp;
+    }
+
+    class ChangeLog {
+      User changeMaker;
+      Date timestamp;
+      String description;
+    }
+
+    class Report {
+      String ebookTitle;
+      int popularityScore;
+      List<UserEngagement> userEngagements;
+    }
+
+    class UserEngagement {
+      User user;
+      int engagementScore;
+      Date timestamp;
+    }
+
+    composition Ebook -> (has) Chapter [*];
+    composition Ebook -> (has) Page [*];
+    composition User -> (has) Comment [*];
+    composition User -> (has) Rating [*];
+    composition User -> (has) Bookmark [*];
+    composition Ebook -> (has) ChangeLog [*];
+    composition Ebook -> (has) Report [*];
+    composition Ebook -> (has) UserEngagement [*];
+    composition User -> (has) Ebook [*];
+}

@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram VideoSurveillanceSystem  {
+
+  class Camera  {
+    String uniqueIdentifier;
+    Location location;
+    Resolution[] supportedResolutions;
+  }
+
+  class Server  {
+    ServerType type;
+  }
+
+  enum ServerType  {
+    Recording, Processing;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String username;
+    String password;
+    UserPrivilege privilege;
+  }
+
+  enum UserPrivilege  {
+    Administrator, Regular;
+  }
+
+  class Notification  {
+    String message;
+    User recipient;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class Resolution  {
+    int width;
+    int height;
+  }
+
+  class VideoFootage  {
+    Camera camera;
+    Server server;
+    Timestamp timestamp;
+  }
+
+  composition Camera -> VideoFootage [*];
+  composition Server -> VideoFootage [*];
+  composition User -> Notification [0..*];
+  composition Server -> VideoFootage [*];
+  composition VideoFootage -> Camera;
+  composition VideoFootage -> Server;
+}

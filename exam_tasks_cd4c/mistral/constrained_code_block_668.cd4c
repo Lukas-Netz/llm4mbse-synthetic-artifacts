@@ -1,0 +1,61 @@
+
+classdiagram InsectFarming {
+
+  class Farm {
+    String name;
+    String location;
+  }
+
+  class InsectSpecies {
+    String name;
+    int minTemperature;
+    int maxTemperature;
+  }
+
+  class InsectColony {
+    String name;
+    int currentPopulationSize;
+    InsectSpecies species;
+  }
+
+  class InsectEnclosure {
+    String name;
+    int minTemperature;
+    int maxTemperature;
+    InsectColony [  ] colonies;
+  }
+
+  class ClimateControlUnit {
+    String name;
+    int minTemperature;
+    int maxTemperature;
+    InsectEnclosure enclosure;
+  }
+
+  class CentralControlSystem {
+    void monitorAndAdjustTemperature(InsectEnclosure enclosure);
+  }
+
+  class InsectHealth {
+    int foodIntake;
+    int wasteProduction;
+  }
+
+  class InsectReport {
+    String date;
+    InsectHealth health;
+    InsectColony colony;
+  }
+
+  class ClimateControlUnitReport {
+    String date;
+    String enclosureName;
+    String unitName;
+    int temperature;
+  }
+
+  composition Farm -> InsectSpecies [*];
+  composition InsectEnclosure -> ClimateControlUnit [*];
+  composition InsectEnclosure -> InsectColony [*];
+  association CentralControlSystem --oInsectEnclosure;
+}

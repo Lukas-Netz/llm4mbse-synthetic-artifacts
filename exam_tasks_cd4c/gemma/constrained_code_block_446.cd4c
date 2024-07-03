@@ -1,0 +1,38 @@
+
+
+classdiagram AutonomousCargoShip {
+
+    class CargoShip {
+      String uniqueIdentifier;
+      String name;
+      Location currentLocation;
+    }
+
+    class NavigationSystem {
+      int speed;
+      int direction;
+      GPSCoordinates coordinates;
+    }
+
+    class CargoManagementSystem {
+      int cargoWeight;
+      String cargoType;
+      String cargoStatus;
+    }
+
+    class CargoContainer {
+      int containerWeight;
+      String containerType;
+      String containerStatus;
+    }
+
+    class CargoShipComposition {
+      CargoShip cargoShip;
+      NavigationSystem navigationSystem;
+      CargoManagementSystem cargoManagementSystem;
+    }
+
+  composition CargoShipComposition -> (has) CargoShip;
+  composition CargoShipComposition -> (has) NavigationSystem;
+  composition CargoShipComposition -> (has) CargoManagementSystem;
+}

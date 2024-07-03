@@ -1,0 +1,83 @@
+
+classdiagram MarketResearch {
+
+  class DataRepository {
+    int customerID;
+    String name;
+    int age;
+    String location;
+    List<Purchase> purchaseHistory;
+    List<Preference> preferences;
+  }
+
+  class Purchase {
+    int purchaseID;
+    String product;
+    int quantity;
+    int price;
+    LocalDate date;
+  }
+
+  class Preference {
+    int preferenceID;
+    String preferenceType;
+    String preferenceValue;
+  }
+
+  class DataAnalysis {
+    String algorithmType;
+    DataRepository trainingData;
+    List<Insight> analysisResults;
+  }
+
+  class Insight {
+    String insightID;
+    String insight;
+    String trend;
+  }
+
+  class Visualization {
+    String visualizationType;
+    List<Insight> dataToBeVisualized;
+    String visualizationResults;
+  }
+
+  class Dashboard {
+    int userID;
+    String userRole;
+    List<DashboardSetting> dashboardSettings;
+  }
+
+  class DashboardSetting {
+    String settingType;
+    String settingValue;
+  }
+
+  composition DataRepository [*] DataAnalysis.trainingData
+  -- DataAnalysis
+  - 											{
+ 										ordered
+ 				}
+ 				;
+  composition Visualization.dataToBeVisualized [many] -> Insight;
+  association Dashboard.dashboardSettings [many] -> DashboardSetting;
+
+  class DataRepository {
+    void addCustomerData(DataRepository customerData);
+    void removeCustomerData(DataRepository customerData);
+  }
+
+  class DataAnalysis {
+    void runAnalysis();
+    void generateInsights();
+  }
+
+  class Visualization {
+    void visualizeInsights();
+  }
+
+  class Dashboard {
+    void interactWithDashboard();
+    void exportInsights();
+  }
+}

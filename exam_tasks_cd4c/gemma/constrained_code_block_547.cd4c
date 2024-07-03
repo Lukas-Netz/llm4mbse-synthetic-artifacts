@@ -1,0 +1,80 @@
+
+
+classdiagram OnlineIndigenousArtMarketplace {
+
+    class Artist {
+      String uniqueIdentifier;
+      String name;
+      String bio;
+
+      Artwork createArtwork(String title, String description, int price);
+    }
+
+    class Artwork {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      int price;
+      Artist artist;
+
+      void purchaseArtwork(Customer customer);
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String email;
+
+      List<Artwork> purchaseArtwork(Artwork artwork);
+    }
+
+    class SalesHistory {
+      Artwork artwork;
+      Customer customer;
+      int quantity;
+      Date date;
+    }
+
+    class Rating {
+      Artwork artwork;
+      Customer customer;
+      int rating;
+      String review;
+    }
+
+    class ArtistRating {
+      Artist artist;
+      Customer customer;
+      int rating;
+      String review;
+    }
+
+    class ArtworkCategory {
+      String name;
+      List<Artwork> artworks;
+    }
+
+    class ArtworkSearch {
+      List<Artwork> filterArtworksByPrice(int minPrice, int maxPrice);
+      List<Artwork> filterArtworksByCategory(String category);
+      List<Artwork> filterArtworksByArtist(String artistName);
+    }
+
+    class Marketplace {
+      List<Artist> artists;
+      List<Artwork> artworks;
+      List<Customer> customers;
+      List<SalesHistory> salesHistory;
+      List<Rating> ratings;
+      List<ArtistRating> artistRatings;
+    }
+
+  composition Marketplace -> (has) Artist [*];
+  composition Marketplace -> (has) Artwork [*];
+  composition Marketplace -> (has) Customer [*];
+  composition Marketplace -> (has) SalesHistory [*];
+  composition Marketplace -> (has) Rating [*];
+  composition Marketplace -> (has) ArtistRating [*];
+  composition Marketplace -> (has) ArtworkCategory [*];
+  composition Marketplace -> (has) ArtworkSearch [*];
+}

@@ -1,0 +1,64 @@
+
+classdiagram SelfLearningRobot {
+
+  class SelfLearningRobot {
+    String name;
+    String uniqueIdentifier;
+    Set<Rule> rules;
+    Set<Goal> goals;
+    State currentState;
+  }
+
+  class Rule {
+    String condition;
+    String action;
+  }
+
+  class Goal {
+    String description;
+    int priority;
+  }
+
+  class State {
+    Position position;
+    Orientation orientation;
+    Map<String, Object> additionalInfo;
+  }
+
+  class Position {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Orientation {
+    double azimuth;
+    double pitch;
+    double roll;
+  }
+
+  class Episode {
+    Sequence<Action> actions;
+    Outcome outcome;
+  }
+
+  class Action {
+    String description;
+    State newState;
+  }
+
+  class Outcome {
+    boolean success;
+    double reward;
+  }
+
+  class Environment {
+    Map<String, Object> properties;
+  }
+
+  composition SelfLearningRobot -> (has) Rules [*];
+  composition SelfLearningRobot -> (has) Goals [*];
+  composition SelfLearningRobot -> (has) State;
+  composition Episode -> (has) Actions [*];
+  association SelfLearningRobot -> Environment;
+}

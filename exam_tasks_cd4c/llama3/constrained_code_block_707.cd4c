@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram PredictiveMaintenance  {
+
+  class Equipment  {
+    String uniqueIdentifier;
+    EquipmentType type;
+    EquipmentStatus status;
+  }
+
+  class Sensor  {
+    Equipment attachedEquipment;
+    SensorType type;
+    double value;
+  }
+
+  class PredictiveModel  {
+    void train(Equipment equipment, Sensor sensor);
+    void update(Equipment equipment, Sensor sensor);
+    boolean predictFailure(Equipment equipment);
+  }
+
+  class MaintenanceTeam  {
+    void scheduleMaintenance(Equipment equipment);
+  }
+
+  class MaintenanceTask  {
+    Equipment equipment;
+    Date scheduledDate;
+  }
+
+  class Dashboard  {
+    void displayEquipmentStatus(Equipment equipment);
+    void displayMaintenanceTasks(MaintenanceTask task);
+  }
+
+  enum EquipmentType  {
+    PUMP, MOTOR, etc;
+  }
+
+  enum EquipmentStatus  {
+    OPERATIONAL, FAILED, etc;
+  }
+
+  enum SensorType  {
+    TEMPERATURE, VIBRATION, PRESSURE, etc;
+  }
+
+  composition Equipment -> Sensor [1..*];
+  composition PredictiveModel -> Equipment [1..*];
+  composition MaintenanceTeam -> MaintenanceTask [0..*];
+  composition Dashboard -> Equipment [1..*];
+  composition Dashboard -> MaintenanceTask [1..*];
+}

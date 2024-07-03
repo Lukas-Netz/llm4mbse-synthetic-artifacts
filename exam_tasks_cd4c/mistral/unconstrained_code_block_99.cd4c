@@ -1,0 +1,38 @@
+
+classdiagram Archaeology {
+
+  class Archaeologist {
+    String uniqueIdentifier;
+    String expertise;
+    String experience;
+  }
+
+  class TeamLeader extends Archaeologist {
+    void addTeamMember(Archaeologist archaeologist);
+    void removeTeamMember(Archaeologist archaeologist);
+    void assignLayer(Archaeologist archaeologist, Layer layer);
+    void reassignLayer(Archaeologist archaeologist, Layer oldLayer, Layer newLayer);
+    String getExcavationStatus();
+  }
+
+  class Layer {
+    String uniqueIdentifier;
+    String characteristics;
+  }
+
+  class Artifact {
+    String uniqueIdentifier;
+    ArtifactCategory category;
+  }
+
+  enum ArtifactCategory {
+    Pottery, Tools, Relics;
+  }
+
+  class Pottery extends Artifact {}
+  class Tool extends Artifact {}
+  class Relic extends Artifact {}
+
+  composition TeamLeader -> Archaeologist [*];
+  composition Layer -> Artifact [*];
+}

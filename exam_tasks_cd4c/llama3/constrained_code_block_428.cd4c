@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram OnlineGamingTournament  {
+
+  class TournamentOrganizer  {
+    -> Game[*];
+    -> Player[*];
+    void createGame(Game game);
+    void addPlayerToGame(Player player, Game game);
+    void removePlayerFromGame(Player player, Game game);
+    void updateGameState(Game game);
+  }
+
+  class Game  {
+    String uniqueIdentifier;
+    String name;
+    Date startDate;
+    Date endDate;
+    int maxParticipants;
+    GameStatus status;
+    Player winner;
+  }
+
+  class Player  {
+    String uniqueIdentifier;
+    String name;
+    int ranking;
+    -> Game[*];
+  }
+
+  enum GameStatus  {
+    Ongoing,
+    Finished;
+  }
+
+  composition TournamentOrganizer -> (has) Game[*];
+  composition TournamentOrganizer -> (has) Player[*];
+  composition Game -> (has) Player[*];
+  composition Player -> (has) Game[*];
+}

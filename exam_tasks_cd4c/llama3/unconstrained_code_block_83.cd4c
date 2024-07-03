@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram SmartWearables  {
+
+  class Device  {
+    String uniqueId;
+    String name;
+    DeviceType type;
+    DeviceSettings settings;
+  }
+
+  class User  {
+    String uniqueId;
+    String name;
+    List<Device> devices;
+    UserData userData;
+  }
+
+  class DeviceSettings  {
+    int brightness;
+    int volume;
+    NotificationPreferences notificationPrefs;
+  }
+
+  class UserData  {
+    double height;
+    double weight;
+    FitnessGoal fitnessGoal;
+  }
+
+  class DeviceData  {
+    int stepsTaken;
+    double distanceTraveled;
+    double caloriesBurned;
+  }
+
+  class NotificationPreferences  {
+    boolean enableNotifications;
+    String notificationChannel;
+  }
+
+  class FitnessGoal  {
+    double targetSteps;
+    double targetDistance;
+    double targetCalories;
+  }
+
+  class DataAnalysis  {
+    void analyzeDeviceData(DeviceData data);
+    void provideInsights(User user);
+  }
+
+  class DeviceManagement  {
+    void updateDeviceSoftware(Device device);
+    void patchDeviceFirmware(Device device);
+  }
+
+  composition User -> Device[*];
+  composition Device -> DeviceSettings;
+  composition Device -> DeviceData;
+  composition DataAnalysis -> User;
+  composition DeviceManagement -> Device;
+}

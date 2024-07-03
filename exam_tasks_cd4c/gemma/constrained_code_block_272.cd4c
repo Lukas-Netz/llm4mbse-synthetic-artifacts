@@ -1,0 +1,45 @@
+
+
+classdiagram OnlineDating {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    Profile profile;
+    List<String> preferredMatches;
+    List<String> blockedUsers;
+  }
+
+  class Profile {
+    int age;
+    String location;
+    List<String> interests;
+    String description;
+  }
+
+  class SearchFunction {
+    List<User> search(String criteria);
+  }
+
+  class MessagingSystem {
+    void send(String from, String to, String message);
+    void receive(String from, String to, String message);
+  }
+
+  class RatingAndReview {
+    void rate(String userToRate, int rating);
+    void review(String userToReview, String review);
+  }
+
+  class PaymentSystem {
+    void purchasePremiumFeatures(String user, int amount);
+  }
+
+  composition User -> (has) Profile;
+  composition User -> (has) PreferredMatches;
+  composition User -> (has) BlockedUsers;
+  association SearchFunction -> User;
+  association MessagingSystem -> User;
+  association RatingAndReview -> User;
+  association PaymentSystem -> User;
+}

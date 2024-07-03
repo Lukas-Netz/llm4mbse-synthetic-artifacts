@@ -1,0 +1,77 @@
+
+classdiagram HFTPlatform {
+
+  class TradingEngine {
+    void executeTrade(Trade trade);
+  }
+
+  class RiskManagement {
+    void monitorRisk(Trader trader);
+  }
+
+  class DataFeed {
+    RealtimeMarketData getData();
+  }
+
+  class Trader {
+    String name;
+    TradingStrategy [ ] strategies;
+  }
+
+  class TradingStrategy {
+    String name;
+    String description;
+    Parameters params;
+  }
+
+  class Parameters {
+    int parameter1;
+    int parameter2;
+    double parameter3;
+  }
+
+  class UserInterface {
+    void displayMarketData();
+    void displayTradeReports();
+    void displayStrategyPerformance();
+  }
+
+  class Reporting {
+    void generateTradeReport();
+    void generateRiskReport();
+    void generateStrategyReport();
+  }
+
+  class Trade {
+    String tradeId;
+    TradeType tradeType;
+    Asset asset;
+    int quantity;
+    double price;
+  }
+
+  class TradeType {
+    enum BUY;
+    enum SELL;
+  }
+
+  class Asset {
+    String assetName;
+    String assetType;
+  }
+
+  class RealtimeMarketData {
+    String assetName;
+    double price;
+    int volume;
+  }
+
+  composition HFTPlatform -> TradingEngine;
+  composition HFTPlatform -> RiskManagement;
+  composition HFTPlatform -> DataFeed;
+  composition Trader -> TradingStrategy [*];
+  association TradingEngine -> Trade;
+  association RiskManagement -> Trader;
+  association DataFeed -> RealtimeMarketData;
+  association UserInterface -> Trade;
+ 				}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram AutonomousDeliverySystem  {
+
+  class AutonomousVehicle  {
+    String uniqueIdentifier;
+    int packageCapacity;
+    Sensor sensor;
+    NavigationSystem navigation;
+  }
+
+  class DeliveryStation  {
+    String name;
+    Location location;
+  }
+
+  class CentralManagementSystem  {
+    AutonomousVehicle[] autonomousVehicles;
+    DeliveryStation[] deliveryStations;
+    Package[] packages;
+    CustomerInterface customerInterface;
+  }
+
+  class CustomerInterface  {
+    String packageStatus(String packageId);
+  }
+
+  class Sensor  {
+  }
+
+  class NavigationSystem  {
+  }
+
+  class Package  {
+    String packageId;
+    String destination;
+    AutonomousVehicle assignedVehicle;
+  }
+
+  class Location  {
+  }
+
+  composition AutonomousVehicle -> Sensor;
+  composition AutonomousVehicle -> NavigationSystem;
+  composition CentralManagementSystem -> AutonomousVehicle[*];
+  composition CentralManagementSystem -> DeliveryStation[*];
+  composition CentralManagementSystem -> Package[*];
+  composition CustomerInterface -> CentralManagementSystem;
+}

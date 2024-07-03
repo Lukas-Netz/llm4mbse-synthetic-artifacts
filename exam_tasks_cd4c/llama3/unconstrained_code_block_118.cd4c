@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram SmartWaterQualityMonitoringSystem  {
+
+  class Sensor  {
+    String location;
+    SensorType type;
+    pHLevel pH;
+    Temperature temperature;
+    Turbidity turbidity;
+  }
+
+  class MonitoringStation  {
+    String location;
+    Sensor[] sensors;
+  }
+
+  class CentralDatabase  {
+    Sensor[] sensors;
+    MonitoringStation[] monitoringStations;
+    Data[] data;
+  }
+
+  class Data  {
+    Sensor sensor;
+    MonitoringStation monitoringStation;
+    Date timestamp;
+    pHLevel pH;
+    Temperature temperature;
+    Turbidity turbidity;
+  }
+
+  class Alert  {
+    Sensor sensor;
+    MonitoringStation monitoringStation;
+    Date timestamp;
+    String message;
+  }
+
+  enum SensorType  {
+    pH, Temperature, Turbidity;
+  }
+
+  enum pHLevel  {
+    Low, Normal, High;
+  }
+
+  enum Temperature  {
+    Low, Normal, High;
+  }
+
+  enum Turbidity  {
+    Low, Normal, High;
+  }
+
+  composition CentralDatabase -> (has) Sensor[*];
+  composition CentralDatabase -> (has) MonitoringStation[*];
+  composition MonitoringStation -> (has) Sensor[*];
+  composition Sensor -> (has) pHLevel;
+  composition Sensor -> (has) Temperature;
+  composition Sensor -> (has) Turbidity;
+}

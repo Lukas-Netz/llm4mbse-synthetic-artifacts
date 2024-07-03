@@ -1,0 +1,46 @@
+
+classdiagram AgriculturalRobotics {
+
+    class CentralHub {
+      List<Robot> robots;
+      WeatherStation weatherStation;
+      Database database;
+      void manageRobots();
+      void receiveWeatherData();
+      void storeHistoricalData();
+    }
+
+    abstract class Robot {
+      String robotType;
+      void performTask();
+    }
+
+    class AutonomousTractor extends Robot {
+      void plantSeeds();
+      void plowField();
+    }
+
+    class AutonomousHarvester extends Robot {
+      void harvestCrops();
+    }
+
+    class AutonomousPruningMachine extends Robot {
+      void prunePlants();
+    }
+
+    class WeatherStation {
+      String temperature;
+      String humidity;
+      String precipitation;
+      void provideWeatherData();
+    }
+
+    class Database {
+      void storeData();
+      String retrieveData();
+    }
+
+    association CentralHub -> Robot [*];
+    association CentralHub -> WeatherStation [0..1];
+    association CentralHub -> Database [0..1];
+}

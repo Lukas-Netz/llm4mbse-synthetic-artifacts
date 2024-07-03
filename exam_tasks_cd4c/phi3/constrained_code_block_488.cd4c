@@ -1,0 +1,56 @@
+
+classdiagram PeerToPeerLending {
+
+    class User {
+      String uniqueIdentifier;
+      int creditScore;
+    }
+
+    class Loan {
+      String loanId;
+      User borrower;
+      double loanAmount;
+      double interestRate;
+      int durationInDays;
+      List<Investment> investments;
+      void verifyLoanRequest();
+      void assignLoanId();
+      void listLoan();
+    }
+
+    class Investment {
+      String investmentId;
+      User investor;
+      double investmentAmount;
+      double interestRate;
+    }
+
+    class Payment {
+      String paymentId;
+      User borrower;
+      double paymentAmount;
+      void distributePayment();
+    }
+
+    class PlatformAdministrator {
+      void viewLoanDetails(Loan loan);
+      void viewInvestmentDetails(Investment investment);
+      void viewUserCreditScore(User user);
+    }
+
+    association User -investments [has]
+    -> Loan;
+
+    association Loan -payments [has]
+    -> Payment;
+
+    association Loan -investments [many]
+    -> Investment;
+
+    association Investment -investors [many]
+    -> User;
+
+    composition Loan -> Payments [*];
+    composition Loan -> Investments [*];
+    composition Investment -> Users [*];
+}

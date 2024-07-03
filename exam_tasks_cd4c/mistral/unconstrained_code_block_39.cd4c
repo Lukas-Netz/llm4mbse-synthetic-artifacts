@@ -1,0 +1,70 @@
+
+classdiagram AutomatedThreatDetection {
+
+  class Sensor {
+    String uniqueIdentifier;
+    -> ThreatType [*];
+  }
+
+  abstract class ThreatType {
+  }
+
+  class FireThreat extends ThreatType {
+  }
+
+  class IntrusionThreat extends ThreatType {
+  }
+
+  class TheftThreat extends ThreatType {
+  }
+
+  class CPU {
+    -> Sensor [*];
+    ThreatDetectionAlgorithm threatDetectionAlgorithm;
+    Database database;
+    NotificationSystem notificationSystem;
+    LogDatabase logDatabase;
+  }
+
+  class ThreatDetectionAlgorithm {
+  }
+
+  class Database {
+    -> Threat [*];
+  }
+
+  class Threat {
+    String uniqueIdentifier;
+    String description;
+    ThreatSeverity severity;
+  }
+
+  enum ThreatSeverity {
+    Low, Medium, High, Critical;
+  }
+
+  class NotificationSystem {
+    -> Recipient [*];
+  }
+
+  class Recipient {
+  }
+
+  class LogDatabase {
+    -> Threat [*];
+    -> Alert [*];
+  }
+
+  class Alert {
+    String uniqueIdentifier;
+    String description;
+    ThreatSeverity severity;
+    String actionTaken;
+    String timeStamp;
+  }
+
+  composition CPU -> Sensor [*];
+  composition CPU -> Database;
+  composition CPU -> NotificationSystem;
+  composition CPU -> LogDatabase;
+}

@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram VideoConferencingSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Meeting  {
+    String uniqueIdentifier;
+    String title;
+    DateTime startDateTime;
+    DateTime endDateTime;
+    MeetingType type;
+  }
+
+  enum MeetingType  {
+    SCHEDULED, AD_HOC
+  ;}
+
+  class MeetingRoom  {
+    String uniqueIdentifier;
+    String name;
+    int capacity;
+    MeetingRoomType type;
+  }
+
+  enum MeetingRoomType  {
+    VIRTUAL, PHYSICAL
+  ;}
+
+  class VirtualMeetingRoom extends MeetingRoom  {}
+
+  class PhysicalMeetingRoom extends MeetingRoom  {}
+
+  composition Meeting  ->  (has) MeetingRoom  [1];
+  composition MeetingRoom  ->  (has) Meeting  [1];
+  composition User  ->  (has) Meeting  [*];
+  composition Meeting  ->  (has) User  [*];
+  composition MeetingRoom  ->  (has) User  [*];
+}

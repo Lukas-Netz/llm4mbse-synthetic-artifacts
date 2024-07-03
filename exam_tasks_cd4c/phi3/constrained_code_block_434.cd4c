@@ -1,0 +1,72 @@
+
+classdiagram ArchaeologyPlatform {
+
+    class ExcavationSite {
+      String uniqueId;
+      String name;
+      String location;
+      SiteType type;
+    }
+
+    class Artifact {
+      String uniqueId;
+      String name;
+      String description;
+      List<ExcavationSite> excavationSites;
+    }
+
+    class ExcavationTeam {
+      String uniqueId;
+      String name;
+      List<TeamMember> teamMembers;
+      ExcavationSite excavationSite;
+    }
+
+    class TeamMember {
+      String uniqueId;
+      String name;
+      String role;
+    }
+
+    class Photograph {
+      String uniqueId;
+      String description;
+      List<Artifact> associatedArtifacts;
+    }
+
+    class Report {
+      String uniqueId;
+      String title;
+      String description;
+    }
+
+    association ExcavationSite 
+      hasExcavationTeam [many]
+
+    -> Artifact [*];
+
+    association ExcavationTeam 
+      hasExcavationSite [one]
+
+    -> TeamMember [*];
+
+    association Artifact 
+      hasPhotograph [many]
+
+    -> ExcavationSite [*];
+
+    association TeamMember 
+      hasExcavationTeam [many]
+
+    -> ExcavationSite [*];
+
+    association Photograph 
+      hasArtifact [many]
+
+    -> Artifact [*];
+
+    association Report 
+      hasExcavationTeam [one]
+
+    -> ExcavationSite [*];
+}

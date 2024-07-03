@@ -1,0 +1,307 @@
+
+
+classdiagram InventoryControlSystem {
+
+  class Product {
+    String id;
+    String name;
+    String description;
+    Category category;
+  }
+
+  class Location {
+    String id;
+    String name;
+    String address;
+    Category category;
+  }
+
+  class InventoryItem {
+    String id;
+    Product product;
+    Location location;
+    int quantity;
+  }
+
+  class Order {
+    String id;
+    Product product;
+    int quantity;
+  }
+
+  class Report {
+    String generateInventoryLevelReport();
+    String generateOrderReport();
+  }
+
+  enum Category {
+    Electronics, Clothing, Books
+  
+
+  
+
+  
+;
+
+  composition InventoryControlSystem  (has  Report)
+  
+  
+  
+  ;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsInventoryControlSystem  (has)  <- Report
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsInventoryItem  (has)  <- InventoryItem
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsOrder  (has)  <- Order
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsProduct  (has)  <- Product
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsLocation  (has)  <- Location
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsInventoryItem  (has)  <- InventoryItem
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsOrder  (has)  <- Order
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsReport  (has)  <- Report
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsInventoryControlSystem  (has)  <- Report
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+}

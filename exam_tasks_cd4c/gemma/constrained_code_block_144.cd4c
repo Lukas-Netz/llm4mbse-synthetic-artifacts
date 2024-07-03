@@ -1,0 +1,99 @@
+
+
+classdiagram LearningSystem {
+
+  class UserAccount {
+    private String username;
+    private String password;
+  }
+
+  class CourseCatalog {
+    private Map<String, Course> courses;
+  }
+
+  class Course {
+    private String id;
+    private String name;
+    private String description;
+  }
+
+  class LessonSystem {
+    private Map<String, Lesson> lessons;
+  }
+
+  class Lesson {
+    private String id;
+    private String name;
+    private String description;
+  }
+
+  class VocabularySystem {
+    private Map<String, VocabularyWord> words;
+  }
+
+  class VocabularyWord {
+    private String id;
+    private String meaning;
+    private String translation;
+  }
+
+  class GrammarSystem {
+    private Map<String, GrammarRule> rules;
+  }
+
+  class GrammarRule {
+    private String id;
+    private String description;
+    private List<Example> examples;
+  }
+
+  class Example {
+    private String text;
+    private String expectedOutput;
+  }
+
+  class PracticeSystem {
+    private Map<String, PracticeExercise> exercises;
+  }
+
+  class PracticeExercise {
+    private String id;
+    private String name;
+    private String description;
+  }
+
+  class ScoringSystem {
+    private Map<String, Score> scores;
+  }
+
+  class Score {
+    private String user;
+    private int points;
+    private String date;
+  }
+
+  composition UserAccount -> CourseCatalog [0..1]
+  abstract  {
+    
+  
+  
+ordered  
+  }
+
+  
+
+;
+
+  composition CourseCatalog -> Course [*];
+
+  composition LessonSystem -> Lesson [*];
+
+  composition VocabularySystem -> VocabularyWord [*];
+
+  composition GrammarSystem -> GrammarRule [*];
+
+  composition PracticeSystem -> PracticeExercise [*];
+
+  
+
+}

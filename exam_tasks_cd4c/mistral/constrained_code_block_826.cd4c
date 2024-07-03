@@ -1,0 +1,31 @@
+
+classdiagram VRArtExhibition {
+
+  class Exhibition {
+    String name;
+    String description;
+    Exhibition(String name, String description);
+    -> Artwork [*];
+  }
+
+  class Artwork {
+    String title;
+    String description;
+    ArtworkType type;
+    Artwork(String title, String description, ArtworkType type);
+  }
+
+  enum ArtworkType {
+    Painting, Sculpture, Installation;
+  }
+
+  class Visitor {
+    String name;
+    String email;
+    Visitor(String name, String email);
+    -> Exhibition [*];
+  }
+
+  composition Exhibition -> Artwork [*];
+  composition Visitor -> Exhibition [*];
+}

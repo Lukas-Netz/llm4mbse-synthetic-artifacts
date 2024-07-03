@@ -1,0 +1,56 @@
+
+
+
+classdiagram LegalResearchSystem  {
+
+  class Case  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Law[*];
+    -> LegalConcept[*];
+    RelevanceScore relevanceScore;
+  }
+
+  class Law  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Case[*];
+    -> LegalConcept[*];
+    RelevanceScore relevanceScore;
+  }
+
+  class LegalConcept  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Case[*];
+    -> Law[*];
+    RelevanceScore relevanceScore;
+  }
+
+  class RelevanceScore  {
+    double score;
+  }
+
+  class SearchQuery  {
+    String query;
+  }
+
+  class Recommendation  {
+    Case case;
+    Law law;
+    LegalConcept concept;
+  }
+
+  composition SearchQuery -> (has) Case[*];
+  composition SearchQuery -> (has) Law[*];
+  composition SearchQuery -> (has) LegalConcept[*];
+  composition Case -> (has) RelevanceScore;
+  composition Law -> (has) RelevanceScore;
+  composition LegalConcept -> (has) RelevanceScore;
+  composition Case -> (has) Recommendation[*];
+  composition Law -> (has) Recommendation[*];
+  composition LegalConcept -> (has) Recommendation[*];
+}

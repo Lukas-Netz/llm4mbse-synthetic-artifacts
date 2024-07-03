@@ -1,0 +1,59 @@
+
+classdiagram EcommerceSystem {
+
+    class Product {
+      String uniqueId;
+      String name;
+      String description;
+      double price;
+      List<Category> categories;
+    }
+
+    class Category {
+      String uniqueId;
+      String name;
+      Category parent;
+      List<Product> products;
+    }
+
+    class Order {
+      String orderId;
+      List<Product> products;
+      OrderStatus status;
+    }
+
+    class OrderStatus {
+      String status;
+    }
+
+    class Customer {
+      String customerId;
+      List<Order> orderHistory;
+    }
+
+    class Admin {
+      void createProduct(Product product);
+      void updateProduct(Product product);
+      void deleteProduct(Product product);
+      void createCategory(Category category);
+      void updateCategory(Category category);
+      void deleteCategory(Category category);
+      void createOrder(Order order);
+      void updateOrder(Order order);
+      void deleteOrder(Order order);
+      void placeOrder(Customer customer, List<Product> products);
+      void viewOrderHistory(Customer customer);
+      Report generateProductSalesReport();
+      Report generateOrderStatusReport();
+      Report generateCustomerBehaviorReport();
+    }
+
+    composition EcommerceSystem -> (has) Product;
+    composition EcommerceSystem -> (has) Category;
+    composition EcommerceSystem -> (has) Order;
+    composition EcommerceSystem -> (has) Customer;
+    composition Admin -> (has) Product;
+    composition Admin -> (has) Category;
+    composition Admin -> (has) Order;
+    composition Admin -> (has) Customer;
+}

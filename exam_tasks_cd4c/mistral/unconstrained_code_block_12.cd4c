@@ -1,0 +1,39 @@
+
+classdiagram TrafficManagement {
+
+  class TrafficLight {
+    String uniqueIdentifier;
+    TrafficLightState state;
+  }
+
+  enum TrafficLightState {
+    Red, Yellow, Green;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    int intersectionId;
+    int detectedVehicles;
+    int averageSpeed;
+    String direction;
+  }
+
+  class Camera {
+    String uniqueIdentifier;
+    int intersectionId;
+    String capturedImage;
+  }
+
+  class TrafficManagementCenter {
+    void monitorTrafficFlow();
+    void detectCongestion();
+    void optimizeTrafficFlow();
+    void sendAlert(String message);
+    void provideDataToEmergencyServices();
+    void storeData();
+  }
+
+  composition TrafficManagementCenter -> TrafficLight [*];
+  composition TrafficManagementCenter -> Sensor [*];
+  composition TrafficManagementCenter -> Camera [*];
+}

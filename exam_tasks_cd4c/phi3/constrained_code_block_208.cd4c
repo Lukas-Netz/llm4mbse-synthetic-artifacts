@@ -1,0 +1,408 @@
+
+classdiagram SmartLightingControlSystem {
+
+    class SmartLightingControlSystem {
+      CentralControlUnit ccU;
+      Map<String, Zone> zones;
+    WritableHistoricalData lightingHistory;
+    }
+
+    class CentralControlUnit {
+      Map<String, Zone> zones;
+      void addZone(Zone zone);
+      void removeZone(String zoneId);
+      void adjustLampBrightness(String zoneId, int brightness);
+      void adjustLampState(String zoneId, boolean state);
+      void receiveSensorFeedback(String zoneId, int ambientLight);
+      HistoricalData getLightingHistory(String zoneId);
+    }
+
+    class Zone {
+      String zoneId;
+      String zoneName;
+      Map<String, Device> devices;
+    }
+
+    class Device {
+      String deviceId;
+      DeviceType type;
+    }
+
+    class Lamps extends Device {
+      int brightnessLevel;
+      boolean isOn;
+    }
+
+    class Sensors extends Device {
+      int ambientLight;
+    }
+
+    enum DeviceType {
+      Lamps, Sensors
+   
+   
+  
+(write)
+
+   
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+    composition SmartLightingControlSystem 
+       
+
+
+;
+   
+
+}
+
+enum DeviceType {
+  Lamps, Sensors
+
+
+
+(write)
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+
+}
+
+enum DeviceType {
+  Lamps, Sensors
+
+
+
+(write)
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+    association SmartLightingControlSystem 
+       
+
+
+;
+   
+
+
+
+
+(write
+   
+
+)
+
+(write
+
+)
+   
+}
+
+class SmartLightingControlSystem 
+   
+   
+
+   
+   ;}

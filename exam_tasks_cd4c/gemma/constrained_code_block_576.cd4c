@@ -1,0 +1,40 @@
+
+
+classdiagram LandRegistrySystem {
+
+  class Blockchain {
+    List<Transaction> transactions;
+  }
+
+  class LandRegistryOffice {
+    void addProperty(Property property);
+    void updateOwnerInfo(Property property, Owner owner);
+    void removeProperty(Property property);
+    void recordTransaction(Transaction transaction);
+  }
+
+  class Property {
+    String uniqueIdentifier;
+    String location;
+    Owner owner;
+  }
+
+  class Owner {
+    String name;
+    String address;
+    String identificationNumber;
+  }
+
+  class Transaction {
+    String type;
+    Property property;
+    Owner buyer;
+    Owner seller;
+  }
+
+  composition LandRegistryOffice -> (has) Blockchain;
+  composition Property -> (has) Owner;
+  composition Transaction -> (has) Property;
+  association LandRegistryOffice -> Property;
+  association Property -> Transaction;
+}

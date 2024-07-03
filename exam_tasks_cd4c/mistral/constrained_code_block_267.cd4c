@@ -1,0 +1,80 @@
+
+classdiagram ERP {
+
+  class Employee {
+    String uniqueID;
+    String name;
+    String jobTitle;
+    Department assignedDepartment;
+    Task [ ] assignedTasks;
+  }
+
+  class Department {
+    String name;
+    Employee [ ] employees;
+    Project [ ] assignedProjects;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Department assignedDepartment;
+    Task [ ] tasks;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Employee [ ] assignedEmployees;
+    Project project;
+  }
+
+  class Customer {
+    String name;
+    String contactInformation;
+    Order [ ] orders;
+  }
+
+  class Order {
+    Customer customer;
+    Product [ ] products;
+    double totalCost;
+  }
+
+  class Product {
+    String name;
+    String description;
+    double price;
+  }
+
+  class ERPSystem {
+    void addEmployee(Employee employee);
+    void removeEmployee(Employee employee);
+    void assignEmployeeToDepartment(Employee employee, Department department);
+    void assignEmployeeToTask(Employee employee, Task task);
+    void addDepartment(Department department);
+    void removeDepartment(Department department);
+    void addProject(Project project);
+    void removeProject(Project project);
+    void assignProjectToDepartment(Project project, Department department);
+    void addTask(Task task);
+    void removeTask(Task task);
+    void createOrder(Order order);
+    void updateEmployeeInfo(Employee employee, String newJobTitle, Department newDepartment);
+    void updateProjectInfo(Project project, String newStatus, Date newDeadline);
+    void updateCustomerInfo(Customer customer, String newContactInformation);
+    void updateProductInfo(Product product, double newPrice, int newAvailability);
+    void generateEmployeePerformanceReport();
+    void generateProjectProgressReport();
+    void generateCustomerOrdersReport();
+    void generateProductSalesReport();
+  }
+
+  composition ERPSystem -> Employee [*];
+  composition ERPSystem -> Department [*];
+  composition ERPSystem -> Project [*];
+  composition ERPSystem -> Task [*];
+  composition ERPSystem -> Customer [*];
+  composition ERPSystem -> Order [*];
+  composition ERPSystem -> Product [*];
+}

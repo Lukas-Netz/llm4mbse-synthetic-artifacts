@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram DocumentSharingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Document  {
+    String title;
+    String description;
+    FileType fileType;
+    String fileContent;
+  }
+
+  class Folder  {
+    String name;
+    Document[] documents;
+    Folder[] subfolders;
+  }
+
+  enum FileType  {
+    PDF, Word, Excel, Text;
+  }
+
+  enum AccessLevel  {
+    ReadOnly, Edit, Delete;
+  }
+
+  class Comment  {
+    String text;
+    User author;
+  }
+
+  class Like  {
+    User user;
+  }
+
+  class Rating  {
+    int score;
+    User user;
+  }
+
+  composition User -> Folder [0..*];
+  composition Folder -> Document [0..*];
+  composition Folder -> Folder [0..*];
+  composition Document -> Comment [0..*];
+  composition Document -> Like [0..*];
+  composition Document -> Rating [0..*];
+  composition User -> Document [0..*];
+  composition Document -> AccessLevel;
+  composition Folder -> AccessLevel;
+  composition User -> AccessLevel;
+}

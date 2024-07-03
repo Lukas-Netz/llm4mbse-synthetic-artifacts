@@ -1,0 +1,45 @@
+
+classdiagram CybersecurityAnalytics {
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Network, System, Application;
+  }
+
+  class NetworkSensor extends Sensor {
+    int packetSize;
+    int packetFrequency;
+  }
+
+  class SystemSensor extends Sensor {
+    String systemCall;
+    String fileAccess;
+  }
+
+  class ApplicationSensor extends Sensor {
+    String userBehavior;
+  }
+
+  class AnalyticsEngine {
+    int sensitivityLevel;
+    int alertThreshold;
+  }
+
+  class SecurityAnalyst {
+    void createCustomRule();
+    void createCustomDashboard();
+  }
+
+  class Database {
+    void queryData();
+  }
+
+  composition CybersecurityAnalytics -> Sensor [*];
+  composition CybersecurityAnalytics -> AnalyticsEngine;
+  composition CybersecurityAnalytics -> SecurityAnalyst;
+  composition CybersecurityAnalytics -> Database;
+}

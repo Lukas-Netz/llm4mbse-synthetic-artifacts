@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram DigitalComicPlatform  {
+
+  class ComicBook  {
+    String title;
+    Date publicationDate;
+    String description;
+  }
+
+  class Author  {
+    String name;
+    String bio;
+  }
+
+  class Publisher  {
+    String name;
+    String contactEmail;
+  }
+
+  class ComicBookAuthor  {
+    ComicBook comicBook;
+    Author author;
+  }
+
+  class ComicBookPublisher  {
+    ComicBook comicBook;
+    Publisher publisher;
+  }
+
+  composition ComicBook -> (has) ComicBookAuthor[*];
+  composition ComicBook -> (has) ComicBookPublisher;
+  composition Author -> (has) ComicBookAuthor;
+  composition Publisher -> (has) ComicBookPublisher;
+
+  interface Filter {
+    List<ComicBook> filterByAuthor(Author author);
+    List<ComicBook> filterByPublisher(Publisher publisher);
+    List<ComicBook> filterByPublicationDate(Date publicationDate);
+  }
+
+  class ComicBookList implements Filter {
+    List<ComicBook> comicBooks;
+
+    List<ComicBook> filterByAuthor(Author author)  throws Exception;
+    List<ComicBook> filterByPublisher(Publisher publisher)  throws Exception;
+    List<ComicBook> filterByPublicationDate(Date publicationDate)  throws Exception;
+  }
+}

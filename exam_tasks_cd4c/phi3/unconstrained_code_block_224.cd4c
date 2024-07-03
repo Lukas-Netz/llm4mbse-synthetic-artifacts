@@ -1,0 +1,57 @@
+
+classdiagram CCSSystem {
+
+    class CaptureUnit {
+      String id;
+      String captureTechnology;
+      int co2Captured;
+      DeviceStatus status;
+    }
+
+    class TransportationUnit {
+      String id;
+      String transportationMethod;
+      int distanceTraveled;
+      DeviceStatus status;
+    }
+
+    class StorageUnit {
+      String id;
+      String geologicalFormation;
+      int co2Stored;
+      DeviceStatus status;
+    }
+
+    class MonitoringUnit {
+      String id;
+      String storageSite;
+      int co2Level;
+      MonitoringStatus status;
+    }
+
+    class CCSSystem {
+      CaptureUnit captureUnit;
+      TransportationUnit transportationUnit;
+      StorageUnit storageUnit;
+      MonitoringUnit monitoringUnit;
+
+      void addComponent(Component component);
+      void removeComponent(Component component);
+      Component getComponent(String id);
+      void checkComponentStatus(String id);
+      void monitorCO2Levels();
+    }
+
+    enum DeviceStatus {
+      Operational, NotOperational;
+    }
+
+    enum MonitoringStatus {
+      Normal, Alert;
+    }
+
+  composition CCSSystem -> (has) CaptureUnit;
+  composition CCSSystem -> (has) TransportationUnit;
+  composition CCSSystem -> (has) StorageUnit;
+  composition CCSSystem -> (has) MonitoringUnit;
+}

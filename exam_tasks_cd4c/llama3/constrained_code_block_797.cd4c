@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram VirtualRealityMarineBiologySystem  {
+
+  class Ocean  {
+    MarineLife  [ ] marineLife;
+    UnderwaterStructure  [ ] underwaterStructures;
+    EnvironmentalCondition  environmentalCondition;
+  }
+
+  abstract class MarineLife  {
+    String speciesName;
+    Habitat habitat;
+    Behavior behavior;
+  }
+
+  class UnderwaterStructure  {
+    String type;
+    Location location;
+  }
+
+  class Diver  {
+    String name;
+    ExperienceLevel experienceLevel;
+    Equipment equipment;
+  }
+
+  class ResearchVessel  {
+    String name;
+    int crewSize;
+    Equipment equipment;
+  }
+
+  class Laboratory  {
+    Equipment equipment;
+  }
+
+  enum ExperienceLevel  {
+    Beginner, Intermediate, Advanced;
+  }
+
+  enum Equipment  {
+    ScubaGear, UnderwaterCamera, Sonar, WaterSamplingEquipment, Microscopes, Centrifuges;
+  }
+
+  enum Habitat  {
+    CoralReef, OpenOcean, Estuary;
+  }
+
+  enum Behavior  {
+    Swimming, Hunting, Mating;
+  }
+
+  enum EnvironmentalCondition  {
+    Currents, WaterTemperature, Salinity;
+  }
+
+  enum Location  {
+    ShallowWater, DeepWater, CoastalArea;
+  }
+
+  composition Ocean  ->  (has) MarineLife  [ 0..* ];
+  composition Ocean  ->  (has) UnderwaterStructure  [ 0..* ];
+  composition Diver  ->  (has) Equipment  [ 0..* ];
+  composition ResearchVessel  ->  (has) Equipment  [ 0..* ];
+  composition Laboratory  ->  (has) Equipment  [ 0..* ];
+}

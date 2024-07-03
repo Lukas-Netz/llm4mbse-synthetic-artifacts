@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram EducationSystem  {
+
+  class University  {
+    Department  [ ] departments;
+  }
+
+  class Department  {
+    Course  [ ] courses;
+    Instructor  [ ] instructors;
+  }
+
+  class Course  {
+    String title;
+    Semester  semester;
+    Instructor  instructor;
+  }
+
+  class Instructor  {
+    String name;
+    Availability  availability;
+  }
+
+  class Student  {
+    String name;
+    Major  major;
+    Enrollment  [ ] enrollments;
+  }
+
+  class Major  {
+    String name;
+  }
+
+  class Semester  {
+    int year;
+    int term;
+  }
+
+  class Availability  {
+    String day;
+    String time;
+  }
+
+  class Enrollment  {
+    Student  student;
+    Course  course;
+  }
+
+  class Recommendation  {
+    Student  student;
+    Course  course;
+  }
+
+  composition University  ->  (has) Department  [ * ];
+  composition Department  ->  (has) Course  [ * ];
+  composition Department  ->  (has) Instructor  [ * ];
+  composition Student  ->  (has) Enrollment  [ * ];
+  composition Instructor  ->  (has) Availability  [ * ];
+
+  association University  ->  (manages) Department;
+  association Department  ->  (offers) Course;
+  association Instructor  ->  (teaches) Course;
+  association Student  ->  (enrolled) Course;
+  association Recommendation  ->  (for) Student;
+  }

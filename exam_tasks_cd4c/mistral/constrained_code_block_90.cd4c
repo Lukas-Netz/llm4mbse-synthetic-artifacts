@@ -1,0 +1,47 @@
+
+classdiagram WarehouseManagement {
+
+  class Warehouse {
+    -> Robot [*];
+    -> Item [*];
+  }
+
+  abstract class Robot {
+    String uniqueIdentifier;
+    RobotState state;
+  }
+
+  class Forklift extends Robot {
+  }
+
+  class PalletJack extends Robot {
+  }
+
+  class AutonomousMobileRobot extends Robot {
+  }
+
+  enum RobotState {
+    Idle, Busy, Malfunctioning;
+  }
+
+  class Item {
+    String uniqueIdentifier;
+    int quantity;
+    Location location;
+  }
+
+  class Location {
+    String xCoordinate;
+    String yCoordinate;
+    String zCoordinate;
+  }
+
+  class Report {
+    String type;
+    Date date;
+    String content;
+  }
+
+  composition Warehouse -> Robot [*];
+  composition Warehouse -> Item [*];
+}

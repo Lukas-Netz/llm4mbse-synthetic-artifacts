@@ -1,0 +1,44 @@
+
+classdiagram VRArchaeologicalTours {
+
+  class Site {
+    String name;
+    String description;
+    -> Artifact [*];
+  }
+
+  class Artifact {
+    String name;
+    String description;
+    String type;
+    Site site;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Tour {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    Site site;
+    User user;
+  }
+
+  class Guide {
+    String name;
+    -> Skill [*];
+  }
+
+  class Skill {
+    String name;
+    String description;
+  }
+
+  association User -- Tour;
+  association Guide -- Tour;
+  association Site -- Artifact;
+}

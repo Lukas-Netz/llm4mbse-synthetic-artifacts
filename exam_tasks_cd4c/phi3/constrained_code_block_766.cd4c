@@ -1,0 +1,43 @@
+
+classdiagram HybridPowerGenerationSystem {
+
+    class PowerPlant {
+      String name;
+      String location;
+      List<PowerGenerationUnit> powerGenerationUnits;
+      void addPowerGenerationUnit(PowerGenerationUnit unit);
+      void removePowerGenerationUnit(PowerGenerationUnit unit);
+      void checkUnitStatus(PowerGenerationUnit unit);
+      double calculateTotalEnergyOutput();
+    }
+
+    abstract class PowerGenerationUnit {
+      String uniqueIdentifier;
+      UnitStatus status;
+    }
+
+    class SolarPanel extends PowerGenerationUnit {
+      double energyOutputPerHour;
+      String maintenanceSchedule;
+    }
+
+    class WindTurbine extends PowerGenerationUnit {
+      double energyOutputPerHour;
+      String maintenanceSchedule;
+    }
+
+    class FossilFuelGenerator extends PowerGenerationUnit {
+      double energyOutputPerHour;
+      double fuelConsumptionPerHour;
+      String maintenanceSchedule;
+    }
+
+    enum UnitStatus {
+      Operational, NonOperational;
+    }
+
+    composition PowerPlant -> (has) List<<PowerGenerationUnit>>;
+    composition PowerPlant -> (has) double;
+    composition PowerGenerationUnit -> (has) String;
+    composition PowerGenerationUnit -> (has) UnitStatus;
+}

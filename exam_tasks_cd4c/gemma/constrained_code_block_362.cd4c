@@ -1,0 +1,94 @@
+
+
+classdiagram MentalHealthPlatform {
+
+  class User {
+    private String name;
+    private String email;
+    private String password;
+    private Profile profile;
+    private List<Session> sessions;
+    private List<SupportGroup> supportGroups;
+
+    User(String name, String email, String password);
+    void createProfile();
+    void updateProfile();
+    void scheduleSession(Session session);
+    void joinSupportGroup(SupportGroup supportGroup);
+    void rateTherapist(Therapist therapist);
+    void reviewSession(Session session);
+  }
+
+  class Therapist {
+    private String name;
+    private String email;
+    private String password;
+    private Profile profile;
+    private List<Session> sessions;
+    private List<SupportGroup> supportGroups;
+
+    Therapist(String name, String email, String password);
+    void createProfile();
+    void updateProfile();
+    void scheduleSession(Session session);
+    void removeSession(Session session);
+    void manageSupportGroups();
+    void rateUser(User user);
+  }
+
+  class Session {
+    private String id;
+    private Therapist therapist;
+    private User user;
+    private Date date;
+    private String topic;
+
+    Session(String id, Therapist therapist, User user, Date date, String topic);
+    void joinSession();
+    void endSession();
+  }
+
+  class SupportGroup {
+    private String name;
+    private Therapist creator;
+    private List<User> participants;
+
+    SupportGroup(String name, Therapist creator);
+    void addParticipant(User user);
+    void removeParticipant(User user);
+  }
+
+  class Profile {
+    private String name;
+    private String bio;
+    private String picture;
+
+    Profile(String name, String bio, String picture);
+    void updateBio();
+    void updatePicture();
+  }
+
+  class Language {
+    private String name;
+    private Map<String, String> translations;
+
+    Language(String name);
+    void translate(String key);
+  }
+
+  class Currency {
+    private String name;
+    private Map<String, Double> conversionFactors;
+
+    Currency(String name);
+    double convert(Double value);
+  }
+
+  composition User -> Profile;
+  composition Therapist -> Profile;
+  association Session -> Therapist;
+  association Session -> User;
+  association SupportGroup -> Therapist;
+  association SupportGroup -> User;
+  association Language -> Currency;
+}

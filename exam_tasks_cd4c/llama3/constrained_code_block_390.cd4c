@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram PetCare  {
+
+  class Service  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class PetOwner  {
+    String name;
+    String email;
+    String phoneNumber;
+    Pet  [ ] pets;
+  }
+
+  class Pet  {
+    String name;
+    int age;
+    Species species;
+  }
+
+  enum Species  {
+    Dog, Cat, Other;
+  }
+
+  class PetCareProvider  {
+    String name;
+    String email;
+    String phoneNumber;
+    Service  [ ] offeredServices;
+  }
+
+  class Booking  {
+    Service service;
+    PetOwner petOwner;
+    PetCareProvider provider;
+    Date date;
+    boolean isCancelled;
+  }
+
+  class Payment  {
+    Booking booking;
+    double amount;
+  }
+
+  class Review  {
+    Booking booking;
+    int rating;
+    String comment;
+  }
+
+  composition PetOwner -> Pet [1..*];
+  composition PetCareProvider -> Service [1..*];
+  composition Booking -> PetOwner;
+  composition Booking -> PetCareProvider;
+  composition Payment -> Booking;
+  composition Review -> Booking;
+}

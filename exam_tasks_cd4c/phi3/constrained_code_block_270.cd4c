@@ -1,0 +1,29 @@
+
+classdiagram DigitalWallet {
+
+    class UserAccount {
+      String uniqueIdentifier;
+      String password;
+      List<PaymentMethod> paymentMethods;
+      double balance;
+    }
+
+    class PaymentMethod {
+      String type;
+      String identifier;
+    }
+
+    class Transaction {
+      UserAccount userAccount;
+      PaymentMethod paymentMethod;
+      double amount;
+      String description;
+      String receipt;
+      void execute();
+    }
+
+    association UserAccount <-> List<<PaymentMethod>>;
+    association Transaction <-> UserAccount;
+    association Transaction <-> PaymentMethod;
+    association Transaction <-> String;
+}

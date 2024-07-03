@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram InteriorDesignPlatform  {
+
+  class Project  {
+    String name;
+    String description;
+    Room  [] rooms;
+  }
+
+  class Room  {
+    String name;
+    int size;
+    FurnitureItem  [] furnitureItems;
+  }
+
+  class FurnitureItem  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class Chair extends FurnitureItem  {
+  }
+
+  class Table extends FurnitureItem  {
+  }
+
+  class Lamp extends FurnitureItem  {
+  }
+
+  class Visualization  {
+    Room room;
+    FurnitureItem  [] furnitureItems;
+  }
+
+  composition Project  ->  (has) Room  [*];
+  composition Room  ->  (has) FurnitureItem  [*];
+  composition Visualization  ->  (has) Room;
+  composition Visualization  ->  (has) FurnitureItem  [*];
+}

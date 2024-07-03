@@ -1,0 +1,58 @@
+
+classdiagram DevOpsToolchain {
+
+  class ProjectManager {
+    -> Project [*];
+  }
+
+  class Project {
+    String name;
+    String description;
+    -> Task [*];
+  }
+
+  class Task {
+    String name;
+    String description;
+    TaskStatus status;
+    -> TeamMember;
+  }
+
+  enum TaskStatus {
+    ToDo, InProgress, Done;
+  }
+
+  class TeamMember {
+    String name;
+    String email;
+    -> Project [*];
+    -> Task [*];
+  }
+
+  class VersionControlSystem {
+    -> Repository [*];
+  }
+
+  class Repository {
+    String name;
+    -> File [*];
+  }
+
+  class File {
+    String name;
+    String content;
+  }
+
+  class CICD {
+    BuildTool buildTool;
+    TestingFramework testingFramework;
+  }
+
+  class BuildTool {
+    String name;
+  }
+
+  class TestingFramework {
+    String name;
+  }
+}

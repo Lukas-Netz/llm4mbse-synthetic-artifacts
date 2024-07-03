@@ -1,0 +1,48 @@
+
+classdiagram RoboticsSurgery {
+
+  class RoboticArm {
+    DegreesOfFreedom degreesOfFreedom;
+    Instrument [  ] instruments;
+  }
+
+  class ControlUnit {
+    List<Instrument> availableInstruments;
+    void switchInstrument(Instrument instrument);
+  }
+
+  class SurgicalConsole {
+    DisplayScreen displayScreen;
+    UserInterface userInterface;
+  }
+
+  class Instrument {
+    String uniqueIdentifier;
+    SurgicalProcedure [  ] compatibleProcedures;
+  }
+
+  class SurgicalProcedure {
+    String name;
+    Instrument [  ] requiredInstruments;
+  }
+
+  class Database {
+    List<SurgicalProcedure> procedures;
+  }
+
+  class DegreesOfFreedom {
+    int number;
+  }
+
+  class DisplayScreen {
+  }
+
+  class UserInterface {
+  }
+
+  composition RoboticSurgery -> RoboticArm;
+  composition RoboticSurgery -> ControlUnit;
+  composition RoboticSurgery -> SurgicalConsole;
+  association ControlUnit -> Instrument [*];
+  association SurgicalProcedure -> Instrument [*];
+}

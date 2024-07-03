@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram OnlineMarketingCourses  {
+
+  class Course  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class VideoCourse extends Course  {
+    int duration;
+    List<String> topics;
+  }
+
+  class TextBasedCourse extends Course  {
+    List<String> topics;
+    int recommendedReadingTime;
+  }
+
+  class LiveCourse extends Course  {
+    List<String> topics;
+    Schedule schedule;
+  }
+
+  class Topic  {
+    String name;
+    String description;
+  }
+
+  class Certification  {
+    String name;
+    String description;
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class CertificationAssignment  {
+    Course course;
+    Certification certification;
+  }
+
+  class Enrollment  {
+    Student student;
+    Course course;
+  }
+
+  composition Course -> Topic [1..*];
+  composition Course -> CertificationAssignment [0..1];
+  composition Student -> Enrollment [*];
+  composition Certification -> CertificationAssignment [*];
+}

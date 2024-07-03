@@ -1,0 +1,85 @@
+
+
+
+
+classdiagram TravelAgency  {
+
+  class Customer  {
+    String name;
+    String email;
+    String password;
+    int loyaltyPoints;
+  }
+
+  class Employee  {
+    String name;
+    Role role;
+    String password;
+  }
+
+  enum Role  {
+    Manager,
+    Agent
+  ;}
+
+  class Flight  {
+    Airport departureAirport;
+    Airport arrivalAirport;
+    Date departureDate;
+    Date arrivalDate;
+    double price;
+  }
+
+  class Hotel  {
+    String name;
+    Location location;
+    double pricePerNight;
+    int maxGuests;
+  }
+
+  class CarRental  {
+    Type type;
+    Location location;
+    double pricePerDay;
+    int maxDrivers;
+  }
+
+  class Booking  {
+    Customer customer;
+    Flight flight;
+    Hotel hotel;
+    CarRental carRental;
+    Date bookingDate;
+    boolean cancelled;
+  }
+
+  class Airport  {
+    String code;
+    String name;
+  }
+
+  class Location  {
+    String city;
+    String country;
+  }
+
+  class Type  {
+    String name;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Customer -> Booking[*];
+  composition Employee -> Customer[*];
+  composition Booking -> Flight[1];
+  composition Booking -> Hotel[1];
+  composition Booking -> CarRental[1];
+  composition Flight -> Airport[2];
+  composition Hotel -> Location[1];
+  composition CarRental -> Location[1];
+  composition Booking -> Customer[1];
+  }

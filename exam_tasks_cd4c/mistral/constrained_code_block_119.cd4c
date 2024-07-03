@@ -1,0 +1,45 @@
+
+classdiagram VideoSurveillance {
+
+  class Camera {
+    String uniqueIdentifier;
+    String location;
+    CameraType type;
+  }
+
+  enum CameraType {
+    Indoor, Outdoor;
+  }
+
+  class IndoorCamera extends Camera {
+    String resolution;
+    Monitor monitor;
+  }
+
+  class OutdoorCamera extends Camera {
+    int zoomLevel;
+    Monitor monitor;
+  }
+
+  class Monitor {
+    String uniqueIdentifier;
+    String resolution;
+    Camera camera;
+  }
+
+  class CentralControlUnit {
+    Camera [ ] cameras;
+    Monitor [ ] monitors;
+    void addCamera(Camera camera);
+    void removeCamera(Camera camera);
+    void addMonitor(Monitor monitor);
+    void removeMonitor(Monitor monitor);
+    void setCameraResolution(Camera camera, String resolution);
+    void setMonitorDisplaySettings(Monitor monitor, String settings);
+    void receiveMotionAlert(Camera camera);
+  }
+
+  composition CentralControlUnit -> Camera [*];
+  composition CentralControlUnit -> Monitor [*];
+  association Camera -- Monitor;
+}

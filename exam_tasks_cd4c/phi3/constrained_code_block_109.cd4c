@@ -1,0 +1,49 @@
+
+classdiagram FinancialSystem {
+
+    class FinancialSystem {
+      AccountManager accountManager;
+      ReportGenerator reportGenerator;
+    }
+
+    class AccountManager {
+      Account account;
+      void addAccount(Account account);
+      void removeAccount(Account account);
+      Account getAccount(String accountNumber);
+      void processTransaction(Transaction transaction);
+      List<Transaction> getTransactions(String accountNumber);
+      void generateAccountReport(String accountNumber);
+      void generateSummaryReport();
+    }
+
+    class Account {
+      String accountNumber;
+      double balance;
+      List<Transaction> transactions;
+    }
+
+    class Transaction {
+      String transactionType;
+      double amount;
+      String fromAccount;
+      String toAccount;
+    }
+
+    class User {
+      String username;
+      AccountManager accountManager;
+      PermissionLevel permissionLevel;
+    }
+
+    class PermissionLevel {
+      String level;
+    }
+
+    association FinancialSystem -> AccountManager;
+    association FinancialSystem -> ReportGenerator;
+    association AccountManager -> Account;
+    association AccountManager -> Transaction;
+    association User -> AccountManager;
+    association User -> PermissionLevel;
+}

@@ -1,0 +1,43 @@
+
+
+classdiagram SmartAirQualityMonitoringSystem {
+
+    class Sensor {
+      String uniqueIdentifier;
+      String location;
+      SensorType type;
+    }
+
+    enum SensorType {
+      Temperature, Humidity, ParticulateMatter
+    
+    
+	;
+    }
+
+    class MonitoringStation {
+      String uniqueIdentifier;
+      String location;
+      List<Sensor> sensors;
+    }
+
+    class CentralHub {
+      List<MonitoringStation> monitoringStations;
+      AirQualityData data;
+    }
+
+    class AirQualityData {
+      int particulateMatterLevel;
+      int temperature;
+      int humidity;
+    }
+
+    class User {
+      String name;
+      List<AirQualityData> alerts;
+    }
+
+  composition CentralHub -> (has) MonitoringStation [*];
+  composition MonitoringStation -> (has) Sensor [*];
+  association User -> CentralHub;
+}

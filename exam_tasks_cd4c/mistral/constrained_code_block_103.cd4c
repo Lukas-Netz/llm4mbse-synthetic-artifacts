@@ -1,0 +1,73 @@
+
+classdiagram PredictiveHealthcare {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    DemographicInfo demographicInfo;
+  }
+
+  class DemographicInfo {
+    String age;
+    String gender;
+    String address;
+  }
+
+  class MedicalCondition {
+    String uniqueIdentifier;
+    String name;
+    List<String> symptoms;
+  }
+
+  class LabResult {
+    String uniqueIdentifier;
+    String patientIdentifier;
+    double testResult;
+  }
+
+  class Medication {
+    String uniqueIdentifier;
+    String name;
+    List<String> sideEffects;
+  }
+
+  class PredictiveModel {
+    String uniqueIdentifier;
+    String name;
+    List<String> inputVariables;
+    List<String> outputVariables;
+  }
+
+  association Patient --o_1_o_ [0..*] - 											{ 											ordered }
+   		;
+
+  association MedicalCondition --o_1_o_ [0..*] - 											{ 											ordered }
+   		;
+
+  association LabResult --o_1_o_ [0..*] - 											{ 											ordered }
+   		;
+
+  association Medication --o_1_o_ [0..*] - 											{ 											ordered }
+
+ 		;
+
+  association PredictiveModel --o_1_o_ [0..*] - 											{ 											ordered }
+   		;
+
+  class Dashboard {
+    List<Patient> patients;
+    List<PredictiveModel> predictiveModels;
+  }
+
+  composition PredictiveHealthcare --o_1_o_ {
+   								ordered }
+   		;
+
+  composition PredictiveHealthcare --o_1_o_ {
+   								ordered }
+   		;
+
+  composition Dashboard --o_1_o_ {
+   								ordered }
+   		;
+}

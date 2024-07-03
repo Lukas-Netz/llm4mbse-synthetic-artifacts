@@ -1,0 +1,49 @@
+
+classdiagram CarbonNanotubeProduction {
+
+  class Reactor {
+    String uniqueIdentifier;
+    int productionCapacityGph;
+  }
+
+  class ControlUnit {
+    Reactor [ ] reactors;
+    void adjustProductionRate(Reactor reactor);
+    void checkInventory();
+  }
+
+  class QualityControl {
+    TestingProtocol [ ] protocols;
+    void testBatch(CarbonNanotube batch);
+  }
+
+  class TestingProtocol {
+    String name;
+    boolean meetsQualityStandards(CarbonNanotube batch);
+  }
+
+  class CarbonNanotube {
+    String type;
+    int purity;
+  }
+
+  class RejectedBatch {
+    CarbonNanotube batch;
+    void reprocess();
+  }
+
+  class ShippingDepartment {
+    CarbonNanotubeInventory inventory;
+    void shipToCustomer(String customer, CarbonNanotube type);
+  }
+
+  class CarbonNanotubeInventory {
+    CarbonNanotube [ ] inventory;
+  }
+
+  composition ControlUnit -> Reactor [*];
+  association QualityControl -> TestingProtocol [*];
+  association CarbonNanotube -> Reactor [*];
+  association RejectedBatch -> CarbonNanotube [1];
+  composition ShippingDepartment -> CarbonNanotubeInventory;
+}

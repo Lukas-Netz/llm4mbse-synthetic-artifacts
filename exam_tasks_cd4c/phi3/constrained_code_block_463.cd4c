@@ -1,0 +1,245 @@
+
+classdiagram EnvironmentActivismPlatform {
+
+    class Campaign {
+      String uniqueId;
+      String name;
+      String description;
+      CampaignType type;
+    }
+
+    class Organization {
+      String uniqueId;
+      String name;
+      String description;
+      OrganizationType type;
+      List<Campaign> associatedCampaigns;
+    }
+
+    class User {
+      String uniqueId;
+      String name;
+      String email;
+      List<Organization> associatedOrganizations;
+    }
+
+    class Action {
+      String uniqueId;
+      String name;
+      String description;
+      ActionType type;
+    }
+
+    class CampaignAction {
+      String uniqueId;
+      Campaign campaign;
+      Action action;
+    }
+
+    class OrganizationCampaign {
+      String uniqueId;
+      Organization organization;
+      Campaign campaign;
+    }
+
+    enum CampaignType {
+      ClimateChange, Conservation, Sustainability;
+    }
+
+    enum OrganizationType {
+      NonProfit, Government, CommunityBased;
+    }
+
+    enum ActionType {
+      Petition, Donation, Volunteering;
+    }
+
+    association User - has [many] (Organization)
+   
+   
+   
+   
+   
+   -> CampaignAction [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Organization - has [many] (OrganizationCampaign)
+   
+   
+   
+   
+   
+   -> Campaign [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Campaign - has [many] (CampaignAction)
+   
+   
+   
+   
+   
+   -> Action [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Action - has [many] (CampaignAction)
+   
+   
+   
+   
+   
+   -> CampaignAction [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association CampaignAction - has [many] (Action)
+   
+   
+   
+   
+   
+   -> Campaign [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association CampaignAction - has [many] (Campaign)
+   
+   
+   
+   
+   
+   -> Action [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Action - has [many] (Campaign)
+   
+   
+   
+   
+   
+   -> Campaign [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Campaign - has [many] (CampaignAction)
+   
+   
+   
+   
+   
+   -> CampaignAction [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association CampaignAction - has [many] (CampaignAction)
+   
+   
+   
+   
+   
+   -> CampaignAction [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association CampaignAction - has [many] (Action)
+   
+   
+   
+   
+   
+   -> Action [*];
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   association Action - has [many] (Action)
+   
+   
+   
+   
+   
+   -> CampaignAction [*];
+   
+}

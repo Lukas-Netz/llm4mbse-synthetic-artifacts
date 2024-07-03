@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram IVRSystem  {
+
+  class IVRSystem  {
+    Session session;
+    Menu mainMenu;
+  }
+
+  abstract class Menu  {
+    String id;
+    String description;
+  }
+
+  class LanguageSelectionMenu extends Menu  {
+    Language[] languages;
+  }
+
+  class CustomerSupportMenu extends Menu  {
+    Issue[] issues;
+    FAQ[] faqs;
+  }
+
+  class AccountManagementMenu extends Menu  {
+    UserAccount[] accounts;
+  }
+
+  class Session  {
+    String sessionId;
+    User user;
+    Menu currentMenu;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Preferences preferences;
+  }
+
+  class Preferences  {
+    Language preferredLanguage;
+    boolean showFaq;
+  }
+
+  class Language  {
+    String languageCode;
+    String languageName;
+  }
+
+  class Issue  {
+    String issueId;
+    String issueDescription;
+  }
+
+  class FAQ  {
+    String faqId;
+    String faqDescription;
+  }
+
+  class UserAccount  {
+    String accountId;
+    String username;
+    String password;
+  }
+
+  composition IVRSystem -> Session;
+  composition Session -> User;
+  composition Session -> Menu;
+  composition Menu -> MenuOption[*];
+  composition User -> Preferences;
+  composition Preferences -> Language;
+  composition CustomerSupportMenu -> Issue[*];
+  composition CustomerSupportMenu -> FAQ[*];
+  composition AccountManagementMenu -> UserAccount[*];
+}
+

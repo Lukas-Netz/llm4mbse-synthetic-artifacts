@@ -1,0 +1,44 @@
+
+
+classdiagram SpaceTourismManagement {
+
+    class SpaceAgency {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Spacecraft {
+      String name;
+      String type;
+      int capacity;
+    }
+
+    class Package {
+      String name;
+      int price;
+      List<Service> services;
+    }
+
+    class Service {
+      String name;
+      String description;
+    }
+
+    class Tourist {
+      String name;
+      String emailAddress;
+      String phoneNumber;
+    }
+
+    class Booking {
+      Date date;
+      Package package;
+      Tourist tourist;
+    }
+
+  composition SpaceAgency -> (has) Booking [*];
+  composition SpaceAgency -> (has) Spacecraft [*];
+  composition Package -> (has) Service [*];
+  composition Booking -> (has) Package;
+  association Tourist -> Booking;
+}

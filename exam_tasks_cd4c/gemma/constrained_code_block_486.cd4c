@@ -1,0 +1,37 @@
+
+
+classdiagram OnlineLanguageInterpretationSystem {
+
+  class Language {
+    String code;
+    String name;
+  }
+
+  class Interpreter {
+    int id;
+    String name;
+    int expertiseLevel;
+    List<Language> languages;
+  }
+
+  class Appointment {
+    Interpreter interpreter;
+    Language language;
+    DateTime dateTime;
+  }
+
+  class LanguageInterpretationSystem {
+    List<Language> languages;
+    List<Interpreter> interpreters;
+    List<Appointment> appointments;
+
+    void assignInterpreterToLanguage(Interpreter interpreter, Language language);
+    void scheduleAppointment(Interpreter interpreter, Language language, DateTime dateTime);
+    void trackAppointmentHistory(Interpreter interpreter, Language language);
+    void generateReports(Language language, Interpreter interpreter);
+  }
+
+  composition LanguageInterpretationSystem -> (has) Languages;
+  composition LanguageInterpretationSystem -> (has) Interpreters;
+  composition LanguageInterpretationSystem -> (has) Appointments;
+}

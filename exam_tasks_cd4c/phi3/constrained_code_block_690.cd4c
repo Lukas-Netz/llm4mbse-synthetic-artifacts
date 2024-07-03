@@ -1,0 +1,47 @@
+
+classdiagram EmergencyMedicineTrainingCenter {
+
+    class TrainingCenter {
+      Room[] rooms;
+      Instructor[] instructors;
+      SchedulingSystem schedulingSystem;
+    }
+
+    class Room {
+      Mannequin[] mannequins;
+      Instructor instructor;
+    }
+
+    class Mannequin {
+      String condition;
+    }
+
+    class Instructor {
+      String expertise;
+      Room assignedRoom;
+    }
+
+    class SchedulingSystem {
+      Room[] availableRooms;
+      Instructor[] availableInstructors;
+      TrainingSession[] trainingSessions;
+
+      void bookRoom(Instructor instructor, Room room);
+      void bookInstructor(Instructor instructor, Room room);
+      void cancelBooking(Instructor instructor, Room room);
+      void listAvailableRooms();
+      void listAvailableInstructors();
+      void listScheduledTrainingSessions();
+    }
+
+    association TrainingCenter -> Room[*];
+    association TrainingCenter -> Instructor[*];
+    association TrainingCenter -> SchedulingSystem;
+
+    composition Room -> Mannequin[*];
+    composition Room -> Instructor;
+
+    association Instructor -> Room;
+
+    association SchedulingSystem -> TrainingCenter;
+}

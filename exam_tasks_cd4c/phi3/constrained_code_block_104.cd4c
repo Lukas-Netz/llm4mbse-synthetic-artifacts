@@ -1,0 +1,57 @@
+
+classdiagram PredictiveHealthcareAnalytics {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      int age;
+      String gender;
+      String address;
+    }
+
+    class MedicalCondition {
+      String uniqueIdentifier;
+      String name;
+      List<String> symptoms;
+    }
+
+    class LabResult {
+      String uniqueIdentifier;
+      Patient patient;
+      double value;
+    }
+
+    class Medication {
+      String uniqueIdentifier;
+      String name;
+      List<String> sideEffects;
+    }
+
+    class PredictiveModel {
+      String uniqueIdentifier;
+      String name;
+      List<String> inputVariables;
+      List<String> outputVariables;
+    }
+
+    class AnalyticsSystem {
+      Map<String, Patient> patients;
+      Map<String, MedicalCondition> medicalConditions;
+      Map<String, LabResult> labResults;
+      Map<String, Medication> medications;
+      Map<String, PredictiveModel> predictiveModels;
+
+      void storePatientData(Patient patient);
+      void analyzeLabResults(LabResult result);
+      void recommendMedications(Patient patient, MedicalCondition condition);
+      void updatePredictiveModels(PredictiveModel model);
+      void runPredictions(PredictiveModel model);
+      void displayDashboard(Patient patient);
+    }
+
+    composition AnalyticsSystem -> (has) Patient;
+    composition AnalyticsSystem -> (has) MedicalCondition;
+    composition AnalyticsSystem -> (has) LabResult;
+    composition AnalyticsSystem -> (has) Medication;
+    composition AnalyticsSystem -> (has) PredictiveModel;
+}

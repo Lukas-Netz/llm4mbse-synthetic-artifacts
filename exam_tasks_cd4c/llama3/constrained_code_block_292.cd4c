@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram CloudERP  {
+
+  class Employee  {
+    String uniqueId;
+    String name;
+    JobTitle jobTitle;
+    Department department;
+    Role role;
+  }
+
+  class Department  {
+    String name;
+    Employee[] employees;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    Department department;
+    Task[] tasks;
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Employee[] employees;
+  }
+
+  class Customer  {
+    String name;
+    ContactInformation contactInfo;
+    Order[] orders;
+  }
+
+  class Order  {
+    Customer customer;
+    Product[] products;
+    double totalCost;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class JobTitle  {
+    String title;
+  }
+
+  class Role  {
+    String role;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+
+  composition Department -> Employee[*];
+  composition Project -> Department;
+  composition Task -> Project;
+  composition Order -> Customer;
+  composition Order -> Product[*];
+  composition Product -> Order[*];
+  composition Employee -> Department;
+  composition Employee -> Role;
+  composition Customer -> Order[*];
+  composition Project -> Task[*];
+  }

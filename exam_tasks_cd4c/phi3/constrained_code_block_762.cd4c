@@ -1,0 +1,45 @@
+
+classdiagram SubmarineCableMonitoringSystem {
+
+    class CMS {
+      List<SubmarineCable> monitoredCables;
+      List<Notification> notifications;
+      void assignPersonnelToTeam(Personnel personnel, MaintenanceTeam team);
+      void logFaultResolution(Fault fault, boolean resolved);
+    }
+
+    class SubmarineCable {
+      String identifier;
+      int length;
+      CableStatus status;
+    }
+
+    class MaintenanceTeam {
+      String name;
+      List<Personnel> personnel;
+    }
+
+    class Personnel {
+      String name;
+      String role;
+      int skillLevel;
+    }
+
+    class Notification {
+      String message;
+      MaintenanceTeam team;
+    }
+
+    class Fault {
+      String description;
+      int severityLevel;
+      boolean resolved;
+    }
+
+    association CMS -> SubmarineCable [*];
+    association CMS -> MaintenanceTeam [*];
+    association CMS -> Personnel [*];
+    association CMS -> Notification [*];
+    association CMS -> Fault [*];
+    composition CMS -> Fault [*];
+}

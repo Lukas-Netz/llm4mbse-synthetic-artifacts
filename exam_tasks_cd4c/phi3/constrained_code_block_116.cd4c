@@ -1,0 +1,57 @@
+
+classdiagram CybersecurityAnalytics {
+
+    class CybersecurityAnalytics {
+      Sensor[] sensors;
+      AnalyticsEngine analyticsEngine;
+      Database database;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+    }
+
+    class NetworkSensor extends Sensor {
+      int packetSize;
+      int packetFrequency;
+      NetworkAnomalyDetection anomalyDetection;
+    }
+
+    class SystemSensor extends Sensor {
+      String systemLog;
+      SystemAnomalyDetection anomalyDetection;
+    }
+
+    class ApplicationSensor extends Sensor {
+      String applicationLog;
+      ApplicationAnomalyDetection anomalyDetection;
+    }
+
+    class AnalyticsEngine {
+      int sensitivityLevel;
+      int alertThreshold;
+      void processSensorData(Sensor sensor);
+      void createCustomRule(Rule rule);
+      void createDashboard(Dashboard dashboard);
+    }
+
+    class Database {
+      String[] data;
+      DatabaseQueryInterface queryInterface;
+    }
+
+    class Rule {
+      String ruleName;
+      String ruleDescription;
+    }
+
+    class Dashboard {
+      String dashboardName;
+      String dashboardDescription;
+    }
+
+    association CybersecurityAnalytics -> Sensor [*];
+    composition CybersecurityAnalytics -> AnalyticsEngine;
+    composition CybersecurityAnalytics -> Database;
+}

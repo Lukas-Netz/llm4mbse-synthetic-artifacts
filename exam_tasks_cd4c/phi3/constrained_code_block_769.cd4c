@@ -1,0 +1,56 @@
+
+classdiagram GreenhouseSystem {
+
+    class Greenhouse {
+      String identifier;
+      GreenhouseType type;
+    }
+
+    class ClimateControl {
+      int temperature;
+      int humidity;
+      int lightIntensity;
+    }
+
+    class IndoorGreenhouse extends Greenhouse {
+      String airCirculationSystem;
+      String irrigationSystem;
+    }
+
+    class OutdoorGreenhouse extends Greenhouse {
+      String soilType;
+      int sunlightExposure;
+    }
+
+    class Sensor {
+      String sensorType;
+      String location;
+      String status;
+    }
+
+    class Farmer {
+      void adjustClimateControl(ClimateControl settings);
+      void receiveAlert(Sensor sensor);
+    }
+
+    class PlantGrowthTracker {
+      String plantType;
+      String growthStatus;
+      String recommendations;
+    }
+
+    association Greenhouse -> ClimateControl;
+    association Greenhouse -> Sensor;
+    association Greenhouse -> Farmer;
+    association Greenhouse -> PlantGrowthTracker;
+
+    association IndoorGreenhouse -> ClimateControl;
+    association IndoorGreenhouse -> Sensor;
+    association IndoorGreenhouse -> Farmer;
+    association IndoorGreenhouse -> PlantGrowthTracker;
+
+    association OutdoorGreenhouse -> ClimateControl;
+    association OutdoorGreenhouse -> Sensor;
+    association OutdoorGreenhouse -> Farmer;
+    association OutdoorGreenhouse -> PlantGrowthTracker;
+}

@@ -1,0 +1,43 @@
+
+
+classdiagram StockTradingSystem {
+
+  class StockTradingSystem {
+    Database database;
+    MachineLearningModel model;
+    TradingAlgorithm algorithm;
+    UserInterface interface;
+  }
+
+  class Database {
+    void storeHistoricalData(StockPrice data);
+    StockPrice getHistoricalData(String stockSymbol);
+  }
+
+  class MachineLearningModel {
+    void trainModel(List<StockPrice> data);
+    Prediction makePrediction(String stockSymbol);
+  }
+
+  class TradingAlgorithm {
+    void makeBuySellDecision(Prediction prediction);
+    void updateTradingPosition(String stockSymbol, int quantity);
+  }
+
+  class UserInterface {
+    void displayPredictions(List<Prediction> predictions);
+    void setRiskTolerance(int riskTolerance);
+    void setInvestmentGoals(List<String> investmentGoals);
+  }
+
+  class StockPrice {
+    String stockSymbol;
+    double price;
+    Timestamp timestamp;
+  }
+
+  composition StockTradingSystem -> (has) Database;
+  composition StockTradingSystem -> (has) MachineLearningModel;
+  composition StockTradingSystem -> (has) TradingAlgorithm;
+  composition StockTradingSystem -> (has) UserInterface;
+}

@@ -1,0 +1,60 @@
+
+classdiagram BiodiversityConservationPlatform {
+
+    class Species {
+      String uniqueId;
+      String name;
+      String classification;
+    }
+
+    class Habitat {
+      String location;
+      double size;
+      String type;
+    }
+
+    class Ecosystem {
+      String name;
+      List<Habitat> habitats;
+      List<Species> species;
+    }
+
+    class ConservationAction {
+      String actionType;
+      String description;
+    }
+
+    class ConservationPlan {
+      List<ConservationAction> actions;
+    }
+
+    class User {
+      void createSpecies(Species species);
+      void editSpecies(Species species);
+      void deleteSpecies(Species species);
+      void createHabitat(Habitat habitat);
+      void editHabitat(Habitat habitat);
+      void deleteHabitat(Habitat habitat);
+      void createEcosystem(Ecosystem ecosystem);
+      void editEcosystem(Ecosystem ecosystem);
+      void deleteEcosystem(Ecosystem ecosystem);
+      void createConservationAction(ConservationAction action);
+      void editConservationAction(ConservationAction action);
+      void deleteConservationAction(ConservationAction action);
+      void createConservationPlan(ConservationPlan plan);
+      void editConservationPlan(ConservationPlan plan);
+      void deleteConservationPlan(ConservationPlan plan);
+      void generateSpeciesReport();
+      void generateEcosystemReport();
+    }
+
+    composition User -> (has) Species;
+    composition User -> (has) Habitat;
+    composition User -> (has) Ecosystem;
+    composition User -> (has) ConservationAction;
+    composition User -> (has) ConservationPlan;
+
+    association Species -> Ecosystem [*];
+    association Habitat -> Ecosystem [*];
+    association ConservationAction -> ConservationPlan [*];
+}

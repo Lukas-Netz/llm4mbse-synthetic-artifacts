@@ -1,0 +1,39 @@
+
+
+classdiagram CarbonOffsettingSystem {
+
+    class User {
+      String uniqueIdentifier;
+      List<Project> projects;
+    }
+
+    class Project {
+      String name;
+      String description;
+      String uniqueIdentifier;
+      CarbonOffsetType type;
+      List<Transaction> transactions;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      Project project;
+      int quantity;
+      double price;
+    }
+
+    class Validator {
+      String name;
+      List<Transaction> validatedTransactions;
+    }
+
+    class CarbonOffsetType {
+      String name;
+      int carbonCreditsPerTon;
+    }
+
+  composition User -> (has) Project [*];
+  composition Project -> (has) Transaction [*];
+  composition Project -> (has) CarbonOffsetType;
+  association Validator -> Transaction [*];
+}

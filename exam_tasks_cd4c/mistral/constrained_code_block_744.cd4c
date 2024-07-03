@@ -1,0 +1,63 @@
+
+classdiagram RenewableEnergyTraining {
+
+  class User {
+    String username;
+    String password;
+    UserRole role;
+  }
+
+  enum UserRole {
+    ADMIN, INSTRUCTOR, STUDENT;
+  }
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    CourseLevel level;
+  }
+
+  enum CourseLevel {
+    BEGINNER, INTERMEDIATE, ADVANCED;
+  }
+
+  class Module {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    ModuleTopic topic;
+  }
+
+  enum ModuleTopic {
+    SOLAR, WIND, HYDRO;
+  }
+
+  class Quiz {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    QuizType type;
+  }
+
+  enum QuizType {
+    MULTIPLE_CHOICE, TRUE_FALSE, SHORT_ANSWER;
+  }
+
+  class QuizResult {
+    String user;
+    String quiz;
+    int score;
+  }
+
+  composition Course [*] Module [min ]-> [max  ]
+  compositionModule [*] - 											{ 											ordered }						;
+  composition Module [*] Quiz [min ]-> [max  ]
+  compositionQuiz [*] - 											{ 											ordered }						;
+  association User [*] Course [min  ]-> [max  ]
+  associationUser [*] - 											{ 											ordered }						;
+  association Course [*] Instructor [min  ]-> [max  ]
+  associationInstructor [*] - 										{ 											ordered }						;
+  association Course [*] Admin [min  ]-> [max  ]
+  associationAdmin [*] - 											{ 											ordered }						;
+}

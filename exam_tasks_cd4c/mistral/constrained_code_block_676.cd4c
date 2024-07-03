@@ -1,0 +1,54 @@
+
+classdiagram BiometricAttendance {
+
+  class Employee {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+    AttendanceRecord attendanceRecord;
+  }
+
+  class AttendanceRecord {
+    Date date;
+    Time time;
+    Device device;
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class FingerprintScanner extends Device {}
+  class FacialRecognitionCamera extends Device {}
+  class IrisScanner extends Device {}
+
+  enum DeviceStatus {
+    Online, Offline;
+  }
+
+  class Report {
+    String type;
+    String content;
+  }
+
+  class EmployeeAttendanceReport extends Report {
+    int daysAbsent;
+    int daysLate;
+    int daysPresent;
+  }
+
+  class DevicePerformanceReport extends Report {
+    int successfulCaptures;
+    int failedCaptures;
+  }
+
+  composition Employee [*] EmployeeAttendanceRecord [inverse]
+  --  Employee  << EmployeeAttendanceRecord
+  >>  -  {  ordered }  ;
+
+  composition Device [*] AttendanceRecord [inverse]
+  --  Device  << AttendanceRecord
+  >>  -  {  ordered }  ;
+
+}

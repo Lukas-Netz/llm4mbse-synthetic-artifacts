@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram IDE  {
+
+  class Project  {
+    String name;
+    String description;
+    List<File> files;
+    ProjectType type;
+  }
+
+  class File  {
+    String name;
+    String path;
+    String content;
+  }
+
+  class Editor  {
+    void openFile(File file);
+    void saveFile(File file);
+    void closeFile(File file);
+  }
+
+  class Compiler  {
+    void compileProject(Project project);
+    void runProject(Project project);
+  }
+
+  class Debugger  {
+    void setBreakpoint(int lineNumber);
+    void stepThroughCode();
+    void inspectVariable(String variableName);
+  }
+
+  class VersionControl  {
+    void checkoutProject(Project project);
+    void checkinProject(Project project);
+    void revertChanges(Project project);
+  }
+
+  class IDE  {
+    Project currentProject;
+    File currentFile;
+    List<Project> openProjects;
+  }
+
+  enum ProjectType  {
+    Java, Python, CPlusPlus;
+  }
+
+  composition IDE  ->  (has) Project;
+  composition IDE  ->  (has) File;
+  composition Project  ->  (has) File;
+  composition Editor  ->  (has) File;
+  composition Compiler  ->  (has) Project;
+  composition Debugger  ->  (has) Project;
+  composition VersionControl  ->  (has) Project;
+}

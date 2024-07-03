@@ -1,0 +1,92 @@
+
+classdiagram PoetryReadingPlatform {
+
+  class User {
+    String username;
+    String email;
+    String password;
+  }
+
+  class Reading {
+    String title;
+    String description;
+    Date date;
+    User organizer;
+    User [ ] readers;
+    User [ ] moderators;
+    Poem [ ] poems;
+    String type;
+    AudioRecording audioRecording;
+    float rating;
+    String review;
+  }
+
+  enum PoemType {
+    FreeVerse, Sonnet, Haiku;
+  }
+
+  class AudioRecording {
+    String filePath;
+    String format;
+  }
+
+  association User --reads-
+    {
+      ordered
+     }
+    ;
+
+  association User --organizes-
+    {
+      ordered
+     }
+    ;
+
+  association User --moderates-
+    {
+      ordered
+     }
+    ;
+
+  association Reading --has-
+    {
+      ordered
+     }
+    ;
+
+  association Reading --contains-
+    {
+      ordered
+     }
+    ;
+
+  association Poem --written-
+    {
+      ordered
+     }
+    ;
+
+  association Reading --rated-
+    {
+      ordered
+     }
+    ;
+
+  association Reading --reviewed-
+    {
+      ordered
+     }
+    ;
+
+  association Reading --has-
+    {
+      ordered
+     }
+    ;
+
+  association AudioRecording --belongs-
+    {
+      ordered
+     }
+    ;
+}

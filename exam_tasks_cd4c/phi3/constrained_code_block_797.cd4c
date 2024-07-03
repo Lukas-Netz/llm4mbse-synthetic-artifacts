@@ -1,0 +1,57 @@
+
+classdiagram SelfDrivingTractorSystem {
+
+    class Tractor {
+      String uniqueIdentifier;
+      Location location;
+      SensorData sensorData;
+      Attachment currentAttachment;
+      TractorStatus status;
+    }
+
+    class Hub {
+      Tractor[] tractors;
+      void sendCommand(Tractor tractor, Command command);
+      void receiveUpdate(Tractor tractor);
+    }
+
+    class SensorData {
+      boolean obstaclesDetected;
+      boolean otherVehiclesDetected;
+      String weatherConditions;
+    }
+
+    class Attachment {
+      String type;
+    }
+
+    class Plow extends Attachment {
+      void attach();
+      void detach();
+    }
+
+    class Seeder extends Attachment {
+      void attach();
+      void detach();
+    }
+
+    class Harvester extends Attachment {
+      void attach();
+      void detach();
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class TractorStatus {
+      boolean isOperational;
+      boolean isAttached;
+    }
+
+    association Tractor -> Hub [*];
+    association Hub -> Tractor [*];
+    composition Tractor -> Attachment [*];
+    composition Tractor -> SensorData [*];
+}

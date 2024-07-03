@@ -1,0 +1,50 @@
+
+classdiagram BlockchainCarbonOffset {
+
+    class User {
+      String username;
+      List<CarbonCredit> ownedCredits;
+    }
+
+    class CarbonCredit {
+      String id;
+      int quantity;
+      String type;
+      Owner owner;
+    }
+
+    class Project {
+      String id;
+      String name;
+      String description;
+      List<CarbonCredit> credits;
+    }
+
+    class Owner {
+      String id;
+      String name;
+    }
+
+    class Transaction {
+      String id;
+      String timestamp;
+      Owner sender;
+      Owner receiver;
+      List<CarbonCredit> credits;
+    }
+
+    class Blockchain {
+      List<Transaction> transactions;
+      List<Project> projects;
+      void createCredit(CarbonCredit credit);
+      void transferCredit(Transaction transaction, CarbonCredit credit);
+      void verifyCredit(CarbonCredit credit);
+    }
+
+    composition User -> List<<CarbonCredit>>;
+    composition User -> List<<Project>>;
+    composition Project -> List<<CarbonCredit>>;
+    composition Transaction -> List<<CarbonCredit>>;
+    composition Blockchain -> List<<Transaction>>;
+    composition Blockchain -> List<<Project>>;
+}

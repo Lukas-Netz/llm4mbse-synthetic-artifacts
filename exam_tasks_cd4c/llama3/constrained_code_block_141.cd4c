@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram CustomerAdvocacyPlatform  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    Review  reviews  ;
+    Segment  segments  ;
+  }
+
+  class Review  {
+    int rating;
+    String textDescription;
+  }
+
+  class Segment  {
+    String name;
+    Rule  rules  ;
+  }
+
+  class Rule  {
+    String criterion;
+    String value;
+  }
+
+  class Analytics  {
+    SentimentAnalysis sentimentAnalysis;
+    TrendAnalysis trendAnalysis;
+    CustomerClustering customerClustering;
+  }
+
+  class SentimentAnalysis  {
+    String sentiment;
+  }
+
+  class TrendAnalysis  {
+    String trend;
+  }
+
+  class CustomerClustering  {
+    String cluster;
+  }
+
+  class Integration  {
+    CRMIntegration crmIntegration;
+    MarketingAutomationIntegration marketingAutomationIntegration;
+  }
+
+  class CRMIntegration  {
+    String crmSystem;
+  }
+
+  class MarketingAutomationIntegration  {
+    String marketingAutomationSystem;
+  }
+
+  composition Customer -> Review[*];
+  composition Customer -> Segment[*];
+  composition Segment -> Rule[*];
+  composition Analytics -> SentimentAnalysis;
+  composition Analytics -> TrendAnalysis;
+  composition Analytics -> CustomerClustering;
+  composition Integration -> CRMIntegration;
+  composition Integration -> MarketingAutomationIntegration;
+}

@@ -1,0 +1,85 @@
+
+
+
+
+classdiagram Marketplace  {
+
+  class Marketplace  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Category  {
+    String name;
+    String description;
+    -> Product[*];
+  }
+
+  abstract class Product  {
+    String name;
+    String description;
+    double price;
+    int rating;
+  }
+
+  class PhysicalProduct extends Product  {
+    double weight;
+    String dimensions;
+    String material;
+  }
+
+  class DigitalProduct extends Product  {
+    int fileSize;
+    String format;
+  }
+
+  class Service extends Product  {
+    int duration;
+    String expertise;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    -> Review[*];
+  }
+
+  class Review  {
+    int rating;
+    String comment;
+  }
+
+  class PaymentSystem  {
+    -> Transaction[*];
+  }
+
+  class Transaction  {
+    double amount;
+    String paymentMethod;
+  }
+
+  class RecommendationSystem  {
+    -> Product[*];
+  }
+
+  class NotificationSystem  {
+    -> Notification[*];
+  }
+
+  class Notification  {
+    String message;
+  }
+
+  class SearchFunction  {
+    -> Product[*];
+  }
+
+  class FilteringFunction  {
+    -> Product[*];
+  }
+
+  composition Marketplace -> (has) Category[*];
+  composition Category -> (has) Product[*];
+  composition User -> (has) Review[*];
+  composition PaymentSystem -> (has) Transaction[*];
+  composition RecommendationSystem -> (has) Product[*];
+  }

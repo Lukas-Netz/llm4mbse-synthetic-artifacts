@@ -1,0 +1,81 @@
+
+
+classdiagram ITAssetManagement {
+
+    class Department {
+      String name;
+      String uniqueIdentifier;
+      List<ITAsset> assets;
+    }
+
+    class ITAsset {
+      String uniqueIdentifier;
+      Status status;
+      Type type;
+    }
+
+    enum Status {
+      Active, Inactive, Retired
+    
+    
+
+;
+    }
+
+    enum Type {
+      Hardware, Software, NetworkDevices
+    
+    
+
+;
+    }
+
+    class HardwareAsset extends ITAsset {
+      String serialNumber;
+      String manufacturer;
+      Date purchaseDate;
+    }
+
+    class SoftwareAsset extends ITAsset {
+      String licenseKey;
+      String version;
+      Date installationDate;
+    }
+
+    class NetworkDeviceAsset extends ITAsset {
+      String ipAddress;
+      String macAddress;
+      NetworkTopology networkTopology;
+    }
+
+    class MaintenanceTask {
+      String description;
+      Date scheduledDate;
+      boolean isCompleted;
+    }
+
+    class AssetMovement {
+      String assetId;
+      String departmentFrom;
+      String departmentTo;
+      Date movementDate;
+    }
+
+    composition Department -> (has) List<<ITAsset>>
+    abstract  
+    
+    ;
+    composition ITAsset -> (has) Status
+    
+    ;
+    composition ITAsset -> (has) Type
+
+    
+    
+    
+    
+    
+    
+    ;
+
+}

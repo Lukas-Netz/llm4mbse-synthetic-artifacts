@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram POS  {
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    double price;
+  }
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phoneNumber;
+    String email;
+  }
+
+  class SalesTransaction  {
+    String uniqueIdentifier;
+    Date date;
+    double totalCost;
+    -> Product[*];
+    -> Customer;
+  }
+
+  class Category  {
+    String name;
+    -> Product[*];
+  }
+
+  class SalesTransactionList  {
+    -> SalesTransaction[*];
+  }
+
+  class CustomerList  {
+    -> Customer[*];
+  }
+
+  class ProductList  {
+    -> Product[*];
+  }
+
+  composition Customer -> ContactInformation;
+  composition SalesTransaction -> Product[*];
+  composition SalesTransaction -> Customer;
+  composition Category -> Product[*];
+  composition Customer -> SalesTransaction[*];
+  composition Product -> Category;
+  composition SalesTransactionList -> SalesTransaction[*];
+  composition CustomerList -> Customer[*];
+  composition ProductList -> Product[*];
+}

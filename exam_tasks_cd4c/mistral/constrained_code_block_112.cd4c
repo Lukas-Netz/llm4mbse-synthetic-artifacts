@@ -1,0 +1,54 @@
+
+classdiagram AdPlatform {
+
+  class AdPlatform {
+    AdCampaign [
+     ] campaigns;
+  }
+
+  abstract class AdCampaign {
+    String uniqueIdentifier;
+    String name;
+    int budget;
+    TargetAudience targetAudience;
+  }
+
+  class DisplayAd extends AdCampaign {
+    String image;
+    String headline;
+    String description;
+  }
+
+  class VideoAd extends AdCampaign {
+    String videoURL;
+    String title;
+    String description;
+  }
+
+  class SponsoredContent extends AdCampaign {
+    String text;
+    String image;
+    String link;
+  }
+
+  class TargetAudience {
+    String demographic;
+    String geographic;
+    String interest;
+  }
+
+  class AdPerformance {
+    int impressions;
+    int clicks;
+    int conversions;
+    double cost;
+  }
+
+  class Insights {
+    String adRotation;
+    String adScheduling;
+    String adTargeting;
+  }
+
+  composition AdPlatform -> AdCampaign [*];
+}

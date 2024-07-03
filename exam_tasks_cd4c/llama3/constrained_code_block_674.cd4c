@@ -1,0 +1,64 @@
+
+
+
+classdiagram ClimateModelingSystem  {
+
+  class DataRepository  {
+    ClimateData climateData;
+    void filterData(Location location, TimePeriod timePeriod, DataType dataType);
+  }
+
+  class DataProcessor  {
+    void processClimateData(ClimateData climateData);
+  }
+
+  class MLModule  {
+    void analyzeData(ClimateData climateData);
+  }
+
+  class Visualization  {
+    void displayPredictions(ClimatePrediction prediction);
+  }
+
+  class UI  {
+    void selectData(Location location, TimePeriod timePeriod, DataType dataType);
+    void runPredictions();
+    void viewResults();
+  }
+
+  class ClimateData  {
+    Temperature temperature;
+    Precipitation precipitation;
+    AtmosphericPressure atmosphericPressure;
+  }
+
+  class ClimatePrediction  {
+    Temperature temperature;
+    Precipitation precipitation;
+    AtmosphericPressure atmosphericPressure;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class TimePeriod  {
+    Date startDate;
+    Date endDate;
+  }
+
+  class DataType  {
+    String type;
+  }
+
+  composition DataRepository -> ClimateData;
+  composition DataProcessor -> ClimateData;
+  composition MLModule -> ClimateData;
+  composition Visualization -> ClimatePrediction;
+  composition UI -> DataRepository;
+  composition ClimateModelingSystem -> UI;
+  composition ClimateModelingSystem -> DataRepository;
+  composition ClimateModelingSystem -> DataProcessor;
+  composition ClimateModelingSystem -> MLModule;
+  composition ClimateModelingSystem -> Visualization;
+}

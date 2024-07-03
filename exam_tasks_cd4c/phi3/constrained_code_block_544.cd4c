@@ -1,0 +1,43 @@
+
+classdiagram AvalanchePredictionSystem {
+
+    class WeatherStation {
+      String location;
+      float temperature;
+      float humidity;
+      float windSpeed;
+      void updateWeatherConditions();
+    }
+
+    class SensorNetwork {
+      List<Sensor> sensors;
+      void collectSensorData();
+    }
+
+    class Sensor {
+      String sensorType;
+      float snowDepth;
+      float snowDensity;
+    }
+
+    class PredictionModel {
+      void predictAvalancheRisk(WeatherStation weather, SensorNetwork sensors);
+      AvalancheRisk riskLevel;
+    }
+
+    class AvalancheRisk {
+      String level;
+      String recommendation;
+    }
+
+    class UserInterface {
+      void displayRiskLevel(AvalancheRisk risk);
+      void displayRecommendations(AvalancheRisk risk);
+      void sendAlerts(AvalancheRisk risk);
+    }
+
+    composition AvalanchePredictionSystem -> (has) WeatherStation;
+    composition AvalanchePredictionSystem -> (has) SensorNetwork;
+    composition AvalanchePredictionSystem -> (has) PredictionModel;
+    composition AvalanchePredictionSystem -> (has) UserInterface;
+}

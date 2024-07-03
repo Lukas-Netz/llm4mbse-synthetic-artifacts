@@ -1,0 +1,44 @@
+
+
+classdiagram DigitalPathologySystem {
+
+  class Image {
+    String uniqueIdentifier;
+    Metadata metadata;
+  }
+
+  class Viewer {
+    ZoomLevel zoomLevel;
+    FocusPoint focusPoint;
+  }
+
+  class AnalysisComponent {
+    Algorithms algorithm;
+    Parameters parameters;
+    Settings settings;
+  }
+
+  class DiagnosisComponent {
+    ConfidenceLevel confidenceLevel;
+    DiagnosisType diagnosisType;
+  }
+
+  class ReportingComponent {
+    ReportFormat reportFormat;
+    ReportContent reportContent;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    Role role;
+    Login login;
+    Logout logout;
+  }
+
+  composition Image -> Viewer;
+  composition Image -> AnalysisComponent;
+  composition Image -> DiagnosisComponent;
+  composition Image -> ReportingComponent;
+  composition User -> Login;
+  composition User -> Logout;
+}

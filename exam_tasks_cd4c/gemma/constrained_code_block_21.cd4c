@@ -1,0 +1,38 @@
+
+
+classdiagram SupplyChainManagement {
+
+    class Supplier {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Manufacturer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Distributor {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Product {
+      String name;
+      int quantity;
+    }
+
+    composition Supplier -> Manufacturer [1..*];
+    composition Manufacturer -> Distributor [1..*];
+    composition Distributor -> Customer [1..*];
+
+  }

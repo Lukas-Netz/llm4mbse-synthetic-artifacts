@@ -1,0 +1,74 @@
+
+classdiagram DTP {
+
+  class DigitalTransformationPlatform {
+    Project [
+     ] projects;
+    User [
+     ] users;
+  }
+
+  class Project {
+    String uniqueIdentifier;
+    String projectName;
+    Task [
+     ] tasks;
+  }
+
+  abstract class Task {
+    String uniqueIdentifier;
+    String taskName;
+    TaskStatus status;
+  }
+
+  class Development extends Task {
+    Requirement [
+     ] requirements;
+  }
+
+  class Testing extends Task {
+    TestCase [
+     ] testCases;
+  }
+
+  class Deployment extends Task {
+    DeploymentTarget [
+     ] deploymentTargets;
+  }
+
+  class Requirement {
+    String uniqueIdentifier;
+    String requirementName;
+    String description;
+  }
+
+  class TestCase {
+    String uniqueIdentifier;
+    String testCaseName;
+    String description;
+  }
+
+  class DeploymentTarget {
+    String uniqueIdentifier;
+    String deploymentTargetName;
+    String description;
+  }
+
+  enum TaskStatus {
+    Completed, NotCompleted;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String userName;
+    Project [
+     ] projects;
+  }
+
+  composition DigitalTransformationPlatform -> Project [*];
+  composition Project -> Task [*];
+  composition Task -> Requirement [0..*];
+  composition Task -> TestCase [0..*];
+  composition Task -> DeploymentTarget [0..*];
+  composition User -> Project [*];
+}

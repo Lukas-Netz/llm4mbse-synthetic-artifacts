@@ -1,0 +1,30 @@
+
+classdiagram MusicSchool {
+
+  class Student {
+    String studentID;
+    String name;
+    Lesson [ ] lessons;
+    Teacher [ ] teachers;
+  }
+
+  class Teacher {
+    String teacherID;
+    String name;
+    Lesson [ ] lessons;
+    Student [ ] students;
+  }
+
+  class Lesson {
+    String lessonID;
+    String date;
+    int duration;
+    Student student;
+    Teacher teacher;
+  }
+
+  composition Student -> Teacher [*];
+  composition Teacher -> Student [*];
+  composition Lesson <- Student;
+  composition Lesson <- Teacher;
+}

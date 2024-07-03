@@ -1,0 +1,74 @@
+
+classdiagram GeneSequencing {
+
+  class SequencingPlatform {
+    String name;
+    String features;
+    String limitations;
+  }
+
+  class DataType {
+    String name;
+    String description;
+  }
+
+  enum DataType {
+    DNA, RNA, Protein;
+  }
+
+  class Data {
+    DataType type;
+    String sequence;
+  }
+
+  class DataVisualization {
+    Data data;
+    String visualization;
+  }
+
+  class DataFilter {
+    Data data;
+    String filter;
+  }
+
+  class DataAnalysis {
+    Data data;
+    String analysis;
+  }
+
+  class BioinformaticsTool {
+    String name;
+    String integration;
+  }
+
+  class Database {
+    String name;
+    String integration;
+  }
+
+  class User {
+    String username;
+    String password;
+    String role;
+  }
+
+  class GeneSequencingPlatform {
+    SequencingPlatform[] platforms;
+    Data[] data;
+    DataVisualization[] visualizations;
+    DataFilter[] filters;
+    DataAnalysis[] analyses;
+    BioinformaticsTool[] tools;
+    Database[] databases;
+    User[] users;
+  }
+
+  composition GeneSequencingPlatform -> SequencingPlatform [*];
+  composition GeneSequencingPlatform -> Data [*];
+  composition GeneSequencingPlatform -> DataVisualization [*];
+  composition GeneSequencingPlatform -> DataFilter [*];
+  composition GeneSequencingPlatform -> DataAnalysis [*];
+  composition GeneSequencingPlatform -> BioinformaticsTool [*];
+  composition GeneSequencingPlatform -> Database [*];
+  composition GeneSequencingPlatform -> User [*];
+}

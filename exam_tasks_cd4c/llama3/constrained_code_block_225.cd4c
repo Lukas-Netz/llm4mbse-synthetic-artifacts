@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram SmartContracts  {
+
+  class Contract  {
+    String id;
+    Party[] parties;
+    Term[] terms;
+    ContractStatus status;
+  }
+
+  class Party  {
+    String name;
+    String email;
+  }
+
+  class Term  {
+    String type;
+    String description;
+  }
+
+  enum ContractStatus  {
+    Active,
+    Terminated,
+    Expired
+  ;}
+
+  class Report  {
+    int activeContracts;
+    int terminatedContracts;
+    int expiredContracts;
+  }
+
+  class Notification  {
+    Party[] recipients;
+    String message;
+  }
+
+  composition Contract -> Party[*];
+  composition Contract -> Term[*];
+  composition Contract -> Report;
+  composition Contract -> Notification;
+
+  association Contract -> ContractStatus;
+  association Report -> Contract;
+  association Notification -> Contract;
+}

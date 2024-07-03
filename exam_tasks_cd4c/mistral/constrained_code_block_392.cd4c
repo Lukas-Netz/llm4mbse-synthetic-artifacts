@@ -1,0 +1,81 @@
+
+classdiagram AuctionPlatform {
+
+  class Auction {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    AuctionType auctionType;
+    Item item;
+    Bid highestBid;
+  }
+
+  enum AuctionStatus {
+    Active, Closed, Cancelled;
+  }
+
+  enum AuctionType {
+    FixedPrice, Timed, Proxy;
+  }
+
+  class Item {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ItemType itemType;
+  }
+
+  enum ItemType {
+    PhysicalGood, DigitalGood, Service;
+  }
+
+  class Bidder {
+    String uniqueIdentifier;
+    String name;
+    String contactEmail;
+  }
+
+  class Bid {
+    String uniqueIdentifier;
+    Bidder bidder;
+    Item item;
+    BigDecimal bidAmount;
+    BidStatus bidStatus;
+  }
+
+  enum BidStatus {
+    Valid, Invalid, Cancelled;
+  }
+
+  class Language {
+    String code;
+    String name;
+  }
+
+  class Currency {
+    String code;
+    String name;
+  }
+
+  class PaymentMethod {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class ShippingMethod {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class ReturnPolicy {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class RefundPolicy {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+}

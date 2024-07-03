@@ -1,0 +1,45 @@
+
+classdiagram LegalDisputeResolutionSystem {
+
+    class Case {
+      String caseId;
+      CaseStatus status;
+      List<Party> parties;
+      List<Evidence> evidence;
+      List<Communication> communications;
+    }
+
+    class Party {
+      String partyId;
+      String role;
+    }
+
+    class Lawyer extends Party {
+      List<Client> clients;
+    }
+
+    class Client extends Party {
+      List<Lawyer> lawyers;
+    }
+
+    class Evidence {
+      String evidenceId;
+      String type;
+      String caseId;
+      boolean isRelevant;
+    }
+
+    class Communication {
+      String communicationId;
+      String type;
+      String caseId;
+      boolean isConfidential;
+    }
+
+    association Case -> List<<Party>>;
+    association Case -> List<<Evidence>>;
+    association Case -> List<<Communication>>;
+
+    composition Lawyer -> List<<Client>>;
+    composition Client -> List<<Lawyer>>;
+}

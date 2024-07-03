@@ -1,0 +1,56 @@
+
+classdiagram SolarWaterPurification {
+
+  class SolarPanel {
+    int powerOutput;
+  }
+
+  class WaterTank {
+    int waterVolume;
+    int temperature;
+    int pressure;
+  }
+
+  class PurificationUnit {
+    FiltrationStage filtration;
+    UVStage uv;
+    DisinfectionStage disinfection;
+    boolean isEnabled(Stage stage);
+  }
+
+  abstract class Stage {
+    boolean isEnabled;
+  }
+
+  class FiltrationStage extends Stage {
+  }
+
+  class UVStage extends Stage {
+  }
+
+  class DisinfectionStage extends Stage {
+  }
+
+  class Sensor {
+    WaterQuality waterQuality;
+  }
+
+  enum WaterQuality {
+    Good, Poor;
+  }
+
+  class MobileApp {
+    void monitorStatus();
+    void enableStage(Stage stage);
+    void disableStage(Stage stage);
+    void receiveAlert();
+  }
+
+  composition SolarWaterPurification -> SolarPanel;
+  composition SolarWaterPurification -> WaterTank;
+  composition PurificationUnit -> (has) FiltrationStage;
+  composition PurificationUnit -> (has) UVStage;
+  composition PurificationUnit -> (has) DisinfectionStage;
+  association PurificationUnit -> Sensor [*];
+  association SolarWaterPurification -> MobileApp;
+}

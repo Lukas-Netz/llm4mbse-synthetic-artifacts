@@ -1,0 +1,67 @@
+
+classdiagram ConsumerInsights {
+
+  class DataWarehouse {
+    void storeData(CustomerData data);
+    CustomerData getData(String id);
+  }
+
+  class DataProcessing {
+    void cleanData(Data data);
+    void transformData(Data data);
+    void aggregateData(Data data);
+  }
+
+  class Visualization {
+    void createDashboard(String dashboardName);
+    void createReport(String reportName);
+  }
+
+  class MachineLearning {
+    void clustering(Data data);
+    void regression(Data data);
+    void decisionTree(Data data);
+  }
+
+  class UserInterface {
+    void drillDown(String id);
+    void filterData(String filter);
+    void sortData(String sortBy);
+  }
+
+  class CustomerData {
+    String id;
+    String demographics;
+    String purchaseHistory;
+    String behavior;
+  }
+
+  class Data {
+    CustomerData customerData;
+  }
+
+  composition DataWarehouse [*] CustomerData
+  -- DataProcessing
+  - 											{
+   								ordered
+   		}
+ 				;
+ 																																														composition DataProcessing [*] Data
+  -- Visualization
+  - 											{
+   								ordered
+   		}
+ 				;
+ 																																														composition Visualization [*] Dashboard
+ 																																		-- MachineLearning
+  - 											{
+   								ordered
+   		}
+ 				;
+ 																																														composition MachineLearning [*] Algorithm
+  -- UserInterface
+  - 											{
+   								ordered
+   		}
+ 				;
+}

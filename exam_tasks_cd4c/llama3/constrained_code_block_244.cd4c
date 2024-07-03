@@ -1,0 +1,66 @@
+
+
+
+classdiagram DigitalRiskAssessment  {
+
+  class Asset  {
+    String uniqueIdentifier;
+    String name;
+    AssetType type;
+  }
+
+  class Threat  {
+    ThreatType type;
+  }
+
+  class Vulnerability  {
+    VulnerabilityType type;
+    SeverityLevel severity;
+  }
+
+  class RiskAssessment  {
+    double riskLevel;
+  }
+
+  class AssetVulnerability  {
+    Asset asset;
+    Vulnerability vulnerability;
+  }
+
+  class ThreatVulnerability  {
+    Threat threat;
+    Vulnerability vulnerability;
+  }
+
+  enum AssetType  {
+    Network,
+    System,
+    Data
+  ;}
+
+  enum ThreatType  {
+    Malware,
+    Phishing,
+    Physical
+  ;}
+
+  enum VulnerabilityType  {
+    SQLInjection,
+    CrossSiteScripting
+  ;}
+
+  enum SeverityLevel  {
+    Low,
+    Medium,
+    High
+  ;}
+
+  composition Asset -> Vulnerability [0..*];
+  composition Vulnerability -> Asset [1];
+  composition Threat -> Vulnerability [0..*];
+  composition Vulnerability -> Threat [1];
+  composition RiskAssessment -> Asset [1];
+
+  <<stereotype>> association AssetVulnerability -> RiskAssessment [1];
+  <<stereotype>> association ThreatVulnerability -> RiskAssessment [1];
+}

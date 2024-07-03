@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram CustomerSuccessPlatform  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Company company;
+  }
+
+  class Company  {
+    String uniqueIdentifier;
+    String name;
+    Customer  customers  ;
+  }
+
+  class CustomerDatabase  {
+    Customer  customers  ;
+  }
+
+  class CustomerEngagement  {
+    CustomerDatabase customerDatabase;
+    void sendTargetedCampaign(Customer customer);
+  }
+
+  class CustomerFeedback  {
+    CustomerDatabase customerDatabase;
+    void collectFeedback(Customer customer);
+  }
+
+  class CustomerSupport  {
+    CustomerDatabase customerDatabase;
+    void manageSupportRequest(Customer customer);
+  }
+
+  composition CustomerDatabase  ->  (has) Customer  ;
+  composition Company  ->  (has) Customer  [*];
+  composition CustomerEngagement  ->  (uses) CustomerDatabase;
+  composition CustomerFeedback  ->  (uses) CustomerDatabase;
+  composition CustomerSupport  ->  (uses) CustomerDatabase;
+}

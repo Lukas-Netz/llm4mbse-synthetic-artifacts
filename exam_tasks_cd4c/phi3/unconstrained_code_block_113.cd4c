@@ -1,0 +1,52 @@
+
+classdiagram BlockchainVotingSystem {
+
+    class Voter {
+      String username;
+      String password;
+      boolean isRegistered;
+      boolean isLoggedIn;
+      List<Election> availableElections;
+      Map<Election, Candidate> votedCandidates;
+    }
+
+    class Election {
+      String electionId;
+      List<Candidate> candidates;
+    }
+
+    class Candidate {
+      String candidateId;
+      String name;
+    }
+
+    class Vote {
+      Voter voter;
+      Election election;
+      Candidate candidate;
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      boolean isTamperProof;
+      boolean isImmutable;
+    }
+
+    class Block {
+      List<Vote> votes;
+      String previousHash;
+      String hash;
+    }
+
+    class Administrator {
+      void verifyVoteIntegrity(Vote vote);
+      void verifyVotingProcess(Voter voter);
+    }
+
+    composition Voter -> (has) Election;
+    composition Voter -> (has) Blockchain;
+    composition Voter -> (has) Administrator;
+    composition Election -> (has) Blockchain;
+    composition Vote -> (has) Block;
+    composition Administrator -> (has) Blockchain;
+}

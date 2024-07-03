@@ -1,0 +1,54 @@
+
+classdiagram ARMaintenance {
+
+  class ARDevice {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Component {
+    String uniqueIdentifier;
+    ComponentStatus status;
+  }
+
+  class Camera extends Component {}
+  class Sensor extends Component {}
+  class Display extends Component {}
+
+  class MaintenanceTask {
+    String uniqueIdentifier;
+    String description;
+    MaintenanceTaskStatus status;
+  }
+
+  enum DeviceStatus {
+    Operational, NonOperational;
+  }
+
+  enum ComponentStatus {
+    Functioning, Malfunctioning;
+  }
+
+  enum MaintenanceTaskStatus {
+    Pending, InProgress, Completed;
+  }
+
+  class ARDevice {
+    -> Component [*];
+    MaintenanceTask [ ] maintenanceTasks;
+    void performMaintenanceTask(MaintenanceTask task);
+    void updateStatus();
+  }
+
+  class MaintenanceSystem {
+    ARDevice [ ] arDevices;
+    MaintenanceTask [ ] maintenanceTasks;
+    void addARDevice(ARDevice device);
+    void addMaintenanceTask(MaintenanceTask task);
+    void displayDeviceStatus(ARDevice device);
+    void generateReport(ARDevice device);
+  }
+
+  composition MaintenanceSystem -> ARDevice [*];
+  composition MaintenanceSystem -> MaintenanceTask [*];
+}

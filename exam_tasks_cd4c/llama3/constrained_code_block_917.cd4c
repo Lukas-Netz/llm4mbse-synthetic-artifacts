@@ -1,0 +1,84 @@
+
+
+
+
+classdiagram PersonalizedEducationSystem  {
+
+  class StudentProfile  {
+    String uniqueIdentifier;
+    StudentLearningStyle learningStyle;
+    StudentStrengths strengths;
+    StudentWeaknesses weaknesses;
+  }
+
+  class CourseCatalog  {
+    List<Course> courses;
+  }
+
+  class RecommendationEngine  {
+    void provideRecommendations(StudentProfile studentProfile, CourseCatalog courseCatalog);
+  }
+
+  class TeacherProfile  {
+    String uniqueIdentifier;
+    TeacherExpertise expertise;
+    TeacherTeachingStyle teachingStyle;
+  }
+
+  class Course  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Subject subject;
+    Level level;
+  }
+
+  class CourseEnrollmentSystem  {
+    void enrollStudent(Student student, Course course);
+    void trackCourseAvailability(Course course);
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    StudentProfile studentProfile;
+  }
+
+  class Teacher  {
+    String uniqueIdentifier;
+    TeacherProfile teacherProfile;
+  }
+
+  enum StudentLearningStyle  {
+    Visual, Auditory, Kinesthetic;
+  }
+
+  enum StudentStrengths  {
+    Math, Science, Language;
+  }
+
+  enum StudentWeaknesses  {
+    Math, Science, Language;
+  }
+
+  enum TeacherExpertise  {
+    Math, Science, Language;
+  }
+
+  enum TeacherTeachingStyle  {
+    Traditional, Interactive;
+  }
+
+  enum Subject  {
+    Math, Science, Language;
+  }
+
+  enum Level  {
+    Beginner, Intermediate, Advanced;
+  }
+
+  composition Student -> StudentProfile;
+  composition CourseCatalog -> Course[*];
+  composition RecommendationEngine -> StudentProfile;
+  composition TeacherProfile -> Teacher;
+  composition Course -> CourseEnrollmentSystem;
+  }

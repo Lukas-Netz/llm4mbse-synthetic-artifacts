@@ -1,0 +1,55 @@
+
+
+classdiagram SmartGrid {
+
+    class CentralControlCenter {
+      -> Substation [*];
+      -> PowerLine [*];
+      -> Transformer [*];
+      -> Meter [*];
+      -> SmartAppliance [*];
+    }
+
+    class Substation {
+      String uniqueIdentifier;
+      -> PowerLine [*];
+    }
+
+    class PowerLine {
+      String name;
+      Substation sourceSubstation;
+      Transformer transformer;
+    }
+
+    class Transformer {
+      String name;
+      PowerLine powerLine;
+    }
+
+    class Meter {
+      String uniqueIdentifier;
+      Household household;
+      int electricityConsumption;
+    }
+
+    class SmartAppliance {
+      String uniqueIdentifier;
+      Household household;
+      boolean isOn;
+      int powerConsumption;
+    }
+
+    class Household {
+      String uniqueIdentifier;
+      Meter meter;
+      SmartAppliance smartAppliance;
+    }
+
+  composition CentralControlCenter -> (has) Substation [*];
+  composition CentralControlCenter -> (has) PowerLine [*];
+  composition CentralControlCenter -> (has) Transformer [*];
+  composition CentralControlCenter -> (has) Meter [*];
+  composition CentralControlCenter -> (has) SmartAppliance [*];
+  association Household -> (has) Meter;
+  association Household -> (has) SmartAppliance;
+}

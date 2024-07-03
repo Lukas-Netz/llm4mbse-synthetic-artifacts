@@ -1,0 +1,54 @@
+
+
+classdiagram CustomerChurnPredictionSystem {
+
+  class CustomerChurnPredictionSystem {
+    DataIngestionModule dataIngestionModule;
+    DataProcessingModule dataProcessingModule;
+    MachineLearningModule machineLearningModule;
+    RecommendationModule recommendationModule;
+  }
+
+  class DataIngestionModule {
+    void ingestCustomerData(CustomerData data);
+  }
+
+  class DataProcessingModule {
+    void preprocessData(CustomerData data);
+  }
+
+  class MachineLearningModule {
+    PredictiveModel trainModel(PreprocessedData data);
+  }
+
+  class RecommendationModule {
+    List<Recommendation> generateRecommendations(CustomerData data);
+  }
+
+  class CustomerData {
+    String name;
+    int age;
+    String address;
+    PurchaseHistory purchaseHistory;
+  }
+
+  class PreprocessedData {
+    int numericalFeatures;
+    String categoricalFeatures;
+  }
+
+  class PredictiveModel {
+    int predictChurnProbability(PreprocessedData data);
+  }
+
+  class Recommendation {
+    String customerName;
+    String recommendationType;
+    int estimatedCost;
+  }
+
+  composition CustomerChurnPredictionSystem -> (has) DataIngestionModule;
+  composition CustomerChurnPredictionSystem -> (has) DataProcessingModule;
+  composition CustomerChurnPredictionSystem -> (has) MachineLearningModule;
+  composition CustomerChurnPredictionSystem -> (has) RecommendationModule;
+}

@@ -1,0 +1,53 @@
+
+
+classdiagram CustomerInsights {
+
+  class CustomerInsightsSystem {
+    CRMSystem crmSystem;
+    DataIntegrator dataIntegrator;
+    PredictiveAnalyzer predictiveAnalyzer;
+    RecommendationEngine recommendationEngine;
+    InsightsGenerator insightsGenerator;
+    CollaborationHub collaborationHub;
+  }
+
+  class CRMSystem {
+    CustomerProfile customerProfile;
+  }
+
+  class DataIntegrator {
+    void integrateWithSocialMedia();
+    void integrateWithEmail();
+    void integrateWithCustomerFeedback();
+  }
+
+  class PredictiveAnalyzer {
+    MachineLearningModel model;
+  }
+
+  class RecommendationEngine {
+    PersonalizedRecommendation generateRecommendations();
+  }
+
+  class InsightsGenerator {
+    InsightsReport generateInsightsReport();
+  }
+
+  class CollaborationHub {
+    void collaborateWithOtherTeams();
+  }
+
+  class CustomerProfile {
+    String name;
+    String email;
+    String address;
+    int age;
+  }
+
+  composition CustomerInsightsSystem -> (has) CRMSystem;
+  composition CustomerInsightsSystem -> (has) DataIntegrator;
+  composition CustomerInsightsSystem -> (has) PredictiveAnalyzer;
+  composition CustomerInsightsSystem -> (has) RecommendationEngine;
+  composition CustomerInsightsSystem -> (has) InsightsGenerator;
+  composition CustomerInsightsSystem -> (has) CollaborationHub;
+}

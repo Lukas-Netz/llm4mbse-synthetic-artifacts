@@ -1,0 +1,56 @@
+
+
+classdiagram SpaceExploration {
+
+    class Spacecraft {
+      Robot[] robots;
+      PropulsionSystem propulsionSystem;
+      LifeSupportSystem lifeSupportSystem;
+      PowerSupply powerSupply;
+    }
+
+    class Robot {
+      String uniqueIdentifier;
+      RobotType type;
+    }
+
+    enum RobotType {
+      Exploration, Maintenance, Communication
+    
+    
+	;
+    }
+
+    class ExplorationRobot extends Robot {
+      NavigationSystem navigationSystem;
+      Sensors sensors;
+      SamplingEquipment samplingEquipment;
+    }
+
+    class MaintenanceRobot extends Robot {
+      RepairTools repairTools;
+      SpareParts spareParts;
+    }
+
+    class CommunicationRobot extends Robot {
+      CommunicationEquipment communicationEquipment;
+      DataTransmissionProtocols dataTransmissionProtocols;
+    }
+
+    class PropulsionSystem {
+      void propel(String direction);
+    }
+
+    class LifeSupportSystem {
+      void maintainAirSupply();
+    }
+
+    class PowerSupply {
+      int capacity;
+    }
+
+  composition Spacecraft -> (has) Robot [*];
+  composition Spacecraft -> (has) PropulsionSystem;
+  composition Spacecraft -> (has) LifeSupportSystem;
+  composition Spacecraft -> (has) PowerSupply;
+}

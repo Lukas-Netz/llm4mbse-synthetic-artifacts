@@ -1,0 +1,93 @@
+
+classdiagram AutonomousRobot {
+
+    class AutonomousRobot {
+      String uniqueIdentifier;
+      RobotStatus status;
+      GPS navigationSystem;
+      MappingSoftware mappingSoftware;
+      PackageDeliverySystem packageDeliverySystem;
+      CommunicationSystem communicationSystem;
+      PowerSystem powerSystem;
+      SafetyFeatures safetyFeatures;
+      UserInterface userInterface;
+      Software software;
+      Hardware hardware;
+      Mainteninas robotMaintenance;
+      FleetManagementSystem fleetManagementSystem;
+      UserManagementSystem userManagementSystem;
+    }
+
+    class GPS {
+      void navigate();
+    }
+
+    class MappingSoftware {
+      void mapEnvironment();
+    }
+
+    class PackageDeliverySystem {
+      void loadPackage();
+      void deliverPackage();
+    }
+
+    class CommunicationSystem {
+      void connectWiFi();
+      void connectBluetooth();
+    }
+
+    class PowerSystem {
+      void rechargeBattery();
+      void disconnectBattery();
+    }
+
+    class SafetyFeatures {
+      void detectObstacles();
+      void avoidCollision();
+      void emergencyShutdown();
+    }
+
+    class UserInterface {
+      void displayTouchscreen();
+      void processVoiceCommands();
+    }
+
+    class Software {
+      NavigationAlgorithms navigationAlgorithms;
+      PackageDeliveryAlgorithms packageDeliveryAlgorithms;
+      CommunicationProtocols communicationProtocols;
+    }
+
+    class Hardware {
+      RoboticBody body;
+      Wheels wheels;
+      Sensors sensors;
+    }
+
+    class RobotMaintenance {
+      void updateSoftware();
+      void performHardwareMaintenance();
+      void troubleshootIssues();
+    }
+
+    class FleetManagementSystem {
+      void trackRobot();
+      void trackPackage();
+      void optimizeRoute();
+    }
+
+    class UserManagementSystem {
+      void authenticateUser();
+      void grantPermissions();
+      void trackUserActivity();
+    }
+
+    association AutonomousRobot -> GPS;
+    association AutonomousRobot -> MappingSoftware;
+    association AutonomousRobot -> PackageDeliverySystem;
+    association AutonomousRobot -> CommunicationSystem;
+    association AutonomousRobot -> PowerSystem;
+    association AutonomousRobot -> SafetyFeatures;
+    association AutonomousRobot -> UserInterface;
+   
+ }

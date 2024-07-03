@@ -1,0 +1,64 @@
+
+classdiagram VROceanography {
+
+  class SimulationEngine {
+    String simulationName;
+    String simulationDescription;
+    void runSimulation();
+  }
+
+  class UserInterface {
+    SimulationEngine simulation;
+    void selectSimulation(SimulationEngine simulation);
+    void adjustParameters();
+    void startSimulation();
+    void displayResults();
+  }
+
+  class DataRepository {
+    String temperature;
+    String salinity;
+    String marineLife;
+    String metadata;
+  }
+
+  class DataAnalyzer {
+    DataRepository data;
+    void trendAnalysis();
+    void anomalyDetection();
+  }
+
+  class SimulationResult {
+    String simulationName;
+    String simulationDescription;
+    String results;
+  }
+
+  composition SimulationEngine [*] SimulationResult [o_o]
+  -- UserInterface << SimulationEngine
+  >>- 											;-																								composition UserInterface <- SimulationEngine
+  -												;-																								composition UserInterface <- DataRepository
+  -												;-																								composition DataAnalyzer <- DataRepository
+
+  abstract 											;-																								association SimulationEngine <-> DataRepository
+  abstract 											;-																								association DataAnalyzer <-> DataRepository
+
+  abstract 											;-																								association UserInterface <-> SimulationEngine
+  abstract 											;-																								association UserInterface <-> DataAnalyzer
+
+  abstract 											;-																								association SimulationResult <-> SimulationEngine
+
+  abstract 											;-																								association SimulationResult <-> DataAnalyzer
+
+  abstract 											;-																								association SimulationResult <-> DataRepository
+
+  abstract 											;-																								association SimulationResult <-> UserInterface
+
+  abstract 											;-																								association SimulationResult <-> DataAnalyzer
+
+  abstract 											;-																								association SimulationResult <-> DataRepository
+
+  abstract 											;-																								association SimulationResult <-> UserInterface
+
+  abstract 											;
+}

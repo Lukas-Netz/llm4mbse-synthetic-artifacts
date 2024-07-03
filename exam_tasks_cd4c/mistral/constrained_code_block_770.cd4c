@@ -1,0 +1,62 @@
+
+classdiagram VRArtTherapy {
+
+  class Patient {
+    String name;
+    int age;
+    String diagnosis;
+  }
+
+  class VRArtTherapySystem {
+    VRHeadset vrHeadset;
+    Controller controller;
+    Library library;
+  }
+
+  class VRHeadset {
+    void interactWithSession();
+  }
+
+  class Controller {
+    void performExercise();
+  }
+
+  class Library {
+    Session [ ] sessions;
+    void addSession(Session session);
+    Session findSessionByName(String name);
+  }
+
+  class Session {
+    String name;
+    String description;
+    Exercise [ ] exercises;
+  }
+
+  abstract class Exercise {
+    String name;
+    String description;
+    ExerciseType type;
+  }
+
+  enum ExerciseType {
+    Drawing, Painting, Sculpting;
+  }
+
+  class PatientData {
+    Patient patient;
+    Progress progress;
+  }
+
+  class Progress {
+    int sessionsCompleted;
+    int totalSessions;
+    double improvementPercentage;
+  }
+
+  composition VRArtTherapySystem -> VRHeadset;
+  composition VRArtTherapySystem -> Controller;
+  composition Library -> Session [*];
+  association PatientData -- Patient;
+  association PatientData -- Progress;
+}

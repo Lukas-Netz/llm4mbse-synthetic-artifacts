@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram PhysicsPlatform  {
+
+  class Course  {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    -> Assignment[*];
+    -> Homework[*];
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    -> Enrollment[*];
+  }
+
+  class Instructor  {
+    String uniqueIdentifier;
+    -> Teaching[*];
+  }
+
+  class Enrollment  {
+    Course course;
+    Student student;
+  }
+
+  class Assignment  {
+    String name;
+    String description;
+    Date dueDate;
+    -> Submission[*];
+  }
+
+  class Homework  {
+    String name;
+    String description;
+    Date dueDate;
+    -> Submission[*];
+  }
+
+  class Submission  {
+    Assignment assignment;
+    Student student;
+    Grade grade;
+  }
+
+  class Grade  {
+    double value;
+  }
+
+  composition Course -> Assignment[*];
+  composition Course -> Homework[*];
+  composition Student -> Enrollment[*];
+  composition Instructor -> Teaching[*];
+  composition Enrollment -> Course;
+  composition Enrollment -> Student;
+  composition Assignment -> Submission[*];
+  composition Homework -> Submission[*];
+  composition Submission -> Assignment;
+  composition Submission -> Student;
+  composition Grade -> Submission;
+}

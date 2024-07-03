@@ -1,0 +1,34 @@
+
+
+classdiagram QuantumDotSolarCell {
+
+  class QuantumDot {
+    String uniqueIdentifier;
+    int size;
+    String materialType;
+  }
+
+  class SolarCell {
+    Set<QuantumDot> quantumDots;
+    int powerOutput;
+  }
+
+  class Light {
+    String color;
+    int intensity;
+  }
+
+  class EnergyHarvester {
+    int energyHarvested;
+  }
+
+  class Efficiency {
+    double efficiency;
+  }
+
+  composition SolarCell -> QuantumDot [*];
+  composition SolarCell -> EnergyHarvester [0..1];
+  association Light -> SolarCell;
+  association Light -> EnergyHarvester;
+  association Light -> Efficiency;
+}

@@ -1,0 +1,115 @@
+
+classdiagram EcommerceApp {
+
+  class User {
+    String email;
+    String password;
+    String name;
+    String address;
+    String phone;
+  }
+
+  class Product {
+    String id;
+    String name;
+    String description;
+    float price;
+    String category;
+    String imageUrl;
+    int stock;
+    float rating;
+    int numReviews;
+  }
+
+  class ShoppingCart {
+    User user;
+    Product [ ] products;
+  }
+
+  class Order {
+    String id;
+    User user;
+    Product [ ] products;
+    String status;
+    String date;
+  }
+
+  class Payment {
+    String id;
+    String paymentMethod;
+    float amount;
+    String date;
+  }
+
+  class Wishlist {
+    User user;
+    Product [ ] products;
+  }
+
+  class Notification {
+    String id;
+    String message;
+    String type;
+    String date;
+  }
+
+  class Review {
+    String id;
+    User user;
+    Product product;
+    float rating;
+    String comment;
+  }
+
+  class Account {
+    User user;
+    String password;
+    String name;
+    String address;
+    String phone;
+  }
+
+  class Login {
+    User user;
+    String email;
+    String password;
+  }
+
+  class Checkout {
+    User user;
+    ShoppingCart cart;
+    Payment payment;
+    Order order;
+  }
+
+  class Search {
+    String query;
+    Product [ ] results;
+  }
+
+  class Category {
+    String name;
+    Product [ ] products;
+  }
+
+  class App {
+    User user;
+    ShoppingCart cart;
+    Order [ ] orders;
+    Wishlist wishlist;
+    Notification [ ] notifications;
+    Review [ ] reviews;
+    Account account;
+    Login login;
+    Checkout checkout;
+    Search search;
+    Category [ ] categories;
+  }
+
+  association User <- Login;
+  association User <-> ShoppingCart;
+  association User <-> Order;
+  association User <-> Wishlist;
+  association User <-> Notification;
+  association User <-> Review;
+ 				}

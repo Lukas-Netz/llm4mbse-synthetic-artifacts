@@ -1,0 +1,38 @@
+
+classdiagram UniversityOnlineHistory {
+
+    class Course {
+      String name;
+      String description;
+      int duration;
+      List<Instructor> instructors;
+      List<Section> sections;
+    }
+
+    class Instructor {
+      String name;
+      String department;
+      String specialization;
+      List<Course> coursesTaught;
+    }
+
+    class Student {
+      String name;
+      String major;
+      double GPA;
+      List<Section> enrolledSections;
+    }
+
+    class Section {
+      String sectionId;
+      Date startDate;
+      Date endDate;
+      List<Student> enrolledStudents;
+    }
+
+    association Course -> Section [1..*];
+    association Instructor -> Course [1..*];
+    association Student -> Section [1..*];
+    association Instructor -> Student [1..*];
+    association Student -> Course [1..*];
+}

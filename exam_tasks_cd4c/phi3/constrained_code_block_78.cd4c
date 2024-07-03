@@ -1,0 +1,109 @@
+
+classdiagram RemoteDesktop {
+
+    class RemoteDesktopSystem {
+      Hub hub;
+      BackupPower backupPower;
+      User user;
+      Computer computer;
+    WritableFile file;
+    }
+
+    class Hub {
+      -> User [*];
+      -> Computer [*];
+      void addUser(User user);
+      void removeUser(User user);
+      void addComputer(Computer computer);
+      void removeComputer(Computer computer);
+      String checkBackupPowerStatus();
+      void handleVPNConnection();
+      void handleSSHConnection();
+      void handleFileTransfer();
+      void handleScreenSharing();
+      void handleAuthentication(AuthenticationMethod method);
+      void handleEncryption(EncryptionType type);
+      void handleNetworkProtocol(NetworkProtocol protocol);
+      void handleNetworkTopology(NetworkTopology topology);
+      void handleNetworkDevice(NetworkDevice device);
+      void handleNetworkService(NetworkService service);
+    }
+
+    abstract class User {
+      String username;
+      String password;
+      AuthenticationMethod authenticationMethod;
+    }
+
+    abstract class Computer {
+      String operatingSystem;
+      boolean isOnline;
+      NetworkProtocol networkProtocol;
+      NetworkTopology networkTopology;
+      NetworkDevice networkDevice;
+      NetworkService networkService;
+    }
+
+    class Windows extends Computer {
+    }
+
+    class macOS extends Computer {
+    }
+
+    class Linux extends Computer {
+    }
+
+    class VPNConnection extends NetworkProtocol {
+    }
+
+    class SSHConnection extends NetworkProtocol {
+    }
+
+    class FileTransfer extends NetworkService {
+    }
+
+    class ScreenSharing extends NetworkService {
+    }
+
+    enum AuthenticationMethod {
+      UsernameAndPassword, Biometric
+   
+   
+   ;}
+
+    enum EncryptionType {
+      AES, RSA
+   
+   
+   ;}
+
+    enum NetworkProtocol {
+      TCP, UDP
+   
+   
+   ;}
+
+    enum NetworkTopology {
+      LAN, WAN
+   
+   
+   ;}
+
+    enum NetworkDevice {
+      Hub, Switch, Repeater, Amplifier
+   
+   
+   ;}
+
+    enum NetworkService {
+      DNS, DHCP
+   
+   
+   ;}
+
+  composition RemoteDesktopSystem -> (has) Hub;
+  composition RemoteDesktopSystem -> (has) BackupPower [0..1];
+  composition Hub -> User [*];
+ 
+ 
+ }

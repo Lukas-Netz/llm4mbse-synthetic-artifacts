@@ -1,0 +1,82 @@
+
+classdiagram HomeImprovementPlatform {
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Project {
+    String name;
+    String description;
+    double budget;
+    User owner;
+    Contractor [ ] assignedContractors;
+    Task [ ] tasks;
+  }
+
+  class Contractor {
+    String name;
+    String contactInfo;
+    double rating;
+    User user;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Date dueDate;
+    Contractor assignedContractor;
+    Project project;
+    TaskStatus status;
+  }
+
+  enum TaskStatus {
+    ToDo, InProgress, Completed, Overdue;
+  }
+
+  class Expense {
+    double amount;
+    String description;
+    Project project;
+  }
+
+  association User [*] hasOneProfile
+  (User) -- (Profile)
+
+  associationProfile [*] -{ 
+    ordered } 
+   
+;
+  association Project [*] hasManyExpenses
+  (Project) -- (Expense)
+
+  associationProject [*] -{
+    ordered }
+    ;
+  association Project [*] hasManyTasks
+  (Project) -- (Task)
+
+  associationProject [*] -{
+    ordered }
+    ;
+  association Project [*] hasManyAssignedContractors
+  (Project) -- (Contractor)
+
+  associationProject [*] -{
+    ordered }
+    ;
+  association Contractor [*] hasManyRatings
+  (Contractor) -- (Rating)
+
+  associationContractor [*] -{
+    ordered }
+    ;
+  association Task [*] hasManyRatings
+  (Task) -- (Rating)
+
+  associationTask [*] -{
+    ordered }
+    ;
+}

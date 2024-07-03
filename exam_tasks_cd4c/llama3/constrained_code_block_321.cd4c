@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram TravelBookingSystem  {
+
+  class TravelAgency  {
+    -> TravelPackage[*];
+    void offerDiscount(TravelPackage package);
+  }
+
+  class TravelPackage  {
+    String name;
+    String description;
+    double price;
+    -> BookingOption[*];
+    BookingStatus status;
+  }
+
+  class BookingOption  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class Customer  {
+    String name;
+    String email;
+    String phoneNumber;
+    -> TravelPackage[*];
+  }
+
+  enum BookingStatus  {
+    PENDING,
+    CONFIRMED,
+    CANCELLED;
+  }
+}

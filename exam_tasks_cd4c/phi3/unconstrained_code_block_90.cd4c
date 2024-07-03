@@ -1,0 +1,44 @@
+
+classdiagram SmartAirQualityMonitoringSystem {
+
+    class Sensor {
+      String uniqueId;
+      String location;
+      SensorType type;
+      void measureAirQuality();
+      void sendDataToStation(MonitoringStation station);
+    }
+
+    class MonitoringStation {
+      String uniqueId;
+      String location;
+      List<Sensor> sensors;
+      void receiveData(Sensor sensor);
+      void sendDataToHub(CentralHub hub);
+    }
+
+    class CentralHub {
+      List<MonitoringStation> monitoringStations;
+      void aggregateData();
+      void sendAlertsToUsers(User user);
+    }
+
+    class User {
+      String uniqueId;
+      String email;
+      void register();
+      void receiveAlerts();
+    }
+
+    enum SensorType {
+      Temperature, Humidity, ParticulateMatter;
+    }
+
+    enum AlertLevel {
+      Low, Moderate, High;
+    }
+
+  composition Sensor -> MonitoringStation [*];
+  composition MonitoringStation -> CentralHub [*];
+  composition CentralHub -> User [*];
+}

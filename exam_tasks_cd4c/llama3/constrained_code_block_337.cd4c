@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram FitnessTracker  {
+
+  class FitnessTrackerDevice  {
+    String uniqueIdentifier;
+    UserAccount userAccount;
+  }
+
+  class UserAccount  {
+    String name;
+    String email;
+  }
+
+  class Activity  {
+    String type;
+    int duration;
+    int distance;
+    int caloriesBurned;
+  }
+
+  class HeartRateData  {
+    int heartRate;
+  }
+
+  class BloodPressureData  {
+    int systolic;
+    int diastolic;
+  }
+
+  class SleepData  {
+    int sleepQuality;
+  }
+
+  class Goal  {
+    String goalType;
+    int targetValue;
+  }
+
+  class SmartphoneApp  {
+    FitnessTrackerDevice device;
+  }
+
+  composition FitnessTrackerDevice -> UserAccount;
+  composition Activity -> FitnessTrackerDevice;
+  composition HeartRateData -> FitnessTrackerDevice;
+  composition BloodPressureData -> FitnessTrackerDevice;
+  composition SleepData -> FitnessTrackerDevice;
+  composition Goal -> FitnessTrackerDevice;
+  composition SmartphoneApp -> FitnessTrackerDevice;
+}

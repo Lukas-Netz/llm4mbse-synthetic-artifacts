@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram ITS  {
+
+  class TrafficSensor  {
+    String location;
+    double trafficVolume;
+    double trafficSpeed;
+    double trafficOccupancy;
+  }
+
+  class TrafficCamera  {
+    String location;
+    String image;
+  }
+
+  class TrafficManagementCenter  {
+    TrafficSensor[] sensors;
+    TrafficCamera[] cameras;
+    Incident[] incidents;
+    void detectIncident(Incident incident);
+    void respondToIncident(Incident incident);
+  }
+
+  class Incident  {
+    String description;
+    String location;
+    DateTime timestamp;
+  }
+
+  class TrafficSignalController  {
+    String location;
+    TrafficSignal[] signals;
+    void optimizeSignalTiming();
+  }
+
+  class TrafficSignal  {
+    String location;
+    String phase;
+  }
+
+  class DataAnalyticsTool  {
+    void analyzeData(TrafficSensor[] sensors);
+    void generateReport();
+  }
+
+  class EmergencyService  {
+    void respondToIncident(Incident incident);
+  }
+
+  class ITSComponent  {
+    String name;
+    String description;
+  }
+
+  composition TrafficManagementCenter -> (has) TrafficSensor[*];
+  composition TrafficManagementCenter -> (has) TrafficCamera[*];
+  composition TrafficManagementCenter -> (has) Incident[*];
+  composition TrafficSignalController -> (has) TrafficSignal[*];
+  composition DataAnalyticsTool -> (has) TrafficSensor[*];
+  association TrafficManagementCenter -> (detects) Incident;
+  association TrafficSignalController -> (optimizes) TrafficSignal;
+  association DataAnalyticsTool -> (analyzes) TrafficSensor;
+  association EmergencyService -> (responds) Incident;
+}

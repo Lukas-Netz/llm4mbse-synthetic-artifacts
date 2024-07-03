@@ -1,0 +1,52 @@
+
+
+classdiagram CustomerFeedbackAnalysisSystem {
+
+  class CustomerFeedback {
+    Customer customer;
+    Product product;
+    Rating rating;
+  }
+
+  class Customer {
+    String id;
+    String name;
+    String contactInfo;
+  }
+
+  class Product {
+    String id;
+    String name;
+    String category;
+  }
+
+  class Rating {
+    Customer customer;
+    Product product;
+    int score;
+    String comment;
+  }
+
+  class Analysis {
+    AverageRating perProduct;
+    TopRatedProducts topRatedProducts;
+    CustomerSentimentAnalysis customerSentimentAnalysis;
+    ProductCategoryWiseAnalysis productCategoryWiseAnalysis;
+  }
+
+  composition CustomerFeedback -> (has) Customer
+  abstract  
+  
+  
+
+  {
+    
+  
+  
+ordered
+  }
+
+  
+
+;
+}

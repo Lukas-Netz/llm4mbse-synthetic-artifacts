@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram DigitalFarmingMarketplace  {
+
+  class Farmer  {
+    String name;
+    String email;
+    String password;
+    Product  [  ] products;
+    void updateInventoryLevel(int quantity);
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    int quantity;
+  }
+
+  class Buyer  {
+    String name;
+    String email;
+    String password;
+    Order  [  ] orders;
+  }
+
+  class Order  {
+    Buyer buyer;
+    Product product;
+    int quantity;
+  }
+
+  class Notification  {
+    String message;
+  }
+
+  composition Farmer  ->  (has) Product  [  * ];
+  composition Buyer  ->  (has) Order  [  * ];
+  association Farmer  ->  (has) Notification  [ 0..* ];
+  association Buyer  ->  (has) Notification  [ 0..* ];
+
+  <<stereotype>> interface SearchCriteria  {
+    String getName();
+    String getDescription();
+    double getPrice();
+  }
+
+  <<stereotype>> interface ProductSearch  {
+    Product[] search(SearchCriteria criteria);
+  }
+
+  <<stereotype>> interface OrderPlacement  {
+    Order placeOrder(Buyer buyer, Product product, int quantity);
+  }
+
+  <<stereotype>> interface InventoryUpdate  {
+    void updateInventoryLevel(Farmer farmer, int quantity);
+  }
+}

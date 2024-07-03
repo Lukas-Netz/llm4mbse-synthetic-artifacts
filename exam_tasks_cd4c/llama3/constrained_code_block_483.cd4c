@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram DigitalStorytellingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    boolean isCreator;
+    List<Story> createdStories;
+  }
+
+  class Story  {
+    String title;
+    String description;
+    List<Chapter> chapters;
+    List<User> viewers;
+  }
+
+  class Chapter  {
+    String title;
+    String description;
+    ChapterType type;
+    List<Chapter> linkedChapters;
+  }
+
+  enum ChapterType  {
+    TEXT, IMAGE, VIDEO;
+  }
+
+  class Administrator  {
+    void manageUsers();
+    void manageStories();
+    void manageChapters();
+    void monitorPerformance();
+  }
+
+  composition User -> (has) createdStories;
+  composition Story -> (has) chapters;
+  composition Chapter -> (has) linkedChapters;
+  composition Administrator -> (has) users;
+  composition Administrator -> (has) stories;
+  composition Administrator -> (has) chapters;
+}

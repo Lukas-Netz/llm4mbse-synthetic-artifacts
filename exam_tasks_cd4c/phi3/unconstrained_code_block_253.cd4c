@@ -1,0 +1,47 @@
+
+classdiagram DroneSurveillanceSystem {
+
+    class Drone {
+      String droneId;
+      Sensor[] sensors;
+    }
+
+    class Sensor {
+      String sensorType;
+      boolean enabled;
+    }
+
+    class Object {
+      String objectId;
+      Location location;
+      double speed;
+      double direction;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class Hub {
+      Drone[] drones;
+      Database database;
+      void sendCommand(Drone drone, Command command);
+      Object[] getObjectStatus(String objectId);
+    }
+
+    class Database {
+      Object[] objects;
+      void addObject(Object object);
+      Object[] getObject(String objectId);
+    }
+
+    class Command {
+      String commandType;
+    }
+
+    association Drone -> Sensor [*];
+    association Drone -> Hub;
+    association Object -> Database;
+    association Hub -> Database;
+}

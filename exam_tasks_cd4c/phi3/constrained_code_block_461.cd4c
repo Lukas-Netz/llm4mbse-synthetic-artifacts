@@ -1,0 +1,55 @@
+
+classdiagram VirtualRealityOceanographySimulation {
+
+    class SimulationEngine {
+      String simulationName;
+      String simulationDescription;
+      void runSimulation(SimulationType type);
+      Data getSimulationData();
+    Writes simulationResultsToFile(String filePath);
+    }
+
+    class UserInterface {
+      void selectSimulation(SimulationType type);
+      void adjustParameters(SimulationType type, Map<String, Object> parameters);
+      void startSimulation(SimulationType type);
+      void displayResults(SimulationType type);
+    }
+
+    class DataRepository {
+      Map<String, Data> oceanData;
+      Map<String, Metadata> metadata;
+      void addData(String key, Data data);
+      Data getData(String key);
+    }
+
+    class DataAnalyzer {
+      void performTrendAnalysis(Data data);
+      void performAnomalyDetection(Data data);
+    }
+
+    enum SimulationType {
+      OceanCurrents, MarineLife, ClimateChange;
+    }
+
+    class Data {
+      double temperature;
+      double salinity;
+      List<MarineLife> marineLife;
+    }
+
+    class Metadata {
+      String date;
+      String time;
+    }
+
+    class MarineLife {
+      String species;
+      double population;
+    }
+
+    composition VirtualRealityOceanographySimulation -> (has) SimulationEngine;
+    composition VirtualRealityOceanographySimulation -> (has) UserInterface;
+    composition VirtualRealityOceanographySimulation -> (has) DataRepository;
+    composition VirtualRealityOceanographySimulation -> (has) DataAnalyzer;
+}

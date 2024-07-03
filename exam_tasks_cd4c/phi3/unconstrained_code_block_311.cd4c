@@ -1,0 +1,28 @@
+
+classdiagram AirQualitySystem {
+
+    class Sensor {
+      String location;
+      double temperature;
+      double humidity;
+      double pollutantLevels;
+    }
+
+    class MonitoringStation {
+      List<Sensor> sensors;
+      void collectData();
+      void transmitData(Hub hub);
+    }
+
+    class Hub {
+      List<MonitoringStation> monitoringStations;
+      void aggregateData();
+      void provideRealTimeInformation();
+      void sendAlerts(double pollutantLevel);
+      void createCustomAlert(double pollutantLevel);
+      void trackHistoricalData();
+    }
+
+    composition Hub -> MonitoringStation [*];
+    composition Hub -> Sensor [*];
+}

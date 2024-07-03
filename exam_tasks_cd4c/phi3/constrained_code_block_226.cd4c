@@ -1,0 +1,79 @@
+
+classdiagram AutomatedQualityAssurance {
+
+    class Product {
+      String name;
+      String description;
+      Date productionDate;
+      String productType;
+      String productId;
+    }
+
+    class ProductDatabase {
+      Map<String, Product> products;
+      void addProduct(Product product);
+      Product getProductById(String productId);
+    }
+
+    class QualityParameters {
+      String type;
+      String parameterName;
+      String parameterValue;
+    }
+
+    class ProductType {
+      String name;
+      List<QualityParameters> parameters;
+    }
+
+    class Electronic extends ProductType {
+      int voltage;
+    }
+
+    class Mechanical extends ProductType {
+      int pressure;
+    }
+
+    class Chemical extends ProductType {
+      float concentration;
+    }
+
+    class Sensor {
+      String sensorId;
+      String sensorType;
+    }
+
+    class DigitalSensor extends Sensor {
+      int digitalValue;
+    }
+
+    class AnalogSensor extends Sensor {
+      float analogValue;
+    }
+
+    class TestingModule {
+      Map<String, Sensor> sensors;
+      void simulateProduction(Product product);
+      QualityParameters[] getTestResults(Product product);
+    }
+
+    class ReportingModule {
+      void generateReport(Product product);
+      void listDefects(Product product);
+    }
+
+    class UserInterface {
+      void inputProductInfo(Product product);
+      void viewReport(Product product);
+      void updateProductDatabase(Product product);
+    }
+
+    association ProductDatabase -> Product [*];
+    association ProductDatabase -> ProductType [*];
+    association ProductType -> Electronic [*];
+    association ProductType -> Mechanical [*];
+    association ProductType -> Chemical [*];
+    composition TestingModule -> Sensor [*];
+    composition TestingModule -> Product [*];
+   
+ }

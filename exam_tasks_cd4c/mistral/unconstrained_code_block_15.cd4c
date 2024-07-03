@@ -1,0 +1,44 @@
+
+classdiagram EventManagement {
+
+  class Event {
+    String uniqueIdentifier;
+    String name;
+    Date date;
+  }
+
+  class Speaker {
+    String name;
+    String bio;
+    String contactInfo;
+  }
+
+  class Session {
+    String title;
+    String description;
+    Time startTime;
+    Time endTime;
+  }
+
+  class Attendee {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Attendance {
+    Attendee attendee;
+    Session session;
+  }
+
+  class Report {
+    String type;
+    String data;
+  }
+
+  composition Event -> (has) Speaker [*];
+  composition Event -> (has) Session [*];
+  composition Session -> (has) Attendance [*];
+  composition Attendance -> (has) Attendee;
+  composition Attendance -> (has) Session;
+}

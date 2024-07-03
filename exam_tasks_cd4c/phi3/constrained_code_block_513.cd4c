@@ -1,0 +1,40 @@
+
+classdiagram RenewableEnergyGrid {
+
+    class RenewableEnergyGrid {
+      Hub hub;
+      List<RenewableEnergySource> energySources;
+      List<EnergyStorageSystem> storageSystems;
+      EnergyGridStatus status;
+    }
+
+    class RenewableEnergySource {
+      String uniqueIdentifier;
+      Location location;
+      int capacity;
+      int currentProduction;
+    }
+
+    class Location {
+      String city;
+      String state;
+      String country;
+    }
+
+    class EnergyStorageSystem {
+      int capacityWh;
+      int stateOfCharge;
+    }
+
+    class EnergyGridStatus {
+      int totalProduction;
+      int totalDemand;
+      boolean isBalanced;
+    }
+
+    association RenewableEnergyGrid -> List<<RenewableEnergySource>>;
+    association RenewableEnergyGrid -> List<<EnergyStorageSystem>>;
+    association RenewableEnergySource -> Location;
+    association EnergyStorageSystem -> Location;
+    association RenewableEnergyGrid -> EnergyGridStatus;
+}

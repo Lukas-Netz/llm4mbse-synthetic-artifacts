@@ -1,0 +1,66 @@
+
+classdiagram VirtualAssistant {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class UserInterface {
+    User user;
+    void displayWelcomeMessage();
+    void processUserInput();
+  }
+
+  class NLPModule {
+    void understandCommand(String command);
+  }
+
+  class TaskManager {
+    void setReminder(String reminder);
+    void sendMessage(String message);
+    void makeCall(String phoneNumber);
+  }
+
+  class DeviceController {
+    void controlLight(String deviceId, String command);
+    void controlThermostat(String deviceId, String command);
+    void controlSecurityCamera(String deviceId, String command);
+  }
+
+  class DataStorage {
+    void saveUserData();
+    void loadUserData();
+  }
+
+  class IntegrationModule {
+    void integrateCalendar();
+    void integrateEmail();
+    void integrateSocialMedia();
+  }
+
+  class VirtualAssistant {
+    UserInterface userInterface;
+    NLPModule nlpModule;
+    TaskManager taskManager;
+    DeviceController deviceController;
+    DataStorage dataStorage;
+    IntegrationModule integrationModule;
+  }
+
+  class Device {
+    String deviceId;
+    DeviceType deviceType;
+  }
+
+  enum DeviceType {
+    Light, Thermostat, SecurityCamera;
+  }
+
+  association User -> UserInterface;
+  association VirtualAssistant -> NLPModule;
+  association VirtualAssistant -> TaskManager;
+  association VirtualAssistant -> DeviceController;
+  association VirtualAssistant -> DataStorage;
+  association VirtualAssistant -> IntegrationModule;
+}

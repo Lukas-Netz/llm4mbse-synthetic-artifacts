@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram DigitalTalentPlatform  {
+
+  class JobSeeker  {
+    String uniqueIdentifier;
+    String name;
+    Resume resume;
+    -> JobApplication[*];
+  }
+
+  class JobOpening  {
+    String title;
+    String description;
+    Date deadline;
+    -> JobApplication[*];
+  }
+
+  class JobApplication  {
+    JobSeeker jobSeeker;
+    JobOpening jobOpening;
+  }
+
+  class Employer  {
+    String uniqueIdentifier;
+    String name;
+    -> JobOpening[*];
+  }
+
+  class Resume  {
+    String content;
+  }
+
+  class JobPosting  {
+    JobOpening jobOpening;
+    boolean isClosed;
+  }
+
+  composition JobSeeker -> JobApplication[*];
+  composition JobOpening -> JobApplication[*];
+  composition Employer -> JobOpening[*];
+  composition JobOpening -> JobPosting [0..1];
+}

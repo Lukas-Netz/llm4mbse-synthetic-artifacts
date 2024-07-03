@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram MushroomCultivationPlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    int duration;
+    Section  [] sections;
+  }
+
+  class User  {
+    String username;
+    String role;
+    Course  [] enrolledCourses;
+    AssignmentSubmission  [] submissions;
+  }
+
+  class Section  {
+    String title;
+    String description;
+    Course  course;
+  }
+
+  class Instructor extends User  {
+    String username;
+  }
+
+  class Assignment  {
+    String title;
+    String description;
+    Date dueDate;
+  }
+
+  class AssignmentSubmission  {
+    Assignment assignment;
+    User user;
+    int grade;
+  }
+
+  class Administrator extends User  {
+    String username;
+  }
+
+  composition Course  ->  (has) Section  [*];
+  composition User  ->  (enrolledIn) Course  [*];
+  composition User  ->  (submits) Assignment  [*];
+  composition Course  ->  (has) Instructor  [*];
+  composition Course  ->  (has) Assignment  [*];
+  composition Administrator  ->  (manages) Course  [*];
+  composition Administrator  ->  (manages) User  [*];
+  composition Administrator  ->  (manages) Assignment  [*];
+}

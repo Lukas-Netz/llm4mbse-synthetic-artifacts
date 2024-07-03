@@ -1,0 +1,136 @@
+
+
+
+
+classdiagram PermafrostMonitoringSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Location location;
+    Data data;
+  }
+
+  class Hub  {
+    Sensor  sensors  ;  -> Sensor
+    ;  -> Data
+  ;  -> Database
+
+  ;  -> Analyzer
+
+  ;  -> Researcher
+
+  ;  -> Data
+
+  ;  -> Location
+
+  ;  -> Status
+
+  ;  -> Error
+
+  ;  -> Warning
+
+  ;  -> Information
+
+  ;  -> Error
+
+  ;  -> Warning
+
+  ;  -> Information
+
+  ;  -> Error
+
+  ;  -> Warning
+
+  ;  -> Information
+
+  ;  -> Error
+
+  ;  -> Warning
+
+  ;  }
+
+  class Database  {
+    Data data;
+  }
+
+  class Analyzer  {
+    Data data;
+  }
+
+  class Researcher  {
+    Data data;
+  }
+
+  class Location  {
+    String latitude;
+    String longitude;
+  }
+
+  class Data  {
+    String temperature;
+    String humidity;
+    String other;
+  }
+
+  class Status  {
+    String status;
+  }
+
+  class Error  {
+    String error;
+  }
+
+  class Warning  {
+    String warning;
+  }
+
+  class Information  {
+    String information;
+  }
+
+  class SensorLocation  {
+    Sensor sensor;
+    Location location;
+  }
+
+  class SensorData  {
+    Sensor sensor;
+    Data data;
+  }
+
+  class HubSensor  {
+    Hub hub;
+    Sensor sensor;
+  }
+
+  class HubData  {
+    Hub hub;
+    Data data;
+  }
+
+  class HubLocation  {
+    Hub hub;
+    Location location;
+  }
+
+  class HubStatus  {
+    Hub hub;
+    Status status;
+  }
+
+  class HubError  {
+    Hub hub;
+    Error error;
+  }
+
+  class HubWarning  {
+    Hub hub;
+    Warning warning;
+  }
+
+  class HubInformation  {
+    Hub hub;
+    Information information;
+  }
+
+  }

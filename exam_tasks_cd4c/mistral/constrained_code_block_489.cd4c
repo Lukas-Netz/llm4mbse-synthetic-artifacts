@@ -1,0 +1,65 @@
+
+classdiagram MilitaryCommand {
+
+  class Unit {
+    String uniqueIdentifier;
+    UnitStatus status;
+    SuperiorUnit superiorUnit;
+    UnitType type;
+    Unit(String uniqueIdentifier, UnitType type, SuperiorUnit superiorUnit);
+  }
+
+  enum UnitStatus {
+    Active, Inactive;
+  }
+
+  enum UnitType {
+    Infantry, Tank, Airborne;
+  }
+
+  class Infantry extends Unit {
+    int numberOfSoldiers;
+    String equipment;
+  }
+
+  class Tank extends Unit {
+    int armorLevel;
+    String weaponType;
+  }
+
+  class Airborne extends Unit {
+    String aircraftType;
+    int crewSize;
+  }
+
+  class SuperiorUnit {
+    String uniqueIdentifier;
+    Unit [ ] subordinateUnits;
+  }
+
+  class Mission {
+    String uniqueIdentifier;
+    MissionStatus status;
+    MissionType type;
+    Date startDate;
+    Date endDate;
+  }
+
+  enum MissionStatus {
+    Completed, Ongoing;
+  }
+
+  enum MissionType {
+    Reconnaissance, Patrol, Combat;
+  }
+
+  class CommandCenter {
+    Unit [ ] units;
+    Mission [ ] missions;
+  }
+
+  composition SuperiorUnit -> Unit [*];
+  composition Unit -> SuperiorUnit [0..1];
+  composition CommandCenter -> Unit [*];
+  composition CommandCenter -> Mission [*];
+}

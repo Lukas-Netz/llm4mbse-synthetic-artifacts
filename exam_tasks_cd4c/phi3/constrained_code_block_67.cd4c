@@ -1,0 +1,34 @@
+
+classdiagram OCRSystem {
+
+    class Image {
+      String uniqueId;
+      int resolution;
+    }
+
+    class Text {
+      String uniqueId;
+      String recognizedText;
+    }
+
+    class Algorithm {
+      String uniqueId;
+      float accuracy;
+    }
+
+    class ImageProcessor {
+      void processImage(Image image);
+      Text extractText(Image image);
+    }
+
+    class TextAnalyzer {
+      void analyzeText(Text text);
+    }
+
+    association ImageProcessor <-> Image;
+    association ImageProcessor <-> Text;
+    association TextAnalyzer <-> Text;
+    composition ImageProcessor -> Image;
+    composition ImageProcessor -> Text;
+    composition TextAnalyzer -> Text;
+}

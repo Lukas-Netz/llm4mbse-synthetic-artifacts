@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram AirQualityMonitoringSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Location location;
+    SensorType type;
+  }
+
+  class MonitoringStation  {
+    String uniqueIdentifier;
+    Location location;
+    Sensor  [] sensors;
+  }
+
+  class CentralHub  {
+    MonitoringStation  [] monitoringStations;
+  }
+
+  class User  {
+    String username;
+    String password;
+    AirQualityThreshold threshold;
+  }
+
+  class AirQualityThreshold  {
+    double particulateMatter;
+    double temperature;
+    double humidity;
+  }
+
+  class Location  {
+    String address;
+    double latitude;
+    double longitude;
+  }
+
+  class SensorType  {
+    String type;
+  }
+
+  composition CentralHub -> MonitoringStation [1..*];
+  composition MonitoringStation -> Sensor [1..*];
+  composition User -> AirQualityThreshold [1..1];
+  association Sensor -> Location [1..1];
+  association MonitoringStation -> Location [1..1];
+  association CentralHub -> User [0..*];
+}

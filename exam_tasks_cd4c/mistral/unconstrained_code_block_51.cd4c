@@ -1,0 +1,51 @@
+
+classdiagram BI_System {
+
+  class SalesData {
+    Product product;
+    Store store;
+    int quantity;
+    Timestamp timestamp;
+  }
+
+  class Product {
+    String productID;
+    String productName;
+  }
+
+  class Store {
+    String storeID;
+    String storeName;
+  }
+
+  class RealTimeSalesTracker {
+    -> SalesData [*];
+    void updateSalesData(SalesData salesData);
+  }
+
+  class ReportGenerator {
+    RealTimeSalesTracker realTimeSalesTracker;
+    void generateTopSellingProductsReport();
+    void generateTopSellingStoresReport();
+    void identifyTrendsAndPatterns();
+  }
+
+  class AlertManager {
+    RealTimeSalesTracker realTimeSalesTracker;
+    void setSalesThreshold(Product product, int threshold);
+    void sendAlert(Product product);
+  }
+
+  class IntegrationManager {
+    InventoryManagement inventoryManagement;
+    CustomerRelationshipManagement customerRelationshipManagement;
+    void integrateWithInventoryManagement();
+    void integrateWithCustomerRelationshipManagement();
+  }
+
+  association RealTimeSalesTracker -- SalesData;
+  association ReportGenerator -- RealTimeSalesTracker;
+  association AlertManager -- RealTimeSalesTracker;
+  association IntegrationManager -- InventoryManagement;
+  association IntegrationManager -- CustomerRelationshipManagement;
+}

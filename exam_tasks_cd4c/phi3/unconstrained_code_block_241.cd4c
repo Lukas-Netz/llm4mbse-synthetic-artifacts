@@ -1,0 +1,34 @@
+
+classdiagram WasteCollectionSystem {
+
+    class CentralControlUnit {
+      WasteCollectionVehicle vehicle;
+      WasteContainer container;
+      void assignContainer(WasteContainer container, String location);
+      void scheduleRoute(WasteCollectionVehicle vehicle);
+      void monitorVehicleStatus(WasteCollectionVehicle vehicle);
+    }
+
+    abstract class WasteCollectionVehicle {
+      String vehicleId;
+      VehicleStatus status;
+    }
+
+    class Compactor extends WasteCollectionVehicle {
+      void compactWaste();
+    }
+
+    class Sweeper extends WasteCollectionVehicle {
+      void collectLooseWaste();
+    }
+
+    class WasteContainer {
+      String location;
+      int capacity;
+    }
+
+    composition CentralControlUnit -> (has) WasteCollectionVehicle;
+    composition CentralControlUnit -> (has) WasteContainer;
+    association WasteCollectionVehicle -> WasteContainer [*];
+    association WasteContainer -> CentralControlUnit [*];
+}

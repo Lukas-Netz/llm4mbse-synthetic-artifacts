@@ -1,0 +1,82 @@
+
+classdiagram HomeAutomationSystem {
+
+    class HomeAutomationSystem {
+      Hub hub;
+      Router router;
+      PowerSupply powerSupply;
+      Device[] devices;
+      Sensor[] sensors;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceType type;
+    }
+
+    class Light extends Device {
+      int brightnessLevel;
+      String color;
+    }
+
+    class Thermostat extends Device {
+      int temperature;
+      ThermostatMode mode;
+    }
+
+    class SecurityCamera extends Device {
+      String resolution;
+      boolean isRecording;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+    }
+
+    class MotionSensor extends Sensor {
+      boolean isDetected;
+    }
+
+    class TemperatureSensor extends Sensor {
+      int temperature;
+    }
+
+    class LightSensor extends Sensor {
+      int lightLevel;
+    }
+
+    enum DeviceType {
+      Light, Thermostat, SecurityCamera;
+    }
+
+    enum SensorType {
+      Motion, Temperature, Light;
+    }
+
+    enum ThermostatMode {
+      Heating, Cooling;
+    }
+
+    class Hub {
+      -> Device [*];
+      -> Sensor [*];
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      void addSensor(Sensor sensor);
+      void removeSensor(Sensor sensor);
+      String checkPowerSupplyStatus();
+    }
+
+    class Router {
+      -> Device [*];
+      void addDevice(Device device);
+      void removeDevice(Device device);
+    }
+
+    class PowerSupply {
+      int capacityWh;
+      void recharge();
+      String checkPowerSupplyStatus();
+    }
+}

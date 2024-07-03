@@ -1,0 +1,39 @@
+
+
+
+
+classdiagram OlfactoryMessagingSystem  {
+
+  class ScentGenerator  {
+    String name;
+    Scent scent;
+  }
+
+  class ScentReceiver  {
+    String name;
+    User user;
+  }
+
+  class NetworkHub  {
+    ScentGenerator  [] scentGenerators;
+    ScentReceiver  [] scentReceivers;
+    void addScentGenerator(ScentGenerator generator);
+    void removeScentGenerator(ScentGenerator generator);
+    void addScentReceiver(ScentReceiver receiver);
+    void removeScentReceiver(ScentReceiver receiver);
+    String checkScentTransmissionStatus();
+  }
+
+  class User  {
+    String name;
+  }
+
+  class Scent  {
+    String description;
+  }
+
+  composition NetworkHub -> ScentGenerator  [*];
+  composition NetworkHub -> ScentReceiver  [*];
+  composition ScentReceiver -> User  [1];
+  composition ScentGenerator -> Scent  [1];
+}

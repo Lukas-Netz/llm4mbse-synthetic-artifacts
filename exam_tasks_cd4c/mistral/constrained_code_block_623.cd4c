@@ -1,0 +1,89 @@
+
+classdiagram PsychotherapyPlatform {
+
+  class Therapist {
+    String uniqueIdentifier;
+    String name;
+    String specialization;
+    List<Session> sessions;
+  }
+
+  class Client {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+    List<Session> sessions;
+    List<RatingReview> ratingsAndReviews;
+  }
+
+  class Session {
+    String uniqueIdentifier;
+    LocalDateTime dateTime;
+    int duration;
+    Therapist therapist;
+    Client client;
+    List<RatingReview> ratingsAndReviews;
+  }
+
+  class RatingReview {
+    int rating;
+    String review;
+    String author;
+  }
+
+  association Therapist --oSession;
+  association Client --oSession;
+  association Session --oRatingReview;
+  association Therapist --oRatingReview;
+  association Client --oRatingReview;
+
+  class TherapistList {
+    List<Therapist> therapists;
+  }
+
+  class ClientList {
+    List<Client> clients;
+  }
+
+  class SessionList {
+    List<Session> sessions;
+  }
+
+  class RatingReviewList {
+    List<RatingReview> ratingsAndReviews;
+  }
+
+  class AvailableTherapistsList {
+    List<Therapist> therapists;
+    LocalDateTime dateTime;
+  }
+
+  class AvailableSessionsList {
+    List<Session> sessions;
+    Therapist therapist;
+  }
+
+  class AvailableSessionsForClientList {
+    List<Session> sessions;
+    Client client;
+  }
+
+  class AllSessionsList {
+    List<Session> sessions;
+  }
+
+  class AllRatingsAndReviewsList {
+    List<RatingReview> ratingsAndReviews;
+  }
+
+  class AllRatingsAndReviewsForTherapistList {
+    List<RatingReview> ratingsAndReviews;
+    Therapist therapist;
+  }
+
+  class AllRatingsAndReviewsForClientList {
+    List<RatingReview> ratingsAndReviews;
+    Client client;
+  }
+
+  }

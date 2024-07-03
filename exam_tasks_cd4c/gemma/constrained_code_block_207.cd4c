@@ -1,0 +1,56 @@
+
+
+classdiagram DRM {
+
+  class DRMSystem {
+    ContentLibrary contentLibrary;
+    UserLibrary userLibrary;
+    PaymentGateway paymentGateway;
+    CDN cdn;
+  }
+
+  class ContentLibrary {
+    Content contentList;
+  }
+
+  class Content {
+    String title;
+    String description;
+    Copyright copyright;
+  }
+
+  class UserLibrary {
+    User user;
+    List<Content> ownedContent;
+    List<Content> rentedContent;
+  }
+
+  class User {
+    String name;
+    String email;
+    List<Content> ownedContent;
+    List<Content> rentedContent;
+  }
+
+  class PaymentGateway {
+    void processPayment(Content content, User user);
+  }
+
+  class CDN {
+    void deliverContent(Content content, User user);
+  }
+
+  class Copyright {
+    int copiesAllowed;
+    int copiesMade;
+  }
+
+  composition DRMSystem -> (has) ContentLibrary;
+  composition DRMSystem -> (has) UserLibrary;
+  composition DRMSystem -> (has) PaymentGateway;
+  composition DRMSystem -> (has) CDN;
+  association ContentLibrary -> Content;
+  association UserLibrary -> User;
+  association User -> Content;
+  association Content -> Copyright;
+}

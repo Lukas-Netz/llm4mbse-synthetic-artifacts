@@ -1,0 +1,61 @@
+
+classdiagram CRM {
+
+    class Customer {
+      String uniqueId;
+      String name;
+      String email;
+    }
+
+    class Account {
+      String uniqueId;
+      String accountName;
+      String accountType;
+      Customer customer;
+    }
+
+    class Contact {
+      String uniqueId;
+      String name;
+      String jobTitle;
+      Account account;
+      Relationship relationship;
+    }
+
+    class Relationship {
+      String type;
+    }
+
+    class CommunicationHistory {
+      String contactId;
+      String accountId;
+      String communicationType;
+      String communicationDetails;
+    }
+
+    class SalesHistory {
+      String accountId;
+      List<Product> products;
+      List<Double> salesAmounts;
+    }
+
+    class Product {
+      String productId;
+      String productName;
+    }
+
+    class User {
+      void createCustomer(Customer customer);
+      void updateCustomer(Customer customer);
+      void deleteCustomer(Customer customer);
+      void createAccount(Account account);
+      void updateAccount(Account account);
+      void deleteAccount(Account account);
+      void createContact(Contact contact);
+      void updateContact(Contact contact);
+      void deleteContact(Contact contact);
+      void viewRelationships(Contact contact);
+      void viewCommunicationHistory(Contact contact, Account account);
+      void viewSalesHistory(Account account);
+    }
+}

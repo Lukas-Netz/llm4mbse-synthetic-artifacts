@@ -1,0 +1,85 @@
+
+classdiagram SpaceTourismManagement {
+
+    class SpaceAgency {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Spacecraft {
+      String name;
+      String type;
+      int capacity;
+    }
+
+    class Package {
+      String name;
+      double price;
+      Set<Service> services;
+      Spacecraft spacecraft;
+    }
+
+    class Service {
+      String name;
+      String description;
+    }
+
+    class Tourist {
+      String name;
+      String email;
+      String phoneNumber;
+    }
+
+    class Booking {
+      Date date;
+      Package package;
+      Tourist tourist;
+    }
+
+    class SpaceTourismManagement {
+      SpaceAgency agency;
+      Set<Spacecraft> spacecrafts;
+      Set<Package> packages;
+      Set<Service> services;
+      Set<Tourist> tourists;
+      Set<Booking> bookings;
+
+      SpaceTourismManagement()
+
+     
+   
+throws SpaceAgency, Spacecraft, Package, Service, Tourist, Booking
+
+   
+;
+    void createSpaceAgency(SpaceAgency agency);
+    void modifySpacecraft(Spacecraft spacecraft);
+    void deleteSpacecraft(Spacecraft spacecraft);
+    void createPackage(Package package);
+    void modifyPackage(Package package);
+    void deletePackage(Package package);
+    void createService(Service service);
+    void modifyService(Service service);
+    void deleteService(Service service);
+    void createTourist(Tourist tourist);
+    void modifyTourist(Tourist tourist);
+    void deleteTourist(Tourist tourist);
+    void createBooking(Booking booking);
+   
+
+}
+
+    association SpaceTourismManagement -> SpaceAgency [*];
+    association SpaceTourismManagement -> Spacecraft [*];
+    association SpaceTourismManagement -> Package [*];
+    association SpaceTourismManagement -> Service [*];
+    association SpaceTourismManagement -> Tourist [*];
+    association SpaceTourismManagement -> Booking [*];
+
+    composition SpaceAgency -> SpaceTourismManagement;
+    composition Spacecraft -> SpaceTourismManagement;
+    composition Package -> SpaceTourismManagement;
+    composition Service -> SpaceTourismManagement;
+    composition Tourist -> SpaceTourismManagement;
+    composition Booking -> SpaceTourismManagement;
+}

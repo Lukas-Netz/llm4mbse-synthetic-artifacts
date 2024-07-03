@@ -1,0 +1,53 @@
+
+
+
+classdiagram BionicLimb  {
+
+  class BCI  {
+    BrainSignal[] readBrainSignals();
+  }
+
+  class ControlUnit  {
+    void interpretBrainSignals(BrainSignal[] signals);
+    void sendCommands(Limb limb);
+  }
+
+  class Limb  {
+    void move();
+    void adjust();
+  }
+
+  class Software  {
+    void customizeSettings();
+    void monitorPerformance();
+  }
+
+  class CommunicationInterface  {
+    void sendSignals(BCI bci, ControlUnit controlUnit);
+    void receiveCommands(ControlUnit controlUnit, Limb limb);
+  }
+
+  class PowerSource  {
+    void providePower();
+  }
+
+  class BatteryManagementSystem  {
+    void managePower();
+  }
+
+  class BrainSignal  {
+    double[] values;
+  }
+
+  class CustomType  {
+    String name;
+  }
+
+  composition BCI -> ControlUnit;
+  composition ControlUnit -> Limb;
+  composition Software -> BionicLimb;
+  composition CommunicationInterface -> BCI;
+  composition CommunicationInterface -> ControlUnit;
+  composition PowerSource -> BionicLimb;
+  composition BatteryManagementSystem -> PowerSource;
+}

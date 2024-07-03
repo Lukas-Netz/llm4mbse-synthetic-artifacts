@@ -1,0 +1,50 @@
+
+classdiagram CloudSurveillanceSystem {
+
+    class CloudSurveillanceSystem {
+      List<Camera> cameras;
+      List<Server> servers;
+      List<User> users;
+    }
+
+    class Camera {
+      String uniqueId;
+      String location;
+      List<String> resolutions;
+    }
+
+    class Server {
+      String serverType;
+      List<VideoFootage> footage;
+    }
+
+    class VideoFootage {
+      String timestamp;
+      String cameraId;
+      String resolution;
+      boolean isMotionDetected;
+      boolean isObjectDetected;
+      boolean isFaceRecognized;
+    }
+
+    class User {
+      String userId;
+      String username;
+      String password;
+      String role;
+    }
+
+    class Notification {
+      String message;
+      String alertType;
+    }
+
+    association CloudSurveillanceSystem -> List<<Camera>>;
+    association CloudSurveillanceSystem -> List<<Server>>;
+    association CloudSurveillanceSystem -> List<<User>>;
+
+    composition Camera -> List<<String>>;
+    association Camera -increases-> Server [*];
+    association Server -increases-> VideoFootage [*];
+    association User -increases-> Notification [*];
+}

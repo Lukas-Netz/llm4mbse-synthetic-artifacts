@@ -1,0 +1,49 @@
+
+classdiagram MarinePollutionDetection {
+
+  class Sensor {
+    String uniqueIdentifier;
+    String parameter;
+    float value;
+  }
+
+  class Drone {
+    String uniqueIdentifier;
+    String visualData;
+    Sample sample;
+  }
+
+  class Sample {
+    String pollutantType;
+    float concentration;
+  }
+
+  enum PollutantType {
+    OilSpill, PlasticWaste, ChemicalPollutant;
+  }
+
+  class CentralHub {
+    -> Sensor [*];
+    -> Drone [*];
+    void analyzeData();
+    void detectPollutionHotspots();
+    void trackPollutionMovement();
+    void sendAlert(Authority authority);
+  }
+
+  class Database {
+    -> CentralHub;
+    void storeHistoricalData();
+  }
+
+  class UserInterface {
+    -> CentralHub;
+    void displayData();
+    void visualizePollutionHotspots();
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Drone [*];
+  association CentralHub -- Database;
+  association CentralHub -- UserInterface;
+}

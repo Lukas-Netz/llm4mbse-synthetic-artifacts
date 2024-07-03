@@ -1,0 +1,64 @@
+
+
+classdiagram CodingBootcamp {
+
+  class Course {
+    String name;
+    String description;
+    int duration;
+    Instructor instructor;
+
+    Course(String name, String description, int duration, Instructor instructor);
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String bio;
+
+    Instructor(String name, String email, String bio);
+  }
+
+  class Section {
+    String name;
+    Date startDate;
+
+    Section(String name, Date startDate);
+  }
+
+  class CourseEnrollment {
+    Course course;
+    Date startDate;
+    Date endDate;
+
+    CourseEnrollment(Course course, Date startDate, Date endDate);
+  }
+
+  class Student {
+    String name;
+    List<CourseEnrollment> enrollments;
+
+    Student(String name);
+  }
+
+  class PaymentSystem {
+    CreditCard paymentCard;
+    PaymentTransaction transaction;
+
+    PaymentSystem(CreditCard paymentCard, PaymentTransaction transaction);
+  }
+
+  class Platform {
+    Hub hub;
+    BackupPower backupPower;
+
+    Platform(Hub hub, BackupPower backupPower);
+  }
+
+  composition Platform -> Hub;
+  composition Platform -> BackupPower [0..1];
+  association Course -> Instructor;
+  association CourseEnrollment -> Student;
+  association Student -> CourseEnrollment;
+  association PaymentSystem -> Student;
+}

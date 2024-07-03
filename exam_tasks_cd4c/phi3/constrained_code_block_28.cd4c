@@ -1,0 +1,47 @@
+
+classdiagram SmartGrid {
+
+    class CentralControlCenter {
+      void monitorGrid();
+      void controlElectricityFlow();
+      void receiveData(Meter meter, SmartAppliance sa);
+    }
+
+    class Substation {
+      String substationId;
+      List<PowerLine> connectedPowerLines;
+    }
+
+    class PowerLine {
+      Substation substation;
+      Transformer transformer;
+      List<Meter> connectedMeters;
+    }
+
+    class Transformer {
+      PowerLine powerLine;
+      int voltageLevel;
+    }
+
+    class Meter {
+      Household household;
+      double consumption;
+    }
+
+    class SmartAppliance {
+      Household household;
+      boolean isOn;
+    }
+
+    class Household {
+      List<Meter> meters;
+      List<SmartAppliance> smartAppliances;
+    }
+
+  composition CentralControlCenter -> (has) Substation;
+  composition Substation -> (has) PowerLine [*];
+  composition PowerLine -> (has) Transformer [*];
+  composition PowerLine -> (has) Meter [*];
+  composition Household -> (has) Meter [*];
+  composition Household -> (has) SmartAppliance [*];
+}

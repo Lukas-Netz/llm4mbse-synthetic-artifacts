@@ -1,0 +1,40 @@
+
+classdiagram RenewableEnergy {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  class SolarPanel {
+    String uniqueIdentifier;
+    int capacityKw;
+  }
+
+  class WindTurbine {
+    String uniqueIdentifier;
+    int capacityKw;
+  }
+
+  class ForecastModel {
+    int predictionAccuracy;
+  }
+
+  class EnergyStorage {
+    int capacityKwh;
+  }
+
+  class RenewableEnergySystem {
+    WeatherStation [][] weatherStations;
+    SolarPanel [][] solarPanels;
+    WindTurbine [][] windTurbines;
+    ForecastModel forecastModel;
+    EnergyStorage energyStorage;
+  }
+
+  composition RenewableEnergySystem -> WeatherStation [*];
+  composition RenewableEnergySystem -> SolarPanel [*];
+  composition RenewableEnergySystem -> WindTurbine [*];
+}

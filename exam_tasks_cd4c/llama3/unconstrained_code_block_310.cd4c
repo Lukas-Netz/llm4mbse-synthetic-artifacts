@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram WildlifeTraffickingDetectionSystem  {
+
+  class EndangeredSpecies  {
+    String speciesName;
+    String habitat;
+    ConservationStatus conservationStatus;
+    unique Identifier;
+  }
+
+  class Sensor  {
+    unique Identifier;
+    String location;
+    Data data;
+  }
+
+  class Camera  {
+    unique Identifier;
+    String location;
+    Data data;
+  }
+
+  class WildlifeExpert  {
+    unique Identifier;
+    String name;
+    DataAnalysis dataAnalysis;
+  }
+
+  class LawEnforcementAgency  {
+    unique Identifier;
+    String name;
+    Evidence evidence;
+  }
+
+  class Data  {
+    String type;
+    String value;
+  }
+
+  class DataAnalysis  {
+    String analysis;
+  }
+
+  class Evidence  {
+    String type;
+    String value;
+  }
+
+  class ConservationStatus  {
+    String status;
+  }
+
+  composition EndangeredSpecies -> (has) Sensor[*];
+  composition EndangeredSpecies -> (has) Camera[*];
+  composition WildlifeExpert -> (has) DataAnalysis;
+  composition LawEnforcementAgency -> (has) Evidence;
+  composition Sensor -> (transmits) Data;
+  composition Camera -> (transmits) Data;
+  composition WildlifeExpert -> (accesses) EndangeredSpecies;
+  composition LawEnforcementAgency -> (accesses) EndangeredSpecies;
+}

@@ -1,0 +1,61 @@
+
+classdiagram RemoteLearningPlatform {
+
+    class Course {
+      String title;
+      String description;
+      String topic;
+      String courseId;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String instructorId;
+      List<Course> coursesTaught;
+    }
+
+    class Student {
+      String name;
+      String email;
+      String studentId;
+      List<CourseEnrollment> courseEnrollments;
+    }
+
+    class CourseEnrollment {
+      Student student;
+      Course course;
+      Date startDate;
+      Date endDate;
+    }
+
+    class Notification {
+      String message;
+      Date sendDate;
+    }
+
+    <<association>> class Course {
+      Instructor instructor;
+      List<Student> studentsEnrolled;
+    }
+
+    <<association>> class Instructor {
+      List<Course> coursesTaught;
+      List<Notification> notifications;
+    }
+
+    <<association>> class Student {
+      List<CourseEnrollment> courseEnrollments;
+      List<Notification> notifications;
+    }
+
+    <<association>> class CourseEnrollment {
+      Student student;
+      Course course;
+    }
+
+    <<association>> class Notification {
+      Student student;
+      Instructor instructor;
+    }
+}

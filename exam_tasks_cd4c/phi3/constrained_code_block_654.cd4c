@@ -1,0 +1,48 @@
+
+classdiagram QuantumImagingSystem {
+
+    class QuantumImagingSystem {
+      CameraModule cameraModule;
+      ProcessingUnit processingUnit;
+      StorageDevice storageDevice;
+      UserInterface userInterface;
+    }
+
+    class CameraModule {
+      Lens lens;
+      Sensor sensor;
+      ControlUnit controlUnit;
+      void captureImage();
+    }
+
+    class Lens {
+      void focusLight();
+    }
+
+    class Sensor {
+      void captureImage();
+    }
+
+    class ControlUnit {
+      void adjustSettings();
+    }
+
+    class ProcessingUnit {
+      void processImage();
+      void applyQuantumEnhancement();
+    }
+
+    class StorageDevice {
+      void storeImage();
+    }
+
+    class UserInterface {
+      void adjustCameraSettings();
+      void viewImage();
+    }
+
+  composition QuantumImagingSystem -> (has) CameraModule;
+  composition QuantumImagingSystem -> (has) ProcessingUnit;
+  composition QuantumImagingSystem -> (has) StorageDevice;
+  composition QuantumImagingSystem -> (has) UserInterface;
+}

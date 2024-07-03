@@ -1,0 +1,55 @@
+
+classdiagram OnlineMarketingCourses {
+
+  class Course {
+    String uniqueIdentifier;
+    String name;
+    CourseType type;
+  }
+
+  enum CourseType {
+    Video, Text, Live;
+  }
+
+  class VideoCourse extends Course {
+    int duration;
+    Topic [][] topics;
+  }
+
+  class TextCourse extends Course {
+    int recommendedReadingTime;
+    Topic [] topics;
+  }
+
+  class LiveCourse extends Course {
+    Schedule schedule;
+    Topic [] topics;
+  }
+
+  class Topic {
+    String name;
+    String description;
+  }
+
+  class Certification {
+    String name;
+    String description;
+    Course [][ ] courses;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    Course [][ ] enrolledCourses;
+  }
+
+  class Schedule {
+    String startDate;
+    String endDate;
+  }
+
+  composition Course [*] Course [enrolled] -> Student;
+  composition Course [*] Student [enrolled] -> Course;
+  composition Certification [*] Course [certified] -> Certification;
+  composition Certification [*] Certification [assigned] -> Course;
+}

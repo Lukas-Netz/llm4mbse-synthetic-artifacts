@@ -1,0 +1,56 @@
+
+
+classdiagram SocialMediaPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    boolean isFollowingOtherUser;
+    boolean isBlockedByOtherUser;
+
+    void createPost(String title, String content, Timestamp timestamp);
+    void commentOnPost(String postID, String content, Timestamp timestamp);
+    void likePost(String postID);
+  }
+
+  class Post {
+    String id;
+    String title;
+    String content;
+    Timestamp timestamp;
+    List<Comment> comments;
+    boolean isLikedByCurrentUser;
+
+    void addComment(Comment comment);
+  }
+
+  class Comment {
+    String id;
+    String content;
+    Timestamp timestamp;
+  }
+
+  class Like {
+    String postID;
+    User liker;
+  }
+
+  class Follow {
+    String followerID;
+    String followingID;
+  }
+
+  class Block {
+    String blockerID;
+    String blockedID;
+  }
+
+  composition User -> (has) Post [*];
+  composition Post -> (has) Comment [*];
+  association User -> Post [1..*];
+  association Post -> User [1..*];
+  association User -> Follow [1..*];
+  association User -> Block [1..*];
+}

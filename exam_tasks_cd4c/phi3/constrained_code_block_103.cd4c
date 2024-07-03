@@ -1,0 +1,48 @@
+
+classdiagram RetailInventory {
+
+    class Store {
+      String name;
+      String storeId;
+    }
+
+    class Product {
+      String name;
+      String productId;
+      String category;
+      Supplier supplier;
+      int quantityInStock;
+    }
+
+    class Supplier {
+      String name;
+      String supplierId;
+      String contactInfo;
+    }
+
+    class InventorySystem {
+      Store store;
+      List<Product> products;
+      List<Supplier> suppliers;
+
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      void updateProduct(Product product);
+      void addSupplier(Supplier supplier);
+      void removeSupplier(Supplier supplier);
+      void updateSupplier(Supplier supplier);
+      void checkInventoryLevels();
+    }
+
+    association Store 
+      to 
+      -> InventorySystem [1];
+
+    association Product 
+      to 
+      -> InventorySystem [*];
+
+    association Supplier 
+      to 
+      -> InventorySystem [*];
+}

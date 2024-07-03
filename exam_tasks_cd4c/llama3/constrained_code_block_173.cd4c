@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram VirtualWorkspace  {
+
+  class VirtualWorkspace  {
+    String name;
+    String description;
+    Feature  feature  ;  #  orte
+  Feature  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  #  orte
+
+  class  ;  
+
+ }
+}

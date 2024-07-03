@@ -1,0 +1,58 @@
+
+classdiagram FineWineTrading {
+
+  class WineProducer {
+    String uniqueIdentifier;
+    String name;
+    String grapeVariety;
+    String vintage;
+    -> WineBatch [*];
+  }
+
+  class WineMerchant {
+    String uniqueIdentifier;
+    String name;
+    int warehouseCapacity;
+    -> WineBatch [*];
+  }
+
+  class WineCollector {
+    String uniqueIdentifier;
+    String name;
+    -> WineBatch [*];
+  }
+
+  class WineBatch {
+    String uniqueIdentifier;
+    String name;
+    String vintage;
+    String grapeVariety;
+    int quantity;
+    -> WineTransaction [*];
+    WineProducer producer;
+    WineMerchant merchant;
+    WineCollector collector;
+  }
+
+  class WineTransaction {
+    String uniqueIdentifier;
+    WineBatch wineBatch;
+    WineCollector buyer;
+    WineMerchant seller;
+    int price;
+  }
+
+  class WineProvenance {
+    WineBatch wineBatch;
+    WineProducer producer;
+    WineMerchant merchant;
+    WineCollector collector;
+  }
+
+  association WineProducer --o00o- 											;
+  association WineMerchant --o00o- 											;
+  association WineCollector --o00o- 											;
+  association WineBatch --o00o- 											;
+  association WineTransaction --o00o- 										;
+  association WineProvenance --o00o- 											;
+}

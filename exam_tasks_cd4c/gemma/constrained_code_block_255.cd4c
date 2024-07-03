@@ -1,0 +1,52 @@
+
+
+classdiagram OnlineRealEstatePlatform {
+
+  class User {
+    String uniqueIdentifier;
+    String type;
+  }
+
+  class Property {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    String type;
+    Location location;
+    Price price;
+    List<Photo> photos;
+  }
+
+  class Agent extends User {
+    String name;
+    ContactInfo contactInfo;
+    List<Property> properties;
+  }
+
+  class Location {
+    String city;
+    String state;
+    String zipCode;
+  }
+
+  class Price {
+    int value;
+    Currency currency;
+  }
+
+  class Photo {
+    String url;
+  }
+
+  composition User -> (has) Profile;
+  composition Property -> (has) Agent [0..1];
+  association User -> Property [0..*];
+  association Agent -> Property [0..*]
+  
+  <<stereotype>>  
+  abstract  
+  
+  
+  
+;
+}

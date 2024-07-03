@@ -1,0 +1,52 @@
+
+classdiagram ProstheticLimbsSystem {
+
+    class ProstheticLimb {
+      String type;
+      String name;
+      List<Component> components;
+      Patient patient;
+      List<Stage> manufacturingProcess;
+      QualityControlResult qualityControl;
+    }
+
+    class Component {
+      String type;
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Patient {
+      String patientId;
+      List<ProstheticLimb> prostheticLimbs;
+    }
+
+    class Stage {
+      String name;
+    }
+
+    class QualityControlResult {
+      boolean passed;
+      String report;
+    }
+
+    association ProstheticLimb 
+      has_many 
+        [Stage] 
+        -> manufacturingProcess;
+
+    association ProstheticLimb 
+      has_many 
+        [QualityControlResult] 
+        -> qualityControl;
+
+    association Patient 
+      has_many 
+        [ProstheticLimb] 
+        -> prostheticLimbs;
+
+    composition ProstheticLimb -> components [1..*];
+    composition ProstheticLimb -> patient [1..1];
+    composition ProstheticLimb -> manufacturingProcess [1..*];
+    composition ProstheticLimb -> qualityControl [1..*];
+}

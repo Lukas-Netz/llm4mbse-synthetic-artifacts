@@ -1,0 +1,49 @@
+
+classdiagram TelecomNetwork {
+
+  class Node {
+    String id;
+    NodeType type;
+  }
+
+  enum NodeType {
+    Router, Switch, Server;
+  }
+
+  class Router extends Node {
+    String ipAddress;
+    String subnetMask;
+    String gateway;
+  }
+
+  class Switch extends Node {
+    int portNumber;
+    String macAddress;
+  }
+
+  class Server extends Node {
+    String ipAddress;
+    int portNumber;
+    ServerType serverType;
+  }
+
+  enum ServerType {
+    Web, Database, Application;
+  }
+
+  class Connection {
+    Node node1;
+    Node node2;
+    int bandwidth;
+    int latency;
+    ConnectionType connectionType;
+  }
+
+  enum ConnectionType {
+    Wired, Wireless;
+  }
+
+  composition TelecomNetwork -> (has) Node [*];
+  composition TelecomNetwork -> (has) Connection [*];
+  association Node -- Connection;
+}

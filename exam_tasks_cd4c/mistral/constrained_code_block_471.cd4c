@@ -1,0 +1,50 @@
+
+classdiagram CivicEngagement {
+
+  class Citizen {
+    String uniqueIdentifier;
+    void submitProposal(Proposal proposal);
+    void voteOnProposal(Proposal proposal);
+    void engageInDiscussion(Discussion discussion);
+  }
+
+  class Proposal {
+    String title;
+    String description;
+    ProposalStatus status;
+    String category;
+    String keywords;
+  }
+
+  enum ProposalStatus {
+    Pending, Approved, Rejected;
+  }
+
+  class Discussion {
+    Proposal relatedProposal;
+    String topic;
+    String comments;
+  }
+
+  class Administrator {
+    String uniqueIdentifier;
+    void manageProposals();
+    void manageDiscussions();
+    void trackEngagementMetrics();
+  }
+
+  class EngagementMetrics {
+    int proposalsSubmitted;
+    int votesCast;
+    int commentsMade;
+  }
+
+  composition Citizen [*] Citizens -> (has) Platform;
+  composition Proposal [*] Proposals -> (has) Platform;
+  composition Discussion [*] Discussions -> (has) Platform;
+  composition Administrator [*] Administrators -> (has) Platform;
+  association Platform -> Citizens;
+  association Platform -> Proposals;
+  association Platform -> Discussions;
+  association Platform -> Administrators;
+}

@@ -1,0 +1,46 @@
+
+
+classdiagram EnterpriseResourcePlanning {
+
+  class ERPSystem {
+    HumanResources hr;
+    SupplyChainManagement scm;
+    FinancialManagement fm;
+  }
+
+  class HumanResources {
+    EmployeeProfile employeeProfiles;
+    JobPosting jobPostings;
+    PerformanceEvaluation performanceEvals;
+  }
+
+  class SupplyChainManagement {
+    InventoryManagement inventoryManagement;
+    OrderTracking orderTracking;
+    Logistics logistics;
+  }
+
+  class FinancialManagement {
+    Budgeting budgeting;
+    Accounting accounting;
+    Reporting reporting;
+  }
+
+  class Database {
+    Stores dataFromAllModules;
+  }
+
+  composition ERPSystem -> (has) HumanResources;
+  composition ERPSystem -> (has) SupplyChainManagement;
+  composition ERPSystem -> (has) FinancialManagement;
+  composition HumanResources -> (has) EmployeeProfile;
+  composition HumanResources -> (has) JobPosting;
+  composition HumanResources -> (has) PerformanceEvaluation;
+  composition SupplyChainManagement -> (has) InventoryManagement;
+  composition SupplyChainManagement -> (has) OrderTracking;
+  composition SupplyChainManagement -> (has) Logistics;
+  composition FinancialManagement -> (has) Budgeting;
+  composition FinancialManagement -> (has) Accounting;
+  composition FinancialManagement -> (has) Reporting;
+  composition ERPSystem -> (has) Database;
+}

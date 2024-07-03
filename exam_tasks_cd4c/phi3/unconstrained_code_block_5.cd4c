@@ -1,0 +1,76 @@
+
+classdiagram UniversityEducationSystem {
+
+    class University {
+      Department department;
+      Semester semester;
+      EducationTechnologySystem educationTechnologySystem;
+    }
+
+    class Department {
+      String name;
+      List<Course> courses;
+      List<Instructor> instructors;
+    }
+
+    class Course {
+      String name;
+      String department;
+      List<Student> enrolledStudents;
+      Schedule schedule;
+    }
+
+    class Instructor {
+      String name;
+      String department;
+      List<Course> assignedCourses;
+      boolean isAvailable;
+    }
+
+    class Student {
+      String name;
+      String major;
+      List<Course> completedCourses;
+    }
+
+    class Schedule {
+      List<Course> courses;
+      String semester;
+    }
+
+    class EducationTechnologySystem {
+      void addCourse(Course course);
+      void removeCourse(Course course);
+      void addInstructor(Instructor instructor);
+      void removeInstructor(Instructor instructor);
+      void addStudent(Student student);
+      void removeStudent(Student student);
+      void enrollStudent(Student student, Course course);
+      void generateCourseRecommendations(Student student);
+      void generateReport(String reportType);
+      void integrateWithSystem(String systemName);
+    }
+
+    association University -> Department;
+    association University -> Semester;
+    association University -> EducationTechnologySystem;
+
+    association Department -> Course;
+    association Department -> Instructor;
+
+    association Course -> Student;
+    association Course -> Schedule;
+
+    association Instructor -> Course;
+
+    association Student -> Course;
+
+    association EducationTechnologySystem -> Course;
+    association EducationTechnologySystem -> Instructor;
+    association EducationTechnologySystem -> Student;
+
+    association EducationTechnologySystem -> Schedule;
+
+    composition EducationTechnologySystem -> (has) Department;
+    composition EducationTechnologySystem -> (has) Semester;
+}

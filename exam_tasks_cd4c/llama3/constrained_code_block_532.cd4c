@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram P2PPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    int creditScore;
+  }
+
+  class LoanRequest  {
+    int loanAmount;
+    double interestRate;
+    int loanDuration;
+  }
+
+  class Loan  {
+    int loanId;
+    LoanRequest request;
+    List<Investment> investments;
+  }
+
+  class Investment  {
+    int investmentId;
+    int amountInvested;
+    double interestRate;
+  }
+
+  class Payment  {
+    int paymentId;
+    User borrower;
+    Loan loan;
+    double amount;
+  }
+
+  class Administrator  {
+    void viewLoanDetails(Loan loan);
+    void viewInvestmentDetails(Investment investment);
+    void viewCreditScores(User user);
+  }
+
+  composition User -> (has) LoanRequest [0..1];
+  composition Loan -> (has) LoanRequest;
+  composition Loan -> (has) Investment [*];
+  composition Payment -> (has) Loan;
+  composition Administrator -> (has) User [*];
+}

@@ -1,0 +1,97 @@
+
+classdiagram ERP {
+
+  class ERP {
+    HumanResources hr;
+    SupplyChainManagement scm;
+    FinancialManagement fm;
+    Database db;
+  }
+
+  class HumanResources {
+    EmployeeProfile [][ ] employees;
+    JobPosting [ ] jobPostings;
+    PerformanceEvaluation [ ] evaluations;
+  }
+
+  class SupplyChainManagement {
+    Inventory inventory;
+    Order order;
+    Logistics logistics;
+  }
+
+  class FinancialManagement {
+    Budget budget;
+    Accounting accounting;
+    Reporting reporting;
+  }
+
+  class Database {
+    void storeData();
+    void retrieveData();
+  }
+
+  class EmployeeProfile {
+    String name;
+    String employeeId;
+    String position;
+    String department;
+  }
+
+  class JobPosting {
+    String jobTitle;
+    String jobDescription;
+    String location;
+    String closingDate;
+  }
+
+  class PerformanceEvaluation {
+    String employeeId;
+    String evaluationDate;
+    String performanceRating;
+    String comments;
+  }
+
+  class Inventory {
+    String itemName;
+    int quantity;
+    String location;
+  }
+
+  class Order {
+    String orderId;
+    String customerName;
+    String orderDate;
+    String deliveryDate;
+    String status;
+  }
+
+  class Logistics {
+    String carrier;
+    String trackingNumber;
+    String deliveryAddress;
+  }
+
+  class Budget {
+    String budgetYear;
+    String department;
+    int budgetAmount;
+  }
+
+  class Accounting {
+    String accountName;
+    String accountNumber;
+    double balance;
+  }
+
+  class Reporting {
+    String reportType;
+    String reportDate;
+    String generatedBy;
+  }
+
+  association ERP -> Database;
+  association ERP -> HumanResources;
+  association ERP -> SupplyChainManagement;
+  association ERP -> FinancialManagement;
+}

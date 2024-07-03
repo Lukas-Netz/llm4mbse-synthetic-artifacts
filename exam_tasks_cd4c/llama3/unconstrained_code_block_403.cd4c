@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram PermacultureCourse  {
+
+  class Course  {
+    String title;
+    String description;
+    List<Topic> topics;
+  }
+
+  class Topic  {
+    String title;
+    String description;
+    List<Lesson> lessons;
+  }
+
+  class Lesson  {
+    String title;
+    String description;
+    List<Video> videos;
+  }
+
+  class Video  {
+    String title;
+    String description;
+    String url;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Role role;
+    List<CourseEnrollment> courseEnrollments;
+  }
+
+  class Instructor extends User  {
+    List<Course> courses;
+  }
+
+  class Administrator extends User  {
+  }
+
+  class CourseEnrollment  {
+    User user;
+    Course course;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  composition Course -> (has) Topic[*];
+  composition Topic -> (has) Lesson[*];
+  composition Lesson -> (has) Video[*];
+  composition User -> (has) CourseEnrollment[*];
+  composition Course -> (has) Instructor[*];
+  composition User -> (has) Role;
+}

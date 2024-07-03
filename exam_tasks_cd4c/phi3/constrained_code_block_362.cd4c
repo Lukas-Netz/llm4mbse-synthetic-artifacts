@@ -1,0 +1,71 @@
+
+classdiagram PetCareService {
+
+    class PetCareServiceCompany {
+      List<PetOwner> petOwners;
+      List<PetCareProvider> petCareProviders;
+      List<Service> services;
+      List<Booking> bookings;
+      List<Payment> payments;
+      List<Review> reviews;
+    }
+
+    class PetOwner {
+      String name;
+      String email;
+      String phoneNumber;
+      List<Pet> pets;
+    }
+
+    class Pet {
+      String name;
+      int age;
+      String species;
+    }
+
+    class Service {
+      String name;
+      String description;
+      double price;
+      List<Schedule> schedules;
+    }
+
+    class Schedule {
+      String day;
+      String time;
+      boolean isAvailable;
+    }
+
+    class Booking {
+      PetOwner owner;
+      Service service;
+      DateTime bookingDate;
+      DateTime cancellationDate;
+      boolean isCancelled;
+    }
+
+    class Payment {
+      Booking booking;
+      double amount;
+      DateTime paymentDate;
+    }
+
+    class Review {
+      PetCareProvider provider;
+      String rating;
+      String comment;
+    }
+
+    association PetCareServiceCompany 
+      has_many(PetOwner) -> petOwners;
+      association PetCareServiceCompany 
+      has_many(PetCareProvider) -> petCareProviders;
+      association PetCareServiceCompany 
+      has_many(Service) -> services;
+      association PetCareServiceCompany 
+      has_many(Booking) -> bookings;
+      association PetCareServiceCompany 
+      has_many(Payment) -> payments;
+      association PetCareServiceCompany 
+      has_many(Review) -> reviews;
+}

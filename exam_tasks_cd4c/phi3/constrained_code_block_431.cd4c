@@ -1,0 +1,64 @@
+
+classdiagram FashionDesignPlatform {
+
+    class User {
+      String username;
+      List<Course> enrolledCourses;
+    }
+
+    class Course {
+      String title;
+      String description;
+      List<Lesson> lessons;
+      List<User> enrolledUsers;
+      List<Review> reviews;
+    }
+
+    class Lesson {
+      String title;
+      String description;
+      LessonType type;
+    }
+
+    enum LessonType {
+      Video, Image, Text
+   
+   
+   ;}
+
+    class VideoLesson extends Lesson {
+      String videoTitle;
+      String videoDescription;
+      String videoLink;
+    }
+
+    class ImageLesson extends Lesson {
+      String imageTitle;
+      String imageDescription;
+      String imageLink;
+    }
+
+    class TextLesson extends Lesson {
+      String textTitle;
+      String textDescription;
+      String textContent;
+    }
+
+    class Review {
+      String reviewText;
+      ReviewType type;
+    }
+
+    enum ReviewType {
+      Positive, Negative
+   
+   
+   ;}
+
+    composition User -> Course;
+    composition Course -> User;
+    composition Course -> Lesson;
+    composition Course -> Review;
+    composition User -> Course;
+    composition Course -> Review;
+}

@@ -1,0 +1,72 @@
+
+classdiagram ClothesARApp {
+
+    class ClothingItem {
+      String identifier;
+      String name;
+      String description;
+      ClothingType type;
+      Color color;
+      Size size;
+      Material material;
+      double price;
+    }
+
+    class User {
+      String name;
+      String email;
+      String password;
+    }
+
+    class Order {
+      Date orderDate;
+      OrderStatus status;
+      List<ClothingItem> orderItems;
+    }
+
+    class Catalog {
+      List<ClothingItem> items;
+      void browseItems();
+      void selectItem(ClothingItem item);
+    }
+
+    class ARApp {
+      Catalog catalog;
+      User user;
+      BackupPower backupPower;
+      void generate3DModel(ClothingItem item);
+      void superimposeModel(ClothingItem item);
+      void viewModel(ClothingItem item);
+      void purchaseItem(ClothingItem item);
+      void storeUserInfo(User user);
+      void storeOrderInfo(Order order);
+    }
+
+    class ClothingType {
+      String type;
+    }
+
+    class Color {
+      String color;
+    }
+
+    class Size {
+      String size;
+    }
+
+    class Material {
+      String material;
+    }
+
+    class OrderStatus {
+      String status;
+    }
+
+    composition ClothesARApp -> (has) Catalog;
+    composition ClothesARApp -> (has) User;
+    composition ClothesARApp -> (has) BackupPower;
+    association Catalog -> ClothingItem [*];
+    association ARApp -> ClothingItem [*];
+    association ARApp -> User [*];
+    association ARApp -> Order [*];
+}

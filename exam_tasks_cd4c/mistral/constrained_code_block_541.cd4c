@@ -1,0 +1,79 @@
+
+classdiagram AdvancedProtonTherapy {
+
+  class AdvancedProtonTherapySystem {
+    TreatmentPlanningModule treatmentPlanningModule;
+    TreatmentDeliveryModule treatmentDeliveryModule;
+    PatientDatabase patientDatabase;
+  }
+
+  class TreatmentPlanningModule {
+    void createTreatmentPlan(Patient patient);
+    BeamParameters getOptimalBeamParameters(Patient patient);
+  }
+
+  class TreatmentDeliveryModule {
+    void deliverTreatment(TreatmentPlan treatmentPlan);
+    void adjustGantry(double angle);
+    void adjustCollimator(double angle);
+    void adjustBeamEnergy(double energy);
+  }
+
+  class PatientDatabase {
+    void addPatient(Patient patient);
+    Patient getPatient(String uniqueIdentifier);
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    Set<MedicalCondition> medicalConditions;
+  }
+
+  class MedicalCondition {
+    String name;
+    String description;
+  }
+
+  class TreatmentPlan {
+    Set<BeamAngle> beamAngles;
+    Set<BeamEnergy> beamEnergies;
+    Set<Dose> doses;
+    Set<Constraint> constraints;
+  }
+
+  class BeamParameters {
+    BeamAngle beamAngle;
+    BeamEnergy beamEnergy;
+    Dose dose;
+  }
+
+  class BeamAngle {
+    double angle;
+  }
+
+  class BeamEnergy {
+    double energy;
+  }
+
+  class Dose {
+    double value;
+  }
+
+  class Constraint {
+    String name;
+    String description;
+  }
+
+  class QualityControlModule {
+    void monitorTreatmentPlanningModule();
+    void monitorTreatmentDeliveryModule();
+  }
+
+  composition AdvancedProtonTherapySystem -> TreatmentPlanningModule;
+  composition AdvancedProtonTherapySystem -> TreatmentDeliveryModule;
+  composition AdvancedProtonTherapySystem -> PatientDatabase;
+  association TreatmentPlanningModule -> Patient;
+  association TreatmentDeliveryModule -> TreatmentPlan;
+  association QualityControlModule -> TreatmentPlanningModule;
+  association QualityControlModule -> TreatmentDeliveryModule;
+}

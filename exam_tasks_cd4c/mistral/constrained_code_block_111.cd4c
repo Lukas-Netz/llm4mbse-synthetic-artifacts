@@ -1,0 +1,53 @@
+
+classdiagram ATP {
+
+  class Account {
+    String uniqueIdentifier;
+    double balance;
+    -> Order [*];
+  }
+
+  abstract class Order {
+    String uniqueIdentifier;
+    Account account;
+    OrderType type;
+  }
+
+  class MarketOrder extends Order {
+    int quantity;
+    double price;
+  }
+
+  class LimitOrder extends Order {
+    int quantity;
+    double price;
+    int timeLimit;
+  }
+
+  class StopOrder extends Order {
+    int quantity;
+    double price;
+    StopOrderTrigger trigger;
+  }
+
+  enum OrderType {
+    Market, Limit, Stop;
+  }
+
+  enum StopOrderTrigger {
+    Above, Below, At;
+  }
+
+  class Asset {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+  }
+
+  class Portfolio {
+    -> Asset [*];
+  }
+
+  composition Account -> Order [*];
+  composition Portfolio -> Asset [*];
+}

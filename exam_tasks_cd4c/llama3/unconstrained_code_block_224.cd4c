@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram PoetryPlatform  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Reading  {
+    String title;
+    String description;
+    Date date;
+    -> Poem[*];
+    -> User[*];
+  }
+
+  class Poem  {
+    String title;
+    String content;
+    -> Author[*];
+    -> Type;
+  }
+
+  class Author  {
+    String name;
+  }
+
+  class Type  {
+    String name;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class ReadingRole  {
+    -> Reading;
+    -> User;
+    -> Role;
+  }
+
+  class AudioRecording  {
+    -> Reading;
+    -> User;
+  }
+
+  class Review  {
+    -> Reading;
+    -> User;
+    -> Rating;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  class Notification  {
+    -> User;
+    -> Reading;
+    -> Review;
+  }
+
+  composition Reading -> Poem[*];
+  composition Reading -> User[*];
+  composition Poem -> Author[*];
+  composition ReadingRole -> Reading;
+  composition ReadingRole -> User;
+  composition AudioRecording -> Reading;
+  composition AudioRecording -> User;
+  composition Review -> Reading;
+  composition Review -> User;
+  composition Notification -> User;
+  composition Notification -> Reading;
+  composition Notification -> Review;
+}

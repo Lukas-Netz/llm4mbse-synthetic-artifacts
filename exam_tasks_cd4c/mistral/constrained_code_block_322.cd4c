@@ -1,0 +1,46 @@
+
+classdiagram ReputationManagement {
+
+  class Company {
+    String name;
+    String website;
+    String crmIntegration;
+  }
+
+  class OnlinePresence {
+    String socialMediaProfiles;
+    String reviews;
+    String ratings;
+  }
+
+  class PotentialIssue {
+    String type;
+    String description;
+  }
+
+  class Insight {
+    String recommendation;
+    String impact;
+  }
+
+  class User {
+    String username;
+    String password;
+    String permissions;
+  }
+
+  class ReputationManagementSystem {
+    Company company;
+    OnlinePresence onlinePresence;
+    PotentialIssue [ ] potentialIssues;
+    Insight [ ] insights;
+    User [ ] users;
+  }
+
+  composition Company -> OnlinePresence;
+  association ReputationManagementSystem -> Company;
+  association ReputationManagementSystem -> OnlinePresence;
+  association ReputationManagementSystem -> PotentialIssue [*];
+  association ReputationManagementSystem -> Insight [*];
+  association ReputationManagementSystem -> User [*];
+}

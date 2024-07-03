@@ -1,0 +1,42 @@
+
+classdiagram SolarRobots {
+
+  class Farm {
+    String name;
+    String location;
+    Robot [][] robots;
+  }
+
+  class Robot {
+    String uniqueIdentifier;
+    Farm farm;
+    Mechanism mechanism;
+    Navigation navigation;
+  }
+
+  abstract class Mechanism {
+    int cleaningSpeed;
+    int pressure;
+    int angle;
+  }
+
+  class WaterBased extends Mechanism {}
+  class DryBased extends Mechanism {}
+
+  class Navigation {
+    int speed;
+    String direction;
+    int distance;
+  }
+
+  class Monitoring {
+    int temperature;
+    int humidity;
+    int energyOutput;
+  }
+
+  composition Farm -> Robot [*];
+  composition Robot -> Mechanism;
+  composition Robot -> Navigation;
+  composition Farm -> Monitoring;
+}

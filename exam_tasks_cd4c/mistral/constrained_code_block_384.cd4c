@@ -1,0 +1,36 @@
+
+classdiagram LegalAdvice {
+
+  class Lawyer {
+    String name;
+    String areaOfExpertise;
+    int rating;
+  }
+
+  class Client {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Case {
+    String uniqueIdentifier;
+    String description;
+    CaseStatus status;
+    Lawyer assignedLawyer;
+    List<Document> attachedDocuments;
+  }
+
+  enum CaseStatus {
+    Open, Closed, Pending;
+  }
+
+  class Document {
+    String name;
+    String content;
+  }
+
+  composition LegalAdvice -> Lawyer [*];
+  composition LegalAdvice -> Client [*];
+  composition Lawyer -> Case [*];
+  composition Client -> Case [*];
+}

@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram PersonalizedMedicine  {
+
+  class Patient  {
+    String patientId;
+    GeneticData geneticData;
+    MedicalHistory medicalHistory;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class GeneticData  {
+    DNASequence dnaSequence;
+    GeneticVariations geneticVariations;
+  }
+
+  class MedicalHistory  {
+    Allergies allergies;
+    Medications medications;
+    MedicalConditions medicalConditions;
+  }
+
+  class TreatmentPlan  {
+    MedicationRegimen medicationRegimen;
+    Dosage dosage;
+  }
+
+  class HealthcareProvider  {
+    String providerId;
+    Patient patient;
+  }
+
+  class ElectronicHealthRecord  {
+    String patientId;
+    Patient patient;
+  }
+
+  class Analytics  {
+    TreatmentPlan treatmentPlan;
+    GeneticData geneticData;
+    MedicalHistory medicalHistory;
+  }
+
+  composition Patient -> (has) GeneticData;
+  composition Patient -> (has) MedicalHistory;
+  composition Patient -> (has) TreatmentPlan;
+  composition HealthcareProvider -> (has) Patient;
+  composition ElectronicHealthRecord -> (has) Patient;
+  composition Analytics -> (has) TreatmentPlan;
+  composition Analytics -> (has) GeneticData;
+  composition Analytics -> (has) MedicalHistory;
+
+  association HealthcareProvider -> (creates) TreatmentPlan;
+  association Patient -> (views) TreatmentPlan;
+  association ElectronicHealthRecord -> (retrieves) Patient;
+  association Analytics -> (provides) Insights;
+}

@@ -1,0 +1,164 @@
+
+classdiagram JobPortal {
+
+  class JobSeeker {
+    String name;
+    String email;
+    String password;
+    List<JobApplication> jobApplications;
+  }
+
+  class JobOpening {
+    String title;
+    String description;
+    List<String> requirements;
+    Company company;
+    List<JobApplication> jobApplications;
+  }
+
+  class Company {
+    String name;
+    List<JobOpening> jobOpenings;
+  }
+
+  class JobApplication {
+    JobSeeker jobSeeker;
+    JobOpening jobOpening;
+  }
+
+  association JobSeeker - [1] JobApplication [many]
+  (many)<-> JobApplication - 
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+ 
+  association Company - [1] JobOpening [one]
+  (one)<-> JobOpening -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association JobOpening - [1] JobApplication [one]
+  (one)<-> JobApplication -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association Company - [1] JobOpening [one]
+  (one)<-> JobOpening -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association JobSeeker - [1] JobApplication [one]
+  (one)<-> JobApplication -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association JobApplication - [1] JobSeeker [one]
+  (one)<-> JobSeeker -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association JobApplication - [1] JobOpening [one]
+  (one)<-> JobOpening -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association JobOpening - [1] Company [one]
+  (one)<-> Company -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+ 
+  association Company - [1] JobOpening [one]
+  (one)<-> JobOpening -
+  {
+   
+ 
+ 
+ 
+ ordered
+ 
+ 
+ }
+ 
+ 
+ ;
+}

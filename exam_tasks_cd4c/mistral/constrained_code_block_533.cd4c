@@ -1,0 +1,54 @@
+
+classdiagram PesticideManagement {
+
+  class Farm {
+    String uniqueIdentifier;
+    String name;
+    Field [
+     ] fields;
+  }
+
+  class Field {
+    String uniqueIdentifier;
+    String name;
+    Farm farm;
+    Crop [
+     ] crops;
+  }
+
+  class Crop {
+    String uniqueIdentifier;
+    String name;
+    Field field;
+    PesticideApplication [
+     ] applications;
+  }
+
+  class PesticideApplication {
+    String uniqueIdentifier;
+    Date date;
+    Pesticide pesticide;
+    String applicationMethod;
+    int amount;
+  }
+
+  class Pesticide {
+    String uniqueIdentifier;
+    String name;
+    PesticideApplication [
+     ] applications;
+  }
+
+  class Regulation {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    int maxAllowedAmount;
+    String allowedApplicationMethod;
+  }
+
+  composition Farm -> Field [*];
+  composition Field -> Crop [*];
+  composition Crop -> PesticideApplication [*];
+  composition PesticideApplication -> Pesticide [*];
+}

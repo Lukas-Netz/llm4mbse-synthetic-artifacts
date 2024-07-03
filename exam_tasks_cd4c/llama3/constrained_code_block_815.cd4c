@@ -1,0 +1,93 @@
+
+
+
+classdiagram Fisheries  {
+
+  class Registry  {
+    FisheriesRegistry fisheriesRegistry;
+    VesselsRegistry vesselsRegistry;
+    FishingTripsRegistry fishingTripsRegistry;
+    CatchRecordsRegistry catchRecordsRegistry;
+    CertificationsRegistry certificationsRegistry;
+    AuditorsRegistry auditorsRegistry;
+  }
+
+  class FisheriesRegistry  {
+    Fisheries[] fisheries;
+  }
+
+  class VesselsRegistry  {
+    Vessels[] vessels;
+  }
+
+  class FishingTripsRegistry  {
+    FishingTrips[] fishingTrips;
+  }
+
+  class CatchRecordsRegistry  {
+    CatchRecords[] catchRecords;
+  }
+
+  class CertificationsRegistry  {
+    Certifications[] certifications;
+  }
+
+  class AuditorsRegistry  {
+    Auditors[] auditors;
+  }
+
+  class Fisheries  {
+    String uniqueIdentifier;
+    Vessel[] vessels;
+  }
+
+  class Vessels  {
+    String uniqueIdentifier;
+    String name;
+    FishingTrip[] fishingTrips;
+  }
+
+  class FishingTrips  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    CatchRecord[] catchRecords;
+  }
+
+  class CatchRecords  {
+    String uniqueIdentifier;
+    FishType fishType;
+    double weight;
+    Date timestamp;
+  }
+
+  class Certifications  {
+    String uniqueIdentifier;
+    CertificationType certificationType;
+    Fisheries[] fisheries;
+    Vessels[] vessels;
+  }
+
+  class Auditors  {
+    String uniqueIdentifier;
+    String name;
+    Certification[] certifications;
+  }
+
+  enum CertificationType  {
+    SustainableFishing,
+    Organic
+  ;}
+
+  enum FishType  {
+    Cod,
+    Salmon,
+    Tuna
+  ;}
+
+  composition Registry -> FisheriesRegistry;
+  composition Registry -> VesselsRegistry;
+  composition Registry -> FishingTripsRegistry;
+  composition Registry -> CatchRecordsRegistry;
+  composition Registry -> CertificationsRegistry;
+  }

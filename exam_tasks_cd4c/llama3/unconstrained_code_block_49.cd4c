@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram IIoT  {
+
+  class Equipment  {
+    String type;
+    String id;
+  }
+
+  class Sensor extends Equipment  {
+    double pressure;
+    double temperature;
+    double flowRate;
+  }
+
+  class Actuator extends Equipment  {
+    boolean isOn;
+  }
+
+  class CentralControlUnit  {
+    -> Sensor[*];
+    -> Actuator[*];
+    void collectData();
+    void analyzeData();
+    void sendCommands();
+  }
+
+  class UserInterface  {
+    -> CentralControlUnit;
+    void monitorEquipment();
+    void controlEquipment();
+  }
+
+  class WebApplication extends UserInterface  {
+    void accessRemote();
+  }
+
+  class MobileApp extends UserInterface  {
+    void accessRemote();
+  }
+
+  class DataSecurity  {
+    void encryptData();
+    void decryptData();
+  }
+
+  class DataReliability  {
+    void validateData();
+    void storeData();
+  }
+
+  composition CentralControlUnit -> (has) Sensor[*];
+  composition CentralControlUnit -> (has) Actuator[*];
+  composition UserInterface -> (has) CentralControlUnit;
+  composition WebApplication -> (has) UserInterface;
+  composition MobileApp -> (has) UserInterface;
+}

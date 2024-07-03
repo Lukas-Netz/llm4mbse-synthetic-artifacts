@@ -1,0 +1,37 @@
+
+classdiagram LegalContractSystem {
+
+    class Contract {
+      String uniqueIdentifier;
+      ContractStatus status;
+      List<Clause> clauses;
+    }
+
+    class Clause {
+      String type;
+      List<Condition> conditions;
+    }
+
+    class Condition {
+      String type;
+    }
+
+    class EmploymentContract extends Contract;
+    class SalesContract extends Contract;
+    class LeaseAgreement extends Contract;
+
+    enum ContractStatus {
+      Active, Inactive, Pending;
+    }
+
+    enum ClauseType {
+      PaymentTerms, ConfidentialityAgreement, etc;
+    }
+
+    enum ConditionType {
+      Date, Amount, etc;
+    }
+
+    association Contract -> List<<Clause>>;
+    association Contract -> List<<Condition>>;
+}

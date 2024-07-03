@@ -1,0 +1,54 @@
+
+classdiagram SolarWaterPurification {
+
+  class SolarPanel {
+    int powerOutput;
+  }
+
+  class WaterTank {
+    int waterVolume;
+    int temperature;
+    int pressure;
+  }
+
+  class PurificationUnit {
+    FiltrationStage filtration;
+    UVStage uv;
+    DisinfectionStage disinfection;
+    boolean isFiltrationEnabled;
+    boolean isUVEnabled;
+    boolean isDisinfectionEnabled;
+  }
+
+  interface FiltrationStage {
+    void filterWater();
+  }
+
+  interface UVStage {
+    void uvTreatWater();
+  }
+
+  interface DisinfectionStage {
+    void disinfectWater();
+  }
+
+  class Sensor {
+    WaterQuality waterQuality;
+  }
+
+  enum WaterQuality {
+    Good, Poor;
+  }
+
+  class MobileApp {
+    void monitorSystemStatus();
+    void enableStage(PurificationStage stage);
+    void disableStage(PurificationStage stage);
+    void receiveAlert();
+  }
+
+  composition SolarWaterPurification -> SolarPanel;
+  composition SolarWaterPurification -> WaterTank;
+  composition SolarWaterPurification -> PurificationUnit;
+  association MobileApp --oSolarWaterPurification;
+}

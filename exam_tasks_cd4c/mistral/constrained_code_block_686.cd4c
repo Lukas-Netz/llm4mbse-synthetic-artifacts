@@ -1,0 +1,46 @@
+
+classdiagram AutonomousGreenhouseRobots {
+
+  class Greenhouse {
+    Database database;
+    ControlSystem controlSystem;
+    Robot [						] robots;
+  }
+
+  class ControlSystem {
+    Greenhouse greenhouse;
+    void scheduleTasks();
+    void updateRobots();
+  }
+
+  class Robot {
+    String uniqueIdentifier;
+    Sensor [					] sensors;
+    Role role;
+  }
+
+  enum Role {
+    Watering, Pruning, Monitoring;
+  }
+
+  class Sensor {
+    String sensorType;
+    String sensorValue;
+  }
+
+  class Database {
+    Greenhouse greenhouse;
+    void storePlantInfo();
+    void storeEnvironmentalConditions();
+  }
+
+  class UserInterface {
+    Greenhouse greenhouse;
+    void monitorRobots();
+    void controlRobots();
+  }
+
+  composition Greenhouse -> Database;
+  composition Greenhouse -> ControlSystem;
+  composition ControlSystem -> Robot [*];
+}

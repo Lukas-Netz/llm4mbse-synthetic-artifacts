@@ -1,0 +1,60 @@
+
+classdiagram DigitalTwin {
+
+  class CityModel {
+    InfrastructureModel infrastructure;
+    TransportationModel transportation;
+    EnergyDistributionModel energyDistribution;
+    WasteManagementModel wasteManagement;
+  }
+
+  class ResidentModel {
+    String behaviorType;
+    double impactFactor;
+  }
+
+  class BusinessModel {
+    String businessType;
+    double impactFactor;
+  }
+
+  class InfrastructureModel {
+    String infrastructureType;
+  }
+
+  class EnergyDistributionModel {
+    String energySource;
+    double capacity;
+  }
+
+  class WasteManagementModel {
+    String wasteType;
+    double wasteVolume;
+  }
+
+  class TransportationModel {
+    String transportationType;
+    double capacity;
+  }
+
+  class DataIntegration {
+    -> CityModel;
+    -> ResidentModel;
+    -> BusinessModel;
+    -> InfrastructureModel;
+    -> EnergyDistributionModel;
+    -> WasteManagementModel;
+    -> TransportationModel;
+  }
+
+  class AnalysisAndPrediction {
+    DataIntegration dataIntegration;
+    void analyzeImpact(String scenario);
+    void predictImpact(String scenario);
+  }
+
+  class Visualization {
+    AnalysisAndPrediction analysisAndPrediction;
+    void visualizeImpact(String scenario);
+  }
+}

@@ -1,0 +1,49 @@
+
+classdiagram BiomedicalResearchSystem {
+
+    class Researcher {
+      String uniqueIdentifier;
+      String name;
+      String affiliation;
+    }
+
+    class ResearchProject {
+      String projectId;
+      String title;
+      String description;
+      Researcher projectLeader;
+      List<Researcher> collaborators;
+      List<ResearchData> researchData;
+    }
+
+    class ResearchData {
+      String dataId;
+      String dataType;
+      String content;
+      ResearchProject project;
+    }
+
+    class Collaboration {
+      List<Researcher> members;
+      ResearchProject project;
+    }
+
+    class DataSharing {
+      Researcher sharer;
+      Researcher recipient;
+      ResearchData data;
+    }
+
+    <<association>> class ResearchProject;
+    <<association>> class ResearchData;
+    <<association>> class Collaboration;
+    <<association>> class DataSharing;
+
+    composition ResearchProject -> Researcher [1];
+    composition ResearchProject -> Collaboration [0..*];
+    composition ResearchProject -> ResearchData [0..*];
+    composition Collaboration -> Researcher [0..*];
+    composition Collaboration -> ResearchProject [1];
+    composition DataSharing -> Researcher [2];
+    composition DataSharing -> ResearchData [2];
+}

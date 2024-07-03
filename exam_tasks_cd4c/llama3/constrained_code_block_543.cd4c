@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram CrossBorderPaymentSystem  {
+
+  class Bank  {
+    String name;
+    Account[] accounts;
+  }
+
+  class Account  {
+    String accountNumber;
+    Bank bank;
+    Transaction[] transactions;
+  }
+
+  class Transaction  {
+    Date date;
+    Account fromAccount;
+    Account toAccount;
+    PaymentMethod paymentMethod;
+    Currency fromCurrency;
+    Currency toCurrency;
+    double amount;
+  }
+
+  class Currency  {
+    String code;
+    String name;
+  }
+
+  class ExchangeRate  {
+    Currency fromCurrency;
+    Currency toCurrency;
+    double rate;
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  composition Bank -> Account[*];
+  composition Account -> Transaction[*];
+  composition Transaction -> PaymentMethod;
+  composition Transaction -> Currency;
+  composition Currency -> ExchangeRate[*];
+  composition ExchangeRate -> Currency;
+
+  <<operation>> 
+  -   interfacetransactionProcessor;
+   -   interfaceaccountManager;
+   -   interfaceexchangeRateManager;
+   -   interfacepaymentMethodValidator;
+   -   interfacetransactionHistoryTracker;
+}

@@ -1,0 +1,117 @@
+
+classdiagram PatientRecordManagementSystem {
+
+  class Patient {
+    String name;
+    String address;
+    String phone;
+    String email;
+    String dateOfBirth;
+  }
+
+  class MedicalHistory {
+    List<Treatment> treatments;
+    List<MedicalTest> tests;
+    List<Procedure> procedures;
+  }
+
+  abstract class Record {
+    String type;
+  }
+
+  class ElectronicHealthRecord extends Record {
+    String id;
+    String provider;
+    String date;
+  }
+
+  class PaperRecord extends Record {
+    String id;
+    String provider;
+    String date;
+  }
+
+  class ScannedImage extends Record {
+    String id;
+    String provider;
+    String date;
+  }
+
+  class Treatment {
+    String type;
+    String description;
+    String date;
+  }
+
+  class MedicalTest {
+    String type;
+    String result;
+    String date;
+  }
+
+  class Procedure {
+    String type;
+    String description;
+    String date;
+  }
+
+  class Appointment {
+    String date;
+    String time;
+    HealthcareProvider provider;
+  }
+
+  interface HealthcareProvider {
+    String name;
+    String specialty;
+  }
+
+  class Medication {
+    String name;
+    String dosage;
+    String frequency;
+  }
+
+  class Surgery {
+    String type;
+    String description;
+    String date;
+  }
+
+  class Therapy {
+    String type;
+    String description;
+    String date;
+  }
+
+  class Diabetes extends MedicalCondition {
+    int bloodSugarLevel;
+    String medication;
+  }
+
+  class Hypertension extends MedicalCondition {
+    int bloodPressure;
+    String medication;
+  }
+
+  class HeartDisease extends MedicalCondition {
+    String diagnosis;
+    String treatment;
+  }
+
+  class Vaccination extends Procedure {
+    String vaccine;
+    String date;
+  }
+
+  class Biopsy extends Procedure {
+    String location;
+    String date;
+  }
+
+  class Equipment {
+    String type;
+    String serialNumber;
+  }
+
+  }

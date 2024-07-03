@@ -1,0 +1,48 @@
+
+classdiagram Ecommerce {
+
+  class EcommercePlatform {
+    Store [
+     ] stores;
+  }
+
+  class Store {
+    String uniqueIdentifier;
+    String name;
+    Product [
+     ] products;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    float price;
+    String description;
+    ProductType [
+     ] productTypes;
+  }
+
+  class ProductType {
+    String name;
+    String description;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    Order [
+     ] orders;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Customer customer;
+    Product [
+     ] products;
+  }
+
+  composition EcommercePlatform -> Store [*];
+  composition Store -> Product [*];
+  composition Product -> ProductType [*];
+  composition Customer -> Order [*];
+}

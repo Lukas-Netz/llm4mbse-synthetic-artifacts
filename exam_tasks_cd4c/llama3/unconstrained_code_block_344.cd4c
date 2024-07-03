@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram AssetTokenization  {
+
+  class User  {
+    String uniqueIdentifier;
+    Token[] tokens;
+  }
+
+  class Asset  {
+    String uniqueIdentifier;
+    Token[] tokens;
+  }
+
+  class Token  {
+    String uniqueIdentifier;
+    Asset asset;
+    User owner;
+    String metadata;
+  }
+
+  class SmartContract  {
+    String uniqueIdentifier;
+    Token token;
+    Event[] events;
+  }
+
+  class Event  {
+    String uniqueIdentifier;
+    SmartContract smartContract;
+    String description;
+  }
+
+  class Blockchain  {
+    Token[] tokens;
+  }
+
+  composition User -> Token[*];
+  composition Asset -> Token[*];
+  composition Token -> SmartContract[*];
+  composition SmartContract -> Event[*];
+  composition Blockchain -> Token[*];
+}

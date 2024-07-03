@@ -1,0 +1,61 @@
+
+classdiagram AI_driven_HR_Solutions {
+
+  class EmployeeProfile {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+    String department;
+    EmployeeProfile [  ] jobTitles;
+  }
+
+  class TrainingProgram {
+    String uniqueIdentifier;
+    String description;
+    TrainingProgram [ ] jobTitles;
+  }
+
+  class PerformanceEvaluation {
+    String uniqueIdentifier;
+    String jobTitle;
+    Metrics metrics;
+  }
+
+  class Metrics {
+    int attendance;
+    int productivity;
+    int qualityOfWork;
+  }
+
+  class Recommendation {
+    String uniqueIdentifier;
+    String jobTitle;
+    TrainingProgram trainingProgram;
+  }
+
+  class Report {
+    String uniqueIdentifier;
+    String employeePerformance;
+    String trainingProgramEffectiveness;
+  }
+
+  class AI_driven_HR_Solutions {
+    EmployeeProfile [ ] employees;
+    TrainingProgram [ ] trainingPrograms;
+    PerformanceEvaluation [ ] evaluations;
+    Recommendation [ ] recommendations;
+    Report [ ] reports;
+  }
+
+  association EmployeeProfile -- EmployeeProfile;
+  association TrainingProgram -- TrainingProgram;
+  association PerformanceEvaluation -- PerformanceEvaluation;
+  association Recommendation -- TrainingProgram;
+  association Report -- EmployeePerformance;
+  association Report -- TrainingProgramEffectiveness;
+  association AI_driven_HR_Solutions -- EmployeeProfile [*];
+  association AI_driven_HR_Solutions -- TrainingProgram [*];
+  association AI_driven_HR_Solutions -- PerformanceEvaluation [*];
+  association AI_driven_HR_Solutions -- Recommendation [*];
+  association AI_driven_HR_Solutions -- Report [*];
+}

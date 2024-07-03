@@ -1,0 +1,63 @@
+
+classdiagram AIAquaculture {
+
+  class AIAquacultureSystem {
+    AquacultureFarm [ ] farms;
+  }
+
+  class AquacultureFarm {
+    String farmID;
+    FishTank [ ] tanks;
+    WaterQualityMonitoring monitoring;
+    FeedingSchedule schedule;
+  }
+
+  class FishTank {
+    String tankID;
+    Fish [ ] fish;
+    WaterQuality waterQuality;
+  }
+
+  class Fish {
+    String fishID;
+    FishHealthStatus healthStatus;
+    FishGrowthStatus growthStatus;
+  }
+
+  enum FishHealthStatus {
+    Healthy, Sick, Dead;
+  }
+
+  enum FishGrowthStatus {
+    Growing, Stunted, Overgrown;
+  }
+
+  class WaterQualityMonitoring {
+    float pH;
+    float ammonia;
+    float nitrite;
+    float nitrate;
+    float dissolvedOxygen;
+    boolean isPotentialIssue;
+  }
+
+  class FeedingSchedule {
+    float feedingRate;
+    String feedingTime;
+  }
+
+  composition AIAquacultureSystem -> AquacultureFarm [*];
+  composition AquacultureFarm -> FishTank [*];
+  association FishTank -> Fish [*];
+  association WaterQualityMonitoring -> WaterQuality;
+  association FeedingSchedule -> FeedingSchedule;
+
+  interface ExternalSensor {
+    void collectData();
+  }
+
+  class IntegrationManager {
+    ExternalSensor [ ] sensors;
+    void integrateSensors(ExternalSensor sensor);
+  }
+}

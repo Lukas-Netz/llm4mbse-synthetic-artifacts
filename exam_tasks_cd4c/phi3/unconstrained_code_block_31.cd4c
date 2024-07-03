@@ -1,0 +1,50 @@
+
+classdiagram RoboticAssemblySystem {
+
+    class Robot {
+      String robotId;
+      RobotType robotType;
+      Set<Tool> tools;
+      Task currentTask;
+    }
+
+    class Product {
+      String productId;
+      ProductType productType;
+      Set<Component> components;
+      AssemblyStatus assemblyStatus;
+    }
+
+    class Tool {
+      String toolId;
+      ToolType toolType;
+    }
+
+    class Task {
+      String taskId;
+      TaskType taskType;
+    }
+
+    class Component {
+      String componentId;
+      String componentType;
+    }
+
+    class AssemblyStatus {
+      boolean isComplete;
+      boolean hasDefects;
+    }
+
+    class QualityControl {
+      void inspectProduct(Product product);
+    }
+
+    class Reporting {
+      void generateReport(String reportType);
+    }
+
+    association Robot -> Product [*];
+    association Product -> Task [*];
+    association Product -> QualityControl [*];
+    association Product -> Reporting [*];
+}

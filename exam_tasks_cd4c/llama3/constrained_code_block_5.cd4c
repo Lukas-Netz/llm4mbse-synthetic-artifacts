@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram SmartHomeAutomation  {
+
+  class CentralHub  {
+    Device  device  ; 
+    UserInterface  userInterface; 
+    BackupPower  backupPower; 
+  }
+
+  class Device  {
+    String  uniqueIdentifier; 
+    DeviceStatus  status; 
+  }
+
+  class Light extends Device  {
+    int  brightnessLevel; 
+    String  color; 
+  }
+
+  class Thermostat extends Device  {
+    int  temperature; 
+    ThermostatMode  mode; 
+  }
+
+  class SecurityCamera extends Device  {
+    String  resolution; 
+    boolean  isRecording; 
+  }
+
+  class UserInterface  {
+    void  controlDevice(Device device); 
+    void  viewDeviceStatus(Device device); 
+    void  receiveNotification(Device device); 
+  }
+
+  class BackupPower  {
+    int  capacityWh; 
+  }
+
+  enum DeviceStatus  {
+    On, Off; 
+  }
+
+  enum ThermostatMode  {
+    Heating, Cooling; 
+  }
+
+  composition CentralHub  ->  (has) Device; 
+  composition CentralHub  ->  (has) UserInterface; 
+  composition CentralHub  ->  (has) BackupPower  [0..1]; 
+  composition UserInterface  ->  (has) Device; 
+}

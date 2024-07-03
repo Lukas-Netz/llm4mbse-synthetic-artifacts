@@ -1,0 +1,78 @@
+
+
+#  classdiagram RemoteLivestockMonitoring
+
+  
+
+{classdiagram  
+
+  
+
+  
+
+  
+
+  ;
+
+  class Livestock {
+
+    String uniqueIdentifier;
+
+    String breed;
+
+    int age;
+
+    int weight;
+
+    Location location;
+
+  }
+
+  class Sensor {
+
+    String uniqueIdentifier;
+
+    Livestock livestock;
+
+    Temperature temperature;
+
+    Humidity humidity;
+
+    Movement movement;
+
+  }
+
+  class Alert {
+
+    String sender;
+
+    String recipient;
+
+    String message;
+
+  }
+
+  class Farmer {
+
+    String uniqueIdentifier;
+
+    List<Alert> alerts;
+
+  }
+
+  class Weather {
+
+    String location;
+
+    Temperature temperature;
+
+    Humidity humidity;
+
+  }
+
+  composition Livestock -> (has) Location;
+  composition Sensor -> (has) Livestock;
+  association Farmer -> Alert;
+  association Weather -> Alert;
+
+}

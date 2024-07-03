@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram BioInspiredRobotics  {
+
+  class Colony  {
+    Queen queen;
+    Robot  [ ] robots;
+  }
+
+  class Robot  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    Location targetLocation;
+    RobotType type;
+  }
+
+  enum RobotType  {
+    WorkerRobot,
+    ScoutRobot
+  ;}
+
+  class Queen  {
+    Location currentLocation;
+  }
+
+  class FoodSource  {
+    Location location;
+    int quantity;
+  }
+
+  class Location  {
+    double xCoordinate;
+    double yCoordinate;
+  }
+
+  composition Colony  ->  (has) Queen;
+  composition Colony  ->  (has) Robot  [ * ];
+  composition Robot  ->  (has) Location;
+  composition FoodSource  ->  (has) Location;
+  association Robot  ->  (foragesAt) FoodSource;
+  association Robot  ->  (explores) Location;
+  association Robot  ->  (communicatesWith) Robot;
+}

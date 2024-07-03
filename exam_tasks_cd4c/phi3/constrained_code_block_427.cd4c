@@ -1,0 +1,66 @@
+
+classdiagram OnlinePersonalFinanceCourseSystem {
+
+    class Course {
+      String uniqueID;
+      String name;
+      String description;
+      List<Topic> topics;
+    }
+
+    class Topic {
+      String uniqueID;
+      String name;
+      String description;
+      List<Course> courses;
+    }
+
+    class User {
+      String uniqueID;
+      String name;
+      String email;
+      List<Enrollment> enrollments;
+    }
+
+    class Enrollment {
+      String uniqueID;
+      Course course;
+      User user;
+    }
+
+    class Quiz {
+      String uniqueID;
+      String name;
+      String description;
+      List<Question> questions;
+      Course course;
+    }
+
+    class Question {
+      String uniqueID;
+      String text;
+      String answer;
+      Quiz quiz;
+    }
+
+    class Score {
+      String uniqueID;
+      Quiz quiz;
+      User user;
+    }
+
+    class Review {
+      String uniqueID;
+      Course course;
+      User user;
+    }
+
+  composition Course -> Topic [*];
+  composition Topic -> Course [*];
+  composition User -> Enrollment [*];
+  composition Enrollment -> Course [*];
+  composition Course -> Quiz [*];
+  composition Quiz -> Question [*];
+  composition User -> Score [*];
+  composition User -> Review [*];
+}

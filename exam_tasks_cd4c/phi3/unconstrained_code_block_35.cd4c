@@ -1,0 +1,43 @@
+
+classdiagram CloudOrchestration {
+
+    class CloudProvider {
+      List<CloudService> cloudServices;
+      void createCloudService(CloudService service);
+      void updateCloudService(CloudService service);
+      void deleteCloudService(CloudService service);
+    }
+
+    class Customer {
+      List<CloudService> cloudServices;
+      void subscribeToCloudService(CloudService service);
+      void unsubscribeFromCloudService(CloudService service);
+    }
+
+    abstract class CloudService {
+      String name;
+      String description;
+      List<String> availableRegions;
+    }
+
+    class VirtualMachine extends CloudService {
+      int cpu;
+      int memory;
+      int storage;
+    }
+
+    class Storage extends CloudService {
+      int capacity;
+      String type;
+    }
+
+    class Database extends CloudService {
+      int size;
+      String type;
+    }
+
+    composition CloudProvider -> CloudService [*];
+    composition Customer -> CloudService [*];
+    composition CloudService -> Customer [*];
+    composition CloudService -> CloudProvider [*];
+}

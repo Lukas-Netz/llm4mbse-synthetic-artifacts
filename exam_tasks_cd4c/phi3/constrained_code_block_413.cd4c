@@ -1,0 +1,89 @@
+
+classdiagram RecipeSharingPlatform {
+
+    class User {
+      String username;
+      String email;
+      List<Recipe> personalRecipes;
+      void createRecipe(Recipe recipe);
+      void editRecipe(Recipe recipe);
+      void deleteRecipe(Recipe recipe);
+      void searchRecipes(String query);
+      void rateRecipe(Recipe recipe, int rating);
+      void reviewRecipe(Recipe recipe, String review);
+      void markRecipePublic(Recipe recipe);
+      void markRecipePrivate(Recipe recipe);
+    }
+
+    class Recipe {
+      String name;
+      String description;
+      List<Ingredient> ingredients;
+      List<CookingMethod> cookingMethods;
+      String cuisine;
+      String course;
+      String privacyStatus;
+      List<Recipe> suggestedRecipes;
+      void addCookingMethod(CookingMethod cookingMethod);
+      void removeCookingMethod(CookingMethod cookingMethod);
+      void searchRecipes(String query);
+    }
+
+    class Ingredient {
+      String name;
+      int quantity;
+      String unit;
+    }
+
+    class CookingMethod {
+      String name;
+      List<Step> steps;
+    }
+
+    class Step {
+      String name;
+      String description;
+      List<Ingredient> ingredients;
+    }
+
+    association User 
+      -> List<<Recipe, personalRecipes>>;
+
+    association Recipe 
+      -> List<<CookingMethod, cookingMethods>>;
+
+    association Recipe 
+      -> List<<Ingredient, ingredients>>;
+
+    association Recipe 
+      -> List<<Step, steps>>;
+
+    association Recipe 
+      -> List<<String, cuisine>>;
+
+    association Recipe 
+      -> List<<String, course>>;
+
+    association Recipe 
+      -> List<<String, privacyStatus>>;
+
+    association Recipe 
+      -> List<<String, suggestedRecipes>>;
+
+    association Recipe 
+      -> List<<String, searchResults>>;
+
+    composition User -> List<<Recipe, personalRecipes>>;
+
+    composition Recipe -> List<<CookingMethod, cookingMethods>>;
+
+    composition Recipe -> List<<Ingredient, ingredients>>;
+
+    composition Recipe -> List<<Step, steps>>;
+
+    composition Recipe -> List<<String, cuisine>>;
+
+    composition Recipe -> List<<String, course>>;
+
+   
+}

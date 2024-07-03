@@ -1,0 +1,40 @@
+
+classdiagram SmartIrrigationSystem {
+
+    class SmartIrrigationSystem {
+      Sensor sensor;
+      Controller controller;
+      Actuator actuator;
+      WeatherStation weatherStation;
+    }
+
+    class Sensor {
+      String sensorType;
+      int soilMoisture;
+      int temperature;
+      int humidity;
+    }
+
+    class Controller {
+      void receiveSensorData(Sensor sensor);
+      void sendCommand(Actuator actuator);
+      void alertUser(String message);
+    }
+
+    class Actuator {
+      void controlValve(int valveState);
+      void controlPump(int pumpState);
+      void controlSprinkler(int sprinklerState);
+    }
+
+    class WeatherStation {
+      String forecast;
+      String currentWeather;
+      void updateWeather();
+    }
+
+  composition SmartIrrigationSystem -> (has) Sensor;
+  composition SmartIrrigationSystem -> (has) Controller;
+  composition SmartIrrigationSystem -> (has) Actuator;
+  composition SmartIrrigationSystem -> (has) WeatherStation;
+}

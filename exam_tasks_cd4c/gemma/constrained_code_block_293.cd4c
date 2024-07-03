@@ -1,0 +1,182 @@
+
+
+classdiagram MeditationCoursePlatform {
+
+  class User {
+    private String name;
+    private List<Course> enrolledCourses;
+    private List<Review> reviews;
+
+    User(String name);
+    void enrollInCourse(Course course);
+    void writeReview(Review review);
+  }
+
+  class Course {
+    private String title;
+    private String description;
+    private List<Lesson> lessons;
+    private List<User> usersEnrolled;
+    private List<Review> reviews;
+
+    Course(String title, String description);
+    void addLesson(Lesson lesson);
+    void addUserEnrolled(User user);
+    void addReview(Review review);
+  }
+
+  class Lesson {
+    private String title;
+    private String description;
+    private int duration;
+
+    Lesson(String title, String description, int duration);
+  }
+
+  class Review {
+    private String author;
+    private String content;
+    private int rating;
+
+    Review(String author, String content, int rating);
+  }
+
+  class CourseRecommendation {
+    private User user;
+    private List<Course> recommendedCourses;
+
+    CourseRecommendation(User user);
+    void recommendCourses();
+  }
+
+  composition User -> (has) List<<Course>>  {ordered}
+  
+  ;association User - Course  (enrolledIn)
+  
+  <-> Course -  {ordered}  
+  
+;association Course - User  (enrolledIn)
+
+  <-> Course -  {ordered}  
+  
+;association Course - Review  (has)
+
+  <-> Review -  {ordered}  
+  
+;association CourseRecommendation - User  (for)
+
+  <-> CourseRecommendation -  {ordered}  
+  
+;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - User  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - User  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - User  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - User  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;association CourseRecommendation - Course  (for)
+
+  
+  
+  
+  
+  
+  
+  
+ <-> CourseRecommendation -  {ordered}  
+
+  ;
+
+}

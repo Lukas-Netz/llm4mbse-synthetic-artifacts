@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram CarbonNanotubeProductionSystem  {
+
+  class Reactor  {
+    String uniqueIdentifier;
+    int productionCapacityGPH;
+  }
+
+  class ControlUnit  {
+    -> Reactor[*];
+    void adjustProductionRate(Reactor reactor);
+    void updateInventory(CarbonNanotube carbonNanotube);
+  }
+
+  class CarbonNanotube  {
+    String type;
+    int quantity;
+  }
+
+  class QualityControl  {
+    -> CarbonNanotube[*];
+    boolean test(CarbonNanotube carbonNanotube);
+  }
+
+  class ShippingDepartment  {
+    -> CarbonNanotube[*];
+    void packageAndShip(CarbonNanotube carbonNanotube, Customer customer);
+  }
+
+  class Customer  {
+    String name;
+  }
+
+  composition ControlUnit -> Reactor[*];
+  composition QualityControl -> CarbonNanotube[*];
+  composition ShippingDepartment -> CarbonNanotube[*];
+}
+

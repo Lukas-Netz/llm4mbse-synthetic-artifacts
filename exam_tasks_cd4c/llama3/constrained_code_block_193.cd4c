@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram FleetManagement  {
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+    MaintenanceHistory maintenanceHistory;
+  }
+
+  class Sensor extends Device  {
+    String dataType;
+  }
+
+  class Tracker extends Device  {
+    String locationType;
+  }
+
+  class Actuator extends Device  {
+    String actionType;
+  }
+
+  class Fleet  {
+    String name;
+    String description;
+    Device  [ ] devices;
+  }
+
+  class MaintenanceHistory  {
+    Date date;
+    String type;
+  }
+
+  class Report  {
+    String fleetName;
+    String overallHealth;
+    String performanceMetrics;
+  }
+
+  composition Fleet  ->  (has) Device  [0..*];
+  composition Device  ->  (has) MaintenanceHistory  [0..*];
+  association Report  ->  (generatedFor) Fleet;
+}

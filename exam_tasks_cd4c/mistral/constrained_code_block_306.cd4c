@@ -1,0 +1,23 @@
+
+classdiagram CloudCommunicationTools {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Group {
+    String name;
+    User [][] members;
+  }
+
+  class Message {
+    User sender;
+    User recipient;
+    String content;
+  }
+
+  composition User [*] Group.members [min ]-> [max]
+  associationUser << UserMessage
+ 																>>																		;
+}

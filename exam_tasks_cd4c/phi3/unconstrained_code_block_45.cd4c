@@ -1,0 +1,55 @@
+
+classdiagram OnlineLearningSystem {
+
+    class Course {
+      String name;
+      String description;
+      Date startDate;
+      Date endDate;
+      List<Section> sections;
+    }
+
+    class Student {
+      String name;
+      String studentID;
+      List<Section> enrolledSections;
+    }
+
+    class Instructor {
+      String name;
+      String facultyID;
+      List<Section> taughtSections;
+    }
+
+    class Section {
+      String sectionID;
+      Date startDate;
+      Date endDate;
+      int maxCapacity;
+      List<Assignment> assignments;
+      List<Quiz> quizzes;
+    }
+
+    class Assignment {
+      String assignmentID;
+      String description;
+      Date dueDate;
+      int grade;
+    }
+
+    class Quiz {
+      String quizID;
+      String description;
+      Date dueDate;
+      int grade;
+    }
+
+    association Course -> Section [*];
+    association Student -> Section [*];
+    association Instructor -> Section [*];
+    association Section -> Assignment [*];
+    association Section -> Quiz [*];
+    composition Student -> OnlineLearningSystem;
+    composition Instructor -> OnlineLearningSystem;
+    composition Course -> OnlineLearningSystem;
+}

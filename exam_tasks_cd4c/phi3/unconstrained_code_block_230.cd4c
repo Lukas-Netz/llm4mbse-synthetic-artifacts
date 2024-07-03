@@ -1,0 +1,49 @@
+
+classdiagram RoboticProstheticSystem {
+
+    class ProstheticLimb {
+      String type;
+      int gripStrength;
+      int movementRange;
+      int weight;
+    }
+
+    class ControlUnit {
+      ProstheticLimb limb;
+      CommunicationInterface interface;
+      void adjustGripStrength(int strength);
+      void changeMovementRange(int range);
+      void updateSoftware();
+    }
+
+    class CommunicationInterface {
+      void receiveInput();
+    }
+
+    class Joystick extends CommunicationInterface;
+    class Sensor extends CommunicationInterface;
+    class VoiceCommand extends CommunicationInterface;
+
+    class UserPreferences {
+      String userID;
+      ProstheticLimbSettings settings;
+      MaintenanceRecord record;
+    }
+
+    class ProstheticLimbSettings {
+      int gripStrength;
+      int movementRange;
+      int weight;
+    }
+
+    class MaintenanceRecord {
+      String date;
+      String description;
+    }
+
+    association ProstheticLimb -> ControlUnit [*];
+    association ControlUnit -> CommunicationInterface [*];
+    association CommunicationInterface -> ProstheticLimb [*];
+    association UserPreferences -> ProstheticLimbSettings [*];
+    association ProstheticLimbSettings -> MaintenanceRecord [*];
+}

@@ -1,0 +1,70 @@
+
+
+classdiagram ConnectedCarPlatform {
+
+    class Vehicle {
+      String vin;
+      Features features;
+    }
+
+    class Features {
+      GPS gps;
+      Bluetooth bluetooth;
+      WiFi wifi;
+    }
+
+    class GPS {
+      Location location;
+      Speed speed;
+      Direction direction;
+    }
+
+    class Bluetooth {
+      Connection connection;
+    }
+
+    class WiFi {
+      Connection connection;
+    }
+
+    class Cloud {
+      Data storage;
+      Data processing;
+    }
+
+    class Fleet {
+      Vehicles vehicles;
+      FleetAdmin admin;
+    }
+
+    class FleetAdmin {
+      VehicleMonitoring vehicleMonitoring;
+      DataAnalysis dataAnalysis;
+      Alerts alerts;
+    }
+
+    class Sensor {
+      Readings readings;
+    }
+
+    class Computer {
+      Sensors sensors;
+      DataProcessing dataProcessing;
+    }
+
+    class Payment {
+      Transactions transactions;
+    }
+
+  composition Vehicle -> (has) Features;
+  composition Features -> (has) GPS;
+  composition Features -> (has) Bluetooth;
+  composition Features -> (has) WiFi;
+  composition Vehicle -> (has) Sensors;
+  composition Vehicle -> (has) Computer;
+  composition Fleet -> (has) Vehicles;
+  composition Fleet -> (has) FleetAdmin;
+  composition Cloud -> (has) DataStorage;
+  
+
+}

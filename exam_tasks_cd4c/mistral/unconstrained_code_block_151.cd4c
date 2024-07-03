@@ -1,0 +1,41 @@
+
+classdiagram MaritimeDisasterSimulation {
+
+  class Vessel {
+    String uniqueIdentifier;
+    String name;
+    int grossTons;
+    CargoType cargoType;
+    void setSpeed(int speed);
+    void setDirection(String direction);
+    Position getPosition();
+  }
+
+  enum CargoType {
+    Containers, Oil, Passengers;
+  }
+
+  class Position {
+    double latitude;
+    double longitude;
+  }
+
+  class Disaster {
+    String type;
+    void simulateEffects();
+  }
+
+  class RescueTeam {
+    void deployLifeboats();
+    void provideMedicalAid();
+  }
+
+  class Scenario {
+    void setSimulationParameters();
+  }
+
+  composition MaritimeDisasterSimulation -> Vessel [*];
+  composition MaritimeDisasterSimulation -> Disaster [*];
+  composition MaritimeDisasterSimulation -> RescueTeam [1..*];
+  composition MaritimeDisasterSimulation -> Scenario [1..*];
+}

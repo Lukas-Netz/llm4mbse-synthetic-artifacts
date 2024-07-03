@@ -1,0 +1,118 @@
+
+classdiagram EmailPlatform {
+
+    class EmailPlatform {
+      List<EmailCampaign> campaigns;
+      Database recipientsDatabase;
+      TrackingSystem trackingSystem;
+    }
+
+    class EmailCampaign {
+      String name;
+      Date startDate;
+      Date endDate;
+      List<EmailMessage> messages;
+    }
+
+    class EmailMessage {
+      String content;
+      String contentType;
+      List<Link> links;
+    }
+
+    class Link {
+      String url;
+    }
+
+    class Recipient {
+      String demographics;
+      String interests;
+      String previousInteractions;
+    }
+
+    class TrackingData {
+      float openRate;
+      float clickThroughRate;
+      float conversionRate;
+    }
+
+    <<association>>
+    class EmailPlatform 
+      implements CampaignManager, RecipientManager, PerformanceTracker, PersonalizationFeature
+
+    <association, multiplicity [ 
+    ][ 
+    ][ 
+    ]>
+    {
+      EmailCampaign campaigns;
+      Database recipientsDatabase;
+      TrackingSystem trackingSystem;
+    }
+
+    <<association>>
+    class EmailCampaign 
+      implements CampaignManager
+
+    <association, multiplicity [ 
+    ]>
+    {
+      List<EmailMessage> messages;
+    }
+
+    <<association>>
+    class EmailMessage 
+      implements ContentType
+
+    <association, multiplicity [ 
+    ]>
+    {
+      String content;
+      String contentType;
+      List<Link> links;
+    }
+
+    <<association>>
+    class Link 
+      implements ContentType
+
+    <association, multiplicity [ 
+    ]>
+    {
+      String url;
+    }
+
+    <<association>>
+    class Recipient 
+      implements RecipientManager
+
+    <association, multiplicity [ 
+    ]>
+    {
+      String demographics;
+      String interests;
+      String previousInteractions;
+    }
+
+    <<association>>
+    class TrackingData 
+      implements PerformanceTracker
+
+    <association, multiplicity [ 
+    ]>
+    {
+      float openRate;
+      float clickThroughRate;
+      float conversionRate;
+    }
+
+    <<association>>
+    class PersonalizationFeature 
+      implements PersonalizationFeature
+
+    <association, multiplicity [ 
+    ]>
+    {
+      List<Recipient> recipients;
+    }
+}

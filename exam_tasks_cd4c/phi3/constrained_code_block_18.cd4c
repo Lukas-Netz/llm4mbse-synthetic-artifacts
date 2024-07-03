@@ -1,0 +1,66 @@
+
+classdiagram VRSystem {
+
+    class VRHeadset {
+      int displayResolution;
+      int refreshRate;
+    }
+
+    class VRController {
+      Button buttons;
+      Sensor sensors;
+    }
+
+    class VRComputer {
+      int processingPower;
+      int memory;
+      VRSoftware software;
+    }
+
+    class VRSoftware {
+      String name;
+      int versionNumber;
+      String type;
+    }
+
+    class VRGame {
+      String title;
+      String genre;
+      int difficultyLevel;
+    }
+
+    class VRApplication {
+      String purpose;
+      List<Feature> features;
+    }
+
+    class Network {
+      VRSystem connectedSystem;
+    }
+
+    class Server {
+      int storageCapacity;
+      VRSoftware software;
+      Data data;
+    }
+
+    class SoundSystem {
+      Speakers speakers;
+      VolumeControl volumeControl;
+    }
+
+    composition VRSystem -> (has) VRComputer;
+    composition VRSystem -> (has) VRHeadset;
+    composition VRSystem -> (has) VRController;
+    composition VRSystem -> (has) Network;
+    composition VRSystem -> (has) Server;
+    composition VRSystem -> (has) SoundSystem;
+
+    association VRComputer -> VRSoftware;
+    association VRHeadset -> VRSystem;
+    association VRController -> VRSystem;
+    association Network -> VRSystem;
+    association Server -> VRSystem;
+   
+
+}

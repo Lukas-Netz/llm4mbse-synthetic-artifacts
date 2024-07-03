@@ -1,0 +1,35 @@
+
+classdiagram DigitalRetailAssistant {
+
+  class DigitalRetailAssistant {
+    String name;
+    String uniqueIdentifier;
+    String assignedStore;
+  }
+
+  class Store {
+    String name;
+    String uniqueIdentifier;
+    Product [][] products;
+  }
+
+  class Product {
+    String name;
+    String description;
+    float price;
+    Category category;
+  }
+
+  enum Category {
+    Electronics, Clothing, HomeGoods;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    int loyaltyPoints;
+  }
+
+  association DigitalRetailAssistant -- Customer;
+  association Store -- Product;
+  composition DigitalRetailAssistant -- Store [1..*];
+}

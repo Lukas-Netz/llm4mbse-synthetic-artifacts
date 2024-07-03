@@ -1,0 +1,40 @@
+
+classdiagram MediaStreamingService {
+
+    class User {
+      String username;
+      String password;
+      List<Playlist> playlists;
+      void rateMediaItem(MediaItem item, int rating);
+    }
+
+    class Playlist {
+      List<MediaItem> items;
+      void addMediaItem(MediaItem item);
+      void removeMediaItem(MediaItem item);
+    }
+
+    class MediaItem {
+      String title;
+      String description;
+      String genre;
+      int rating;
+    }
+
+    class ContentProvider {
+      List<MediaItem> catalog;
+      void filterCatalog(String genre, LocalDate releaseDate, int minRating);
+    }
+
+    class PaymentSystem {
+      List<PaymentMethod> paymentMethods;
+      void processPayment(User user, MediaItem item, PaymentMethod method);
+    }
+
+    association User -> Playlist [1..*];
+    association User -> PaymentSystem [1..*];
+    association ContentProvider -> MediaItem [*];
+    association ContentProvider -> PaymentSystem [1..*];
+    composition Playlist -> MediaItem [*];
+    composition PaymentSystem -> User [1..*];
+}

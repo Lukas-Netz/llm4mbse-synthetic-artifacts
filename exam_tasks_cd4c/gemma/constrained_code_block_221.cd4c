@@ -1,0 +1,51 @@
+
+
+classdiagram OnlineCommunityForums {
+
+  class User {
+    String username;
+    String password;
+    List<Topic> topics;
+  }
+
+  class Topic {
+    String title;
+    String description;
+    List<Post> posts;
+  }
+
+  class Post {
+    String content;
+    Timestamp timestamp;
+    User author;
+    List<Reply> replies;
+  }
+
+  class Reply {
+    String content;
+    Timestamp timestamp;
+    User author;
+  }
+
+  class Moderator {
+    User user;
+    List<Topic> topics;
+    List<Post> posts;
+  }
+
+  class System {
+    List<User> users;
+    List<Topic> topics;
+    List<Post> posts;
+  }
+
+  composition System -> (has) User [*];
+  composition System -> (has) Topic [*];
+  composition System -> (has) Post [*];
+  association User - Topic (has)
+  -- association  -  
+  
+
+  
+  ;
+}

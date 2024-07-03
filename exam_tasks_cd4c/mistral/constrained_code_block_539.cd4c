@@ -1,0 +1,42 @@
+
+classdiagram CarbonTradingPlatform {
+
+  class Registry {
+    CarbonCredit [][] carbonCredits;
+  }
+
+  class Company {
+    String name;
+    String uniqueIdentifier;
+    int carbonCreditBalance;
+  }
+
+  class CarbonCredit {
+    String uniqueIdentifier;
+    String type;
+    int quantity;
+  }
+
+  class Transaction {
+    String date;
+    TransactionType type;
+    CarbonCredit [ ] carbonCredits;
+    Company buyer;
+    Company seller;
+  }
+
+  enum TransactionType {
+    Buy, Sell;
+  }
+
+  class Market {
+    String name;
+    CarbonCredit [ ] availableCarbonCredits;
+  }
+
+  composition CarbonTradingPlatform -> Registry;
+  composition CarbonTradingPlatform -> Market;
+  composition CarbonTradingPlatform -> Company [*];
+  association Company --oCarbonCredit [*]-;
+  association Transaction --oCarbonCredit [*]-;
+}

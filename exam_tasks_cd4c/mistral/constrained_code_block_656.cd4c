@@ -1,0 +1,50 @@
+
+classdiagram MedicalRecords {
+
+  class Patient {
+    String uniqueIdentifier;
+    -> MedicalRecord [*];
+  }
+
+  class MedicalRecord {
+    String uniqueIdentifier;
+    String diagnosis;
+    String treatment;
+    String medication;
+  }
+
+  class HealthcareProvider {
+    String uniqueIdentifier;
+    Role role;
+    -> MedicalRecord [*];
+  }
+
+  enum Role {
+    Doctor, Nurse, Administrator;
+  }
+
+  class Doctor extends HealthcareProvider {
+    void prescribeMedication();
+    void viewMedicalRecord();
+  }
+
+  class Nurse extends HealthcareProvider {
+    void viewMedicalRecord();
+    void administerMedication();
+  }
+
+  class Administrator extends HealthcareProvider {
+    void manageHealthcareProviders();
+    void manageMedicalRecords();
+  }
+
+  class Blockchain {
+    void storeMedicalRecord(MedicalRecord medicalRecord);
+    boolean verifyMedicalRecord(MedicalRecord medicalRecord);
+  }
+
+  composition Patient -> MedicalRecord [*];
+  composition HealthcareProvider -> MedicalRecord [*];
+  association HealthcareProvider -- MedicalRecord [*];
+  association Blockchain -- MedicalRecord;
+}

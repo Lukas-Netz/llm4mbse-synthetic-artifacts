@@ -1,0 +1,90 @@
+
+classdiagram BehavioralAnalyticsPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      Set<String> preferences;
+      Set<Project> projects;
+    WritableDashboard dashboard;
+      WritableReport report;
+      void shareProject(Project project);
+      void shareGoal(Goal goal);
+      void shareDashboard(Dashboard dashboard);
+      void shareReport(Report report);
+    }
+
+    class Project {
+      String name;
+      Set<Goal> goals;
+      User creator;
+      void addGoal(Goal goal);
+      void removeGoal(Goal goal);
+      void shareProject(User user);
+    }
+
+    class Goal {
+      String name;
+      Set<Metric> metrics;
+      User creator;
+      void addMetric(Metric metric);
+      void removeMetric(Metric metric);
+      void shareGoal(User user);
+    }
+
+    class Metric {
+      String name;
+      String dataType;
+    }
+
+    class Dashboard {
+      String name;
+      Set<Widget> widgets;
+      User creator;
+      void addWidget(Widget widget);
+      void removeWidget(Widget widget);
+      void shareDashboard(User user);
+    }
+
+    class Widget {
+      String name;
+      String dataSource;
+    }
+
+    class Report {
+      String name;
+      Set<Filter> filters;
+      User creator;
+      void addFilter(Filter filter);
+      void removeFilter(Filter filter);
+      void shareReport(User user);
+    }
+
+    class Filter {
+      String name;
+      String dataType;
+    }
+
+    class DataVisualization {
+      void visualizeData(Data data);
+    }
+
+    class DataAnalysis {
+      void analyzeData(Data data);
+    }
+
+    class DataMining {
+      void mineData(Data data);
+    }
+
+    composition User -> (has) Project;
+    composition User -> (has) Goal;
+    composition User -> (has) Dashboard;
+    composition User -> (has) Report;
+    composition Project -> (has) Goal;
+    composition Goal -> (has) Metric;
+    composition Dashboard -> (has) Widget;
+    composition Report -> (has) Filter;
+    composition User -> (has) DataVisualization;
+    composition User -> (has) DataAnalysis;
+    composition User -> (has) DataMining;
+}

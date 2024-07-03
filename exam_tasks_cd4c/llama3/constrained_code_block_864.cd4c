@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram QuantumSatelliteNetwork  {
+
+  class Satellite  {
+    String uniqueIdentifier;
+    QuantumProcessor quantumProcessor;
+    CommunicationModule communicationModule;
+  }
+
+  class GroundStation  {
+    void receiveClassicalInformation(Satellite satellite);
+  }
+
+  class QuantumProcessor  {
+    void performEntanglementSwapping();
+    void performQuantumTeleportation();
+  }
+
+  class CommunicationModule  {
+    void transmitQuantumInformation(Satellite satellite);
+    void receiveQuantumInformation(Satellite satellite);
+  }
+
+  class CentralControlUnit  {
+    void manageNetwork();
+    void coordinateCommunication(Satellite satellite, GroundStation groundStation);
+  }
+
+  class QuantumErrorCorrectionModule  {
+    void correctQuantumErrors(Satellite satellite);
+  }
+
+  class QuantumKeyDistributionModule  {
+    void distributeQuantumKeys(Satellite satellite);
+  }
+
+  composition Satellite -> (has) QuantumProcessor;
+  composition Satellite -> (has) CommunicationModule;
+  composition GroundStation -> (has) CentralControlUnit;
+  composition CentralControlUnit -> (has) Satellite[*];
+  composition CentralControlUnit -> (has) GroundStation[*];
+  composition Satellite[*]  Satellite -> (has) QuantumErrorCorrectionModule [0..1];
+  composition Satellite[*]  Satellite -> (has) QuantumKeyDistributionModule [0..1];
+}

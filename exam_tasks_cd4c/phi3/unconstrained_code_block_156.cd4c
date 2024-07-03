@@ -1,0 +1,54 @@
+
+classdiagram PodcastHostingPlatform {
+
+    class PodcastHostingPlatform {
+      Podcast podcast;
+      Playlist playlist;
+      Analytics analytics;
+    }
+
+    class Podcast {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      Genre genre;
+      List<Episode> episodes;
+      void searchByTitle(String title);
+      void searchByDescription(String description);
+      void searchByGenre(Genre genre);
+    }
+
+    class Episode {
+      String title;
+      String description;
+      String filePath;
+    }
+
+    class Playlist {
+      List<Podcast> podcasts;
+      void addPodcast(Podcast podcast);
+      void removePodcast(Podcast podcast);
+    }
+
+    class Analytics {
+      int listeners;
+      int downloads;
+      int engagementMetrics;
+    }
+
+    class Comment {
+      String content;
+      int rating;
+    }
+
+    class Genre {
+      String name;
+    }
+
+    association PodcastHostingPlatform -> (has) Podcast;
+    association PodcastHostingPlatform -> (has) Playlist;
+    association PodcastHostingPlatform -> (has) Analytics;
+    association Podcast -> (has) Episode;
+    association Episode -> (has) Comment;
+    association Podcast -> (has) Genre;
+}

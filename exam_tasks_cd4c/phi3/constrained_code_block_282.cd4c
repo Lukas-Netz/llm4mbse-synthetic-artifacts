@@ -1,0 +1,41 @@
+
+classdiagram PropertyManagement {
+
+    class Property {
+      String uniqueIdentifier;
+      String address;
+      List<Room> rooms;
+    }
+
+    class Room {
+      String uniqueIdentifier;
+      String name;
+      int size;
+      Property property;
+    }
+
+    class Tenant {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+      List<Room> rentedRooms;
+    }
+
+    class Rent {
+      String roomIdentifier;
+      double amount;
+      Date dueDate;
+    }
+
+    class MaintenanceSchedule {
+      String propertyIdentifier;
+      List<Room> rooms;
+      Date scheduleDate;
+    }
+
+    association Property -> Room [1..*];
+    association Tenant -> Room [0..*];
+    association Rent -> Room;
+    association MaintenanceSchedule -> Property;
+    association MaintenanceSchedule -> Room;
+}

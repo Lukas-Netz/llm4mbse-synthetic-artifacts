@@ -1,0 +1,76 @@
+
+classdiagram Marketplace {
+
+    class Marketplace {
+      String name;
+      String uniqueIdentifier;
+      List<Category> categories;
+      List<Product> products;
+      List<User> users;
+      PaymentSystem paymentSystem;
+      RecommendationSystem recommendationSystem;
+      NotificationSystem notificationSystem;
+      SearchFunction searchFunction;
+      FilterFunction filterFunction;
+    }
+
+    class Category {
+      String name;
+      String description;
+      List<Product> products;
+    }
+
+    abstract class Product {
+      String name;
+      String description;
+      double price;
+      int rating;
+    }
+
+    class PhysicalProduct extends Product {
+      double weight;
+      double dimensions;
+      String material;
+    }
+
+    class DigitalProduct extends Product {
+      double fileSize;
+      String format;
+    }
+
+    class Service extends Product {
+      int duration;
+      String expertise;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      List<Product> purchasedProducts;
+      List<Review> reviews;
+    }
+
+    class Review {
+      Product product;
+      String content;
+    }
+
+    class PaymentSystem {
+      void processTransaction(User user, Product product, double amount);
+    }
+
+    class RecommendationSystem {
+      void generateRecommendations(User user);
+    }
+
+    class NotificationSystem {
+      void sendNotification(User user, String message);
+    }
+
+    class SearchFunction {
+      Product searchProduct(String name, String category, String keyword);
+    }
+
+    class FilterFunction {
+      List<Product> filterProducts(List<Product> products, double priceRange, int ratingRange, String category);
+    }
+}

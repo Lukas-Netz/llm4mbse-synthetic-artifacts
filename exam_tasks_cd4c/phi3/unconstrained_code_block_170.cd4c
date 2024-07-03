@@ -1,0 +1,41 @@
+
+classdiagram VirtualArtExhibitionSystem {
+
+  class Artwork {
+    String title;
+    String description;
+    File artworkFile;
+    int views;
+  }
+
+  class Exhibition {
+    String title;
+    String description;
+    List<Artwork> artworks;
+  }
+
+  class Artist {
+    String name;
+    List<Exhibition> exhibitions;
+  }
+
+  class Visitor {
+    void browseExhibitions();
+    void viewArtwork(Artwork artwork);
+  }
+
+  class Admin {
+    void addArtworkToExhibition(Exhibition exhibition, Artwork artwork);
+    void removeArtworkFromExhibition(Exhibition exhibition, Artwork artwork);
+    void updateExhibitionInfo(Exhibition exhibition);
+  }
+
+  composition Artist -> Exhibition [*];
+  composition Exhibition -> Artwork [*];
+  composition Exhibition -> Artist [*];
+  composition Admin -> Exhibition [*];
+  composition Admin -> Artwork [*];
+  composition Admin -> Artist [*];
+  composition Visitor -> Exhibition [*];
+  composition Visitor -> Artwork [*];
+}

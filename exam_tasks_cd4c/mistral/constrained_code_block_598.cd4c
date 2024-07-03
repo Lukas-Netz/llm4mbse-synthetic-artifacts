@@ -1,0 +1,85 @@
+
+classdiagram AutonomousDeliveryRobot {
+
+  class AutonomousDeliveryRobot {
+    String uniqueIdentifier;
+    RobotStatus status;
+  }
+
+  class RobotStatus {
+    enum AvailableStatus;
+    enum BusyStatus;
+  }
+
+  class NavigationSystem {
+    GPS gps;
+    Sensors sensors;
+    MappingSoftware mappingSoftware;
+  }
+
+  class PackageDeliverySystem {
+    PackageCompartment packageCompartment;
+    DeliveryMechanism deliveryMechanism;
+  }
+
+  class CommunicationSystem {
+    WiFi wifi;
+    Bluetooth bluetooth;
+  }
+
+  class PowerSystem {
+    RechargeableBattery rechargeableBattery;
+    ChargingStation chargingStation;
+  }
+
+  class SafetyFeatures {
+    ObstacleDetection obstacleDetection;
+    CollisionAvoidance collisionAvoidance;
+    EmergencyShutdown emergencyShutdown;
+  }
+
+  class UserInterface {
+    TouchscreenDisplay touchscreenDisplay;
+    VoiceCommands voiceCommands;
+  }
+
+  class Software {
+    NavigationAlgorithms navigationAlgorithms;
+    PackageDeliveryAlgorithms packageDeliveryAlgorithms;
+    CommunicationProtocols communicationProtocols;
+  }
+
+  class Hardware {
+    RoboticBody roboticBody;
+    Wheels wheels;
+    Sensors sensors;
+  }
+
+  class Maintenance {
+    SoftwareUpdates softwareUpdates;
+    HardwareMaintenance hardwareMaintenance;
+    Troubleshooting troubleshooting;
+  }
+
+  class FleetManagement {
+    RobotTracking robotTracking;
+    PackageTracking packageTracking;
+    RouteOptimization routeOptimization;
+  }
+
+  class UserManagement {
+    UserAuthentication userAuthentication;
+    UserPermissions userPermissions;
+    UserTracking userTracking;
+  }
+
+  composition AutonomousDeliveryRobot -> NavigationSystem;
+  composition AutonomousDeliveryRobot -> PackageDeliverySystem;
+  composition AutonomousDeliveryRobot -> CommunicationSystem;
+  composition AutonomousDeliveryRobot -> PowerSystem;
+  composition AutonomousDeliveryRobot -> SafetyFeatures;
+  composition AutonomousDeliveryRobot -> UserInterface;
+  composition AutonomousDeliveryRobot -> Software;
+ 
+ 
+ }

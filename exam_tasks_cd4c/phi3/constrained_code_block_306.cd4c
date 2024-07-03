@@ -1,0 +1,125 @@
+
+classdiagram CloudHRSystem {
+
+    class Company {
+      String companyName;
+      List<Employee> employees;
+      List<Department> departments;
+    WritableCompany()
+   
+     
+
+throws Employee, Department
+   
+
+;
+   
+    class EmployeeDataManager
+   
+     
+
+;
+    class Employee
+   
+     
+
+;
+    class Department
+   
+     
+
+;
+    class JobTitle
+   
+     
+
+;
+    class JobDescription
+   
+     
+
+;
+    class JobLevel
+   
+     
+
+;
+    class Policy
+   
+     
+
+;
+    class ReportGenerator
+   
+     
+
+;
+    class HRSystem
+   
+     
+
+;
+    class BackupPower
+   
+     
+
+;
+    class CloudStorage
+   
+     
+
+;
+    class Hub
+   
+     
+
+;
+    class HubInterface
+   
+     
+
+;
+    class HubConnection
+   
+     
+
+;
+    class HubManager
+   
+     
+
+;
+    class HRSystemManager
+   
+     
+
+;
+   
+}
+
+composition CloudHRSystem -> (has) Company;
+composition CloudHRSystem -> (has) EmployeeDataManager;
+composition CloudHRSystem -> (has) Hub;
+composition CloudHRSystem -> (has) HubInterface;
+composition CloudHRSystem -> (has) HubConnection;
+composition CloudHRSystem -> (has) HRSystem;
+composition CloudHRSystem -> (has) BackupPower;
+composition CloudHRSystem -> (has) CloudStorage;
+composition CloudHRSystem -> (has) Employee;
+composition CloudHRSystem -> (has) Department;
+composition CloudHRSystem -> (has) JobTitle;
+composition CloudHRSystem -> (has) JobDescription;
+composition CloudHRSystem -> (has) JobLevel;
+composition CloudHRSystem -> (has) Policy;
+composition CloudHRSystem -> (has) ReportGenerator;
+
+association CloudHRSystem -> (uses) EmployeeDataManager;
+association CloudHRSystem -> (uses) Hub;
+association CloudHRSystem -> (uses) HubInterface;
+association CloudHRSystem -> (uses) HubConnection;
+
+
+
+
+
+}

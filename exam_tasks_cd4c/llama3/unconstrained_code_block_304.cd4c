@@ -1,0 +1,42 @@
+
+
+
+classdiagram SpaceDebrisRemovalSystem  {
+
+  class Spacecraft  {
+    PropulsionSystem propulsion;
+    CommunicationSystem communication;
+    void navigateToDebris();
+    void collectDebris(DebrisCollector collector);
+  }
+
+  class DebrisCollector  {
+    int capacity;
+    void collectDebris();
+  }
+
+  class MissionControlCenter  {
+    Database database;
+    TeamOfExperts experts;
+    void planMission();
+    void trackSpacecraft();
+    void provideInstructions(Spacecraft spacecraft);
+  }
+
+  class PropulsionSystem  {}
+
+  class CommunicationSystem  {}
+
+  class Database  {}
+
+  class TeamOfExperts  {}
+
+  class BackupPower  {}
+
+  composition Spacecraft -> (has) PropulsionSystem;
+  composition Spacecraft -> (has) CommunicationSystem;
+  composition MissionControlCenter -> (has) Database;
+  composition MissionControlCenter -> (has) TeamOfExperts;
+  composition Spacecraft -> (has) DebrisCollector [1];
+  composition MissionControlCenter -> (has) BackupPower [0..1];
+}

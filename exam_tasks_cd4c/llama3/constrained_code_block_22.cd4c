@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram HRMS  {
+
+  class Employee  {
+    String uniqueId;
+    String name;
+    ContactInfo contactInfo;
+    Department department;
+    JobPosition jobPosition;
+  }
+
+  class Department  {
+    String uniqueId;
+    String name;
+  }
+
+  class JobPosition  {
+    String name;
+    Department department;
+    JobDescription jobDescription;
+    Set<Employee> employees;
+    Set<RequiredSkill> requiredSkills;
+  }
+
+  class JobDescription  {
+    String description;
+  }
+
+  class RequiredSkill  {
+    String name;
+  }
+
+  class ContactInfo  {
+    String email;
+    String phone;
+  }
+
+  class PerformanceEvaluation  {
+    Employee employee;
+    JobPosition jobPosition;
+    Rating rating;
+    String comment;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  composition Employee -> (has) Department;
+  composition Employee -> (has) JobPosition;
+  composition JobPosition -> (has) Department;
+  composition JobPosition -> (has) RequiredSkill;
+  composition PerformanceEvaluation -> (has) Employee;
+  composition PerformanceEvaluation -> (has) JobPosition;
+}

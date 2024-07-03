@@ -1,0 +1,46 @@
+
+classdiagram ProstheticEyeCompany {
+
+    class Engineer {
+      String name;
+      int id;
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<Engineer> assignedEngineers;
+    }
+
+    class Patient {
+      int id;
+      String name;
+      List<ProstheticEye> prostheticEyes;
+    }
+
+    class ProstheticEye {
+      int id;
+      Patient patient;
+      String pupilSize;
+      String irisColor;
+      String eyeShape;
+    }
+
+    class QualityControl {
+      List<Tester> testers;
+      void testProstheticEye(ProstheticEye eye);
+    }
+
+    class Tester {
+      String name;
+      int id;
+    }
+
+    composition Engineer -> Project [*];
+    composition Engineer -> ProstheticEye [*];
+    composition Project -> Engineer [*];
+    composition Project -> ProstheticEye [*];
+    composition Patient -> ProstheticEye [*];
+    composition QualityControl -> Tester [*];
+    composition Tester -> ProstheticEye [*];
+}

@@ -1,0 +1,61 @@
+
+classdiagram DogTrainingApp {
+
+    class UserProfile {
+      String userId;
+      String dogName;
+      String breed;
+      int age;
+      int weight;
+      String profileId;
+      List<TrainingPlan> trainingPlans;
+    }
+
+    class TrainingPlan {
+      String planId;
+      String goal;
+      List<Exercise> exercises;
+    }
+
+    class Exercise {
+      String exerciseId;
+      String name;
+      String description;
+      Difficulty difficulty;
+      boolean isCompleted;
+    }
+
+    enum Difficulty {
+      Basic, Intermediate, Advanced;
+    }
+
+    class Leaderboard {
+      String planId;
+      List<DogProfile> topDogs;
+    }
+
+    class DogProfile {
+      String dogId;
+      String profileId;
+      TrainingPlan currentPlan;
+    }
+
+    class Rating {
+      String exerciseId;
+      int rating;
+    }
+
+    class Review {
+      String exerciseId;
+      String reviewText;
+    }
+
+    composition UserProfile -> (has) DogProfile;
+    composition UserProfile -> (has) TrainingPlan;
+    composition TrainingPlan -> (has) List<<Exercision>>;
+    composition DogProfile -> (has) TrainingPlan;
+    composition DogProfile -> (has) Leaderboard;
+    composition Leaderboard -> (has) DogProfile;
+    composition UserProfile -> (has) Rating;
+    composition UserProfile -> (has) Review;
+}

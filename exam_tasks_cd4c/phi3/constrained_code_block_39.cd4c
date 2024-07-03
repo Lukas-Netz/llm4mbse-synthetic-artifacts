@@ -1,0 +1,47 @@
+
+classdiagram InsuranceClaimSystem {
+
+    class InsuranceClaim {
+      String uniqueIdentifier;
+      ClaimStatus status;
+      Claimant claimant;
+      InsuranceType insuranceType;
+      Date incidentDate;
+      double claimAmount;
+      Adjuster adjuster;
+    }
+
+    class Claimant {
+      String name;
+      String address;
+      String contactInfo;
+    }
+
+    class Adjuster {
+      String name;
+      String contactInfo;
+    }
+
+    class InsuranceType {
+      String type;
+    }
+
+    class ClaimStatus {
+      String status;
+    }
+
+    class InsuranceClaimSystem {
+      List<InsuranceClaim> claims;
+      void addClaim(InsuranceClaim claim);
+      void removeClaim(String uniqueIdentifier);
+      void updateClaimStatus(String uniqueIdentifier, ClaimStatus status);
+      InsuranceClaim getClaim(String uniqueIdentifier);
+    }
+
+    composition InsuranceClaimSystem -> (has) List<<InsuranceClaim>>;
+    association InsuranceClaimSystem -> (has) InsuranceClaim [*];
+    association InsuranceClaim -> (has) Claimant;
+    association InsuranceClaim -> (has) InsuranceType;
+    association InsuranceClaim -> (has) Adjuster;
+    association InsuranceClaim -> (has) InsuranceClaimSystem;
+}

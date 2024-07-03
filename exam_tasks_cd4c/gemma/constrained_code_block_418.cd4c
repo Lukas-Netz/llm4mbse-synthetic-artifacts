@@ -1,0 +1,48 @@
+
+
+classdiagram CityPlanning {
+
+  class City {
+    String name;
+    Location location;
+
+    District district;
+  }
+
+  class District {
+    String name;
+    City city;
+
+    int populationDensity;
+    LandUse landUse;
+    Infrastructure infrastructure;
+  }
+
+  class Block {
+    String name;
+    District district;
+
+    int populationDensity;
+    LandUse landUse;
+    Infrastructure infrastructure;
+  }
+
+  class Infrastructure {
+    String name;
+    Length length;
+    Capacity capacity;
+    Status status;
+  }
+
+  class Service {
+    String name;
+    Frequency frequency;
+    Coverage coverage;
+    Quality quality;
+  }
+
+  composition City -> (has) District [*];
+  composition District -> (has) Block [*];
+  composition City -> (has) Infrastructure [*];
+  composition City -> (has) Service [*];
+}

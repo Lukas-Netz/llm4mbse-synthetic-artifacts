@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram DigitalBusinessNetworkingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Profile profile;
+    -> Connection[*];
+    -> Group[*];
+  }
+
+  class Profile  {
+    String uniqueIdentifier;
+    String bio;
+    String skills;
+    String interests;
+    -> User;
+  }
+
+  class Group  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> User[*];
+  }
+
+  class Content  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Topic[*];
+  }
+
+  class Topic  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Content[*];
+    -> User[*];
+  }
+
+  class Webinar  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Presenter[*];
+  }
+
+  class Connection  {
+    User user1;
+    User user2;
+  }
+
+  class Presenter  {
+    User user;
+  }
+}

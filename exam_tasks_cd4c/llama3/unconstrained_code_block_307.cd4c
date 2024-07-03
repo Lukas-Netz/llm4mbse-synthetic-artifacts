@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram HydroponicSystem  {
+
+  class ControlUnit  {
+    void monitorConditions();
+    void adjustTemperature();
+    void adjustHumidity();
+    void adjustLight();
+    void adjustNutrientSolution();
+    void adjustPH();
+    void adjustEC();
+    void adjustWatering();
+    void adjustPruning();
+    void adjustFertilization();
+    void adjustPestControl();
+    void adjustDiseaseControl();
+    void adjustWeedControl();
+    void adjustIrrigation();
+    void adjustDrainage();
+    void adjustAeration();
+    void adjustOxygen();
+    void adjustCarbonDioxide();
+    void adjustNitrogen();
+    void adjustPhosphorus();
+    void adjustPotassium();
+    void adjustCalcium();
+    void adjustMagnesium();
+    void adjustSulfur();
+    void adjustIron();
+    void adjustManganese();
+    void adjustCopper();
+    void adjustZinc();
+    void adjustBoron();
+    void adjustChlorine();
+    void adjustSodium();
+  }
+
+  class NutrientSolutionTank  {
+    void provideNutrients();
+  }
+
+  class GrowingArea  {
+    void monitorPlantGrowth();
+    void monitorPlantHealth();
+  }
+
+  class Plant  {
+    String species;
+    int growth;
+    int health;
+  }
+
+  class Sensor  {
+    String type;
+    double value;
+  }
+
+  class MobileApp  {
+    void controlSystem();
+  }
+
+  class UserInterface  {
+    void controlSystem();
+  }
+
+  composition ControlUnit -> (has) NutrientSolutionTank;
+  composition ControlUnit -> (has) GrowingArea;
+  composition GrowingArea -> (has) Plant;
+  composition ControlUnit -> (has) Sensor;
+  composition ControlUnit -> (has) MobileApp;
+  composition ControlUnit -> (has) UserInterface;
+}

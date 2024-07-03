@@ -1,0 +1,52 @@
+
+classdiagram PrecisionMedicine {
+
+    class Patient {
+      String uniqueId;
+      GenomicData genomicData;
+    }
+
+    class Gene {
+      String uniqueId;
+      String function;
+      String location;
+      double expressionLevel;
+    }
+
+    class Disease {
+      String uniqueId;
+      String symptoms;
+      String diagnosis;
+      List<Treatment> treatmentOptions;
+    }
+
+    class Treatment {
+      String uniqueId;
+      String medication;
+      double dosage;
+      List<String> sideEffects;
+    }
+
+    class Analysis {
+      GenomicData analyze(GenomicData data);
+    }
+
+    class Recommendation {
+      String generate(Analysis result);
+    }
+
+    class PatientDoctor {
+      Patient patient;
+      Doctor doctor;
+      String interactionHistory;
+    }
+
+    association Patient -> GenomicData [*];
+    association Gene -> Patient [*];
+    association Disease -> Patient [*];
+    association Treatment -> Disease [*];
+    composition PatientDoctor -> Patient [*];
+    composition PatientDoctor -> Doctor [*];
+    composition Analysis -> GenomicData [*];
+    composition Recommendation -> Analysis [*];
+}

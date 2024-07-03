@@ -1,0 +1,51 @@
+
+classdiagram VirtualRealityArtExhibition {
+
+    class Exhibition {
+      String name;
+      String description;
+      List<Artwork> artworks;
+      int views;
+    }
+
+    class Artwork {
+      String title;
+      String description;
+      String type;
+      int views;
+    }
+
+    class Visitor {
+      String name;
+      String email;
+      List<Exhibition> viewedExhibitions;
+    }
+
+    association Exhibition 
+      has 
+        -> Artwork [*];
+
+    association Exhibition 
+      has 
+        -> Visitor [*];
+
+    association Visitor 
+      has 
+        -> Exhibition [*];
+
+    association Artwork 
+      has 
+        -> Exhibition [*];
+
+    association Visitor 
+      has 
+        -> Artwork [*];
+
+    association Exhibition 
+      has 
+        -> int [1];
+
+    association Artwork 
+      has 
+        -> int [1];
+}

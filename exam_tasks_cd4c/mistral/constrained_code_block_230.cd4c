@@ -1,0 +1,62 @@
+
+classdiagram ContractPlatform {
+
+  class User {
+    String uniqueIdentifier;
+  }
+
+  class SmartContract {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    SmartContractType type;
+  }
+
+  enum SmartContractType {
+    Simple, Complex;
+  }
+
+  class Condition {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ConditionType type;
+  }
+
+  enum ConditionType {
+    Single, Multi;
+  }
+
+  class Execution {
+    String uniqueIdentifier;
+    String timestamp;
+    ExecutionStatus status;
+  }
+
+  enum ExecutionStatus {
+    Success, Failure, Pending;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    String timestamp;
+    TransactionStatus status;
+  }
+
+  enum TransactionStatus {
+    Success, Failure, Pending;
+  }
+
+  class Platform {
+    User [ ] users;
+    SmartContract [ ] smartContracts;
+    Execution [ ] executions;
+    Transaction [ ] transactions;
+  }
+
+  composition Platform -> User [*];
+  composition Platform -> SmartContract [*];
+  composition SmartContract -> Condition [*];
+  association Execution <- SmartContract;
+  association Transaction <- SmartContract;
+}

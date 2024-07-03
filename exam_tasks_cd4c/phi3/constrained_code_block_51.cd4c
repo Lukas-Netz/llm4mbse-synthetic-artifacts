@@ -1,0 +1,433 @@
+
+classdiagram PatientMonitoringSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String medicalRecordNumber;
+      List<MedicalDevice> medicalDevices;
+    }
+
+    class MedicalDevice {
+      String uniqueIdentifier;
+      Patient patient;
+      MedicalDeviceType type;
+    }
+
+    class ECG extends MedicalDevice {
+      float[] data;
+    }
+
+    class BloodPressure extends MedicalDevice {
+      int systolic;
+      int diastolic;
+    }
+
+    class OxygenSaturation extends MedicalDevice {
+      float saturationLevel;
+    }
+
+    class MonitoringStation {
+      String uniqueIdentifier;
+      List<Patient> assignedPatients;
+      Database database;
+      void collectData(MedicalDevice device);
+      void alertMedicalStaff(Patient patient);
+    }
+
+    enum MedicalDeviceType {
+      ECG, BloodPressure, OxygenSaturation
+   
+   
+   ()
+   
+
+;
+    association Patient 
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    composition Patient 
+       
+
+;
+    composition MonitoringStation
+       
+
+;
+    composition MedicalDevice
+       
+
+;
+    composition ECG
+       
+
+;
+    composition BloodPressure
+       
+
+;
+    composition OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+   
+
+}
+
+enum MedicalDeviceType {
+  ECG, BloodPressure, OxygenSaturation
+
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+   
+
+}
+
+enum MedicalDeviceType {
+  ECG, BloodPressure, OxygenSaturation
+
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+   
+
+}
+
+enum MedicalDeviceType {
+  ECG, BloodPressure, OxygenSaturation
+
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+   
+
+}
+
+enum MedicalDeviceType {
+  ECG, BloodPressure, OxygenSaturation
+
+
+;
+    association ECG
+       
+
+;
+    association BloodPressure
+       
+
+;
+    association OxygenSaturation
+       
+
+;
+    association MonitoringStation
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+
+;
+    association Patient
+       
+
+;
+    association MedicalDevice
+       
+   ;}
+    }

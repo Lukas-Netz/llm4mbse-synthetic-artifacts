@@ -1,0 +1,48 @@
+
+classdiagram VirtualRealityDisasterResponseTraining {
+
+    class Scenario {
+      String name;
+      String description;
+      List<Objective> objectives;
+      void customize();
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String role;
+      int experienceLevel;
+    }
+
+    class Object {
+      String type;
+      String name;
+    }
+
+    class Interaction {
+      User user;
+      Object object;
+      void performAction();
+    }
+
+    class Feedback {
+      String message;
+      boolean isCorrect;
+    }
+
+    class PerformanceMetrics {
+      int timeTaken;
+      int accuracy;
+      int overallScore;
+    }
+
+    association Scenario -> User [*];
+    association Scenario -> Object [*];
+    association Scenario -> Interaction [*];
+    association Scenario -> Feedback [*];
+    association Scenario -> PerformanceMetrics [*];
+    composition User -> Interaction [0..*];
+    composition Scenario -> Feedback [0..*];
+    composition Scenario -> PerformanceMetrics [0..*];
+}

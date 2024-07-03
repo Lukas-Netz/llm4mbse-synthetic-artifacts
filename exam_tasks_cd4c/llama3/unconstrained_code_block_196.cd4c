@@ -1,0 +1,86 @@
+
+
+
+
+classdiagram CloudMusicStorage  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class MusicFile  {
+    String title;
+    String artist;
+    String genre;
+    String mood;
+    String tempo;
+    String volume;
+    String format;
+    String path;
+  }
+
+  class MusicLibrary  {
+    User user;
+    MusicFile[] musicFiles;
+  }
+
+  class Device  {
+    String deviceType;
+    String os;
+    String browser;
+  }
+
+  class MusicPlayer  {
+    Device device;
+    MusicFile musicFile;
+  }
+
+  class MusicStreamingService  {
+    String serviceName;
+    MusicFile[] musicFiles;
+  }
+
+  class MusicGenre  {
+    String genreName;
+  }
+
+  class MusicMood  {
+    String moodName;
+  }
+
+  class MusicTempo  {
+    String tempoName;
+  }
+
+  class MusicVolume  {
+    String volumeName;
+  }
+
+  class MusicFormat  {
+    String formatName;
+  }
+
+  class MusicPlayerDevice  {
+    Device device;
+    MusicPlayer musicPlayer;
+  }
+
+  class MusicStreamingServiceDevice  {
+    Device device;
+    MusicStreamingService musicStreamingService;
+  }
+
+  composition User -> MusicLibrary [1..*];
+  composition MusicLibrary -> MusicFile [1..*];
+  composition Device -> MusicPlayer [1..*];
+  composition MusicPlayer -> MusicFile [1..*];
+  composition MusicStreamingService -> MusicFile [1..*];
+  composition MusicGenre -> MusicFile [1..*];
+  composition MusicMood -> MusicFile [1..*];
+  composition MusicTempo -> MusicFile [1..*];
+  composition MusicVolume -> MusicFile [1..*];
+  composition MusicFormat -> MusicFile [1..*];
+  composition MusicPlayerDevice -> MusicPlayer [1..*];
+  composition MusicStreamingServiceDevice -> MusicStreamingService [1..*];
+}

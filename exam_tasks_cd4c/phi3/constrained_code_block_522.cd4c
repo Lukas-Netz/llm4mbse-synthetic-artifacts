@@ -1,0 +1,129 @@
+
+classdiagram SeismicMonitoringSystem {
+
+    class Sensor {
+      String sensorId;
+      String location;
+      SensorType type;
+      SeismicReading readings;
+    }
+
+    class MonitoringStation {
+      String stationId;
+      String location;
+      List<Sensor> sensors;
+      void collectData();
+      void sendDataToDatabase();
+    }
+
+    class CentralDatabase {
+      List<MonitoringStation> monitoringStations;
+      EarthquakeAnalysis analysis;
+      VisualizationTools visualization;
+      void storeData();
+      void analyzeData();
+      void visualizeData();
+    }
+
+    class Earthquake {
+      double magnitude;
+      String location;
+      String timestamp;
+    }
+
+    class Alert {
+      Earthquake earthquake;
+      String message;
+    }
+
+    class SeismicReading {
+      Sensor sensor;
+      double magnitude;
+      String location;
+    }
+
+    enum SensorType {
+      SeismicSensor,
+      GeotechnicalSensor;
+    }
+
+    association MonitoringStation 
+      multiplicity 
+        [ 
+          one 
+          <> 
+
+   ](Sensor)
+
+    -> SeismicReading
+
+    <<association>>
+     
+    {
+     
+     ordered
+     }
+
+   
+;
+    association CentralDatabase 
+      multiplicity 
+        [ 
+          one 
+          <> 
+
+   ](MonitoringStation)
+
+    -> EarthquakeAnalysis
+
+    <<association>>
+     
+    {
+     
+     ordered
+     }
+
+   
+;
+    association Earthquake 
+      multiplicity 
+        [ 
+          one 
+          <> 
+
+   ](SeismicReading)
+
+    -> Alert
+
+    <<association>>
+     
+    {
+     
+     ordered
+     }
+
+   
+;
+    association Alert 
+      multiplicity 
+        [ 
+          one 
+          <> 
+
+   ](Earthquake)
+
+    -> String
+
+    <<association>>
+     
+    {
+     
+     ordered
+     }
+
+   
+;
+    composition CentralDatabase -> (has) MonitoringStation [*];
+    composition CentralDatabase -> (has) Earthquake [*];
+    composition CentralDatabase -> (has) Alert [*];
+}

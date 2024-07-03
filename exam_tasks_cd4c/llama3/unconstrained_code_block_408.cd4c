@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram ArtworkVerification  {
+
+  class Artwork  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    ArtworkType type;
+  }
+
+  enum ArtworkType  {
+    Painting, Sculpture, Installation;
+  }
+
+  class Provenance  {
+    Date dateAcquired;
+    Entity buyer;
+    Entity seller;
+  }
+
+  class Transaction  {
+    Artwork artwork;
+    Entity from;
+    Entity to;
+  }
+
+  class Entity  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Certificate  {
+    Artwork artwork;
+    Authority authority;
+  }
+
+  class Authority  {
+    String name;
+  }
+
+  composition Artwork  ->  (has) Provenance  [*];
+  composition Transaction  ->  (has) Artwork;
+  composition Certificate  ->  (has) Artwork;
+  composition Entity  ->  (has) Certificate  [0..*];
+}
+

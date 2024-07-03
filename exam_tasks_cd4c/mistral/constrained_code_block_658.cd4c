@@ -1,0 +1,50 @@
+
+classdiagram AutonomousVehicle {
+
+  class Vehicle {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Navigation {
+    Route route;
+    Control control;
+  }
+
+  class Control {
+    Sensor [ ] sensors;
+    Actuator [ ] actuators;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  class Actuator {
+    String uniqueIdentifier;
+    ActuatorType type;
+  }
+
+  enum VehicleStatus {
+    Idle, Moving, Stopped;
+  }
+
+  enum SensorType {
+    Camera, Lidar, Radar;
+  }
+
+  enum ActuatorType {
+    Brake, Steering;
+  }
+
+  class Route {
+    String startLocation;
+    String endLocation;
+  }
+
+  composition Vehicle -> (has) Navigation;
+  composition Vehicle -> (has) Control;
+  composition Control -> Sensor [*];
+  composition Control -> Actuator [*];
+}

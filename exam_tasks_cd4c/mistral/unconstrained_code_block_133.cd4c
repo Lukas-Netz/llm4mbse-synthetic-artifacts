@@ -1,0 +1,39 @@
+
+classdiagram CropMonitoring {
+
+  class Sensor {
+    String id;
+    String fieldId;
+    int temperature;
+    int humidity;
+    int soilMoisture;
+  }
+
+  class Drone {
+    String id;
+    String fieldId;
+    String camera;
+  }
+
+  class CentralHub {
+    -> Sensor [*];
+    -> Drone [*];
+    void analyzeData();
+    void provideInsights();
+    void sendAlerts();
+    void recommendIrrigation();
+    void recommendFertilization();
+    void recommendPestControl();
+  }
+
+  class Field {
+    String id;
+    String cropType;
+    Date plantingDate;
+    Date fertilizationSchedule;
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Drone [*];
+  association CentralHub -- Field [*];
+}

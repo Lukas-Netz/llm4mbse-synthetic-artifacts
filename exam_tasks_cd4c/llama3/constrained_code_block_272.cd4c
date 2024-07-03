@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram PredictiveAnalyticsSystem  {
+
+  class DataIngestionModule  {
+    void collectData(CustomerData... data);
+  }
+
+  class DataProcessingModule  {
+    void preprocessData(CustomerData... data);
+  }
+
+  class MachineLearningModule  {
+    void trainModel(CustomerData... data);
+    Prediction predict(CustomerData data);
+  }
+
+  class RecommendationModule  {
+    void provideRecommendations(Prediction prediction);
+  }
+
+  class CustomerData  {
+    String customerId;
+    String customerInfo;
+  }
+
+  class Prediction  {
+    boolean isChurn;
+    String recommendation;
+  }
+
+  class Customer  {
+    String id;
+    String info;
+  }
+
+  composition PredictiveAnalyticsSystem -> (has) DataIngestionModule;
+  composition PredictiveAnalyticsSystem -> (has) DataProcessingModule;
+  composition PredictiveAnalyticsSystem -> (has) MachineLearningModule;
+  composition PredictiveAnalyticsSystem -> (has) RecommendationModule;
+
+  association DataIngestionModule -> CustomerData [1..*];
+  association DataProcessingModule -> CustomerData [1..*];
+  association MachineLearningModule -> Prediction [1..*];
+  association RecommendationModule -> Prediction [1..*];
+}

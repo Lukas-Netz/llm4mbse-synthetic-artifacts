@@ -1,0 +1,44 @@
+
+
+classdiagram DigitalRiskAssessment {
+
+    class Asset {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      List<Vulnerability> vulnerabilities;
+    }
+
+    class Threat {
+      String name;
+      ThreatType type;
+      List<Vulnerability> exploits;
+    }
+
+    enum ThreatType {
+      Malware, Phishing, Physical
+    
+    
+
+;
+    }
+
+    class Vulnerability {
+      String name;
+      SeverityLevel severityLevel;
+    }
+
+    enum SeverityLevel {
+      Low, Medium, High
+    
+    
+
+;
+    }
+
+    composition Asset -> (has) Vulnerability [*];
+    composition Threat -> (has) Vulnerability [*];
+    association Vulnerability -> Asset;
+    association Threat -> Vulnerability;
+
+  }

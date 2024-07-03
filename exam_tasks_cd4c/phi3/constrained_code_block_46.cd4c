@@ -1,0 +1,66 @@
+
+classdiagram EnterpriseAssetManagement {
+
+    class Asset {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      AssetClass assetClass;
+      DepartmentLocation location;
+      List<MainteneceRecord> maintenanceHistory;
+    }
+
+    class AssetClass {
+      String name;
+      List<String> attributes;
+    }
+
+    class DepartmentLocation {
+      String name;
+      List<Asset> assets;
+    }
+
+    class MainteneceRecord {
+      Date date;
+      String type;
+      String status;
+    }
+
+    class ITAssetClass extends AssetClass {
+      String softwareSpecs;
+      String hardwareSpecs;
+    }
+
+    class ManufacturingAssetClass extends AssetClass {
+      String productionCapacity;
+      String materialType;
+    }
+
+    class RealEstateAssetClass extends AssetClass {
+      String propertyType;
+      String squareFootage;
+    }
+
+    class Department {
+      String name;
+      List<DepartmentLocation> locations;
+    }
+
+    class AssetManagementSystem {
+      List<Asset> assets;
+      void addAsset(Asset asset);
+      void removeAsset(Asset asset);
+      void updateAsset(Asset asset);
+      List<Asset> getAssetsByClass(AssetClass assetClass);
+      List<Asset> getAssetsByLocation(DepartmentLocation location);
+      void updateMaintenanceHistory(Asset asset, MainteneceRecord record);
+      void generateAssetUtilizationReport();
+      void generateMaintenanceCostReport();
+      void generateAssetDepreciationReport();
+    }
+
+    composition Department -> DepartmentLocation [*];
+    composition DepartmentLocation -> Asset [*];
+    composition Asset -> MainteneceRecord [*];
+    composition Asset -> AssetManagementSystem [*];
+}

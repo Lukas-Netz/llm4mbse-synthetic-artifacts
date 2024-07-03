@@ -1,0 +1,66 @@
+
+classdiagram SeismicMonitoring {
+
+  class Sensor {
+    String uniqueIdentifier;
+    Location location;
+    SensorType type;
+  }
+
+  class MonitoringStation {
+    String uniqueIdentifier;
+    Location location;
+    -> Sensor [*];
+  }
+
+  class CentralDatabase {
+    -> MonitoringStation [*];
+    Earthquake [
+     ] getEarthquakes(Location location);
+    AnalysisResult analyze(Earthquake earthquake);
+    VisualizationResult visualize(Earthquake earthquake);
+  }
+
+  class Earthquake {
+    double magnitude;
+    Location location;
+    Timestamp timestamp;
+  }
+
+  class Alert {
+    EmergencyService emergencyService;
+    Earthquake earthquake;
+  }
+
+  class SensorReading {
+    Sensor sensor;
+    Location location;
+    SeismicActivity seismicActivity;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Timestamp {
+    String date;
+    String time;
+  }
+
+  class SensorType {
+    String name;
+  }
+
+  class SeismicActivity {
+    double intensity;
+  }
+
+  class EmergencyService {
+    String name;
+    String contact;
+  }
+
+  composition MonitoringStation -> Sensor [*];
+  composition CentralDatabase -> MonitoringStation [*];
+}

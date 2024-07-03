@@ -1,0 +1,38 @@
+
+classdiagram EnvironmentalImpactAssessment {
+
+  class Database {
+    -> EnvironmentalFactor [*];
+  }
+
+  class EnvironmentalFactor {
+    String name;
+    String unit;
+    double value;
+  }
+
+  class Calculator {
+    Database database;
+    double calculateImpact();
+  }
+
+  class ReportingModule {
+    Calculator calculator;
+    String generateReport();
+  }
+
+  class Project {
+    String name;
+    Calculator calculator;
+  }
+
+  class Operation {
+    String name;
+    Calculator calculator;
+  }
+
+  composition EnvironmentalImpactAssessment -> (has) Database;
+  composition EnvironmentalImpactAssessment -> (has) Calculator;
+  composition Project -> Calculator;
+  composition Operation -> Calculator;
+}

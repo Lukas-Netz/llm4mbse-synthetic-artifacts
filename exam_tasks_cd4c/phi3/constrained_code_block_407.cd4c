@@ -1,0 +1,56 @@
+
+classdiagram CraftMarketplace {
+
+    class User {
+      String username;
+      String password;
+      List<Craft> favoriteCrafts;
+      List<Craft> purchasedCrafts;
+      List<User> followedUsers;
+    WritesCraftRating();
+    }
+
+    class Craft {
+      String name;
+      String description;
+      double price;
+      List<String> materials;
+      User purchaser;
+      CraftRating rating;
+    }
+
+    class CraftRating {
+      int stars;
+      String comment;
+    }
+
+    class Collection {
+      String name;
+      List<Craft> crafts;
+    }
+
+    class MarketplaceAdmin {
+      List<Craft> crafts;
+      List<User> users;
+      List<Collection> collections;
+      void addCraft(Craft craft);
+      void removeCraft(Craft craft);
+      void addUser(User user);
+      void removeUser(User user);
+      void addCollection(Collection collection);
+      void removeCollection(Collection collection);
+      void viewReports();
+    }
+
+    association User - has [many] -> Craft;
+    association Craft - has [many] -> CraftRating;
+    association User - has [many] -> Collection;
+    composition User -> followedUsers [1..*];
+    composition User -> favoriteCrafts [1..*];
+    composition User -> purchasedCrafts [1..*];
+    composition Craft -> purchaser [1..1];
+    composition Craft -> rating [1..1];
+    composition MarketplaceAdmin -> crafts [1..*];
+    composition MarketplaceAdmin -> users [1..*];
+    composition MarketplaceAdmin -> collections [1..*];
+}

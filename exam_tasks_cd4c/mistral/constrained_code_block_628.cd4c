@@ -1,0 +1,80 @@
+
+classdiagram NaturalDisasterPrediction {
+
+  class WeatherStation {
+    String location;
+    float temperature;
+    float humidity;
+    float pressure;
+  }
+
+  class SeismicSensor {
+    String location;
+    float seismicActivity;
+  }
+
+  class SatelliteImagery {
+    String location;
+    String imageUrl;
+  }
+
+  class DataCollector {
+    WeatherStation[] weatherStations;
+    SeismicSensor[] seismicSensors;
+    SatelliteImagery[] satelliteImagery;
+    void collectData();
+  }
+
+  class DisasterPredictor {
+    DataCollector dataCollector;
+    NaturalDisaster[] supportedDisasters;
+    float predictProbability(NaturalDisaster disaster);
+  }
+
+  abstract class NaturalDisaster {
+    String name;
+    String location;
+  }
+
+  class Earthquake extends NaturalDisaster {
+    float magnitude;
+    float depth;
+  }
+
+  class Hurricane extends NaturalDisaster {
+    float windSpeed;
+    float pressure;
+  }
+
+  class Flood extends NaturalDisaster {
+    float waterLevel;
+    float rainfallRate;
+  }
+
+  class EmergencyResponder {
+    String name;
+    String contactInfo;
+  }
+
+  class AlertSystem {
+    EmergencyResponder[] responders;
+    void sendAlert(NaturalDisaster disaster);
+  }
+
+  class DataAnalytics {
+    void analyzeData(DataCollector dataCollector);
+  }
+
+  class Visualization {
+    void visualizeData(DataCollector dataCollector);
+  }
+
+  composition DataCollector -> WeatherStation [*];
+  composition DataCollector -> SeismicSensor [*];
+  composition DataCollector -> SatelliteImagery [*];
+  composition DisasterPredictor -> DataCollector;
+  association DisasterPredictor -> NaturalDisaster [*];
+  composition AlertSystem -> EmergencyResponder [*];
+  association AlertSystem -> NaturalDisaster [*];
+ 
+}

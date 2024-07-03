@@ -1,0 +1,56 @@
+
+classdiagram PetCareServices {
+
+  class PetCareServices {
+    List<PetOwner> petOwners;
+    List<PetCareProvider> petCareProviders;
+  }
+
+  class PetOwner {
+    String name;
+    String email;
+    String phoneNumber;
+    List<Pet> pets;
+  }
+
+  class Pet {
+    String name;
+    int age;
+    String species;
+  }
+
+  class Service {
+    String name;
+    String description;
+    float price;
+  }
+
+  class DogWalking extends Service {}
+  class PetSitting extends Service {}
+  class DogTraining extends Service {}
+
+  class PetCareProvider {
+    String name;
+    String email;
+    String phoneNumber;
+    List<Service> offeredServices;
+    List<Booking> bookings;
+  }
+
+  class Booking {
+    PetOwner petOwner;
+    Service service;
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    boolean isCompleted;
+    float rating;
+    String review;
+  }
+
+  composition PetCareServices -> PetOwner [*];
+  composition PetCareServices -> PetCareProvider [*];
+  association PetOwner -> Pet [*];
+  association PetCareProvider -> Service [*];
+  association Booking -> PetOwner;
+  association Booking -> Service;
+}

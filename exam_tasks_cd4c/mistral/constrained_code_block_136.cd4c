@@ -1,0 +1,97 @@
+
+classdiagram CDS {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    DemographicInfo demographicInfo;
+    MedicalCondition [ ] medicalConditions;
+    Medication [ ] medications;
+    TestResult [ ] testResults;
+  }
+
+  class DemographicInfo {
+    String gender;
+    String dateOfBirth;
+    String ethnicity;
+    String address;
+  }
+
+  abstract class MedicalCondition {
+    String name;
+    String description;
+    ConditionSeverity severity;
+    ConditionType type;
+  }
+
+  enum ConditionSeverity {
+    Acute, Chronic;
+  }
+
+  enum ConditionType {
+    AcuteCondition, ChronicCondition;
+  }
+
+  abstract class Medication {
+    String name;
+    String description;
+    DosageInstruction dosage;
+    MedicalCondition [ ] applicableConditions;
+  }
+
+  class TestResult {
+    String name;
+    String description;
+    double value;
+    MedicalCondition [ ] applicableConditions;
+  }
+
+  class Recommendation {
+    String description;
+    Priority priority;
+  }
+
+  enum Priority {
+    High, Medium, Low;
+  }
+
+  class HealthcareProfessional {
+    String uniqueIdentifier;
+    String name;
+    Role role;
+  }
+
+  enum Role {
+    Doctor, Nurse, Pharmacist;
+  }
+
+  association Patient --o000o- 											{
+   								ordered
+   }
+  			;
+
+  association MedicalCondition --o000o- 											{
+   								ordered
+   }
+  			;
+
+  association Medication --o000o- 											{
+   								ordered
+   }
+  			;
+
+  association TestResult --o000o- 											{
+   								ordered
+   }
+  			;
+
+  association Recommendation --o000o- 											{
+   								ordered
+   }
+  			;
+
+  association HealthcareProfessional --o000o- 											{
+   								ordered
+   }
+  			;
+}

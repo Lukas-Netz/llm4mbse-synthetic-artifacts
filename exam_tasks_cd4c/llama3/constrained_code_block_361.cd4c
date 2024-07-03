@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram ContentManagementSystem  {
+
+  class Content  {
+    String uniqueIdentifier;
+    String title;
+  }
+
+  class Article extends Content  {
+    String textBody;
+    Topic topic;
+  }
+
+  class Video extends Content  {
+    String filePath;
+    Genre genre;
+  }
+
+  class Image extends Content  {
+    String filePath;
+    Theme theme;
+  }
+
+  class Topic  {
+    String name;
+  }
+
+  class Genre  {
+    String name;
+  }
+
+  class Theme  {
+    String name;
+  }
+
+  class Keyword  {
+    String name;
+  }
+
+  class Administrator  {
+    -> Content[*];
+  }
+
+  class User  {
+    -> Content[*];
+  }
+
+  class Analytics  {
+    int views;
+    int engagement;
+  }
+
+  class Language  {
+    String name;
+  }
+
+  class CharacterSet  {
+    String name;
+  }
+
+  composition Content -> Keyword[*];
+  composition Content -> Language[*];
+  composition Content -> CharacterSet[*];
+  composition Administrator -> Content[*];
+  composition User -> Content[*];
+  composition Content -> Analytics;
+}

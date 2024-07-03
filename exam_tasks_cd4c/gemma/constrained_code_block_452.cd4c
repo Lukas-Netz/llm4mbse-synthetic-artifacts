@@ -1,0 +1,47 @@
+
+
+classdiagram AutonomousSubseaVehicleSystem {
+
+  class AutonomousSubseaVehicle {
+    String uniqueIdentifier;
+    boolean status;
+    Sensors sensors;
+    PropulsionSystem propulsionSystem;
+    PowerSource powerSource;
+    CommunicationSystem communicationSystem;
+  }
+
+  class Sensors {
+    WaterTemperatureSensor waterTemperatureSensor;
+    SalinitySensor salinitySensor;
+    MarineLifeSensor marineLifeSensor;
+  }
+
+  class PropulsionSystem {
+    ElectricMotor electricMotor;
+    HydraulicPump hydraulicPump;
+  }
+
+  class PowerSource {
+    Battery battery;
+    FuelCell fuelCell;
+  }
+
+  class CommunicationSystem {
+    Radio transceiver;
+    Satellite transceiver;
+  }
+
+  class MissionControlCenter {
+    MissionPlan missionPlan;
+    CommandSender commandSender;
+    StatusMonitor statusMonitor;
+    DataReceiver dataReceiver;
+  }
+
+  composition AutonomousSubseaVehicle -> (has) Sensors;
+  composition AutonomousSubseaVehicle -> (has) PropulsionSystem;
+  composition AutonomousSubseaVehicle -> (has) PowerSource;
+  composition AutonomousSubseaVehicle -> (has) CommunicationSystem;
+  composition MissionControlCenter -> (has) AutonomousSubseaVehicle;
+}

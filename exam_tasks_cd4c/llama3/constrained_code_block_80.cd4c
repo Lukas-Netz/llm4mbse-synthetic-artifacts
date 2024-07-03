@@ -1,0 +1,36 @@
+
+
+
+
+classdiagram ProjectManagement  {
+
+  class Project  {
+    String name;
+    Date startDate;
+    Date endDate;
+    -> Task[*];
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Date dueDate;
+    -> TeamMember[*];
+    TaskStatus status;
+  }
+
+  class TeamMember  {
+    String name;
+    int employeeId;
+    -> Task[*];
+  }
+
+  enum TaskStatus  {
+    NotStarted,
+    InProgress,
+    Completed
+  ;}
+
+  composition Project -> Task[*];
+  composition Task -> TeamMember[*];
+}

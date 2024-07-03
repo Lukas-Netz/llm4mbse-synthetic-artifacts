@@ -1,0 +1,42 @@
+
+classdiagram BiofuelProduction {
+
+  class ProductionLine {
+    Equipment [ ] equipment;
+    int productionCapacity;
+    String type;
+  }
+
+  enum ProductionType {
+    Ethanol, Biodiesel, Biogas;
+  }
+
+  class Equipment {
+    String name;
+    int capacity;
+  }
+
+  class CentralControlSystem {
+    ProductionLine [ ] lines;
+    Sensor [ ] sensors;
+    Actuator [ ] actuators;
+
+    void adjustProductionRate(ProductionLine line, ProductionType type, int rate);
+    int getRealTimeData(Sensor sensor);
+    void sendCommand(Actuator actuator, String command);
+  }
+
+  class Sensor {
+    String type;
+    ProductionLine associatedLine;
+  }
+
+  class Actuator {
+    String type;
+    ProductionLine associatedLine;
+  }
+
+  composition CentralControlSystem -> ProductionLine [*];
+  composition CentralControlSystem -> Sensor [*];
+  composition CentralControlSystem -> Actuator [*];
+}

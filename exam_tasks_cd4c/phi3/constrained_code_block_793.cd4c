@@ -1,0 +1,66 @@
+
+classdiagram HolographicTelepresence {
+
+    class HolographicDisplay {
+      int resolution;
+      int brightness;
+      int color;
+      List<HolographicImage> holographicImages;
+    }
+
+    class UserInterface {
+      int fontSize;
+      String fontStyle;
+      String backgroundColor;
+      List<Window> windows;
+      List<Menu> menus;
+    }
+
+    class CommunicationNetwork {
+      int bandwidth;
+      int latency;
+      int packetLoss;
+      List<Connection> connections;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      UserState state;
+    }
+
+    class HolographicImage {
+      User user;
+    }
+
+    class Connection {
+      User user1;
+      User user2;
+    }
+
+    class UserState {
+      static enum StateType
+        ;
+        StateType IDLE;
+        StateType ACTIVE;
+        StateType DISCONNECTED;
+    }
+
+    class HolographicTelepresenceSystem {
+      HolographicDisplay display;
+      UserInterface ui;
+      CommunicationNetwork cn;
+    }
+
+    composition HolographicTelepresenceSystem -> (has) HolographicDisplay;
+    composition HolographicTelepresenceSystem -> (has) UserInterface;
+    composition HolographicTelepresenceSystem -> (has) CommunicationNetwork;
+
+    association HolographicDisplay -> HolographicImage [*];
+    association UserInterface -> Window [*];
+    association UserInterface -> Menu [*];
+    association CommunicationNetwork -> Connection [*];
+    association HolographicDisplay -> CommunicationNetwork [*];
+    association User -> HolographicDisplay [*];
+    association User -> UserInterface [*];
+    association User -> CommunicationNetwork [*];
+}

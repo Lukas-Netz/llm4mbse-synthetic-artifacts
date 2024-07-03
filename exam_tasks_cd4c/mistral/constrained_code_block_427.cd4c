@@ -1,0 +1,118 @@
+
+classdiagram NutritionCoaching {
+
+  class User {
+    String name;
+    int age;
+    HealthGoal healthGoal;
+  }
+
+  enum HealthGoal {
+    WeightLoss, MuscleGain, Maintenance, Other;
+  }
+
+  class DietaryData {
+    FoodIntake foodIntake;
+    PhysicalActivity physicalActivity;
+  }
+
+  class FoodIntake {
+    Food [][ ] foods;
+    int calories;
+    int macronutrients;
+  }
+
+  class Food {
+    String name;
+    String category;
+    int calories;
+    int macronutrients;
+  }
+
+  class PhysicalActivity {
+    int steps;
+    int minutesExercise;
+  }
+
+  class Recommendation {
+    String food;
+    String recipe;
+    String exercise;
+    String workout;
+    String supplement;
+    String vitamin;
+    String resource;
+  }
+
+  class Dashboard {
+    User user;
+    DietaryData dietaryData;
+    Recommendation recommendation;
+  }
+
+  class Notification {
+    String message;
+    String type;
+  }
+
+  class Integration {
+    String device;
+    String app;
+    Data data;
+  }
+
+  class Data {
+    int heartRate;
+    int sleepPatterns;
+  }
+
+  composition User [*] NutritionCoaching [has]
+  --  User
+  - 
+ 
+ 
+ 
+ 
+ 
+;
+  association User [*] DietaryData [has]
+  --  User
+  - 
+ 
+ 
+ 
+ 
+;
+  association DietaryData [*] Recommendation [has]
+  --  DietaryData
+  - 
+ 
+ 
+ 
+ 
+;
+  association User [*] Dashboard [has]
+  --  User
+  - 
+ 
+ 
+ 
+ 
+;
+  association User [*] Notification [has]
+  --  User
+  - 
+ 
+ 
+ 
+ 
+;
+  association Integration [*] NutritionCoaching [uses]
+  --  Integration
+  - 
+ 
+ 
+ 
+ 
+;
+}

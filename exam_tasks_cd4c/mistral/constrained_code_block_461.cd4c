@@ -1,0 +1,97 @@
+
+classdiagram MentalHealthPlatform {
+
+  class User {
+    String username;
+    String password;
+    String email;
+    Profile profile;
+    Session [ ] scheduledSessions;
+    SupportGroup [ ] joinedGroups;
+    Rating [ ] ratings;
+  }
+
+  class Therapist extends User {
+    Schedule schedule;
+  }
+
+  class Profile {
+    String firstName;
+    String lastName;
+    String dateOfBirth;
+    String gender;
+    String language;
+    String currency;
+  }
+
+  class Session {
+    Therapist therapist;
+    User user;
+    DateTime dateTime;
+    SessionStatus status;
+  }
+
+  enum SessionStatus {
+    Scheduled,
+    InProgress,
+    Completed,
+    Cancelled;
+  }
+
+  class SupportGroup {
+    Therapist moderator;
+    String topic;
+    User [ ] members;
+  }
+
+  class Schedule {
+    DateTime [ ] availableSlots;
+  }
+
+  class Rating {
+    User user;
+    Therapist therapist;
+    int rating;
+    String review;
+  }
+
+  class Analytics {
+    User user;
+    Progress progress;
+  }
+
+  class Progress {
+    int sessionsAttended;
+    int supportGroupParticipations;
+    int moodScore;
+    int activityLevel;
+  }
+
+  class WearableDevice {
+    String deviceName;
+    String deviceType;
+    int activityLevel;
+    int moodScore;
+  }
+
+  class MobileApp {
+    String appName;
+    String appType;
+    int activityLevel;
+    int moodScore;
+  }
+
+  class Recommendation {
+    User user;
+    String recommendation;
+  }
+
+  composition User -> Profile;
+  composition Therapist -> Schedule;
+  composition Session -> (has) Therapist;
+  composition Session -> (has) User;
+  composition SupportGroup -> (has) Therapist;
+  composition SupportGroup -> (has) User [*];
+  association User -> Rating [*];
+ 
+  }

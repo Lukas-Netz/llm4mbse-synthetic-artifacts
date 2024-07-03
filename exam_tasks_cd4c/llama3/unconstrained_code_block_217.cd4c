@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram VRConcert  {
+
+  class ConcertHall  {
+    String name;
+    int capacity;
+    Concert[] upcomingConcerts;
+  }
+
+  class Artist  {
+    String name;
+    String genre;
+    Concert[] pastConcerts;
+  }
+
+  class Concert  {
+    Date date;
+    Time time;
+    Artist[] performers;
+  }
+
+  class LightingSystem  {
+    int brightness;
+    String color;
+    String pattern;
+  }
+
+  class SoundSystem  {
+    int volume;
+    int frequency;
+    String type;
+  }
+
+  class SpecialEffects  {
+    Pyrotechnics pyrotechnics;
+    FogMachine fogMachine;
+    LaserBeam laserBeam;
+  }
+
+  class Pyrotechnics  {
+    String type;
+  }
+
+  class FogMachine  {
+    String type;
+  }
+
+  class LaserBeam  {
+    String type;
+  }
+
+  class VRExperience  {
+    Concert concert;
+    LightingSystem lighting;
+    SoundSystem sound;
+    SpecialEffects specialEffects;
+  }
+
+  composition ConcertHall -> Concert[*];
+  composition Concert -> Artist[*];
+  composition LightingSystem -> Concert[*];
+  composition SoundSystem -> Concert[*];
+  composition SpecialEffects -> Concert[*];
+  composition VRExperience -> Concert;
+}

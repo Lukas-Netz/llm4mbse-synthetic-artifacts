@@ -1,0 +1,48 @@
+
+classdiagram AMDS {
+
+  class AMDS {
+    CPU cpu;
+    Database database;
+    Sensor [
+     ][
+     ][
+    ] sensors;
+  }
+
+  class CPU {
+    void processData();
+    void makeDiagnosis();
+    void planTreatment();
+  }
+
+  abstract class Sensor {
+    String uniqueIdentifier;
+    String medicalParameter;
+  }
+
+  class BloodGlucose extends Sensor {
+    int glucoseLevel;
+    int insulinDosage;
+  }
+
+  class BloodPressure extends Sensor {
+    int systolicPressure;
+    int diastolicPressure;
+  }
+
+  class PulseOximeter extends Sensor {
+    int oxygenSaturation;
+    int heartRate;
+  }
+
+  class Database {
+    void storePatientInfo();
+    void storeMedicalHistory();
+    void storeDiagnosisResults();
+  }
+
+  composition AMDS -> CPU;
+  composition AMDS -> Database;
+  composition AMDS -> Sensor [*];
+}

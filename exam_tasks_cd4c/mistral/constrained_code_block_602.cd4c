@@ -1,0 +1,63 @@
+
+classdiagram StockTrading {
+
+  class Database {
+    List<StockData> historicalData;
+  }
+
+  class StockData {
+    Date date;
+    double price;
+    double volume;
+    List<TechnicalIndicator> indicators;
+    FundamentalData fundamentalData;
+  }
+
+  class TechnicalIndicator {
+    String name;
+    double value;
+  }
+
+  class FundamentalData {
+    double earnings;
+    double revenue;
+    double pE;
+    double dividendYield;
+  }
+
+  class MachineLearningModel {
+    Database database;
+    List<TechnicalIndicator> inputFeatures;
+    double output;
+  }
+
+  class TradingAlgorithm {
+    MachineLearningModel model;
+    User user;
+    double riskTolerance;
+    double investmentGoal;
+    List<Stock> stocks;
+  }
+
+  class User {
+    String username;
+    double riskTolerance;
+    double investmentGoal;
+  }
+
+  class Stock {
+    String symbol;
+    double currentPrice;
+  }
+
+  class UserInterface {
+    List<User> users;
+    List<TradingAlgorithm> tradingAlgorithms;
+  }
+
+  composition Database -> StockData [*];
+  composition MachineLearningModel -> TechnicalIndicator [*];
+  composition TradingAlgorithm -> Stock [*];
+  association UserInterface -> User [*];
+  association UserInterface -> TradingAlgorithm [*];
+}

@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram AquacultureManagementSystem  {
+
+  class FishTank  {
+    String uniqueIdentifier;
+    FishType fishType;
+    int size;
+    Location location;
+  }
+
+  class Fish  {
+    String uniqueIdentifier;
+    FishTank tank;
+    double weight;
+    double length;
+    int age;
+  }
+
+  class WaterQuality  {
+    pHLevel pH;
+    Temperature temperature;
+    OxygenLevel oxygen;
+  }
+
+  class Equipment  {
+    String uniqueIdentifier;
+    FishTank assignedTo;
+    MaintenanceSchedule maintenanceSchedule;
+  }
+
+  class MaintenanceSchedule  {
+    Date nextMaintenance;
+    String reminderMessage;
+  }
+
+  class Report  {
+    Fish fish;
+    WaterQuality waterQuality;
+    Equipment equipment;
+  }
+
+  class Alert  {
+    Fish fish;
+    WaterQuality waterQuality;
+    Equipment equipment;
+    String message;
+  }
+
+  enum FishType  {
+    Salmon, Trout, Cod;
+  }
+
+  enum pHLevel  {
+    Acidic, Neutral, Alkaline;
+  }
+
+  enum Temperature  {
+    Cold, Warm, Hot;
+  }
+
+  enum OxygenLevel  {
+    Low, Normal, High;
+  }
+
+  composition FishTank -> Fish [1..*];
+  composition FishTank -> WaterQuality [1..*];
+  composition FishTank -> Equipment [0..1];
+  composition Equipment -> MaintenanceSchedule [1..*];
+  composition Report -> Fish [1..*];
+  composition Report -> WaterQuality [1..*];
+  composition Report -> Equipment [1..*];
+  composition Alert -> Fish [1..*];
+  composition Alert -> WaterQuality [1..*];
+  composition Alert -> Equipment [1..*];
+}

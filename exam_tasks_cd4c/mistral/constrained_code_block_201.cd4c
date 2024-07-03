@@ -1,0 +1,32 @@
+
+classdiagram SmartLighting {
+
+  class CCU {
+    -> Zone [*];
+    void adjustBrightness(Zone zone, int brightness);
+    void storeHistoricalData();
+    void retrieveHistoricalData();
+  }
+
+  class Zone {
+    String uniqueIdentifier;
+    String name;
+    -> Device [*];
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    boolean isOn;
+  }
+
+  class Lamp extends Device {
+    int brightnessLevel;
+  }
+
+  class Sensor extends Device {
+    int ambientLightLevel;
+  }
+
+  composition CCU -> Zone [*];
+  composition Zone -> Device [*];
+}

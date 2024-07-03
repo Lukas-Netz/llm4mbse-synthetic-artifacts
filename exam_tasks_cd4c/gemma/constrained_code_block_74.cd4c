@@ -1,0 +1,42 @@
+
+
+classdiagram DisasterRecoverySystem {
+
+    class DataCenter {
+      String uniqueIdentifier;
+      boolean isOnline;
+    }
+
+    class BackupSystem {
+      String uniqueIdentifier;
+      boolean isAvailable;
+    }
+
+    class NetworkNode {
+      String uniqueIdentifier;
+      boolean isOnline;
+    }
+
+    class RecoveryTeamMember {
+      String uniqueIdentifier;
+      boolean isAvailable;
+    }
+
+    class RecoveryPlan {
+      List<RecoveryTeamMember> members;
+      List<Task> tasks;
+    }
+
+    class Task {
+      String name;
+      Priority priority;
+    }
+
+    enum Priority {
+      High, Medium, Low
+    
+
+  
+
+ ;}
+}

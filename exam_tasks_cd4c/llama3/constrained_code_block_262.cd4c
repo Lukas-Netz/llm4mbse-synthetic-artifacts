@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram TaxFilingSystem  {
+
+  class TaxReturn  {
+    TaxType type;
+    TaxPayer taxpayer;
+    List<TaxCredit> credits;
+    List<TaxDeduction> deductions;
+  }
+
+  abstract class TaxType  {
+    String name;
+  }
+
+  class PersonalIncomeTaxReturn extends TaxType  {
+    String incomeSource;
+  }
+
+  class BusinessIncomeTaxReturn extends TaxType  {
+    String businessName;
+  }
+
+  class EstateTaxReturn extends TaxType  {
+    String estateName;
+  }
+
+  class TaxPayer  {
+    String name;
+    String address;
+  }
+
+  class TaxCredit  {
+    String name;
+    double amount;
+  }
+
+  class TaxDeduction  {
+    String name;
+    double amount;
+  }
+
+  class TaxSummary  {
+    double totalTaxOwed;
+    List<TaxCredit> credits;
+    List<TaxDeduction> deductions;
+  }
+
+  class TaxReport  {
+    TaxReturn taxReturn;
+    TaxSummary summary;
+  }
+
+  composition TaxFilingSystem -> (has) TaxReturn;
+  composition TaxReturn -> (has) TaxPayer;
+  composition TaxReturn -> (has) List<<TaxCredit>>;
+  composition TaxReturn -> (has) List<<TaxDeduction>>;
+  composition TaxSummary -> (has) List<<TaxCredit>>;
+  composition TaxSummary -> (has) List<<TaxDeduction>>;
+  composition TaxReport -> (has) TaxReturn;
+  composition TaxReport -> (has) TaxSummary;
+}

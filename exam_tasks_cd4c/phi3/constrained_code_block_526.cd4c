@@ -1,0 +1,90 @@
+
+classdiagram UnderwaterExplorationSystem {
+
+    class UnderwaterExplorationSystem {
+      VehicleManager vehicleManager;
+      EquipmentManager equipmentManager;
+      CommunicationManager communicationManager;
+      EmergencyManager emergencyManager;
+      DataAnalyticsManager dataAnalyticsManager;
+    }
+
+    class VehicleManager {
+      Vehicle[] vehicles;
+      void addVehicle(Vehicle vehicle);
+      void removeVehicle(Vehicle vehicle);
+      Vehicle getVehicle(String vehicleId);
+      void trackVehicleLocation(String vehicleId);
+      void handleEmergency(Vehicle vehicle);
+    }
+
+    class EquipmentManager {
+      Equipment[] equipment;
+      void addEquipment(Equipment equipment);
+      void removeEquipment(Equipment equipment);
+      Equipment getEquipment(String equipmentId);
+      void trackEquipmentLocation(String equipmentId);
+      void handleEmergency(Equipment equipment);
+    }
+
+    class CommunicationManager {
+      Communication[] communications;
+      void addCommunication(Communication communication);
+      void removeCommunication(Communication communication);
+      Communication getCommunication(String communicationId);
+      void establishCommunication(Vehicle vehicle, String headquartersId);
+      void handleLostConnection(Communication communication);
+    }
+
+    class EmergencyManager {
+      void handleVehicleMalfunction(Vehicle vehicle);
+      void handleLostConnection(Communication communication);
+    }
+
+    class DataAnalyticsManager {
+      Data[] data;
+      void addData(Data data);
+      Data getData(String dataId);
+      void provideRealTimeData(String dataId);
+      void provideAnalytics(String dataId);
+    }
+
+    class Vehicle {
+      String id;
+      Location location;
+      Status status;
+    }
+
+    class Equipment {
+      String id;
+      Location location;
+      Status status;
+    }
+
+    class Communication {
+      String id;
+      String headquartersId;
+      Status status;
+    }
+
+    class Data {
+      String id;
+      String type;
+      String value;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class Status {
+      String type;
+    }
+
+  composition UnderwaterExplorationSystem -> (has) VehicleManager;
+  composition UnderwaterExplorationSystem -> (has) EquipmentManager;
+  composition UnderwaterExplorationSystem -> (has) CommunicationManager;
+  composition UnderwaterExplorationSystem -> (has) EmergencyManager;
+  composition UnderwaterExplorationSystem -> (has) DataAnalyticsManager;
+}

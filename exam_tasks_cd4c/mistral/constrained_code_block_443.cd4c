@@ -1,0 +1,53 @@
+
+classdiagram PsychologyPlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    String level;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String role;
+    Course [ ] enrolledCourses;
+  }
+
+  class Assignment {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Date dueDate;
+    String grader;
+  }
+
+  class DiscussionTopic {
+    String uniqueIdentifier;
+    String title;
+    String description;
+  }
+
+  class Instructor extends Student {
+    Course [ ] managedCourses;
+  }
+
+  class TeachingAssistant extends Student {
+    Instructor supervisor;
+    Course [ ] assistedCourses;
+  }
+
+  class Platform {
+    Instructor [ ] instructors;
+    TeachingAssistant [ ] teachingAssistants;
+    Course [ ] courses;
+    Assignment [ ] assignments;
+    DiscussionTopic [ ] discussionTopics;
+  }
+
+  composition Platform -> Instructor [*];
+  composition Platform -> TeachingAssistant [*];
+  composition Platform -> Course [*];
+  composition Course -> Assignment [*];
+  composition Course -> DiscussionTopic [*];
+}

@@ -1,0 +1,52 @@
+
+classdiagram DroneSurveillanceSystem {
+
+    class Drone {
+      String droneId;
+      List<Sensor> sensors;
+    }
+
+    class Sensor {
+      String sensorType;
+      boolean enabled;
+    }
+
+    class Object {
+      String objectId;
+      Location location;
+      double speed;
+      double direction;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class Hub {
+      List<Drone> drones;
+      Database database;
+      void sendCommand(Drone drone, Command command);
+      void receiveData(Drone drone, Data data);
+      void updateObjectLocation(Object object, Location location);
+      void alertUser(Object object);
+    }
+
+    class Database {
+      List<Object> objects;
+      void addObject(Object object);
+      Object getObjectById(String objectId);
+    }
+
+    enum Command {
+      MoveToLocation(Location),
+      TakeSnapShot,
+      UpdateLocation,
+      DisableSensor(String);
+    }
+
+    enum Data {
+      SensorData(Sensor),
+      ObjectLocation(Location);
+    }
+}

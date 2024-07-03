@@ -1,0 +1,75 @@
+
+
+classdiagram VideoConferenceSystem {
+
+  class Conference {
+    String id;
+    String name;
+    DateTime startTime;
+    DateTime endTime;
+
+    Room room;
+
+    void addParticipant(Participant participant);
+    void removeParticipant(Participant participant);
+  }
+
+  class Participant {
+    String id;
+    String name;
+    String email;
+    boolean isUser;
+
+    void joinConference(Conference conference);
+    void leaveConference(Conference conference);
+  }
+
+  class User extends Participant {
+    String uniqueIdentifier;
+  }
+
+  class Guest extends Participant {
+  }
+
+  class Room {
+    String id;
+    int capacity;
+
+    List<Participant> participants;
+  }
+
+  class FileSharingService {
+    void shareFile(File file, Participant participant);
+  }
+
+  class ChatMessagingService {
+    void sendMessage(Message message, Participant participant);
+  }
+
+  class ConferenceManager {
+    void manageConference(Conference conference);
+  }
+
+  class SystemAdmin {
+    void manageConference(Conference conference);
+    void manageParticipants(Participant participant);
+    void manageRooms(Room room);
+  }
+
+  composition Conference -> Room [1..*];
+  composition Conference -> Participant [*];
+  association Participant - Conference
+  -- association  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

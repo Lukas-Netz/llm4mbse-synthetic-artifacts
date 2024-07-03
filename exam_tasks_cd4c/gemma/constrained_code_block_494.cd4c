@@ -1,0 +1,75 @@
+
+
+classdiagram CarbonCreditsSystem {
+
+  class CarbonCreditRegistry {
+    private Map<CarbonCredit, Integer> credits;
+
+    void addCredit(CarbonCredit credit, int quantity);
+    int getCreditQuantity(CarbonCredit credit);
+  }
+
+  class CarbonCreditHolderList {
+    private Map<String, CarbonCreditHolder> holders;
+
+    void addHolder(CarbonCreditHolder holder);
+    CarbonCreditHolder getHolder(String name);
+  }
+
+  class CarbonCreditTransactionList {
+    private List<CarbonCreditTransaction> transactions;
+
+    void addTransaction(CarbonCreditTransaction transaction);
+    List<CarbonCreditTransaction> getTransactions();
+  }
+
+  class CarbonCreditCertificateList {
+    private Map<CarbonCreditCertificate, Integer> certificates;
+
+    void addCertificate(CarbonCreditCertificate certificate, int quantity);
+    int getCertificateQuantity(CarbonCreditCertificate certificate);
+  }
+
+  class CarbonCredit {
+    private String type;
+    private int quantity;
+    private Date expirationDate;
+
+    CarbonCredit(String type, int quantity, Date expirationDate);
+  }
+
+  class CarbonCreditHolder {
+    private String name;
+    private String address;
+    private String contactInfo;
+    private Map<CarbonCredit, Integer> credits;
+
+    CarbonCreditHolder(String name, String address, String contactInfo);
+    void addCredit(CarbonCredit credit, int quantity);
+    int getCreditQuantity(CarbonCredit credit);
+  }
+
+  class CarbonCreditTransaction {
+    private Date date;
+    private Time time;
+    private CarbonCredit fromHolder;
+    private CarbonCredit toHolder;
+    private int amount;
+
+    CarbonCreditTransaction(Date date, Time time, CarbonCredit fromHolder, CarbonCredit toHolder, int amount);
+  }
+
+  class CarbonCreditCertificate {
+    private SerialNumber serialNumber;
+    private String type;
+    private Date expirationDate;
+    private int quantity;
+
+    CarbonCreditCertificate(SerialNumber serialNumber, String type, Date expirationDate, int quantity);
+  }
+
+  composition CarbonCreditsSystem -> CarbonCreditRegistry;
+  composition CarbonCreditsSystem -> CarbonCreditHolderList;
+  composition CarbonCreditsSystem -> CarbonCreditTransactionList;
+  composition CarbonCreditsSystem -> CarbonCreditCertificateList;
+}

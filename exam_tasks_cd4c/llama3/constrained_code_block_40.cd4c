@@ -1,0 +1,52 @@
+
+
+
+classdiagram MobilePaymentSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    double balance;
+    void addFunds(double amount);
+  }
+
+  class Merchant  {
+    String uniqueIdentifier;
+    List<Product> products;
+    void setPrice(Product product, double price);
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Date timestamp;
+    String description;
+    User user;
+    Merchant merchant;
+  }
+
+  class PaymentMethod  {
+    String uniqueIdentifier;
+  }
+
+  class CreditCard extends PaymentMethod  {
+    String cardNumber;
+    Date expirationDate;
+    String securityCode;
+  }
+
+  class MobileWallet extends PaymentMethod  {
+    String uniqueIdentifier;
+    double balance;
+  }
+
+  class PaymentProcessor  {
+    List<PaymentMethod> paymentMethods;
+    boolean verifyFunds(Transaction transaction);
+    void processTransaction(Transaction transaction);
+  }
+
+  composition User -> PaymentMethod [1..*];
+  composition Merchant -> Product [1..*];
+  composition Transaction -> User;
+  composition Transaction -> Merchant;
+  composition PaymentProcessor -> PaymentMethod [1..*];
+}

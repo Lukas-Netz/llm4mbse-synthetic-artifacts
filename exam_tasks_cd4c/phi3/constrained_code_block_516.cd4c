@@ -1,0 +1,81 @@
+
+classdiagram EarthImagingSystem {
+
+    class Satellite {
+      String name;
+      String identifier;
+      SatelliteState state;
+    }
+
+    class GroundStation {
+      String name;
+      String identifier;
+      void receiveData(Data data);
+      void transmitData(Data data);
+    }
+
+    class ProcessingCenter {
+      String name;
+      String identifier;
+      void processImage(Image image);
+      void analyzeImage(Image image);
+    }
+
+    class Image {
+      String name;
+      String timestamp;
+      int resolution;
+    }
+
+    class Sensor {
+      String name;
+      String identifier;
+      SensorType type;
+    }
+
+    class SensorType {
+      String type;
+    }
+
+    enum SatelliteState {
+      Idle, CapturingImages, TransmittingImages;
+    }
+
+    enum SensorType {
+      Camera, Spectrometer, Radar;
+    }
+
+    class Data {
+      Image image;
+      String metadata;
+    }
+
+    class ImageEnhancementAlgorithm {
+      String name;
+      String identifier;
+      void enhanceImage(Image image);
+    }
+
+    class ObjectDetectionAlgorithm {
+      String name;
+      String identifier;
+      void detectObjects(Image image);
+    }
+
+    class ChangeDetectionAlgorithm {
+      String name;
+      String identifier;
+      void detectChanges(Image image);
+    }
+
+  composition EarthImagingSystem -> (has) Satellite;
+  composition EarthImagingSystem -> (has) GroundStation;
+  composition EarthImagingSystem -> (has) ProcessingCenter;
+  composition Satellite -> (has) Data [*];
+  composition GroundStation -> (has) Data [*];
+  composition GroundStation -> (has) Satellite [*];
+  composition ProcessingCenter -> (has) Image [*];
+  composition ProcessingCenter -> (has) ImageEnhancementAlgorithm [*];
+ 
+ 
+ }

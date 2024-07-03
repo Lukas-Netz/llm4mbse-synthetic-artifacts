@@ -1,0 +1,71 @@
+
+classdiagram SmartFarmWeatherStation {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String location;
+    TemperatureSensor temperature;
+    HumiditySensor humidity;
+    WindSpeedSensor windSpeed;
+    PrecipitationSensor precipitation;
+    Sensor [ ] additionalSensors;
+  }
+
+  interface TemperatureSensor {
+    int getTemperature();
+  }
+
+  interface HumiditySensor {
+    int getHumidity();
+  }
+
+  interface WindSpeedSensor {
+    int getWindSpeed();
+  }
+
+  interface PrecipitationSensor {
+    int getPrecipitation();
+  }
+
+  abstract class Sensor {
+  }
+
+  class UVRadiationSensor extends Sensor {
+    int getUVRadiation();
+  }
+
+  class AirQualitySensor extends Sensor {
+    int getAirQuality();
+  }
+
+  class SoilMoistureSensor extends Sensor {
+    int getSoilMoisture();
+  }
+
+  class WeatherStationType {
+    String name;
+    Sensor [ ] defaultSensors;
+  }
+
+  class BasicWeatherStationType extends WeatherStationType {
+    BasicWeatherStationType();
+  }
+
+  class AdvancedWeatherStationType extends WeatherStationType {
+    AdvancedWeatherStationType();
+  }
+
+  class PremiumWeatherStationType extends WeatherStationType {
+    PremiumWeatherStationType();
+  }
+
+  class Hub {
+    -> WeatherStation [*];
+    void aggregateData();
+    void analyzeData();
+    void remoteMonitor();
+    void remoteControl();
+  }
+
+  composition Hub -> WeatherStation [*];
+}

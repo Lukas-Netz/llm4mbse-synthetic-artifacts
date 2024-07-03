@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram BiologyPlatform  {
+
+  class Course  {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    -> Assignment[*];
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    -> Enrollment[*];
+  }
+
+  class Instructor  {
+    String uniqueIdentifier;
+    -> Course[*];
+  }
+
+  class Assignment  {
+    String name;
+    String description;
+    Date dueDate;
+    -> Grade[*];
+  }
+
+  class Enrollment  {
+    Course course;
+    Student student;
+  }
+
+  class Grade  {
+    Assignment assignment;
+    Student student;
+    double score;
+  }
+
+  class Progress  {
+    Student student;
+    int completedAssignments;
+    double totalGrade;
+  }
+
+  class Administrator  {
+    -> Instructor[*];
+    -> Course[*];
+    -> Progress[*];
+  }
+
+  composition Course -> Assignment;
+  composition Student -> Enrollment;
+  composition Instructor -> Course;
+  composition Assignment -> Grade;
+  composition Enrollment -> Course;
+  composition Grade -> Assignment;
+  composition Progress -> Student;
+  composition Administrator -> Instructor;
+  composition Administrator -> Course;
+  composition Administrator -> Progress;
+}

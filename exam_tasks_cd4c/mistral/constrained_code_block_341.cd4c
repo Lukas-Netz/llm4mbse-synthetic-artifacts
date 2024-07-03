@@ -1,0 +1,45 @@
+
+classdiagram DigitalMenuBoard {
+
+  class Restaurant {
+    String name;
+    String uniqueIdentifier;
+    MenuBoard [][] menuBoards;
+  }
+
+  class MenuBoard {
+    String name;
+    String uniqueIdentifier;
+    MenuItem [][] menuItems;
+  }
+
+  abstract class MenuItem {
+    String name;
+    String description;
+    double price;
+    int orders;
+    double revenue;
+  }
+
+  class Food extends MenuItem {
+    int calories;
+    String ingredients;
+  }
+
+  class Drink extends MenuItem {
+    String size;
+    String flavor;
+  }
+
+  composition Restaurant -> MenuBoard [*];
+  composition MenuBoard -> MenuItem [*];
+
+  interface IMenuBoardManager {
+    void addMenuBoard(MenuBoard menuBoard);
+    void removeMenuBoard(MenuBoard menuBoard);
+    void updateMenuBoard(MenuBoard menuBoard);
+    void addMenuItem(MenuBoard menuBoard, MenuItem menuItem);
+    void removeMenuItem(MenuBoard menuBoard, MenuItem menuItem);
+    void updateMenuItem(MenuBoard menuBoard, MenuItem menuItem);
+  }
+}

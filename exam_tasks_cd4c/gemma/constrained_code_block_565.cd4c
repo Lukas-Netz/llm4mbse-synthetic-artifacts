@@ -1,0 +1,59 @@
+
+
+classdiagram WirelessBrainComputerInterface {
+
+  class WirelessBrainComputerInterfaceSystem {
+    Hub hub;
+    ProcessingUnit processingUnit;
+    ControlDevice controlDevice;
+    User user;
+    Session session;
+  }
+
+  class Hub {
+    -> Device [*];
+    void addDevice(Device device);
+    void removeDevice(Device device);
+  }
+
+  class ProcessingUnit {
+    BrainSignalProcessor brainSignalProcessor;
+  }
+
+  class ControlDevice {
+    DeviceControl deviceControl;
+  }
+
+  class User {
+    String name;
+    UniqueIdentifier identifier;
+  }
+
+  class Session {
+    StartTime startTime;
+    EndTime endTime;
+  }
+
+  class Device {
+    String name;
+    UniqueIdentifier identifier;
+  }
+
+  class BrainSignalProcessor {
+    BrainSignal extractBrainSignals();
+  }
+
+  class DeviceControl {
+    ControlCommand controlCommand;
+  }
+
+  class ControlCommand {
+    void execute();
+  }
+
+  composition WirelessBrainComputerInterfaceSystem -> (has) Hub;
+  composition WirelessBrainComputerInterfaceSystem -> (has) ProcessingUnit;
+  composition WirelessBrainComputerInterfaceSystem -> (has) ControlDevice;
+  association User -> Session;
+  association Session -> Device;
+}

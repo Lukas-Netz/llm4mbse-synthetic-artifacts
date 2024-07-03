@@ -1,0 +1,66 @@
+
+classdiagram MeditationPlatform {
+
+  class User {
+    String username;
+    List<Course> enrolledCourses;
+    List<Review> reviews;
+  }
+
+  class Course {
+    String title;
+    String description;
+    List<Lesson> lessons;
+    List<User> enrolledUsers;
+    List<Review> reviews;
+    int rating;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    int duration;
+  }
+
+  class Review {
+    String username;
+    String courseTitle;
+    int rating;
+    String comment;
+  }
+
+  <<association>> class User {
+    Course[] enrolledCourses;
+  }
+
+  <<association>> class Course {
+    User[] enrolledUsers;
+    Review[] reviews;
+  }
+
+  <<association>> class Lesson {
+    Course course;
+  }
+
+  <<association>> class Review {
+    Course course;
+    User user;
+  }
+
+  <<aggregation>> class User {
+    List<Course> recommendedCourses;
+  }
+
+  <<aggregation>> class Course {
+    List<Lesson> lessons;
+  }
+
+  <<association>> class Lesson {
+    Course course;
+  }
+
+  <<association>> class Review {
+    Course course;
+    User user;
+  }
+}

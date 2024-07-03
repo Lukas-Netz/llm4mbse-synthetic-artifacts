@@ -1,0 +1,44 @@
+
+classdiagram TravelManagement {
+
+  class Trip {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    String destination;
+    Employee employee;
+    TravelAgency travelAgency;
+    TripStatus status;
+  }
+
+  enum TripStatus {
+    Booked, Cancelled, Completed;
+  }
+
+  class Employee {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+    Trip [
+    ] trips;
+  }
+
+  class TravelAgency {
+    String uniqueIdentifier;
+    String name;
+    String contactPerson;
+    Trip [
+    ] trips;
+  }
+
+  class Report {
+    String type;
+    Date date;
+    String content;
+  }
+
+  composition TravelManagement -> Employee [*];
+  composition TravelManagement -> TravelAgency [*];
+  association Employee --oTrip;
+  association TravelAgency --oTrip;
+}

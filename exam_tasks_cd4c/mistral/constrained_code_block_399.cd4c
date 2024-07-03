@@ -1,0 +1,51 @@
+
+classdiagram VRConcert {
+
+  class ConcertHall {
+    String name;
+    int capacity;
+    Concert [][] upcomingConcerts;
+  }
+
+  class Artist {
+    String name;
+    String genre;
+    Artist [][] pastConcerts;
+  }
+
+  class Concert {
+    Date date;
+    Time time;
+    Artist [][] artists;
+  }
+
+  class Lighting {
+    int brightness;
+    String color;
+    String pattern;
+  }
+
+  class Sound {
+    int volume;
+    int frequency;
+    String type;
+  }
+
+  class SpecialEffects {
+    boolean pyrotechnics;
+    boolean fogMachine;
+    boolean laserBeam;
+  }
+
+  class VRExperience {
+    String virtualEnvironment;
+    boolean  is3D;
+  }
+
+  composition ConcertHall -> Concert [*];
+  composition Concert -> Artist [*];
+  association ConcertHall -> Lighting;
+  association ConcertHall -> Sound;
+  association ConcertHall -> SpecialEffects;
+  association ConcertHall -> VRExperience;
+}

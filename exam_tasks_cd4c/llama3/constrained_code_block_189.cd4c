@@ -1,0 +1,80 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Plant  {
+    String name;
+    String uniqueIdentifier;
+    ProductionLine  productionLine  ;
+    ControlSystem controlSystem;
+    QualityControl qualityControl;
+  }
+
+  class ProductionLine  {
+    String name;
+    String uniqueIdentifier;
+    Machine  machine  ;
+  }
+
+  abstract class Machine  {
+    String name;
+    String uniqueIdentifier;
+    MachineStatus status;
+  }
+
+  class CNCMachine extends Machine  {
+    int spindleSpeed;
+    String cuttingTool;
+  }
+
+  class ThreeDPrinter extends Machine  {
+    int printSpeed;
+    int layerThickness;
+  }
+
+  class Robot extends Machine  {
+    int armLength;
+    String gripperType;
+  }
+
+  class ControlSystem  {
+    void startProductionLine(ProductionLine productionLine);
+    void stopProductionLine(ProductionLine productionLine);
+    void monitorMachineStatus(Machine machine);
+    void sendNotificationToMaintenance(Machine machine);
+  }
+
+  class QualityControl  {
+    Inspector  inspector  ;
+    void generateReport();
+  }
+
+  class Inspector  {
+    String name;
+    String uniqueIdentifier;
+    void inspectProduct(Product product);
+    void assignQualityRating(Product product);
+  }
+
+  class Product  {
+    String type;
+    QualityRating qualityRating;
+  }
+
+  enum MachineStatus  {
+    Operational, NotOperational;
+  }
+
+  enum QualityRating  {
+    Excellent, Good, Fair, Poor;
+  }
+
+  composition Plant  ->  (has) ProductionLine;
+  composition ProductionLine  ->  (has) Machine;
+  composition Plant  ->  (has) ControlSystem;
+  composition Plant  ->  (has) QualityControl;
+  composition QualityControl  ->  (has) Inspector;
+  composition Inspector  ->  (has) Product;
+}

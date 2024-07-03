@@ -1,0 +1,100 @@
+
+classdiagram Genealogy {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Profile {
+    String name;
+    Date birthdate;
+    Date deathdate;
+    User user;
+  }
+
+  class Relationship {
+    Profile source;
+    Profile target;
+    RelationshipType type;
+    Date date;
+  }
+
+  enum RelationshipType {
+    Parent, Child, Spouse;
+  }
+
+  class Document {
+    String title;
+    String content;
+  }
+
+  class Image {
+    String filename;
+    String content;
+  }
+
+  class Repository {
+    Document [ ] documents;
+    Image [ ] images;
+  }
+
+  class FamilyTree {
+    Profile root;
+    Relationship [ ] relationships;
+  }
+
+  association User --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  association Profile --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  association Relationship --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  association Repository --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  association FamilyTree --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  composition User --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  composition Profile --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  composition Repository --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+
+  composition FamilyTree --o000o- 
+  {
+    ordered
+  }
+ 	 	 ;
+}

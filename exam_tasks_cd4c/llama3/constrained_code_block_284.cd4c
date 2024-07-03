@@ -1,0 +1,67 @@
+
+
+
+classdiagram HomeAutomation  {
+
+  class Controller  {
+    String uniqueIdentifier;
+    type Hub;
+    type Router;
+  }
+
+  class Hub extends Controller  {
+    -> Device[*];
+    -> Sensor[*];
+  }
+
+  class Router extends Controller  {
+    -> Device[*];
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Light extends Device  {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Thermostat extends Device  {
+    int temperature;
+    ThermostatMode mode;
+  }
+
+  class SecurityCamera extends Device  {
+    String resolution;
+    boolean isRecording;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  class PowerSupply  {
+    int capacityWh;
+    boolean isCharged;
+  }
+
+  enum DeviceStatus  {
+    On, Off;
+  }
+
+  enum ThermostatMode  {
+    Heating, Cooling;
+  }
+
+  enum SensorType  {
+    Motion, Temperature, Light;
+  }
+
+  composition Hub -> (has) Device[*];
+  composition Hub -> (has) Sensor[*];
+  composition Router -> (has) Device[*];
+  composition PowerSupply -> (has) Controller[*];
+}

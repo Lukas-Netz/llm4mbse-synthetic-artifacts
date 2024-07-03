@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram DatabaseSolution  {
+
+  class Database  {
+    Table  [  ] tables;
+    void insertData(Table table, Column column, String data);
+    void retrieveData(Table table, Column column);
+    void deleteData(Table table, Column column);
+  }
+
+  class Client  {
+    Project project;
+    String uniqueIdentifier;
+    void createData(Table table, Column column, String data);
+    void readData(Table table, Column column);
+    void updateData(Table table, Column column, String data);
+    void deleteData(Table table, Column column);
+  }
+
+  class Project  {
+    String name;
+  }
+
+  class Table  {
+    String name;
+    Column  [  ] columns;
+  }
+
+  class Column  {
+    String name;
+  }
+
+  class Authentication  {
+    void authenticateClient(Client client);
+  }
+
+  class Authorization  {
+    void authorizeClient(Client client, Table table);
+  }
+
+  class Backup  {
+    void backupData(Database database);
+    void recoverData(Database database);
+  }
+
+  composition Database  ->  (has) Table  [ 1..*];
+  composition Client  ->  (has) Project;
+  composition Table  ->  (has) Column  [ 1..*];
+  composition Database  ->  (has) Backup;
+  composition Client  ->  (has) Authentication;
+  composition Client  ->  (has) Authorization;
+}

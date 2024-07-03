@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram QuantumImagingSystem  {
+
+  class CameraModule  {
+    Lens lens;
+    Sensor sensor;
+    ControlUnit controlUnit;
+  }
+
+  class ProcessingUnit  {
+    void processImage(Image image);
+    void applyQuantumEnhancedAlgorithms(Image image);
+  }
+
+  class StorageDevice  {
+    void storeImage(Image image);
+  }
+
+  class UserInterface  {
+    void adjustCameraSettings(CameraModule cameraModule);
+    void viewCapturedImages(Image[] images);
+  }
+
+  class Lens  {
+    void focusLight();
+  }
+
+  class Sensor  {
+    Image captureImage();
+  }
+
+  class ControlUnit  {
+    void adjustCameraSettings(Environment environment);
+  }
+
+  class ProcessingAlgorithm  {
+    void enhanceImage(Image image);
+  }
+
+  class Image  {
+    byte[] pixels;
+  }
+
+  class Environment  {
+    String getLightCondition();
+  }
+
+  composition CameraModule -> (has) Lens;
+  composition CameraModule -> (has) Sensor;
+  composition CameraModule -> (has) ControlUnit;
+  composition ProcessingUnit -> (uses) ProcessingAlgorithm;
+  composition StorageDevice -> (stores) Image;
+  composition UserInterface -> (uses) CameraModule;
+  composition UserInterface -> (displays) Image;
+}

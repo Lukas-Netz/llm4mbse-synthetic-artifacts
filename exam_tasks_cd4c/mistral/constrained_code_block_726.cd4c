@@ -1,0 +1,121 @@
+
+classdiagram ForestFirePrediction {
+
+  class WeatherStation {
+    String id;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class VegetationSensor {
+    String id;
+    VegetationDensity density;
+    VegetationType type;
+  }
+
+  class FireIncidentDatabase {
+    FireIncident [][] incidents;
+  }
+
+  class FireIncident {
+    Location location;
+    Date date;
+    Severity severity;
+  }
+
+  class AIEngine {
+    WeatherStation weatherStation;
+    VegetationSensor vegetationSensor;
+    FireIncidentDatabase fireIncidentDatabase;
+    Prediction prediction;
+  }
+
+  class RecommendationEngine {
+    Prediction prediction;
+    Recommendation [][] recommendations;
+  }
+
+  class UserInterface {
+    Prediction prediction;
+    Recommendation [][] recommendations;
+  }
+
+  class Temperature {
+    double value;
+  }
+
+  class Humidity {
+    double value;
+  }
+
+  class WindSpeed {
+    double value;
+  }
+
+  class VegetationDensity {
+    double value;
+  }
+
+  class VegetationType {
+    String name;
+  }
+
+  class Date {
+    String year;
+    String month;
+    String day;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Severity {
+    String level;
+  }
+
+  class Prediction {
+    double likelihood;
+  }
+
+  class Recommendation {
+    String strategy;
+    String priority;
+  }
+
+  composition WeatherStation [*] FireIncidentDatabase.incidents[ij]
+  -- WeatherStation
+  -
+  {
+   
+ 
+ 
+ 
+ ordered
+  }
+
+ 
+ 
+;
+
+  composition VegetationSensor [*] FireIncidentDatabase.incidents[ij]
+  -- VegetationSensor
+  -
+  {
+   
+ 
+ 
+ 
+ ordered
+  }
+
+ 
+ 
+;
+
+  association AIEngine -- WeatherStation;
+ 
+ 
+ }

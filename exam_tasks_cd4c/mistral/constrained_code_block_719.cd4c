@@ -1,0 +1,52 @@
+
+classdiagram DigitalHealth {
+
+  class WearableDevice {
+    String uniqueIdentifier;
+    String name;
+    WearableDeviceType type;
+  }
+
+  enum WearableDeviceType {
+    Smartwatch, FitnessTracker, Other;
+  }
+
+  class User {
+    String username;
+    String password;
+    -> WearableDevice [*];
+  }
+
+  class HealthData {
+    String uniqueIdentifier;
+    String deviceIdentifier;
+    String metric;
+    int value;
+    String timestamp;
+  }
+
+  class Database {
+    -> HealthData [*];
+  }
+
+  class Goals {
+    String stepGoal;
+  }
+
+  class Reminders {
+    String moveReminder;
+  }
+
+  class Notifications {
+    String notification;
+  }
+
+  composition User -> WearableDevice [*];
+  association User --o00o- 											;
+  association WearableDevice --o00o- 								;
+  association HealthData --o00o- 									;
+  association Database --o00o- 										;
+  association Goals --o00o- 											;
+  association Reminders --o00o- 										;
+  association Notifications --o00o- 								;
+}

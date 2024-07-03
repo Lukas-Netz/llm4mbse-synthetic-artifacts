@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram DigitalForensicsSystem  {
+
+  class Evidence  {
+    String type;  # file email  ; network packet
+    ;  # evidence content
+  ;}
+
+  class FileEvidence extends Evidence  {
+    String fileName;
+    String fileExtension;
+  }
+
+  class EmailEvidence extends Evidence  {
+    String sender;
+    String recipient;
+    String subject;
+  }
+
+  class NetworkPacketEvidence extends Evidence  {
+    String sourceIP;
+    String destinationIP;
+    String packetContents;
+  }
+
+  class Analysis  {
+    Evidence evidence;
+    AnalysisResult result;
+  }
+
+  class AnalysisResult  {
+    String summary;
+    String conclusions;
+  }
+
+  class Report  {
+    AnalysisResult analysisResult;
+    String reportSummary;
+  }
+
+  class UserInterface  {
+    void importEvidence(Evidence evidence);
+    void analyzeEvidence(Evidence evidence);
+    void viewReport(Report report);
+  }
+
+  class Database  {
+    void storeEvidence(Evidence evidence);
+    void storeAnalysisResult(AnalysisResult analysisResult);
+    void retrieveEvidence(Evidence evidence);
+  }
+
+  class Exporter  {
+    void exportReport(Report report, String format);
+  }
+
+  composition DigitalForensicsSystem  ->  (has) UserInterface;
+  composition DigitalForensicsSystem  ->  (has) Database;
+  composition DigitalForensicsSystem  ->  (has) Exporter;
+
+  association DigitalForensicsSystem  ->  (uses) Analysis;
+  association Analysis  ->  (analyzes) Evidence;
+  association Report  ->  (generatedFrom) Analysis;
+  association Database  ->  (stores) Evidence;
+  association Database  ->  (stores) AnalysisResult;
+  association Exporter  ->  (exports) Report;
+}

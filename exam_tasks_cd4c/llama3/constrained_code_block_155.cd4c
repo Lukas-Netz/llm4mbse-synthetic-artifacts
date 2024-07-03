@@ -1,0 +1,103 @@
+
+
+
+
+classdiagram DataGovernance  {
+
+  class DataGovernanceTool  {
+    DataSources dataSources;
+    DataFlows dataFlows;
+    DataTransformations dataTransformations;
+    DataQualityIssues dataQualityIssues;
+    DataSecurityBreach dataSecurityBreach;
+    DataComplianceViolations dataComplianceViolations;
+    UserManagement userManagement;
+    DataVisualization dataVisualization;
+    Reporting reporting;
+    AuditTrail auditTrail;
+  }
+
+  class DataSources  {
+    DataSource  [  ] dataSources;
+  }
+
+  class DataFlow  {
+    DataSources source;
+    DataTargets target;
+  }
+
+  class DataTarget  {
+    DataSources source;
+  }
+
+  class DataTransformation  {
+    DataFlow dataFlow;
+    TransformationType transformationType;
+  }
+
+  class DataQualityIssue  {
+    DataFlow dataFlow;
+    IssueType issueType;
+  }
+
+  class DataSecurityBreach  {
+    DataFlow dataFlow;
+    BreachType breachType;
+  }
+
+  class DataComplianceViolation  {
+    DataFlow dataFlow;
+    ViolationType violationType;
+  }
+
+  class UserManagement  {
+    User  [  ] users;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class DataVisualization  {
+    VisualizationType visualizationType;
+  }
+
+  class Reporting  {
+    ReportType reportType;
+  }
+
+  class AuditTrail  {
+    AuditEntry  [  ] auditEntries;
+  }
+
+  class AuditEntry  {
+    String action;
+    String timestamp;
+  }
+
+  class DataMigration  {
+    DataFormat dataFormat;
+  }
+
+  class DataIntegration  {
+    DataFormat dataFormat;
+  }
+
+  class DataAnalytics  {
+    AnalyticsType analyticsType;
+  }
+
+  class MachineLearning  {
+    MachineLearningType machineLearningType;
+  }
+
+  enum DataFormat  {
+    CSV, JSON, XML;
+  }
+
+  enum TransformationType  {
+    MAP, FILTER, JOIN;
+  }
+
+  }

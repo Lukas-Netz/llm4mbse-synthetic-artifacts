@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram ContactCenter  {
+
+  class Agent  {
+    String name;
+    SkillSet skills;
+  }
+
+  class Customer  {
+    String name;
+  }
+
+  class Conversation  {
+    Customer customer;
+    Agent agent;
+    ConversationState state;
+    Feedback feedback;
+  }
+
+  class SkillSet  {
+    String skill;
+    Level level;
+  }
+
+  enum ConversationState  {
+    New, InProgress, Resolved, Abandoned;
+  }
+
+  enum Level  {
+    Basic, Intermediate, Advanced;
+  }
+
+  class Feedback  {
+    String comment;
+    Rating rating;
+  }
+
+  enum Rating  {
+    Poor, Fair, Good, Excellent;
+  }
+
+  class Analytics  {
+    AverageHandleTime averageHandleTime;
+    FirstCallResolution firstCallResolution;
+    CustomerSatisfaction customerSatisfaction;
+  }
+
+  class AverageHandleTime  {
+    double value;
+  }
+
+  class FirstCallResolution  {
+    double value;
+  }
+
+  class CustomerSatisfaction  {
+    double value;
+  }
+
+  composition ContactCenter -> (has) Agent[*];
+  composition ContactCenter -> (has) Customer[*];
+  composition ContactCenter -> (has) Conversation[*];
+  composition Conversation -> (has) Agent;
+  composition Conversation -> (has) Customer;
+  composition Analytics -> (has) AverageHandleTime;
+  composition Analytics -> (has) FirstCallResolution;
+  composition Analytics -> (has) CustomerSatisfaction;
+}

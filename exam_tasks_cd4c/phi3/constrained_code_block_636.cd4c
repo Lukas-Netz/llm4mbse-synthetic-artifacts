@@ -1,0 +1,48 @@
+
+classdiagram SmartGrid {
+
+    class SmartGrid {
+      ESU[] esus;
+      EDC[] edcs;
+      ECP[] ecp;
+      WeatherStation weatherStation;
+    }
+
+    class ESU {
+      int capacityKWh;
+      int chargeLevelKWh;
+      void charge(int kWh);
+      void discharge(int kWh);
+    }
+
+    class EDC {
+      EDC[] connectedEDCs;
+      ESU[] connectedESUs;
+      void distributeEnergy(ECP ecp, int kWh);
+    }
+
+    class ECP {
+      String identifier;
+      ECPType type;
+      int consumptionPattern;
+    }
+
+    class WeatherStation {
+      WeatherData weatherData;
+    }
+
+    class WeatherData {
+      int temperature;
+      int humidity;
+      String weatherCondition;
+    }
+
+    enum ECPType {
+      Residential, Commercial, Industrial;
+    }
+
+  composition SmartGrid -> (has) ESU[*];
+  composition SmartGrid -> (has) EDC[*];
+  composition SmartGrid -> (has) ECP[*];
+  association WeatherStation -> SmartGrid [1..*];
+}

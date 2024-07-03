@@ -1,0 +1,43 @@
+
+
+classdiagram ELearningPlatform {
+
+  class User {
+    String username;
+    String password;
+    boolean isInstructor;
+  }
+
+  class Course {
+    String title;
+    String description;
+    String category;
+    boolean isOnline;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    String content;
+    Course course;
+  }
+
+  class Enrollment {
+    User user;
+    Course course;
+    List<ProgressRecord> progressRecords;
+  }
+
+  class ProgressRecord {
+    Enrollment enrollment;
+    boolean isCompleted;
+  }
+
+  composition User -> (has) Course [0..*];
+  composition Course -> (has) Lesson [0..*];
+  composition Course -> (has) Enrollment [0..*];
+  composition Enrollment -> (has) ProgressRecord [0..*];
+  association User -oenrollment -> Course;
+  association Course -oenrollment -> User;
+  association ProgressRecord -oenrollment -> Enrollment;
+}

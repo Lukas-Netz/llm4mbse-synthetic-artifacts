@@ -1,0 +1,35 @@
+
+classdiagram ProductLifecycleManagement {
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      List<ProductVersion> productVersions;
+    }
+
+    class ProductVersion {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Product product;
+      DevelopmentStatus status;
+    }
+
+    class ProductRelease {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      ProductVersion version;
+      DevelopmentStatus status;
+    }
+
+    enum DevelopmentStatus {
+      Planning, Development, Testing, Released, Retired;
+    }
+
+    association Product -> ProductVersion [1..*];
+    association Product -> ProductRelease [1..*];
+    composition ProductVersion -> Product;
+    composition ProductRelease -> ProductVersion;
+}

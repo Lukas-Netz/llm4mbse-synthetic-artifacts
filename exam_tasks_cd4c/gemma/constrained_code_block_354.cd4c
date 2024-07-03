@@ -1,0 +1,58 @@
+
+
+classdiagram UrbanPlanningPlatform {
+
+  class UrbanArea {
+    String name;
+    List<District> districts;
+  }
+
+  class District {
+    String name;
+    String uniqueIdentifier;
+    Properties properties;
+  }
+
+  class Building {
+    String name;
+    String uniqueIdentifier;
+    Properties properties;
+  }
+
+  class TransportationInfrastructure {
+    Roads roads;
+    Highways highways;
+    PublicTransportation publicTransportation;
+  }
+
+  class Sensors {
+    TrafficCameras trafficCameras;
+    AirQualitySensors airQualitySensors;
+    NoisePollutionSensors noisePollutionSensors;
+  }
+
+  class Analytics {
+    PopulationGrowth populationGrowth;
+    TrafficPatterns trafficPatterns;
+    EnvironmentalImpact environmentalImpact;
+  }
+
+  class Collaboration {
+    Stakeholders stakeholders;
+    DecisionMaking decisionMaking;
+  }
+
+  composition UrbanArea -> (has) District [*];
+  composition District -> (has) Building [*];
+  composition TransportationInfrastructure -> (has) Roads;
+  composition TransportationInfrastructure -> (has) Highways;
+  composition TransportationInfrastructure -> (has) PublicTransportation;
+  composition Sensors -> (has) TrafficCameras;
+  composition Sensors -> (has) AirQualitySensors;
+  composition Sensors -> (has) NoisePollutionSensors;
+  composition Analytics -> (has) PopulationGrowth;
+  composition Analytics -> (has) TrafficPatterns;
+  composition Analytics -> (has) EnvironmentalImpact;
+  composition Collaboration -> (has) Stakeholders;
+  composition Collaboration -> (has) DecisionMaking;
+}

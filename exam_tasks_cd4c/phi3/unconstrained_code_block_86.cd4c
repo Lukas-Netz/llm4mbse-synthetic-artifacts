@@ -1,0 +1,47 @@
+
+classdiagram AssetManagementSystem {
+
+    class Asset {
+      String uniqueIdentifier;
+      String name;
+      AssetType type;
+      String location;
+      AssetStatus status;
+      List<Mainteninasmall> maintenanceHistory;
+    }
+
+    class Equipment extends Asset {
+      String serialNumber;
+      String manufacturer;
+      String model;
+    }
+
+    class Vehicle extends Asset {
+      String licensePlateNumber;
+      String make;
+      String model;
+    }
+
+    class Furniture extends Asset {
+      String material;
+      String color;
+      String size;
+    }
+
+    class MaintenanceRecord {
+      String date;
+      String type;
+    }
+
+    enum AssetType {
+      Equipment, Vehicle, Furniture;
+    }
+
+    enum AssetStatus {
+      InUse, UnderMaintenance, Available;
+    }
+
+    association Asset -> MaintenanceRecord [*];
+    composition Asset -> AssetType;
+    composition Asset -> AssetStatus;
+}

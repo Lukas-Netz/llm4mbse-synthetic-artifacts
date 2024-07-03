@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram DigitalContentCuration  {
+
+  class Library  {
+    Content  content;
+  }
+
+  class Curator  {
+    Library library;
+  }
+
+  class Tag  {
+    String name;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  class Search  {
+    Library library;
+  }
+
+  abstract class Content  {
+    String uniqueIdentifier;
+  }
+
+  class Image extends Content  {
+    int resolution;
+    String format;
+  }
+
+  class Video extends Content  {
+    int duration;
+    String format;
+  }
+
+  class Document extends Content  {
+    String fileType;
+    int size;
+  }
+
+  composition Curator  ->  (has) Library;
+  composition Library  ->  (has) Content;
+  composition Content  ->  (has) Tag [0..*];
+  composition Content  ->  (has) Rating [0..*];
+  composition Search  ->  (has) Library;
+  composition Tag  ->  (has) Content [0..*];
+  composition Rating  ->  (has) Content [0..*];
+}

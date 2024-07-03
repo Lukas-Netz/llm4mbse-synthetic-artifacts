@@ -1,0 +1,39 @@
+
+classdiagram CryptocurrencyWallet {
+
+    class CryptocurrencyWallet {
+      String walletId;
+      String password;
+      List<Account> accounts;
+      List<Contact> contacts;
+      List<Transaction> transactions;
+    }
+
+    class Account {
+      String accountId;
+      String address;
+      BigDecimal balance;
+      List<Transaction> transactions;
+    }
+
+    class Contact {
+      String contactId;
+      String address;
+      String label;
+    }
+
+    class Transaction {
+      String transactionId;
+      Date date;
+      BigDecimal amount;
+      TransactionType type;
+    }
+
+    class TransactionType {
+      String type;
+    }
+
+    association CryptocurrencyWallet -> Account [1..*];
+    association CryptocurrencyWallet -> Contact [1..*];
+    association CryptocurrencyWallet -> Transaction [1..*];
+}

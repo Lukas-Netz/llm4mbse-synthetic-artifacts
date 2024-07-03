@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram LandOwnership  {
+
+  class LandPlot  {
+    String uniqueIdentifier;
+    Location location;
+    int size;
+  }
+
+  class Owner  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class Transaction  {
+    LandPlot landPlot;
+    Owner owner;
+    TransactionType type;
+  }
+
+  class TransactionHistory  {
+    LandPlot landPlot;
+    List<Transaction> transactions;
+  }
+
+  class Blockchain  {
+    List<TransactionHistory> transactionHistories;
+  }
+
+  class Location  {
+    String address;
+    String city;
+    String state;
+    String zip;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phone;
+    String address;
+  }
+
+  enum TransactionType  {
+    Purchase,
+    Sale,
+    Lease;
+  }
+
+  composition Blockchain  ->  (has) TransactionHistory[*];
+  composition TransactionHistory  ->  (has) Transaction[*];
+  composition LandPlot  ->  (has) TransactionHistory[*];
+  composition Owner  ->  (has) ContactInformation;
+}

@@ -1,0 +1,66 @@
+
+classdiagram VRTraining {
+
+  class Simulation {
+    -> Scenario [*];
+    void startScenario(Scenario scenario);
+    void stopScenario(Scenario scenario);
+    int checkUserScore(User user);
+  }
+
+  class Scenario {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Object [*];
+  }
+
+  class User {
+    String name;
+    Rank rank;
+    UserType userType;
+    int score;
+  }
+
+  enum Rank {
+    Recruit, Private, Corporal, Sergeant, Lieutenant, Captain, Major, Colonel, General;
+  }
+
+  enum UserType {
+    Trainee, Instructor;
+  }
+
+  class Instructor {
+    String name;
+    Rank rank;
+    InstructorRole role;
+  }
+
+  enum InstructorRole {
+    Observer, Controller;
+  }
+
+  class Object {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Building extends Object {
+  }
+
+  class Vehicle extends Object {
+  }
+
+  class Character extends Object {
+  }
+
+  class BackupSystem {
+    void storeData();
+    void recoverData();
+  }
+
+  composition Simulation -> Scenario;
+  composition Simulation -> BackupSystem [0..1];
+  composition Scenario -> Object [*];
+}

@@ -1,0 +1,72 @@
+
+
+
+classdiagram SmartFarming  {
+
+  class Farm  {
+    String name;
+    Sensor  sensor;
+    WeatherStation weatherStation;
+  }
+
+  class Sensor  {
+    SoilMoisture soilMoisture;
+    Temperature temperature;
+    Humidity humidity;
+  }
+
+  class WeatherStation  {
+    Temperature temperature;
+    Humidity humidity;
+    Precipitation precipitation;
+  }
+
+  class CentralHub  {
+    Farm  farm;
+    CropType cropType;
+    Recommendation recommendation;
+  }
+
+  class CropType  {
+    String name;
+    SoilMoisture soilMoisture;
+    Temperature temperature;
+    Humidity humidity;
+  }
+
+  class Recommendation  {
+    String message;
+  }
+
+  composition Farm  ->  (has) Sensor;
+  composition Farm  ->  (has) WeatherStation;
+  composition CentralHub  ->  (has) Farm;
+  composition CentralHub  ->  (has) CropType;
+  composition CentralHub  ->  (has) Recommendation;
+  association Farm  ->  (has) multiple  [1..*]  {  
+
+  
+
+  ordered  }  
+
+ ;
+  association CentralHub  ->  (has) multiple  [1..*]  {  
+
+  
+
+  ordered  }  
+
+ ;
+
+  enum SoilMoisture  {  Low, Medium, High  ;
+  enum Temperature  ;  
+
+  enum Humidity  ;  
+
+  enum Precipitation  ;  
+
+  enum RecommendationType  ;  
+
+} 
+
+}

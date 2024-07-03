@@ -1,0 +1,66 @@
+
+classdiagram CalligraphyCoursePlatform {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String level;
+    CourseMaterial [][] materials;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String role;
+  }
+
+  class Instructor extends User {
+    void createCourse(Course course);
+    void manageCourseMaterials(Course course);
+  }
+
+  class Student extends User {
+    void enrollInCourse(Course course);
+    void submitAssignment(Course course);
+    void trackProgress(Course course);
+  }
+
+  class CourseMaterial {
+    String type;
+    String content;
+  }
+
+  class Lesson {
+    String title;
+    CourseMaterial [][] materials;
+  }
+
+  class CourseReview {
+    String review;
+    int rating;
+  }
+
+  class CourseEnrollment {
+    Course course;
+    Student student;
+  }
+
+  class CourseCompletion {
+    Course course;
+    Student student;
+  }
+
+  class UserProgress {
+    User user;
+    Course [][ ] courses;
+  }
+
+  composition Course -> Lesson [*];
+  composition Course -> CourseMaterial [*];
+  composition CourseEnrollment -> Course [1];
+  composition CourseEnrollment -> Student [1];
+  composition CourseCompletion -> Course [1];
+  composition CourseCompletion -> Student [1];
+  composition UserProgress -> User [1];
+  composition UserProgress -> Course [*];
+}

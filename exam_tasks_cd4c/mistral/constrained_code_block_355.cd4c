@@ -1,0 +1,57 @@
+
+classdiagram VideoSurveillance {
+
+  class Camera {
+    String uniqueIdentifier;
+    String location;
+    Resolution[] supportedResolutions;
+  }
+
+  enum Resolution {
+    LOW, MEDIUM, HIGH;
+  }
+
+  abstract class Server {
+    String uniqueIdentifier;
+  }
+
+  class RecordingServer extends Server {
+  }
+
+  class ProcessingServer extends Server {
+    void analyzeForMotionDetection();
+    void analyzeForObjectDetection();
+    void analyzeForFacialRecognition();
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String username;
+    String password;
+    UserType userType;
+  }
+
+  enum UserType {
+    ADMIN, USER;
+  }
+
+  class Administrator extends User {
+    void manageCameras();
+    void manageServers();
+    void manageUsers();
+  }
+
+  class RegularUser extends User {
+    void viewVideoFootage();
+  }
+
+  class NotificationSystem {
+    void sendMotionAlert(User user);
+    void sendObjectDetectedAlert(User user, Object object);
+  }
+
+  composition VideoSurveillance -> (has) Camera [*];
+  composition VideoSurveillance -> (has) Server [*];
+  composition Server -> (has) NotificationSystem;
+  association User -> VideoSurveillance [*];
+}

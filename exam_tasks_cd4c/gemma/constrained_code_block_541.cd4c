@@ -1,0 +1,52 @@
+
+
+classdiagram LuxuryFashionAuthentication {
+
+    class LuxuryFashionItem {
+      String uniqueIdentifier;
+      String description;
+      String serialNumber;
+      ItemType type;
+    }
+
+    class Owner {
+      String uniqueIdentifier;
+      String name;
+      String address;
+      List<LuxuryFashionItem> lfIs;
+    }
+
+    class ProvenanceRecord {
+      String origin;
+      String productionProcess;
+      String materialsUsed;
+      LuxuryFashionItem lfi;
+    }
+
+    class Blockchain {
+      List<ProvenanceRecord> provenanceRecords;
+    }
+
+    enum ItemType {
+      Clothing, Accessories, Jewelry
+    
+
+    
+;
+  }
+
+  composition LuxuryFashionAuthentication -> (has) Blockchain;
+  composition LuxuryFashionAuthentication -> (has) Owner [0..1];
+  association LuxuryFashionItem -> ProvenanceRecord [0..1];
+  association Owner -> LuxuryFashionItem [0..*]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

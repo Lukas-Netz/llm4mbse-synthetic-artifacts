@@ -1,0 +1,59 @@
+
+classdiagram TechMonitoringSystem {
+
+    class TechMonitoringSystem {
+      Sensor sensor;
+      Actuator actuator;
+      Controller controller;
+      HistoricalDataStorage historicalDataStorage;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorStatus status;
+      int measurementRange;
+      void measure();
+    }
+
+    class Actuator {
+      String uniqueIdentifier;
+      ActuatorStatus status;
+      int controlRange;
+      void control();
+    }
+
+    class Controller {
+      String uniqueIdentifier;
+      ControllerStatus status;
+      int dataTransmissionRate;
+      int dataStorageCapacity;
+      void manageDataFlow();
+    }
+
+    class HistoricalDataStorage {
+      Map<String, HistoricalData> historicalDataMap;
+      void storeData(String identifier, HistoricalData data);
+      HistoricalData getData(String identifier);
+    }
+
+    enum SensorStatus {
+      Functioning, Malfunctioning;
+    }
+
+    enum ActuatorStatus {
+      Functioning, Malfunctioning;
+    }
+
+    enum ControllerStatus {
+      Functioning, Malfunctioning;
+    }
+
+    enum HistoricalData {
+      TemperatureData, PressureData, OtherData;
+    }
+
+    association TechMonitoringSystem -> Sensor;
+    association TechMonitoringSystem -> Actuator;
+    association TechMonitoringSystem -> Controller;
+    association TechMonitoringSystem -> HistoricalDataStorage;
+}

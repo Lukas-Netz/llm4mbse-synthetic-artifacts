@@ -1,0 +1,40 @@
+
+
+
+
+classdiagram EmployeeRecognition  {
+
+  class Employee  {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+  }
+
+  class RecognitionEvent  {
+    String description;
+    Date date;
+    -> RecognitionType;
+    -> Employee[*];
+  }
+
+  class RecognitionType  {
+    String name;
+    -> Administrator;
+  }
+
+  class Administrator  {
+    -> RecognitionType[*];
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Administrator  ->  (has) RecognitionType[*];
+  composition RecognitionEvent  ->  (has) RecognitionType;
+  composition RecognitionEvent  ->  (has) Employee[*];
+  association Employee  ->  (has) RecognitionEvent[*];
+  association Administrator  ->  (has) Employee[*];
+}

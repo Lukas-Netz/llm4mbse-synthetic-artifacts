@@ -1,0 +1,63 @@
+
+classdiagram CloudSecurityPlatform {
+
+    class CSP {
+      DataRepository dataRepository;
+      DataProcessingUnit dataProcessingUnit;
+      UserInterface userInterface;
+      BackupSystem backupSystem;
+      MonitoringSystem monitoringSystem;
+    }
+
+    class DataRepository {
+      String dataType;
+      String sensitiveData;
+      void storeData();
+      String retrieveData();
+    }
+
+    class DataProcessingUnit {
+      void encryptData();
+      void decryptData();
+      void compressData();
+    }
+
+    class UserInterface {
+      void login();
+      void accessData();
+      void manageData();
+    }
+
+    class BackupSystem {
+      BackupServer[] backupServers;
+      void performBackup();
+      void restoreData();
+    }
+
+    class BackupServer {
+      int capacityWh;
+      String storageType;
+    }
+
+    class MonitoringSystem {
+      void logActivity();
+      void detectThreats();
+    }
+
+  composition CSP -> (has) DataRepository;
+  composition CSP -> (has) DataProcessingUnit;
+  composition CSP -> (has) UserInterface;
+  composition CSP -> (has) BackupSystem;
+  composition CSP -> (has) MonitoringSystem;
+
+  association DataRepository -> sensitiveData [*];
+  association DataProcessingUnit -> encryptData [*];
+  association DataProcessingUnit -> decryptData [*];
+  association DataProcessingUnit -> compressData [*];
+  association UserInterface -> login [*];
+  association UserInterface -> accessData [*];
+  association UserInterface -> manageData [*];
+  association BackupSystem -> backupServers [*];
+ 
+ 
+ }

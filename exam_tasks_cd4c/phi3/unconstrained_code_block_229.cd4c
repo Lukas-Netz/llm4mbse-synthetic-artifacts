@@ -1,0 +1,84 @@
+
+classdiagram UnderwaterArchaeology {
+
+    class Archaeologist {
+      String uniqueIdentifier;
+      String role;
+      Set<String> skills;
+    }
+
+    class Diver {
+      String uniqueIdentifier;
+      String role;
+      Set<String> skills;
+    }
+
+    class Engineer {
+      String uniqueIdentifier;
+      String role;
+      Set<String> skills;
+    }
+
+    class Equipment {
+      String name;
+      String type;
+    }
+
+    class Submersible {
+      Equipment submersible;
+      void exploreArea(Area area);
+    }
+
+    class ROV {
+      Equipment rov;
+      void exploreArea(Area area);
+    }
+
+    class Sensor {
+      Equipment sensor;
+      void mapArea(Area area);
+    }
+
+    class Area {
+      String name;
+      List<Equipment> equipment;
+      List<Artifact> artifacts;
+    }
+
+    class Artifact {
+      String name;
+      String description;
+      String location;
+    }
+
+    class Database {
+      List<Artifact> knownArtifacts;
+      List<Artifact> discoveredArtifacts;
+    }
+
+    class Team {
+      Archaeologist archaeologist;
+      Diver diver;
+      Engineer engineer;
+      List<Equipment> equipment;
+      Database database;
+      TeamLead teamLead;
+    }
+
+    class TeamLead {
+      String uniqueIdentifier;
+      String role;
+      void assignTask(Team member, Task task);
+      void manageEquipment(Equipment equipment);
+      void decideExplorationArea(Area area);
+    }
+
+    composition Team -> (has) TeamLead;
+    composition Team -> (has) Equipment [*];
+    composition Team -> (has) Archaeologist;
+    composition Team -> (has) Diver;
+    composition Team -> (has) Engineer;
+    composition Team -> (has) Database;
+    composition Team -> (has) Artifact [*];
+    composition Team -> (has) Area [*];
+}

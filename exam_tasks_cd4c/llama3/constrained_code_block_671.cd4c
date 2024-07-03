@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Patient  {
+    String patientId;
+    String name;
+    MedicalHistory medicalHistory;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class MedicalHistory  {
+    List<Condition> conditions;
+    List<Medication> medications;
+  }
+
+  class Condition  {
+    String conditionName;
+    String diagnosisDate;
+  }
+
+  class Medication  {
+    String medicationName;
+    String prescriptionDate;
+  }
+
+  class TreatmentPlan  {
+    List<Procedure> procedures;
+    List<Medication> medications;
+  }
+
+  class Procedure  {
+    String procedureName;
+    String procedureDate;
+  }
+
+  class MedicalDevice  {
+    String deviceName;
+    String deviceType;
+  }
+
+  class MedicalSystem  {
+    String systemName;
+    String systemType;
+  }
+
+  class DataAnalytics  {
+    List<PatientData> patientData;
+  }
+
+  class PatientData  {
+    String patientId;
+    String dataValue;
+  }
+
+  class HealthcareProfessional  {
+    String professionalName;
+    String professionalRole;
+  }
+
+  class PersonalizedTreatmentRecommendation  {
+    String recommendation;
+    String justification;
+  }
+
+  composition Patient -> (has) MedicalHistory;
+  composition Patient -> (has) TreatmentPlan;
+  composition MedicalHistory -> (has) Condition;
+  composition MedicalHistory -> (has) Medication;
+  composition TreatmentPlan -> (has) Procedure;
+  composition TreatmentPlan -> (has) Medication;
+  composition DataAnalytics -> (has) PatientData;
+  composition HealthcareProfessional -> (has) PersonalizedTreatmentRecommendation;
+  }

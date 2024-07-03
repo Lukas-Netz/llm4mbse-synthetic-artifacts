@@ -1,0 +1,55 @@
+
+classdiagram LandOwnership {
+
+  class LandPlot {
+    String uniqueIdentifier;
+    String location;
+    int size;
+    Owner currentOwner;
+    LandPlotHistory ownershipHistory;
+  }
+
+  class Owner {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class LandPlotHistory {
+    Owner owner;
+    String transactionType;
+    String transactionDate;
+    LandPlotHistory previous;
+  }
+
+  class Transaction {
+    LandPlot landPlot;
+    Owner owner;
+    String transactionType;
+    String transactionDate;
+  }
+
+  class Block {
+    String hash;
+    String previousHash;
+    Transaction[] transactions;
+    int timestamp;
+  }
+
+  class Blockchain {
+    Block head;
+    Block tail;
+  }
+
+  class HashFunction {
+    String calculateHash(Block block);
+  }
+
+  composition LandOwnership -> Blockchain;
+  composition Blockchain -> Block [1..*];
+  composition Block -> Transaction [*];
+  association LandPlot -> LandPlotHistory [*];
+  association LandPlot -> Owner;
+  association Transaction -> LandPlot;
+  association Transaction -> Owner;
+}

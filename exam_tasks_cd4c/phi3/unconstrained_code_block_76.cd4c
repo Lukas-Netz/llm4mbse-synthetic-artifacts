@@ -1,0 +1,65 @@
+
+classdiagram ConsumerInsightsPlatform {
+
+    class DataWarehouse {
+      void storeData(DataSource source);
+      DataSource[] getDataSources();
+      Data[] retrieveData();
+    }
+
+    class DataProcessor {
+      void cleanData(Data[] data);
+      Data[] transformData(Data[] data);
+      Data[] aggregateData(Data[] data);
+    }
+
+    class VisualizationModule {
+      void createDashboard(String type);
+      void createReport(String type);
+    }
+
+    class MachineLearningModule {
+      void trainModel(Data[] data, Algorithm algorithm);
+      Pattern[] identifyPatterns(Data[] data);
+    }
+
+    class UserInterface {
+      void displayDashboard(Dashboard dashboard);
+      void displayReport(Report report);
+      void filterData(Data[] data, String criteria);
+      void sortData(Data[] data, String criteria);
+    }
+
+    class DataSource {
+      String sourceType;
+    }
+
+    class Data {
+      String uniqueIdentifier;
+      String type;
+      String value;
+    }
+
+    class Dashboard {
+      String type;
+      Data[] data;
+    }
+
+    class Report {
+      String type;
+      Data[] data;
+    }
+
+    association DataWarehouse -> DataProcessor;
+    association DataWarehouse -> VisualizationModule;
+    association DataWarehouse -> MachineLearningModule;
+    association DataWarehouse -> UserInterface;
+
+    association DataProcessor -> VisualizationModule;
+    association DataProcessor -> MachineLearningModule;
+    association DataProcessor -> UserInterface;
+
+    association VisualizationModule -> UserInterface;
+
+    association MachineLearningModule -> UserInterface;
+}

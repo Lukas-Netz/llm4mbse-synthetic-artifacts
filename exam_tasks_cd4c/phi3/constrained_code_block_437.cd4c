@@ -1,0 +1,37 @@
+
+classdiagram VRHistoricalTours {
+
+    class Tour {
+      String name;
+      String description;
+      List<Stop> stops;
+    }
+
+    class Stop {
+      String name;
+      String description;
+      List<Media> media;
+    }
+
+    class Media {
+      String name;
+      String description;
+      String url;
+    }
+
+    class User {
+      String username;
+      String password;
+      List<Tour> tours;
+    }
+
+    class Guide {
+      String username;
+      String password;
+      List<Tour> tours;
+    }
+
+    association Tour <-> Guide;
+    association Tour <-> User;
+    association Stop <-> Media;
+}

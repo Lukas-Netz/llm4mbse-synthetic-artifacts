@@ -1,0 +1,38 @@
+
+classdiagram CookingClassPlatform {
+
+  class User {
+    String username;
+    String password;
+    String email;
+    int cookingSkillLevel;
+    int preferredCuisine;
+  }
+
+  class Class {
+    String name;
+    String description;
+    List<Recipe> recipes;
+    List<User> enrolledUsers;
+    int rating;
+  }
+
+  class Recipe {
+    String name;
+    List<String> ingredients;
+    String instructions;
+    int rating;
+  }
+
+  class Enrollment {
+    User user;
+    Class class;
+    Recipe recipe;
+  }
+
+  association User [*] enrolls_in (has) -> Class [*];
+  association User [*] enrolls_in (has) -> Recipe [*];
+  association Class [*] has (contains) -> Recipe [*];
+  association Class [*] has (contains) -> Enrollment [*];
+  association Recipe [*] is_part_of (belongs_to) -> Class [*];
+}

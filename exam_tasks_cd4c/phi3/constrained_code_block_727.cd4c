@@ -1,0 +1,76 @@
+
+classdiagram DigitalHealthWearable {
+
+    class User {
+      String userId;
+      List<WearableDevice> wearableDevices;
+      List<HealthData> healthData;
+    }
+
+    class WearableDevice {
+      String deviceId;
+      String deviceName;
+      String deviceType;
+      User user;
+      HealthData healthData;
+      void sendNotification(String message);
+    }
+
+    class HealthData {
+      String dataId;
+      String metric;
+      double value;
+      String timestamp;
+    }
+
+    class Database {
+      List<HealthData> retrieveData(String userId);
+    }
+
+    <<association>> class User {
+      WearableDevice wearableDevice;
+    }
+
+    <<association>> class WearableDevice {
+      User user;
+      HealthData healthData;
+    }
+
+    <<association>> class HealthData {
+      User user;
+    }
+
+    <<association>> class Database {
+      User user;
+    }
+
+    <<association>> class User {
+      List<WearableDevice> wearableDevices;
+      List<HealthData> healthData;
+    }
+
+    <<association>> class WearableDevice {
+      User user;
+      HealthData healthData;
+    }
+
+    <<association>> class HealthData {
+      User user;
+    }
+
+    <<association>> class Database {
+      User user;
+    }
+
+    <<association>> class Goal {
+      User user;
+      double value;
+      String metric;
+    }
+
+    <<association>> class Reminder {
+      User user;
+      String message;
+      DateTime triggerTime;
+    }
+}

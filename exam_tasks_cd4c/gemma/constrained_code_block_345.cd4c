@@ -1,0 +1,36 @@
+
+
+classdiagram UniverseTourSystem {
+
+  class Tour {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Stop {
+    String name;
+    String description;
+    List<Object> objects;
+  }
+
+  class Object {
+    String name;
+    String description;
+    List<Attribute> attributes;
+  }
+
+  class User {
+    String name;
+    List<Tour> tours;
+  }
+
+  class Attribute {
+    String name;
+    String value;
+  }
+
+  composition Tour -> Stop [*];
+  composition Stop -> Object [*];
+  composition User -> Tour [*];
+}

@@ -1,0 +1,86 @@
+
+classdiagram AI_Aquaculture_Management {
+
+    class AquacultureFarm {
+      List<Tank> tanks;
+      WaterQualityMonitor waterQualityMonitor;
+      FeedingSchedule feedingSchedule;
+      FishHealthGrowthTracker fishHealthGrowthTracker;
+    }
+
+    class Tank {
+      String tankId;
+      WaterQualityMonitor waterQualityMonitor;
+      FeedingSchedule feedingSchedule;
+      FishHealthGrowthTracker fishHealthGrowthTracker;
+    }
+
+    class WaterQualityMonitor {
+      float pH;
+      float temperature;
+      float dissolvedOxygen;
+      float nitrate;
+      float phosphate;
+      float ammonia;
+      float chlorine;
+      float chlorophyll;
+      float turbidity;
+      float conductivity;
+      float alkalinity;
+      float hardness;
+      float nitrite;
+      float oxygenSaturation;
+      float dissolvedGases;
+      float waterFlowRate;
+      float waterVolume;
+      float waterTemperature;
+      float waterPressure;
+      float waterSalinity;
+     }
+
+    class FeedingSchedule {
+      String scheduleId;
+      int feedingFrequency;
+      int feedingAmount;
+      String feedType;
+      String feedingTime;
+      String feedingLocation;
+      String tankId;
+      FishHealthGrowthTracker fishHealthGrowthTracker;
+    }
+
+    class FishHealthGrowthTracker {
+      String fishId;
+      String species;
+      float weight;
+      float length;
+      float growthRate;
+      float healthStatus;
+      float feedingScheduleId;
+      WaterQualityMonitor waterQualityMonitor;
+      String tankId;
+      String farmId;
+      String date;
+      String time;
+      String temperature;
+      String pH;
+      float dissolvedOxygen;
+      float nitrate;
+      float phosphate;
+      float ammonia;
+      float chlorine;
+      float chlorophyll;
+     }
+
+    composition AI_Aquaculture_Management -> (has) AquacultureFarm;
+    composition AquacultureFarm -> (has) Tank [*];
+    composition AquacultureFarm -> (has) WaterQualityMonitor;
+    composition AquacultureFarm -> (has) FeedingSchedule;
+    composition AquacultureFarm -> (has) FishHealthGrowthTracker;
+    composition Tank -> (has) WaterQualityMonitor;
+    composition Tank -> (has) FeedingSchedule;
+    composition Tank -> (has) FishHealthGrowthTracker;
+    composition WaterQualityMonitor -> (has) FishHealthGrowthTracker;
+    composition FeedingSchedule -> (has) FishHealthGrowthTracker;
+    composition FishHealthGrowthTracker -> (has) WaterQualityMonitor;
+}

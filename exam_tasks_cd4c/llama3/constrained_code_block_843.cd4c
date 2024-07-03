@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram SmartGrid  {
+
+  class Sensor  {
+    double voltage;
+    double current;
+    double powerConsumption;
+  }
+
+  class Meter  {
+    double energyConsumption;
+  }
+
+  class Substation  {
+    String areaManaged;
+    void controlFlowOfElectricity();
+  }
+
+  class CentralControlCenter  {
+    void receiveDataFromSensorsAndMeters();
+    void sendCommandsToSubstations();
+  }
+
+  class BackupPowerSupply  {
+    void providePowerToGrid();
+  }
+
+  class CybersecurityComponent  {
+    void monitorAndDetectSecurityThreats();
+    void alertControlCenter();
+    void takeActionToPreventOrMitigateThreat();
+  }
+
+  class DataAnalyticsComponent  {
+    void analyzeDataFromSensorsAndMeters();
+    void provideInsightsToControlCenter();
+  }
+
+  class SmartGrid  {
+    Sensor  sensor;
+    Meter  meter;
+    Substation  substation;
+    CentralControlCenter  centralControlCenter;
+    BackupPowerSupply  backupPowerSupply;
+    CybersecurityComponent  cybersecurityComponent;
+    DataAnalyticsComponent  dataAnalyticsComponent;
+  }
+
+  composition SmartGrid  ->  (has) CentralControlCenter;
+  composition SmartGrid  ->  (has) BackupPowerSupply;
+  composition SmartGrid  ->  (has) CybersecurityComponent;
+  composition SmartGrid  ->  (has) DataAnalyticsComponent;
+  composition CentralControlCenter  ->  (has) Sensor;
+  composition CentralControlCenter  ->  (has) Meter;
+  composition CentralControlCenter  ->  (has) Substation;
+  composition Substation  ->  (has) Sensor;
+  composition Substation  ->  (has) Meter;
+}

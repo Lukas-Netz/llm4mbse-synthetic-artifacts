@@ -1,0 +1,39 @@
+
+
+
+
+classdiagram WildlifeTrackingSystems  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Animal  [ ] trackedAnimals;
+  }
+
+  class Animal  {
+    String uniqueIdentifier;
+    Species species;
+  }
+
+  class Species  {
+    String name;
+    String habitat;
+    String diet;
+    String behavior;
+  }
+
+  class Researcher  {
+    String name;
+    Sensor  [ ] monitoredSensors;
+  }
+
+  class Report  {
+    String title;
+    String description;
+    Sensor  sensor;
+  }
+
+  composition Sensor  ->  (has) Animal  [0..*];
+  composition Animal  ->  (has) Species;
+  composition Researcher  ->  (has) Sensor  [0..*];
+  composition Report  ->  (has) Sensor;
+}

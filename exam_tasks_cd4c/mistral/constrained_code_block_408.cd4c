@@ -1,0 +1,86 @@
+
+classdiagram FashionEcommerce {
+
+  class User {
+    String uniqueIdentifier;
+    Profile [  ] profiles;
+  }
+
+  class Profile {
+    BodyMeasurements bodyMeasurements;
+    FashionPreferences fashionPreferences;
+    Wardrobe wardrobe;
+  }
+
+  class BodyMeasurements {
+    double height;
+    double weight;
+    String bodyShape;
+  }
+
+  class FashionPreferences {
+    String style;
+    String colorPalette;
+    String preferredClothingItems;
+  }
+
+  class Wardrobe {
+    Clothing [ ] clothing;
+    Accessory [ ] accessories;
+    Shoe [ ] shoes;
+  }
+
+  abstract class Item {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Clothing extends Item {
+  }
+
+  class Accessory extends Item {
+  }
+
+  class Shoe extends Item {
+  }
+
+  class Database {
+    Clothing [ ] clothingItems;
+    Accessory [ ] accessoryItems;
+    Shoe [ ] shoeItems;
+  }
+
+  class RecommendationEngine {
+    void analyzeUserInput(User user);
+    void recommendOutfits(User user);
+  }
+
+  class Outfit {
+    Clothing [ ] clothingItems;
+    Accessory [ ] accessories;
+    Shoe [ ] shoes;
+  }
+
+  class Purchase {
+    User user;
+    Outfit outfit;
+  }
+
+  class Wishlist {
+    User user;
+    Outfit [ ] outfits;
+  }
+
+  class Rating {
+    User user;
+    Outfit outfit;
+    int rating;
+  }
+
+  association User --o000o [*]- 											;
+  association Profile --o000o [1]-											;
+  association BodyMeasurements --o000o [1]-								;
+  association FashionPreferences --o000o [1]-							;
+  association Wardrobe --o000o [1]-											;
+ 				}

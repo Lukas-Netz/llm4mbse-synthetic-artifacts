@@ -1,0 +1,84 @@
+
+classdiagram VirtualTour {
+
+  class Property {
+    String name;
+    String address;
+    VirtualTour [][] virtualTours;
+  }
+
+  class VirtualTour {
+    String name;
+    String description;
+    Scene [][] scenes;
+  }
+
+  class Scene {
+    String name;
+    String description;
+     Model model;
+  }
+
+  abstract class Model {
+    String type;
+  }
+
+  class Room extends Model {
+    int length;
+    int width;
+    int height;
+  }
+
+  class Corridor extends Model {
+    int length;
+    int width;
+  }
+
+  class Exterior extends Model {
+    double latitude;
+    double longitude;
+    double altitude;
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  association User --create/ 
+ 									{
+  									ordered
+  			}
+  			;
+
+  association User --edit/
+  									{
+  									ordered
+  			}
+  			;
+
+  association User --delete/
+  									{
+  									ordered
+  			}
+  			;
+
+  association User --uploadModel/
+  									{
+  									ordered
+  			}
+  			;
+
+  association User --downloadModel/
+  									{
+  									ordered
+  			}
+  			;
+
+  association User --search/
+  									{
+  									ordered
+  			}
+  			;
+
+}

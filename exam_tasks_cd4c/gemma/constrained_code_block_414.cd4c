@@ -1,0 +1,33 @@
+
+
+classdiagram LandTitleRegistry {
+
+    class LandRegistryOffice {
+      Blockchain blockchain;
+    }
+
+    class LandOwner {
+      String uniqueIdentifier;
+    }
+
+    class LandTitle {
+      String landIdentifier;
+      LandOwner owner;
+    }
+
+    class Transaction {
+      LandOwner buyer;
+      LandOwner seller;
+      LandTitle landTitle;
+    }
+
+    class SmartContract {
+      void executeTransfer(Transaction transaction);
+    }
+
+    composition LandRegistryOffice -> (has) Blockchain;
+    association LandOwner -> LandTitle;
+    association LandTitle -> LandOwner;
+    association Transaction -> LandTitle;
+    association SmartContract -> LandRegistryOffice;
+}

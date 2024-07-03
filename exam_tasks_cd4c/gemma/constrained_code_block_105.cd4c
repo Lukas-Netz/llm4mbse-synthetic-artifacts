@@ -1,0 +1,41 @@
+
+
+classdiagram VideoEditingSystem {
+
+  class VideoLibrary {
+    List<VideoClip> clips;
+  }
+
+  class ProjectManager {
+    String projectName;
+    Date startDate;
+    Date endDate;
+    List<VideoClip> clips;
+  }
+
+  class ClipManager {
+    VideoClip clip;
+  }
+
+  class AIEngine {
+    AlgorithmType algorithmType;
+    ConfidenceLevel confidenceLevel;
+  }
+
+  class RenderingEngine {
+    RenderingQuality quality;
+    OutputFormat format;
+  }
+
+  class VideoClip {
+    Duration duration;
+    Resolution resolution;
+    Format format;
+  }
+
+  composition ProjectManager -> (has) VideoLibrary;
+  composition ProjectManager -> (has) ClipManager;
+  association AIEngine -> ProjectManager;
+  association RenderingEngine -> ProjectManager;
+  association VideoClip -> ProjectManager;
+}

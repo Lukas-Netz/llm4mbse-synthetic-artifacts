@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram MES  {
+
+  class ProductionPlanning  {
+    ProductionSchedule schedule;
+    void planProduction();
+  }
+
+  class ProductionControl  {
+    ProductionStatus status;
+    void monitorProduction();
+  }
+
+  class QualityControl  {
+    QualityData qualityData;
+    void monitorQuality();
+  }
+
+  class Database  {
+    ProductionSchedule schedule;
+    ProductionStatus status;
+    QualityData qualityData;
+  }
+
+  class ProductionSchedule  {
+    Date startDate;
+    Date endDate;
+    List<ProductionOrder> orders;
+  }
+
+  class ProductionStatus  {
+    ProductionOrder currentOrder;
+    ProductionState state;
+  }
+
+  class QualityData  {
+    List<QualityIssue> issues;
+  }
+
+  class ProductionOrder  {
+    Product product;
+    Quantity quantity;
+  }
+
+  class Product  {
+    String name;
+  }
+
+  class Quantity  {
+    int value;
+  }
+
+  class QualityIssue  {
+    Product product;
+    String description;
+  }
+
+  composition MES  ->  (has) ProductionPlanning;
+  composition MES  ->  (has) ProductionControl;
+  composition MES  ->  (has) QualityControl;
+  composition MES  ->  (has) Database;
+  composition ProductionPlanning  ->  (has) ProductionSchedule;
+  composition ProductionControl  ->  (has) ProductionStatus;
+  composition QualityControl  ->  (has) QualityData;
+  composition Database  ->  (has) ProductionSchedule;
+  composition Database  ->  (has) ProductionStatus;
+  }

@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram OnlineHistoryCourses  {
+
+  class Course  {
+    String name;
+    String description;
+    int duration;
+    -> Instructor  [1..*];
+  }
+
+  class Instructor  {
+    String name;
+    String department;
+    String specialization;
+    -> Course  [1..*];
+  }
+
+  class Student  {
+    String name;
+    String major;
+    double GPA;
+    -> CourseSection  [0..*];
+  }
+
+  class CourseSection  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    -> Student  [0..*];
+    -> Grade  [0..*];
+  }
+
+  class Grade  {
+    double score;
+    -> CourseSection;
+  }
+
+  composition Course -> Instructor;
+  composition Instructor -> Course;
+  composition Student -> CourseSection;
+  composition CourseSection -> Student;
+  composition CourseSection -> Grade;
+}

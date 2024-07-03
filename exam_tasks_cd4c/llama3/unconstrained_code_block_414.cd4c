@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram SmartFarm  {
+
+  class Sensor  {
+    Temperature temperature;
+    Humidity humidity;
+    Movement movement;
+  }
+
+  class Camera  {
+    Image image;
+  }
+
+  class CentralHub  {
+    SensorData sensorData;
+    CameraData cameraData;
+    Analysis analysis;
+    Report report;
+    Recommendation recommendation;
+  }
+
+  class Animal  {
+    Breed breed;
+    Age age;
+    HealthStatus healthStatus;
+  }
+
+  class WeatherForecast  {
+    WeatherData weatherData;
+  }
+
+  class CropMonitoring  {
+    CropData cropData;
+  }
+
+  class SmartFarm  {
+    CentralHub centralHub;
+    Animal animal;
+    WeatherForecast weatherForecast;
+    CropMonitoring cropMonitoring;
+  }
+
+  composition SmartFarm -> CentralHub;
+  composition CentralHub -> Sensor;
+  composition CentralHub -> Camera;
+  composition CentralHub -> Animal;
+  composition CentralHub -> WeatherForecast;
+  composition CentralHub -> CropMonitoring;
+}
+

@@ -1,0 +1,50 @@
+
+classdiagram VideoGamePlatform {
+
+    class Platform {
+      String name;
+      Set<Game> games;
+    }
+
+    class Game {
+      String title;
+      Date releaseDate;
+      String rating;
+      Set<Developer> developers;
+      Set<Review> reviews;
+    }
+
+    class Developer {
+      String name;
+      Set<Game> gamesDeveloped;
+    }
+
+    class Review {
+      int rating;
+      String comment;
+    }
+
+    class Search {
+      void searchByGenre(String genre);
+      void searchByPlatform(String platform);
+      void searchByTitle(String title);
+    }
+
+    class Admin {
+      void addPlatform(Platform platform);
+      void removePlatform(Platform platform);
+      void updatePlatform(Platform platform);
+      void addGame(Game game);
+      void removeGame(Game game);
+      void updateGame(Game game);
+      void addDeveloper(Developer developer);
+      void removeDeveloper(Developer developer);
+      void updateDeveloper(Developer developer);
+    }
+
+    composition Platform -> Set<<Game>>;
+    composition Game -> Set<<Developer>>;
+    composition Game -> Set<<Review>>;
+    composition Platform -> Set<<Developer>>;
+    composition Admin -> Search;
+}

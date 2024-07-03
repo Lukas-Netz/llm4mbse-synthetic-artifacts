@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram RemoteWorkforceManagement  {
+
+  class Employee  {
+    String name;
+    Set<Skill> skills;
+    Set<Task> tasks;
+    Set<Project> projects;
+    Availability availability;
+  }
+
+  class Project  {
+    String name;
+    Set<Task> tasks;
+    Set<Employee> employees;
+    Set<Phase> phases;
+    Set<Skill> requiredSkills;
+  }
+
+  class Task  {
+    String name;
+    Set<Employee> employees;
+    Set<Project> projects;
+    Set<Dependency> dependencies;
+    Date dueDate;
+  }
+
+  class Phase  {
+    String name;
+    Project project;
+  }
+
+  class Dependency  {
+    Task task;
+    Task dependentTask;
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class Availability  {
+    Set<TimeSlot> timeSlots;
+  }
+
+  class TimeSlot  {
+    Date start;
+    Date end;
+  }
+
+  class Report  {
+    Employee employee;
+    Project project;
+    Task task;
+    Date date;
+  }
+
+  class Notification  {
+    Employee employee;
+    Task task;
+    Date dueDate;
+  }
+
+  composition Employee -> (has) skills;
+  composition Employee -> (has) tasks;
+  composition Employee -> (has) projects;
+  composition Project -> (has) tasks;
+  composition Project -> (has) employees;
+  composition Project -> (has) phases;
+  composition Task -> (has) employees;
+  composition Task -> (has) projects;
+  composition Task -> (has) dependencies;
+  composition Phase -> (has) project;
+  }

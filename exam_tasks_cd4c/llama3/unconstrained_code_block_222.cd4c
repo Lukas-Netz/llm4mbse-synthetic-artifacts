@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram DogTrainingSystem  {
+
+  class User  {
+    String username;
+    String password;
+    TrainingPlan[] trainingPlans;
+  }
+
+  class TrainingPlan  {
+    String name;
+    String description;
+    Exercise[] exercises;
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+    Difficulty difficulty;
+  }
+
+  class Dog  {
+    String name;
+    String breed;
+    int age;
+    User user;
+    TrainingPlan[] trainingPlans;
+  }
+
+  class Progress  {
+    Dog dog;
+    TrainingPlan trainingPlan;
+    int exercisesCompleted;
+    Difficulty difficultyAchieved;
+  }
+
+  enum Difficulty  {
+    Easy, Medium, Hard;
+  }
+
+  composition User -> TrainingPlan[*];
+  composition TrainingPlan -> Exercise[*];
+  composition Dog -> TrainingPlan[*];
+  composition Progress -> Dog;
+  composition Progress -> TrainingPlan;
+}

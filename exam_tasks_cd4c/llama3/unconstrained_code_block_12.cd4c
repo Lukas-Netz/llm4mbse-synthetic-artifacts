@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram BIM  {
+
+  class Building  {
+    String uniqueIdentifier;
+    String name;
+    -> Floor[*];
+  }
+
+  class Floor  {
+    String uniqueIdentifier;
+    -> Room[*];
+  }
+
+  abstract class Room  {
+    String uniqueIdentifier;
+    RoomStatus status;
+  }
+
+  class OfficeRoom extends Room  {
+    int deskCount;
+    int chairCount;
+  }
+
+  class MeetingRoom extends Room  {
+    int capacity;
+    -> TimeSlot[*];
+  }
+
+  class StorageRoom extends Room  {
+    int capacity;
+    -> Item[*];
+  }
+
+  class TimeSlot  {
+    String startTime;
+    String endTime;
+  }
+
+  class Item  {
+    String name;
+  }
+
+  class Architect  {
+    String uniqueIdentifier;
+    String name;
+    -> Building[*];
+  }
+
+  enum RoomStatus  {
+    Occupied, Vacant;
+  }
+
+  composition Building -> Floor[*];
+  composition Floor -> Room[*];
+  composition Architect -> Building[*];
+}
+

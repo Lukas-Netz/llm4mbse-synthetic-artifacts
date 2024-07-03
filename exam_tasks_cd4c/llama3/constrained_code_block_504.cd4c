@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram OnlineEntrepreneurshipPlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Topic topic;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    UserType type;
+  }
+
+  enum UserType  {
+    Student, Instructor;
+  }
+
+  class Topic  {
+    String name;
+  }
+
+  class Section  {
+    String uniqueIdentifier;
+    Course course;
+  }
+
+  class Lesson  {
+    String uniqueIdentifier;
+    Section section;
+  }
+
+  class Quiz  {
+    String uniqueIdentifier;
+    Lesson lesson;
+  }
+
+  class Question  {
+    String uniqueIdentifier;
+    Quiz quiz;
+  }
+
+  class Administrator  {
+    void manageCourse(Course course);
+    void manageUser(User user);
+    void manageSection(Section section);
+  }
+
+  composition Course -> Topic;
+  composition User -> Course [0..*];
+  composition Section -> Course;
+  composition Lesson -> Section;
+  composition Quiz -> Lesson;
+  composition Question -> Quiz;
+  composition Administrator -> Course [0..*];
+  composition Administrator -> User [0..*];
+  composition Administrator -> Section [0..*];
+}

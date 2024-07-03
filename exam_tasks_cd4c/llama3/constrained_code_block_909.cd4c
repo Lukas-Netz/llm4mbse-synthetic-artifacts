@@ -1,0 +1,59 @@
+
+
+
+classdiagram BlockchainLogistics  {
+
+  class Blockchain  {
+    Package[] packages;
+    Transaction[] transactions;
+  }
+
+  class Package  {
+    String uniqueIdentifier;
+    int weight;
+    int dimensions;
+    String status;
+  }
+
+  class TransportationMode  {
+    String uniqueIdentifier;
+    Rule[] rules;
+  }
+
+  class Carrier  {
+    String uniqueIdentifier;
+    TransportationMode[] availableModes;
+  }
+
+  class PackageHandler  {
+    String uniqueIdentifier;
+    Carrier carrier;
+  }
+
+  class Location  {
+    String uniqueIdentifier;
+    PackageHandler packageHandler;
+  }
+
+  class Rule  {
+    String condition;
+    String action;
+  }
+
+  class Transaction  {
+    Package package;
+    TransportationMode mode;
+    Location from;
+    Location to;
+  }
+
+  composition Blockchain  ->  (has) Package[*];
+  composition Blockchain  ->  (has) Transaction[*];
+  composition Carrier  ->  (has) PackageHandler[*];
+  composition PackageHandler  ->  (has) Location[*];
+  composition Location  ->  (has) PackageHandler[*];
+  composition TransportationMode  ->  (has) Rule[*];
+  composition Transaction  ->  (has) Package[*];
+  composition Transaction  ->  (has) TransportationMode[*];
+  composition Transaction  ->  (has) Location[*];
+}

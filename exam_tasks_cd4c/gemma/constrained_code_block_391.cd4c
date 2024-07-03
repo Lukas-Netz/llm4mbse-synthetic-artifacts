@@ -1,0 +1,49 @@
+
+
+classdiagram WildlifeConservationMonitoring {
+
+class Species {
+  String uniqueIdentifier;
+  String name;
+  String classification;
+}
+
+class Population {
+  String uniqueIdentifier;
+  Species species;
+  int numberOfIndividuals;
+  AgeDistribution ageDistribution;
+  Habitat habitat;
+}
+
+class Habitat {
+  String uniqueIdentifier;
+  Population population;
+  Location location;
+  int size;
+  String type;
+}
+
+class Observation {
+  String uniqueIdentifier;
+  Population population;
+  Date date;
+  Time time;
+  Location location;
+  int numberOfIndividualsSeen;
+}
+
+class Researcher {
+  String uniqueIdentifier;
+  Species species;
+  String name;
+  Expertise expertise;
+  ResearchInterests researchInterests;
+}
+
+composition Species -> (has) Population [*];
+composition Population -> (has) Habitat;
+composition Habitat -> (has) Observation [*];
+composition Observation -> (has) Researcher;
+composition Researcher -> (has) Species;
+}

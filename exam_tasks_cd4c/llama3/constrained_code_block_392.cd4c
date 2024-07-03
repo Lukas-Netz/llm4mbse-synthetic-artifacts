@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram ArtGallery  {
+
+  class Gallery  {
+    String name;
+    String description;
+    Artwork[] artworks;
+  }
+
+  class Artwork  {
+    String title;
+    String description;
+    double price;
+    boolean available;
+  }
+
+  class User  {
+    String username;
+    String password;
+    PurchaseHistory purchaseHistory;
+    Review[] reviews;
+  }
+
+  class PurchaseHistory  {
+    Artwork[] artworks;
+  }
+
+  class Review  {
+    Artwork artwork;
+    int rating;
+    String comment;
+  }
+
+  class Administrator  {
+    User user;
+    Gallery[] managedGalleries;
+  }
+
+  composition Gallery -> Artwork[*];
+  composition User -> PurchaseHistory;
+  composition User -> Review[*];
+  composition Administrator -> Gallery[*];
+}

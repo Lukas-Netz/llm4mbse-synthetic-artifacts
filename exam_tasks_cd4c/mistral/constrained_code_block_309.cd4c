@@ -1,0 +1,71 @@
+
+classdiagram CollaborationTool {
+
+  class Team {
+    String teamName;
+    String teamDescription;
+    -> Member [*];
+    -> Project [*];
+  }
+
+  class Member {
+    String username;
+    String email;
+    Team team;
+    -> Project [*];
+  }
+
+  class Project {
+    String projectName;
+    String projectDescription;
+    Team team;
+    -> File [*];
+    -> Task [*];
+  }
+
+  abstract class File {
+    String fileName;
+    int fileSize;
+    FileType fileType;
+  }
+
+  class Document extends File {}
+  class Image extends File {}
+  class Video extends File {}
+
+  enum FileType {
+    Document, Image, Video;
+  }
+
+  class Task {
+    String taskName;
+    String taskDescription;
+    Project project;
+    -> Member [*];
+    -> Comment [*];
+  }
+
+  class Comment {
+    String commentText;
+    Task task;
+    Member member;
+  }
+
+  class Chat {
+    String chatRoomName;
+    -> Member [*];
+  }
+
+  class VideoConference {
+    String videoConferenceName;
+    -> Member [*];
+  }
+
+  composition Team -> Member [*];
+  composition Team -> Project [*];
+  composition Project -> File [*];
+  composition Project -> Task [*];
+  composition Task -> Comment [*];
+  composition Chat -> Member [*];
+  composition VideoConference -> Member [*];
+}

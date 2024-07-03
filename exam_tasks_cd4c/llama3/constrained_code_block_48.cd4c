@@ -1,0 +1,136 @@
+
+
+
+
+classdiagram InventoryManagementSystem  {
+
+  class Product  {
+    String name;
+    String description;
+    String image;
+    String video;
+    String reviews;
+    int ratings;
+    int comments;
+    int likes;
+    int dislikes;
+    int shares;
+    int purchases;
+    int returns;
+    int refunds;
+    int exchanges;
+    int warranties;
+    int guarantees;
+    int certifications;
+    int compliance;
+    int recalls;
+    int notifications;
+     }
+
+  class Warehouse  {
+    Product  products  ; 
+    }
+
+  class Inventory  {
+    Product  product;
+    int quantity;
+    }
+
+  class Movement  {
+    Product  product;
+    Warehouse  fromWarehouse;
+    Warehouse  toWarehouse;
+    Date date;
+    }
+
+  class Report  {
+    Product  product;
+    int quantity;
+    Date date;
+    }
+
+  class Alert  {
+    Product  product;
+    int quantity;
+    Date date;
+    }
+
+  class History  {
+    Product  product;
+    int quantity;
+    Date date;
+    }
+
+  class Supplier  {
+    Product  products;
+    String name;
+    String address;
+    String phone;
+    String email;
+    }
+
+  class ProductCategory  {
+    Product  products;
+    String name;
+    String description;
+    }
+
+  class ProductSubcategory  {
+    Product  products;
+    String name;
+    String description;
+    }
+
+  class ProductType  {
+    Product  products;
+    String name;
+    String description;
+    }
+
+  class ProductStatus  {
+    Product  product;
+    boolean inStock;
+    }
+
+  class ProductPrice  {
+    Product  product;
+    double price;
+    }
+
+  class ProductExpirationDate  {
+    Product  product;
+    Date expirationDate;
+    }
+
+  class ProductDeliveryDate  {
+    Product  product;
+    Date deliveryDate;
+    }
+
+  class ProductSupplier  {
+    Product  product;
+    Supplier supplier;
+    }
+
+  class ProductCategorySubcategory  {
+    ProductCategory category;
+    ProductSubcategory subcategory;
+    }
+
+  class ProductTypeSubcategory  {
+    ProductType type;
+    ProductSubcategory subcategory;
+    }
+
+  class ProductTypeCategory  {
+    ProductType type;
+    ProductCategory category;
+    }
+
+  class ProductStatusHistory  {
+    Product  product;
+    ProductStatus status;
+    Date date;
+    }
+
+  }

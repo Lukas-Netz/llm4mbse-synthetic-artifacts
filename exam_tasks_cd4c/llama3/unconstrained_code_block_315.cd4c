@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram TsunamiWarningSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    int tsunamiIntensity;
+  }
+
+  class Buoy  {
+    Sensor[] sensors;
+    WarningCenter[] warningCenters;
+  }
+
+  class WarningCenter  {
+    Buoy[] buoys;
+    Community[] communities;
+  }
+
+  class Community  {
+    String name;
+    GeographicLocation location;
+  }
+
+  class GeographicLocation  {
+    double latitude;
+    double longitude;
+  }
+
+  class Warning  {
+    Community[] communities;
+  }
+
+  class Database  {
+    HistoricalTsunamiData[] data;
+  }
+
+  class HistoricalTsunamiData  {
+    Date timestamp;
+    Sensor sensor;
+    int tsunamiIntensity;
+  }
+
+  class AdministratorUI  {
+    void issueFalseAlarm();
+  }
+
+  composition Sensor -> Buoy [1..*];
+  composition Buoy -> WarningCenter [1..*];
+  composition WarningCenter -> Community [1..*];
+  composition Community -> Warning [1..*];
+  composition Buoy -> Sensor [1..*];
+  composition WarningCenter -> Buoy [1..*];
+  composition Database -> HistoricalTsunamiData [*];
+}

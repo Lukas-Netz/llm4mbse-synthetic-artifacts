@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram DigitalMenuBoard  {
+
+  class MenuBoard  {
+    String name;
+    String uniqueIdentifier;
+    -> MenuItem[*];
+  }
+
+  class MenuItem  {
+    String name;
+    String description;
+    double price;
+    int orderCount;
+    double revenue;
+  }
+
+  class Food extends MenuItem  {
+    int calories;
+    String[] ingredients;
+  }
+
+  class Drink extends MenuItem  {
+    String size;
+    String flavor;
+  }
+
+  class Restaurant  {
+    String name;
+    String uniqueIdentifier;
+    -> MenuBoard[*];
+  }
+
+  class System  {
+    -> Restaurant[*];
+  }
+
+  composition MenuBoard -> MenuItem[*];
+  composition Restaurant -> MenuBoard[*];
+  association System -> Restaurant[*];
+  association System -> MenuBoard[*];
+  association MenuItem -> Order[*];
+  association Order -> MenuItem[*];
+  association Order -> Customer[*];
+  association Customer -> Order[*];
+  association Order -> Date[*];
+  association Date -> Order[*];
+  association Order -> Time[*];
+  association Time -> Order[*];
+  association Order -> Total[*];
+  association Total -> Order[*];
+  }

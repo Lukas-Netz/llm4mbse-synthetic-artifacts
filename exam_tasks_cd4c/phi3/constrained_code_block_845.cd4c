@@ -1,0 +1,64 @@
+
+classdiagram QuantumCrypt {
+
+    class User {
+      String uniqueIdentifier;
+      PublicKey publicKey;
+    }
+
+    class Wallet {
+      User owner;
+      List<Transaction> transactions;
+    }
+
+    class Transaction {
+      String fromUser;
+      String toUser;
+      String transactionId;
+      String timestamp;
+      String transactionHash;
+    }
+
+    class Block {
+      List<Transaction> transactions;
+      String blockId;
+      String timestamp;
+      String blockHash;
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      String currentBlockId;
+    }
+
+    class Validator {
+      String uniqueIdentifier;
+      PublicKey publicKey;
+      String stakedQuantumCrypt;
+    }
+
+    class ProofOfStake {
+      List<Validator> validators;
+      String currentValidator;
+    }
+
+    class QuantumCryptCoin {
+      int value;
+    }
+
+    enum TransactionStatus {
+      Pending,
+      Confirmed,
+      Failed
+   
+   
+   ;}
+
+  composition User -> Wallet [0..1];
+  composition Wallet -> Transaction [*];
+  composition Transaction -> Block [0..1];
+  composition Block -> Blockchain [0..1];
+  composition User -> Validator [0..1];
+  composition Validator -> ProofOfStake [0..1];
+  composition ProofOfStake -> Block [0..1];
+}

@@ -1,0 +1,48 @@
+
+classdiagram FleetManagement {
+
+  class Device {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  abstract class IoTDevice extends Device {
+    String fleet;
+  }
+
+  class Sensor extends IoTDevice {
+  }
+
+  class Tracker extends IoTDevice {
+    String location;
+  }
+
+  class Actuator extends IoTDevice {
+  }
+
+  class Fleet {
+    String name;
+    String description;
+    IoTDevice [][] devices;
+  }
+
+  enum DeviceStatus {
+    Online, Offline;
+  }
+
+  class Maintenance {
+    String device;
+    String date;
+    String type;
+  }
+
+  class Report {
+    String fleet;
+    String health;
+    String performance;
+  }
+
+  composition Fleet -> IoTDevice [*];
+  association Maintenance -> Device;
+  association Report -> Fleet;
+}

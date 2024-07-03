@@ -1,0 +1,55 @@
+
+classdiagram VRtherapy {
+
+  class VRHeadset {
+    String uniqueIdentifier;
+  }
+
+  class Controller {
+    String uniqueIdentifier;
+  }
+
+  class Scenario {
+    String uniqueIdentifier;
+    String description;
+    ScenarioType type;
+  }
+
+  enum ScenarioType {
+    Nature, Urban, Abstract;
+  }
+
+  class VRSoftware {
+    VRHeadset headset;
+    Controller controller;
+    Scenario currentScenario;
+    Patient patient;
+    TherapyPlan therapyPlan;
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    Progress progress;
+    Goals goals;
+  }
+
+  class Progress {
+    int level;
+    Date lastUpdate;
+  }
+
+  class Goals {
+    String[] specificGoals;
+  }
+
+  class TherapyPlan {
+    Scenario[] scenarios;
+    int currentScenarioIndex;
+  }
+
+  composition VRSoftware -> VRHeadset;
+  composition VRSoftware -> Controller;
+  association VRSoftware -- Patient;
+  association VRSoftware -- TherapyPlan;
+  association TherapyPlan -- Scenario [*];
+}

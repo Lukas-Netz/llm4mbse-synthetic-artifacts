@@ -1,0 +1,66 @@
+
+classdiagram Bioreactor {
+
+  class Bioreactor {
+    Type type;
+    Sensor [][ ] sensors;
+    Actuator [][ ] actuators;
+    ControlUnit controlUnit;
+  }
+
+  enum Type {
+    Photobioreactor, Chemostat
+ 
+ 
+ 
+ 
+ 
+ ;
+  }
+
+  abstract class Sensor {
+    String parameter;
+    float value;
+  }
+
+  abstract class Actuator {
+    String parameter;
+  }
+
+  class TemperatureSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class pHSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class DissolvedOxygenSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class LightIntensityActuator extends Actuator {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class pHActuator extends Actuator {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class TemperatureActuator extends Actuator {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class ControlUnit {
+    void monitorSensors();
+    void controlActuators();
+    void storeData();
+    void generateReport();
+  }
+}

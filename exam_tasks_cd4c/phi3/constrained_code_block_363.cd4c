@@ -1,0 +1,42 @@
+
+classdiagram VirtualMuseumTour {
+
+    class Museum {
+      List<Exhibit> exhibits;
+      List<Room> rooms;
+    }
+
+    class Exhibit {
+      String name;
+      String description;
+      List<Artifact> artifacts;
+      void addArtifact(Artifact artifact);
+      void removeArtifact(Artifact artifact);
+      List<Artifact> getArtifacts();
+    }
+
+    class Artifact {
+      String uniqueId;
+      String description;
+      ArtifactType type;
+      String location;
+      void displayInfo();
+    }
+
+    class ArtifactType {
+      String name;
+    }
+
+    class Room {
+      String name;
+      List<Exhibit> exhibits;
+      void addExhibit(Exhibit exhibit);
+      void removeExhibit(Exhibit exhibit);
+      List<Exhibit> getExhibits();
+    }
+
+    association Museum -> Exhibit [1..*];
+    association Museum -> Room [1..*];
+    association Exhibit -> Artifact [*];
+    association Room -> Exhibit [*];
+}

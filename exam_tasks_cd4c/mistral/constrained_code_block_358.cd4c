@@ -1,0 +1,48 @@
+
+classdiagram RestaurantDelivery {
+
+  class Restaurant {
+    String name;
+    String uniqueIdentifier;
+    Menu menu;
+  }
+
+  class Menu {
+    -> Dish [*];
+  }
+
+  class Dish {
+    String name;
+    float price;
+    String description;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Customer customer;
+    Restaurant restaurant;
+    -> Dish [*];
+  }
+
+  class DeliveryAgent {
+    String name;
+    String uniqueIdentifier;
+    float rating;
+  }
+
+  class Invoice {
+    String uniqueIdentifier;
+    Restaurant restaurant;
+    float totalAmount;
+  }
+
+  composition Restaurant -> Menu;
+  association Customer --oOrder;
+  association Order --oDeliveryAgent;
+  association Restaurant --oOrder [*];
+  composition Restaurant --oInvoice;
+}

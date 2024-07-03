@@ -1,0 +1,68 @@
+
+classdiagram RailwayManagementSystem {
+
+    class RailwayNetwork {
+      TrainScheduler scheduler;
+      TrackMonitor monitor;
+      TrainMaintenayer trainMaintenayer;
+      TrackMaintenayer trackMaintenayer;
+      LineManager lineManager;
+      TrainManager trainManager;
+    }
+
+    class TrainScheduler {
+      void scheduleTrain(Train train, Line line, Time time);
+      void cancelTrain(Train train);
+      List<Train> getTrainSchedule(Line line, Time time);
+    }
+
+    class TrackMonitor {
+      void checkTrackCondition(Line line);
+      void reportTrackCondition(Line line);
+      List<Line> getAllLines();
+    }
+
+    class TrainMaintenayer {
+      void performMaintenance(Train train);
+      void scheduleMaintenance(Train train, Time time);
+      List<Train> getTrainsNeedingMaintenance();
+    }
+
+    class TrackMaintenayer {
+      void performMaintenance(Line line);
+      void scheduleMaintenance(Line line, Time time);
+      List<Line> getAllLinesNeedingMaintenance();
+    }
+
+    class LineManager {
+      void addLine(Line line);
+      void removeLine(Line line);
+      Line getLine(int lineId);
+    }
+
+    class TrainManager {
+      void addTrain(Train train);
+      void removeTrain(Train train);
+      Train getTrain(int trainId);
+    }
+
+    class Train {
+      int trainId;
+      String trainType;
+      Line assignedLine;
+      boolean isOperational;
+    }
+
+    class Line {
+      int lineId;
+      String lineName;
+      boolean isOperational;
+    }
+
+    association TrainScheduler -> RailwayNetwork;
+    association TrackMonitor -> RailwayNetwork;
+    association TrainMaintenayer -> RailwayNetwork;
+    association TrackMaintenayer -> RailwayNetwork;
+    association LineManager -> RailwayNetwork;
+    association TrainManager -> RailwayNetwork;
+}

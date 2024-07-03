@@ -1,0 +1,80 @@
+
+classdiagram VRPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    -> VRExperience [*];
+  }
+
+  class VRExperience {
+    String title;
+    String description;
+    -> Scene [*];
+    void create();
+    void edit();
+    void delete();
+    void share();
+  }
+
+  abstract class Scene {
+    String name;
+    String description;
+    -> Object [*];
+  }
+
+  class TwoDScene extends Scene {}
+  class ThreeDScene extends Scene {}
+
+  abstract class Object {
+    String name;
+    String description;
+    -> Property [*];
+  }
+
+  class TwoDObject extends Object {}
+  class ThreeDObject extends Object {}
+
+  abstract class Property {
+    String type;
+  }
+
+  class TextProperty extends Property {}
+  class ImageProperty extends Property {}
+  class ThreeDModelProperty extends Property {}
+
+  class Rating {
+    User user;
+    int rating;
+  }
+
+  class Review {
+    User user;
+    String review;
+  }
+
+  class SearchResult {
+    VRExperience vrExperience;
+    Scene scene;
+  }
+
+  association User --o00o- 											{
+   								ordered
+  }						;
+
+  association VRExperience --o00o- 											{
+   								ordered
+  }						;
+
+  association Scene --o00o- 											{
+   								ordered
+  }						;
+
+  association Object --o00o- 											{
+   								ordered
+  }						;
+
+  association Property --o00o- 											{
+   								ordered
+  }						;
+
+ 			}

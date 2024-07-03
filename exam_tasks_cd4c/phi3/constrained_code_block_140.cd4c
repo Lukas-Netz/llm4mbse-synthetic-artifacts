@@ -1,0 +1,40 @@
+
+classdiagram EcommercePersonalizationSystem {
+
+    class Customer {
+      String name;
+      String email;
+      List<Product> purchaseHistory;
+    Writes customerDataToDatabase();
+      void readsCustomerDataFromDatabase();
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+    }
+
+    class AIEngine {
+      void analyzeCustomerData(Customer customer);
+      void analyzeProductData(Product product);
+      List<Product> generateRecommendations(Customer customer);
+    }
+
+    class RecommendationEngine {
+      void generateRecommendations(Customer customer);
+    }
+
+    class UserInterface {
+      void displayRecommendations(Customer customer);
+      void displaySearchResults(Product product);
+      void processPurchase(Customer customer, Product product);
+    }
+
+    composition Customer -> AIEngine;
+    composition Customer -> RecommendationEngine;
+    composition Customer -> UserInterface;
+    composition Product -> AIEngine;
+    composition Product -> RecommendationEngine;
+    composition Product -> UserInterface;
+}

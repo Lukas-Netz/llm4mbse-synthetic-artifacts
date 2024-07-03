@@ -1,0 +1,46 @@
+
+classdiagram WebHostingService {
+
+    class WebHostingService {
+      List<Website> websites;
+      List<HostingPlan> hostingPlans;
+      BillingSystem billingSystem;
+    }
+
+    class Website {
+      String domainName;
+      List<User> users;
+      HostingPlan hostingPlan;
+    }
+
+    class User {
+      String username;
+      String password;
+    }
+
+    class HostingPlan {
+      String name;
+      int storageCapacity;
+      int bandwidth;
+      int emailAccounts;
+    }
+
+    class BillingSystem {
+      List<Invoice> invoices;
+      void generateInvoice(Website website, InvoiceType invoiceType);
+    }
+
+    class Invoice {
+      String invoiceNumber;
+      Date dueDate;
+    }
+
+    association WebHostingService -> (has) List<<Website>>;
+    association WebHostingService -> (has) List<<HostingPlan>>;
+    association WebHostingService -> (has) BillingSystem;
+    association Website -> (has) List<<User>>;
+    association Website -> (has) HostingPlan;
+    association User -> (has) List<<Website>>;
+    association HostingPlan -> (has) List<<Invoice>>;
+    association Invoice -> (has) WebHostingService;
+}

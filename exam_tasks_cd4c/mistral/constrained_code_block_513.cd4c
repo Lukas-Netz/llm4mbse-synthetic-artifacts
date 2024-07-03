@@ -1,0 +1,68 @@
+
+classdiagram EmergencyResponseDrone {
+
+  class CentralHub {
+    -> Drones [*];
+    -> Database;
+    void assignDronesToEmergency(Emergency emergency);
+    String trackDronesLocations();
+    void updateDronesStatus();
+  }
+
+  abstract class Drone {
+    String uniqueIdentifier;
+    DroneStatus status;
+  }
+
+  class SearchDrone extends Drone {
+    String searchArea;
+    String searchCriteria;
+  }
+
+  class RescueDrone extends Drone {
+    String rescueEquipment;
+    RescueStatus rescueStatus;
+  }
+
+  class SurveillanceDrone extends Drone {
+    String surveillanceArea;
+    SurveillanceType surveillanceType;
+  }
+
+  class Camera {
+    String resolution;
+  }
+
+  class GPS {
+    String coordinates;
+  }
+
+  class CommunicationEquipment {
+    String frequency;
+  }
+
+  class Database {
+    -> Drones [*];
+    -> Emergency [*];
+  }
+
+  class Emergency {
+    String location;
+    String description;
+  }
+
+  enum DroneStatus {
+    Available, NotAvailable;
+  }
+
+  enum RescueStatus {
+    NotStarted, InProgress, Completed;
+  }
+
+  enum SurveillanceType {
+    Aerial, Ground;
+  }
+
+  composition CentralHub -> Drones [*];
+  composition CentralHub -> Database;
+}

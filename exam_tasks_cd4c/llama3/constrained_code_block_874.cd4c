@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram CancerTherapy  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    MedicalHistory medicalHistory;
+  }
+
+  class Diagnosis  {
+    String uniqueIdentifier;
+    CancerType cancerType;
+    Stage stage;
+  }
+
+  class Treatment  {
+    String uniqueIdentifier;
+    Diagnosis diagnosis;
+    Regimen regimen;
+  }
+
+  class Regimen  {
+    String uniqueIdentifier;
+    Treatment treatment;
+    Medication medication;
+  }
+
+  class Medication  {
+    String uniqueIdentifier;
+    Regimen regimen;
+    SideEffect sideEffect;
+  }
+
+  class MedicalHistory  {
+    Patient patient;
+    Diagnosis diagnosis;
+  }
+
+  class CancerType  {
+    String name;
+  }
+
+  class Stage  {
+    String name;
+  }
+
+  class SideEffect  {
+    String name;
+    Severity severity;
+  }
+
+  enum Severity  {
+    Mild, Moderate, Severe;
+  }
+
+  composition Patient -> MedicalHistory;
+  composition Diagnosis -> Stage;
+  composition Treatment -> Regimen;
+  composition Regimen -> Medication;
+  composition Medication -> SideEffect;
+  composition MedicalHistory -> Diagnosis;
+  composition CancerType -> Diagnosis;
+  composition Stage -> Diagnosis;
+  composition SideEffect -> Medication;
+}

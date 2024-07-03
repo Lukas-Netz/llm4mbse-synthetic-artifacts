@@ -1,0 +1,45 @@
+
+classdiagram WindFarm {
+
+    class WindFarm {
+      List<Turbine> turbines;
+      Substation substation;
+      MaintenanceTeam maintenanceTeam;
+      MonitoringSystem monitoringSystem;
+    }
+
+    class Turbine {
+      String name;
+      String location;
+      boolean isOperational;
+      String uniqueIdentifier;
+    }
+
+    class Substation {
+      String name;
+      String location;
+      void collectElectricity(Turbine turbine);
+      void transmitElectricity(Turbine turbine);
+    }
+
+    class MaintenanceTeam {
+      List<Technician> technicians;
+      void assignTechnician(Technician technician, Turbine turbine);
+    }
+
+    class Technician {
+      String uniqueIdentifier;
+      String name;
+      String expertise;
+    }
+
+    class MonitoringSystem {
+      void trackTurbinePerformance(Turbine turbine);
+      void provideRealTimeData(Turbine turbine);
+    }
+
+  composition WindFarm -> (has) Turbine [*];
+  composition WindFarm -> (has) Substation;
+  composition WindFarm -> (has) MainteninasidewindFarmTeam;
+  composition WindFarm -> (has) MonitoringSystem;
+}

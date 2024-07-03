@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram MobileHealthApp  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    Profile  profile;
+  }
+
+  class Profile  {
+    String personalInformation;
+    MedicalHistory medicalHistory;
+    MedicationList medicationList;
+  }
+
+  class MedicalHistory  {
+    String[] medicalConditions;
+  }
+
+  class MedicationList  {
+    String[] medications;
+  }
+
+  class SymptomTracker  {
+    PatientProfile  patientProfile;
+    Symptom  symptom;
+  }
+
+  class Symptom  {
+    String description;
+  }
+
+  class MedicationReminder  {
+    PatientProfile  patientProfile;
+  }
+
+  class Doctor  {
+    Patient  patient;
+  }
+
+  class LabResultViewer  {
+    PatientProfile  patientProfile;
+  }
+
+  class LabResult  {
+    PatientProfile  patientProfile;
+  }
+
+  composition Patient -> Profile;
+  composition Profile -> MedicalHistory;
+  composition Profile -> MedicationList;
+  composition SymptomTracker -> PatientProfile;
+  composition MedicationReminder -> PatientProfile;
+  composition Doctor -> Patient;
+  composition LabResultViewer -> PatientProfile;
+  composition LabResult -> PatientProfile;
+}

@@ -1,0 +1,48 @@
+
+classdiagram WearableHealthMonitoring {
+
+  class WearableDevice {
+    String deviceID;
+    String deviceType;
+    SensorData sensorData;
+  }
+
+  class SensorData {
+    HeartRate heartRate;
+    BloodPressure bloodPressure;
+    BodyTemperature bodyTemperature;
+  }
+
+  class HeartRate {
+    int beatsPerMinute;
+  }
+
+  class BloodPressure {
+    int systolic;
+    int diastolic;
+  }
+
+  class BodyTemperature {
+    float temperature;
+  }
+
+  class DataStorage {
+    int storageCapacity;
+    String dataRetrievalMethods;
+  }
+
+  class DataAnalysis {
+    String analysisAlgorithms;
+    String dataVisualizationMethods;
+  }
+
+  class UserInterface {
+    String userAuthentication;
+    String dataVisualization;
+  }
+
+  composition WearableHealthMonitoring -> WearableDevice;
+  composition WearableHealthMonitoring -> DataStorage;
+  composition WearableHealthMonitoring -> DataAnalysis;
+  composition WearableHealthMonitoring -> UserInterface;
+}

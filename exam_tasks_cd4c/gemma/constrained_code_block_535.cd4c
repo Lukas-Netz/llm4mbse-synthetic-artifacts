@@ -1,0 +1,241 @@
+
+
+classdiagram OnlineIndigenousLanguageLearningSystem {
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Course {
+    String name;
+    List<Lesson> lessons;
+  }
+
+  class Lesson {
+    String title;
+    String content;
+    List<Exercise> exercises;
+  }
+
+  class Exercise {
+    String type;
+    String answer;
+  }
+
+  class Instructor {
+    String name;
+    List<Course> courses;
+  }
+
+  class CourseEnrollment {
+    User user;
+    Course course;
+  }
+
+  class DiscussionForum {
+    User sender;
+    User recipient;
+    String message;
+  }
+
+  class Report {
+    String title;
+    String content;
+  }
+
+  composition User -> (has) CourseEnrollment [0..1]
+  abstract  {
+    
+  
+  
+ordered  
+  }
+
+  
+
+;
+
+  association Course -> Lesson [1..*]
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association CourseEnrollment -> Course [1..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association DiscussionForum -> User [2..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Report -> User [1..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  association Report -> Course [1..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  class Database {
+    List<User> users;
+    List<Course> courses;
+    List<Instructor> instructors;
+    List<CourseEnrollment> courseEnrollments;
+    List<DiscussionForum> discussionForums;
+    List<Report> reports;
+  }
+
+  composition Database -> (has) User [0..*]
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  composition Database -> (has) Course [0..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  composition Database -> (has) Instructor [0..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  composition Database -> (has) CourseEnrollment [0..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  composition Database -> (has) DiscussionForum [0..*]
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+
+  
+
+}

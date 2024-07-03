@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram SDLC  {
+
+  class Project  {
+    String uniqueId;
+    String name;
+    String description;
+    ProjectState state;
+  }
+
+  class Task  {
+    String uniqueId;
+    String name;
+    String description;
+    Project project;
+    TaskState state;
+  }
+
+  class TeamMember  {
+    String uniqueId;
+    String name;
+    Role role;
+    Project[] projects;
+  }
+
+  class Milestone  {
+    String uniqueId;
+    String name;
+    String description;
+    Project project;
+    MilestoneState state;
+  }
+
+  enum ProjectState  {
+    Planning, InProgress, Completed;
+  }
+
+  enum TaskState  {
+    Open, InProgress, Completed;
+  }
+
+  enum Role  {
+    Developer, Tester, ProjectManager;
+  }
+
+  enum MilestoneState  {
+    Planned, InProgress, Completed;
+  }
+
+  composition Project -> Task[*];
+  composition Project -> Milestone[*];
+  composition TeamMember -> Project[*];
+  composition Task -> TeamMember[*];
+  composition Milestone -> Project[*];
+}

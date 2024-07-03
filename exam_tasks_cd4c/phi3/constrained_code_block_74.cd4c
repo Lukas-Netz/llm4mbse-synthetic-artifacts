@@ -1,0 +1,57 @@
+
+classdiagram MarketResearchCompany {
+
+    class CompanyClient {
+      String name;
+      String type;
+      List<Project> projects;
+    }
+
+    class Project {
+      String uniqueIdentifier;
+      String name;
+      CompanyClient client;
+      List<Survey> surveys;
+    }
+
+    class Survey {
+      String name;
+      String description;
+      List<Question> questions;
+    }
+
+    class Question {
+      String type;
+      List<String> possibleAnswers;
+    }
+
+    class Analyst {
+      String name;
+      String role;
+      List<String> skills;
+    }
+
+    class AnalyticsService {
+      void dataVisualization();
+      void dataMining();
+      void statisticalAnalysis();
+    }
+
+    class Tool {
+      String name;
+      String type;
+    }
+
+    class DataStorage {
+      String name;
+      String type;
+    }
+
+    composition CompanyClient -> (has) Project;
+    composition Project -> (has) Survey;
+    composition Survey -> (has) Question;
+    composition CompanyClient -> (has) Analyst;
+    composition Analyst -> (has) AnalyticsService;
+    composition AnalyticsService -> (has) Tool;
+    composition AnalyticsService -> (has) DataStorage;
+}

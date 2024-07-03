@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram AutonomousConstructionEquipment  {
+
+  class BaseUnit  {
+    String name;
+    EquipmentType type;
+    Attachment  [  ] attachments;
+  }
+
+  class Attachment  {
+    String name;
+    AttachmentType type;
+    BaseUnit baseUnit;
+  }
+
+  class Location  {
+    String name;
+    LocationType type;
+  }
+
+  class Equipment  {
+    BaseUnit baseUnit;
+    Location location;
+    EquipmentState state;
+    MaintenanceSchedule maintenanceSchedule;
+  }
+
+  class MaintenanceSchedule  {
+    MaintenanceType type;
+    int frequency;
+    Date nextMaintenanceDate;
+  }
+
+  enum EquipmentType  {
+    Excavator, Crane, etc;
+  }
+
+  enum AttachmentType  {
+    Mechanical, Hydraulic, Electrical;
+  }
+
+  enum LocationType  {
+    ConstructionSite, Warehouse, MaintenanceFacility;
+  }
+
+  enum EquipmentState  {
+    Idle, InUse, UnderMaintenance;
+  }
+
+  enum MaintenanceType  {
+    Regular, Urgent, Preventive;
+  }
+
+  composition BaseUnit -> Attachment [1..*];
+  composition Attachment -> BaseUnit [1];
+  composition Equipment -> Location [1];
+  composition Equipment -> MaintenanceSchedule [1];
+}

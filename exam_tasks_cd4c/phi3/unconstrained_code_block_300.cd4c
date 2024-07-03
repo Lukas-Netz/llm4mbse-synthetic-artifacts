@@ -1,0 +1,33 @@
+
+classdiagram WirelessEnvironmentalMonitoringSystem {
+
+    class Sensor {
+      String uniqueId;
+      String location;
+      int temperatureRange;
+      int humidityRange;
+      int airQualityRange;
+      String calibrationDate;
+      void updateFirmware();
+    }
+
+    class Gateway {
+      String uniqueId;
+      int transmissionRange;
+      int dataStorageCapacity;
+      void updateFirmware();
+    }
+
+    class CentralServer {
+      String uniqueId;
+      int dataStorageCapacity;
+      int processingPower;
+      void updateFirmware();
+      void sendAlert(String airQualityThreshold);
+    }
+
+    association Sensor -> Gateway [*];
+    association Gateway -> CentralServer [*];
+    composition CentralServer -> (has) Sensor [*];
+    composition CentralServer -> (has) Gateway [*];
+}

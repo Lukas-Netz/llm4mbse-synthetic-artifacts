@@ -1,0 +1,59 @@
+
+classdiagram PublicSafetyCommunication {
+
+  class EmergencyCall {
+    String callType;
+    String location;
+    EmergencyStatus status;
+  }
+
+  enum CallType {
+    Fire, Medical, Police;
+  }
+
+  enum EmergencyStatus {
+    InProgress, OnHold, Completed;
+  }
+
+  class EmergencyResponder {
+    String id;
+    String location;
+  }
+
+  class Dispatcher {
+    String id;
+    String location;
+  }
+
+  class CommunicationSystem {
+    -> EmergencyCall [*];
+    -> EmergencyResponder [*];
+    -> Dispatcher [*];
+    void sendMessage(EmergencyResponder responder, String message);
+    void receiveMessage(EmergencyResponder responder, String message);
+    void storeEmergencyCallData(EmergencyCall call);
+    EmergencyCall retrieveEmergencyCallData(String id);
+    void updateEmergencyResponseStatus(EmergencyCall call, EmergencyStatus status);
+  }
+
+  composition CommunicationSystem -> EmergencyCall [*];
+  composition CommunicationSystem -> EmergencyResponder [*];
+  composition CommunicationSystem -> Dispatcher [*];
+
+  association CommunicationSystem --o000o- 											;
+  association EmergencyCall --o000o- 											;
+  association EmergencyResponder --o000o- 											;
+  association Dispatcher --o000o- 											;
+
+  interface IntegrationInterface {
+    void integrateWith(CommunicationSystem system);
+  }
+
+  class NineOneOneSystem implements IntegrationInterface {
+    void integrateWith(CommunicationSystem system);
+  }
+
+  class EmergencyMedicalServices implements IntegrationInterface {
+    void integrateWith(CommunicationSystem system);
+  }
+}

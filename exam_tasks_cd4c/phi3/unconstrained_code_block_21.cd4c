@@ -1,0 +1,73 @@
+
+classdiagram ESystem {
+
+    class PatientDB {
+      String patientName;
+      String address;
+      String medicalHistory;
+      PatientDB(String name, String address, String history);
+      String getPatientName();
+      String getAddress();
+      String getMedicalHistory();
+    }
+
+    class DoctorDB {
+      String doctorName;
+      String specialty;
+      String hospitalAffiliation;
+      DoctorDB(String name, String specialty, String affiliation);
+      String getDoctorName();
+      String getSpecialty();
+      String getHospitalAffiliation();
+    }
+
+    class PrescriptionDB {
+      String medicationName;
+      String dosage;
+      Date expirationDate;
+      PrescriptionDB(String medication, String dosage, Date expiration);
+      String getMedicationName();
+      String getDosage();
+      Date getExpirationDate();
+    }
+
+    class PharmacyDB {
+      String pharmacyName;
+      String location;
+      Inventory inventory;
+      PharmacyDB(String name, String loc, Inventory stock);
+      String getPharmacyName();
+      String getLocation();
+      Inventory getInventory();
+    }
+
+    class PrescriptionOrder {
+      DoctorDB doctor;
+      PrescriptionDB prescription;
+      PatientDB patient;
+      PrescriptionOrder(DoctorDB doc, PrescriptionDB pres, PatientDB pat);
+      DoctorDB getDoctor();
+      PrescriptionDB getPrescription();
+      PatientDB getPatient();
+    }
+
+    class PrescriptionFulfillment {
+      PharmacyDB pharmacy;
+      PrescriptionOrder order;
+      PrescriptionFulfillment(PharmacyDB pharm, PrescriptionOrder presOrder);
+      PharmacyDB getPharmacy();
+      PrescriptionOrder getOrder();
+    }
+
+    class PatientMedicationList {
+      List<PrescriptionDB> medications;
+      PatientMedicationList(List<PrescriptionDB> meds);
+      List<PrescriptionDB> getMedications();
+    }
+
+    association PatientDB -> PatientMedicationList;
+    association DoctorDB -> PrescriptionDB;
+    association PrescriptionDB -> PrescriptionOrder;
+    association PrescriptionOrder -> PrescriptionFulfillment;
+    association PharmacyDB -> PrescriptionFulfillment;
+}

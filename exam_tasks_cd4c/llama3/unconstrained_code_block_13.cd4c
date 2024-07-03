@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram SportsAnalytics  {
+
+  class Sport  {
+    String name;
+  }
+
+  class Team  {
+    String name;
+    Sport sport;
+  }
+
+  class Player  {
+    String name;
+    Team team;
+  }
+
+  class Game  {
+    Date date;
+    Team homeTeam;
+    Team awayTeam;
+  }
+
+  class Statistic  {
+    String name;
+    double value;
+  }
+
+  class Report  {
+    String title;
+    List<Statistic> statistics;
+  }
+
+  class AnalyticsSystem  {
+    List<Sport> sports;
+    List<Team> teams;
+    List<Player> players;
+    List<Game> games;
+    List<Statistic> statistics;
+    List<Report> reports;
+  }
+
+  composition AnalyticsSystem -> (has) Sport[*];
+  composition AnalyticsSystem -> (has) Team[*];
+  composition AnalyticsSystem -> (has) Player[*];
+  composition AnalyticsSystem -> (has) Game[*];
+  composition AnalyticsSystem -> (has) Statistic[*];
+  composition AnalyticsSystem -> (has) Report[*];
+  composition Sport -> (has) Team[*];
+  composition Team -> (has) Player[*];
+  composition Game -> (has) Team[*];
+  composition Statistic -> (has) Game[*];
+  composition Report -> (has) Statistic[*];
+}
+

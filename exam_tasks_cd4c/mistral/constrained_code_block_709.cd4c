@@ -1,0 +1,38 @@
+
+classdiagram QuantumDotSolarCell {
+
+  class QuantumDot {
+    String uniqueIdentifier;
+    int size;
+    String materialType;
+  }
+
+  class SolarCell {
+    PowerOutput powerOutput;
+    QuantumDot [] quantumDots;
+  }
+
+  class Light {
+    String uniqueIdentifier;
+    int intensity;
+  }
+
+  class PowerOutput {
+    double energyOutput;
+    double efficiency;
+  }
+
+  class QuantumDotSolarSystem {
+    SolarCell [] solarCells;
+    Light [ ] lightSources;
+
+    void addQuantumDot(QuantumDot quantumDot);
+    void addSolarCell(SolarCell solarCell);
+    void addLightSource(Light lightSource);
+    void removeQuantumDot(QuantumDot quantumDot);
+    void removeSolarCell(SolarCell solarCell);
+    void removeLightSource(Light lightSource);
+    PowerOutput calculateEnergyOutput();
+    PowerOutput calculateEfficiency();
+  }
+}

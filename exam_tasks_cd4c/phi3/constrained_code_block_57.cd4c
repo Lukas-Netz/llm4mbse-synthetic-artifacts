@@ -1,0 +1,81 @@
+
+classdiagram IntelligentTransportationSystem {
+
+    class TrafficSensors {
+      void collectData();
+      TrafficData trafficData;
+    }
+
+    class TrafficCameras {
+      void captureVideo();
+      VideoData videoData;
+    }
+
+    class TrafficManagementCenter {
+      void analyzeData(TrafficData data);
+      void respondToIncident(Incident incident);
+      TrafficSignalControl signalControl;
+      TrafficInformationService trafficInfoService;
+    }
+
+    class TrafficSignalControl {
+      void optimizeSignalTiming();
+      TrafficSignalStatus signalStatus;
+    }
+
+    class DataAnalytics {
+      void analyzeTrafficData();
+      TrafficReport report;
+    }
+
+    class EmergencyServicesIntegration {
+      void notifyEmergencyServices(Incident incident);
+    }
+
+    class TrafficInformationService {
+      void provideTrafficInfo(TrafficData data);
+      void displayInfo(String channel);
+    }
+
+    class Incident {
+      String type;
+      Location location;
+      boolean isCritical;
+    }
+
+    class TrafficData {
+      int volume;
+      float speed;
+      boolean occupancy;
+    }
+
+    class VideoData {
+      String videoStream;
+    }
+
+    class TrafficSignalStatus {
+      String signalState;
+    }
+
+    class TrafficReport {
+      String summary;
+      String recommendations;
+    }
+
+    class Location {
+      String address;
+    }
+
+    class TrafficInformation {
+      String info;
+      String channel;
+    }
+
+    association TrafficSensors -> TrafficManagementCenter [*];
+    association TrafficCameras -> TrafficManagementCenter [*];
+    association TrafficManagementCenter -> TrafficSignalControl [*];
+    association TrafficManagementCenter -> TrafficInformationService [*];
+    association TrafficManagementCenter -> DataAnalytics [*];
+    association TrafficManagementCenter -> EmergencyServicesIntegration [*];
+   
+ }

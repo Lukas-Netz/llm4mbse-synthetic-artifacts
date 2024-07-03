@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram VRTherapySystem  {
+
+  class VRHeadset  {
+    Controller controller;
+  }
+
+  class Controller  {
+    VRHeadset headset;
+  }
+
+  class Scenario  {
+    String uniqueIdentifier;
+    String description;
+  }
+
+  class ScenarioLibrary  {
+    Scenario[] scenarios;
+    ScenarioType[] types;
+  }
+
+  class ScenarioType  {
+    String name;
+  }
+
+  class Patient  {
+    Progress progress;
+    TherapyGoal goal;
+  }
+
+  class Progress  {
+    int steps;
+  }
+
+  class TherapyGoal  {
+    String description;
+  }
+
+  class Computer  {
+    VRSoftware software;
+    Patient patient;
+  }
+
+  class VRSoftware  {
+    ScenarioLibrary library;
+    Computer computer;
+  }
+
+  composition Computer -> (has) VRSoftware;
+  composition VRHeadset -> (has) Controller;
+  composition Patient -> (has) Progress;
+  composition Patient -> (has) TherapyGoal;
+  composition Computer -> (has) Patient;
+  composition VRSoftware -> (has) ScenarioLibrary;
+  composition ScenarioLibrary -> (has) Scenario[*];
+  composition ScenarioLibrary -> (has) ScenarioType[*];
+}

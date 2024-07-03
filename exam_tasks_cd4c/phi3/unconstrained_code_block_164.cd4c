@@ -1,0 +1,63 @@
+
+classdiagram OnlineResumeBuilder {
+
+    class User {
+      String username;
+      String password;
+      List<Resume> resumes;
+      void createResume();
+      void editResume(Resume resume);
+      void deleteResume(Resume resume);
+    }
+
+    class Resume {
+      String title;
+      String summary;
+      List<Skill> skills;
+      List<Section> sections;
+      void addSection(Section section);
+      void removeSection(Section section);
+      void addSkill(Skill skill);
+      void removeSkill(Skill skill);
+    }
+
+    class Section {
+      String title;
+      List<Item> items;
+      void addItem(Item item);
+      void removeItem(Item item);
+    }
+
+    class Item {
+      String title;
+      String description;
+      String link;
+    }
+
+    class File {
+      String name;
+      String type;
+      String link;
+    }
+
+    class Certification {
+      String name;
+      Date date;
+      String link;
+    }
+
+    class Skill {
+      String name;
+      String category;
+      List<Certification> certifications;
+      void addCertification(Certification certification);
+      void removeCertification(Certification certification);
+    }
+
+    composition User -> (has) Resume;
+    composition Resume -> (has) Section;
+    composition Resume -> (has) Item;
+    composition Resume -> (has) File;
+    composition Resume -> (has) Skill;
+    composition Resume -> (has) Certification;
+}

@@ -1,0 +1,70 @@
+
+classdiagram CCS {
+
+  class CaptureUnit {
+    String uniqueIdentifier;
+    CaptureTechnology technology;
+    int CO2Captured;
+    CaptureUnitStatus status;
+  }
+
+  class TransportationUnit {
+    String uniqueIdentifier;
+    TransportationMethod method;
+    int distanceTraveled;
+    TransportationUnitStatus status;
+  }
+
+  class StorageUnit {
+    String uniqueIdentifier;
+    GeologicalFormation formation;
+    int CO2Stored;
+    StorageUnitStatus status;
+  }
+
+  class MonitoringUnit {
+    String uniqueIdentifier;
+    void monitorCO2Levels();
+    void alertSystem();
+  }
+
+  enum CaptureTechnology {
+    PostCombustion, PreCombustion, Oxyfuel;
+  }
+
+  enum TransportationMethod {
+    Pipeline, Truck, Ship;
+  }
+
+  enum GeologicalFormation {
+    SalineAquifer, DepletedOilField, DepletedGasField;
+  }
+
+  enum CaptureUnitStatus {
+    Operational, NonOperational;
+  }
+
+  enum TransportationUnitStatus {
+    Operational, NonOperational;
+  }
+
+  enum StorageUnitStatus {
+    Operational, NonOperational;
+  }
+
+  class CCS {
+    CaptureUnit captureUnit;
+    TransportationUnit transportationUnit;
+    StorageUnit storageUnit;
+    MonitoringUnit monitoringUnit;
+    void addComponent(Component component);
+    void removeComponent(Component component);
+    void checkComponentStatus();
+    void monitorCO2Levels();
+  }
+
+  composition CCS -> CaptureUnit;
+  composition CCS -> TransportationUnit;
+  composition CCS -> StorageUnit;
+  composition CCS -> MonitoringUnit;
+}

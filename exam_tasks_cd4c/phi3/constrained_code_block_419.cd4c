@@ -1,0 +1,62 @@
+
+classdiagram DigitalTherapyPlatform {
+
+    class Therapist {
+      String name;
+      String email;
+      String password;
+      List<Patient> patients;
+    }
+
+    class Patient {
+      String name;
+      String email;
+      String password;
+      List<TherapySession> therapySessions;
+    }
+
+    class TherapySession {
+      Date date;
+      Time time;
+      int duration;
+      Therapist therapist;
+      Patient patient;
+      List<Note> notes;
+      List<Attachment> attachments;
+    }
+
+    class Note {
+      String content;
+    }
+
+    class Attachment {
+      String filePath;
+    }
+
+    class Platform {
+      int totalSessions;
+      int totalPatients;
+      int totalNotes;
+      int totalAttachments;
+      void addTherapist(Therapist therapist);
+      void removeTherapist(Therapist therapist);
+      void addPatient(Patient patient);
+      void removePatient(Patient patient);
+      void addTherapySession(TherapySession session);
+      void removeTherapySession(TherapySession session);
+      int getTherapistSessionsCount(Therapist therapist);
+      int getPatientSessionsCount(Patient patient);
+      void updateTotalSessions();
+      void updateTotalPatients();
+      void updateTotalNotes();
+      void updateTotalAttachments();
+    }
+
+    association Therapist -> Patient [0..*];
+    association Patient -> TherapySession [0..*];
+    association TherapySession -> Therapist;
+    association TherapySession -> Patient;
+    association Platform -> Therapist [0..*];
+    association Platform -> Patient [0..*];
+    association Platform -> TherapySession [0..*];
+}

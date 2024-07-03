@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram SensorManagement  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorStatus status;
+  }
+
+  class MagneticSensor extends Sensor  {
+    double sensitivity;
+    double range;
+  }
+
+  class ElectricSensor extends Sensor  {
+    double voltage;
+    double current;
+  }
+
+  class OpticalSensor extends Sensor  {
+    double wavelength;
+    double resolution;
+  }
+
+  class SensorData  {
+    double temperature;
+    double pressure;
+    double humidity;
+  }
+
+  class SensorManager  {
+    Sensor[] sensors;
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void updateSensorStatus(Sensor sensor);
+    SensorData[] retrieveSensorData();
+  }
+
+  composition SensorManager -> Sensor[*];
+  composition Sensor -> SensorData[*];
+}
+

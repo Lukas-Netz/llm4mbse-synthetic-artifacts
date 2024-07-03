@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram OceanAcidificationMonitoring  {
+
+  class MonitoringStation  {
+    String uniqueIdentifier;
+    pHLevelSensor pHLevelSensor;
+    TemperatureSensor temperatureSensor;
+    OtherOceanParameterSensors otherSensors;
+    void sendDataToDatabase(Database database);
+  }
+
+  class Database  {
+    void receiveData(MonitoringStation monitoringStation);
+    void processAndAnalyzeData();
+  }
+
+  class Scientist  {
+    String name;
+    String expertise;
+    List<Publication> publications;
+  }
+
+  class Report  {
+    String title;
+    String recommendations;
+    void generateReport(Database database);
+  }
+
+  class pHLevelSensor  {
+    double pHLevel;
+  }
+
+  class TemperatureSensor  {
+    double temperature;
+  }
+
+  class OtherOceanParameterSensors  {
+    double otherParameters;
+  }
+
+  class Publication  {
+    String title;
+    String authors;
+  }
+
+  composition MonitoringStation -> (has) pHLevelSensor;
+  composition MonitoringStation -> (has) TemperatureSensor;
+  composition MonitoringStation -> (has) OtherOceanParameterSensors;
+  composition MonitoringStation -> (sends) Database;
+  composition Database -> (receives) MonitoringStation;
+  composition Scientist -> (has) List<<Publication>>;
+  composition Report -> (uses) Database;
+}

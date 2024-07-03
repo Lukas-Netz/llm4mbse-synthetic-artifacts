@@ -1,0 +1,29 @@
+
+classdiagram FertilizerDispenser {
+
+  class FertilizerDispenser {
+    String uniqueIdentifier;
+    String location;
+    int capacity;
+    int dispensedAmount;
+    Sensor sensor;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    int soilMoisture;
+    int pH;
+  }
+
+  class Farm {
+    FertilizerDispenser [][] dispensers;
+  }
+
+  class MobileApp {
+    Farm farm;
+  }
+
+  composition Farm -> FertilizerDispenser [*];
+  association FertilizerDispenser -- Sensor;
+  association MobileApp -- Farm;
+}

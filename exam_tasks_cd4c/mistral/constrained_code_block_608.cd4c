@@ -1,0 +1,63 @@
+
+classdiagram TeleoperatedSurgicalRobot {
+
+  class SurgeonConsole {
+    UserInterface userInterface;
+  }
+
+  class RobotArm {
+    InstrumentSet instruments;
+    RobotArmState state;
+  }
+
+  class InstrumentSet {
+    Instrument [						] instruments;
+  }
+
+  class Instrument {
+    String name;
+  }
+
+  class PatientTable {
+    Patient patient;
+    PatientTableState state;
+  }
+
+  class Patient {
+    MedicalRecord medicalRecord;
+    PatientState state;
+  }
+
+  class MedicalRecord {
+    String id;
+    String name;
+    String dateOfBirth;
+    String diagnosis;
+  }
+
+  class PatientState {
+    String state;
+  }
+
+  class RobotArmState {
+    String state;
+  }
+
+  class PatientTableState {
+    String state;
+  }
+
+  class Surgery {
+    void startSurgery();
+    void stopSurgery();
+    void adjustPatientTable();
+    void monitorPatientVitalSigns();
+  }
+
+  composition SurgeonConsole -> UserInterface;
+  composition RobotArm -> InstrumentSet;
+  composition PatientTable -> Patient;
+  association Surgery -- SurgeonConsole;
+  association Surgery -- RobotArm;
+  association Surgery -- PatientTable;
+}

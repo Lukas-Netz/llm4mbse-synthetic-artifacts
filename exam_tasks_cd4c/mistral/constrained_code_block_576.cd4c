@@ -1,0 +1,63 @@
+
+classdiagram SportsAnalysis {
+
+  class Athlete {
+    String name;
+    int jerseyNumber;
+    String position;
+  }
+
+  class Team {
+    String name;
+    String league;
+    Athlete [][] players;
+  }
+
+  class Match {
+    String date;
+    String location;
+    Team homeTeam;
+    Team awayTeam;
+    SportType sport;
+    MatchResult result;
+  }
+
+  enum SportType {
+    Soccer, Basketball, Tennis
+  , Football, Handball, Volleyball
+  , Baseball, Cricket, Rugby
+  , Golf, Swimming, Athletics
+  , Boxing, MMA, Wrestling
+  , Etc;
+  }
+
+  enum MatchResult {
+    HomeWin, AwayWin, Draw
+  , HomeWinByDefault, AwayWinByDefault
+  , HomeForfeit, AwayForfeit
+  , Cancelled, Postponed
+  , Etc;
+  }
+
+  class Statistics {
+    String statName;
+    int value;
+  }
+
+  class AthleteStatistics {
+    Athlete athlete;
+    Statistics [][] matchStatistics;
+    Statistics overallStatistics;
+  }
+
+  class TeamStatistics {
+    Team team;
+    Statistics [][] matchStatistics;
+    Statistics overallStatistics;
+  }
+
+  composition Team [*] has [many] (playsFor) -> Athlete [*];
+  composition Match [1] has [one] (involves) -> Team [1];
+  composition AthleteStatistics [1] has [one] (belongsTo) -> Athlete [1];
+  composition TeamStatistics [1] has [one] (belongsTo) -> Team [1];
+}

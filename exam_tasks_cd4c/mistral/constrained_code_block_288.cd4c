@@ -1,0 +1,74 @@
+
+classdiagram EmailPlatform {
+
+  class EmailPlatform {
+    EmailCampaign [
+     ] emailCampaigns;
+  }
+
+  class EmailCampaign {
+    String name;
+    Date startDate;
+    Date endDate;
+    EmailMessage [
+     ] emailMessages;
+  }
+
+  class EmailMessage {
+    List<Recipient> recipients;
+    String contentType;
+    String content;
+  }
+
+  class Recipient {
+    String id;
+    Demographics demographics;
+    Interests interests;
+    PreviousInteractions previousInteractions;
+  }
+
+  class Demographics {
+    String age;
+    String gender;
+    String location;
+  }
+
+  class Interests {
+    String category1;
+    String category2;
+    String category3;
+  }
+
+  class PreviousInteractions {
+    String purchaseHistory;
+    String websiteVisits;
+    String emailOpens;
+  }
+
+  class Metrics {
+    double openRate;
+    double clickThroughRate;
+    double conversionRate;
+  }
+
+  class Personalization {
+    RecipientProfile recipientProfile;
+    RecipientBehavior recipientBehavior;
+  }
+
+  class RecipientProfile {
+    String name;
+    String email;
+    String phone;
+  }
+
+  class RecipientBehavior {
+    String lastPurchase;
+    String lastVisit;
+    String lastEmailOpen;
+  }
+
+  composition EmailPlatform -> EmailCampaign [*];
+  composition EmailCampaign -> EmailMessage [*];
+  association EmailMessage -> Recipient [*];
+}

@@ -1,0 +1,48 @@
+
+classdiagram SupplyChain {
+
+  class Good {
+    String id;
+    String type;
+    boolean perishable;
+  }
+
+  class Manufacturer {
+    String id;
+    String name;
+  }
+
+  class Distributor {
+    String id;
+    String name;
+  }
+
+  class Customer {
+    String id;
+    String name;
+  }
+
+  class Transportation {
+    String id;
+    String type;
+    String departureLocation;
+    String arrivalLocation;
+    Date departureDate;
+    Date arrivalDate;
+  }
+
+  class Blockchain {
+    Good good;
+    Manufacturer manufacturer;
+    Distributor distributor;
+    Customer customer;
+    Transportation transportation;
+    boolean isAuthentic;
+  }
+
+  class SupplyChain {
+    Blockchain [ ] blocks;
+  }
+
+  composition SupplyChain -> Blockchain [*];
+}

@@ -1,0 +1,53 @@
+
+
+classdiagram ARTrainingSimulationSystem {
+
+  class ScenarioManager {
+    List<Scenario> scenarios;
+    Scenario currentScenario;
+    void startScenario(Scenario scenario);
+  }
+
+  class ARDisplay {
+    Display display;
+    void renderScene(Scenario scenario);
+  }
+
+  class PilotInterface {
+    Controls controls;
+    void provideInput(Command command);
+  }
+
+  class PerformanceTracker {
+    Metrics metrics;
+    void trackPerformance(Scenario scenario);
+  }
+
+  class ScenarioDatabase {
+    Map<String, Scenario> scenarios;
+    Scenario getScenario(String name);
+  }
+
+  class Scenario {
+    String name;
+    List<Metrics> metrics;
+    List<Command> commands;
+  }
+
+  class Command {
+    String name;
+    void execute();
+  }
+
+  class Metrics {
+    String name;
+    double value;
+  }
+
+  composition ScenarioManager -> (has) CurrentScenario;
+  composition ScenarioManager -> (has) Scenarios;
+  association ARDisplay -> ScenarioManager;
+  association PilotInterface -> ScenarioManager;
+  association PerformanceTracker -> ScenarioManager;
+  association ScenarioDatabase -> ScenarioManager;
+}

@@ -1,0 +1,82 @@
+
+
+
+
+classdiagram OrchardTwin  {
+
+  class Orchard  {
+    String uniqueIdentifier;
+    Location location;
+  }
+
+  class Tree  {
+    TreeType type;
+    int age;
+    HealthStatus healthStatus;
+    Sensor  sensor;
+  }
+
+  class Sensor  {
+    MeasurementType measurementType;
+    double value;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class PestAndDisease  {
+    PestDiseaseType type;
+    Severity severity;
+    TreatmentStatus treatmentStatus;
+  }
+
+  class Farmer  {
+    String name;
+    ContactInformation contactInfo;
+    OrchardManagementTask  task;
+  }
+
+  class OrchardManagementTask  {
+    TaskType taskType;
+    String description;
+  }
+
+  class MeasurementType  {
+    String name;
+  }
+
+  class WeatherData  {
+    double temperature;
+    double precipitation;
+    double sunlight;
+  }
+
+  class PestDiseaseType  {
+    String name;
+  }
+
+  class Severity  {
+    int level;
+  }
+
+  class TreatmentStatus  {
+    boolean isTreated;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phoneNumber;
+  }
+
+  class TaskType  {
+    String name;
+  }
+
+  composition Orchard -> (has) Tree[*];
+  composition Tree -> (has) Sensor;
+  composition WeatherStation -> (provides) WeatherData;
+  composition PestAndDisease -> (affects) Tree;
+  composition Farmer -> (manages) Orchard;
+  composition OrchardManagementTask -> (performedBy) Farmer;
+}

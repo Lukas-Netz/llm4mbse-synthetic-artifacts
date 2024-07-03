@@ -1,0 +1,65 @@
+
+classdiagram VehicleTracking {
+
+  class Vehicle {
+    String id;
+    Location location;
+    Speed speed;
+    Direction direction;
+    Status status;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed {
+    double value;
+    SpeedUnit unit;
+  }
+
+  enum SpeedUnit {
+    KMH, MPH;
+  }
+
+  class Direction {
+    double heading;
+    DirectionUnit unit;
+  }
+
+  enum DirectionUnit {
+    DEGREES, RADIANS;
+  }
+
+  class Status {
+    boolean isMoving;
+    boolean isStationary;
+  }
+
+  class Fleet {
+    Vehicle [ ] vehicles;
+  }
+
+  class Report {
+    String date;
+    String time;
+    Vehicle [ ] vehicles;
+  }
+
+  class Alert {
+    String reason;
+    String details;
+    Vehicle vehicle;
+  }
+
+  class Integration {
+    String systemName;
+    String apiKey;
+  }
+
+  composition Fleet -> Vehicle [*];
+  association Fleet -> Report [*];
+  association Fleet -> Alert [*];
+  association Fleet -> Integration [*];
+}

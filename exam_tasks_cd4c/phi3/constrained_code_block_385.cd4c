@@ -1,0 +1,65 @@
+
+classdiagram DigitalArtMarketplace {
+
+    class Artist {
+      String artistId;
+      String name;
+      List<String> artworks;
+    }
+
+    class DigitalArt {
+      String uniqueId;
+      String title;
+      String description;
+      Artist artist;
+      String artType;
+    }
+
+    class PaymentMethod {
+      String methodType;
+    }
+
+    class CreditCard extends PaymentMethod {
+      String cardNumber;
+      String expirationDate;
+      String cvv;
+    }
+
+    class Cryptocurrency extends PaymentMethod {
+      String currencyType;
+      String address;
+    }
+
+    class Purchase {
+      DigitalArt art;
+      PaymentMethod paymentMethod;
+      String buyerId;
+      String timestamp;
+    }
+
+    class Sales {
+      DigitalArt art;
+      int quantity;
+      double price;
+      String timestamp;
+    }
+
+    class ArtworkSales {
+      DigitalArt art;
+      List<Purchase> purchases;
+    }
+
+    class ArtworkAnalytics {
+      String artType;
+      String topSellingArtist;
+      int totalSales;
+    }
+
+    association DigitalArtMarketplace -> [has] Artist;
+    association DigitalArtMarketplace -> [has] DigitalArt;
+    association DigitalArtMarketplace -> [has] PaymentMethod;
+    association DigitalArtMarketplace -> [has] Purchase;
+    association DigitalArtMarketplace -> [has] Sales;
+    association DigitalArtMarketplace -> [has] ArtworkSales;
+    association DigitalArtMarketplace -> [has] ArtworkAnalytics;
+}

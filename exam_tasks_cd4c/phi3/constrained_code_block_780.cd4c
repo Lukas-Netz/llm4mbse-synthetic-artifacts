@@ -1,0 +1,52 @@
+
+classdiagram RoboticBartenderSystem {
+
+    class RoboticBartenderSystem {
+      Hub centralHub;
+      List<Robot> robots;
+      Database drinkRecipes;
+    }
+
+    class Hub {
+      -> Robot [*];
+      -> Database [*];
+      void addRobot(Robot robot);
+      void removeRobot(Robot robot);
+      void addDrinkRecipe(DrinkRecipe recipe);
+      DrinkRecipe getDrinkRecipe(String recipeName);
+      void serveDrink(String order);
+      void cleanBar();
+    }
+
+    class Robot {
+      String robotId;
+      List<DrinkOrder> drinkOrders;
+      void mixDrink(DrinkRecipe recipe);
+      void serveDrink(DrinkOrder order);
+      void cleanBar();
+    }
+
+    class DrinkRecipe {
+      String name;
+      List<Ingredient> ingredients;
+      String preparationInstructions;
+      double price;
+    }
+
+    class Ingredient {
+      String name;
+      double quantity;
+    }
+
+    class DrinkOrder {
+      String orderName;
+      DrinkRecipe recipe;
+    }
+
+    composition RoboticBartenderSystem -> (has) Hub;
+    composition RoboticBartenderSystem -> (has) List<<Robot>>;
+    composition Hub -> Robot [*];
+    composition Hub -> Database [*];
+    composition Robot -> DrinkOrder [*];
+    composition Robot -> DrinkRecipe [*];
+}

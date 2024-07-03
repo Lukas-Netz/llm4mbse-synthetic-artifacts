@@ -1,0 +1,87 @@
+
+classdiagram QMS {
+
+  class QualityPolicy {
+    String objectives;
+    String procedures;
+  }
+
+  class QualityManual {
+    String procedures;
+  }
+
+  class QualityObjective {
+    String description;
+    boolean isAchieved;
+    Date dueDate;
+  }
+
+  class QualityProcedure {
+    String description;
+    String steps;
+  }
+
+  class QualityRecord {
+    QualityProcedure procedure;
+    Date date;
+    String description;
+  }
+
+  class QualityMetric {
+    String name;
+    double value;
+  }
+
+  class QualityIndicator {
+    String name;
+    double value;
+  }
+
+  class QualityIssue {
+    String description;
+    String category;
+    Date date;
+  }
+
+  class Nonconformity {
+    QualityIssue issue;
+    String correctiveAction;
+    Date resolutionDate;
+  }
+
+  class InternalAudit {
+    Date date;
+    String findings;
+  }
+
+  class ManagementReview {
+    Date date;
+    String actionItems;
+  }
+
+  class PreventiveAction {
+    String description;
+    Date implementationDate;
+  }
+
+  class CorrectiveAction {
+    String description;
+    Date implementationDate;
+  }
+
+  class QMS {
+    QualityPolicy qualityPolicy;
+    QualityManual qualityManual;
+    QualityObjective [ ] qualityObjectives;
+    QualityProcedure [ ] qualityProcedures;
+    QualityRecord [ ] qualityRecords;
+    QualityMetric [ ] qualityMetrics;
+    QualityIndicator [ ] qualityIndicators;
+    QualityIssue [ ] qualityIssues;
+    Nonconformity [ ] nonconformities;
+    InternalAudit [ ] internalAudits;
+    ManagementReview [ ] managementReviews;
+    PreventiveAction [ ] preventiveActions;
+    CorrectiveAction [ ] correctiveActions;
+  }
+}

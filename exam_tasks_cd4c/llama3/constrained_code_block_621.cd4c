@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram CarbonCredits  {
+
+  class User  {
+    String uniqueIdentifier;
+    boolean isIndividual;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    ProjectType type;
+  }
+
+  enum ProjectType  {
+    RenewableEnergy,
+    EnergyEfficiency
+  ;}
+
+  class Credit  {
+    String uniqueIdentifier;
+    double value;
+    Date timestamp;
+  }
+
+  class Blockchain  {
+    Node  node;
+  }
+
+  class Node  {
+    String uniqueIdentifier;
+  }
+
+  class Marketplace  {
+    Credit  credit;
+  }
+
+  composition User  ->  (participates) Project;
+  composition Project  ->  (generates) Credit;
+  composition Blockchain  ->  (maintained) Node;
+  composition Marketplace  ->  (verifies) Credit;
+  association Project  ->  (is) ProjectType;
+  association Credit  ->  (has) User;
+  association Blockchain  ->  (stores) Credit;
+  association Marketplace  ->  (buys) Credit;
+  association Marketplace  ->  (sells) Credit;
+}

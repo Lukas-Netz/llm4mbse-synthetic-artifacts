@@ -1,0 +1,82 @@
+
+
+
+
+classdiagram OnlinePsychotherapyPlatform  {
+
+  class Therapist  {
+    String uniqueIdentifier;
+    String name;
+    String specialization;
+  }
+
+  class Client  {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class Session  {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+    int duration;
+    Therapist assignedTherapist;
+    Client assignedClient;
+  }
+
+  class RatingAndReview  {
+    Session session;
+    int rating;
+    String review;
+  }
+
+  composition Therapist -> Session [*];
+  composition Client -> Session [*];
+  composition Session -> Therapist [1];
+  composition Session -> Client [1];
+  composition Therapist -> RatingAndReview [*];
+  composition Client -> RatingAndReview [*];
+  composition Session -> RatingAndReview [*];
+
+  interface Listable  {
+    void list();
+  }
+
+  class AvailableTherapists implements Listable  {
+    Date date;
+    List<Therapist> therapists;
+    void list();
+  }
+
+  class AvailableSessions implements Listable  {
+    Therapist therapist;
+    List<Session> sessions;
+    void list();
+  }
+
+  class AvailableClients implements Listable  {
+    List<Client> clients;
+    void list();
+  }
+
+  class AllSessions implements Listable  {
+    List<Session> sessions;
+    void list();
+  }
+
+  class AllTherapists implements Listable  {
+    List<Therapist> therapists;
+    void list();
+  }
+
+  class AllClients implements Listable  {
+    List<Client> clients;
+    void list();
+  }
+
+  class AllRatingsAndReviews implements Listable  {
+    List<RatingAndReview> reviews;
+    void list();
+  }
+}

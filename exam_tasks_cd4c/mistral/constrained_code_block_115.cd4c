@@ -1,0 +1,64 @@
+
+classdiagram EnergyMonitoring {
+
+  class Building {
+    String uniqueIdentifier;
+    Sensor [
+     ] sensors;
+    Meter [
+     ] meters;
+    Controller [
+     ] controllers;
+  }
+
+  abstract class Device {
+  }
+
+  class Sensor extends Device {
+    String type;
+    Building building;
+    Device [
+     ] connectedDevices;
+  }
+
+  class Meter extends Device {
+    Building building;
+    Device [
+     ] connectedDevices;
+  }
+
+  class Controller extends Device {
+    Building building;
+    Device [
+     ] connectedDevices;
+  }
+
+  class TemperatureSensor extends Sensor {
+    float temperature;
+  }
+
+  class HumiditySensor extends Sensor {
+    float humidity;
+  }
+
+  class LightSensor extends Sensor {
+    float lightLevel;
+  }
+
+  class EnergyMeter extends Meter {
+    float energyConsumption;
+    float energyConsumptionThreshold;
+  }
+
+  class CentralServer {
+    void collectData();
+    void sendNotification(String message);
+  }
+
+  composition Building -> Sensor [*];
+  composition Building -> Meter [*];
+  composition Building -> Controller [*];
+  association Sensor <-> Meter;
+  association Sensor <-> Controller;
+  association Meter <-> Controller;
+}

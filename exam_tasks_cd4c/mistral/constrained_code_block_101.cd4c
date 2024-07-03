@@ -1,0 +1,52 @@
+
+classdiagram AutomatedUnderwriting {
+
+  class Customer {
+    int age;
+    HealthStatus healthStatus;
+    Occupation occupation;
+    int income;
+    FamilyHistory familyHistory;
+    MedicalHistory medicalHistory;
+  }
+
+  enum HealthStatus {
+    Healthy, Smoker, Diabetic, Other;
+  }
+
+  enum Occupation {
+    OfficeWorker, ManualLaborer, Other;
+  }
+
+  enum FamilyHistory {
+    NoHistory, HeartDisease, Cancer;
+  }
+
+  class MedicalHistory {
+    List<Illness> illnesses;
+    List<Surgery> surgeries;
+  }
+
+  class Illness {
+    String name;
+    int severity;
+  }
+
+  class Surgery {
+    String name;
+    int recoveryTime;
+  }
+
+  class RiskProfile {
+    Customer customer;
+    int riskScore;
+  }
+
+  class PremiumQuote {
+    RiskProfile riskProfile;
+    int premium;
+  }
+
+  association Customer --oRiskProfile;
+  association RiskProfile --oPremiumQuote;
+}

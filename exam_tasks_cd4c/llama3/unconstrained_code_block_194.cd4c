@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram MuseumTour  {
+
+  class Exhibit  {
+    String name;
+    String description;
+    -> Artifact[*];
+  }
+
+  class Artifact  {
+    String uniqueIdentifier;
+    String description;
+    ArtifactType type;
+  }
+
+  enum ArtifactType  {
+    Painting, Sculpture, Artifact;
+  }
+
+  class Room  {
+    String name;
+    -> Exhibit[*];
+  }
+
+  class Museum  {
+    -> Room[*];
+  }
+
+  class User  {
+    void navigate(Room room);
+    void filterArtifacts(ArtifactType type);
+    void searchArtifact(String identifier);
+  }
+
+  composition Museum -> Room[*];
+  composition Room -> Exhibit[*];
+  composition Exhibit -> Artifact[*];
+}
+

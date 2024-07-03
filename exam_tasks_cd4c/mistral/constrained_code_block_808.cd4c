@@ -1,0 +1,52 @@
+
+classdiagram SupplyChain {
+
+  class Manufacturer {
+    String id;
+    Product [][] products;
+  }
+
+  class Product {
+    String id;
+    String name;
+    String description;
+  }
+
+  class Order {
+    String id;
+    String customerId;
+    OrderStatus status;
+    Product [][] products;
+  }
+
+  enum OrderStatus {
+    Pending, Shipped, Delivered;
+  }
+
+  class Customer {
+    String id;
+    Order [][] orders;
+  }
+
+  class Warehouse {
+    String id;
+    Shipment [][] shipments;
+  }
+
+  class Shipment {
+    String id;
+    String warehouseId;
+    ShipmentStatus status;
+    Order order;
+    Product [][] products;
+  }
+
+  enum ShipmentStatus {
+    InTransit, Delivered;
+  }
+
+  composition Manufacturer -> Product [*];
+  composition Order -> Product [*];
+  composition Warehouse -> Shipment [*];
+  association Customer -> Order [*];
+}

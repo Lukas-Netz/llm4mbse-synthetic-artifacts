@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram DroneRoofInspection  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    int batteryLevel;
+    Camera camera;
+  }
+
+  class GroundStation  {
+    String name;
+    Location location;
+    CommunicationInterface communicationInterface;
+  }
+
+  class Database  {
+    Building  building;
+    Report  report;
+  }
+
+  class Building  {
+    String address;
+    BuildingType type;
+    RoofType roofType;
+  }
+
+  class Report  {
+    String description;
+    Photo  photo;
+  }
+
+  class Camera  {
+    int resolution;
+    int fieldOfView;
+  }
+
+  class CommunicationInterface  {
+    void sendPhoto(Photo photo);
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Photo  {
+    byte[] image;
+  }
+
+  class BuildingType  {
+    String name;
+  }
+
+  class RoofType  {
+    String name;
+  }
+
+  composition Drone -> (has) Camera;
+  composition GroundStation -> (has) CommunicationInterface;
+  composition Database -> (has) Building;
+  composition Building -> (has) RoofType;
+  composition Report -> (has) Photo;
+  association Drone -> GroundStation [1..*];
+  association GroundStation -> Database [1..*];
+  association Database -> Building [1..*];
+  association Building -> Report [1..*];
+  }

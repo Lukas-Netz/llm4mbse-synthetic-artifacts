@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram TourismAndHospitalityManagementSystem  {
+
+  class Hotel  {
+    String name;
+    List<Room> rooms;
+    List<Booking> bookings;
+  }
+
+  abstract class Room  {
+    String uniqueIdentifier;
+    RoomType type;
+    RoomStatus status;
+    List<Amenity> amenities;
+  }
+
+  class StandardRoom extends Room  {
+    int bedCount;
+  }
+
+  class Suite extends Room  {
+    int bedCount;
+    List<String> luxuryFeatures;
+  }
+
+  class LuxurySuite extends Room  {
+    int bedCount;
+    List<String> luxuryFeatures;
+  }
+
+  enum RoomType  {
+    Standard, Suite, LuxurySuite;
+  }
+
+  enum RoomStatus  {
+    Occupied, Vacant;
+  }
+
+  class Amenity  {
+    String name;
+  }
+
+  class Guest  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phoneNumber;
+  }
+
+  class Booking  {
+    String uniqueIdentifier;
+    Guest guest;
+    Room room;
+    Date startDate;
+    Date endDate;
+    double totalCost;
+  }
+
+  composition Hotel  ->  (has) Room[*];
+  composition Hotel  ->  (has) Booking[*];
+  composition Room  ->  (has) Amenity[*];
+  composition Booking  ->  (has) Guest;
+  composition Booking  ->  (has) Room;
+}

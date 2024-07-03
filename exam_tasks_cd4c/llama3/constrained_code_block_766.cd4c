@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram FashionApp  {
+
+  class ClothingItem  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ClothingType type;
+    Color color;
+    Size size;
+    Material material;
+    double price;
+  }
+
+  enum ClothingType  {
+    Top, Bottom, Dress, Outerwear;
+  }
+
+  enum Color  {
+    Red, Blue, Green, Yellow;
+  }
+
+  enum Size  {
+    Small, Medium, Large, ExtraLarge;
+  }
+
+  enum Material  {
+    Cotton, Polyester, Silk, Wool;
+  }
+
+  class User  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Order  {
+    Date orderDate;
+    OrderStatus orderStatus;
+    List<OrderItem> orderItems;
+  }
+
+  class OrderItem  {
+    ClothingItem clothingItem;
+    int quantity;
+  }
+
+  class ARModel  {
+    ClothingItem clothingItem;
+    istringstream istringstream;
+  }
+
+  class ARView  {
+    User user;
+    ARModel arModel;
+  }
+
+  composition User -> (has) Order[*];
+  composition Order -> (has) OrderItem[*];
+  composition ARView -> (has) User;
+  composition ARView -> (has) ARModel;
+}

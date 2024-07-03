@@ -1,0 +1,81 @@
+
+classdiagram LandRegistry {
+
+  class LandRegistryOffice {
+    Blockchain blockchain;
+  }
+
+  class LandOwner {
+    String uniqueIdentifier;
+  }
+
+  class LandTitle {
+    String landId;
+    LandOwner owner;
+  }
+
+  class Transaction {
+    String transactionId;
+    LandTitle landTitle;
+    LandOwner from;
+    LandOwner to;
+    Timestamp timestamp;
+  }
+
+  class SmartContract {
+    String contractId;
+    Function execute();
+  }
+
+  class Blockchain {
+    Transaction [ ] transactions;
+  }
+
+  association LandRegistryOffice --overseses-
+    {
+      ordered
+    }
+    ;
+
+  association LandOwner --overseses-
+    {
+      ordered
+    }
+    ;
+
+  association LandTitle --overseses-
+    {
+      ordered
+    }
+    ;
+
+  association Transaction --overseses-
+    {
+      ordered
+    }
+    ;
+
+  association SmartContract --overseses-
+    {
+      ordered
+    }
+    ;
+
+  association LandTitle --has-
+    {
+      ordered
+    }
+    ;
+
+  association Transaction --has-
+    {
+      ordered
+    }
+    ;
+
+  association SmartContract --has-
+    {
+      ordered
+    }
+    ;
+}

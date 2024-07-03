@@ -1,0 +1,80 @@
+
+classdiagram AirborneWindEnergySystem {
+
+    class AirborneWindEnergySystem {
+      TetheredWing wing;
+      GroundStation groundStation;
+      ControlCenter controlCenter;
+      WeatherStation weatherStation;
+    }
+
+    class TetheredWing {
+      String type;
+      SensorSet sensors;
+      void adjustAltitude();
+      void adjustOrientation();
+    }
+
+    class GroundStation {
+      Storage batteryStorage;
+      CommunicationModule communicationModule;
+      void storeElectricity();
+      void communicateWithControlCenter();
+    }
+
+    class ControlCenter {
+      void monitorSystem();
+      void controlWing();
+    }
+
+    class WeatherStation {
+      WeatherData weatherData;
+      void provideWeatherData();
+    }
+
+    class SensorSet {
+      WindSpeedSensor windSpeedSensor;
+      WindDirectionSensor windDirectionSensor;
+      TurbulenceSensor turbulenceSensor;
+    }
+
+    class WindSpeedSensor {
+      float windSpeed;
+      void measureWindSpeed();
+    }
+
+    class WindDirectionSensor {
+      String windDirection;
+      void measureWindDirection();
+    }
+
+    class TurbulenceSensor {
+      float turbulenceLevel;
+      void measureTurbulence();
+    }
+
+    class Storage {
+      int capacityWh;
+      void storeElectricity(int generatedElectricity);
+    }
+
+    class CommunicationModule {
+      void sendDataToControlCenter();
+      void receiveDataFromControlCenter();
+    }
+
+    class WeatherData {
+      float windSpeed;
+      String windDirection;
+      float temperature;
+    }
+
+    composition AirborneWindEnergySystem -> (has) TetheredWing;
+    composition AirborneWindEnergySystem -> (has) GroundStation;
+    composition AirborneWindEnergySystem -> (has) ControlCenter;
+    composition AirborneWindEnergySystem -> (has) WeatherStation;
+
+    association TetheredWing -> GroundStation [*];
+    association TetheredWing -> ControlCenter [*];
+    association WeatherStation -> GroundStation [*];
+}

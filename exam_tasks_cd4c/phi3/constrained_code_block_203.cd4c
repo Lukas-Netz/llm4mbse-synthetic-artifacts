@@ -1,0 +1,30 @@
+
+classdiagram BlockchainMedicalRecords {
+
+    class Patient {
+      String uniqueIdentifier;
+      Set<MedicalRecord> medicalRecords;
+    }
+
+    class MedicalRecord {
+      String eventType;
+      String content;
+    }
+
+    class HealthcareProvider {
+      String uniqueIdentifier;
+    }
+
+    class BlockchainNetwork {
+      void storeRecord(MedicalRecord record);
+      MedicalRecord retrieveRecord(String patientIdentifier, String recordIdentifier);
+    }
+
+    class SmartContract {
+      void updateRecord(HealthcareProvider provider, MedicalRecord record);
+    }
+
+    association Patient -> MedicalRecord [1..*];
+    composition HealthcareProvider -> SmartContract;
+    composition Patient -> BlockchainNetwork;
+}

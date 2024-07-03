@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram AccountingSystem  {
+
+  class Company  {
+    String name;
+    String uniqueIdentifier;
+    -> Account[*];
+  }
+
+  abstract class Account  {
+    String name;
+    AccountType type;
+    double balance;
+  }
+
+  class IncomeAccount extends Account  {
+    double income;
+  }
+
+  class ExpenseAccount extends Account  {
+    double expense;
+  }
+
+  class Invoice  {
+    Date date;
+    String description;
+    double amount;
+    -> Payment[*];
+  }
+
+  class Payment  {
+    Date date;
+    String description;
+    double amount;
+  }
+
+  class FinancialReport  {
+    Company company;
+    BalanceSheet balanceSheet;
+    IncomeStatement incomeStatement;
+  }
+
+  class BalanceSheet  {
+    double assets;
+    double liabilities;
+    double equity;
+  }
+
+  class IncomeStatement  {
+    double revenue;
+    double expenses;
+    double profit;
+  }
+
+  class User  {
+    String username;
+    String password;
+    AccessLevel accessLevel;
+  }
+
+  enum AccountType  {
+    Income, Expense;
+  }
+
+  enum AccessLevel  {
+    Admin, User, Guest;
+  }
+
+  composition Company -> Account[*];
+  composition Account -> Invoice[*];
+  composition Invoice -> Payment[*];
+  composition FinancialReport -> Company;
+  composition User -> Company;
+}

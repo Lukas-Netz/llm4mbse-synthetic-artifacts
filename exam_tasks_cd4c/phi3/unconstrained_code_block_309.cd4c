@@ -1,0 +1,38 @@
+
+classdiagram BirdSpeciesIdentificationSystem {
+
+    class BirdSpeciesDatabase {
+      Map<String, BirdSpecies> species;
+      void addBirdSpecies(BirdSpecies birdSpecies);
+      BirdSpecies getBirdSpecies(String name);
+    }
+
+    class BirdSpecies {
+      String commonName;
+      String scientificName;
+      List<Song> songs;
+    }
+
+    class Song {
+      List<AudioFeature> features;
+    }
+
+    class AudioFeature {
+      int frequency;
+      int amplitude;
+      int duration;
+    }
+
+    class FeatureExtractionModule {
+      AudioFeature extractFeatures(Song song);
+    }
+
+    class ClassificationModule {
+      BirdSpecies identifySpecies(List<AudioFeature> features);
+    }
+
+    association BirdSpeciesDatabase -> BirdSpecies [*];
+    association BirdSpeciesDatabase -> Song [*];
+    composition FeatureExtractionModule -> Song;
+    composition ClassificationModule -> Song;
+}

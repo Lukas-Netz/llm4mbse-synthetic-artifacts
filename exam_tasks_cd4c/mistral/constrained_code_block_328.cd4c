@@ -1,0 +1,62 @@
+
+classdiagram SocialMediaManagement {
+
+  class User {
+    String username;
+    String password;
+    String email;
+    String firstName;
+    String lastName;
+  }
+
+  class Post {
+    String content;
+    PostType type;
+    String[] tags;
+    int likes;
+    int comments;
+    int shares;
+    User creator;
+  }
+
+  enum PostType {
+    PRODUCT_PROMOTION,
+    COMPANY_NEWS,
+    CUSTOMER_TESTIMONIAL,
+    OTHER;
+  }
+
+  class Notification {
+    User recipient;
+    String message;
+    Post relatedPost;
+  }
+
+  class Analytics {
+    int totalUsers;
+    int totalPosts;
+    int totalLikes;
+    int totalComments;
+    int totalShares;
+  }
+
+  class Admin extends User {
+    boolean isAdmin;
+  }
+
+  class EcommerceIntegration {
+    String ecommercePlatform;
+    int salesGenerated;
+  }
+
+  composition User [*] Post [manyToOne]
+  -- User [*] << Notification
+  >>- 											;
+  composition Admin [*] Analytics
+  -- Admin [*] << User
+  >>- 											;
+  association EcommerceIntegration [*] Post
+
+  -- User [*] << Post
+  >>- 											;
+}

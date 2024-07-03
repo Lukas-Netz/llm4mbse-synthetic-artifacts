@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram VirtualProductDemonstrationSystem  {
+
+  class Showroom  {
+    Room  room  ; 
+    Product  product  ; 
+  }
+
+  class Room  {
+    String name; 
+    Product  product  ; 
+  }
+
+  class Product  {
+    String name; 
+    String description; 
+    double price; 
+    ProductType type; 
+    Feature  feature  ; 
+  }
+
+  enum ProductType  {
+    Electronics, Furniture, Clothing; 
+  }
+
+  class Feature  {
+    String name; 
+    String value; 
+  }
+
+  class Customer  {
+    Wishlist wishlist; 
+    Order order; 
+  }
+
+  class Wishlist  {
+    Product  product  ; 
+  }
+
+  class Order  {
+    Product  product  ; 
+    double total; 
+  }
+
+  class Report  {
+    String type; 
+    int count; 
+  }
+
+  composition Showroom  ->  (has) Room; 
+  composition Room  ->  (has) Product; 
+  composition Product  ->  (has) Feature; 
+  composition Customer  ->  (has) Wishlist; 
+  composition Customer  ->  (has) Order; 
+  composition Report  ->  (has) type; 
+  composition Report  ->  (has) count; 
+}

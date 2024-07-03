@@ -1,0 +1,35 @@
+
+classdiagram AgriculturalDroneSwarm {
+
+    class Drone {
+      String uniqueIdentifier;
+      DroneStatus status;
+      DroneType type;
+      Crop crop;
+    }
+
+    class Crop {
+      String type;
+      String location;
+    }
+
+    class BaseStation {
+      PowerSource powerSource;
+      Drone[] drones;
+      void rechargeDrones();
+      void trackDroneLocation(String identifier);
+      void checkCropStatus(String location);
+    }
+
+    enum DroneStatus {
+      Active, Inactive;
+    }
+
+    enum DroneType {
+      Monitoring, Spraying;
+    }
+
+    association Drone -> BaseStation;
+    association Crop -> BaseStation;
+    composition BaseStation -> Drone[*];
+}

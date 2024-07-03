@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram VehicleTrackingSystem  {
+
+  class Vehicle  {
+    String vin;
+    Location location;
+    Speed speed;
+    Direction direction;
+    VehicleStatus status;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed  {
+    double value;
+  }
+
+  class Direction  {
+    double value;
+  }
+
+  enum VehicleStatus  {
+    Moving,
+    Stationary
+  ;}
+
+  class Report  {
+    Vehicle vehicle;
+    Location location;
+    VehicleStatus status;
+  }
+
+  class Alert  {
+    Vehicle vehicle;
+    String message;
+  }
+
+  class TrafficManagementSystem;
+  class EmergencyServicesSystem;
+
+  composition VehicleTrackingSystem -> (has) Vehicle[*];
+  composition Vehicle -> (has) Location;
+  composition Vehicle -> (has) Speed;
+  composition Vehicle -> (has) Direction;
+  composition Vehicle -> (has) VehicleStatus;
+  composition Report -> (has) Vehicle;
+  composition Alert -> (has) Vehicle;
+  association VehicleTrackingSystem -> TrafficManagementSystem;
+  association VehicleTrackingSystem -> EmergencyServicesSystem;
+}

@@ -1,0 +1,69 @@
+
+
+classdiagram ECommerceMarketplace {
+
+    class Marketplace {
+      Sellers sellers;
+      Products products;
+      Warehouses warehouses;
+      PaymentSystem paymentSystem;
+      Orders orders;
+      ShippingSystem shippingSystem;
+      RatingSystem ratingSystem;
+    }
+
+    class Seller {
+      String uniqueIdentifier;
+      String name;
+      Products products;
+      Warehouses warehouses;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      int price;
+      String type;
+      String description;
+      int weight;
+      int quantityInStock;
+    }
+
+    class Warehouse {
+      String uniqueIdentifier;
+      String location;
+      Products products;
+      int quantityInStock;
+    }
+
+    class PaymentSystem {
+      void makePayment(Order order);
+    }
+
+    class Order {
+      String uniqueIdentifier;
+      int totalCost;
+      Products products;
+    }
+
+    class ShippingSystem {
+      void shipProduct(Order order);
+    }
+
+    class RatingSystem {
+      void rateProduct(Product product, int rating);
+    }
+
+    class Rating {
+      int rating;
+      Timestamp timestamp;
+    }
+
+  composition Marketplace -> (has) Sellers;
+  composition Marketplace -> (has) Products;
+  composition Marketplace -> (has) Warehouses;
+  composition Marketplace -> (has) PaymentSystem;
+  composition Marketplace -> (has) Orders;
+  composition Marketplace -> (has) ShippingSystem;
+  composition Marketplace -> (has) RatingSystem;
+}

@@ -1,0 +1,37 @@
+
+classdiagram FraudDetection {
+
+  class CentralDatabase {
+    -> Sensor [*];
+    void storeTransactionData(Transaction transaction);
+    void analyzeTransactionData();
+    void alertSecurityTeam(SuspiciousTransaction suspiciousTransaction);
+  }
+
+  class Sensor {
+    String sensorType;
+    void sendTransactionData(Transaction transaction);
+  }
+
+  class Transaction {
+    String transactionId;
+    String transactionType;
+    double transactionAmount;
+    String transactionTime;
+  }
+
+  class SuspiciousTransaction extends Transaction {
+  }
+
+  class SecurityTeam {
+    void receiveAlert(SuspiciousTransaction suspiciousTransaction);
+  }
+
+  class Report {
+    int numberOfSuspiciousTransactions;
+    String mostCommonlyFraudulentTransactionType;
+    String timeOfDayWithMostFraudulentTransactions;
+  }
+
+  composition CentralDatabase -> Sensor [*];
+}

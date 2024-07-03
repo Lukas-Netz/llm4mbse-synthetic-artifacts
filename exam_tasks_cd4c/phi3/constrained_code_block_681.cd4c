@@ -1,0 +1,189 @@
+
+classdiagram UnderwaterArchaeology {
+
+    class Mission {
+      String name;
+      Date startDate;
+      Date endDate;
+      TeamLeader leader;
+      List<Drone> drones;
+      List<Artifact> artifacts;
+      void generateReport();
+    }
+
+    class Drone {
+      String identifier;
+      String name;
+      Status status;
+      List<Mission> missions;
+      void findArtifact(Artifact artifact);
+    }
+
+    class Artifact {
+      String name;
+      String description;
+      Location location;
+    }
+
+    class TeamLeader {
+      String name;
+      Mission mission;
+      void assignDrone(Drone drone, Mission mission);
+      void monitorDroneStatus(Drone drone);
+    }
+
+    enum Status {
+      Active, Inactive
+   
+   
+  
+(compositions)
+   
+ ;
+  Mission has
+    (TeamLeader leader);
+    List<Drone> drones;
+    List<Artifact> artifacts;
+
+  association
+    Mission
+      ;
+    Drone
+      drones;
+
+  association
+    Drone
+      ;
+    Mission
+      missions;
+
+  association
+    Artifact
+      ;
+    Mission
+      artifacts;
+
+  association
+    TeamLeader
+      ;
+    Mission
+      mission;
+}
+
+enum Status {
+  Active, Inactive
+
+  ;
+}
+
+enum ThermostatMode {
+  Heating, Cooling
+
+  ;
+}
+
+class Thermostat {
+  int temperature;
+  ThermostatMode mode;
+
+  void setTemperature(int temperature);
+  void switchMode(ThermostatMode mode);
+}
+
+class SmartHome {
+  Thermostat thermostat;
+  Light light;
+  SecurityCamera securityCamera;
+
+  void turnOnLight(int brightness);
+  void turnOffLight();
+  void recordVideo();
+}
+
+class Hub {
+  SmartHome smartHome;
+
+  void addDevice(Device device);
+  void removeDevice(Device device);
+  void checkDeviceStatus();
+}
+
+class Device {
+  String name;
+  DeviceStatus status;
+
+  void setStatus(DeviceStatus status);
+}
+
+enum DeviceStatus {
+  On, Off
+
+  ;
+}
+
+enum ThermostatMode {
+  Heating, Cooling
+
+  ;
+}
+
+class SmartHome {
+  Thermostat thermostat;
+  Light light;
+  SecurityCamera securityCamera;
+
+  void turnOnLight(int brightness);
+  void turnOffLight();
+  void recordVideo();
+}
+
+class Hub {
+  SmartHome smartHome;
+
+  void addDevice(Device device);
+  void removeDevice(Device device);
+  void checkDeviceStatus();
+}
+
+class Device {
+  String name;
+  DeviceStatus status;
+
+  void setStatus(DeviceStatus status);
+}
+
+enum DeviceStatus {
+  On, Off
+
+  ;
+}
+
+enum ThermostatMode {
+  Heating, Cooling
+
+  ;
+}
+
+class SmartHome {
+  Thermostat thermostat;
+  Light light;
+  SecurityCamera securityCamera;
+
+  void turnOnLight(int brightness);
+  void turnOffLight();
+  void recordVideo();
+}
+
+class Hub {
+  SmartHome smartHome;
+
+  void addDevice(Device device);
+  void removeDevice(Device device);
+  void checkDeviceStatus();
+}
+
+
+
+
+
+}

@@ -1,0 +1,55 @@
+
+classdiagram FinancialTradingSystem {
+
+    class Broker {
+      String brokerId;
+      List<Trade> availableTrades;
+      void addTrade(Trade trade);
+      void removeTrade(Trade trade);
+    }
+
+    class Trade {
+      String tradeId;
+      String name;
+      double price;
+    }
+
+    class Buyer {
+      String buyerId;
+      String name;
+      List<Order> placedOrders;
+      void placeOrder(Order order);
+      void cancelOrder(Order order);
+    }
+
+    class Seller {
+      String sellerId;
+      String name;
+      List<Order> placedOrders;
+      void placeOrder(Order order);
+      void cancelOrder(Order order);
+    }
+
+    class Order {
+      String orderId;
+      Trade trade;
+      int quantity;
+      double price;
+    }
+
+    class Transaction {
+      String transactionId;
+      Trade trade;
+      Buyer buyer;
+      Seller seller;
+      int quantity;
+      double price;
+    }
+
+  composition FinancialTradingSystem -> (has) Broker;
+  composition FinancialTradingSystem -> (has) Trade;
+  composition FinancialTradingSystem -> (has) Buyer;
+  composition FinancialTradingSystem -> (has) Seller;
+  composition FinancialTradingSystem -> (has) Order;
+  composition FinancialTradingSystem -> (has) Transaction;
+}

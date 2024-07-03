@@ -1,0 +1,92 @@
+
+
+
+
+classdiagram ContentGenerationSystem  {
+
+  class ContentGenerator  {
+    ContentType type;
+    Tone tone;
+    Style style;
+    String generateContent(UserInput input);
+  }
+
+  class KnowledgeBase  {
+    Topic[] topics;
+    Domain[] domains;
+    String retrieveInformation(Topic topic, Domain domain);
+  }
+
+  class UserProfileManager  {
+    User[] users;
+    UserPreference[] userPreferences;
+    Feedback[] feedback;
+    void storeUserProfile(User user);
+    void storeUserPreference(User user, UserPreference preference);
+    void storeFeedback(User user, Feedback feedback);
+  }
+
+  class FeedbackLoop  {
+    void collectFeedback(User user, Feedback feedback);
+    void updateAlgorithms(Feedback feedback);
+    void updateKnowledgeBase(Feedback feedback);
+  }
+
+  class PlatformAdapter  {
+    Platform[] platforms;
+    void generateContentForPlatform(Platform platform, Content content);
+  }
+
+  class UserInput  {
+    String keywords;
+    Topic topic;
+    Tone tone;
+    Style style;
+  }
+
+  class User  {
+    String username;
+    UserProfile profile;
+  }
+
+  class UserProfile  {
+    UserPreference[] preferences;
+  }
+
+  class UserPreference  {
+    String preference;
+  }
+
+  class Feedback  {
+    String feedbackText;
+  }
+
+  class ContentType  {
+    String type;
+  }
+
+  class Tone  {
+    String tone;
+  }
+
+  class Style  {
+    String style;
+  }
+
+  class Topic  {
+    String topic;
+  }
+
+  class Domain  {
+    String domain;
+  }
+
+  class Platform  {
+    String platform;
+  }
+
+  composition ContentGenerator -> (uses) KnowledgeBase;
+  composition ContentGenerator -> (uses) UserProfileManager;
+  composition ContentGenerator -> (uses) FeedbackLoop;
+  composition ContentGenerator -> (uses) PlatformAdapter;
+  }

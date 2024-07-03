@@ -1,0 +1,35 @@
+
+
+classdiagram BiometricAuthenticationSystem {
+
+    class BiometricDevice {
+      String uniqueIdentifier;
+      BiometricDeviceType type;
+      void captureBiometricData();
+      void processBiometricData();
+    }
+
+    class AuthenticationServer {
+      Database database;
+      void verifyUserIdentity(String userId);
+      void addNewUser(String userId, BiometricTemplate template);
+      void updateBiometricTemplate(String userId, BiometricTemplate template);
+    }
+
+    class BiometricTemplate {
+      String userId;
+      Fingerprint fingerprint;
+      FacialRecognition facialRecognition;
+      IrisScan irisScan;
+    }
+
+    enum BiometricDeviceType {
+      FingerprintScanner, FacialRecognitionCamera, IrisScanner
+    
+    
+ ;}
+
+  composition AuthenticationServer -> Database;
+  association BiometricDevice -> AuthenticationServer;
+  association BiometricTemplate -> AuthenticationServer;
+}

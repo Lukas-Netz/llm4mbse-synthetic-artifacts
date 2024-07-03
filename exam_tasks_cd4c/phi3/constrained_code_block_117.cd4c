@@ -1,0 +1,47 @@
+
+classdiagram DigitalMediaPlatforms {
+
+    class ContentLibrary {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      String genre;
+      int rating;
+      List<String> tags;
+      ContentLibrary()
+   
+      ;
+    }
+
+    class UserProfile {
+      String uniqueIdentifier;
+      String username;
+      List<String> preferences;
+      List<ContentLibrary> viewingHistory;
+      UserProfile()
+   
+      ;
+    }
+
+    class ContentRecommendationEngine {
+      List<ContentLibrary> recommendations;
+      ContentRecommendationEngine()
+   
+      ;
+    }
+
+    class ContentDeliveryNetwork {
+      String userLocation;
+      String contentLocation;
+      ContentDeliveryNetwork()
+   
+      ;
+    }
+
+    composition ContentLibrary -> (has) UserProfile;
+    composition ContentLibrary -> (has) ContentRecommendationEngine;
+    composition ContentLibrary -> (has) ContentDeliveryNetwork;
+    composition UserProfile -> (has) ContentLibrary;
+    composition UserProfile -> (has) ContentRecommendationEngine;
+    composition UserProfile -> (has) ContentDeliveryNetwork;
+}

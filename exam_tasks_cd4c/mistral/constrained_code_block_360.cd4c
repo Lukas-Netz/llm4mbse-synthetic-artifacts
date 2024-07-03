@@ -1,0 +1,47 @@
+
+classdiagram VirtualMuseum {
+
+  class Museum {
+    Exhibit [
+     ] exhibits;
+  }
+
+  class Exhibit {
+    String name;
+    String description;
+    Artifact [
+     ] artifacts;
+  }
+
+  abstract class Artifact {
+    String uniqueIdentifier;
+    String description;
+  }
+
+  class Painting extends Artifact {
+  }
+
+  class Sculpture extends Artifact {
+  }
+
+  class ArtifactType {
+    String name;
+  }
+
+  class Room {
+    String name;
+    Exhibit [
+     ] exhibits;
+  }
+
+  class User {
+    void navigateToRoom(Room room);
+    void navigateToExhibit(Exhibit exhibit);
+    void filterArtifactsByType(ArtifactType type);
+    void searchForArtifact(String searchTerm);
+  }
+
+  composition Museum -> Exhibit [*];
+  composition Exhibit -> Artifact [*];
+  composition Room -> Exhibit [*];
+}

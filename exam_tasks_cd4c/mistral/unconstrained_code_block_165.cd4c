@@ -1,0 +1,54 @@
+
+classdiagram CropHarvester {
+
+  class CropHarvester {
+    String uniqueIdentifier;
+    String location;
+    Sensor sensor;
+    HarvesterAction action;
+  }
+
+  class Sensor {
+    String cropType;
+    GrowthStage growthStage;
+    int yield;
+  }
+
+  enum GrowthStage {
+    Seedling, Vegetative, Reproductive, Ripe;
+  }
+
+  abstract class HarvesterAction {
+    void cut();
+    void collect();
+    void store();
+  }
+
+  class CentralControlUnit {
+    -> CropHarvester [*];
+    void adjustSettings(String harvesterId, HarvesterSetting setting);
+    String getRealTimeData();
+  }
+
+  class HarvesterSetting {
+    String harvesterId;
+    CuttingHeight cuttingHeight;
+    Speed speed;
+  }
+
+  enum CuttingHeight {
+    Low, Medium, High;
+  }
+
+  enum Speed {
+    Slow, Medium, Fast;
+  }
+
+  class Database {
+    String cropType;
+    GrowthStage growthStage;
+    int yield;
+  }
+
+  composition CentralControlUnit -> CropHarvester [*];
+}

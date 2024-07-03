@@ -1,0 +1,155 @@
+
+classdiagram FinancialPlatform {
+
+    class Customer {
+      String accountNumber;
+      String name;
+      String email;
+      boolean isActive;
+      List<Transaction> transactionHistory;
+      Budget budget;
+      Account account;
+    }
+
+    class Account {
+      String accountNumber;
+      String accountType;
+      boolean isActive;
+      boolean isFrozen;
+      List<Transaction> transactionHistory;
+      Budget budget;
+    }
+
+    class Transaction {
+      String transactionId;
+      String transactionType;
+      double amount;
+      Date transactionDate;
+      Account fromAccount;
+      Account toAccount;
+    }
+
+    class Budget {
+      String budgetId;
+      String budgetType;
+      double budgetLimit;
+      List<Expense> expenses;
+    }
+
+    class Expense {
+      String expenseId;
+      String expenseType;
+      double expenseAmount;
+      Date expenseDate;
+    }
+
+    class Admin {
+      String adminId;
+      String adminRole;
+      List<Customer> managedCustomers;
+      List<Account> managedAccounts;
+      List<Budget> managedBudgets;
+      List<Transaction> monitoredTransactions;
+      SystemMaintenance systemMaintenance;
+    }
+
+    class SystemMaintenance {
+      String maintenanceId;
+      String maintenanceType;
+      Date maintenanceDate;
+      String maintenanceNotes;
+    }
+
+    association Customer -> Account {
+      
+    ordered
+     }
+
+   
+;
+    association Account -> Transaction {
+      
+    ordered
+     }
+
+   
+;
+    association Account -> Budget {
+      
+    ordered
+     }
+
+   
+;
+    association Customer -> Budget {
+      
+    ordered
+     }
+
+   
+;
+    association Customer -> Transaction {
+      
+    ordered
+     }
+
+   
+;
+    association Customer -> Expense {
+      
+    ordered
+     }
+
+   
+;
+    association Admin -> Customer {
+      
+    ordered
+     }
+
+   
+;
+    association Admin -> Account {
+      
+    ordered
+     }
+
+   
+;
+    association Admin -> Budget {
+      
+    ordered
+     }
+
+   
+;
+    association Admin -> Transaction {
+      
+    ordered
+     }
+
+   
+;
+    association Admin -> Expense {
+      
+    ordered
+     }
+
+   
+;
+    composition Admin -> SystemMaintenance {
+      
+    ordered
+     }
+
+   
+;
+    composition Account -> Transaction {
+      
+    ordered
+     }
+
+   
+;
+   
+}

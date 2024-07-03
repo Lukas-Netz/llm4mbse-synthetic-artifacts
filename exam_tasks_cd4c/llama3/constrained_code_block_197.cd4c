@@ -1,0 +1,82 @@
+
+
+
+
+classdiagram DigitalPathologySystem  {
+
+  class Image  {
+    String uniqueIdentifier;
+    String patientInformation;
+    String diagnosis;
+  }
+
+  class Viewer  {
+    int zoomLevel;
+    Point focusPoint;
+  }
+
+  class Analysis  {
+    Algorithm algorithm;
+    Parameters parameters;
+  }
+
+  class Diagnosis  {
+    double confidenceLevel;
+    DiagnosisType diagnosisType;
+  }
+
+  class Reporting  {
+    ReportFormat reportFormat;
+    ReportContent reportContent;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Role role;
+    Permissions permissions;
+  }
+
+  class Algorithm  {
+    String name;
+    Parameters parameters;
+  }
+
+  class Parameters  {
+    String parameter1;
+    String parameter2;
+  }
+
+  class Point  {
+    int xCoordinate;
+    int yCoordinate;
+  }
+
+  class DiagnosisType  {
+    String type;
+  }
+
+  class ReportFormat  {
+    String format;
+  }
+
+  class ReportContent  {
+    String content;
+  }
+
+  class Role  {
+    String role;
+  }
+
+  class Permissions  {
+    String permission1;
+    String permission2;
+  }
+
+  composition DigitalPathologySystem -> (has) ImageDatabase;
+  composition DigitalPathologySystem -> (has) ViewerComponent;
+  composition DigitalPathologySystem -> (has) AnalysisComponent;
+  composition DigitalPathologySystem -> (has) DiagnosisComponent;
+  composition DigitalPathologySystem -> (has) ReportingComponent;
+  composition DigitalPathologySystem -> (has) UserManagement;
+
+  }

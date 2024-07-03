@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram ResumeBuilder  {
+
+  class User  {
+    String username;
+    String password;
+    Resume resume;
+  }
+
+  class Resume  {
+    String title;
+    String summary;
+    List<Skill> skills;
+    List<Section> sections;
+  }
+
+  class Section  {
+    String title;
+    List<Item> items;
+  }
+
+  class Item  {
+    String title;
+    String description;
+    File file;
+  }
+
+  class File  {
+    String name;
+    String type;
+    String link;
+  }
+
+  class Skill  {
+    String name;
+    List<Certification> certifications;
+  }
+
+  class Certification  {
+    String name;
+    Date date;
+    String link;
+  }
+
+  composition User -> (has) Resume;
+  composition Resume -> (has) List<<section>>;
+  composition Section -> (has) List<<item>>;
+  composition Item -> (has) File;
+  composition Skill -> (has) List<<certification>>;
+
+  association User -> (owns) Resume;
+  association Resume -> (has) List<<section>>;
+  association Section -> (has) List<<item>>;
+  association Item -> (has) File;
+  association Skill -> (has) List<<certification>>;
+}

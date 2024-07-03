@@ -1,0 +1,94 @@
+
+classdiagram VirtualMeetingPlatform {
+
+    class Meeting {
+      String uniqueId;
+      String title;
+      DateTime startTime;
+      DateTime endTime;
+      String location;
+      List<Attendee> attendees;
+    }
+
+    class Attendee {
+      String uniqueId;
+      String name;
+      String email;
+    }
+
+    class File {
+      String uniqueId;
+      String name;
+      String type;
+    }
+
+    class Invitation {
+      String uniqueId;
+      String email;
+      String meetingId;
+    }
+
+    class MeetingHistory {
+      String meetingId;
+      DateTime startTime;
+      DateTime endTime;
+      String title;
+      String location;
+      String description;
+      List<Attendee> attendees;
+    }
+
+    class MeetingDetails {
+      String meetingId;
+      DateTime startTime;
+      DateTime endTime;
+      String title;
+      String location;
+      String description;
+      List<Attendee> attendees;
+      List<File> sharedFiles;
+    }
+
+    class MeetingRecord {
+      String meetingId;
+      DateTime startTime;
+      DateTime endTime;
+      String title;
+      String description;
+      String minutes;
+    }
+
+    class MeetingHistory {
+      String meetingId;
+      DateTime startTime;
+      DateTime endTime;
+      String title;
+      String location;
+      String description;
+      List<Attendee> attendees;
+    }
+
+    class Meeting {
+      List<Attendee> attendees;
+      DateTime startTime;
+      DateTime endTime;
+      String location;
+      List<File> sharedFiles;
+      void addAttendee(Attendee attendee);
+      void removeAttendee(Attendee attendee);
+      void setStartTime(DateTime startTime);
+      void setEndTime(DateTime endTime);
+      void setLocation(String location);
+      void setSharedFiles(List<File> sharedFiles);
+      void setMeetingDetails(MeetingDetails details);
+      void setMeetingHistory(MeetingHistory history);
+      void setMeetingRecord(MeetingRecord record);
+      void setMeetingRecords(List<MeetingRecord> records);
+      void setMeetingHistory(MeetingHistory history);
+    }
+
+    class Attendee {
+    String name;
+    String email;
+    }
+    }

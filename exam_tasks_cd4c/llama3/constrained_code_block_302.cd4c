@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram CollaborationTool  {
+
+  class Team  {
+    String name;
+    TeamLeader leader;
+    Project  [] projects;
+  }
+
+  class TeamLeader  {
+    String username;
+    String email;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    Task  [] tasks;
+    File  [] files;
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Date dueDate;
+    TeamMember  [] members;
+  }
+
+  class TeamMember  {
+    String username;
+    String email;
+  }
+
+  class File  {
+    String name;
+    byte[] content;
+    Project  project;
+  }
+
+  composition Team -> (has) TeamLeader;
+  composition Team -> (has) Project [*];
+  composition Project -> (has) Task [*];
+  composition Project -> (has) File [*];
+  composition Task -> (has) TeamMember [*];
+  composition File -> (has) Project;
+}

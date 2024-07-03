@@ -1,0 +1,42 @@
+
+classdiagram ArtProvenance {
+
+  class Artwork {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    ArtworkType type;
+  }
+
+  enum ArtworkType {
+    Painting, Sculpture, Installation;
+  }
+
+  class Provenance {
+    String date;
+    String buyer;
+    String seller;
+  }
+
+  class Transaction {
+    Artwork artwork;
+    Entity from;
+    Entity to;
+  }
+
+  class Entity {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Certificate {
+    Artwork artwork;
+    String issuer;
+  }
+
+  composition ArtProvenance -> Artwork;
+  composition ArtProvenance -> Provenance [*];
+  composition ArtProvenance -> Transaction [*];
+  composition ArtProvenance -> Entity [*];
+  composition Certificate -> Artwork;
+}

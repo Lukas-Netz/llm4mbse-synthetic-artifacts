@@ -1,0 +1,71 @@
+
+
+classdiagram Wearable
+
+  
+
+{class Human {
+  private String name;
+  private int age;
+
+  public Human(String name, int age)
+  
+  
+  
+  ;
+}
+
+class HealthMetrics {
+  private int heartRate;
+  private int bloodPressure;
+  private int sleepQuality;
+
+  public HealthMetrics(int heartRate, int bloodPressure, int sleepQuality)
+  
+  
+  
+  ;
+}
+
+class FitnessTracking {
+  private int stepsTaken;
+  private int distanceTraveled;
+  private int caloriesBurned;
+
+  public FitnessTracking(int stepsTaken, int distanceTraveled, int caloriesBurned)
+  
+  
+  
+  ;
+}
+
+class Notifications {
+  private String textMessages;
+  private String emails;
+  private String socialMediaUpdates;
+
+  public Notifications(String textMessages, String emails, String socialMediaUpdates)
+  
+  
+  
+  ;
+}
+
+class Smartwatch {
+  private Human human;
+  private HealthMetrics healthMetrics;
+  private FitnessTracking fitnessTracking;
+  private Notifications notifications;
+
+  public Smartwatch(Human human, HealthMetrics healthMetrics, FitnessTracking fitnessTracking, Notifications notifications)
+  
+  
+  
+  ;
+}
+
+composition Human -> Smartwatch [1..*];
+composition Smartwatch -> HealthMetrics;
+composition Smartwatch -> FitnessTracking;
+composition Smartwatch -> Notifications;
+}

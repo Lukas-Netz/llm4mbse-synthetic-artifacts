@@ -1,0 +1,34 @@
+
+
+classdiagram OceanographicDataAnalysis {
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+    }
+
+    enum SensorType {
+      TemperatureSensor, SalinitySensor, PressureSensor
+    
+    
+	;
+    }
+
+    class DataLogger {
+      String uniqueIdentifier;
+      List<Sensor> sensors;
+    }
+
+    class AnalysisSoftware {
+      void analyzeData() throws Exception;
+    }
+
+    class Database {
+      String uniqueIdentifier;
+      List<DataLogger> dataLoggers;
+    }
+
+  composition Sensor -> DataLogger [0..1];
+  composition DataLogger -> Database [0..1];
+  association AnalysisSoftware -> Database;
+}

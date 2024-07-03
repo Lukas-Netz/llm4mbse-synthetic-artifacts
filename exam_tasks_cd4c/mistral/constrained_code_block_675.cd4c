@@ -1,0 +1,52 @@
+
+classdiagram UrbanVerticalFarming {
+
+  class Farm {
+    String name;
+    String location;
+  }
+
+  abstract class Module {
+    String name;
+    String type;
+    int capacity;
+  }
+
+  class Hydroponic extends Module {
+  }
+
+  class Aeroponic extends Module {
+  }
+
+  class CocoCoir extends Module {
+  }
+
+  class Plant {
+    String name;
+    String type;
+    String growthStage;
+    int yield;
+    List<Nutrient> requiredNutrients;
+  }
+
+  class Nutrient {
+    String name;
+    double concentration;
+  }
+
+  abstract class IrrigationSystem {
+    String name;
+    String type;
+  }
+
+  class DripIrrigation extends IrrigationSystem {
+  }
+
+  class SprayIrrigation extends IrrigationSystem {
+  }
+
+  composition Farm -> (has) Module [*];
+  composition Module -> Plant [*];
+  association Plant -- Nutrient;
+  association IrrigationSystem -- Plant;
+}

@@ -1,0 +1,30 @@
+
+
+
+
+classdiagram OnlinePhilosophyCourses  {
+
+  class Instructor  {
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Course  {
+    String name;
+    String description;
+    -> Instructor[*];
+    Date startDate;
+    Date endDate;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  composition Instructor -> Course[*];
+  composition Course -> Instructor[*];
+  composition Student -> Course[*];
+}

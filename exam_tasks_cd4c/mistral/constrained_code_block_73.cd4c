@@ -1,0 +1,48 @@
+
+classdiagram TicketingSystem {
+
+  class Ticket {
+    String uniqueIdentifier;
+    Route route;
+    TicketType type;
+  }
+
+  class Route {
+    String name;
+    String description;
+    Stop [ ] stops;
+  }
+
+  class Stop {
+    String name;
+    int sequence;
+  }
+
+  class Vehicle {
+    String uniqueIdentifier;
+    Route route;
+    VehicleStatus status;
+  }
+
+  enum VehicleStatus {
+    Available, InMaintenance, etc;
+  }
+
+  enum TicketType {
+    SingleRide, DayPass, etc;
+  }
+
+  association Ticket --o00o- 											{ 											ordered						}						;
+  association Route --o00o- 											{ 											ordered						}						;
+  association Vehicle --o00o- 											{ 											ordered						}						;
+
+  composition TicketSystem --o00o- 											{ 											ordered						}						;
+  composition Route --o00o- 											{ 											ordered						}						;
+  composition Vehicle --o0																																				;
+
+  class TicketSystem {
+    Ticket [ ] tickets;
+    Route [ ] routes;
+    Vehicle [ ] vehicles;
+  }
+}

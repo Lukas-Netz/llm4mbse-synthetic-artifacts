@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram LIMS  {
+
+  class Laboratory  {
+    String uniqueIdentifier;
+    String name;
+    LaboratoryType type;
+  }
+
+  class Sample  {
+    String uniqueIdentifier;
+    Laboratory laboratory;
+  }
+
+  class Test  {
+    String uniqueIdentifier;
+    Sample sample;
+  }
+
+  class Result  {
+    String uniqueIdentifier;
+    Test test;
+    TestOutcome outcome;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Role role;
+  }
+
+  enum LaboratoryType  {
+    Chemistry, Biology, Physics;
+  }
+
+  enum Role  {
+    Administrator, Scientist, Technician;
+  }
+
+  enum TestOutcome  {
+    Positive, Negative;
+  }
+
+  composition Laboratory  ->  (has) Sample[*];
+  composition Sample  ->  (has) Test[*];
+  composition Test  ->  (has) Result[*];
+  composition User  ->  (has) Laboratory[*];
+}

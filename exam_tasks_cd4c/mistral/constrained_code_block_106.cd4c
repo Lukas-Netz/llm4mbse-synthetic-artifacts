@@ -1,0 +1,54 @@
+
+classdiagram DigitalSignature {
+
+  class DigitalSignatureService {
+    void createSignature(User user, Document document);
+    boolean verifySignature(Document document);
+    void revokeSignature(Document document);
+  }
+
+  class DocumentRepository {
+    void store(Document document);
+    Document retrieve(String documentId);
+  }
+
+  class UserManagementSystem {
+    void createUser(String username, String password, Role role);
+    User authenticate(String username, String password);
+  }
+
+  class CertificateAuthority {
+    DigitalCertificate issueCertificate(User user);
+    void revokeCertificate(DigitalCertificate certificate);
+  }
+
+  class Document {
+    String id;
+    byte[] content;
+    DigitalSignature signature;
+  }
+
+  class DigitalCertificate {
+    String serialNumber;
+    Date validFrom;
+    Date validTo;
+    PublicKey publicKey;
+    boolean isRevoked;
+  }
+
+  class User {
+    String username;
+    String password;
+    DigitalCertificate certificate;
+    Role role;
+  }
+
+  enum Role {
+    ADMIN, USER;
+  }
+
+  association DigitalSignatureService --oUMS;
+  association DigitalSignatureService --oDR;
+  association CertificateAuthority --oUMS;
+  association DocumentRepository --oDR;
+}

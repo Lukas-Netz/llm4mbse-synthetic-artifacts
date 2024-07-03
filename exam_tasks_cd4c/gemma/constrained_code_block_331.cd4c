@@ -1,0 +1,43 @@
+
+
+classdiagram DigitalPianoLearningPlatform {
+
+  class User {
+    String username;
+    String password;
+    List<Course> courses;
+  }
+
+  class Course {
+    String title;
+    String description;
+    List<Lesson> lessons;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    List<Exercise> exercises;
+  }
+
+  class Exercise {
+    String title;
+    int difficultyLevel;
+    List<Lesson> lessons;
+  }
+
+  class Admin {
+    List<Course> courses;
+    List<Lesson> lessons;
+    List<Exercise> exercises;
+    List<User> users;
+  }
+
+  composition User -> (has) Course [*];
+  composition Course -> (has) Lesson [*];
+  composition Lesson -> (has) Exercise [*];
+  composition Admin -> (has) Course [*];
+  composition Admin -> (has) Lesson [*];
+  composition Admin -> (has) Exercise [*];
+  composition Admin -> (has) User [*];
+}

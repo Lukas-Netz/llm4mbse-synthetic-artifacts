@@ -1,0 +1,56 @@
+
+
+
+classdiagram LunarLanderSystem  {
+
+  class Mission  {
+    String targetLandingSite;
+    SampleType sampleType;
+    DataGatheringType dataGatheringType;
+  }
+
+  class Lander  {
+    String uniqueIdentifier;
+    LanderType type;
+    LanderStatus status;
+  }
+
+  class Scout extends Lander  {
+    DataGatheringType dataGatheringType;
+  }
+
+  class Sample extends Lander  {
+    SampleType sampleType;
+  }
+
+  class CentralControlUnit  {
+    -> Lander[*];
+    void sendCommand(Lander lander, Command command);
+    void receiveData(Lander lander, Data data);
+  }
+
+  class CommunicationNetwork  {
+    -> Lander[*];
+    void sendData(Lander lander, Data data);
+  }
+
+  enum LanderStatus  {
+    Active, Inactive;
+  }
+
+  enum Command  {
+    Start, Stop, Update;
+  }
+
+  enum DataGatheringType  {
+    Surface, Subsurface;
+  }
+
+  enum SampleType  {
+    Rock, Soil, Gas;
+  }
+
+  composition Mission  ->  (has) CentralControlUnit;
+  composition CentralControlUnit  ->  (has) Lander[*];
+  composition CommunicationNetwork  ->  (has) Lander[*];
+}

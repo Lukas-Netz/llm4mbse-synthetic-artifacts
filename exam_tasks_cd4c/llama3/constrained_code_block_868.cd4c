@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram OrganPrintingSystem  {
+
+  class OrganDesign  {
+    String name;
+    Size size;
+    Material material;
+  }
+
+  class DesignTool  {
+    void createOrganDesign(Size size, Material material);
+    void modifyOrganDesign(OrganDesign design);
+  }
+
+  class ThreeDPrinter  {
+    int capacity;
+    void printOrgan(OrganDesign design);
+  }
+
+  class QualityControl  {
+    void checkOrgan(OrganDesign design);
+  }
+
+  enum Size  {
+    Small, Medium, Large;
+  }
+
+  enum Material  {
+    Plastic, Metal, Ceramic;
+  }
+
+  composition DesignTool -> OrganDesign [1..*];
+  composition ThreeDPrinter -> OrganDesign [*];
+  composition QualityControl -> OrganDesign [*];
+}

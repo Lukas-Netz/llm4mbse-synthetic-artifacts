@@ -1,0 +1,60 @@
+
+classdiagram BlockchainSupplyChain {
+
+  class Good {
+    String uniqueIdentifier;
+    GoodType type;
+    GoodAttributes attributes;
+  }
+
+  enum GoodType {
+    FOOD, ELECTRONICS, CLOTHING;
+  }
+
+  class GoodAttributes {
+    FoodAttributes food;
+    ElectronicsAttributes electronics;
+    ClothingAttributes clothing;
+  }
+
+  class FoodAttributes {
+    Date expirationDate;
+  }
+
+  class ElectronicsAttributes {
+    String serialNumber;
+  }
+
+  class ClothingAttributes {
+    String size;
+  }
+
+  class Supplier {
+    String uniqueIdentifier;
+    Location location;
+    Reputation reputation;
+  }
+
+  class Distributor {
+    String uniqueIdentifier;
+    Location location;
+    Reputation reputation;
+  }
+
+  class Location {
+    String city;
+    String country;
+  }
+
+  class Reputation {
+    int score;
+  }
+
+  class Blockchain {
+    void verifyIntegrity(Good good);
+  }
+
+  composition Blockchain -> Good [*];
+  composition Blockchain -> Supplier [*];
+  composition Blockchain -> Distributor [*];
+}

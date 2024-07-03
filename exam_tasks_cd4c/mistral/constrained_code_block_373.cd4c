@@ -1,0 +1,84 @@
+
+classdiagram TherapyPlatform {
+
+  class Therapist {
+    String uniqueIdentifier;
+    String name;
+    String specialization;
+    List<Session> sessions;
+    List<Review> reviewsGiven;
+  }
+
+  class Client {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+    List<Session> sessions;
+    List<Review> reviewsGiven;
+    List<Review> reviewsReceived;
+  }
+
+  class Session {
+    String uniqueIdentifier;
+    LocalDateTime dateTime;
+    int duration;
+    Therapist therapist;
+    Client client;
+    List<Review> reviews;
+  }
+
+  class Review {
+    int rating;
+    String text;
+    Therapist therapist;
+    Client client;
+    Session session;
+  }
+
+  association Therapist --oSession;
+  association Client --oSession;
+  association Session --oReview;
+  association Therapist --oReviewGiven;
+  association Client --oReviewGiven;
+  association Client --oReviewReceived;
+
+  package Query {
+    interface AvailableTherapists {
+      List<Therapist> getAvailableTherapists(LocalDateTime dateTime);
+    }
+
+    interface AvailableSessions {
+      List<Session> getAvailableSessions(Therapist therapist);
+      List<Session> getAvailableSessions(Client client);
+    }
+
+    interface TherapistSessions {
+      List<Session> getSessions(Therapist therapist);
+      List<Session> getSessions(Client client);
+    }
+
+    interface TherapistRatings {
+      List<Therapist> getTherapistsByRating(int rating);
+      List<Therapist> getTherapistsBySpecialization(String specialization);
+    }
+
+    interface ClientRatings {
+      List<Client> getClientsByRating(int rating);
+      List<Client> getClientsByTherapist(Therapist therapist);
+    }
+
+    interface SessionRatings {
+      List<Session> getSessionsByRating(int rating);
+      List<Session> getSessionsByTherapist(Therapist therapist);
+      List<Session> getSessionsByClient(Client client);
+    }
+
+    interface Ratings {
+      List<Review> getAllRatings();
+      List<Review> getAllReviews();
+      List<Review> getReviewsByTherapist(Therapist therapist);
+      List<Review> getReviewsByClient(Client client);
+      List<Review> getReviewsBySession(Session session);
+    }
+  }
+}

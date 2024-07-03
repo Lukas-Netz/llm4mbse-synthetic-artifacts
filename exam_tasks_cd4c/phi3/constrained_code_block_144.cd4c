@@ -1,0 +1,51 @@
+
+classdiagram ClinicalDecisionSupport {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String demographicInfo;
+      List<MedicalCondition> medicalConditions;
+      List<Medication> medications;
+      List<TestResult> testResults;
+    }
+
+    class MedicalCondition {
+      String name;
+      String description;
+      int severityLevel;
+      boolean isAcute;
+    }
+
+    class Medication {
+      String name;
+      String description;
+      String dosageInstructions;
+      List<MedicalCondition> prescribedFor;
+    }
+
+    class TestResult {
+      String name;
+      String description;
+      double value;
+    }
+
+    class Recommendation {
+      String content;
+      int priority;
+    }
+
+    class HealthcareProfessional {
+      String uniqueIdentifier;
+      String name;
+      String role;
+      List<Patient> patients;
+    }
+
+    composition Patient -> (has) MedicalCondition [*];
+    composition Patient -> (has) Medication [*];
+    composition Patient -> (has) TestResult [*];
+    association Patient -> Recommendation [*];
+    composition HealthcareProfessional -> (has) Patient [*];
+    composition HealthcareProfessional -> (has) Recommendation [*];
+}

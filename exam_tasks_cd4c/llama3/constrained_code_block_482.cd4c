@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram FurnitureDesignCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    int duration;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String expertise;
+  }
+
+  class Topic  {
+    String title;
+    String description;
+    Topic  subtopics  ;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    Course  enrolledCourses  ;
+    Topic  completedTopics  ;
+    int overallScore;
+  }
+
+  class Level  {
+    String name;
+  }
+
+  class BeginnerLevel extends Level  {
+  }
+
+  class IntermediateLevel extends Level  {
+  }
+
+  class AdvancedLevel extends Level  {
+  }
+
+  composition Course  ->  (has) Instructor;
+  composition Course  ->  (has) Topic  [*];
+  composition Student  ->  (has) Course  [*];
+  composition Topic  ->  (has) Topic  [*];
+  association Level  ->  (is) Course  [1..*];
+}

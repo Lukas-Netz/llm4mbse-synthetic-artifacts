@@ -1,0 +1,43 @@
+
+classdiagram AutonomousLunarRoverSystem {
+
+    class Rover {
+      String uniqueIdentifier;
+      Location currentLocation;
+      Location destinationLocation;
+      RoverType type;
+    }
+
+    class MissionControlCenter {
+      void sendCommand(Rover rover, Command command);
+      void receiveData(Rover rover, Data data);
+      void monitorStatus(Rover rover);
+      void performMaintenance(Rover rover);
+    }
+
+    enum RoverType {
+      Scout,
+      Explorer,
+      Researcher
+   
+   
+   ;}
+
+    class Command {
+      String commandName;
+      String commandDetails;
+    }
+
+    class Data {
+      String dataType;
+      String dataValue;
+    }
+
+    composition MissionControlCenter -> (has) Rover;
+    composition MissionControlCenter -> (has) Command;
+    composition MissionControlCenter -> (has) Data;
+    composition MissionControlCenter -> (has) Rover [*];
+
+    association Rover -> Location;
+    association Rover -> RoverType;
+}

@@ -1,0 +1,31 @@
+
+
+classdiagram OrganDesignSystem {
+
+  class OrganDesign {
+    String name;
+    int size;
+    String material;
+
+    OrganDesign(String name, int size, String material);
+  }
+
+  class DesignTool {
+    OrganDesign createOrganDesign();
+    OrganDesign modifyOrganDesign(OrganDesign organDesign);
+  }
+
+  class Printer {
+    int capacity;
+    OrganDesign printOrgan(OrganDesign organDesign);
+  }
+
+  class QualityControlSystem {
+    void checkOrganForDefects(OrganDesign organDesign);
+    boolean meetsStandards(OrganDesign organDesign);
+  }
+
+  composition OrganDesignSystem -> (has) DesignTool;
+  composition OrganDesignSystem -> (has) Printer;
+  composition OrganDesignSystem -> (has) QualityControlSystem;
+}

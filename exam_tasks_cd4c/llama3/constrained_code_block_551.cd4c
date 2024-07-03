@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram AirTrafficControl  {
+
+  class AirTrafficControlCenter  {
+    String uniqueIdentifier;
+    String region;
+  }
+
+  class RadarStation  {
+    String uniqueIdentifier;
+    String sector;
+  }
+
+  class Aircraft  {
+    String uniqueIdentifier;
+    int altitude;
+    int speed;
+    String direction;
+  }
+
+  class Pilot  {
+    String name;
+    String licenseNumber;
+    int experience;
+  }
+
+  class AirTrafficController  {
+    String name;
+    String certificationNumber;
+    int experience;
+  }
+
+  class AirTrafficControlSystem  {
+    -> AirTrafficControlCenter[*];
+    -> RadarStation[*];
+    void trackAircraft(Aircraft aircraft);
+    void monitorRadarStation(RadarStation radarStation);
+    void provideDataToController(AirTrafficController controller);
+  }
+
+  composition AirTrafficControlSystem -> AirTrafficControlCenter;
+  composition AirTrafficControlSystem -> RadarStation[*];
+  composition AirTrafficControlCenter -> RadarStation[*];
+  composition RadarStation -> Aircraft[*];
+  composition AirTrafficController -> Aircraft[*];
+}

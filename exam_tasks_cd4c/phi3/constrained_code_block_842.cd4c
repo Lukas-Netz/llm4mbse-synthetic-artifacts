@@ -1,0 +1,62 @@
+
+classdiagram BlockchainLogistics {
+
+    class Blockchain {
+      Package[] packages;
+      Transaction[] transactions;
+      void addPackage(Package package);
+      void addTransaction(Transaction transaction);
+      Package getPackage(String packageId);
+      Transaction getTransaction(String transactionId);
+    WritableTransaction[] getWritableTransactions();
+    }
+
+    class Package {
+      String packageId;
+      double weight;
+      double length;
+      double width;
+      double height;
+      TransportationMode transportationMode;
+      PackageHandler packageHandler;
+      Location currentLocation;
+    }
+
+    class TransportationMode {
+      String modeId;
+      String rules;
+    }
+
+    class Carrier {
+      String carrierId;
+      TransportationMode[] availableModes;
+      PackageHandler[] packageHandlers;
+      void addPackageHandler(PackageHandler handler);
+      void removePackageHandler(PackageHandler handler);
+    }
+
+    class PackageHandler {
+      String handlerId;
+      Carrier carrier;
+      Location location;
+      void addPackage(Package package);
+      void removePackage(Package package);
+    }
+
+    class Location {
+      String locationId;
+      PackageHandler handler;
+    }
+
+    association Package -> TransportationMode;
+    association Package -> PackageHandler;
+    association PackageHandler -> Carrier;
+    association PackageHandler -> Location;
+    association Location -> PackageHandler;
+    composition Carrier -> TransportationMode [*];
+    composition Carrier -> PackageHandler [*];
+    composition PackageHandler -> Location [*];
+    composition Location -> PackageHandler [*];
+    composition Blockchain -> Package [*];
+    composition Blockchain -> Transaction [*];
+}

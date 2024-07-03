@@ -1,0 +1,42 @@
+
+classdiagram NetworkManagement {
+
+  class Device {
+    String uniqueIdentifier;
+    String deviceType;
+  }
+
+  class Network {
+    String name;
+    String uniqueIdentifier;
+    Device [][] devices;
+  }
+
+  class Issue {
+    String severity;
+    String description;
+  }
+
+  class Alert {
+    String severity;
+    String description;
+  }
+
+  class Response {
+    String description;
+    String status;
+  }
+
+  class NetworkManagementSystem {
+    Network [][] networks;
+    void addDeviceToNetwork(Network network, Device device);
+    void removeDeviceFromNetwork(Network network, Device device);
+    Issue detectIssue(Network network);
+    Response respondToIssue(Issue issue);
+    Alert sendAlert(Issue issue);
+    Response [][] trackResponses();
+  }
+
+  composition NetworkManagementSystem -> Network [*];
+  composition Network -> Device [*];
+}

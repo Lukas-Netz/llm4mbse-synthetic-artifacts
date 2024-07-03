@@ -1,0 +1,54 @@
+
+
+classdiagram MRI
+
+  
+
+{class MRISystem
+  
+  {scanner Type; State state;
+  
+  }
+
+  class Scanner {
+    Type type;
+    State state;
+  }
+
+  class Computer {
+    Control control;
+    Store store;
+  }
+
+  class Console {
+    Control control;
+    View view;
+  }
+
+  class Sequence {
+    Settings settings;
+    Images images;
+  }
+
+  class Images {
+    Image image;
+    Format format;
+  }
+
+  class PatientDatabase {
+    Patient patient;
+    Images images;
+  }
+
+  class Patient {
+    Identifier id;
+    Name name;
+    DateOfBirth dateOfBirth;
+  }
+
+  composition MRISystem -> Scanner;
+  composition MRISystem -> Computer;
+  composition MRISystem -> Console;
+  composition Sequence -> Images;
+  composition PatientDatabase -> Patient;
+}

@@ -1,0 +1,272 @@
+
+classdiagram LegalServicesPlatform {
+
+    class Lawyer {
+      int lawyerID;
+      String name;
+      String expertiseArea;
+    }
+
+    class Case {
+      int caseID;
+      String description;
+      CaseStatus status;
+      Lawyer assignedLawyer;
+      List<Case> relatedCases;
+    }
+
+    class Client {
+      int clientID;
+      String name;
+      List<Case> cases;
+    }
+
+    class Rating {
+      int ratingValue;
+      String comment;
+      Rating(int ratingValue, String comment);
+    }
+
+    enum CaseStatus {
+      Open, InProgress, Closed
+   
+   
+   ()
+   
+
+;
+    association Client 
+   
+   
+
+;
+    association Case 
+   
+   
+
+;
+    composition LawyerCaseAssociation
+   
+   
+
+;
+    composition CaseRelatedCases
+   
+   
+
+;
+    association Rating
+   
+   
+
+;
+    composition LawyerCaseRating
+   
+   
+
+;
+    composition ClientCaseList
+   
+   
+
+;
+    composition CaseProgress
+   
+   
+
+;
+    composition ClientRatingList
+   
+   
+
+;
+    composition LawyerExpertise
+   
+   
+
+;
+    composition LawyerCaseExpertise
+   
+   
+
+;
+    composition ClientCaseRating
+   
+   
+
+;
+    composition CaseDetails
+   
+   
+
+;
+    composition LawyerCaseDetails
+   
+   
+
+;
+    composition ClientCaseProgress
+   
+   
+
+;
+    composition LawyerCaseRating
+   
+   
+
+;
+    composition ClientCaseRating
+   
+   
+
+;
+    composition CaseRating
+   
+   
+
+;
+    composition LawyerCaseRating
+   
+   
+
+;
+    composition ClientCaseRating
+   
+   
+
+;
+   
+
+}
+
+class Rating {
+  int ratingValue;
+  String comment;
+  Rating(int ratingValue, String comment)
+ 
+ 
+
+;
+   
+
+}
+
+class Lawyer {
+  int lawyerID;
+  String name;
+  String expertiseArea;
+  List<Case> assignedCases;
+ 
+ 
+
+}
+
+class Case {
+  int caseID;
+  String description;
+  CaseStatus status;
+  Lawyer assignedLawyer;
+  List<Case> relatedCases;
+ 
+ 
+
+}
+
+class Client {
+  int clientID;
+  String name;
+  List<Case> cases;
+ 
+ 
+
+}
+
+class CaseStatus {
+  enum Open;
+  enum InProgress;
+  enum Closed;
+ 
+ 
+
+}
+
+class ClientCaseList {
+  List<Case> cases;
+ 
+ 
+
+}
+
+class ClientCaseProgress {
+  List<Case> cases;
+ 
+ 
+
+}
+
+class ClientCaseRating {
+  List<Rating> ratings;
+ 
+ 
+
+}
+
+class CaseDetails {
+  String description;
+  int status;
+ 
+ 
+
+}
+
+class LawyerCaseDetails {
+  Lawyer lawyer;
+  Case case;
+ 
+ 
+
+}
+
+class LawyerCaseRating {
+  Lawyer lawyer;
+  Rating rating;
+ 
+ 
+
+}
+
+class CaseRating {
+  Rating rating;
+ 
+ 
+
+}
+
+class LawyerCaseRating {
+  Lawyer lawyer;
+  Rating rating;
+ 
+ 
+
+}
+
+class ClientCaseRating {
+  Rating rating;
+ 
+ 
+
+}
+
+class LawyerExpertise {
+  Lawyer lawyer;
+  String expertiseArea;
+ 
+ 
+
+}
+
+
+
+
+
+}

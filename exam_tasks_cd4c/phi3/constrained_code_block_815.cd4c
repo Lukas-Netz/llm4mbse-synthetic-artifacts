@@ -1,0 +1,58 @@
+
+classdiagram ChargingSystem {
+
+    class ChargingPad {
+      String uniqueId;
+      String location;
+      int capacity;
+      ChargingType type;
+      ChargingPadStatus status;
+      void updateStatus(ChargingPadStatus status);
+      void checkHealth();
+    }
+
+    class Device {
+      String uniqueId;
+      String type;
+      ChargingPadStatus status;
+    }
+
+    class User {
+      String uniqueId;
+      List<Device> devices;
+    }
+
+    class Notification {
+      String message;
+      String recipient;
+      void send();
+    }
+
+    enum ChargingPadStatus {
+      Charging, FullyCharged, NotCharging, Error
+   
+   
+   ;}
+
+    enum ChargingType {
+      FastCharging, SlowCharging, UniversalCharging
+   
+   
+   ;}
+
+    class ChargingSystem {
+      List<ChargingPad> chargingPads;
+      List<User> users;
+      void addUser(User user);
+      void removeUser(User user);
+      void addChargingPad(ChargingPad chargingPad);
+      void removeChargingPad(ChargingPad chargingPad);
+      void updateDeviceStatus(String deviceId, ChargingPadStatus status);
+      void checkChargingPadHealth();
+      void sendFullyChargedNotification(String deviceId);
+    }
+
+  composition ChargingSystem -> (has) ChargingPad;
+  composition ChargingSystem -> (has) User [*];
+  composition ChargingSystem -> (has) Notification [*];
+}

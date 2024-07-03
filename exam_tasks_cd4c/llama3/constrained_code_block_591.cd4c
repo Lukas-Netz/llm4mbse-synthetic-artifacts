@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram WindFarm  {
+
+  class Turbine  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+    TurbineStatus status;
+  }
+
+  class Substation  {
+    String name;
+    Location location;
+  }
+
+  class MaintenanceTeam  {
+    Technician  technician  ;
+  }
+
+  class Technician  {
+    String uniqueIdentifier;
+    String name;
+    Expertise expertise;
+  }
+
+  class MonitoringSystem  {
+    Turbine  turbine  ;
+  }
+
+  class Location  {
+    String coordinates;
+  }
+
+  enum TurbineStatus  {
+    Operational, NonOperational;
+  }
+
+  enum Expertise  {
+    Electrical, Mechanical, CivilEngineering;
+  }
+
+  composition WindFarm  ->  (has) Turbine  [*];
+  composition WindFarm  ->  (has) Substation;
+  composition WindFarm  ->  (has) MaintenanceTeam;
+  composition WindFarm  ->  (has) MonitoringSystem;
+  composition Substation  ->  (has) MonitoringSystem;
+  composition MaintenanceTeam  ->  (has) Technician  [*];
+  composition MonitoringSystem  ->  (has) Turbine  [*];
+}

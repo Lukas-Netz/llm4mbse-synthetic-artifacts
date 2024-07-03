@@ -1,0 +1,120 @@
+
+classdiagram RemoteDesktop {
+
+    class RemoteDesktopSystem {
+      Hub hub;
+      BackupPower backupPower;
+      User user;
+      Computer computer;
+    WritableFile file;
+    }
+
+    class Hub {
+      -> User [*];
+      -> Computer [*];
+      void addUser(User user);
+      void removeUser(User user);
+      void addComputer(Computer computer);
+      void removeComputer(Computer computer);
+      String checkBackupPowerStatus();
+      void handleVPNConnection();
+      void handleSSHConnection();
+      void handleFileTransfer();
+      void handleScreenSharing();
+      void handleAuthentication(AuthenticationMethod method);
+      void handleEncryption(EncryptionType type);
+      void handleNetworkProtocol(NetworkProtocol protocol);
+      void handleNetworkTopology(NetworkTopology topology);
+      void handleNetworkDevice(NetworkDevice device);
+      void handleNetworkService(NetworkService service);
+    }
+
+    abstract class User {
+      String username;
+      String password;
+      AuthenticationMethod authenticationMethod;
+    }
+
+    abstract class Computer {
+      String operatingSystem;
+      boolean isOnline;
+      NetworkProtocol networkProtocol;
+      NetworkTopology networkTopology;
+      NetworkDevice networkDevice;
+      NetworkService networkService;
+    }
+
+    class Windows extends Computer {
+      String version;
+    }
+
+    class macOS extends Computer {
+      String version;
+    }
+
+    class Linux extends Computer {
+      String version;
+    }
+
+    class VPN extends Hub {
+      void handleVPNConnection();
+    }
+
+    class SSH extends Hub {
+      void handleSSHConnection();
+    }
+
+    class FileTransfer extends Hub {
+      void handleFileTransfer();
+    }
+
+    class ScreenSharing extends Hub {
+      void handleScreenSharing();
+    }
+
+    class AuthenticationMethod {
+      enum MethodType
+      ;
+    }
+
+    enum MethodType {
+      UsernamePassword, Biometric
+    ;
+    }
+
+    enum EncryptionType {
+      AES, RSA
+    ;
+    }
+
+    enum NetworkProtocol {
+      TCP, UDP
+    ;
+    }
+
+    enum NetworkTopology {
+      LAN, WAN
+    ;
+    }
+
+    enum NetworkDevice {
+      Hub, Switch, Router
+    ;
+    }
+
+    enum NetworkService {
+      DNS, DHCP
+    ;
+    }
+
+    class RemoteDesktopSystem {
+      Hub hub;
+      BackupPower backupPower;
+      User user;
+      Computer computer;
+      WritableFile file;
+    }
+
+  composition RemoteDesktopSystem -> Hub;
+ 
+  }

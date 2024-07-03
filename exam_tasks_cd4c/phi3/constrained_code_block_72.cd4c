@@ -1,0 +1,60 @@
+
+classdiagram SurveyFeedbackSystem {
+
+    class User {
+      String uniqueID;
+      String role;
+    }
+
+    class Survey {
+      String uniqueID;
+      String title;
+      String description;
+      List<Question> questions;
+      void addQuestion(Question question);
+      void removeQuestion(Question question);
+      void sendToParticipants(List<User> participants);
+    }
+
+    class Question {
+      String uniqueID;
+      String type;
+      List<AnswerOption> answerOptions;
+      void addAnswerOption(AnswerOption answerOption);
+      void removeAnswerOption(AnswerOption answerOption);
+    }
+
+    class AnswerOption {
+      String answer;
+      Question question;
+      User user;
+    }
+
+    class Feedback {
+      String surveyID;
+      String userID;
+      String feedbackText;
+    }
+
+    class Analytics {
+      List<Feedback> feedbackData;
+      void generateReport();
+      void exportData(String format);
+    }
+
+    association User 
+      [*] SurveyFeedbackSystem.Survey
+      [many] -> SurveyFeedbackSystem.Feedback;
+
+    association SurveyFeedbackSystem.Survey
+      [many] -> SurveyFeedbackSystem.Question;
+
+    association SurveyFeedbackSystem.Question
+      [many] -> SurveyFeedbackSystem.AnswerOption;
+
+    association SurveyFeedbackSystem.Feedback
+      [many] -> SurveyFeedbackSystem.Analytics;
+
+    association SurveyFeedbackSystem.Analytics
+      [one] -> SurveyFeedbackSystem.Feedback;
+}

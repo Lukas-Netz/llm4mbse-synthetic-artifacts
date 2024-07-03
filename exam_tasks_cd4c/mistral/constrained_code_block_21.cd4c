@@ -1,0 +1,46 @@
+
+classdiagram WearableTechnology {
+
+  class Smartwatch {
+    HeartRateSensor heartRateSensor;
+    BloodPressureSensor bloodPressureSensor;
+    SleepQualitySensor sleepQualitySensor;
+    FitnessTracker fitnessTracker;
+    NotificationReceiver notificationReceiver;
+  }
+
+  class HeartRateSensor {
+    int heartRate;
+  }
+
+  class BloodPressureSensor {
+    int systolic;
+    int diastolic;
+  }
+
+  class SleepQualitySensor {
+    SleepQuality sleepQuality;
+  }
+
+  enum SleepQuality {
+    Poor, Fair, Good, VeryGood, Excellent;
+  }
+
+  class FitnessTracker {
+    int steps;
+    double distance;
+    int calories;
+  }
+
+  class NotificationReceiver {
+    void receiveTextMessage(String message);
+    void receiveEmail(String subject, String body);
+    void receiveSocialMediaUpdate(String update);
+  }
+
+  composition Smartwatch -> HeartRateSensor;
+  composition Smartwatch -> BloodPressureSensor;
+  composition Smartwatch -> SleepQualitySensor;
+  composition Smartwatch -> FitnessTracker;
+  composition Smartwatch -> NotificationReceiver;
+}

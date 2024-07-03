@@ -1,0 +1,49 @@
+
+classdiagram HumanResourcesSystem {
+
+    class Employee {
+      String uniqueID;
+      String name;
+      String contactInfo;
+      Department department;
+      JobPosition jobPosition;
+    }
+
+    class Department {
+      String name;
+      String departmentID;
+      List<Employee> employees;
+    }
+
+    class JobPosition {
+      String name;
+      Department department;
+      String jobDescription;
+      Set<String> requiredSkills;
+      Set<String> requiredQualifications;
+      List<Employee> employees;
+    }
+
+    class PerformanceEvaluation {
+      Employee employee;
+      String rating;
+      String comment;
+    }
+
+    <<association>> class Employee {
+      Department department;
+      JobPosition jobPosition;
+    }
+
+    <<association>> class Department {
+      Employee employees;
+    }
+
+    <<association>> class JobPosition {
+      Employee employees;
+    }
+
+    <<association>> class PerformanceEvaluation {
+      Employee employee;
+    }
+}

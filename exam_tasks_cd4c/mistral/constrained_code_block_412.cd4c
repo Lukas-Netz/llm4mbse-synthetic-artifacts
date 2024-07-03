@@ -1,0 +1,36 @@
+
+classdiagram Scrapbooking {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Album {
+    String name;
+    String description;
+    User owner;
+    -> Photo [*];
+    int views;
+    int likes;
+    boolean isPublic;
+  }
+
+  class Photo {
+    String caption;
+    Date dateTaken;
+    Album [ ] albums;
+    -> Tag [*];
+    int views;
+    int likes;
+  }
+
+  class Tag {
+    String name;
+    Photo [ ] photos;
+  }
+
+  composition User -- (has) Album [*];
+  composition Album -- (has) Photo [*];
+  composition Photo -- (has) Tag [*];
+}

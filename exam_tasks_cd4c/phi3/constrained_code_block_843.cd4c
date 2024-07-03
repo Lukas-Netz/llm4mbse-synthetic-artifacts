@@ -1,0 +1,46 @@
+
+classdiagram MedicalImagingSystem {
+
+    class Image {
+      String uniqueId;
+      String type;
+      int resolution;
+    }
+
+    class Algorithm {
+      String uniqueId;
+      String name;
+      String description;
+    }
+
+    class ImageAnalysis {
+      String uniqueId;
+      Image image;
+      Algorithm algorithm;
+      String result;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+    }
+
+    class Patient {
+      String uniqueId;
+      String name;
+      String medicalHistory;
+    }
+
+    class ImageUpload {
+      String uniqueId;
+      Image image;
+      Patient patient;
+    }
+
+    association Doctor -> ImageUpload [0..*];
+    association ImageUpload -> ImageAnalysis [0..1];
+    association ImageUpload -> Patient [0..1];
+    association Patient -> ImageAnalysis [0..*];
+    association Algorithm -> ImageAnalysis [0..*];
+}

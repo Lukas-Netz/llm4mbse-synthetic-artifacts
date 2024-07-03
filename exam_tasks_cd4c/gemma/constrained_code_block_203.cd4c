@@ -1,0 +1,58 @@
+
+
+classdiagram EnterpriseResourcePlanning {
+
+    class Employee {
+      int id;
+      String name;
+      String jobTitle;
+      Department department;
+      List<Task> tasks;
+    }
+
+    class Department {
+      String name;
+      List<Employee> employees;
+      List<Project> projects;
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<Task> tasks;
+      Department department;
+    }
+
+    class Task {
+      String name;
+      String description;
+      List<Employee> assignedEmployees;
+      Project project;
+    }
+
+    class Customer {
+      String name;
+      String contactInfo;
+      List<Order> orders;
+    }
+
+    class Order {
+      Customer customer;
+      List<Product> products;
+      double totalCost;
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+      boolean isAvailable;
+    }
+
+  composition Employee -> Department;
+  composition Department -> Project;
+  composition Project -> Task;
+  composition Task -> Project;
+  composition Customer -> Order;
+  composition Order -> Product;
+}

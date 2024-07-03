@@ -1,0 +1,54 @@
+
+classdiagram MusicSchool {
+
+    class Student {
+      String studentID;
+      String name;
+      List<Teacher> teachers;
+    }
+
+    class Teacher {
+      String teacherID;
+      String name;
+      List<Student> students;
+      List<Lesson> lessons;
+    }
+
+    class Lesson {
+      String lessonID;
+      Date lessonDate;
+      int duration;
+      Student student;
+      Teacher teacher;
+    }
+
+    association Student 
+      -> List<<Teacher>>;
+
+    association Teacher
+      -> List<<Student>>;
+
+    association Teacher
+      -> List<<Lesson>>;
+
+    association Student
+      -> List<<Lesson>>;
+
+    association Lesson
+      -> Date;
+
+    association Lesson
+      -> Integer;
+
+    association Lesson
+      -> Student;
+
+    association Lesson
+      -> Teacher;
+
+    association Student
+      -> List<<Lesson>>;
+
+    association Teacher
+      -> List<<Lesson>>;
+}

@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram NLPSystem  {
+
+  class TextPreprocessing  {
+    void preprocessText(String text);
+  }
+
+  class Tokenization  {
+    List<Token> tokenizeText(String text);
+  }
+
+  class Token  {
+    String text;
+    int position;
+  }
+
+  class POS  {
+    String partOfSpeech;
+  }
+
+  class NamedEntity  {
+    String entity;
+    String type;
+  }
+
+  class Sentiment  {
+    SentimentType sentiment;
+  }
+
+  enum SentimentType  {
+    Positive, Negative, Neutral
+  ;}
+
+  class Database  {
+    Table textTable;
+    Table posTable;
+    Table namedEntitiesTable;
+    Table sentimentTable;
+  }
+
+  class Table  {
+    List<Row> rows;
+  }
+
+  class Row  {
+    String text;
+    POS pos;
+    NamedEntity namedEntity;
+    Sentiment sentiment;
+  }
+
+  class UserInterface  {
+    void analyzeText(String text);
+    void viewResults();
+  }
+
+  composition NLPSystem -> (has) TextPreprocessing;
+  composition NLPSystem -> (has) Tokenization;
+  composition NLPSystem -> (has) POS;
+  composition NLPSystem -> (has) NamedEntity;
+  composition NLPSystem -> (has) Sentiment;
+  composition NLPSystem -> (has) Database;
+  composition NLPSystem -> (has) UserInterface;
+  composition Database -> (has) Table [4];
+  composition UserInterface -> (has) NLPSystem;
+}

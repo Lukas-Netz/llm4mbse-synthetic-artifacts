@@ -1,0 +1,48 @@
+
+classdiagram PublicSafetyCommunicationSystem {
+
+    class EmergencyCall {
+      String type;
+      String location;
+      EmergencyResponseStatus status;
+    }
+
+    class EmergencyResponder {
+      String name;
+      String badgeNumber;
+      Location location;
+    }
+
+    class Dispatcher {
+      String name;
+      String badgeNumber;
+      Location location;
+    }
+
+    class Stakeholder {
+      String name;
+      String role;
+    }
+
+    class Message {
+      String sender;
+      String receiver;
+      String content;
+    }
+
+    class EmergencyResponseSystem {
+      void sendMessage(Message message);
+      void receiveMessage(Message message);
+      void updateEmergencyCallStatus(EmergencyCall call, EmergencyResponseStatus status);
+      void retrieveEmergencyCallData(String callId);
+      void provideRealTimeUpdates(EmergencyCall call);
+      void integrateWith911System();
+      void integrateWithEmergencyMedicalServices();
+    }
+
+    association EmergencyCall -> EmergencyResponseSystem;
+    association EmergencyResponder -> EmergencyResponseSystem;
+    association Dispatcher -> EmergencyResponseSystem;
+    association Stakeholder -> EmergencyResponseSystem;
+    composition EmergencyCall -> Message;
+}

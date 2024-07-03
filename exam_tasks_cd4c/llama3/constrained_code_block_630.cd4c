@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram SpaceElevator  {
+
+  class GroundStation  {
+    void manageSystem();
+  }
+
+  class Cable  {
+    Segment  segment  ;
+  }
+
+  class Segment  {
+    String uniqueIdentifier;
+    int length;
+  }
+
+  class Counterweight  {
+    void balanceCable();
+  }
+
+  class SpaceStation  {
+    String uniqueIdentifier;
+    String name;
+    Service  service  ;
+  }
+
+  class Service  {
+    String serviceName;
+  }
+
+  class Astronaut  {
+    String uniqueIdentifier;
+    String name;
+    Skill  skill  ;
+  }
+
+  class Skill  {
+    String skillName;
+  }
+
+  class Rule  {
+    String ruleName;
+  }
+
+  composition GroundStation  ->  (has) Cable;
+  composition Cable  ->  (has) Segment;
+  composition Cable  ->  (has) Counterweight;
+  composition SpaceStation  ->  (has) Service;
+  composition Astronaut  ->  (has) Skill;
+  composition SpaceElevator  ->  (has) GroundStation;
+  composition SpaceElevator  ->  (has) SpaceStation;
+  composition SpaceElevator  ->  (has) Astronaut;
+  composition SpaceElevator  ->  (has) Rule;
+}

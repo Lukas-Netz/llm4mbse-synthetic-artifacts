@@ -1,0 +1,54 @@
+
+classdiagram DigitalMenuBoard {
+
+    class DigitalMenuBoard {
+      String name;
+      String uniqueId;
+      List<MenuItem> menuItems;
+      Restaurant restaurant;
+    }
+
+    class MenuItem {
+      String name;
+      String description;
+      double price;
+      enum TypeOfItem
+     
+     ;
+      Food food;
+      Drink drink;
+      int orderCount;
+      double totalRevenue;
+    }
+
+    class Food {
+      int calories;
+      List<String> ingredients;
+    }
+
+    class Drink {
+      String size;
+      String flavor;
+    }
+
+    class Restaurant {
+      String name;
+      String uniqueId;
+      List<DigitalMenuBoard> menuBoards;
+    }
+
+    association DigitalMenuBoard 
+      hasMenuItems [many]
+      -> Restaurant [*];
+
+    association MenuItem 
+      hasMenuBoard [many]
+      -> DigitalMenuBoard;
+
+    association Restaurant 
+      hasMenuBoards [many]
+      -> DigitalMenuBoard;
+
+    composition MenuItem -> Food;
+    composition MenuItem -> Drink;
+}

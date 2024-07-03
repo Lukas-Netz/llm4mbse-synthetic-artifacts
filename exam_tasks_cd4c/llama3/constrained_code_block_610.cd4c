@@ -1,0 +1,94 @@
+
+
+
+
+classdiagram LunarMining  {
+
+  class MiningSite  {
+    String name;
+    Location location;
+  }
+
+  class Module  {
+    String name;
+    Equipment equipment;
+    Personnel personnel;
+  }
+
+  class DrillingModule extends Module  {
+    DrillingEquipment drillingEquipment;
+  }
+
+  class ProcessingModule extends Module  {
+    ProcessingEquipment processingEquipment;
+  }
+
+  class StorageModule extends Module  {
+    StorageEquipment storageEquipment;
+  }
+
+  class Equipment  {
+    String type;
+  }
+
+  class DrillingEquipment extends Equipment  {
+    DrillingType type;
+  }
+
+  class ProcessingEquipment extends Equipment  {
+    ProcessingType type;
+  }
+
+  class StorageEquipment extends Equipment  {
+    StorageType type;
+  }
+
+  class Personnel  {
+    String name;
+    Role role;
+  }
+
+  class DrillingType  {
+    String type;
+  }
+
+  class ProcessingType  {
+    String type;
+  }
+
+  class StorageType  {
+    String type;
+  }
+
+  class Role  {
+    String role;
+  }
+
+  class Location  {
+    String name;
+    Coordinates coordinates;
+  }
+
+  class Coordinates  {
+    double latitude;
+    double longitude;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  class Alert  {
+    String message;
+    Severity severity;
+  }
+
+  enum Severity  {
+    Low, Medium, High;
+  }
+
+  composition MiningSite -> Module[*];
+  
+
+}

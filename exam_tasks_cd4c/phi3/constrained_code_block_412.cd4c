@@ -1,0 +1,338 @@
+
+classdiagram DogTrainingSystem {
+
+    class User {
+      String username;
+      String password;
+      List<TrainingPlan> trainingPlans;
+      void createTrainingPlan(TrainingPlan plan);
+      void editTrainingPlan(TrainingPlan plan);
+      void deleteTrainingPlan(TrainingPlan plan);
+    }
+
+    class TrainingPlan {
+      String name;
+      String description;
+      List<Exercise> exercises;
+      Dog dog;
+      User user;
+      void assignDog(Dog dog);
+      void removeDog();
+      void trackProgress();
+      String getExerciseDetails(Exercise exercise);
+    }
+
+    class Exercise {
+      String name;
+      String description;
+      int difficultyLevel;
+      List<TrainingPlan> assignedPlans;
+      void assignToPlan(TrainingPlan plan);
+      void removeFromPlan();
+    }
+
+    class Dog {
+      String name;
+      String breed;
+      int age;
+      User owner;
+      List<TrainingPlan> trainingPlans;
+      void participateInPlan(TrainingPlan plan);
+      void viewProgress(TrainingPlan plan);
+    }
+
+    association User -> List<< TrainingPlan, cardinality 
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+    association
+    ,
+eof
+   
+   
+   >>
+
+   
+   
+   
+   
+{
+   
+   
+   ordered
+   
+}
+
+ 
+
+ ;}

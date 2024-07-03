@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram TransparencyPlatform  {
+
+  class CitizenPortal  {
+    -> Request[*];
+    -> Rating[*];
+  }
+
+  class GovernmentPortal  {
+    -> Response[*];
+  }
+
+  class Request  {
+    String description;
+    RequestType type;
+    -> Citizen;
+  }
+
+  class Response  {
+    String content;
+    -> Request;
+  }
+
+  class Rating  {
+    int score;
+    String feedback;
+    -> Request;
+  }
+
+  class Database  {
+    -> Request[*];
+    -> Response[*];
+    -> Rating[*];
+  }
+
+  enum RequestType  {
+    Information, Document, Image, Video;
+  }
+
+  composition CitizenPortal -> (has) Database;
+  composition GovernmentPortal -> (has) Database;
+  composition Database -> (has) Request[*];
+  composition Database -> (has) Response[*];
+  composition Database -> (has) Rating[*];
+  association Citizen -> (requests) Request[*];
+  association Request -> (responds) Response[*];
+  association Request -> (rated) Rating[*];
+}

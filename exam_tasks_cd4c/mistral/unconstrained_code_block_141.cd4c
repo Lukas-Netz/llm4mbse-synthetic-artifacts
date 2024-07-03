@@ -1,0 +1,68 @@
+
+classdiagram LegalResearch {
+
+  class LegalDocument {
+    String title;
+    String author;
+    String language;
+    String documentType;
+    String content;
+  }
+
+  class Case {
+    String caseName;
+    String court;
+    String date;
+    LegalDocument decision;
+  }
+
+  class Legislation {
+    String lawName;
+    String jurisdiction;
+    String date;
+    LegalDocument text;
+  }
+
+  class LegalConcept {
+    String conceptName;
+    String definition;
+    LegalDocument source;
+  }
+
+  class LegalRelationship {
+    LegalDocument source;
+    LegalDocument target;
+    LegalRelationshipType type;
+  }
+
+  enum LegalRelationshipType {
+    CITES, QUOTES, INFLUENCES, CONFLICTS;
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class SearchQuery {
+    String queryText;
+    User user;
+  }
+
+  class SearchResult {
+    LegalDocument document;
+    double relevanceScore;
+  }
+
+  class Recommendation {
+    LegalDocument document;
+    String reason;
+  }
+
+  composition LegalResearch -> User [*];
+  composition LegalResearch -> LegalDocument [*];
+  composition LegalDocument -> (has) LegalRelationship [*];
+  association User -> SearchQuery [*];
+  association SearchQuery -> SearchResult [*];
+  association SearchResult -> Recommendation [*];
+}

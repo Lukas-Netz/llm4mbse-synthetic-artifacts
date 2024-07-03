@@ -1,0 +1,46 @@
+
+
+
+classdiagram SpaceDebrisTrackingSystem  {
+
+  class Database  {
+    Debris[] debrisList;
+  }
+
+  class Satellite  {
+    String uniqueIdentifier;
+    Debris[] trackedDebris;
+    SatelliteStatus status;
+  }
+
+  class GroundStation  {
+    String uniqueIdentifier;
+    Satellite satellite;
+  }
+
+  class Debris  {
+    Position position;
+    Velocity velocity;
+    Size size;
+  }
+
+  enum SatelliteStatus  {
+    Operational, NonOperational;
+  }
+
+  enum Size  {
+    Small, Medium, Large;
+  }
+
+  enum Velocity  {
+    Low, Medium, High;
+  }
+
+  enum Position  {
+    NearEarth, Geosynchronous, DeepSpace;
+  }
+
+  composition Database  ->  (has) Debris[*];
+  composition Satellite  ->  (has) Debris[*];
+  composition GroundStation  ->  (has) Satellite;
+}

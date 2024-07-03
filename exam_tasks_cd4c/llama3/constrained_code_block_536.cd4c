@@ -1,0 +1,84 @@
+
+
+
+
+classdiagram DisabilitySupportPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    -> Profile[*];
+  }
+
+  class Profile  {
+    DisabilityType disabilityType;
+    Accommodation[] necessaryAccommodations;
+    -> User;
+    -> User[*];
+  }
+
+  class DisabilityType  {
+    String name;
+  }
+
+  class Accommodation  {
+    String name;
+  }
+
+  class Resource  {
+    String title;
+    String description;
+    AccessibilityInformation accessibilityInfo;
+    -> User[*];
+  }
+
+  class AccessibilityInformation  {
+    String text;
+  }
+
+  class Community  {
+    String name;
+    String description;
+    -> User[*];
+  }
+
+  class Business  {
+    String name;
+    String description;
+    AccessibilityInformation accessibilityInfo;
+    -> User[*];
+  }
+
+  class Volunteer  {
+    String name;
+    String email;
+    Availability availability;
+    -> User[*];
+  }
+
+  class Availability  {
+    String[] days;
+    String[] times;
+  }
+
+  class Goal  {
+    String title;
+    String description;
+    ProgressTracking progress;
+    -> User;
+  }
+
+  class ProgressTracking  {
+    int progress;
+  }
+
+  composition User -> Profile;
+  composition Profile -> User;
+  composition Resource -> User;
+  composition Community -> User;
+  composition Business -> User;
+  composition Volunteer -> User;
+  composition Goal -> User;
+}

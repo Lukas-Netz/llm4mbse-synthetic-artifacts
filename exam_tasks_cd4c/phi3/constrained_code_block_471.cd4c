@@ -1,0 +1,44 @@
+
+classdiagram VirtualRealityArchaeologicalTours {
+
+    class Site {
+      String name;
+      String description;
+      Set<Artifact> artifacts;
+    }
+
+    class Artifact {
+      String name;
+      String description;
+      String type;
+    }
+
+    class User {
+      String userId;
+      String name;
+    }
+
+    class Tour {
+      String name;
+      String description;
+      Date startDate;
+      Date endDate;
+      Set<User> participants;
+      Guide guide;
+    }
+
+    class Guide {
+      String name;
+      Set<Skill> skills;
+    }
+
+    class Skill {
+      String name;
+      String description;
+    }
+
+    association Site <-> Set<<Artifact>>;
+    association Tour <-> Set<<User>>;
+    association Tour <-> Guide;
+    association Guide <-> Set<<Skill>>;
+}

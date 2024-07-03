@@ -1,0 +1,35 @@
+
+classdiagram 
+
+class 
+{
+  private interfaces3DModel;
+  private interfacesAnimation;
+  private interfaces3DShape;
+
+  private interfaces3DModelImporter;
+  private interfaces3DModelExporter;
+
+  private interfacesRenderer;
+
+  private interfacesManipulator;
+
+  private interfacesMainWindow;
+
+  private interfaces3DScene;
+
+  private interfaces3DObject;
+
+  private interfacesPosition;
+  private interfacesSize;
+  private interfacesColor;
+  private interfacesTexture;
+  private interfacesMaterial;
+  private interfacesLighting;
+  private interfacesDuration;
+  private interfacesSpeed;
+  private interfacesAnimationType;
+
+  private class MainWindow implements interfacesMainWindow;
+
+  }

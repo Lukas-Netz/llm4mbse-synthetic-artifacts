@@ -1,0 +1,261 @@
+
+classdiagram BeehiveManagementSystem {
+
+    class Beehive {
+      String identifier;
+      Location location;
+      List<Bee> bees;
+      Sensor[] sensors;
+    }
+
+    class Bee {
+      String identifier;
+      BeeRole role;
+      Beehive beehive;
+    }
+
+    class Sensor {
+      String identifier;
+      float temperature;
+      float humidity;
+      float activityLevel;
+    }
+
+    enum BeeRole {
+      Worker, Queen, Drone
+   
+   
+   ()
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+    association Beehive 
+   
+   
+
+;
+   
+
+}
+
+enum BeeRole {
+  Worker, Queen, Drone
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, Activity
+
+ 
+
+;
+   
+
+}
+
+class Sensor {
+  String identifier;
+  SensorType type;
+  float value;
+}
+
+class Beehive {
+  String identifier;
+  Location location;
+  List<Bee> bees;
+  Sensor[] sensors;
+}
+
+class Bee {
+  String identifier;
+  BeeRole role;
+  Beehive beehive;
+}
+
+class Location {
+  String address;
+  String coordinates;
+}
+
+enum BeeRole {
+  Worker, Queen, Drone
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, Activity
+
+ 
+
+;
+   
+
+}
+
+class Sensor {
+  String identifier;
+  SensorType type;
+  float value;
+}
+
+class Beehive {
+  String identifier;
+  Location location;
+  List<Bee> bees;
+  Sensor[] sensors;
+}
+
+class Bee {
+  String identifier;
+  BeeRole role;
+  Beehive beehive;
+}
+
+class Location {
+  String address;
+  String coordinates;
+}
+
+enum BeeRole {
+  Worker, Queen, Drone
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, Activity
+
+ 
+
+;
+   
+
+}
+
+class Sensor {
+  String identifier;
+  SensorType type;
+  float value;
+}
+
+class Beehive {
+  String identifier;
+  Location location;
+  List<Bee> bees;
+  Sensor[] sensors;
+}
+
+
+
+
+
+}

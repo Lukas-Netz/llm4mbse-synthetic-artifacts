@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram DroneSwarm  {
+
+  class DroneSwarm  {
+    BaseStation baseStation;
+    Drone  [ ] drones;
+  }
+
+  class BaseStation  {
+    PowerSource powerSource;
+  }
+
+  abstract class Drone  {
+    String uniqueIdentifier;
+    DroneStatus status;
+  }
+
+  class MonitoringDrone extends Drone  {
+    Camera camera;
+  }
+
+  class SprayingDrone extends Drone  {
+    Tank tank;
+  }
+
+  class Crop  {
+    String type;
+    Location location;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class PowerSource  {
+    int capacity;
+  }
+
+  enum DroneStatus  {
+    Active, Inactive;
+  }
+
+  composition DroneSwarm -> (has) BaseStation;
+  composition DroneSwarm -> (has) Drone [0..*];
+  composition BaseStation -> (has) PowerSource;
+  composition Drone -> (has) Camera [1]  {  ordered  };
+  composition Drone -> (has) Tank  [1]   {  ordered  };
+  composition Crop  ->  (has) Location;
+}

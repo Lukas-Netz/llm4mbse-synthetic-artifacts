@@ -1,0 +1,46 @@
+
+
+classdiagram MobileHealthApp {
+
+  class Patient {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile {
+    String name;
+    MedicalHistory medicalHistory;
+    MedicationList medicationList;
+  }
+
+  class MedicalHistory {
+    List<LabResult> labResults;
+  }
+
+  class MedicationList {
+    List<MedicationReminder> medicationReminders;
+  }
+
+  class MedicationReminder {
+    String patientProfileId;
+    String medicationName;
+    String reminderTime;
+  }
+
+  class Doctor {
+    String name;
+    List<Patient> patients;
+  }
+
+  class LabResult {
+    String patientProfileId;
+    String testName;
+    String result;
+  }
+
+  composition Patient -> (has) Profile;
+  composition Profile -> (has) MedicalHistory;
+  composition Profile -> (has) MedicationList;
+  association Doctor -> Patient;
+  association LabResult -> Profile;
+}

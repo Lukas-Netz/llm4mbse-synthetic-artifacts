@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram CookingPlatform  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Instructor extends User  {
+    String bio;
+  }
+
+  class Student extends User  {
+  }
+
+  class Class  {
+    String name;
+    String description;
+    int duration;
+    -> Recipe[*];
+    -> Enrollment[*];
+  }
+
+  class Recipe  {
+    String name;
+    String ingredients;
+    String instructions;
+  }
+
+  class Enrollment  {
+    User user;
+    Class class;
+  }
+
+  class PaymentPlan  {
+    String name;
+    double price;
+  }
+
+  class Payment  {
+    User user;
+    PaymentPlan plan;
+  }
+
+  class Rating  {
+    User user;
+    Class class;
+    int rating;
+  }
+
+  composition User -> (has) Enrollment[*];
+  composition Class -> (has) Recipe[*];
+  composition Class -> (has) Enrollment[*];
+  composition PaymentPlan -> (has) Payment[*];
+  composition User -> (has) Payment[*];
+  composition User -> (has) Rating[*];
+  composition Class -> (has) Rating[*];
+}

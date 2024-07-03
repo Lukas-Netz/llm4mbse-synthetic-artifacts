@@ -1,0 +1,47 @@
+
+
+
+classdiagram HomeSecuritySystem  {
+
+  class CentralUnit  {
+    Sensor[] sensors;
+    BackupPower backupPower;
+    MonitoringService monitoringService;
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier;
+    boolean enabled;
+  }
+
+  class DoorSensor extends Sensor  {
+    boolean isDoorOpen;
+  }
+
+  class MotionSensor extends Sensor  {
+    boolean isMotionDetected;
+  }
+
+  class GlassBreakSensor extends Sensor  {
+    boolean isGlassBroken;
+  }
+
+  class MonitoringService  {
+    void sendAlert(String message);
+  }
+
+  class BackupPower  {
+    int capacityWh;
+  }
+
+  class UserInterface  {
+    void configureSystem();
+    void viewSensorStatus();
+    void receiveAlerts();
+  }
+
+  composition CentralUnit -> (has) sensors;
+  composition CentralUnit -> (has) backupPower;
+  composition CentralUnit -> (has) monitoringService;
+  composition UserInterface -> (uses) CentralUnit;
+}

@@ -1,0 +1,45 @@
+
+classdiagram DigitalGardening {
+
+  class Garden {
+    String name;
+    String description;
+    String location;
+    Garden(String name, String description, String location);
+    void addPlant(Plant plant);
+    void removePlant(Plant plant);
+  }
+
+  abstract class Plant {
+    String name;
+    PlantType type;
+    PlantGrowthStage growthStage;
+  }
+
+  enum PlantType {
+    Flower, Vegetable, Herb;
+  }
+
+  enum PlantGrowthStage {
+    Seedling, Growing, Mature;
+  }
+
+  class User {
+    String name;
+    String email;
+    UserExperienceLevel experienceLevel;
+    User(String name, String email, UserExperienceLevel experienceLevel);
+    void createGarden(Garden garden);
+    void editGarden(Garden garden);
+    void deleteGarden(Garden garden);
+    void joinGarden(Garden garden);
+    void leaveGarden(Garden garden);
+  }
+
+  enum UserExperienceLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  composition User -> Garden [*];
+  composition Garden -> Plant [*];
+}

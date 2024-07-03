@@ -1,0 +1,63 @@
+
+classdiagram OnlineParentingPlatform {
+
+    class Class {
+      String name;
+      String description;
+      String uniqueIdentifier;
+      List<Topic> topics;
+      Instructor instructor;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String uniqueIdentifier;
+      List<Class> classesTaught;
+    }
+
+    class Parent {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      String password;
+      List<Class> enrolledClasses;
+    }
+
+    class Topic {
+      String name;
+      String description;
+    }
+
+    class DiscussionForum {
+      String topicName;
+      String parentEmail;
+      String message;
+    }
+
+    class Message {
+      String senderEmail;
+      String recipientEmail;
+      String messageContent;
+    }
+
+    class Admin {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      List<Instructor> managedInstructors;
+      List<Class> managedClasses;
+      List<Topic> managedTopics;
+      PlatformUsage analytics;
+    }
+
+    association Class -> Instructor [0..1];
+    association Class -> Topic [1..*];
+    association Parent -> Class [1..*];
+    association Parent -> DiscussionForum [1..*];
+    association Parent -> Message [1..*];
+    composition Admin -> Instructor [1..*];
+    composition Admin -> Class [1..*];
+    composition Admin -> Topic [1..*];
+    composition Admin -> PlatformUsage [1..*];
+}

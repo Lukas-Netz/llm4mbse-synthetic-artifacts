@@ -1,0 +1,39 @@
+
+classdiagram Blockchain {
+
+  class Node {
+    String nodeId;
+    NodeType nodeType;
+  }
+
+  enum NodeType {
+    Miner, Validator, User;
+  }
+
+  class Block {
+    String blockId;
+    List<Transaction> transactions;
+  }
+
+  class Transaction {
+    String transactionId;
+    String sender;
+    String recipient;
+    DigitalAsset digitalAsset;
+  }
+
+  class DigitalAsset {
+    String assetId;
+    String assetName;
+  }
+
+  class ConsensusMechanism {
+    List<Node> nodes;
+    void vote(Block block);
+    boolean isValid(Block block);
+  }
+
+  composition Blockchain -> Node [*];
+  composition Block -> Transaction [*];
+  association ConsensusMechanism -> Node;
+}

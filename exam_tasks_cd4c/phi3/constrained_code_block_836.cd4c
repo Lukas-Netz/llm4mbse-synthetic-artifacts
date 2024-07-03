@@ -1,0 +1,37 @@
+
+classdiagram AIAssistant {
+
+    class AI {
+      void learnPreferences(User user);
+      void provideRecommendations(User user);
+      void integrateWithDevice(Device device);
+    }
+
+    class Device {
+      void interactWithAI(User user);
+    }
+
+    class VoiceAssistant extends Device {
+      boolean voiceRecognition;
+      boolean nlp;
+    }
+
+    class SmartSpeaker extends Device {
+      boolean musicPlayback;
+      boolean voiceControl;
+    }
+
+    class WearableDevice extends Device {
+      boolean fitnessTracking;
+      boolean notificationManagement;
+    }
+
+    class User {
+      String name;
+      List<Device> devices;
+    }
+
+    composition AI -> Device [*];
+    association User -> Device [*];
+    association User -> AI [*];
+}

@@ -1,0 +1,53 @@
+
+classdiagram VirtualHomeTourSystem {
+
+    class Property {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      PropertyType type;
+    }
+
+    class VirtualTour {
+      String uniqueIdentifier;
+      Property property;
+      List<Scene> scenes;
+      void addScene(Scene scene);
+      void removeScene(Scene scene);
+      void rateTour(int rating);
+      void commentOnTour(String comment);
+    }
+
+    class Scene {
+      String uniqueIdentifier;
+      VirtualTour virtualTour;
+      List<MediaElement> mediaElements;
+      void addMediaElement(MediaElement mediaElement);
+      void removeMediaElement(MediaElement mediaElement);
+    }
+
+    class MediaElement {
+      String uniqueIdentifier;
+      Scene scene;
+      String type;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      List<VirtualTour> virtualTours;
+      void createTour(VirtualTour tour);
+      void editTour(VirtualTour tour);
+      void manageTour(VirtualTour tour);
+      void rateTour(VirtualTour tour, int rating);
+      void commentOnTour(VirtualTour tour, String comment);
+    }
+
+    enum PropertyType {
+      Residential, Commercial, Industrial;
+    }
+
+    association VirtualTour -> Property;
+    association VirtualTour -> Scene;
+    association Scene -> MediaElement;
+    composition User -> VirtualTour;
+}

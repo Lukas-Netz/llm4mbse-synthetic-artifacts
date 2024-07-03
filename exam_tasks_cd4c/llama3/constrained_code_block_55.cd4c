@@ -1,0 +1,77 @@
+
+
+
+
+classdiagram ESystem  {
+
+  class Patient  {
+    String name;
+    String address;
+    MedicalHistory medicalHistory;
+  }
+
+  class Doctor  {
+    String name;
+    String specialty;
+    Hospital hospital;
+  }
+
+  class Prescription  {
+    String medicationName;
+    int dosage;
+    Date expirationDate;
+    Patient patient;
+  }
+
+  class Pharmacy  {
+    String name;
+    String location;
+    Inventory inventory;
+  }
+
+  class PrescriptionOrder  {
+    Prescription prescription;
+    Doctor doctor;
+  }
+
+  class PrescriptionFulfillment  {
+    Prescription prescription;
+    Pharmacy pharmacy;
+  }
+
+  class PatientMedicationList  {
+    Patient patient;
+    List<Prescription> medications;
+  }
+
+  class MedicalHistory  {
+    List<Condition> conditions;
+  }
+
+  class Condition  {
+    String name;
+    Date diagnosisDate;
+  }
+
+  class Hospital  {
+    String name;
+  }
+
+  class Inventory  {
+    List<Medication> medications;
+  }
+
+  class Medication  {
+    String name;
+    int quantity;
+  }
+
+  composition Patient -> MedicalHistory;
+  composition Doctor -> Hospital;
+  composition Pharmacy -> Inventory;
+  composition Prescription -> Patient;
+  composition PrescriptionOrder -> Doctor;
+  composition PrescriptionFulfillment -> Pharmacy;
+  composition PatientMedicationList -> Patient;
+  composition Inventory -> Medication;
+}

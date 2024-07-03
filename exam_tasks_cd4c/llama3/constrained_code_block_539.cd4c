@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram VolunteerManagement  {
+
+  class Volunteer  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    -> Project[*];
+  }
+
+  class Project  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Volunteer[*];
+    -> Organization[*];
+  }
+
+  class Organization  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Project[*];
+  }
+
+  class ContactInformation  {
+    String email;
+    String phone;
+    String address;
+  }
+
+  class HoursVolunteered  {
+    Volunteer volunteer;
+    Project project;
+    int hours;
+  }
+
+  <<stereotype>> class Report  {
+    Volunteer volunteer;
+    Project project;
+    int hours;
+  }
+
+  <<stereotype>> class Reminder  {
+    Volunteer volunteer;
+    Project project;
+    Date deadline;
+  }
+
+  <<stereotype>> class Notification  {
+    Organization organization;
+    int hours;
+  }
+
+  composition Volunteer -> Project[*];
+  composition Project -> Volunteer[*];
+  composition Project -> Organization[*];
+  composition Organization -> Project[*];
+  association Volunteer -> HoursVolunteered[*];
+  association Project -> HoursVolunteered[*];
+  association Organization -> Notification[*];
+  association Volunteer -> Reminder[*];
+  association Project -> Reminder[*];
+}

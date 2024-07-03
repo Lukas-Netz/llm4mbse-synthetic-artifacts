@@ -1,0 +1,42 @@
+
+
+
+classdiagram SmartGrid  {
+
+  class CentralControlCenter  {
+    void monitorGridStatus();
+    void controlElectricityFlow();
+    void receiveDataFromMetersAndAppliances();
+  }
+
+  class Substation  {
+    String uniqueIdentifier;
+    -> PowerLine[*];
+  }
+
+  class PowerLine  {
+    -> Substation;
+    -> Transformer;
+  }
+
+  class Transformer  {
+    -> PowerLine;
+  }
+
+  class Meter  {
+    -> Household;
+  }
+
+  class SmartAppliance  {
+    -> Household;
+  }
+
+  class Household  {
+    -> Meter;
+    -> SmartAppliance;
+  }
+
+  class CentralControlCenter  {
+    -> Substation[*];
+  }
+}

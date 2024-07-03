@@ -1,0 +1,96 @@
+
+
+
+
+classdiagram MLOps  {
+
+  class Model  {
+    String name;
+    String description;
+    ModelVersion version;
+    List<Feature> features;
+    List<Hyperparameter> hyperparameters;
+    List<PerformanceMetric> performanceMetrics;
+  }
+
+  class ModelVersion  {
+    String versionNumber;
+    Date createdDate;
+    Model model;
+    List<Change> changes;
+  }
+
+  class Change  {
+    String changeDescription;
+    Date changedDate;
+    ModelVersion modelVersion;
+  }
+
+  class Feature  {
+    String name;
+    String description;
+  }
+
+  class Hyperparameter  {
+    String name;
+    String description;
+    String value;
+  }
+
+  class PerformanceMetric  {
+    String name;
+    String description;
+    double value;
+  }
+
+  class DataSource  {
+    String name;
+    String description;
+  }
+
+  class Database extends DataSource  {
+    String databaseType;
+  }
+
+  class DataWarehouse extends DataSource  {
+    String dataWarehouseType;
+  }
+
+  class CloudStorage extends DataSource  {
+    String cloudStorageType;
+  }
+
+  class ModelValidation  {
+    boolean isValid;
+    String validationMessage;
+    Model model;
+  }
+
+  class ModelDeployment  {
+    String deploymentStatus;
+    Model model;
+  }
+
+  class ModelMonitoring  {
+    String monitoringStatus;
+    Model model;
+  }
+
+  class Insights  {
+    String insightDescription;
+    Model model;
+  }
+
+  class Visualization  {
+    String visualizationType;
+    Model model;
+  }
+
+  composition Model -> ModelVersion [1..*];
+  composition ModelVersion -> Change [1..*];
+  composition Model -> Feature [1..*];
+  composition Model -> Hyperparameter [1..*];
+  composition Model -> PerformanceMetric [1..*];
+  
+
+}

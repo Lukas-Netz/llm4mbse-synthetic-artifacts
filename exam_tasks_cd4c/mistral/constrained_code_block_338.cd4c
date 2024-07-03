@@ -1,0 +1,55 @@
+
+classdiagram VirtualEventPlatform {
+
+  class Event {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Session [][] sessions;
+    Speaker [][] speakers;
+    Attendee [][] attendees;
+  }
+
+  class Speaker {
+    String name;
+    String bio;
+    String contactInformation;
+    Event [][] events;
+  }
+
+  class Attendee {
+    String name;
+    String contactInformation;
+    Event [][] events;
+  }
+
+  class Session {
+    String title;
+    String description;
+    int duration;
+    Speaker [][] speakers;
+    Attendee [][] attendees;
+  }
+
+  abstract class EventType {
+    String name;
+    String requirements;
+  }
+
+  class Conference extends EventType {
+  }
+
+  class Workshop extends EventType {
+  }
+
+  class Meetup extends EventType {
+  }
+
+  composition Event -> Session [*];
+  composition Event -> Speaker [*];
+  composition Event -> Attendee [*];
+  composition Conference -> Speaker [*];
+  composition Workshop -> Speaker [*];
+  composition Meetup -> Speaker [*];
+  composition Event -> EventType [1];
+}

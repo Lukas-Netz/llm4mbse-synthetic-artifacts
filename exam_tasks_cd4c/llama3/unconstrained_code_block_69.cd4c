@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram IntelligentDocumentSearchSystem  {
+
+  class Indexer  {
+    void indexDocument(Document document);
+  }
+
+  class Searcher  {
+    List<Document> search(Query query);
+  }
+
+  class Document  {
+    String uniqueId;
+    String title;
+    String content;
+  }
+
+  class Index  {
+    Map<String, List<Document>> keywordToDocuments;
+  }
+
+  class Query  {
+    String queryText;
+  }
+
+  class Token  {
+    String word;
+  }
+
+  class Stopword  {
+    String word;
+  }
+
+  class StemmedWord  {
+    String word;
+  }
+
+  class Ranking  {
+    int relevanceScore;
+  }
+
+  composition Indexer -> Document;
+  composition Searcher -> Index;
+  composition Document -> Index;
+  composition Query -> Searcher;
+  composition Token -> Index;
+  composition Stopword -> Index;
+  composition StemmedWord -> Index;
+  composition Ranking -> Searcher;
+}

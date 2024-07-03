@@ -1,0 +1,60 @@
+
+classdiagram ResumeBuilder {
+
+  class User {
+    String username;
+    String password;
+    Resume [  ] resumes;
+  }
+
+  class Resume {
+    String title;
+    String summary;
+    Skills skills;
+    Section [ ] sections;
+  }
+
+  class Skills {
+    ProgrammingLanguages programmingLanguages;
+    Tools tools;
+    Certifications certifications;
+  }
+
+  class ProgrammingLanguages {
+    String [ ] languages;
+  }
+
+  class Tools {
+    String [ ] tools;
+  }
+
+  class Certifications {
+    String [ ] certifications;
+  }
+
+  class Section {
+    String title;
+    Item [ ] items;
+  }
+
+  class Item {
+    String title;
+    String description;
+    String link;
+  }
+
+  class File {
+    String name;
+    String type;
+    String link;
+  }
+
+  association User --Resume;
+  association Resume --Skills;
+  association Skills --ProgrammingLanguages;
+  association Skills --Tools;
+  association Skills --Certifications;
+  association Resume --Section [*];
+  association Section --Item [*];
+  association Item --File [0..1];
+}

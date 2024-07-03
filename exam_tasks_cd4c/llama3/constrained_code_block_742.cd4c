@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram BioreactorControlSystem  {
+
+  class Bioreactor  {
+    BioreactorType type;
+    Sensor sensor;
+    Actuator actuator;
+    ControlUnit controlUnit;
+  }
+
+  enum BioreactorType  {
+    Photobioreactor,
+    Chemostat
+  ;}
+
+  class Sensor  {
+    Temperature temperature;
+    pH pH;
+    DissolvedOxygen dissolvedOxygen;
+  }
+
+  class Actuator  {
+    Temperature temperature;
+    pH pH;
+    LightIntensity lightIntensity;
+  }
+
+  class ControlUnit  {
+    void receiveData(Sensor sensorData);
+    void sendCommands(Actuator actuatorCommands);
+  }
+
+  class BioreactorPerformanceData  {
+    Date date;
+    BioreactorType bioreactorType;
+    double growthRate;
+  }
+
+  class Report  {
+    BioreactorPerformanceData bioreactorData;
+    String reportText;
+  }
+
+  composition Bioreactor -> Sensor;
+  composition Bioreactor -> Actuator;
+  composition Bioreactor -> ControlUnit;
+  composition Bioreactor -> BioreactorPerformanceData;
+  composition Bioreactor -> Report;
+}

@@ -1,0 +1,64 @@
+
+classdiagram CarBuyingPlatform {
+
+  class User {
+    String uniqueID;
+    String name;
+    String email;
+    void createAccount();
+    void logIn();
+    void logOut();
+  }
+
+  class Car {
+    String uniqueID;
+    String make;
+    String model;
+    int year;
+    int mileage;
+    int price;
+    List<String> features;
+    void filterByMake(String make);
+    void filterByModel(String model);
+    void filterByYear(int year);
+    void filterByPrice(int price);
+  }
+
+  class Dealership {
+    String uniqueID;
+    String name;
+    String location;
+    List<Car> cars;
+    void listCarsForSale();
+    void updateCarListings();
+    void viewOrders();
+    void viewPayments();
+  }
+
+  class Order {
+    String userID;
+    String carID;
+    OrderStatus status;
+  }
+
+  enum OrderStatus {
+    Pending, Shipped, Delivered;
+  }
+
+  class Payment {
+    String orderID;
+    PaymentMethod method;
+  }
+
+  enum PaymentMethod {
+    CreditCard, PayPal, etc;
+  }
+
+  association User [*] hasOne (has)  -> Account;
+  association Account [*] hasOne (has) -> Order;
+  association Account [*] hasOne (has) -> Payment;
+  association Dealership [*] hasMany (has) -> Car;
+  association Car [*] belongsTo (belongsTo) -> Dealership;
+  association Order [*] belongsTo (belongsTo) -> User;
+  association Order [*] belongsTo (belongsTo) -> Car;
+}

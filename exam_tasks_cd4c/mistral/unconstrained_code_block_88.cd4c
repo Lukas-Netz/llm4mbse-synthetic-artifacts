@@ -1,0 +1,62 @@
+
+classdiagram TransparencyPlatform {
+
+  class CitizenPortal {
+    -> CitizenRequest [*];
+    -> Notification [*];
+  }
+
+  class GovernmentPortal {
+    -> CitizenRequest [*];
+    -> Response [*];
+  }
+
+  class CitizenRequest {
+    String requestId;
+    RequestType requestType;
+    String status;
+    RequestStatus currentStatus;
+  }
+
+  class Response {
+    String responseId;
+    String content;
+    String contentType;
+    String responseDate;
+  }
+
+  class Rating {
+    String ratingId;
+    String citizenId;
+    String responseId;
+    int transparencyRating;
+    String feedback;
+  }
+
+  class Database {
+    -> CitizenRequest [*];
+    -> Response [*];
+    -> Rating [*];
+  }
+
+  enum RequestType {
+    Information, Data;
+  }
+
+  enum RequestStatus {
+    Pending, Processing, Completed, Rejected;
+  }
+
+  class Citizen {
+    String citizenId;
+    String name;
+    String email;
+  }
+
+  composition CitizenPortal -> CitizenRequest [*];
+  composition GovernmentPortal -> CitizenRequest [*];
+  composition CitizenPortal -> Notification [*];
+  association Database -> CitizenRequest [*];
+  association Database -> Response [*];
+  association Database -> Rating [*];
+}

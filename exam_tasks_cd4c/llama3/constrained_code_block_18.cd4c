@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram SocialMedia  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+    boolean isBlocked;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Post  {
+    String title;
+    String content;
+    Date timestamp;
+    boolean isLiked;
+  }
+
+  class Comment  {
+    String content;
+    Date timestamp;
+  }
+
+  class Like  {
+    boolean value;
+  }
+
+  class Follow  {
+    boolean value;
+  }
+
+  class Profile  {
+    -> User;
+  }
+
+  class Post  {
+    -> User;
+    -> Comment[*];
+    -> Like;
+  }
+
+  class Comment  {
+    -> Post;
+  }
+
+  class Like  {
+    -> Post;
+  }
+
+  class Follow  {
+    -> User[*];
+  }
+}

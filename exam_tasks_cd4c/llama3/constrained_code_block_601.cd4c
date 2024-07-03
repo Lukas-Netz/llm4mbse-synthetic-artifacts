@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram RoboticProstheticSystem  {
+
+  class ProstheticLimb  {
+    ProstheticLimbType type;
+    GripStrength gripStrength;
+    MovementRange movementRange;
+    Weight weight;
+  }
+
+  enum ProstheticLimbType  {
+    Hand, Arm, Leg;
+  }
+
+  class GripStrength  {
+    int value;
+  }
+
+  class MovementRange  {
+    int value;
+  }
+
+  class Weight  {
+    double value;
+  }
+
+  class ControlUnit  {
+    ProstheticLimb prostheticLimb;
+    CommunicationInterface communicationInterface;
+    void adjustGripStrength(int value);
+    void changeMovementRange(int value);
+    void updateSoftware();
+  }
+
+  class CommunicationInterface  {
+    CommunicationType type;
+  }
+
+  enum CommunicationType  {
+    Joystick, Sensor, VoiceCommand;
+  }
+
+  class Database  {
+    UserPreferences userPreferences;
+    ProstheticLimbSettings prostheticLimbSettings;
+    MaintenanceRecords maintenanceRecords;
+  }
+
+  class UserPreferences  {
+    String[] preferences;
+  }
+
+  class ProstheticLimbSettings  {
+    ProstheticLimbType type;
+    GripStrength gripStrength;
+    MovementRange movementRange;
+  }
+
+  class MaintenanceRecords  {
+    String[] records;
+  }
+
+  composition ControlUnit -> (has) ProstheticLimb;
+  composition ControlUnit -> (has) CommunicationInterface;
+  composition Database -> (has) UserPreferences;
+  composition Database -> (has) ProstheticLimbSettings;
+  composition Database -> (has) MaintenanceRecords;
+}

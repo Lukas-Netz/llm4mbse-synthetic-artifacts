@@ -1,0 +1,50 @@
+
+classdiagram SmartHomeIoT {
+
+    class SmartHomeIoT {
+      Hub hub;
+      BackupPower backupPower;
+    }
+
+    class Hub {
+      Device[] devices;
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      void sendCommand(String command, String deviceId);
+      String getBackupPowerStatus();
+    }
+
+    abstract class Device {
+      String id;
+      DeviceStatus status;
+    }
+
+    class Light extends Device {
+      int brightness;
+    }
+
+    class Thermostat extends Device {
+      int temperature;
+      ThermostatMode mode;
+    }
+
+    class SecurityCamera extends Device {
+      boolean recording;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+    enum DeviceStatus {
+      On, Off
+   
+   
+  
+(deviceId, device);
+    }
+
+    composition SmartHomeIoT -> (has) Hub;
+    composition SmartHomeIoT -> (has) BackupPower [0..1];
+    association Hub -> Device [*];
+}

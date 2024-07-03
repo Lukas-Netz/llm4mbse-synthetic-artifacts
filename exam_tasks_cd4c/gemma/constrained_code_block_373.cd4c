@@ -1,0 +1,67 @@
+
+
+classdiagram DigitalAnimalAdoptionPlatform {
+
+  class User {
+    private String id;
+    private String name;
+    private String email;
+    private String phoneNumber;
+
+    public User(String id, String name, String email, String phoneNumber)
+  
+    
+  
+;
+  }
+
+  class Shelter {
+    private String id;
+    private String name;
+    private String email;
+    private String phoneNumber;
+    private List<Animal> animals;
+
+    public Shelter(String id, String name, String email, String phoneNumber)
+
+    
+  
+  ;
+  }
+
+  class Animal {
+    private String id;
+    private String name;
+    private String breed;
+    private int age;
+    private String location;
+
+    public Animal(String id, String name, String breed, int age, String location)
+  
+  
+  ;
+  }
+
+  class Adoption {
+    private String id;
+    private User user;
+    private Animal animal;
+
+    public Adoption(String id, User user, Animal animal)
+  
+  
+  ;
+  }
+
+  composition User -> Adoption [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

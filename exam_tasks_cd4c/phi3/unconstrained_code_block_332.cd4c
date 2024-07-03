@@ -1,0 +1,42 @@
+
+classdiagram InternetAppliances {
+
+    class Appliance {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Sensor {
+      String sensorId;
+      Appliance appliance;
+    }
+
+    class Controller {
+      String controllerId;
+      Appliance appliance;
+    }
+
+    class User {
+      String userId;
+      String password;
+    }
+
+    class CentralHub {
+      List<Appliance> appliances;
+      List<Sensor> sensors;
+      List<Controller> controllers;
+      List<User> users;
+
+      void monitorAppliances();
+      void notifyMaintenance();
+      void remoteControlAppliances();
+    }
+
+    composition Appliance -> Sensor;
+    composition Appliance -> Controller;
+    composition User -> CentralHub;
+    composition CentralHub -> Appliance;
+    composition CentralHub -> Sensor;
+    composition CentralHub -> Controller;
+    composition CentralHub -> User;
+}

@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram UrbanVerticalFarming  {
+
+  class Farm  {
+    String name;
+    Location location;
+  }
+
+  class Module  {
+    String name;
+    ModuleType type;
+    int capacity;
+  }
+
+  class Plant  {
+    String name;
+    PlantType type;
+    GrowthStage growthStage;
+    NutrientSet requiredNutrients;
+    int yield;
+  }
+
+  class Nutrient  {
+    String name;
+    double concentration;
+  }
+
+  class IrrigationSystem  {
+    String name;
+    IrrigationType type;
+  }
+
+  enum ModuleType  {
+    Hydroponic, Aeroponic, CocoCoir
+  ;}
+
+  enum PlantType  {
+    LeafyGreens, Herbs, Fruits
+  ;}
+
+  enum GrowthStage  {
+    Seedling, Maturation, Harvest
+  ;}
+
+  enum IrrigationType  {
+    DripIrrigation, SprayIrrigation
+  ;}
+
+  composition Farm  ->  (has) Module[*];
+  composition Module  ->  (has) Plant[*];
+  composition Plant  ->  (requires) NutrientSet;
+  composition IrrigationSystem  ->  (distributes) Nutrient;
+  composition Nutrient  ->  (usedBy) Plant[*];
+}

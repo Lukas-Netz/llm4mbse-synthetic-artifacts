@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram TextileCenter  {
+
+  class Textile  {
+    String uniqueIdentifier;
+    String name;
+    TextileType type;
+    Condition condition;
+    Provenance provenance;
+    ConservationStatus conservationStatus;
+  }
+
+  class Conservator  {
+    String uniqueIdentifier;
+    String name;
+    Textile  textile;
+  }
+
+  class TextileType  {
+    String name;
+  }
+
+  class Condition  {
+    String rating;
+  }
+
+  class Provenance  {
+    String origin;
+    Date date;
+    List<String> previousOwners;
+  }
+
+  class ConservationStatus  {
+    String status;
+  }
+
+  composition Textile  ->  (has) Condition;
+  composition Textile  ->  (has) Provenance;
+  composition Textile  ->  (has) ConservationStatus;
+  composition Conservator  ->  (has) Textile;
+  composition Textile  ->  (has) TextileType;
+}
+

@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram DNAAnalysisSystem  {
+
+  class DNAAnalyzer  {
+    Type type;  # PCR orSTR
+  ;}
+
+  class DNAProfile  {
+    String profile;
+  }
+
+  class DNADataBase  {
+    Type type;  # local orremote
+    ;}
+
+  class UserInterface  {
+    Type type;  # web ordesktop
+  ;}
+
+  class QualityControl  {
+    Type type;  # manual orautomated
+  ;}
+
+  class DNAAnalysisSystem  {
+    DNAAnalyzer analyzer;
+    DNADataBase database;
+    UserInterface interface;
+    QualityControl qualityControl;
+  }
+
+  composition DNAAnalysisSystem -> (has) DNAAnalyzer;
+  composition DNAAnalysisSystem -> (has) DNADataBase;
+  composition DNAAnalysisSystem -> (has) UserInterface;
+  composition DNAAnalysisSystem -> (has) QualityControl;
+  association DNAAnalyzer -> (uses) DNAProfile;
+  association DNADataBase -> (stores) DNAProfile;
+  association UserInterface -> (inputs) DNAProfile;
+  association QualityControl -> (ensures) DNAProfile;
+}

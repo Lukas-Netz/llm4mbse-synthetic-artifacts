@@ -1,0 +1,61 @@
+
+classdiagram SmartUrbanFarming {
+
+    class SmartUrbanFarmingSystem {
+      Hub hub;
+      Sensor[] sensors;
+      Actuator[] actuators;
+      Crop[] crops;
+    }
+
+    class Hub {
+      -> Sensor [*];
+      -> Actuator [*];
+      -> Crop [*];
+      void collectData();
+      void sendCommand(Actuator actuator, String command);
+      void sendNotification(Crop crop, String message);
+    }
+
+    class Sensor {
+      String type;
+      String data;
+    }
+
+    class Actuator {
+      void controlIrrigation(Crop crop);
+      void controlHeating(Crop crop);
+      void controlCooling(Crop crop);
+    }
+
+    class Crop {
+      String identifier;
+      String type;
+      GrowthStage stage;
+      WaterRequirement waterRequirement;
+      NutrientNeed nutrientNeed;
+    }
+
+    enum SensorType {
+      Temperature, Humidity, Light, SoilMoisture;
+    }
+
+    enum GrowthStage {
+      Seedling, Vegetative, Flowering, Harvest;
+    }
+
+    enum WaterRequirement {
+      Low, Medium, High;
+    }
+
+    enum NutrientNeed {
+      Low, Medium, High;
+    }
+
+  composition SmartUrbanFarmingSystem -> (has) Hub;
+  composition SmartUrbanFarmingSystem -> (has) Sensor [*];
+  composition SmartUrbanFarmingSystem -> (has) Actuator [*];
+  composition Hub -> Sensor [*];
+  composition Hub -> Actuator [*];
+  composition Hub -> Crop [*];
+}

@@ -1,0 +1,30 @@
+
+classdiagram SatelliteNetwork {
+
+  class Satellite {
+    String uniqueIdentifier;
+    String orbit;
+    SatelliteRole role;
+    int dataTransmissionCapacity;
+    int dataReceptionCapacity;
+  }
+
+  enum SatelliteRole {
+    Transmission, Reception, Both;
+  }
+
+  class CentralHub {
+    -> Satellite [*];
+    void addSatellite(Satellite satellite);
+    void removeSatellite(Satellite satellite);
+    String checkSatelliteStatus(Satellite satellite);
+    void manageCommunicationChannel();
+  }
+
+  class BackupSystem {
+    Satellite backupSatellite;
+  }
+
+  composition CentralHub -> Satellite [*];
+  association CentralHub -- BackupSystem [0..1];
+}

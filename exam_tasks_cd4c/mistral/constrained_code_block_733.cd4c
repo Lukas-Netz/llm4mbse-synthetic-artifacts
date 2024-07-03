@@ -1,0 +1,46 @@
+
+classdiagram BotanicalIllustration {
+
+  class PlantSpecies {
+    String uniqueIdentifier;
+    String name;
+    PlantPart [ ] parts;
+  }
+
+  class PlantPart {
+    String name;
+    String description;
+    Illustration [ ] illustrations;
+  }
+
+  class Illustration {
+    String name;
+    String description;
+    String filePath;
+    PlantPart associatedPart;
+  }
+
+  association PlantSpecies --o000- 											{
+   								ordered
+   }						;
+
+  association PlantPart --o000- 											{
+   								ordered
+   }						;
+
+  association Illustration --o000- 											{
+   								ordered
+   }						;
+
+  composition PlantSpecies --o000- 											{
+   								ordered
+   }						;
+
+  composition PlantPart --o000- 											{
+   								ordered
+   }						;
+
+  composition Illustration --o000- 											{
+   								ordered
+   }						;
+}

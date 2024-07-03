@@ -1,0 +1,45 @@
+
+classdiagram NLP {
+
+  class TextPreprocessing {
+    void removePunctuation(String text);
+    void convertToLowercase(String text);
+    void removeStopWords(String text);
+  }
+
+  class Tokenization {
+    String[] tokenize(String text);
+  }
+
+  class POSTagging {
+    String[] tag(String[] tokens);
+  }
+
+  class NamedEntityRecognition {
+    String[] recognize(String[] tokens);
+  }
+
+  class SentimentAnalysis {
+    String analyze(String[] tokens);
+  }
+
+  class Database {
+    void storeTextData(String text);
+    void storePOS(String[] tags);
+    void storeNamedEntities(String[] entities);
+    void storeSentimentAnalysis(String sentiment);
+  }
+
+  class UserInterface {
+    String inputText();
+    void displayResults(String text, String[] tags, String[] entities, String sentiment);
+  }
+
+  composition NLP -> TextPreprocessing;
+  composition NLP -> Tokenization;
+  composition NLP -> POSTagging;
+  composition NLP -> NamedEntityRecognition;
+  composition NLP -> SentimentAnalysis;
+  association NLP -> Database;
+  association NLP -> UserInterface;
+}

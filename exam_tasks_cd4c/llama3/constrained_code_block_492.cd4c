@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram VRPhysicsSimulation  {
+
+  class SimulationEngine  {
+    void updateSimulationState();
+    void renderScene();
+    void handleUserInput();
+    void pauseSimulation();
+    void resumeSimulation();
+  }
+
+  class Scene  {
+    Object[] objects;
+    void save();
+    void load();
+  }
+
+  abstract class Object  {
+    String uniqueIdentifier;
+  }
+
+  class RigidBody extends Object  {
+    double mass;
+    double position;
+    double velocity;
+    double acceleration;
+  }
+
+  class SoftBody extends Object  {
+    double elasticity;
+    double viscosity;
+    double density;
+  }
+
+  class Light extends Object  {
+    double intensity;
+    String color;
+    double direction;
+  }
+
+  composition SimulationEngine -> (has) Scene;
+  composition Scene -> Object[*];
+  composition RigidBody -> (has) mass;
+  composition SoftBody -> (has) elasticity;
+  composition Light -> (has) intensity;
+}

@@ -1,0 +1,62 @@
+
+classdiagram SmartDustNetwork {
+
+    class SmartDustNetwork {
+      Hub centralHub;
+      NetworkManager networkManager;
+      PowerSupplyUnit powerSupplyUnit;
+    }
+
+    class Hub {
+      -> Node [*];
+      void sendCommand(Node node, Command command);
+      void receiveCommand(Command command);
+    }
+
+    abstract class Node {
+      String nodeType;
+      Sensor sensor;
+      Actuator actuator;
+    }
+
+    class TemperatureNode extends Node {
+      double temperature;
+      double threshold;
+    }
+
+    class HumidityNode extends Node {
+      double humidity;
+      double threshold;
+    }
+
+    class LightNode extends Node {
+      double lightIntensity;
+      double threshold;
+    }
+
+    class Sensor {
+      double readValue;
+    }
+
+    class Actuator {
+      void adjustSetting(double value);
+    }
+
+    class NetworkManager {
+      void monitorNetwork();
+      void detectAnomalies();
+      void sendCommand(Node node, Command command);
+    }
+
+    class PowerSupplyUnit {
+      double powerOutput;
+    }
+
+    enum NodeType {
+      Temperature, Humidity, Light;
+    }
+
+    enum Command {
+      AdjustTemperature, AdjustHumidity, AdjustLightIntensity;
+    }
+}

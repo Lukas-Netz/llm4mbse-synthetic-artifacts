@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram LaserProjectionMapping  {
+
+  class Projector  {
+    String uniqueIdentifier;
+    ProjectorType type;
+    ComputerOrMediaServer connection;
+  }
+
+  enum ProjectorType  {
+    DLP, LCD, Laser
+  ;}
+
+  class ComputerOrMediaServer  {
+    String name;
+  }
+
+  class Content  {
+    String format;
+    byte[] data;
+  }
+
+  class Video extends Content  {
+    int duration;
+  }
+
+  class Image extends Content  {
+    int width;
+    int height;
+  }
+
+  class ThreeDModel extends Content  {
+    int vertices;
+    int faces;
+  }
+
+  class ProjectionSettings  {
+    double brightness;
+    double contrast;
+    double colorTemperature;
+  }
+
+  class Screen  {
+    int width;
+    int height;
+  }
+
+  class LaserProjectionMapping  {
+    Projector[] projectors;
+    Screen[] screens;
+    Content[] content;
+    ProjectionSettings[] settings;
+  }
+
+  composition LaserProjectionMapping  ->  (has) Projector[*];
+  composition LaserProjectionMapping  ->  (has) Screen[*];
+  composition LaserProjectionMapping  ->  (has) Content[*];
+  composition LaserProjectionMapping  ->  (has) ProjectionSettings[*];
+  composition Projector  ->  (has) ComputerOrMediaServer [1];
+  composition Content  ->  (has) Format;
+  composition Screen  ->  (has) Dimensions;
+  composition ProjectionSettings  ->  (has) Brightness;
+  composition ProjectionSettings  ->  (has) Contrast;
+  composition ProjectionSettings  ->  (has) ColorTemperature;
+}

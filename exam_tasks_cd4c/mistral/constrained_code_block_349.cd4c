@@ -1,0 +1,86 @@
+
+classdiagram EventTicketing {
+
+  class Event {
+    String name;
+    Date date;
+    Location location;
+    EventType type;
+    List<Ticket> tickets;
+  }
+
+  enum EventType {
+    CONCERT, SPORTS, CONFERENCE;
+  }
+
+  class Concert extends Event {
+    List<Artist> artists;
+  }
+
+  class Artist {
+    String name;
+    List<Song> songs;
+  }
+
+  class Song {
+    String title;
+  }
+
+  class SportsEvent extends Event {
+    List<Team> teams;
+  }
+
+  class Team {
+    String name;
+    List<Player> players;
+  }
+
+  class Player {
+    String name;
+  }
+
+  class Conference extends Event {
+    List<Speaker> speakers;
+  }
+
+  class Speaker {
+    String name;
+    List<Talk> talks;
+  }
+
+  class Talk {
+    String title;
+  }
+
+  abstract class Ticket {
+    String uniqueIdentifier;
+    double price;
+    TicketType type;
+  }
+
+  enum TicketType {
+    GENERAL_ADMISSION, RESERVED_SEATING, VIP;
+  }
+
+  class ReservedSeatingTicket extends Ticket {
+    int seatNumber;
+  }
+
+  class VIPTicket extends Ticket {
+    String specialPackage;
+  }
+
+  class Location {
+    String address;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Event -> Ticket [*];
+  composition Concert -> Artist [*];
+  composition SportsEvent -> Team [*];
+  }

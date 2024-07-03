@@ -1,0 +1,54 @@
+
+classdiagram PersonalizedLearningPlatform {
+
+    class Student {
+      String username;
+      String password;
+      List<Course> enrolledCourses;
+      String learningHistory;
+      String performance;
+      String progress;
+    }
+
+    class Course {
+      String courseId;
+      String curriculum;
+      List<Assessment> assessments;
+      Instructor instructor;
+    }
+
+    class Assessment {
+      String assessmentId;
+      String assessmentType;
+      int score;
+    }
+
+    class Instructor {
+      String instructorId;
+      String name;
+      String courseList;
+    }
+
+    class LearningPlatform {
+      List<Student> students;
+      List<Course> courses;
+      RecommendationEngine recommendationEngine;
+      UserInterface userInterface;
+
+      void createAccount(String username, String password);
+      void login(String username, String password);
+      void enrollCourse(Student student, Course course);
+      void trackProgress(Student student);
+      void recommendCourses(Student student);
+      void createCourse(Instructor instructor);
+      void manageCourse(Course course);
+      void storeStudentData(Student student);
+      void storeCourseData(Course course);
+    }
+
+    composition LearningPlatform -> (has) Student;
+    composition LearningPlatform -> (has) Course;
+    composition LearningPlatform -> (has) Instructor;
+    composition LearningPlatform -> (has) RecommendationEngine;
+    composition LearningPlatform -> (has) UserInterface;
+}

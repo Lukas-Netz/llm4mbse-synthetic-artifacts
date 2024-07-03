@@ -1,0 +1,49 @@
+
+classdiagram WindFarmOptimizationSystem {
+
+    class WindFarm {
+      List<Turbine> turbines;
+      ControlCenter controlCenter;
+    }
+
+    class Turbine {
+      String uniqueIdentifier;
+      Location location;
+      TurbineStatus status;
+      TurbineType type;
+    }
+
+    class ControlCenter {
+      void monitorTurbinePerformance(Turbine turbine);
+      void adjustTurbineSettings(Turbine turbine);
+      void scheduleMaintenance(Turbine turbine);
+      void analyzeData(WeatherStation weatherStation, WindDirectionSensor windDirectionSensor);
+    }
+
+    class WeatherStation {
+      int windSpeed;
+      String windDirection;
+      int temperature;
+    }
+
+    class WindDirectionSensor {
+      String windDirection;
+    }
+
+    class TurbineType {
+      String typeName;
+      double powerOutput;
+      double efficiency;
+      double noiseLevel;
+    }
+
+    class TurbineStatus {
+      boolean operational;
+    }
+
+    composition WindFarm -> (has) ControlCenter;
+    composition WindFarm -> (has) List<<Turbine>>;
+    composition ControlCenter -> (has) Turbine;
+    composition ControlCenter -> (has) WeatherStation;
+    composition ControlCenter -> (has) WindDirectionSensor;
+}

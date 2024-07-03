@@ -1,0 +1,54 @@
+
+classdiagram TravelPlanner {
+
+    class User {
+      String userID;
+      List<Preference> preferences;
+    }
+
+    class Destination {
+      String name;
+      String location;
+      List<Activity> activities;
+    }
+
+    class Activity {
+      String name;
+      String description;
+      int rating;
+    }
+
+    class Transportation {
+      String mode;
+      String departureLocation;
+      String arrivalLocation;
+      String departureTime;
+      String arrivalTime;
+      int price;
+    }
+
+    class WeatherInfo {
+      String location;
+      String forecast;
+      String restrictions;
+    }
+
+    class TravelPlanner {
+      List<Destination> destinations;
+      List<Transportation> transportationOptions;
+      List<Activity> activities;
+      Map<String, WeatherInfo> weatherInfo;
+
+      void recommendDestinations(User user);
+      void recommendTransportation(User user);
+      void recommendActivities(User user);
+    }
+
+    association TravelPlanner -> Destination [*];
+    association TravelPlanner -> Transportation [*];
+    association TravelPlanner -> Activity [*];
+    association TravelPlanner -> WeatherInfo [*];
+
+    composition User -> Preference [*];
+    composition User -> TravelPlanner [1];
+}

@@ -1,0 +1,74 @@
+
+classdiagram AutomatedMarketingAnalytics {
+
+    class DataIngestion {
+      String dataSourceId;
+      String dataFormat;
+      void collectData();
+    }
+
+    class DataProcessing {
+      void processData(DataIngestion data);
+      CustomerSegment customerSegment;
+      CustomerBehavior customerBehavior;
+      MarketingStrategy marketingStrategy;
+    }
+
+    class DataVisualization {
+      void displayInsights(DataProcessing data);
+      Dashboard dashboard;
+      Report report;
+    }
+
+    class UserManagement {
+      User user;
+      Role role;
+      Permission permission;
+      void trackActivity(User user);
+    }
+
+    class Reporting {
+      Report generateReport(DataProcessing data);
+    }
+
+    class User {
+      String username;
+      String email;
+    }
+
+    class Role {
+      String name;
+    }
+
+    class Permission {
+      String name;
+    }
+
+    class CustomerSegment {
+      String segmentName;
+    }
+
+    class CustomerBehavior {
+      String behaviorType;
+    }
+
+    class MarketingStrategy {
+      String strategyName;
+    }
+
+    class Dashboard {
+      String title;
+      Visualization visualization;
+    }
+
+    class Report {
+      String title;
+      String content;
+    }
+
+    association DataIngestion -> DataProcessing [1..*];
+    association DataProcessing -> DataVisualization [1..*];
+    composition UserManagement -> User [1];
+    composition UserManagement -> Reporting [1..*];
+    composition Reporting -> DataProcessing [1..*];
+}

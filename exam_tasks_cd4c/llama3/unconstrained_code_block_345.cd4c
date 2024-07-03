@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram DrugDeliverySystem  {
+
+  class CentralHub  {
+    -> Robot[*];
+    -> Database;
+    void updateRobotStatus(Robot robot);
+    void retrieveDatabaseInfo();
+    void sendCommandToRobot(Robot robot);
+  }
+
+  abstract class Robot  {
+    String uniqueIdentifier;
+    RobotStatus status;
+  }
+
+  class MedicineRobot extends Robot  {
+    MedicineType medicineType;
+    int dosage;
+  }
+
+  class SampleRobot extends Robot  {
+    SampleType sampleType;
+    String sampleId;
+  }
+
+  class TestRobot extends Robot  {
+    TestType testType;
+    String testResults;
+  }
+
+  class Database  {
+    -> Robot[*];
+    void storeRobotInfo(Robot robot);
+    void retrieveRobotInfo(Robot robot);
+  }
+
+  enum RobotStatus  {
+    Idle, Busy, Error;
+  }
+
+  enum MedicineType  {
+    PainReliever, Antibiotic;
+  }
+
+  enum SampleType  {
+    Blood, Urine;
+  }
+
+  enum TestType  {
+    BloodTest, UrineTest;
+  }
+
+  composition CentralHub -> (has) Database;
+  composition CentralHub -> (has) Robot[*];
+  composition Database -> (has) Robot[*];
+}

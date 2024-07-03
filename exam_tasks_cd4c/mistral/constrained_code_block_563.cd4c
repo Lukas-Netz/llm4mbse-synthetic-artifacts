@@ -1,0 +1,47 @@
+
+classdiagram SpaceElevator {
+
+  class GroundStation {
+    void manageSystem();
+  }
+
+  class Cable {
+    -> Segment [*];
+    Counterweight counterweight;
+  }
+
+  class Segment {
+    int uniqueIdentifier;
+    int length;
+  }
+
+  class Counterweight {
+    void balanceWeight();
+  }
+
+  class SpaceStation {
+    int uniqueIdentifier;
+    String name;
+    Services [ ] services;
+  }
+
+  enum Services {
+    Research, Communication, Navigation, Entertainment;
+  }
+
+  class Astronaut {
+    int uniqueIdentifier;
+    String name;
+    Skills [ ] skills;
+  }
+
+  enum Skills {
+    Mechanical, Electrical, Medical;
+  }
+
+  composition GroundStation -> Cable;
+  composition Cable -> Segment [*];
+  composition Cable -> Counterweight;
+  composition SpaceStation -> Services [*];
+  association Astronaut -> SpaceStation [*];
+}

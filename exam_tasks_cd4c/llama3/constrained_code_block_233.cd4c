@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram AutomatedMarketingAnalytics  {
+
+  class DataIngestion  {
+    String uniqueIdentifier;
+    DataFormat dataFormat;
+  }
+
+  class DataProcessing  {
+    MachineLearningAlgorithm algorithm;
+    CustomerSegment customerSegment;
+    MarketingStrategy marketingStrategy;
+  }
+
+  class DataVisualization  {
+    Dashboard dashboard;
+    Report report;
+    Visualization visualization;
+  }
+
+  class UserManagement  {
+    UserAccount userAccount;
+    Role role;
+    Permission permission;
+  }
+
+  class Reporting  {
+    Report report;
+  }
+
+  class MachineLearningAlgorithm  {
+    String algorithmName;
+  }
+
+  class CustomerSegment  {
+    String segmentName;
+  }
+
+  class MarketingStrategy  {
+    String strategyName;
+  }
+
+  class Dashboard  {
+    String dashboardName;
+  }
+
+  class Report  {
+    String reportName;
+  }
+
+  class Visualization  {
+    String visualizationName;
+  }
+
+  class UserAccount  {
+    String username;
+    String password;
+  }
+
+  class Role  {
+    String roleName;
+  }
+
+  class Permission  {
+    String permissionName;
+  }
+
+  composition AutomatedMarketingAnalytics -> (has) DataIngestion;
+  composition AutomatedMarketingAnalytics -> (has) DataProcessing;
+  composition AutomatedMarketingAnalytics -> (has) DataVisualization;
+  composition AutomatedMarketingAnalytics -> (has) UserManagement;
+  composition AutomatedMarketingAnalytics -> (has) Reporting;
+
+  association DataIngestion -> DataFormat;
+  }

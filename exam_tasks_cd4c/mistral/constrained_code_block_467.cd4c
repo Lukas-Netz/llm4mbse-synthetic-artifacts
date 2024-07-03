@@ -1,0 +1,51 @@
+
+classdiagram EconomicsPlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Level level;
+  }
+
+  enum Level {
+    Introductory, Intermediate, Advanced;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+  }
+
+  class Assignment {
+    String uniqueIdentifier;
+    String title;
+    String submissionDeadline;
+    Course associatedCourse;
+  }
+
+  class Grade {
+    Student student;
+    Course course;
+    Assignment assignment;
+    double grade;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] createdCourses;
+  }
+
+  composition Course [ * ] Instructor.createdCourses
+  -- Aggregation
+  - 											{ordered}
+ 				;
+  composition Course [ * ] Student.enrolledCourses
+  -- Aggregation
+  - 											{ordered}
+ 				;
+}

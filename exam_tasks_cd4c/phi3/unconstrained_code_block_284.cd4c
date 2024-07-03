@@ -1,0 +1,67 @@
+
+classdiagram HydroponicMonitoringSystem {
+
+    class CentralControlUnit {
+      Sensor[] sensors;
+      Actuator[] actuators;
+      Database database;
+      void collectData();
+      void sendCommand(Actuator actuator, Command command);
+      void detectAnomalies();
+      void provideRecommendations();
+    }
+
+    class Sensor {
+      String type;
+      String data;
+    }
+
+    class Actuator {
+      void controlLighting();
+      void controlTemperature();
+      void controlNutrientSupply();
+    }
+
+    class Database {
+      String[] historicalData;
+      String[] trends;
+      void storeData(String data);
+      String retrieveData(String type);
+    }
+
+    class TemperatureSensor extends Sensor {
+      int temperature;
+    }
+
+    class HumiditySensor extends Sensor {
+      int humidity;
+    }
+
+    class pHSensor extends Sensor {
+      float pH;
+    }
+
+    class NutrientSensor extends Sensor {
+      float nutrientLevel;
+    }
+
+    class LightingActuator extends Actuator {
+      void adjustLighting(int brightness);
+    }
+
+    class TemperatureActuator extends Actuator {
+      void adjustTemperature(int temperature);
+    }
+
+    class NutrientActuator extends Actuator {
+      void adjustNutrientSupply(float nutrientLevel);
+    }
+
+    association CentralControlUnit -> Sensor [*];
+    association CentralControlUnit -> Actuator [*];
+    association CentralControlUnit -> Database [*];
+
+    composition Sensor -> HydroponicMonitoringSystem;
+    composition Actuator -> HydroponicMonitoringSystem;
+    composition Database -> HydroponicMonitoringSystem;
+}

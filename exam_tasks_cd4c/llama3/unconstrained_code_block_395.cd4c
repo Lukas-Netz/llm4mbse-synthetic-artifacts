@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram VRTP  {
+
+  class Zone  {
+    String name;
+    String description;
+    int capacity;
+    -> Attraction[*];
+  }
+
+  class Attraction  {
+    String name;
+    String description;
+    int rating;
+    -> AttractionType;
+  }
+
+  class AttractionType  {
+    String type;
+    int speed;
+    int height;
+    int interactivity;
+  }
+
+  class VRTP  {
+    -> Zone[*];
+    void addZone(Zone zone);
+    void removeZone(Zone zone);
+    void updateZone(Zone zone);
+  }
+
+  class Administrator  {
+    void addAttraction(Attraction attraction);
+    void removeAttraction(Attraction attraction);
+    void updateAttraction(Attraction attraction);
+  }
+
+  composition VRTP -> Zone[*];
+  composition Zone -> Attraction[*];
+  composition Attraction -> AttractionType;
+}

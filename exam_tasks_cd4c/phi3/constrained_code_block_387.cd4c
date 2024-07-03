@@ -1,0 +1,109 @@
+
+classdiagram OnlineResumeBuilder {
+
+    class User {
+      String username;
+      String password;
+      List<Resume> resumes;
+      void createResume();
+      void editResume(Resume resume);
+      void deleteResume(Resume resume);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Resume {
+      String title;
+      String summary;
+      List<Skill> skills;
+      List<Section> sections;
+      void addSection(Section section);
+      void removeSection(Section section);
+      void addSkill(Skill skill);
+      void removeSkill(Skill skill);
+      void editSection(Section section);
+      void editSkill(Skill skill);
+      void deleteSection(Section section);
+      void deleteSkill(Skill skill);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Section {
+      String title;
+      List<Item> items;
+      void addItem(Item item);
+      void removeItem(Item item);
+      void editItem(Item item);
+      void deleteItem(Item item);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Item {
+      String title;
+      String description;
+      String link;
+      void editItem(Item item);
+      void deleteItem(Item item);
+    cvv
+    void
+   
+   
+   ;}
+
+    class File {
+      String name;
+      String type;
+      String link;
+      void editFile(File file);
+      void deleteFile(File file);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Certification {
+      String name;
+      Date date;
+      String link;
+      void editCertification(Certification certification);
+      void deleteCertification(Certification certification);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Skill {
+      String name;
+      List<Certification> certifications;
+      void addCertification(Certification certification);
+      void removeCertification(Certification certification);
+      void editSkill(Skill skill);
+    cvv
+    void
+   
+   
+   ;}
+
+    composition User -> (has) Resume;
+    composition Resume -> (has) Section;
+    composition Resume -> (has) Item;
+    composition Resume -> (has) File;
+    composition Resume -> (has) Skill;
+    composition Resume -> (has) Certification;
+    composition User -> (has) Skill;
+    composition User -> (has) Certification;
+    composition User -> (has) File;
+    composition User -> (has) Section;
+    composition User -> (has) Item;
+    composition User -> (has) Resume;
+}

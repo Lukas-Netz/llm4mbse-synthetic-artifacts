@@ -1,0 +1,59 @@
+
+
+#  classdiagram WeddingPlanningPlatform
+
+  
+
+{classdiagram  
+
+  
+
+  
+
+  
+
+  {class  Wedding  
+
+    
+
+  ;id wId;
+
+  java.util.Date date;
+
+  String location;
+
+  java.util.List<Guest> guests;
+
+  java.util.List<Vendor> vendors;
+
+  }
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  compositionsWedding -> (has) Guest [*];
+
+  compositionsWedding -> (has) Vendor [*];
+
+  associationsWedding -> Category [1..*];
+
+  }

@@ -1,0 +1,41 @@
+
+classdiagram KnowledgeManagement {
+
+  class Topic {
+    String name;
+    String description;
+  }
+
+  class Category {
+    Topic topic;
+    String name;
+  }
+
+  class Author {
+    String name;
+    String email;
+  }
+
+  class KnowledgeArticle {
+    String title;
+    String content;
+    Category category;
+    Author author;
+    int views;
+    int rating;
+  }
+
+  class User {
+    String name;
+    String email;
+    Set<KnowledgeArticle> viewedArticles;
+  }
+
+  composition KnowledgeManagement -> (has) User [*];
+  composition KnowledgeManagement -> (has) Topic [*];
+  composition KnowledgeManagement -> (has) Category [*];
+  composition KnowledgeManagement -> (has) Author [*];
+  composition KnowledgeManagement -> (has) KnowledgeArticle [*];
+  association User --knows_articles_of_interest;
+  association User --viewed_articles;
+}

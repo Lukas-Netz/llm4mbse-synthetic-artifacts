@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram DogTrainingApp  {
+
+  class DogProfile  {
+    String name;
+    String breed;
+    int age;
+    int weight;
+    String uniqueIdentifier;
+    TrainingPlan  [  ] trainingPlans;
+  }
+
+  class TrainingPlan  {
+    String goal;
+    Exercise  [  ] exercises;
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+    int difficultyLevel;
+    boolean isCompleted;
+  }
+
+  class User  {
+    DogProfile dogProfile;
+  }
+
+  class Leaderboard  {
+    TrainingPlan  [  ] trainingPlans;
+    DogProfile  [  ] topPerformingDogs;
+  }
+
+  class Rating  {
+    Exercise exercise;
+    int rating;
+  }
+
+  composition DogProfile -> TrainingPlan [1..*];
+  composition TrainingPlan -> Exercise [1..*];
+  composition User -> DogProfile;
+  composition Leaderboard -> TrainingPlan [1..*];
+  composition Rating -> Exercise;
+}

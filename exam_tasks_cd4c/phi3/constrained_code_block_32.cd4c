@@ -1,0 +1,111 @@
+
+classdiagram DigitalForensicsSystem {
+
+    class DigitalForensicsSystem {
+      FileEvidenceFile fileEvidence;
+      EmailEvidence emailEvidence;
+      NetworkPacketEvidence networkPacketEvidence;
+      Report report;
+      UserInterface userInterface;
+      Database database;
+    }
+
+    class FileEvidence {
+      String filePath;
+      String fileName;
+      String fileContent;
+    }
+
+    class EmailEvidence {
+      String sender;
+      String recipient;
+      String subject;
+      String body;
+    }
+
+    class NetworkPacket {
+      String packetData;
+    }
+
+    class Report {
+      String summary;
+      String conclusion;
+      String reportFormat;
+    }
+
+    class UserInterface {
+      void importEvidence(EvidenceType evidenceType);
+      void analyzeEvidence();
+      void viewReport();
+    }
+
+    class Database {
+      void storeEvidence(EvidenceType evidenceType);
+      void storeAnalysisResults(Report report);
+    }
+
+    enum EvidenceType {
+      FILE, EMAIL, NETWORK_PACKET
+   
+    (classdiagram)
+   
+ ;}
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> UserInterface;
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> Database;
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> Report;
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> FileEvidence;
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> EmailEvidence;
+
+  association DigitalForensicsSystem 
+  multiplicity 
+  
+  (exactly 
+
+  )
+
+  -> NetworkPacketEvidence;
+
+  composition DigitalForensicsSystem -> (has) Report;
+  composition DigitalForensicsSystem -> (has) Database;
+  composition DigitalForensicsSystem -> (has) UserInterface;
+}

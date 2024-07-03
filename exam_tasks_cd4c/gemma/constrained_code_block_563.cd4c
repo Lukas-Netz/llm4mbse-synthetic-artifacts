@@ -1,0 +1,45 @@
+
+
+classdiagram GestureRecognitionSystem {
+
+  class GestureRecognitionSystem {
+    Camera camera;
+    ProcessingUnit processingUnit;
+    Database database;
+  }
+
+  class Camera {
+    void captureImage();
+  }
+
+  class ProcessingUnit {
+    Gesture gesture;
+    void recognizeGesture();
+  }
+
+  class Database {
+    void storeGesture(Gesture gesture);
+    Gesture retrieveGesture(String name);
+  }
+
+  class Gesture {
+    String name;
+    List<GesturePart> parts;
+  }
+
+  class GesturePart {
+    String type;
+    Position position;
+  }
+
+  class Position {
+    int xCoordinate;
+    int yCoordinate;
+  }
+
+  composition GestureRecognitionSystem -> (has) Camera;
+  composition GestureRecognitionSystem -> (has) ProcessingUnit;
+  composition GestureRecognitionSystem -> (has) Database;
+  association Gesture -> GesturePart;
+  association GesturePart -> Position;
+}

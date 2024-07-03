@@ -1,0 +1,40 @@
+
+classdiagram CarbonTradingPlatform {
+
+    class CarbonCredit {
+      String uniqueId;
+      String type;
+      int quantity;
+    }
+
+    class Company {
+      String name;
+      String companyId;
+      int carbonCreditBalance;
+    }
+
+    class Transaction {
+      Date date;
+      String type;
+      int quantity;
+      Company buyer;
+      Company seller;
+    }
+
+    class Market {
+      String marketName;
+      List<CarbonCredit> availableCredits;
+    }
+
+    class Registry {
+      Map<String, CarbonCredit> credits;
+      void addCredit(CarbonCredit credit);
+      void removeCredit(String uniqueId);
+      CarbonCredit getCredit(String uniqueId);
+    }
+
+    composition CarbonTradingPlatform -> (has) Market;
+    composition CarbonTradingPlatform -> (has) Registry;
+    composition CarbonTradingPlatform -> (has) Company [*];
+    composition CarbonTradingPlatform -> (has) Transaction [*];
+}

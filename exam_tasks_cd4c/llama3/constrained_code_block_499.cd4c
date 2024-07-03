@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram SustainableLivingCourses  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Instructor  {
+    String name;
+    String bio;
+    String expertise;
+  }
+
+  class Course  {
+    String title;
+    String description;
+    int duration;
+    CourseType type;
+    Instructor instructor;
+    List<Prerequisite> prerequisites;
+    List<Lesson> lessons;
+  }
+
+  enum CourseType  {
+    BEGINNER,
+    INTERMEDIATE,
+    ADVANCED
+  ;}
+
+  class Lesson  {
+    String title;
+    int duration;
+    User user;
+    int completedLessons;
+    int timeSpent;
+  }
+
+  class Review  {
+    String text;
+    int rating;
+    User user;
+    Course course;
+  }
+
+  class Prerequisite  {
+    Course course;
+  }
+
+  class Badge  {
+    String name;
+    String description;
+    User user;
+    Course course;
+  }
+
+  composition User -> (enrolls) Course;
+  composition Course -> (taughtBy) Instructor;
+  composition Course -> (has) Lesson;
+  composition Course -> (has) Review;
+  composition Course -> (has) Prerequisite;
+  composition User -> (has) Badge;
+  composition Lesson -> (trackedBy) User;
+  composition Review -> (writtenBy) User;
+  composition Prerequisite -> (requiredFor) Course;
+  composition Badge -> (earnedBy) User;
+}

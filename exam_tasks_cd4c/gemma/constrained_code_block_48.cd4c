@@ -1,0 +1,53 @@
+
+
+classdiagram IntelligentTransportationSystem {
+
+    class TrafficSensor {
+      TrafficData data;
+    }
+
+    class TrafficCamera {
+      TrafficData data;
+    }
+
+    class TrafficManagementCenter {
+      TrafficData data;
+      void analyzeTrafficData();
+      void respondToIncidents();
+    }
+
+    class TrafficSignalController {
+      TrafficData data;
+      void optimizeSignalTiming();
+    }
+
+    class DataAnalytics {
+      TrafficData data;
+      void generateReports();
+    }
+
+    class ReportingTools {
+      TrafficData data;
+      void provideTrafficInformation();
+    }
+
+    class Integration {
+      TrafficData data;
+      void integrateWithEmergencyServices();
+      void integrateWithOtherITSComponents();
+    }
+
+    class TrafficData {
+      TrafficVolume volume;
+      Speed speed;
+      Occupancy occupancy;
+    }
+
+  composition TrafficSensor -> TrafficData;
+  composition TrafficCamera -> TrafficData;
+  composition TrafficManagementCenter -> TrafficData;
+  composition TrafficSignalController -> TrafficData;
+  composition DataAnalytics -> TrafficData;
+  composition ReportingTools -> TrafficData;
+  composition Integration -> TrafficData;
+}

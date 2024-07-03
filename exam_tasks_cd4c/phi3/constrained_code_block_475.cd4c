@@ -1,0 +1,95 @@
+
+classdiagram DigitalMentalHealthPlatform {
+
+    class User {
+      String username;
+      String password;
+      String email;
+      String profilePicture;
+      List<Session> scheduledSessions;
+      List<SupportGroup> joinedSupportGroups;
+      String progress;
+      String language;
+      String currency;
+      void logIn();
+      void logOut();
+      void createProfile();
+      void scheduleSession();
+      void joinSupportGroup();
+      void rateTherapist(Therapist therapist);
+      void rateSession(Session session);
+      void updateProgress();
+      void updateLanguage();
+      void updateCurrency();
+    }
+
+    class Therapist {
+      String therapistId;
+      String therapistName;
+      String therapistProfilePicture;
+      List<Session> scheduledSessions;
+      List<SupportGroup> createdSupportGroups;
+      void createProfile();
+      void manageSchedule();
+      void conductSession(User user);
+      void receiveRating(Therapist therapist);
+      void receiveReview(Session session);
+      void updateProfile();
+    }
+
+    class Session {
+      String sessionId;
+      Therapist therapist;
+      User user;
+      DateTime scheduledTime;
+      boolean isCompleted;
+      void startSession();
+      void endSession();
+      void updateStatus();
+    }
+
+    class SupportGroup {
+      String groupId;
+      Therapist therapist;
+      List<User> participants;
+      DateTime startTime;
+      DateTime endTime;
+      void createGroup();
+      void manageParticipants();
+      void endGroup();
+      void updateStatus();
+    }
+
+    class WearableDevice {
+      String deviceId;
+      String userId;
+      String activityData;
+      String moodData;
+      void syncData();
+    }
+
+    class MobileApp {
+      String appId;
+      String userId;
+      String activityData;
+      String moodData;
+      void syncData();
+    }
+
+    class Analytics {
+      String userId;
+      String progressData;
+      String sessionData;
+      void generateReport();
+    }
+
+    association User -> Session [*];
+    association User -> SupportGroup [*];
+    composition User -> WearableDevice [1..*];
+    composition User -> MobileApp [1..*];
+    composition Therapist -> Session [*];
+    composition Therapist -> SupportGroup [*];
+    association Therapist -> WearableDevice [1..*];
+    association Therapist -> MobileApp [1..*];
+    association Analytics -> User [1..*];
+}

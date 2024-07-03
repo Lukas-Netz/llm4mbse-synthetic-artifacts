@@ -1,0 +1,78 @@
+
+classdiagram TransportationManagementSystem {
+
+    class TransportationNetwork {
+      Bus bus;
+      Tram tram;
+      Train train;
+      Schedule schedule;
+      Route route;
+      Driver driver;
+      Maintenance maintenance;
+      Passenger passenger;
+      Alert alert;
+    }
+
+    class Bus extends Vehicle {
+      int capacity;
+      int currentLocation;
+      int expectedArrivalTime;
+    }
+
+    class Tram extends Vehicle {
+      int capacity;
+      int currentLocation;
+      int expectedArrivalTime;
+    }
+
+    class Train extends Vehicle {
+      int capacity;
+      int currentLocation;
+      int expectedArrivalTime;
+    }
+
+    class Schedule {
+      String route;
+      String departureTime;
+      String arrivalTime;
+    }
+
+    class Route {
+      String startLocation;
+      String endLocation;
+      List<Schedule> scheduleList;
+    }
+
+    class Driver {
+      String name;
+      String assignedVehicle;
+    }
+
+    class Maintenance {
+      String vehicleType;
+      String scheduledDate;
+      String status;
+    }
+
+    class Passenger {
+      String name;
+      String destination;
+      String preferredVehicle;
+    }
+
+    class Alert {
+      String message;
+      String affectedVehicle;
+      String affectedRoute;
+    }
+
+    association TransportationNetwork -> Bus;
+    association TransportationNetwork -> Tram;
+    association TransportationNetwork -> Train;
+    association TransportationNetwork -> Schedule;
+    association TransportationNetwork -> Route;
+    association TransportationNetwork -> Driver;
+    association TransportationNetwork -> MainteninasideTransportationNetworkToMaintenance;
+    association TransportationNetwork -> Passenger;
+    association TransportationNetwork -> Alert;
+}

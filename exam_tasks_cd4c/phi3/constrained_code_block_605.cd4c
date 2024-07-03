@@ -1,0 +1,31 @@
+
+classdiagram CognitiveRadioNetwork {
+
+    class CognitiveRadio {
+      String uniqueIdentifier;
+      CognitiveRadioState state;
+    }
+
+    class CognitiveRadioNetwork {
+      List<CognitiveRadio> cognitiveRadios;
+      CentralController controller;
+    }
+
+    class CentralController {
+      void manageCognitiveRadios();
+      void detectEnvironmentalChanges();
+    }
+
+    enum CognitiveRadioState {
+      Idle, Active, Sleeping;
+    }
+
+    enum DataType {
+      Voice, Video, DataPacket;
+    }
+
+    association CognitiveRadioNetwork -> List<<CognitiveRadio>>;
+    association CognitiveRadioNetwork -> CentralController;
+    association CognitiveRadio -> CognitiveRadioState;
+    association CognitiveRadio -> DataType;
+}

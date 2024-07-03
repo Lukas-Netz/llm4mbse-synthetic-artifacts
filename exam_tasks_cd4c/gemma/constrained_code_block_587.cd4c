@@ -1,0 +1,51 @@
+
+
+classdiagram FuelCellManagementSystem {
+
+    class Vehicle {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      FuelCell fuelCell;
+    }
+
+    class FuelCell {
+      String uniqueIdentifier;
+      int capacity;
+      FuelCellState state;
+    }
+
+    enum FuelCellState {
+      Charging, Discharging, Idle
+    
+    
+
+;
+  }
+
+    class ChargingStation {
+      String uniqueIdentifier;
+      String location;
+      int capacity;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String role;
+    }
+
+  composition Vehicle -> (has) FuelCell;
+  composition Vehicle -> (has) ChargingStation;
+  association User -> Vehicle [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

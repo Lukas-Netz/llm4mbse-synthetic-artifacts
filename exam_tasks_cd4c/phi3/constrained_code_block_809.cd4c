@@ -1,0 +1,49 @@
+
+classdiagram SpacePowerSystem {
+
+    class SpaceStation {
+      SolarPanel[] solarPanels;
+      PowerTransmissionSystem powerTransmissionSystem;
+      FaultDetection faultDetection;
+      void monitorSolarPanels();
+      void adjustSolarPanelOrientation(SolarPanel panel);
+      void controlPowerTransmissionSystem();
+    cv SpaceStation
+   
+   
+   ;}
+
+    class SolarPanel {
+      String uniqueId;
+      boolean isOperational;
+      double surfaceArea;
+      double efficiency;
+      double orientation;
+    cv SolarPanel
+   
+   
+   ;}
+
+    class PowerTransmissionSystem {
+      double capacityMW;
+      void transmitPowerToEarth();
+    cv PowerTransmissionSystem
+   
+   
+   ;}
+
+    class FaultDetection {
+      void detectMalfunction(SolarPanel panel);
+      void detectMalfunction(PowerTransmissionSystem system);
+      void alertSpaceStation();
+    cv FaultDetection
+   
+   
+   ;}
+
+  composition SpaceStation -> (has) SolarPanel[*];
+  composition SpaceStation -> (has) PowerTransmissionSystem;
+  composition SpaceStation -> (has) FaultDetection;
+  composition SpaceStation -> (has) SolarPanel[*];
+  composition SpaceStation -> (has) PowerTransmissionSystem[*];
+}

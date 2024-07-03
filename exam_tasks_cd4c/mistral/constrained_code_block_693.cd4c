@@ -1,0 +1,57 @@
+
+classdiagram LivestockMonitoring {
+
+  class Livestock {
+    String uniqueIdentifier;
+    String breed;
+    int age;
+    int weight;
+    GPSLocation location;
+  }
+
+  class Sensor {
+    Livestock attachedLivestock;
+    int temperature;
+    int humidity;
+    boolean movementDetected;
+  }
+
+  class Alert {
+    Livestock livestock;
+    String message;
+  }
+
+  class Farmer {
+    String uniqueIdentifier;
+  }
+
+  class Weather {
+    int temperature;
+    int humidity;
+    String weatherCondition;
+  }
+
+  class GPSLocation {
+    double latitude;
+    double longitude;
+  }
+
+  class LivestockMonitoringSystem {
+    -> Livestock [*];
+    -> Sensor [*];
+    -> Farmer [*];
+    void addLivestock(Livestock livestock);
+    void removeLivestock(Livestock livestock);
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void sendAlert(Alert alert);
+    void receiveWeatherData(Weather weather);
+    void processWeatherData();
+    void updateLivestockLocation(Livestock livestock, GPSLocation location);
+  }
+
+  composition LivestockMonitoringSystem -> Livestock [*];
+  composition LivestockMonitoringSystem -> Sensor [*];
+  association LivestockMonitoringSystem -> Farmer [*];
+  association Sensor -> Livestock;
+}

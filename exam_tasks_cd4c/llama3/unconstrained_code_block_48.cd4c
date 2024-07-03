@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram RenewableEnergyForecastingSystem  {
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    double temperature;
+    double humidity;
+    double windSpeed;
+  }
+
+  class SolarPanel  {
+    String uniqueIdentifier;
+    double capacityKw;
+  }
+
+  class WindTurbine  {
+    String uniqueIdentifier;
+    double capacityKw;
+  }
+
+  class ForecastModel  {
+    double predictionAccuracyPp;
+    void updateForecast(WeatherStation weatherStation);
+  }
+
+  class EnergyStorage  {
+    double capacityKwh;
+    void storeEnergy(double energy);
+  }
+
+  class RenewableEnergyForecastingSystem  {
+    WeatherStation[] weatherStations;
+    SolarPanel[] solarPanels;
+    WindTurbine[] windTurbines;
+    ForecastModel[] forecastModels;
+    EnergyStorage energyStorage;
+
+    void addWeatherStation(WeatherStation weatherStation);
+    void removeWeatherStation(WeatherStation weatherStation);
+    void addSolarPanel(SolarPanel solarPanel);
+    void removeSolarPanel(SolarPanel solarPanel);
+    void addWindTurbine(WindTurbine windTurbine);
+    void removeWindTurbine(WindTurbine windTurbine);
+    void updateForecastModel(ForecastModel forecastModel);
+    void updateEnergyStorage(EnergyStorage energyStorage);
+  }
+}

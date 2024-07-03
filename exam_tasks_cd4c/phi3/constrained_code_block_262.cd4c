@@ -1,0 +1,56 @@
+
+classdiagram OnlineSurveyTool {
+
+    class User {
+      String username;
+      List<Survey> managedSurveys;
+      void createSurvey(Survey survey);
+      void deleteSurvey(Survey survey);
+      void respondToSurvey(Survey survey, Response response);
+      List<Response> getResponses(Survey survey);
+      List<Response> getOwnResponses();
+    }
+
+    class Survey {
+      String title;
+      String description;
+      Date startDate;
+      Date endDate;
+      List<Question> questions;
+      void addQuestion(Question question);
+      void removeQuestion(Question question);
+    }
+
+    class Question {
+      String type;
+      List<Option> options;
+      void addOption(Option option);
+      void removeOption(Option option);
+    }
+
+    class Option {
+      String text;
+    }
+
+    class Response {
+      User user;
+      Survey survey;
+      String answer;
+    }
+
+    class Admin {
+      void manageUsers(User user);
+      void manageSurveys(Survey survey);
+      void manageQuestions(Question question);
+      void viewAnalytics();
+    }
+
+    association User -> Survey [*];
+    association User -> Response [*];
+    association Survey -> Question [*];
+    association Response -> User [*];
+    association Response -> Survey [*];
+    composition Admin -> User [0..1];
+    composition Admin -> Survey [0..1];
+    composition Admin -> Question [0..1];
+}

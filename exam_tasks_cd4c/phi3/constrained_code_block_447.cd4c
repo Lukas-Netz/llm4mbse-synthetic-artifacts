@@ -1,0 +1,76 @@
+
+classdiagram VirtualRealityLanguageImmersion {
+
+    class User {
+      String username;
+      String password;
+      String chosenLanguage;
+      VirtualEnvironment environment;
+      ProgressTracker progressTracker;
+    }
+
+    class VirtualEnvironment {
+      String environmentType;
+      List<Object> objects;
+    }
+
+    class Object {
+      String name;
+      String description;
+      InteractionHandler interactionHandler;
+    }
+
+    class InteractionHandler {
+      void interactWithObject(Object object, String spokenLanguage);
+      Feedback feedback;
+    }
+
+    class Feedback {
+      String pronunciationFeedback;
+      String grammarFeedback;
+    }
+
+    class ProgressTracker {
+      List<UserProgress> userProgresses;
+      void setGoal(User user, String goal);
+      Report generateReport();
+    }
+
+    class UserProgress {
+      String user;
+      String date;
+      String progress;
+    }
+
+    <<association>> class User {
+      VirtualEnvironment environment;
+      ProgressTracker progressTracker;
+    }
+
+    <<association>> class VirtualEnvironment {
+      List<Object> objects;
+    }
+
+    <<association>> class Object {
+      InteractionHandler interactionHandler;
+    }
+
+    <<association>> class InteractionHandler {
+      Feedback feedback;
+    }
+
+    <<association>> class Feedback {
+      String pronunciationFeedback;
+      String grammarFeedback;
+    }
+
+    <<association>> class ProgressTracker {
+      List<UserProgress> userProgresses;
+    }
+
+    <<association>> class UserProgress {
+      User user;
+      String date;
+      String progress;
+    }
+}

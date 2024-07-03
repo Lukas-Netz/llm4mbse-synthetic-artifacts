@@ -1,0 +1,23 @@
+
+classdiagram QualityManagementSystem {
+
+    class QualityManagementSystem {
+      QualityPolicy qualityPolicy;
+      QualityManual qualityManual;
+      Set<QualityObjective> qualityObjectives;
+      Set<QualityProcedure> qualityProcedures;
+      Set<QualityRecord> qualityRecords;
+      Set<QualityMetric> qualityMetrics;
+      Set<QualityIndicator> qualityIndicators;
+
+      void defineQualityPolicy();
+      void updateQualityPolicy();
+      void setQualityObjectives();
+      void trackQualityObjectives();
+      void recordQualityRecords();
+      void trackQualityMetrics();
+      void analyzeQualityIndicators();
+      void identifyQualityIssues();
+      void conductAudits();
+      void implementActions();
+    }}

@@ -1,0 +1,47 @@
+
+classdiagram PianoLearningPlatform {
+
+  class User {
+    String username;
+    String password;
+    Course [ ] enrolledCourses;
+  }
+
+  class Course {
+    String title;
+    String description;
+    Lesson [ ] lessons;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    Exercise [ ] exercises;
+  }
+
+  class Exercise {
+    DifficultyLevel difficulty;
+    Lesson [ ] assignedLessons;
+  }
+
+  enum DifficultyLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Administrator {
+    String username;
+    String password;
+    User [ ] users;
+    Course [ ] courses;
+    Lesson [ ] lessons;
+    Exercise [ ] exercises;
+  }
+
+  composition User -- (has) EnrolledCourse;
+  composition Course -- (has) Lesson;
+  composition Lesson -- (has) Exercise;
+  association Administrator -- (manages) User;
+  association Administrator -- (manages) Course;
+  association Administrator -- (manages) Lesson;
+  association Administrator -- (manages) Exercise;
+}

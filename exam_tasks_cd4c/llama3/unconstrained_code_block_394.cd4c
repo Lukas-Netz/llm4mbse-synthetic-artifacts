@@ -1,0 +1,51 @@
+
+
+
+classdiagram SolarIoT  {
+
+  class SolarDevice  {
+    String uniqueIdentifier;
+    SolarPanel solarPanel;
+  }
+
+  class SolarPanel  {
+    double powerOutput;
+    double voltage;
+    double current;
+  }
+
+  abstract class Sensor extends SolarDevice  {
+    String reading;
+  }
+
+  class TemperatureSensor extends Sensor  {
+    double temperature;
+  }
+
+  class HumiditySensor extends Sensor  {
+    double humidity;
+  }
+
+  class LightSensor extends Sensor  {
+    double lightIntensity;
+  }
+
+  class Hub  {
+    SolarDevice[] devices;
+    void receiveData(SolarDevice device);
+    void aggregateData();
+    void visualizeData();
+  }
+
+  class PowerManager  {
+    double powerConsumption;
+    double powerOutput;
+    double batteryLevel;
+    void monitorPowerOutput();
+    void adjustPowerConsumption();
+  }
+
+  composition SolarDevice -> SolarPanel;
+  composition Hub -> SolarDevice[*];
+  composition PowerManager -> SolarDevice[*];
+}

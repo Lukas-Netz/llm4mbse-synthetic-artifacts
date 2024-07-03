@@ -1,0 +1,88 @@
+
+classdiagram PublicTransportationTicketingSystem {
+
+    class User {
+      String userId;
+      List<Ticket> tickets;
+    }
+
+    class Ticket {
+      String ticketId;
+      TicketType type;
+      Date validityPeriod;
+    }
+
+    class PaymentMethod {
+      String methodId;
+      String paymentType;
+    }
+
+    class Vehicle {
+      String vehicleId;
+      Route route;
+    }
+
+    class Route {
+      String routeId;
+      Vehicle vehicle;
+      List<Stop> stops;
+    }
+
+    class Stop {
+      String stopId;
+      Route route;
+    }
+
+    <<association>> class User {
+      List<Ticket> tickets;
+    }
+
+    <<association>> class Ticket {
+      User user;
+    }
+
+    <<association>> class PaymentMethod {
+      User user;
+    }
+
+    <<association>> class Vehicle {
+      Route route;
+    }
+
+    <<association>> class Route {
+      Vehicle vehicle;
+      List<Stop> stops;
+    }
+
+    <<association>> class Stop {
+      Route route;
+    }
+
+    <<aggregation>> class User {
+      List<PaymentMethod> paymentMethods;
+    }
+
+    <<aggregation>> class Ticket {
+      List<User> users;
+    }
+
+    <<association>> class Administrator {
+      void manageRoutes();
+      void manageVehicles();
+      void managePaymentMethods();
+    }
+
+    <<association>> class Ticket {
+      void purchase();
+      void viewHistory();
+      void receiveNotifications();
+    }
+
+    <<association>> class Vehicle {
+      void receiveTicket();
+    }
+
+    <<association>> class Stop {
+      void receiveTicket();
+    }
+}

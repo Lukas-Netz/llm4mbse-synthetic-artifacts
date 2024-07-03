@@ -1,0 +1,45 @@
+
+classdiagram BiometricAccessControl {
+
+  class BiometricDevice {
+    String deviceType;
+    void captureBiometricData();
+  }
+
+  class FingerprintScanner extends BiometricDevice {
+  }
+
+  class FacialRecognitionCamera extends BiometricDevice {
+  }
+
+  class ControlUnit {
+    -> BiometricDevice [*];
+    void addUser(User user);
+    void removeUser(User user);
+    void updateAccessControlPolicies();
+    boolean authenticateUser(User user);
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String[] roles;
+  }
+
+  class Database {
+    void storeUserInfo(User user);
+    void storeBiometricData(BiometricData data);
+    void storeAccessControlPolicies(AccessControlPolicy policy);
+  }
+
+  class BiometricData {
+    String biometricType;
+    String encodedData;
+  }
+
+  class AccessControlPolicy {
+    String role;
+    String[] allowedDevices;
+  }
+
+  composition ControlUnit -> BiometricDevice [*];
+}

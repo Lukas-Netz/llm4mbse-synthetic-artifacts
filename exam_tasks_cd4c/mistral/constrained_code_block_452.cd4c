@@ -1,0 +1,98 @@
+
+classdiagram UrbanPlanning {
+
+  class UrbanArea {
+    District [][] blocks;
+  }
+
+  class District {
+    String uniqueIdentifier;
+    PopulationDensity populationDensity;
+    LandUse landUse;
+    Zoning zoning;
+  }
+
+  class Block {
+    String uniqueIdentifier;
+    PopulationDensity populationDensity;
+    LandUse landUse;
+    Zoning zoning;
+    Building [][] buildings;
+  }
+
+  class Building {
+    String uniqueIdentifier;
+    String name;
+    FloorArea floorArea;
+    NumberOfFloors numberOfFloors;
+    ConstructionDate constructionDate;
+    BuildingType buildingType;
+  }
+
+  enum BuildingType {
+    Residential, Commercial, Industrial;
+  }
+
+  class TransportationInfrastructure {
+    Road [][] roads;
+    Highway [][] highways;
+    PublicTransportation [][] publicTransportation;
+  }
+
+  class SensorData {
+    TrafficCamera [][] trafficCameras;
+    AirQualitySensor [][] airQualitySensors;
+    NoisePollutionSensor [][] noisePollutionSensors;
+  }
+
+  class Analytics {
+    PopulationGrowth populationGrowth;
+    TrafficPatterns trafficPatterns;
+    EnvironmentalImpact environmentalImpact;
+  }
+
+  class Collaboration {
+    UrbanPlanner [][] urbanPlanners;
+    Developer [][] developers;
+    Stakeholder [][] stakeholders;
+  }
+
+  class PopulationDensity {
+    int population;
+    int area;
+  }
+
+  class LandUse {
+    String residential;
+    String commercial;
+    String industrial;
+  }
+
+  class Zoning {
+    String residentialZoning;
+    String commercialZoning;
+    String industrialZoning;
+  }
+
+  class FloorArea {
+    int area;
+  }
+
+  class NumberOfFloors {
+    int number;
+  }
+
+  class ConstructionDate {
+    int year;
+    int month;
+    int day;
+  }
+
+  composition UrbanArea -> District [*];
+  composition District -> Block [*];
+  composition Block -> Building [*];
+  association UrbanArea -> TransportationInfrastructure [0..*];
+  association UrbanArea -> SensorData [0..*];
+ 
+ 
+}

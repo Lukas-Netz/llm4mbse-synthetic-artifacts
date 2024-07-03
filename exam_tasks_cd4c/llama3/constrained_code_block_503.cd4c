@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VRMilitaryTraining  {
+
+  class Simulation  {
+    Scenario  scenario  ; 
+    User user; 
+    void startScenario(Scenario scenario); 
+    void stopScenario(); 
+    int getUserScore(); 
+  }
+
+  class Scenario  {
+    String uniqueIdentifier; 
+    String name; 
+    String description; 
+    Object  object  ; 
+  }
+
+  class User  {
+    String name; 
+    String rank; 
+    int score; 
+    boolean isTrainee; 
+  }
+
+  class Instructor extends User  {
+    String role; 
+  }
+
+  class Trainee extends User  {
+    int score; 
+  }
+
+  class Object  {
+    String uniqueIdentifier; 
+    String name; 
+    String description; 
+  }
+
+  class BackupSystem  {
+    void storeSimulationData(Simulation simulation); 
+    void recoverSimulationData(Simulation simulation); 
+  }
+
+  composition Simulation  ->  (has) Scenario; 
+  composition Simulation  ->  (has) User; 
+  composition Scenario  ->  (has) Object; 
+  composition Simulation  ->  (has) BackupSystem  [0..1]; 
+}

@@ -1,0 +1,61 @@
+
+classdiagram MusicPlatform {
+
+  class Artist {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String biography;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+  }
+
+  class MusicTrack {
+    String uniqueIdentifier;
+    String title;
+    Artist artist;
+    String genre;
+    int duration;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    User user;
+    MusicTrack musicTrack;
+    TransactionType type;
+  }
+
+  enum TransactionType {
+    Stream, Purchase;
+  }
+
+  class Rating {
+    User user;
+    MusicTrack musicTrack;
+    int rating;
+  }
+
+  class Blockchain {
+    Transaction [][] blocks;
+  }
+
+  class RatingSystem {
+    double weightedAverageRating(MusicTrack musicTrack);
+  }
+
+  class RecommendationSystem {
+    List recommendMusicTracks(User user);
+  }
+
+  composition MusicPlatform -> Artist [*];
+  composition MusicPlatform -> User [*];
+  composition MusicPlatform -> MusicTrack [*];
+  composition MusicPlatform -> Blockchain;
+  composition MusicPlatform -> RatingSystem;
+  composition MusicPlatform -> RecommendationSystem;
+}

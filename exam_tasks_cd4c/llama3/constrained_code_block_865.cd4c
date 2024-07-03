@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram VirtualRealityTourismPlatform  {
+
+  class Destination  {
+    String name;
+    String description;
+    List<Attraction> attractions;
+  }
+
+  class Attraction  {
+    String name;
+    String description;
+    AttractionType type;
+  }
+
+  class User  {
+    String username;
+    String password;
+    List<Destination> wishlist;
+    List<Review> reviews;
+  }
+
+  class Review  {
+    String text;
+    Attraction attraction;
+  }
+
+  class Administrator  {
+    void manageDestination(Destination destination);
+    void manageAttraction(Attraction attraction);
+    void manageReview(Review review);
+  }
+
+  class SearchCriteria  {
+    String location;
+    AttractionType type;
+  }
+
+  enum AttractionType  {
+    Museum, Landmark, etc;
+  }
+
+  composition Destination -> Attraction[*];
+  composition User -> Review[*];
+  composition Administrator -> Destination[*];
+  composition Administrator -> Attraction[*];
+  composition Administrator -> Review[*];
+  association User -> SearchCriteria;
+  association Destination -> SearchCriteria;
+  association Attraction -> SearchCriteria;
+}

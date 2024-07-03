@@ -1,0 +1,39 @@
+
+
+classdiagram RetailInventoryManagementSystem {
+
+    class Store {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Product {
+      String name;
+      String uniqueIdentifier;
+      String category;
+      Supplier supplier;
+      int quantity;
+    }
+
+    class Supplier {
+      String name;
+      String uniqueIdentifier;
+      ContactInformation contactInformation;
+    }
+
+    class InventoryManagementSystem {
+      Store store;
+      List<Product> products;
+      List<Supplier> suppliers;
+
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      void updateProductQuantity(Product product, int quantity);
+      void addSupplier(Supplier supplier);
+      void removeSupplier(Supplier supplier);
+    }
+
+  composition InventoryManagementSystem -> (has) Store;
+  composition InventoryManagementSystem -> (has) List<<Product>>;
+  composition InventoryManagementSystem -> (has) List<<Supplier>>;
+}

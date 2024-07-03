@@ -1,0 +1,49 @@
+
+classdiagram AIContentGenerator {
+
+    class ContentGenerator {
+      String generateContent(String userInput, String platform);
+      void updateAlgorithms(UserFeedback feedback);
+      void updateKnowledgeBase(String topic, String information);
+    }
+
+    class KnowledgeBase {
+      String getInformation(String topic);
+      void addInformation(String topic, String information);
+    }
+
+    class UserProfileManager {
+      UserProfile createUserProfile(String userID);
+      UserProfile getUserProfile(String userID);
+      void updateUserProfile(UserProfile userProfile, String feedback);
+    }
+
+    class FeedbackLoop {
+      UserFeedback collectFeedback(String userID);
+      void updateSystem(UserFeedback feedback);
+    }
+
+    class PlatformAdapter {
+      void generateContentForPlatform(ContentGenerator contentGenerator, String platform);
+    }
+
+    class UserFeedback {
+      String userID;
+      String content;
+      String tone;
+      String feedback;
+    }
+
+    class UserProfile {
+      String userID;
+      String contentPreferences;
+      String tonePreferences;
+      UserProfileManager userProfileManager;
+    }
+
+    association ContentGenerator -> KnowledgeBase [*];
+    association ContentGenerator -> UserProfileManager [*];
+    association ContentGenerator -> FeedbackLoop [*];
+    association ContentGenerator -> PlatformAdapter [*];
+    composition UserProfile -> UserFeedback [*];
+}

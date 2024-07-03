@@ -1,0 +1,42 @@
+
+classdiagram RenewableEnergy {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  class SolarFarm {
+    String uniqueIdentifier;
+    int capacityKw;
+    int generateElectricity();
+  }
+
+  class Battery {
+    String uniqueIdentifier;
+    int capacityKwh;
+    void storeExcessEnergy();
+  }
+
+  class SmartGrid {
+    String uniqueIdentifier;
+    int capacityMw;
+    void distributeElectricity();
+  }
+
+  class AIC {
+    void optimizeEnergyGeneration();
+    void optimizeEnergyDistribution();
+  }
+
+  composition WeatherStation [*] WeatherStation [uniqueIdentifier]
+  -- SolarFarm;
+  composition SolarFarm [*] SolarFarm [uniqueIdentifier]
+  -- Battery;
+  composition Battery [*] Battery [uniqueIdentifier]
+  -- SmartGrid;
+  composition SmartGrid [*] SmartGrid [uniqueIdentifier]
+  -- AIC;
+}

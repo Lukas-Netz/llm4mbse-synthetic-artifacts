@@ -1,0 +1,62 @@
+
+classdiagram DigitalExperienceAnalytics {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      List<Device> devices;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      String deviceType;
+      String browserType;
+    }
+
+    class Session {
+      String startTime;
+      String endTime;
+      String sessionType;
+      List<Event> events;
+    }
+
+    class Event {
+      String eventType;
+      String session;
+      boolean isSuccessful;
+    }
+
+    class Feedback {
+      String rating;
+      String comment;
+      String suggestion;
+      String user;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      List<Feature> features;
+    }
+
+    class Feature {
+      String featureName;
+      Event event;
+    }
+
+  association User - has 
+  -> Device [*];
+  association User - has 
+  -> Feedback [0..*];
+
+  association Session - has 
+  -> Event [*];
+
+  association Session - has 
+  -> Feedback [0..*];
+
+  association Product - has 
+  -> Feature [*];
+}

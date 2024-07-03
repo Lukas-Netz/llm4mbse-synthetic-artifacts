@@ -1,0 +1,62 @@
+
+classdiagram DigitalStorytelling {
+
+  class User {
+    String uniqueIdentifier;
+    UserType type;
+    Story [
+     ] createdStories;
+  }
+
+  enum UserType {
+    Creator, Viewer;
+  }
+
+  class Story {
+    String title;
+    String description;
+    Chapter [
+     ] chapters;
+    User creator;
+  }
+
+  class Chapter {
+    String title;
+    String description;
+    ChapterType type;
+    Chapter [
+     ] linkedChapters;
+    String content;
+  }
+
+  enum ChapterType {
+    Text, Image, Video;
+  }
+
+  class PlatformAdmin {
+    void manageUsers();
+    void manageStories();
+    void manageChapters();
+    void monitorPerformance();
+    void monitorUserEngagement();
+  }
+
+  composition User [*] Stories [
+    createdStories
+  ]
+  -- composition
+  -
+  {
+    ordered
+  }
+  ;
+  composition Story [*] Chapters [
+    chapters
+  ]
+  -- composition
+  -
+  {
+    ordered
+  }
+  ;
+}

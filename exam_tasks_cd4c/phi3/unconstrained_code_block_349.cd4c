@@ -1,0 +1,49 @@
+
+classdiagram AgricultureDigitalTwin {
+
+    class Farm {
+      CentralHub hub;
+      List<Sensor> soilSensors;
+      List<Sensor> airSensors;
+      List<WeatherStation> weatherStations;
+      Database cropDatabase;
+    }
+
+    class CentralHub {
+      void collectData();
+      void predictCropGrowth();
+      void provideRecommendations();
+      List<Farm> farms;
+    }
+
+    class Sensor {
+      String type;
+      String location;
+      String data;
+    }
+
+    class WeatherStation {
+      String location;
+      String data;
+    }
+
+    class Database {
+      Map<String, CropType> cropTypes;
+      void getCropRecommendations(String cropType);
+    }
+
+    class CropType {
+      String name;
+      String temperatureRange;
+      String humidityRange;
+      String lightRange;
+      String growthPattern;
+    }
+
+    composition Farm -> CentralHub;
+    composition Farm -> Sensor [*];
+    composition Farm -> WeatherStation [*];
+    composition Farm -> Database;
+    association CentralHub -> Farm [1];
+    association Database -> CropType [*];
+}

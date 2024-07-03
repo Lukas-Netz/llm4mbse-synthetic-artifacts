@@ -1,0 +1,109 @@
+
+
+classdiagram EmergencyResponseDroneSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      Sensors sensors;
+      Cameras cameras;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Camera {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Mission {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Drone drone;
+    }
+
+    class Pilot {
+      String uniqueIdentifier;
+      String name;
+      CertificationLevel certificationLevel;
+      Drone drones;
+    }
+
+    class Airport {
+      String uniqueIdentifier;
+      String name;
+      Location location;
+    }
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      String name;
+      Location location;
+      WeatherData weatherData;
+    }
+
+    enum CertificationLevel {
+      Beginner, Intermediate, Advanced
+    
+
+    
+;
+
+  composition Drone  (has asensors)  
+  
+  
+
+  ;
+
+  composition Drone  (has acameras)  
+
+  
+
+  ;
+
+  composition Mission  (has adrone)  
+
+  
+
+  ;
+
+  composition Pilot  (has aDrones)  
+
+  
+
+  ;
+
+  composition WeatherStation  (has aWeatherData)  
+
+  
+
+  
+;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsEmergencyResponseDroneSystem  -> (has) Drone [*];
+  compositionsEmergencyResponseDroneSystem  -> (has) WeatherStation [0..1];
+
+}

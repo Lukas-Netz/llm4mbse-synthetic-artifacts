@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram MedicalRecords  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    MedicalRecord  medicalRecord;
+  }
+
+  class MedicalRecord  {
+    String medicalEvent;
+    String diagnosis;
+    String treatment;
+    String medication;
+  }
+
+  class HealthcareProvider  {
+    String uniqueIdentifier;
+    MedicalRecord  medicalRecord;
+  }
+
+  class BlockchainNetwork  {
+    MedicalRecord  medicalRecord;
+  }
+
+  class SmartContract  {
+    MedicalRecord  medicalRecord;
+  }
+
+  composition Patient  ->  (has) MedicalRecord;
+  composition HealthcareProvider  ->  (has) MedicalRecord;
+  composition BlockchainNetwork  ->  (has) MedicalRecord;
+  composition SmartContract  ->  (has) MedicalRecord;
+
+  association Patient  ->  HealthcareProvider  [1..*];
+  association HealthcareProvider  ->  Patient  [1..*];
+  association BlockchainNetwork  ->  SmartContract  [1..*];
+  association SmartContract  ->  BlockchainNetwork  [1..*];
+}

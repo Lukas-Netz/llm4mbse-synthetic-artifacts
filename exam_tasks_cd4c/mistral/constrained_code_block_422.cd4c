@@ -1,0 +1,71 @@
+
+classdiagram CoursePlatform {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String topic;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    UserType type;
+  }
+
+  enum UserType {
+    Instructor, Student;
+  }
+
+  class Instructor extends User {
+    Course [ ] createdCourses;
+  }
+
+  class Student extends User {
+    Course [ ] enrolledCourses;
+    CourseSection [ ] enrolledSections;
+  }
+
+  class CourseSection {
+    String uniqueIdentifier;
+    SectionType type;
+  }
+
+  enum SectionType {
+    Live, Recorded;
+  }
+
+  class Lesson {
+    String title;
+    String content;
+  }
+
+  class Quiz {
+    String question;
+    String answer;
+    QuizType type;
+  }
+
+  enum QuizType {
+    MultipleChoice, TrueFalse, OpenEnded;
+  }
+
+  class CourseMaterial {
+    String type;
+    String content;
+  }
+
+  class Analytics {
+    int completedLessons;
+    double totalScore;
+  }
+
+  composition CoursePlatform -> User [*];
+  composition Course -> CourseSection [*];
+  composition CourseSection -> Lesson [*];
+  composition CourseSection -> Quiz [*];
+  composition CourseMaterial -> (has) Course [*];
+  association Course -> Instructor;
+  association Student -> Course;
+  association Student -> CourseSection;
+}

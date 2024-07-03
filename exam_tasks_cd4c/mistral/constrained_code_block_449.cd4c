@@ -1,0 +1,60 @@
+
+classdiagram ContractManagement {
+
+  class Contract {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    ContractType type;
+  }
+
+  enum ContractType {
+    Employment, Service;
+  }
+
+  class EmploymentContract extends Contract {
+    String jobTitle;
+    double salary;
+    int employmentDuration;
+  }
+
+  class ServiceContract extends Contract {
+    String serviceDescription;
+    int serviceDuration;
+    PaymentTerms paymentTerms;
+  }
+
+  enum PaymentTerms {
+    Monthly, Biweekly, Weekly;
+  }
+
+  class Party {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Change {
+    String uniqueIdentifier;
+    Date date;
+    String description;
+  }
+
+  class History {
+    Change [ ] changes;
+  }
+
+  class Report {
+    String type;
+    List contracts;
+  }
+
+  composition Contract [ * ] contractsParties [  twoParties  ]
+  -- twoParties
+  <<stereotype>>  {
+    ordered
+    }
+  ;
+
+  composition Contract -> History;
+  composition Report -> List;
+}

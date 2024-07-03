@@ -1,0 +1,59 @@
+
+classdiagram IntelligentDocumentSearch {
+
+  class Document {
+    String uniqueIdentifier;
+    String title;
+    String content;
+  }
+
+  class Index {
+    List<Keyword> keywords;
+  }
+
+  class Keyword {
+    String word;
+    List<String> documentIdentifiers;
+  }
+
+  class Query {
+    String query;
+  }
+
+  class Indexer {
+    Document document;
+    Index generateIndex();
+  }
+
+  class Searcher {
+    Index index;
+    List<Document> search(Query query);
+  }
+
+  class Tokenizer {
+    String content;
+    List<String> tokenize();
+  }
+
+  class StopwordRemover {
+    List<String> words;
+    List<String> removeStopwords();
+  }
+
+  class Stemmer {
+    String word;
+    String stem();
+  }
+
+  class Ranker {
+    List<Document> documents;
+    List<Document> rank();
+  }
+
+  composition Indexer -> Document [1];
+  composition Searcher -> Index [1];
+  association Tokenizer -> Document [*];
+  association StopwordRemover -> Keyword [*];
+  association Stemmer -> Keyword [*];
+  association Ranker -> Document [*];
+}

@@ -1,0 +1,43 @@
+
+classdiagram TextileRestoration {
+
+  class Textile {
+    String uniqueIdentifier;
+    String name;
+    TextileType type;
+    ConditionRating condition;
+    Provenance provenance;
+    ConservationStatus conservationStatus;
+  }
+
+  enum TextileType {
+    Fabric, Garment, Accessory;
+  }
+
+  enum ConditionRating {
+    Excellent, Good, Fair, Poor;
+  }
+
+  class Provenance {
+    String origin;
+    String date;
+    String previousOwners;
+  }
+
+  enum ConservationStatus {
+    Conserving, Restoring, Restored;
+  }
+
+  class Conservator {
+    String uniqueIdentifier;
+    String name;
+    Textile [ ] responsibleTextiles;
+  }
+
+  association Textile -- Conservator;
+
+  class Report {
+    String conditionReport;
+    String provenanceReport;
+  }
+}

@@ -1,0 +1,39 @@
+
+classdiagram CarbonOffsetting {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class CarbonCredit {
+    String uniqueIdentifier;
+    int quantity;
+    CarbonCreditType type;
+    User owner;
+  }
+
+  enum CarbonCreditType {
+    RenewableEnergy, Reforestation, CarbonCapture, Others;
+  }
+
+  class CarbonOffsetProject {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    User creator;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    DateTime timestamp;
+    CarbonCredit[] credits;
+    User sender;
+    User receiver;
+  }
+
+  association User --oCarbonCredit;
+  association User --oCarbonOffsetProject;
+  association Transaction --oCarbonCredit [*];
+  association Transaction --oUser [2];
+}

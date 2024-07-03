@@ -1,0 +1,85 @@
+
+classdiagram SpaceDebrisMitigationSystem {
+
+    class SpaceDebrisMitigationSystem {
+      Hub centralHub;
+      List<Satellite> satellites;
+      List<GroundStation> groundStations;
+      Database database;
+    }
+
+    class Satellite {
+      String uniqueIdentifier;
+      PropulsionSystem propulsionSystem;
+      CommunicationSystem communicationSystem;
+      DebrisDetectionSystem debrisDetectionSystem;
+    }
+
+    class GroundStation {
+      String identifier;
+      BackupPower backupPower;
+      DatabaseEntry databaseEntry;
+    }
+
+    class Hub {
+      -> SpaceDebrisMitigationSystem;
+      void coordinateSatellites();
+      void coordinateGroundStations();
+      void receiveData(Satellite satellite);
+      void transmitData(Satellite satellite);
+      void receiveCommands(Satellite satellite);
+      void executeCommands(Satellite satellite);
+      void checkBackupPowerStatus(GroundStation groundStation);
+    }
+
+    class PropulsionSystem {
+      void maneuverOrbit();
+    }
+
+    class CommunicationSystem {
+      void transmitData();
+      void receiveCommands();
+    }
+
+    class DebrisDetectionSystem {
+      void detectDebris();
+      DebrisData debrisData;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+    class Database {
+      DatabaseEntry databaseEntry;
+      void storeSatelliteInfo(Satellite satellite);
+      void storeGroundStationInfo(GroundStation groundStation);
+      void storeDebrisInfo(DebrisData debrisData);
+    }
+
+    class DatabaseEntry {
+      String identifier;
+      String status;
+      String location;
+      double velocity;
+    }
+
+    enum SatelliteStatus {
+      Active, Inactive;
+    }
+
+    enum GroundStationStatus {
+      Operational, NonOperational;
+    }
+
+    enum DebrisStatus {
+      Detected, NotDetected;
+    }
+
+  composition SpaceDebrisMitigationSystem -> (has) Hub;
+  composition SpaceDebrisMitigationSystem -> (has) List<<Satellite>>;
+  composition SpaceDebrisMitigationSystem -> (has) List<<GroundStation>>;
+  composition Hub -> SpaceDebrisMitigationSystem;
+  composition Satellite -> Hub;
+  composition GroundStation -> Hub;
+}

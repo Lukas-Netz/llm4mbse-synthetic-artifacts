@@ -1,0 +1,43 @@
+
+
+classdiagram WildlifeConservationSystem {
+
+  class Node {
+    String uniqueIdentifier;
+    List<Transaction> transactions;
+  }
+
+  class Organization {
+    String name;
+    List<Project> projects;
+  }
+
+  class Species {
+    String name;
+    List<Project> projects;
+  }
+
+  class Project {
+    String name;
+    Species species;
+  }
+
+  class Transaction {
+    Timestamp timestamp;
+    String type;
+    Node sender;
+    Node recipient;
+    Data data;
+  }
+
+  class Data {
+    String speciesName;
+    int quantity;
+  }
+
+  composition Node -> Transaction [*];
+  composition Organization -> Project [*];
+  composition Species -> Project [*];
+  association Project -> Species;
+  association Transaction -> Node;
+}

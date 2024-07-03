@@ -1,0 +1,84 @@
+
+classdiagram CarRentalSystem {
+
+    class CarRentalSystem {
+      List<Branch> branches;
+      VehicleManager vehicleManager;
+      CustomerManager customerManager;
+      RentalManager rentalManager;
+    }
+
+    class Branch {
+      String name;
+      List<Vehicle> vehicles;
+      List<Customer> customers;
+    }
+
+    class Vehicle {
+      String id;
+      String type;
+      String features;
+      boolean isAvailable;
+    }
+
+    class Sedan extends Vehicle {
+      int seatingCapacity;
+    }
+
+    class SUV extends Vehicle {
+      int seatingCapacity;
+      boolean hasAllWheelDrive;
+    }
+
+    class Truck extends Vehicle {
+      int seatingCapacity;
+      boolean hasCargoSpace;
+    }
+
+    class Customer {
+      String id;
+      String name;
+      List<Rental> rentals;
+    }
+
+    class Rental {
+      Vehicle rentedVehicle;
+      Customer renter;
+      Date rentalStartDate;
+      Date rentalEndDate;
+      double rentalPrice;
+    }
+
+    class VehicleManager {
+      void addVehicle(Vehicle vehicle);
+      void removeVehicle(Vehicle vehicle);
+      Vehicle findVehicleByID(String id);
+      List<Vehicle> findAvailableVehicles();
+    }
+
+    class CustomerManager {
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      Customer findCustomerByID(String id);
+      List<Customer> findFrequentCustomers();
+    }
+
+    class RentalManager {
+      void addRental(Rental rental);
+      void removeRental(Rental rental);
+      Rental findRentalByVehicleID(String vehicleID);
+      Rental findRentalByCustomerID(String customerID);
+      List<Rental> findOngoingRentals();
+      double calculateTotalRevenue();
+      Report generateRentalReport();
+    }
+
+  composition CarRentalSystem -> (has) Branch;
+  composition CarRentalSystem -> (has) VehicleManager;
+  composition CarRentalSystem -> (has) CustomerManager;
+  composition CarRentalSystem -> (has) RentalManager;
+
+  association Branch -> Vehicle [*];
+  association Branch -> Customer [*];
+  association Customer -> Rental [*];
+}

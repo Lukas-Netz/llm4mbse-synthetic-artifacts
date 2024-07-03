@@ -1,0 +1,40 @@
+
+classdiagram Astronomy {
+
+  class Instrument {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Data {
+    String uniqueIdentifier;
+    String timestamp;
+    double value;
+    String unit;
+    Instrument instrument;
+    Sensor sensor;
+  }
+
+  class Analysis {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Instrument instrument;
+  }
+
+  class Result {
+    String uniqueIdentifier;
+    String name;
+    double value;
+    Analysis analysis;
+  }
+
+  composition Instrument -> Sensor [*];
+  composition Analysis -> Data [*];
+  composition Result -> Analysis;
+}

@@ -1,0 +1,62 @@
+
+classdiagram AnthropologyPlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+  }
+
+  class Section {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    Course course;
+    -> Student [*];
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    -> Section [*];
+    void submitAssignment(Assignment assignment);
+    void participateInDiscussion(Discussion discussion);
+  }
+
+  class Assignment {
+    String uniqueIdentifier;
+    Section section;
+    Date dueDate;
+  }
+
+  class Discussion {
+    String uniqueIdentifier;
+    Section section;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    -> Course [*];
+  }
+
+  class Collaborator {
+    String uniqueIdentifier;
+    Instructor instructor;
+    Course course;
+  }
+
+  class Analytics {
+    Course course;
+    -> Student [*];
+  }
+
+  composition Course -> Section [*];
+  composition Student -> Course [1..*];
+  association Collaborator -- Collaborator;
+  association Analytics -- Student;
+}

@@ -1,0 +1,61 @@
+
+classdiagram EcommercePaymentSystem {
+
+    class EcommercePlatform {
+      PaymentGateway gateway;
+      Currency currency;
+      Transaction transaction;
+      Customer customer;
+    }
+
+    class PaymentGateway {
+      void processPayment(Transaction transaction);
+      enum PaymentMethodType
+     						;
+    }
+
+    class Transaction {
+      String transactionId;
+      String status;
+      String paymentMethod;
+      String paymentGateway;
+      double amount;
+      String currency;
+      String receipt;
+      String invoice;
+      Date transactionDate;
+    }
+
+    class Customer {
+      String customerId;
+      List<PaymentMethodType> paymentMethods;
+      List<Transaction> transactionHistory;
+    }
+
+    class PaymentMethodType {
+      String type;
+    }
+
+    class CreditCard extends PaymentMethodType {
+      String cardNumber;
+      String expirationDate;
+      String cvv;
+    }
+
+    class BankAccount extends PaymentMethodType {
+      String accountNumber;
+      String routingNumber;
+      String bankName;
+    }
+
+    class DigitalWallet extends PaymentMethodType {
+      String walletId;
+      String walletBalance;
+    }
+
+    association EcommercePlatform -> PaymentGateway [1];
+    association EcommercePlatform -> Transaction [1..*];
+    association EcommercePlatform -> Customer [1];
+    association Customer -> PaymentMethodType [*];
+    composition Customer -> Transaction [*];
+}

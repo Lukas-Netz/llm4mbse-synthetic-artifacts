@@ -1,0 +1,43 @@
+
+classdiagram DigitalIdentity {
+
+  class User {
+    String uniqueIdentifier;
+    User [][] identities;
+  }
+
+  class Identity {
+    String uniqueIdentifier;
+    Attribute [][] attributes;
+  }
+
+  abstract class Attribute {
+    String value;
+    long timestamp;
+  }
+
+  class PersonalAttribute extends Attribute {
+    String name;
+    String dateOfBirth;
+    String address;
+  }
+
+  class ProfessionalAttribute extends Attribute {
+    String jobTitle;
+    String employer;
+    String workExperience;
+  }
+
+  class PublicAttribute extends Attribute {
+    String socialMediaProfile;
+    String onlinePresence;
+  }
+
+  class Verification {
+    String verificationCode;
+    boolean isVerified;
+  }
+
+  association User --[has] Identity [*];
+  association Identity --[has] Attribute [*];
+}

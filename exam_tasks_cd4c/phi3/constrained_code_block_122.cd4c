@@ -1,0 +1,208 @@
+
+classdiagram nd3dmodeling {
+
+    class MainWindow {
+      void renderScene();
+      void importModel(String filePath, String format);
+      void exportModel(String filePath, String format);
+    }
+
+    class Object {
+      String uniqueIdentifier;
+      ObjectType type;
+    }
+
+    class GeometricShape extends Object {
+      Vector3D position;
+      Vector3D size;
+      Color color;
+    }
+
+    class  ThreeDModel extends Object {
+      Texture texture;
+      Material material;
+      Lighting lighting;
+    }
+
+    class Animation extends Object {
+      Duration duration;
+      Speed speed;
+      AnimationType type;
+    }
+
+    class Scene {
+      List<Object> objects;
+      void addObject(Object object);
+      void removeObject(Object object);
+    }
+
+    class ImportExport {
+      void importModel(String filePath, String format);
+      void exportModel(String filePath, String format);
+    }
+
+    class Renderer {
+      void renderScene(Scene scene);
+    }
+
+    enum ObjectType {
+      GeometricShape, ThreeDModel, Animation
+   
+   
+   ()
+   
+
+;
+    association MainWindow 
+     
+   
+;
+    association Scene 
+     
+   
+;
+    composition Scene 
+     
+   
+;
+    composition MainWindow 
+     
+   
+;
+    composition ImportExport 
+     
+   
+;
+    composition Renderer 
+     
+   
+;
+    composition Object 
+     
+   
+;
+    composition GeometricShape 
+     
+   
+;
+    composition ThreeDModel 
+     
+   
+;
+    composition Animation 
+     
+   
+;
+    composition ImportExport 
+     
+   
+;
+    composition Renderer 
+     
+   
+;
+    composition MainWindow 
+     
+   
+;
+    composition Scene 
+     
+   
+;
+    composition ImportExport 
+     
+   
+;
+    composition Renderer 
+     
+   
+;
+    composition MainWindow 
+     
+   
+;
+    composition Scene 
+     
+   
+;
+    composition ImportExport 
+     
+   
+;
+    composition Renderer 
+     
+   
+;
+   
+}
+
+enum ObjectType {
+  GeometricShape, ThreeDModel, Animation
+
+
+;
+   
+}
+
+enum AnimationType {
+  Walk, Run, Jump
+
+
+;
+   
+}
+
+class Renderer {
+  void renderScene(Scene scene);
+}
+
+class Scene {
+  List<Object> objects;
+  void addObject(Object object);
+  void removeObject(Object object);
+}
+
+class ImportExport {
+  void importModel(String filePath, String format);
+  void exportModel(String filePath, String format);
+}
+
+class MainWindow {
+  void renderScene();
+  void importModel(String filePath, String format);
+  void exportModel(String filePath, String format);
+}
+
+class Object {
+  String uniqueIdentifier;
+  ObjectType type;
+}
+
+class GeometricShape extends Object {
+  Vector3D position;
+  Vector3D size;
+  Color color;
+}
+
+class ThreeDModel extends Object {
+  Texture texture;
+  Material material;
+  Lighting lighting;
+}
+
+class Animation extends Object {
+  Duration duration;
+  Speed speed;
+  AnimationType type;
+}
+
+enum ObjectType {
+  GeometricShape, ThreeDModel, Animation
+
+
+;
+   
+}
+
+
+}

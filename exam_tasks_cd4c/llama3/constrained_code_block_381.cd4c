@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram OnlineRealEstate  {
+
+  class User  {
+    String uniqueIdentifier;
+    UserType type;
+  }
+
+  enum UserType  {
+    Buyer, Seller, Renter
+  ;}
+
+  class Property  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+    Location location;
+    List<Photo> photos;
+    double price;
+  }
+
+  enum PropertyType  {
+    Apartment, House, Commercial
+  ;}
+
+  class Location  {
+    String city;
+    String state;
+    String zipCode;
+  }
+
+  class Photo  {
+    String url;
+  }
+
+  class Agent extends User  {
+    String name;
+    String contactInformation;
+    List<Property> listedProperties;
+  }
+
+  class SearchCriteria  {
+    Location location;
+    double price;
+    PropertyType type;
+  }
+
+  composition User -> (has) Agent [0..1];
+  composition Property -> (has) Location;
+  composition Property -> (has) Photo [*];
+  composition Agent -> (has) Property [*];
+  composition SearchCriteria -> (has) Location;
+  composition SearchCriteria -> (has) PropertyType;
+  composition SearchCriteria -> (has) double;
+}

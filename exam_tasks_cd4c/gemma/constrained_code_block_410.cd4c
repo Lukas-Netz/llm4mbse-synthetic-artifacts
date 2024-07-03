@@ -1,0 +1,54 @@
+
+
+classdiagram BiodiversityConservationPlatform {
+
+  class Species {
+    String uniqueIdentifier;
+    String name;
+    String classification;
+  }
+
+  class Habitat {
+    String location;
+    int size;
+    String type;
+  }
+
+  class Ecosystem {
+    String uniqueIdentifier;
+    String name;
+    List<Habitat> habitats;
+    List<Species> species;
+  }
+
+  class ConservationAction {
+    String name;
+    String description;
+  }
+
+  class ConservationPlan {
+    String name;
+    List<ConservationAction> actions;
+  }
+
+  class User {
+    String name;
+    String password;
+    List<Species> species;
+    List<Habitat> habitats;
+    List<Ecosystem> ecosystems;
+    List<ConservationAction> conservationActions;
+    List<ConservationPlan> conservationPlans;
+  }
+
+  composition Species -> Habitat [0..1];
+  composition Habitat -> Ecosystem [0..1];
+  composition Ecosystem -> ConservationPlan [0..1];
+  association User -> ConservationPlan
+
+  <<stereotype>> abstract  
+  
+  
+  
+;
+}

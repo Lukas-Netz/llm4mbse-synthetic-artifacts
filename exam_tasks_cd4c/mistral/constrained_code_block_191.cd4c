@@ -1,0 +1,66 @@
+
+classdiagram TaxSolution {
+
+  class TaxReturn {
+    String returnType;
+    double income;
+    double deductions;
+    double credits;
+  }
+
+  enum ReturnType {
+    Personal, Corporate, Estate;
+  }
+
+  class PersonalTaxReturn extends TaxReturn {
+    double dependentCount;
+  }
+
+  class CorporateTaxReturn extends TaxReturn {
+    double revenue;
+    double expenses;
+  }
+
+  class EstateTaxReturn extends TaxReturn {
+    double estateValue;
+    double heirCount;
+  }
+
+  class TaxDataRepository {
+    -> TaxReturn [*];
+  }
+
+  class ReportGenerator {
+    TaxDataRepository taxDataRepository;
+    void generateReport();
+  }
+
+  class NotificationService {
+    void sendNotification();
+  }
+
+  class SecurityManager {
+    void authenticateUser();
+  }
+
+  class IntegrationManager {
+    AccountingSoftware accountingSoftware;
+    PaymentGateway paymentGateway;
+  }
+
+  class AccountingSoftware {
+    void importTaxData();
+  }
+
+  class PaymentGateway {
+    void processPayment();
+  }
+
+  composition TaxSolution -> TaxDataRepository;
+  composition TaxSolution -> ReportGenerator;
+  composition TaxSolution -> NotificationService;
+  composition TaxSolution -> SecurityManager;
+  composition TaxSolution -> IntegrationManager;
+  association TaxSolution -> AccountingSoftware;
+  association TaxSolution -> PaymentGateway;
+}

@@ -1,0 +1,53 @@
+
+classdiagram LegalResearchSystem {
+
+    class Case {
+      String caseId;
+      String title;
+      String description;
+      List<Law> relatedLaws;
+      List<LegalConcept> relatedConcepts;
+      int relevanceScore;
+    }
+
+    class Law {
+      String lawId;
+      String title;
+      String description;
+      List<Case> relatedCases;
+      List<LegalConcept> relatedConcepts;
+      int relevanceScore;
+    }
+
+    class LegalConcept {
+      String conceptId;
+      String title;
+      String description;
+      List<Case> relatedCases;
+      List<Law> relatedLaws;
+      int relevanceScore;
+    }
+
+    class SearchQuery {
+      String query;
+    }
+
+    class Recommendation {
+      String suggestion;
+    }
+
+    class LegalResearchSystem {
+      List<Case> findCases(SearchQuery query);
+      List<Law> findLaws(SearchQuery query);
+      List<LegalConcept> findConcepts(SearchQuery query);
+      Recommendation analyzeRelationships(SearchQuery query);
+      void updateRelevanceScore(String entityId, int score);
+    }
+
+    composition Case -> Law [*];
+    composition Case -> LegalConcept [*];
+    composition Law -> Case [*];
+    composition Law -> LegalConcept [*];
+    composition LegalConcept -> Case [*];
+    composition LegalConcept -> Law [*];
+}

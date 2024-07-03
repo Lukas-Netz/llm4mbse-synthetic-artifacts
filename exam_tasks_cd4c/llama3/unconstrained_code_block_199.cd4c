@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram OnlineTutoring  {
+
+  class Student  {
+    String uniqueId;
+    String name;
+    String email;
+    -> Subject[*];
+  }
+
+  class Tutor  {
+    String uniqueId;
+    String name;
+    String email;
+    -> Subject[*];
+  }
+
+  class Session  {
+    String uniqueId;
+    DateTime startTime;
+    DateTime endTime;
+    Subject subject;
+    -> Tutor;
+    -> Student;
+    Rating rating;
+    Review review;
+  }
+
+  class Subject  {
+    String uniqueId;
+    String name;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  class Review  {
+    String text;
+  }
+
+  composition Student -> (has) Subject[*];
+  composition Tutor -> (has) Subject[*];
+  composition Session -> (has) Tutor;
+  composition Session -> (has) Student;
+  composition Session -> (has) Rating;
+  composition Session -> (has) Review;
+}

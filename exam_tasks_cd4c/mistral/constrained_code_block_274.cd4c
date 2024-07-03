@@ -1,0 +1,49 @@
+
+classdiagram AuctionPlatform {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Item {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    float price;
+    ItemType type;
+  }
+
+  enum ItemType {
+    Electronics, Clothing, HomeGoods;
+  }
+
+  class Auction {
+    String uniqueIdentifier;
+    Item item;
+    Date startDate;
+    Date endDate;
+    User currentHighestBidder;
+  }
+
+  class Bid {
+    User bidder;
+    float bidAmount;
+    Date timestamp;
+  }
+
+  class Administrator {
+    String username;
+    String password;
+  }
+
+  composition User [*] Auction [has] (bids)
+  -- User [*] << Item
+  >>- 											;
+  composition Administrator [1] User [manages]
+  -- Administrator [1] << Item
+  >>- 											;
+  composition Administrator [1] Auction [manages]
+  -- Administrator [1] << Item
+  >>- 											;
+}

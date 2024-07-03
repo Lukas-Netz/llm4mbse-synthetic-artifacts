@@ -1,0 +1,33 @@
+
+classdiagram VirtualBookClub {
+
+  class BookClub {
+    String name;
+    String description;
+    BookClubMember [ ] members;
+    Discussion [ ] discussions;
+  }
+
+  class BookClubMember {
+    String username;
+    String password;
+    BookClub [ ] bookClubs;
+    int unreadComments;
+  }
+
+  class Discussion {
+    String title;
+    String description;
+    Comment [ ] comments;
+  }
+
+  class Comment {
+    String text;
+    BookClubMember author;
+  }
+
+  association BookClub --o000o- 											;
+  association BookClubMember --o000o- 										;
+  association Discussion --o000o- 											;
+  association Comment --o000o- 											;
+}

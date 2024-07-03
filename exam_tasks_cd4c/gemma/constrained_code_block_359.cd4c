@@ -1,0 +1,52 @@
+
+
+classdiagram VRSystem {
+
+    class VRSystem {
+      Hub hub;
+    }
+
+    class Hub {
+      -> User [*];
+      -> Model [*];
+      void addUser(User user);
+      void removeUser(User user);
+      Model addModel(Model model);
+      void removeModel(Model model);
+    }
+
+    class User {
+      String uniqueIdentifier;
+      Type type;
+    }
+
+    enum Type { Architect, Stakeholder; }
+
+    class Architect extends User {
+      void createModel(Model model);
+      void editModel(Model model);
+      void visualizeModel(Model model);
+    }
+
+    class Stakeholder extends User {
+      void viewModel(Model model);
+      void commentOnModel(Model model);
+    }
+
+    class Model {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Type type;
+      List<Attribute> attributes;
+    }
+
+    class Attribute {
+      String name;
+      String value;
+    }
+
+  composition VRSystem -> (has) Hub;
+  composition Hub -> User [*];
+  composition Hub -> Model [*];
+}

@@ -1,0 +1,39 @@
+
+
+classdiagram AI_System {
+
+  class DataIngestionModule {
+    void ingestData(SensorData sensorData);
+  }
+
+  class DataProcessingModule {
+    void analyzeData(SensorData sensorData);
+  }
+
+  class PredictiveAnalyticsModule {
+    void predictPotentialIssues();
+  }
+
+  class RecommendationEngine {
+    void provideRecommendations();
+  }
+
+  class IntegrationModule {
+    void integrateWithERPSystem();
+  }
+
+  class UserInterface {
+    void displayRealTimeData();
+  }
+
+  class SensorData {
+    String sensorName;
+    int sensorValue;
+  }
+
+  composition DataIngestionModule -> (has) SensorData [*];
+  composition DataProcessingModule -> (has) SensorData [*];
+  composition PredictiveAnalyticsModule -> (has) SensorData [*];
+  composition IntegrationModule -> (has) SensorData [*];
+  composition UserInterface -> (has) SensorData [*];
+}

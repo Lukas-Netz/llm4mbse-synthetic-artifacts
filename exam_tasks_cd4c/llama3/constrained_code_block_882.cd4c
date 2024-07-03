@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram HazardousEnvironment  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    RobotStatus status;
+  }
+
+  class CleaningRobot extends Robot  {
+    int suctionPower;
+    String filterType;
+  }
+
+  class InspectionRobot extends Robot  {
+    int cameraResolution;
+    LightingSettings lighting;
+  }
+
+  class MaintenanceRobot extends Robot  {
+    int wrenchSize;
+    int torqueSettings;
+  }
+
+  class HazardousEnvironment  {
+    Robot  robot  ;
+    CommunicationSystem communicationSystem;
+  }
+
+  class CommunicationSystem  {
+    void transmitSensorData(Robot robot, SensorData data);
+    void transmitControlSignals(Robot robot, ControlSignal signal);
+  }
+
+  class SensorData  {
+    String type;
+    String value;
+  }
+
+  class ControlSignal  {
+    String type;
+    String value;
+  }
+
+  class LightingSettings  {
+    boolean isOn;
+    int brightness;
+  }
+
+  enum RobotStatus  {
+    Operational, NonOperational;
+  }
+
+  composition HazardousEnvironment  ->  (has) Robot;
+  composition HazardousEnvironment  ->  (has) CommunicationSystem;
+  composition Robot  ->  (has) SensorData;
+  composition Robot  ->  (has) ControlSignal;
+  composition CommunicationSystem  ->  (transmits) SensorData;
+  composition CommunicationSystem  ->  (transmits) ControlSignal;
+}

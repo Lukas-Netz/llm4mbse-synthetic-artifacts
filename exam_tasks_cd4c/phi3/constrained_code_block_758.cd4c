@@ -1,0 +1,47 @@
+
+classdiagram SmartFarm {
+
+    class SmartFarm {
+      Hub hub;
+      Sensor[] sensors;
+      Camera[] cameras;
+      FarmData analyzer;
+    }
+
+    class Hub {
+      -> Sensor [*];
+      -> Camera [*];
+      FarmData analyzeData();
+      void sendAlert(FarmAlert alert);
+    }
+
+    class Sensor {
+      String type;
+      double temperature;
+      double humidity;
+      boolean movementDetected;
+    }
+
+    class Camera {
+      String image;
+      String timestamp;
+    }
+
+    class FarmData {
+      String animalBehavior;
+      String healthStatus;
+      String breed;
+      String age;
+      String recommendations;
+    }
+
+    class FarmAlert {
+      String alertType;
+      String message;
+    }
+
+    composition SmartFarm -> (has) Hub;
+    association SmartFarm -> (uses) Sensor [0..*];
+    association SmartFarm -> (uses) Camera [0..*];
+    association SmartFarm -> (uses) FarmData;
+}

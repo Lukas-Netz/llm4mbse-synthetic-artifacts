@@ -1,0 +1,58 @@
+
+classdiagram SubmarineCableMonitoring {
+
+  class CentralMonitoringStation {
+    -> SubmarineCable [*];
+    -> MaintenanceTeam [*];
+    void sendNotification(SubmarineCable cable);
+    void assignPersonnelToTeam(Personnel personnel, MaintenanceTeam team);
+    void logResolution(Fault fault);
+  }
+
+  class SubmarineCable {
+    String uniqueIdentifier;
+    int length;
+    CableStatus status;
+  }
+
+  enum CableStatus {
+    Operational, NotOperational;
+  }
+
+  class MaintenanceTeam {
+    String name;
+    -> Personnel [*];
+  }
+
+  class Personnel {
+    String name;
+    Role role;
+    int skillLevel;
+  }
+
+  enum Role {
+    Engineer, Technician;
+  }
+
+  class Database {
+    -> Fault [*];
+  }
+
+  class Fault {
+    String description;
+    SeverityLevel severity;
+    ResolutionStatus resolutionStatus;
+  }
+
+  enum SeverityLevel {
+    Low, Medium, High;
+  }
+
+  enum ResolutionStatus {
+    NotStarted, InProgress, Resolved;
+  }
+
+  composition CentralMonitoringStation -> SubmarineCable [*];
+  composition CentralMonitoringStation -> MaintenanceTeam [*];
+  composition MaintenanceTeam -> Personnel [*];
+}

@@ -1,0 +1,62 @@
+
+classdiagram AirborneWindEnergySystem {
+
+    class AirborneWindEnergySystem {
+      TetheredWing wing;
+      GroundStation groundStation;
+      ControlCenter controlCenter;
+      WeatherStation weatherStation;
+    }
+
+    class TetheredWing {
+      String type;
+      Sensor[] sensors;
+      void adjustAltitude();
+      void adjustOrientation();
+    }
+
+    class GroundStation {
+      Storage batteryStorage;
+      CommunicationSystem communicationSystem;
+      void storeElectricity();
+      void communicateWithControlCenter();
+    }
+
+    class ControlCenter {
+      void monitorSystem();
+      void controlWing();
+    }
+
+    class WeatherStation {
+      WeatherData weatherData;
+      void provideWeatherData();
+    }
+
+    class Sensor {
+      String type;
+      double measurement;
+    }
+
+    class Storage {
+      double capacityWh;
+      double currentCharge;
+      void chargeBattery();
+      void dischargeBattery();
+    }
+
+    class CommunicationSystem {
+      void sendData();
+      void receiveData();
+    }
+
+    class WeatherData {
+      double windSpeed;
+      double windDirection;
+      double temperature;
+    }
+
+    composition AirborneWindEnergySystem -> (has) TetheredWing;
+    composition AirborneWindEnergySystem -> (has) GroundStation;
+    composition AirborneWindEnergySystem -> (has) ControlCenter;
+    composition AirborneWindEnergySystem -> (has) WeatherStation;
+}

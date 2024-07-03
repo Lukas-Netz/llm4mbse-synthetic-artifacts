@@ -1,0 +1,55 @@
+
+classdiagram DigitalFarmingPlatform {
+
+    class Farm {
+      Crop[] crops;
+      Equipment[] equipment;
+      WeatherData[] weatherData;
+    }
+
+    class Crop {
+      String name;
+      String type;
+      GrowthStage stage;
+      IrrigationRequirements irrigation;
+      FertilizationRequirements fertilization;
+    }
+
+    class Equipment {
+      String name;
+      String type;
+      EquipmentCondition condition;
+    }
+
+    class WeatherData {
+      double temperature;
+      double humidity;
+      double precipitation;
+    }
+
+    class GrowthStage {
+      String name;
+    }
+
+    class IrrigationRequirements {
+      double waterAmount;
+      double frequency;
+    }
+
+    class FertilizationRequirements {
+      double fertilizerAmount;
+      double frequency;
+    }
+
+    class EquipmentCondition {
+      String status;
+    }
+
+    association Farm -> Crop [*];
+    association Farm -> Equipment [*];
+    association Farm -> WeatherData [*];
+    composition Crop -> GrowthStage;
+    composition Crop -> IrrigationRequirements;
+    composition Crop -> FertilizationRequirements;
+    composition Equipment -> EquipmentCondition;
+}

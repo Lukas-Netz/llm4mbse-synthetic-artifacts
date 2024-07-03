@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram HydroponicFarmingSystem  {
+
+  class Module  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Sensor  {
+    Temperature temperature;
+    Humidity humidity;
+    Light light;
+  }
+
+  class WaterManagementSystem  {
+    WaterLevel waterLevel;
+    pHLevel pHLevel;
+    boolean isAutomatic;
+  }
+
+  class Crop  {
+    String name;
+    GrowthStage growthStage;
+    NutrientRequirements nutrientRequirements;
+    HarvestDate harvestDate;
+  }
+
+  class Database  {
+    List<Crop> crops;
+  }
+
+  class HydroponicFarmingSystem  {
+    List<Module> modules;
+    List<Sensor> sensors;
+    WaterManagementSystem waterManagementSystem;
+    Database database;
+  }
+
+  composition HydroponicFarmingSystem -> (has) Module[*];
+  composition HydroponicFarmingSystem -> (has) Sensor[*];
+  composition HydroponicFarmingSystem -> (has) WaterManagementSystem;
+  composition HydroponicFarmingSystem -> (has) Database;
+}
+

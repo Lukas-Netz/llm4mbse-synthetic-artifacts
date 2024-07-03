@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram AutomatedCoralReefRestoration  {
+
+  class Sensor  {
+    String type;  # eeprom
+    WaterQualityData  ;  # eeprom
+    TemperatureData  ;  # eeprom
+    CoralHealthData  ;  # eeprom
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  
+
+ }
+}

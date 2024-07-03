@@ -1,0 +1,53 @@
+
+classdiagram NLPSystem {
+
+    class NLPSystem {
+      TextPreprocessing textPreprocessing;
+      Tokenization tokenization;
+      POStagging posTagging;
+      NER namedEntityRecognition;
+      SentimentAnalysis sentimentAnalysis;
+      Database database;
+    }
+
+    class TextPreprocessing {
+      String rawText;
+      void removePunctuation();
+      void convertToLowercase();
+      void removeStopWords();
+    }
+
+    class Tokenization {
+      String[] tokens;
+      void tokenize(String text);
+    }
+
+    class POStagging {
+      String[] posTags;
+      void tagPos(String[] tokens);
+    }
+
+    class NER {
+      String[] namedEntities;
+      void recognizeEntities(String[] tokens);
+    }
+
+    class SentimentAnalysis {
+      String sentiment;
+      void analyzeSentiment(String text);
+    }
+
+    class Database {
+      Table textDataTable;
+      Table posTagsTable;
+      Table namedEntitiesTable;
+      Table sentimentAnalysisTable;
+    }
+
+    association NLPSystem -> TextPreprocessing;
+    association NLPSystem -> Tokenization;
+    association NLPSystem -> POStagging;
+    association NLPSystem -> NER;
+    association NLPSystem -> SentimentAnalysis;
+    association NLPSystem -> Database;
+}

@@ -1,0 +1,76 @@
+
+classdiagram VRSurgerySimulation {
+
+  class SimulationEnvironment {
+    SurgeryType surgeryType;
+    DifficultyLevel difficulty;
+  }
+
+  class Surgeon {
+    String name;
+    ExperienceLevel experience;
+    SkillLevel skill;
+  }
+
+  class Patient {
+    String name;
+    MedicalHistory medicalHistory;
+    VitalSigns vitalSigns;
+  }
+
+  class SurgicalTool {
+    ToolType toolType;
+    Condition condition;
+    UsageHistory usageHistory;
+  }
+
+  class Procedure {
+    String name;
+    String description;
+    Step[] steps;
+  }
+
+  enum SurgeryType {
+    HeartSurgery, BrainSurgery;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  enum ExperienceLevel {
+    Intern, Resident, Fellow;
+  }
+
+  enum SkillLevel {
+    Basic, Intermediate, Advanced;
+  }
+
+  enum ToolType {
+    Scalpel, Forceps, Clamp;
+  }
+
+  class MedicalHistory {
+    String[] pastSurgeries;
+    String[] medicalConditions;
+  }
+
+  class VitalSigns {
+    int heartRate;
+    int bloodPressure;
+    int oxygenSaturation;
+  }
+
+  class Step {
+    String instruction;
+    boolean completed;
+  }
+
+  composition SimulationEnvironment -> SurgeryType;
+  composition SimulationEnvironment -> DifficultyLevel;
+  association Surgeon --o_has_o_SurgeryTool;
+  association Surgeon --o_performs_o_Procedure;
+  association Patient --o_undergoes_o_Procedure;
+  association SurgicalTool --o_is_used_by_o_Surgeon;
+  association Procedure --o_outlines_o_Steps;
+}

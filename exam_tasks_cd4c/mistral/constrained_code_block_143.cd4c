@@ -1,0 +1,40 @@
+
+classdiagram MobileIdentity {
+
+  class Server {
+    Database database;
+    MobileApp mobileApp;
+  }
+
+  class Database {
+    User [						] users;
+  }
+
+  class MobileApp {
+    Server server;
+  }
+
+  class User {
+    String username;
+    String password;
+    String name;
+    String address;
+    String phoneNumber;
+  }
+
+  class OneTimePassword {
+    String otp;
+    String recipient;
+  }
+
+  class Notification {
+    String message;
+    String recipient;
+  }
+
+  composition Server -> Database;
+  composition Server -> MobileApp;
+  association MobileApp -> User [*];
+  association Server -> OneTimePassword [*];
+  association Server -> Notification [*];
+}

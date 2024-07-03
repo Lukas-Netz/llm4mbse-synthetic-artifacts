@@ -1,0 +1,36 @@
+
+classdiagram ARNavigation {
+
+  class Device {
+    void renderMap();
+    void provideNavigationInstructions();
+  }
+
+  class Map {
+    -> POI [*];
+    void addPOI(POI poi);
+    void removePOI(POI poi);
+  }
+
+  class POI {
+    String uniqueIdentifier;
+    String name;
+    double latitude;
+    double longitude;
+  }
+
+  class RoutePlanner {
+    Device device;
+    Map map;
+    void calculateShortestPath(double currentLatitude, double currentLongitude, double destinationLatitude, double destinationLongitude);
+  }
+
+  class UserLocation {
+    double latitude;
+    double longitude;
+  }
+
+  composition Device -> Map;
+  composition RoutePlanner -> Device;
+  composition RoutePlanner -> Map;
+}

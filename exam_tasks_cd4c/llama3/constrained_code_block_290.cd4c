@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram TicketBookingSystem  {
+
+  class Event  {
+    String name;
+    Date date;
+    Time time;
+    Seat  [ ] seats;
+  }
+
+  class Seat  {
+    int rowNumber;
+    int columnNumber;
+    SeatStatus status;
+  }
+
+  enum SeatStatus  {
+    Available, Booked;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Booking  {
+    User user;
+    Seat seat;
+  }
+
+  composition Event -> Seat [1..*];
+  composition Booking -> User;
+  composition Booking -> Seat;
+  association Event -> User [0..*];
+  association Seat -> Event [1];
+
+  class EventManager  {
+    void checkSeatAvailability(Event event, Seat seat);
+    void bookSeat(Event event, Seat seat, User user);
+    void cancelBooking(Event event, Seat seat, User user);
+  }
+}

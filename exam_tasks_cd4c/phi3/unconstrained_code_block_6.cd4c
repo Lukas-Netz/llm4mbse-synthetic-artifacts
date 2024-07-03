@@ -1,0 +1,62 @@
+
+classdiagram CMS {
+
+    class Content {
+      String title;
+      String content;
+      Date publicationDate;
+      String category;
+    }
+
+    class Article extends Content {
+      String[] categories;
+    }
+
+    class Image extends Content {
+      String description;
+      String filePath;
+    }
+
+    class Video extends Content {
+      String description;
+      String filePath;
+    }
+
+    class User {
+      String username;
+      String password;
+      String role;
+      Permissions permissions;
+    }
+
+    class Permissions {
+      boolean canCreate;
+      boolean canEdit;
+      boolean canView;
+    }
+
+    class CMS {
+      List<Content> contents;
+      Map<String, User> users;
+      Map<String, Permissions> permissions;
+
+      void createContent(Content content);
+      Content readContent(String identifier);
+      Content updateContent(String identifier, Content newContent);
+      void deleteContent(String identifier);
+      void assignContentToArticle(String contentIdentifier, String articleIdentifier);
+      Permissions getPermissions(String userIdentifier);
+      List<Content> retrieveContentByPermissions(String userIdentifier);
+      List<Content> retrieveContentByCategory(String category);
+      List<Content> retrieveContentByDate(Date date);
+    }
+
+    composition CMS -> (has) User;
+    composition CMS -> (has) Permissions;
+    composition CMS -> (has) Content [*];
+    association CMS -> Article [*];
+    association CMS -> Image [*];
+    association CMS -> Video [*];
+    association Article -> Image [*];
+    association Article -> Video [*];
+}

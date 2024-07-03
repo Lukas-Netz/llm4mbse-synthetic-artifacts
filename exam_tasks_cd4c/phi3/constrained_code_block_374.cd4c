@@ -1,0 +1,41 @@
+
+classdiagram OnlineEventTicketingSystem {
+
+    class Event {
+      String name;
+      Date date;
+      String location;
+      EventType type;
+    }
+
+    class Ticket {
+      String ticketId;
+      double price;
+      TicketType type;
+    }
+
+    class Attendee {
+      String attendeeId;
+      String name;
+      String email;
+      String phoneNumber;
+      List<Ticket> purchasedTickets;
+    }
+
+    class EventType {
+      String typeName;
+    }
+
+    class TicketType {
+      String typeName;
+    }
+
+    association Event -> List<<Ticket>>;
+    association Attendee -> List<<Event>>;
+    association Ticket -> List<<Attendee>>;
+
+    association Event -> Report;
+    association Ticket -> Report;
+
+    association Attendee -> Notification;
+}

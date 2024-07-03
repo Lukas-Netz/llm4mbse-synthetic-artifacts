@@ -1,0 +1,55 @@
+
+classdiagram SmartFarm {
+
+  class Sensor {
+    String type;
+    int id;
+    int reading;
+  }
+
+  class Pump {
+    int id;
+    boolean isOn;
+  }
+
+  class Valve {
+    int id;
+    boolean isOpen;
+  }
+
+  class ControlUnit {
+    -> Sensor [*];
+    -> Pump [*];
+    -> Valve [*];
+    -> WeatherStation;
+    void optimizeIrrigation();
+    void recordData();
+  }
+
+  class WeatherStation {
+    int id;
+    String location;
+    int temperature;
+    int humidity;
+    int precipitation;
+  }
+
+  class Crop {
+    String name;
+    int id;
+    int growthStage;
+  }
+
+  class Soil {
+    int moistureLevel;
+    int temperature;
+    int humidity;
+  }
+
+  composition ControlUnit -> Sensor [*];
+  composition ControlUnit -> Pump [*];
+  composition ControlUnit -> Valve [*];
+  association ControlUnit -- WeatherStation;
+  association ControlUnit -- Crop [*];
+  association ControlUnit -- Soil;
+}

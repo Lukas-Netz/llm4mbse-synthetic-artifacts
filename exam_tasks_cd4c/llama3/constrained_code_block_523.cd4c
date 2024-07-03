@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram DisputeResolutionSystem  {
+
+  class Case  {
+    String uniqueIdentifier;
+    CaseStatus status;
+  }
+
+  class Party  {
+    String name;
+    PartyType type;
+  }
+
+  enum PartyType  {
+    Lawyer, Client
+  ;}
+
+  class Lawyer extends Party  {
+    List<Client> clients;
+  }
+
+  class Client extends Party  {
+    List<Lawyer> lawyers;
+  }
+
+  class Evidence  {
+    Case case;
+    String type;
+    boolean isRelevant;
+  }
+
+  class Communication  {
+    Case case;
+    String type;
+    boolean isConfidential;
+  }
+
+  class Document extends Evidence  {
+    String content;
+  }
+
+  class Image extends Evidence  {
+    String path;
+  }
+
+  class Audio extends Evidence  {
+    String path;
+  }
+
+  class Email extends Communication  {
+    String subject;
+    String content;
+  }
+
+  class PhoneCall extends Communication  {
+    String duration;
+  }
+
+  class Meeting extends Communication  {
+    String location;
+  }
+
+  composition Case -> (has) Party[*];
+  composition Case -> (has) Evidence[*];
+  composition Case -> (has) Communication[*];
+  composition Lawyer -> (has) Client[*];
+  composition Client -> (has) Lawyer[*];
+  composition Evidence -> (has) Case;
+  composition Communication -> (has) Case;
+}

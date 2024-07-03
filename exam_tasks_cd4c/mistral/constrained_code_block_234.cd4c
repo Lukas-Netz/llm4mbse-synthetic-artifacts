@@ -1,0 +1,52 @@
+
+classdiagram LegalResearch {
+
+  class Case {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    LegalConcept [ ] relatedConcepts;
+    Law [ ] relatedLaws;
+    int relevanceScore;
+  }
+
+  class Law {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    LegalConcept [ ] relatedConcepts;
+    Case [ ] relatedCases;
+    int relevanceScore;
+  }
+
+  class LegalConcept {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Case [ ] relatedCases;
+    Law [ ] relatedLaws;
+    int relevanceScore;
+  }
+
+  class SearchQuery {
+    String query;
+  }
+
+  class Result {
+    Case case;
+    Law law;
+    LegalConcept concept;
+    int relevanceScore;
+  }
+
+  composition LegalResearchSystem -> Case [*];
+  composition LegalResearchSystem -> Law [*];
+  composition LegalResearchSystem -> LegalConcept [*];
+  association SearchQuery --o000oResult;
+  association Case --o000oLegalConcept;
+  association Case --o000oLaw;
+  association Law --o000oLegalConcept;
+  association Law --o000oCase;
+  association LegalConcept --o000oCase;
+  association LegalConcept --o000oLaw;
+}

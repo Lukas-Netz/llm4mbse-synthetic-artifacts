@@ -1,0 +1,56 @@
+
+classdiagram Telehealth {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+  }
+
+  class ContactInfo {
+    String phone;
+    String email;
+    String address;
+  }
+
+  class HealthcareProvider {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+  }
+
+  enum Specialty {
+    GeneralPractitioner,
+    Cardiologist,
+    Neurologist,
+    Psychiatrist,
+    Dermatologist,
+    Others;
+  }
+
+  class MedicalRecord {
+    Patient patient;
+    HealthcareProvider provider;
+    String diagnosis;
+    TreatmentPlan treatmentPlan;
+    TestResult testResult;
+  }
+
+  class TreatmentPlan {
+    String medication;
+    String instructions;
+  }
+
+  class TestResult {
+    String testName;
+    String result;
+    String date;
+  }
+
+  composition Telehealth -> (has) Patient [*];
+  composition Telehealth -> (has) HealthcareProvider [*];
+  association Patient <-> MedicalRecord [*];
+  association HealthcareProvider <-> MedicalRecord [*];
+  association MedicalRecord -> TreatmentPlan;
+  association MedicalRecord -> TestResult;
+}

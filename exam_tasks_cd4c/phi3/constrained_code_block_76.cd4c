@@ -1,0 +1,83 @@
+
+classdiagram ProjectManagementTool {
+
+    class Project {
+      String name;
+      Date startDate;
+      Date endDate;
+      List<Task> tasks;
+    }
+
+    class Task {
+      String name;
+      String description;
+      Date dueDate;
+      TeamMember assignedTo;
+      TaskStatus status;
+    }
+
+    class TeamMember {
+      String name;
+      int employeeID;
+      List<Task> assignedTasks;
+    }
+
+    enum TaskStatus {
+      NotStarted, InProgress, Completed
+    (cd4c)
+   
+ ;
+    association Project 
+     
+    ;
+    association Task 
+     
+    ;
+    composition Project 
+     
+    ;
+    composition Task 
+     
+    ;
+    association TeamMember 
+     
+    ;
+    composition TeamMember 
+     
+    ;
+    association ProjectTask 
+     
+    ;
+    association TaskStatus 
+     
+    ;
+    association ProjectReport 
+     
+    ;
+    association TaskCompletionReport 
+     
+    ;
+}
+
+enum TaskStatus {
+  NotStarted, InProgress, Completed
+
+  ;
+}
+
+enum TaskCompletionReport {
+  AllTasksCompleted, SomeTasksCompleted, NoTasksCompleted
+
+  ;
+}
+
+enum ProjectReport {
+  AllProjectsCompleted, SomeProjectsCompleted, NoProjectsCompleted
+
+  ;
+}
+
+classdiagram
+
+    ;
+}

@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram VirtualBusinessCardSystem  {
+
+  class VirtualBusinessCard  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    Skill[] skills;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phoneNumber;
+    String linkedInProfileUrl;
+  }
+
+  class Skill  {
+    String name;
+    Category category;
+  }
+
+  enum Category  {
+    ProgrammingLanguage,
+    Tool,
+    Industry
+  ;}
+
+  class SearchCriteria  {
+    String name;
+    String email;
+    String phoneNumber;
+    String linkedInProfileUrl;
+    Skill[] skills;
+  }
+
+  composition VirtualBusinessCard -> ContactInformation;
+  composition VirtualBusinessCard -> Skill[*];
+  composition SearchCriteria -> VirtualBusinessCard[*];
+}

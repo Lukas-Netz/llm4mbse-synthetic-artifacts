@@ -1,0 +1,85 @@
+
+classdiagram SelfServiceBI {
+
+    class User {
+      String username;
+      String password;
+      boolean isAuthenticated;
+      boolean isAuthorized;
+    }
+
+    class Report {
+      String title;
+      DataSource dataSource;
+      List<DataVisualization> visualizations;
+      void customizeAppearance();
+      void customizeBehavior();
+    }
+
+    class Dashboard {
+      List<Report> reports;
+      List<DataVisualization> visualizations;
+      void customizeAppearance();
+      void customizeBehavior();
+    }
+
+    class DataVisualization {
+      String type;
+      String title;
+      void customizeAppearance();
+      void customizeBehavior();
+    }
+
+    class DataSource {
+      String type;
+      String connectionDetails;
+    }
+
+    class DataGovernance {
+      void ensureDataAccuracy();
+      void ensureDataConsistency();
+      void ensureDataCompleteness();
+    }
+
+    <<association>> class User {
+      SelfServiceBI selfServiceBI;
+      <<association>> SelfServiceBI.User selfServiceBIUser;
+    }
+
+    <<association>> class SelfServiceBI {
+      List<User> users;
+      Report report;
+      Dashboard dashboard;
+      DataVisualization visualization;
+      <<association>> DataSource dataSource;
+      DataGovernance dataGovernance;
+    }
+
+    <<association>> class Report {
+      SelfServiceBI selfServiceBI;
+      User user;
+      <<association>> SelfServiceBI.Report selfServiceBIReport;
+    }
+
+    <<association>> class Dashboard {
+      SelfServiceBI selfServiceBI;
+      User user;
+      <<association>> SelfServiceBI.Dashboard selfServiceBIDashboard;
+    }
+
+    <<association>> class DataVisualization {
+      SelfServiceBI selfServiceBI;
+      User user;
+      <<association>> SelfServiceBI.DataVisualization selfServiceBIDataVisualization;
+    }
+
+    <<association>> class DataSource {
+      SelfServiceBI selfServiceBI;
+      <<association>> SelfServiceBI.DataSource selfServiceBIDataSource;
+    }
+
+    <<association>> class DataGovernance {
+      SelfServiceBI selfServiceBI;
+      <<association>> SelfServiceBI.DataGovernance selfServiceBIDataGovernance;
+    }
+}

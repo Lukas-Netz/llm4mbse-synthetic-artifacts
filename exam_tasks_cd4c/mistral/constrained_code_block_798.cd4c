@@ -1,0 +1,75 @@
+
+classdiagram MuseumAR {
+
+  class Exhibit {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ExhibitType exhibitType;
+  }
+
+  enum ExhibitType {
+    ARTIFACT, INTERACTIVE_DISPLAY, MULTIMEDIA_PRESENTATION;
+  }
+
+  class InteractiveExperience {
+    String uniqueIdentifier;
+    Exhibit exhibit;
+    InteractiveActivity activity;
+  }
+
+  enum InteractiveActivity {
+    QUIZ, GAME, VIRTUAL_TOUR;
+  }
+
+  class ARExperience {
+    String uniqueIdentifier;
+    Exhibit exhibit;
+    ARActivity activity;
+  }
+
+  enum ARActivity {
+    VIRTUAL_TOUR, INTERACTIVE_GAME;
+  }
+
+  class Visitor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String preferredLanguage;
+  }
+
+  class MuseumStaff {
+    String uniqueIdentifier;
+    String name;
+    StaffRole role;
+  }
+
+  enum StaffRole {
+    CURATOR, GUIDE, ADMINISTRATOR;
+  }
+
+  class Museum {
+    -> Exhibit [*];
+    -> InteractiveExperience [*];
+    -> ARExperience [*];
+    -> Visitor [*];
+    -> MuseumStaff [*];
+    void addExhibit(Exhibit exhibit);
+    void removeExhibit(Exhibit exhibit);
+    void updateExhibit(Exhibit exhibit);
+    void assignInteractiveExperience(InteractiveExperience interactiveExperience, Exhibit exhibit);
+    void assignARExperience(ARExperience arExperience, Exhibit exhibit);
+    Visitor createVisitorProfile(String name, String email, String preferredLanguage);
+    void manageStaffRolesAndAssignments();
+    void provideExhibitAndInteractiveExperienceInfo(Visitor visitor);
+    void allowVisitorToCreateARExperience();
+    void trackVisitorInteractionsAndFeedback();
+  }
+
+  composition Museum -> Exhibit [*];
+  composition Museum -> InteractiveExperience [*];
+  composition Museum -> ARExperience [*];
+  composition Museum -> Visitor [*];
+  composition Museum -> MuseumStaff [*];
+}

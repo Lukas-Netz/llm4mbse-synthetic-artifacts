@@ -1,0 +1,57 @@
+
+classdiagram DroneInspection {
+
+  class Drone {
+    String uniqueIdentifier;
+    int batteryLevel;
+    Camera camera;
+  }
+
+  class Camera {
+    String resolution;
+    int fieldOfView;
+  }
+
+  class GroundStation {
+    String name;
+    Location location;
+    CommunicationInterface communication;
+  }
+
+  class Location {
+    String address;
+    String type;
+  }
+
+  class Database {
+    Building [][ ] buildings;
+  }
+
+  class Building {
+    String address;
+    String type;
+    String roofType;
+    Report [ ] reports;
+  }
+
+  class Report {
+    String date;
+    String findings;
+  }
+
+  class CommunicationInterface {
+    void sendData(Data data);
+  }
+
+  class Data {
+    Camera camera;
+    String timestamp;
+  }
+
+  composition DroneInspection -> Drone;
+  composition DroneInspection -> GroundStation;
+  composition DroneInspection -> Database;
+  association GroundStation -> Drone [*];
+  association Database -> Building [*];
+  association Building -> Report [*];
+}

@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram DigitalHealthCoachingSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    HealthGoal[] healthGoals;
+  }
+
+  class Coach  {
+    String uniqueIdentifier;
+    ExpertiseArea[] expertiseAreas;
+  }
+
+  class Session  {
+    User user;
+    Coach coach;
+    DateTime startTime;
+    DateTime endTime;
+    String summary;
+  }
+
+  class Exercise  {
+    String description;
+    DifficultyLevel difficulty;
+    int recommendedDuration;
+  }
+
+  class ProgressTracking  {
+    User user;
+    Metric[] metrics;
+  }
+
+  enum HealthGoal  {
+    WeightLoss, Fitness, MentalWellbeing, etc;
+  }
+
+  enum ExpertiseArea  {
+    Nutrition, Fitness, MentalHealth, etc;
+  }
+
+  enum DifficultyLevel  {
+    Easy, Medium, Hard;
+  }
+
+  enum Metric  {
+    Weight, BloodPressure, BloodGlucose, etc;
+  }
+
+  composition User -> Coach [0..*];
+  composition Coach -> Session [0..*];
+  composition Session -> Exercise [0..*];
+  composition User -> ProgressTracking [1];
+  composition ProgressTracking -> Metric [0..*];
+}

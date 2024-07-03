@@ -1,0 +1,54 @@
+
+classdiagram PrecisionAgriculture {
+
+  class VineyardPlot {
+    String id;
+    GrapeVariety variety;
+    WeatherStation weatherStation;
+    SoilMoistureSensor soilMoistureSensor;
+  }
+
+  class GrapeVariety {
+    String name;
+  }
+
+  class WeatherStation {
+    String id;
+    WeatherForecastService weatherForecastService;
+  }
+
+  class SoilMoistureSensor {
+    String id;
+  }
+
+  class WeatherForecastService {
+    String apiKey;
+  }
+
+  class IrrigationRecommendation {
+    String irrigationType;
+    int amount;
+  }
+
+  class PruningRecommendation {
+    String pruningType;
+    int frequency;
+  }
+
+  class PestControlRecommendation {
+    String pesticide;
+    int applicationRate;
+  }
+
+  class VineyardManager {
+    VineyardPlot [ ] vineyardPlots;
+    IrrigationRecommendation irrigationRecommendation;
+    PruningRecommendation pruningRecommendation;
+    PestControlRecommendation pestControlRecommendation;
+  }
+
+  composition VineyardPlot -- (has) GrapeVariety;
+  composition VineyardPlot -- (has) WeatherStation;
+  composition VineyardPlot -- (has) SoilMoistureSensor;
+  association VineyardManager -- (manages) VineyardPlot [*];
+}

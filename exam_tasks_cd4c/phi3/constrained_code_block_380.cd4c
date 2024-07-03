@@ -1,0 +1,152 @@
+
+classdiagram VirtualTradeShow {
+
+    class VirtualTradeShow {
+      Exhibitor[] exhibitors;
+      Product[] products;
+      Attendee[] attendees;
+      Interaction[] interactions;
+      ReportGenerator reportGenerator;
+    }
+
+    class Exhibitor {
+      String uniqueIdentifier;
+      String name;
+      boolean isSponsor;
+      double sponsorshipAmount;
+      SponsorshipType sponsorshipType;
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+      Exhibitor exhibitor;
+    }
+
+    class Attendee {
+      String name;
+      String email;
+      String company;
+    }
+
+    class Interaction {
+      Attendee attendee;
+      Exhibitor exhibitor;
+      InteractionType type;
+    }
+
+    class ReportGenerator {
+      void generateExhibitorReport();
+      void generateProductReport();
+      void generateAttendeeReport();
+    }
+
+    enum InteractionType {
+      ProductInquiry, DemoRequest
+   
+   
+  
+(class, association, composition)
+
+   
+;
+
+}
+
+enum SponsorshipType {
+  Cash, InKind
+
+;
+
+}
+
+enum InteractionType {
+  ProductInquiry, DemoRequest
+
+;
+
+}
+
+enum ReportType {
+  ExhibitorReport, ProductReport, AttendeeReport
+
+;
+
+}
+
+enum SponsorshipType {
+  Cash, InKind
+
+;
+
+}
+
+enum InteractionType {
+  ProductInquiry, DemoRequest
+
+;
+
+}
+
+enum ReportType {
+  ExhibitorReport, ProductReport, AttendeeReport
+
+;
+
+}
+
+enum SponsorshipType {
+  Cash, InKind
+
+;
+
+}
+
+enum InteractionType {
+  ProductInquiry, DemoRequest
+
+;
+
+}
+
+enum ReportType {
+  ExhibitorReport, ProductReport, AttendeeReport
+
+;
+
+}
+
+enum SponsorshipType {
+  Cash, InKind
+
+;
+
+}
+
+enum InteractionType {
+  ProductInquiry, DemoRequest
+
+;
+
+}
+
+enum ReportType {
+  ExhibitorReport, ProductReport, AttendeeReport
+
+;
+
+}
+
+enum SponsorshipType {
+  Cash, InKind
+
+;
+
+}
+
+
+
+
+
+}

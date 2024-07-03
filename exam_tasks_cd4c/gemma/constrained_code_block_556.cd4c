@@ -1,0 +1,43 @@
+
+
+classdiagram HybridPowerPlant {
+
+  class PowerPlant {
+    String name;
+    String location;
+    List<PowerGenerationUnit> units;
+  }
+
+  class PowerGenerationUnit {
+    String uniqueIdentifier;
+    boolean status;
+
+    SolarPanel solarPanel;
+    WindTurbine windTurbine;
+    FossilFuelGenerator fossilFuelGenerator;
+  }
+
+  class SolarPanel {
+    int energyOutputPerHour;
+    MaintenanceSchedule schedule;
+  }
+
+  class WindTurbine {
+    int energyOutputPerHour;
+    MaintenanceSchedule schedule;
+  }
+
+  class FossilFuelGenerator {
+    int energyOutputPerHour;
+    int fuelConsumptionPerHour;
+    MaintenanceSchedule schedule;
+  }
+
+  composition PowerPlant -> (has) List<<PowerGenerationUnit>>
+
+  #  
+
+  
+  
+  ;
+}

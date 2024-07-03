@@ -1,0 +1,78 @@
+
+classdiagram OnlineCookingClassPlatform {
+
+  class User {
+    String username;
+    String email;
+    List<ClassEnrollment> classEnrollments;
+    List<RecipeEnrollment> recipeEnrollments;
+    Progress progress;
+  }
+
+  class Class {
+    String name;
+    String description;
+    int duration;
+    List<Recipe> recipes;
+    Instructor instructor;
+    List<User> enrolledUsers;
+  }
+
+  class Recipe {
+    String name;
+    List<Ingredient> ingredients;
+    String instructions;
+    List<User> enrolledUsers;
+  }
+
+  class Instructor {
+    String name;
+    List<Class> classes;
+  }
+
+  class PaymentPlan {
+    String planName;
+    int price;
+    boolean isActive;
+    List<User> users;
+  }
+
+  class Payment {
+    String transactionId;
+    PaymentPlan plan;
+    double amount;
+  }
+
+  class ClassEnrollment {
+    Class class;
+    User user;
+  }
+
+  class RecipeEnrollment {
+    Recipe recipe;
+    User user;
+  }
+
+  class Progress {
+    int completedRecipes;
+    int totalRecipes;
+  }
+
+  class Ingredient {
+    String name;
+    double quantity;
+  }
+
+  association User -> ClassEnrollment [*];
+  association User -> RecipeEnrollment [*];
+  association User -> Progress;
+  association Class -> ClassEnrollment [*];
+  association Class -> Recipe [*];
+  association Class -> Instructor;
+  association Recipe -> RecipeEnrollment [*];
+  association Recipe -> Instructor;
+  composition Class -> PaymentPlan [*];
+  composition Recipe -> PaymentPlan [*];
+ 
+ 
+ }

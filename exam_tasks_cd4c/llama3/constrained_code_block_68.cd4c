@@ -1,0 +1,43 @@
+
+
+
+classdiagram HeatMappingTechnology  {
+
+  class HeatMapGenerator  {
+    Sensor[] sensors;
+    GUI gui;
+    Database database;
+    void generateHeatMap(Sensor[] sensors);
+    void receiveDataFromSensor(Sensor sensor);
+    void storeHeatMapInDatabase(HeatMap heatMap);
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    double temperature;
+    double humidity;
+    double pressure;
+  }
+
+  class GUI  {
+    HeatMap[] heatMaps;
+    void displayHeatMap(HeatMap heatMap);
+  }
+
+  class Database  {
+    HeatMap[] heatMaps;
+    void storeHeatMap(HeatMap heatMap);
+    HeatMap[] retrieveHeatMaps();
+  }
+
+  class HeatMap  {
+    double[][] data;
+    String title;
+  }
+
+  composition HeatMapGenerator  ->  (has) Sensor[*];
+  composition HeatMapGenerator  ->  (has) GUI;
+  composition HeatMapGenerator  ->  (has) Database;
+  composition GUI  ->  (has) HeatMap[*];
+  composition Database  ->  (has) HeatMap[*];
+}

@@ -1,0 +1,48 @@
+
+
+classdiagram BuildingManagementSystem {
+
+    class Building {
+      String uniqueIdentifier;
+      String name;
+      Floor floors;
+    }
+
+    class Floor {
+      String floorNumber;
+      Room rooms;
+    }
+
+    class Room {
+      String uniqueIdentifier;
+      String type;
+      Devices devices;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    enum DeviceStatus {
+      On, Off;
+    }
+
+    class Light extends Device {
+      int brightnessLevel;
+    }
+
+    class TemperatureSensor extends Device {
+      int currentTemperature;
+    }
+
+    class SecurityCamera extends Device {
+      String resolution;
+      boolean isRecording;
+    }
+
+  composition Building -> (has) Floor [*];
+  composition Floor -> (has) Room [*];
+  composition Room -> (has) Devices [*];
+  composition BuildingManagementSystem -> (has) Building [*];
+}

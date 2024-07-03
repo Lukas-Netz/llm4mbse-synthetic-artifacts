@@ -1,0 +1,159 @@
+
+
+classdiagram TravelBookingSystem {
+
+    class TravelAgency {
+      List<TravelPackage> travelPackages;
+      Customer customer;
+
+      void addTravelPackage(TravelPackage travelPackage);
+      void removeTravelPackage(TravelPackage travelPackage);
+      void offerDiscount(Customer customer);
+    }
+
+    class TravelPackage {
+      String name;
+      String description;
+      int price;
+      List<BookingOption> bookingOptions;
+    }
+
+    class BookingOption {
+      String name;
+      String description;
+      int price;
+    }
+
+    class Customer {
+      String name;
+      String email;
+      String phoneNumber;
+      List<TravelPackage> bookings;
+    }
+
+    enum BookingStatus {
+      Pending, Confirmed, Cancelled
+    
+
+    
+;
+
+  composition TravelAgency  (has aaaa)  
+  
+  
+  
+;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association TravelPackage - BookingOption (through)
+  
+  
+  
+  
+  
+  
+  
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Customer - TravelPackage (through)
+  
+  
+  
+  
+  
+  
+  
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association BookingStatus - TravelPackage (through)
+
+  
+  
+  
+  
+  
+  
+  
+ -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+}

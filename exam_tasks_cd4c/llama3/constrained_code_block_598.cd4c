@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram UnderwaterCity  {
+
+  class Team  {
+    String teamId;
+    TeamMember  teamLeader;
+    TeamMember  teamMembers  ;  }
+  class TeamMember  {
+    String memberId;
+    Role role;
+    Skill  skills  ;  }
+  class Role  {
+    String name;
+    }
+  class Skill  {
+    String name;
+    }
+  class Equipment  {
+    String equipmentId;
+    Type type;
+    }
+  class Type  {
+    String name;
+    }
+  class Submersible extends Equipment  {
+    }
+  class ROV extends Equipment  {
+    }
+  class Sensor extends Equipment  {
+    }
+  class Database  {
+    String databaseId;
+    Artifact  artifacts  ;  }
+  class Catalog  {
+    String catalogId;
+    Artifact  artifacts  ;  }
+  class Artifact  {
+    String artifactId;
+    String description;
+    }
+  class TeamLeader extends TeamMember  {
+    void assignTask(TeamMember member, Task task);
+    void manageEquipment(Equipment equipment);
+    void decideExplorationArea();
+    }
+  class Task  {
+    String taskId;
+    String description;
+    }
+  composition Team  ->  (has) TeamMember  ;  composition Team  ->  (has) Equipment  ;  composition Team  ->  (has) Database  ;  composition Team  ->  (has) Catalog  ;  composition TeamMember  ->  (has) Skill  ;  composition TeamLeader  ->  (has) Task  ;  }

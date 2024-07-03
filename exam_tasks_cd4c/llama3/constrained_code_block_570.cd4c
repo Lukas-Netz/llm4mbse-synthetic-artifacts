@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram VeterinaryPractice  {
+
+  class VeterinaryPractice  {
+    String name;
+    String uniqueIdentifier;
+    -> Veterinarian[*];
+    -> Animal[*];
+  }
+
+  class Veterinarian  {
+    String name;
+    String uniqueIdentifier;
+    Specialization specialization;
+  }
+
+  class Animal  {
+    String name;
+    Species species;
+    String uniqueIdentifier;
+    -> MedicalRecord;
+  }
+
+  class MedicalRecord  {
+    Vaccination[] vaccinations;
+    Medication[] medications;
+    MedicalCondition[] medicalConditions;
+  }
+
+  class Appointment  {
+    Date date;
+    Time time;
+    String description;
+    -> Veterinarian;
+    -> Animal;
+  }
+
+  class InventoryItem  {
+    String name;
+    int quantity;
+    double unitPrice;
+  }
+
+  enum Specialization  {
+    Surgery, Pediatrics, etc;
+  }
+
+  enum Species  {
+    Dog, Cat, etc;
+  }
+
+  composition VeterinaryPractice -> Veterinarian[*];
+  composition VeterinaryPractice -> Animal[*];
+  composition Veterinarian -> Appointment[*];
+  composition Animal -> MedicalRecord;
+  composition Appointment -> Veterinarian;
+  composition Appointment -> Animal;
+  composition VeterinaryPractice -> InventoryItem[*];
+}

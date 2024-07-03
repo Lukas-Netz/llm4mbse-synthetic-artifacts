@@ -1,0 +1,37 @@
+
+classdiagram AutonomousUnderwaterGliders {
+
+    class Glider {
+      String uniqueIdentifier;
+      Sensor[] sensors;
+      int batteryLevel;
+      int range;
+      void collectData();
+      void changeCourse(int newCourse);
+      void changeDepth(int newDepth);
+    }
+
+    class Sensor {
+      String type;
+      double value;
+    }
+
+    class Hub {
+      Glider[] gliders;
+      void communicateWithGlider(Glider glider);
+      void storeData(Glider glider);
+      void provideAnalytics();
+    }
+
+    class Database {
+      void storeData(Glider glider);
+      void retrieveData(Glider glider);
+      void visualizeData(Glider glider);
+    }
+
+    composition Glider -> Sensor [*];
+    composition Glider -> Hub [*];
+    composition Glider -> Database [*];
+    composition Hub -> Glider [*];
+    composition Hub -> Database [*];
+}

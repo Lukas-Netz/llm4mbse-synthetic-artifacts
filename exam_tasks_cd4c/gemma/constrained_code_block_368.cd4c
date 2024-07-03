@@ -1,0 +1,50 @@
+
+
+classdiagram VirtualRealityForensicScienceSimulations {
+
+  class CrimeScene {
+    String location;
+    String description;
+  }
+
+  class Suspect {
+    String name;
+    int age;
+    List<String> aliases;
+  }
+
+  class Evidence {
+    String type;
+    String description;
+  }
+
+  class ForensicScientist {
+    String name;
+    List<String> skills;
+  }
+
+  class Simulation {
+    void start();
+    void pause();
+    void stop();
+    List<CrimeScene> crimeScenes;
+    List<Suspect> suspects;
+    List<Evidence> evidence;
+  }
+
+  composition Simulation -> (has) CrimeScene [0..*]
+  abstract  
+  
+  
+
+  {
+    
+  
+  
+ordered
+  }
+
+  
+
+;
+}

@@ -1,0 +1,74 @@
+
+classdiagram SmartContractsSystem {
+
+    class SmartContractsSystem {
+      ContractsStorage contractsStorage;
+      PartiesStorage partiesStorage;
+      ContractsStatusTracker contractsStatusTracker;
+      ReportGenerator reportGenerator;
+      NotificationService notificationService;
+    }
+
+    class ContractsStorage {
+      void addContract(Contract contract);
+      void removeContract(Contract contract);
+      Contract getContract(String contractId);
+      List<Contract> getAllContracts();
+    }
+
+    class PartiesStorage {
+      void addParty(Party party);
+      void removeParty(Party party);
+      Party getParty(String partyId);
+      List<Party> getAllParties();
+    }
+
+    class ContractsStatusTracker {
+      void updateContractStatus(Contract contract, ContractStatus status);
+      ContractStatus getContractStatus(String contractId);
+      int getActiveContractsCount();
+      int getTerminatedContractsCount();
+      int getExpiredContractsCount();
+    }
+
+    class ReportGenerator {
+      void generateContractsReport();
+      void generateContractsTermsReport();
+    }
+
+    class NotificationService {
+      void sendNotification(Party party, ContractStatus status);
+    }
+
+    class Contract {
+      String contractId;
+      String contractTerms;
+      Party[] partiesInvolved;
+      ContractStatus status;
+    }
+
+    class Party {
+      String partyId;
+      String partyName;
+    }
+
+    class ContractStatus {
+      enum StatusType
+     						;
+      StatusType active;
+      StatusType terminated;
+      StatusType expired;
+    }
+
+  composition SmartContractsSystem -> (has) ContractsStorage;
+  composition SmartContractsSystem -> (has) PartiesStorage;
+  composition SmartContractsSystem -> (has) ContractsStatusTracker;
+  composition SmartContractsSystem -> (has) ReportGenerator;
+  composition SmartContractsSystem -> (has) NotificationService;
+
+  association ContractsStorage -> Contract [*];
+  association PartiesStorage -> Party [*];
+  association ContractsStatusTracker -> Contract [*];
+  association ReportGenerator -> ContractsReport;
+  association NotificationService -> Contract [*];
+}

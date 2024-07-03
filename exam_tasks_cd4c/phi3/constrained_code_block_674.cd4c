@@ -1,0 +1,59 @@
+
+classdiagram LaserProjectionMapping {
+
+    class LaserProjectionMappingSystem {
+      List<Projector> projectors;
+      MediaServer mediaServer;
+      Computer computer;
+    }
+
+    class Projector {
+      String identifier;
+      ProjectorType type;
+      ProjectorSettings settings;
+      void connect(MediaServer mediaServer);
+      void connect(Computer computer);
+      void renderContent(Content content);
+    }
+
+    class MediaServer {
+      void streamContent(Projector projector, Content content);
+    }
+
+    class Computer {
+      void displayContent(Projector projector, Content content);
+    }
+
+    class Content {
+      String format;
+      ContentType type;
+    }
+
+    class ProjectorType {
+      String name;
+    }
+
+    class ProjectorSettings {
+      int resolution;
+      int brightness;
+      boolean colorCorrection;
+    }
+
+    class ContentType {
+      String name;
+    }
+
+    enum ContentType {
+      Video, Image,  ThreeDModel;
+    }
+
+    enum ProjectorType {
+      DLP, LCD, Laser;
+    }
+
+  association LaserProjectionMappingSystem -> [has] Projector;
+  association LaserProjectionMappingSystem -> [has] MediaServer;
+  association LaserProjectionMappingSystem -> [has] Computer;
+  association Projector -> [has] ProjectorSettings;
+  association Content -> [has] ContentType;
+}

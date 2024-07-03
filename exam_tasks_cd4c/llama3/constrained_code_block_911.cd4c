@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram SelfLearningRobot  {
+
+  class Robot  {
+    String name;
+    String uniqueIdentifier;
+    Episode currentEpisode;
+    RuleSet knowledge;
+    GoalSet goals;
+    State currentState;
+  }
+
+  class Episode  {
+    ActionSequence actions;
+    OutcomeSequence outcomes;
+  }
+
+  class ActionSequence  {
+    Action  [ ] actions;
+  }
+
+  class OutcomeSequence  {
+    Outcome  [ ] outcomes;
+  }
+
+  class RuleSet  {
+    Rule  [ ] rules;
+  }
+
+  class GoalSet  {
+    Goal  [ ] goals;
+  }
+
+  class State  {
+    Position position;
+    Orientation orientation;
+    String additionalInfo;
+  }
+
+  class Position  {
+    double xCoordinate;
+    double yCoordinate;
+  }
+
+  class Orientation  {
+    double angle;
+  }
+
+  class Action  {
+    State fromState;
+    State toState;
+  }
+
+  class Outcome  {
+    State state;
+    double reward;
+  }
+
+  class Rule  {
+    Condition condition;
+    Action action;
+  }
+
+  class Condition  {
+    State state;
+    boolean value;
+  }
+
+  composition Robot  ->  (has) Episode;
+  composition Robot  ->  (has) RuleSet;
+  composition Robot  ->  (has) GoalSet;
+  composition Robot  ->  (has) State;
+  composition Episode  ->  (has) ActionSequence;
+  composition Episode  ->  (has) OutcomeSequence;
+  composition RuleSet  ->  (has) Rule  [ * ];
+  }

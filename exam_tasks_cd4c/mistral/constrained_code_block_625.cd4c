@@ -1,0 +1,40 @@
+
+classdiagram SmartGrid {
+
+  class ESU {
+    int capacityKwh;
+    void charge();
+    void discharge();
+  }
+
+  class EDC {
+    -> ESU [*];
+    -> ECP [*];
+    void distributeEnergy();
+  }
+
+  class ECP {
+    String uniqueIdentifier;
+    ConsumptionPattern consumptionPattern;
+  }
+
+  class WeatherStation {
+    WeatherData weatherData;
+  }
+
+  class ConsumptionPattern {
+    int baseLoad;
+    int peakLoad;
+    int offPeakLoad;
+  }
+
+  class WeatherData {
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  composition SmartGrid -> EDC [*];
+  composition EDC -> ESU [*];
+  composition EDC -> ECP [*];
+}

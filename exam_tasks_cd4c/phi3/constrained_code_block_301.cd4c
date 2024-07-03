@@ -1,0 +1,59 @@
+
+classdiagram DigitalSignagePlatform {
+
+    class DigitalSignagePlatform {
+      List<Screen> screens;
+      List<Zone> zones;
+    }
+
+    class Screen {
+      String uniqueId;
+      Location location;
+      List<ContentItem> contentItems;
+      void displayContent(ContentItem contentItem);
+    }
+
+    class ContentItem {
+      String title;
+      String description;
+      ContentType type;
+    }
+
+    class ContentType {
+      String typeName;
+    }
+
+    class Image extends ContentType {
+      String imageUrl;
+    }
+
+    class Video extends ContentType {
+      String videoUrl;
+    }
+
+    class Text extends ContentType {
+      String textContent;
+    }
+
+    class Zone {
+      String name;
+      String description;
+      List<Screen> screens;
+    }
+
+    class Admin {
+      void createContentItem(ContentItem contentItem);
+      void editContentItem(ContentItem contentItem);
+      void deleteContentItem(ContentItem contentItem);
+      void createZone(Zone zone);
+      void editZone(Zone zone);
+      void deleteZone(Zone zone);
+    }
+
+    association DigitalSignagePlatform -> List<<Screen>>;
+    association DigitalSignagePlatform -> List<<Zone>>;
+    association Screen -> ContentItem [*];
+    association Zone -> Screen [*];
+    composition Zone -> DigitalSignagePlatform;
+    composition DigitalSignagePlatform -> Admin;
+}

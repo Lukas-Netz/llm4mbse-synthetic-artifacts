@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram LegalAdvicePlatform  {
+
+  class Lawyer  {
+    String name;
+    LawArea expertise;
+    int rating;
+  }
+
+  class Client  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Case  {
+    String description;
+    CaseStatus status;
+    List<Document> documents;
+    Lawyer assignedLawyer;
+    Client assignedClient;
+  }
+
+  class Document  {
+    String content;
+  }
+
+  class LawArea  {
+    String name;
+  }
+
+  class CaseStatus  {
+    String name;
+  }
+
+  composition Lawyer -> Case [1..*];
+  composition Client -> Case [1..*];
+  composition Case -> Lawyer [1];
+  composition Case -> Client [1];
+  composition Lawyer -> LawArea [1];
+  composition Lawyer -> Rating [1];
+  composition Rating -> Lawyer [1];
+
+  <<stereotype>> interface Rating {
+    void updateRating(int newRating);
+  }
+}

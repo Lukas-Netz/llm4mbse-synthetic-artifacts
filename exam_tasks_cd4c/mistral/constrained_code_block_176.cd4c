@@ -1,0 +1,38 @@
+
+classdiagram InvoiceProcessing {
+
+  class Supplier {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Invoice {
+    String uniqueInvoiceNumber;
+    Supplier supplier;
+    Date invoiceDate;
+    double totalAmount;
+    InvoiceStatus paymentStatus;
+  }
+
+  enum InvoiceStatus {
+    Paid, Pending;
+  }
+
+  class InvoiceRepository {
+    Invoice [][] invoices;
+  }
+
+  class InvoiceService {
+    InvoiceRepository invoiceRepository;
+
+    void storeInvoice(Invoice invoice);
+    Invoice retrieveInvoice(String uniqueInvoiceNumber);
+    void updatePaymentStatus(String uniqueInvoiceNumber, InvoiceStatus newStatus);
+    double getTotalPaidAmount();
+    double getTotalPendingAmount();
+    void sendReminder(String uniqueInvoiceNumber);
+  }
+
+  composition InvoiceProcessing -> InvoiceRepository;
+  association Invoice -> Supplier;
+}

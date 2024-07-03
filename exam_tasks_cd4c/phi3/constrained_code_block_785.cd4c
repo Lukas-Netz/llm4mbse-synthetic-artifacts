@@ -1,0 +1,57 @@
+
+classdiagram DroneBasedRoofInspectionSystem {
+
+    class Drone {
+      String droneId;
+      int batteryLevel;
+      Camera camera;
+    }
+
+    class GroundStation {
+      String stationName;
+      String location;
+      CommunicationInterface communicationInterface;
+    }
+
+    class Database {
+      List<Building> buildings;
+      void addBuilding(Building building);
+      void removeBuilding(Building building);
+      Report getReport(String buildingAddress);
+    }
+
+    class Building {
+      String address;
+      String type;
+      String roofType;
+    }
+
+    class Camera {
+      int resolution;
+      double fieldOfView;
+    }
+
+    class CommunicationInterface {
+      void sendPhoto(String photoData);
+      String receivePhoto();
+    }
+
+    class Report {
+      String reportData;
+    }
+
+    association Drone 
+      -> GroundStation [*];
+
+    association GroundStation 
+      -> Database [*];
+
+    association Database 
+      -> Building [*];
+
+    composition Database -> List<<Building>>;
+
+    composition Drone -> Camera;
+
+    composition GroundStation -> CommunicationInterface;
+}

@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram PollutionMonitoringSystem  {
+
+  class Sensor  {
+    String pollutant;  (PM2_5      )
+    double concentration;
+  }
+
+  class MonitoringStation  {
+    String uniqueIdentifier;
+    Sensor  sensors   ;
+  }
+
+  class CentralDatabase  {
+    Map<String, Sensor> sensorData;
+  }
+
+  class Dashboard  {
+    double airQualityIndex;
+  }
+
+  class AirQualityIndex  {
+    String category;
+  }
+
+  class Alert  {
+    String message;
+  }
+
+  composition MonitoringStation  ->  (has) Sensor   ;
+  composition CentralDatabase  ->  (has) Map  ;
+  composition Dashboard  ->  (has) AirQualityIndex  ;
+
+  association MonitoringStation  ->  (tracks) CentralDatabase  ;
+  association CentralDatabase  ->  (provides) Dashboard  ;
+  association Dashboard  ->  (displays) AirQualityIndex  ;
+
+  enum AirQualityIndexCategory  {
+    GOOD, MODERATE, UNHEALTHY_SENSITIVE, UNHEALTHY, VERY_UNHEALTHY, HAZARDOUS;
+  }
+}

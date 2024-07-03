@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram CarbonCredits  {
+
+  class CarbonCreditRegistry  {
+    CarbonCredit[] credits;
+  }
+
+  class CarbonCreditHolder  {
+    String name;
+    String address;
+    String contactInfo;
+    CarbonCredit[] credits;
+  }
+
+  class CarbonCreditTransaction  {
+    Date date;
+    Time time;
+    CarbonCredit credit;
+    CarbonCreditHolder from;
+    CarbonCreditHolder to;
+  }
+
+  class CarbonCreditCertificate  {
+    String serialNumber;
+    CarbonCredit credit;
+  }
+
+  class CarbonCredit  {
+    String type;
+    int quantity;
+    Date expirationDate;
+  }
+
+  class CarbonCreditType  {
+    String name;
+  }
+
+  <<stereotype>> composition CarbonCreditRegistry -> CarbonCredit[*];
+  <<stereotype>> composition CarbonCreditHolder -> CarbonCredit[*];
+  <<stereotype>> composition CarbonCreditTransaction -> CarbonCredit;
+  <<stereotype>> composition CarbonCreditCertificate -> CarbonCredit;
+
+  <<stereotype>> association CarbonCreditRegistry -> CarbonCreditType[*];
+  <<stereotype>> association CarbonCreditHolder -> CarbonCreditType[*];
+  <<stereotype>> association CarbonCreditTransaction -> CarbonCreditType[*];
+  <<stereotype>> association CarbonCreditCertificate -> CarbonCreditType[*];
+
+  <<stereotype>> enum CarbonCreditStatus { Created, Transferred, Expired, Invalidated; }
+  <<stereotype>> enum CarbonCreditType { Renewable, NonRenewable; }
+}

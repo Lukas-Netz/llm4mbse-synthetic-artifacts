@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram RecruitmentPlatform  {
+
+  class JobSeeker  {
+    String name;
+    String email;
+    Resume resume;
+  }
+
+  class Employer  {
+    String name;
+    String email;
+    Company company;
+  }
+
+  class JobPosting  {
+    String title;
+    String description;
+    Requirements requirements;
+    JobCategory category;
+  }
+
+  class Resume  {
+    String skills;
+    String experience;
+    String education;
+  }
+
+  class Company  {
+    String name;
+    String industry;
+  }
+
+  class JobCategory  {
+    String name;
+  }
+
+  class Requirements  {
+    String skills;
+    String experience;
+    String education;
+  }
+
+  class Application  {
+    JobSeeker jobSeeker;
+    JobPosting jobPosting;
+    Resume resume;
+    String coverLetter;
+  }
+
+  composition JobPosting -> Employer;
+  composition JobPosting -> JobCategory;
+  composition Application -> JobSeeker;
+  composition Application -> JobPosting;
+  composition Employer -> Application[*];
+}
+

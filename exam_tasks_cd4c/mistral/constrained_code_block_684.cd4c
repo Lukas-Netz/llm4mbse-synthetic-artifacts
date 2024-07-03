@@ -1,0 +1,66 @@
+
+classdiagram PrecisionViticulture {
+
+  class Vineyard {
+    String name;
+    Sensor [][ ] sensors;
+    Drone [ ] drones;
+  }
+
+  abstract class Sensor {
+    String type;
+    float temperature;
+    float humidity;
+    float soilMoisture;
+  }
+
+  class TemperatureSensor extends Sensor {
+  }
+
+  class HumiditySensor extends Sensor {
+  }
+
+  class SoilMoistureSensor extends Sensor {
+  }
+
+  class Drone {
+    String model;
+    String batteryLevel;
+    void captureImages();
+    void detectIssues();
+  }
+
+  class CentralHub {
+    Vineyard [ ] vineyards;
+    Database database;
+    void collectData();
+    void provideRecommendations();
+  }
+
+  class Database {
+    GrapeVariety [ ] varieties;
+    void getOptimalGrowingConditions(GrapeVariety variety);
+  }
+
+  class GrapeVariety {
+    String name;
+    float optimalTemperature;
+    float optimalHumidity;
+    float optimalSoilMoisture;
+  }
+
+  class Farmer {
+    MobileApp mobileApp;
+    void viewData();
+    void receiveRecommendations();
+  }
+
+  class MobileApp {
+  }
+
+  composition Vineyard -> Sensor [*];
+  composition Vineyard -> Drone [*];
+  association CentralHub -> Vineyard [*];
+  association Database -> GrapeVariety [*];
+  association Farmer -> MobileApp;
+}

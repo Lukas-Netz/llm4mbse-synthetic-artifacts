@@ -1,0 +1,515 @@
+
+classdiagram AutonomousUnderwaterExplorationSystem {
+
+    class Submarine {
+      String name;
+      String uniqueIdentifier;
+      Position currentPosition;
+      void move(Direction direction);
+      void collectData(Sensor sensor);
+      void sendData(Hub hub);
+    }
+
+    class Sensor {
+      String type;
+      SensorLocation location;
+      DataType dataType;
+    }
+
+    class Sonar extends Sensor {
+      Range data;
+    }
+
+    class Camera extends Sensor {
+      Image data;
+    }
+
+    class WaterQuality extends Sensor {
+      pHLevel data;
+    }
+
+    class SensorLocation {
+      String locationName;
+    }
+
+    class Hub {
+      void receiveData(Submarine submarine);
+      void displayData(Submarine submarine);
+    }
+
+    enum Direction {
+      Up, Down, Forward, Backward, Left, Right
+   
+   
+  
+(class, association, composition, aggregation, dependency, inheritance, interface)
+
+   
+;
+
+    association Submarine 
+       
+
+;
+
+    composition Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+   
+}
+
+enum Direction {
+  Up, Down, Forward, Backward, Left, Right
+
+
+(class, association, composition, aggregation, dependency, inheritance, interface)
+
+
+;
+
+    composition Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+   
+}
+
+enum Direction {
+  Up, Down, Forward, Backward, Left, Right
+
+
+(class, association, composition, aggregation, dependency, inheritance, interface)
+
+
+;
+
+    composition Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+ Written by
+
+   
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+   
+}
+
+enum Direction {
+  Up, Down, Forward, Backward, Left, Right
+
+
+(class, association, composition, aggregation, dependency, inheritance, interface)
+
+
+;
+
+    composition Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    association Submarine 
+       
+
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+    interface Submarine 
+
+   
+
+   
+;
+
+   
+}
+
+    interface Submarine 
+
+   
+
+   
+{
+
+    interface Submarine 
+   
+   
+  ;}
+    interface Submarine 
+  
+  
+  
+ ;}

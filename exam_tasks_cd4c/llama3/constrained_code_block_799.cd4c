@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram RoboticCattleHerdingSystem  {
+
+  class CentralControlUnit  {
+    Database database;
+    RoboticCattleHerder  [] roboticCattleHerders;
+    void assignHerderToCattle(Cattle cattle, RoboticCattleHerder herder);
+    void monitorHerdStatus();
+  }
+
+  abstract class RoboticCattleHerder  {
+    String uniqueIdentifier;
+  }
+
+  class Drone extends RoboticCattleHerder  {
+    int altitude;
+    int speed;
+  }
+
+  class Tractor extends RoboticCattleHerder  {
+    int traction;
+    int towingCapacity;
+  }
+
+  class Database  {
+    Cattle  [] cattle;
+    void createCattle(Cattle cattle);
+    void updateCattle(Cattle cattle);
+  }
+
+  class Cattle  {
+    String breed;
+    int age;
+    HealthStatus healthStatus;
+  }
+
+  enum HealthStatus  {
+    Healthy, Sick;
+  }
+
+  composition CentralControlUnit -> (has) Database;
+  composition CentralControlUnit -> (has) RoboticCattleHerder  [*];
+  composition Database -> Cattle  [*];
+  composition RoboticCattleHerder -> Cattle  [1..*];
+}

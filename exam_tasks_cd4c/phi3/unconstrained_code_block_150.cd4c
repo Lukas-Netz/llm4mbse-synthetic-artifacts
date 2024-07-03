@@ -1,0 +1,91 @@
+
+classdiagram SocialMediaManagementSystem {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void createAccount();
+      void editPost(Post post);
+      void deletePost(Post post);
+    }
+
+    class Post {
+      String content;
+      String category;
+      List<String> tags;
+      User author;
+      List<Like> likes;
+      List<Comment> comments;
+      List<Share> shares;
+      void addLike(Like like);
+      void addComment(Comment comment);
+      void addShare(Share share);
+      void deleteLike(Like like);
+      void deleteComment(Comment comment);
+      void deleteShare(Share share);
+      void trackPerformance();
+    }
+
+    class Like {
+      User likee;
+      Post likedPost;
+    }
+
+    class Comment {
+      User commenter;
+      Post commentedPost;
+      String commentContent;
+    }
+
+    class Share {
+      User sharer;
+      Post sharedPost;
+    }
+
+    class Analytics {
+      Map<Post, PerformanceMetrics> postPerformance;
+      Map<User, EngagementMetrics> userEngagement;
+      void generateReport();
+    }
+
+    class ECommerceIntegration {
+      Map<Post, SalesData> salesData;
+      void trackSales();
+    }
+
+    class Notification {
+      User recipient;
+      Post post;
+      void sendNotification();
+    }
+
+    class Admin {
+      List<User> managedUsers;
+      List<Post> managedPosts;
+      List<Analytics> managedAnalytics;
+      void manageAccounts();
+      void managePosts();
+      void manageAnalytics();
+    }
+
+    class SocialMediaManagementSystem {
+      List<User> users;
+      List<Post> posts;
+      List<Admin> admins;
+      ECommerceIntegration eCommerceIntegration;
+      Analytics analytics;
+      Notification notification;
+    }
+
+    composition User -> SocialMediaManagementSystem;
+    composition User -> Admin;
+    composition Post -> SocialMediaManagementSystem;
+    composition Post -> Analytics;
+    composition Post -> ECommerceIntegration;
+    composition Post -> Notification;
+    composition Analytics -> SocialMediaManagementSystem;
+    composition Admin -> SocialMediaManagementSystem;
+    composition ECommerceIntegration -> SocialMediaManagementSystem;
+    composition Notification -> SocialMediaManagementSystem;
+}

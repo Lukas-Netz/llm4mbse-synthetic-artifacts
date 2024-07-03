@@ -1,0 +1,40 @@
+
+
+classdiagram DigitalSignageSolution {
+
+  class ContentManagementSystem {
+    StoreContent storeContent;
+    ScheduleContent scheduleContent;
+    TrackContent trackContent;
+  }
+
+  class Player {
+    PlayContent playContent;
+    HandleContent handleContent;
+    RemoteControl remoteControl;
+  }
+
+  class Screen {
+    DisplayContent displayContent;
+    RemoteControl remoteControl;
+    ConfigureContent configureContent;
+  }
+
+  class Network {
+    Connect connectDevices;
+    PrioritizeContent prioritizeContent;
+    Authenticate authenticate;
+    Authorize authorize;
+  }
+
+  composition ContentManagementSystem -> (has) StoreContent;
+  composition ContentManagementSystem -> (has) ScheduleContent;
+  composition ContentManagementSystem -> (has) TrackContent;
+  composition Player -> (has) PlayContent;
+  composition Player -> (has) HandleContent;
+  composition Screen -> (has) DisplayContent;
+  composition Network -> (has) ConnectDevices;
+  association Network -> ContentManagementSystem [1..*];
+  association Network -> Player [1..*];
+  association Network -> Screen [1..*];
+}

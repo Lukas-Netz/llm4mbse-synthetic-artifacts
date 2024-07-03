@@ -1,0 +1,35 @@
+
+
+classdiagram QuantumEncryptionSystem {
+
+    class QuantumEncryptionSystem {
+      Sender sender;
+      Receiver receiver;
+      QKDModule qkdModule;
+    }
+
+    class Sender {
+      String uniqueIdentifier;
+      String name;
+      String password;
+    }
+
+    class Receiver {
+      String uniqueIdentifier;
+      String name;
+      String password;
+    }
+
+    class QKDModule {
+      void generateKeys();
+      void distributeKeys();
+    }
+
+    enum SenderType { Human, Machine; }
+
+    enum ReceiverType { Human, Machine; }
+
+  composition QuantumEncryptionSystem -> (has) Sender;
+  composition QuantumEncryptionSystem -> (has) Receiver;
+  composition QuantumEncryptionSystem -> (has) QKDModule;
+}

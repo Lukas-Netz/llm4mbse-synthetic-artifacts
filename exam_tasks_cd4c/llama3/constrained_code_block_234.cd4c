@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram IPA  {
+
+  class Workflow  {
+    String uniqueIdentifier;
+    Task  task  ; 
+  }
+
+  class Task  {
+    Workflow  workflow;
+    Activity  activity  ; 
+    boolean isManual;
+  }
+
+  class Activity  {
+    Task  task;
+    ActivityType type;
+  }
+
+  enum ActivityType  {
+    DataProcessing,
+    DecisionMaking,
+    Communication;
+  }
+
+  class UserInterface  {
+    void createWorkflow(Workflow workflow);
+    void editWorkflow(Workflow workflow);
+    void manageWorkflow(Workflow workflow);
+  }
+
+  composition Workflow -> Task;
+  composition Task -> Activity;
+  composition UserInterface -> Workflow;
+}

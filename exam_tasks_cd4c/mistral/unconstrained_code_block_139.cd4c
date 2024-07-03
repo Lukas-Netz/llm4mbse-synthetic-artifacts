@@ -1,0 +1,44 @@
+
+classdiagram DigitalTwin {
+
+  class Plant {
+    String uniqueIdentifier;
+    PlantStatus status;
+  }
+
+  class ProductionLine {
+    String uniqueIdentifier;
+    ProductionLineStatus status;
+  }
+
+  class Machine {
+    String uniqueIdentifier;
+    MachineType type;
+    MachineStatus status;
+  }
+
+  enum PlantStatus {
+    Operational, NonOperational;
+  }
+
+  enum ProductionLineStatus {
+    Operational, NonOperational;
+  }
+
+  enum MachineStatus {
+    Idle, Running;
+  }
+
+  enum MachineType {
+    Lathe, MillingMachine, DrillingMachine, GrindingMachine;
+  }
+
+  class Sensor {
+    Machine associatedMachine;
+    realTimeData data;
+  }
+
+  composition Plant -> ProductionLine [*];
+  composition ProductionLine -> Machine [*];
+  association Sensor -- Machine;
+}

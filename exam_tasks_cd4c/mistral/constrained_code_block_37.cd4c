@@ -1,0 +1,52 @@
+
+classdiagram RailwayManagementSystem {
+
+  class RailwayLine {
+    String id;
+    TrackCondition condition;
+  }
+
+  class TrackCondition {
+    enum ConditionStatus;
+    enum MaintenanceStatus;
+  }
+
+  class Train {
+    String id;
+    TrainStatus status;
+    Track track;
+  }
+
+  class TrainStatus {
+    enum StatusType;
+    enum MaintenanceStatus;
+  }
+
+  class Track {
+    RailwayLine railwayLine;
+  }
+
+  class RailwayNetwork {
+    RailwayLine [ ] lines;
+  }
+
+  class User {
+    String id;
+    String role;
+  }
+
+  class RealTimeInfo {
+    Train [ ] trains;
+    RailwayLine [ ] lines;
+  }
+
+  class HistoricalData {
+    Train [ ] trains;
+    RailwayLine [ ] lines;
+  }
+
+  composition RailwayNetwork -> RailwayLine [*];
+  composition Train -> Track;
+  association User -- RealTimeInfo;
+  association User -- HistoricalData;
+}

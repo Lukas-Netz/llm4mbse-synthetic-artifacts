@@ -1,0 +1,38 @@
+
+classdiagram BiometricAuthentication {
+
+  class BiometricDevice {
+    String uniqueIdentifier;
+    void captureBiometricData();
+    void processBiometricData();
+  }
+
+  class FingerprintScanner extends BiometricDevice {}
+  class FacialRecognitionCamera extends BiometricDevice {}
+  class IrisScanner extends BiometricDevice {}
+
+  class AuthenticationServer {
+    -> User [*];
+    void verifyIdentity(BiometricDevice device);
+    void addUser(User user);
+    void updateBiometricTemplates(User user);
+  }
+
+  class User {
+    String uniqueIdentifier;
+    -> BiometricTemplate [*];
+  }
+
+  class BiometricTemplate {
+    String biometricType;
+    byte[] biometricData;
+  }
+
+  class FingerprintTemplate extends BiometricTemplate {}
+  class FacialRecognitionTemplate extends BiometricTemplate {}
+  class IrisTemplate extends BiometricTemplate {}
+
+  composition AuthenticationServer -> User [*];
+  composition AuthenticationServer -> BiometricTemplate [*];
+  association BiometricDevice -- AuthenticationServer;
+}

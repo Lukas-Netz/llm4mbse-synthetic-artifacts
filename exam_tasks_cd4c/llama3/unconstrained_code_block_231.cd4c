@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram DigitalWritingWorkshop  {
+
+  class Workshop  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Session  {
+    String title;
+    Date date;
+    -> Attendee[*];
+    -> Discussion[*];
+  }
+
+  class Attendee  {
+    String username;
+    String email;
+    -> Session[*];
+  }
+
+  class Discussion  {
+    String title;
+    String description;
+    -> Comment[*];
+  }
+
+  class Comment  {
+    String text;
+    Date timestamp;
+  }
+
+  class Instructor  {
+    String name;
+    String bio;
+  }
+
+  class WorkshopInstructor  {
+    Workshop workshop;
+    Instructor instructor;
+  }
+
+  class SessionInstructor  {
+    Session session;
+    Instructor instructor;
+  }
+
+  class SessionDiscussionModerator  {
+    Session session;
+    Instructor instructor;
+  }
+
+  composition Workshop -> Session[*];
+  composition Session -> Attendee[*];
+  composition Session -> Discussion[*];
+  composition Attendee -> Session[*];
+  composition Discussion -> Comment[*];
+  composition Workshop -> Instructor[*];
+  composition Session -> Instructor[*];
+  composition Session -> Instructor[*];
+}

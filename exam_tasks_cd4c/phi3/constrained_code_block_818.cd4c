@@ -1,0 +1,37 @@
+
+classdiagram QuantumSecureSystem {
+
+    class KeyManager {
+      void generateKey();
+      void revokeKey(String keyId);
+      void distributeKey(String keyId, DataEncryptor encryptor);
+    }
+
+    class DataEncryptor {
+      String encryptionKey;
+      int dataSize;
+      EncryptionAlgorithm algorithm;
+      void encryptData(byte[] data);
+      void decryptData(byte[] encryptedData);
+      void retrieveKey(KeyManager keyManager);
+    }
+
+    class SecureStorage {
+      int storageCapacity;
+      StorageRetrievalMethod retrievalMethod;
+      void storeData(byte[] encryptedData);
+      byte[] retrieveData(String keyId);
+    }
+
+    enum EncryptionAlgorithm {
+      AES, RSA, ECC;
+    }
+
+    enum StorageRetrievalMethod {
+      DirectAccess, IndirectAccess;
+    }
+
+    association KeyManager -> DataEncryptor [*];
+    association KeyManager -> SecureStorage [*];
+    association DataEncryptor -> SecureStorage [*];
+}

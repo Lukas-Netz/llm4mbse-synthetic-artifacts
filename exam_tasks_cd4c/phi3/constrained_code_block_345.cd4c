@@ -1,0 +1,37 @@
+
+classdiagram PhotoEditingPlatform {
+
+    class User {
+      String username;
+      String password;
+      List<Photo> photos;
+    }
+
+    class Photo {
+      String title;
+      String description;
+      String identifier;
+      String format;
+      List<String> tags;
+      List<Filter> filters;
+      List<Effect> effects;
+    }
+
+    class Filter {
+      String name;
+      String adjustmentType;
+    }
+
+    class Effect {
+      String name;
+    }
+
+    class SocialMedia {
+      void sharePhoto(Photo photo);
+    }
+
+    association User -> List<<Photo>>;
+    association Photo -> List<<Filter>>;
+    association Photo -> List<<Effect>>;
+    association Photo -> SocialMedia;
+}

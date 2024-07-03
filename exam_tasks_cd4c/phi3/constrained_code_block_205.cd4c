@@ -1,0 +1,39 @@
+
+classdiagram AutonomousDeliverySystem {
+
+    class AutonomousVehicle {
+      String vehicleId;
+      int maxPackages = 10;
+      List<Package> packages;
+      SensorSystem sensorSystem;
+      NavigationSystem navigationSystem;
+    }
+
+    class Package {
+      String packageId;
+      String destination;
+    }
+
+    class DeliveryStation {
+      String stationName;
+      Location location;
+      List<Package> packages;
+    }
+
+    class CentralManagementSystem {
+      void assignPackage(Package package, AutonomousVehicle vehicle);
+      void assignStation(Package package, DeliveryStation station);
+      void monitorDeliveryStatus(AutonomousVehicle vehicle);
+      void monitorDeliveryStatus(DeliveryStation station);
+      CustomerInterface customerInterface;
+    }
+
+    class CustomerInterface {
+      void trackPackage(Package package);
+      String getPackageStatus(Package package);
+    }
+
+    association AutonomousVehicle -> CentralManagementSystem [*];
+    association DeliveryStation -> CentralManagementSystem [*];
+    composition CentralManagementSystem -> CustomerInterface [0..1];
+}

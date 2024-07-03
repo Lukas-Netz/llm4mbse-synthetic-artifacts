@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram VotingSystem  {
+
+  class Voter  {
+    String id;
+    String name;
+  }
+
+  class Election  {
+    String name;
+    Date startDate;
+    Date endDate;
+  }
+
+  class VotingOption  {
+    String text;
+    boolean isWinner;
+  }
+
+  class Vote  {
+    Voter voter;
+    VotingOption option;
+  }
+
+  class Administrator  {
+    String id;
+    String name;
+  }
+
+  class Blockchain  {
+    Vote[] votes;
+    Election[] elections;
+  }
+
+  class ElectionResult  {
+    Election election;
+    VotingOption winner;
+  }
+
+  class VotingSystem  {
+    Blockchain blockchain;
+    Administrator[] administrators;
+  }
+
+  composition VotingSystem -> Blockchain;
+  composition VotingSystem -> Administrator[*];
+  composition Blockchain -> Vote[*];
+  composition Blockchain -> Election[*];
+  composition Election -> VotingOption[*];
+  composition Election -> Vote[*];
+  composition Administrator -> VotingSystem[*];
+  composition ElectionResult -> Election;
+  composition ElectionResult -> VotingOption;
+}

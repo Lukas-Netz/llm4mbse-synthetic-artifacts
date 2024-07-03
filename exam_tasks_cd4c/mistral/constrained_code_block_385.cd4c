@@ -1,0 +1,45 @@
+
+classdiagram VirtualEscapeRoom {
+
+  class VirtualEscapeRoom {
+    String name;
+    String uniqueIdentifier;
+    String theme;
+    Timer timer;
+    Puzzle [ ] puzzles;
+  }
+
+  class Puzzle {
+    String uniqueIdentifier;
+    DifficultyLevel difficulty;
+    String solution;
+    boolean isSolved;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class Player {
+    String uniqueIdentifier;
+    int score;
+    VirtualEscapeRoom room;
+  }
+
+  class Timer {
+    int time;
+    boolean isExpired;
+  }
+
+  class SystemAdmin {
+    void createRoom(VirtualEscapeRoom room);
+    void editRoom(VirtualEscapeRoom room);
+    void deleteRoom(VirtualEscapeRoom room);
+    void managePlayerScores(Player player);
+    void manageRoomSettings(VirtualEscapeRoom room);
+  }
+
+  composition VirtualEscapeRoom -> Timer;
+  composition VirtualEscapeRoom -> Puzzle [*];
+  composition Player -> VirtualEscapeRoom;
+}

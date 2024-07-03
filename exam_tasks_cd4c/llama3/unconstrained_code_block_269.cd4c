@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram CivicEngagement  {
+
+  class Citizen  {
+    String uniqueIdentifier;
+    Proposal[] proposalsSubmitted;
+    Vote[] votesCast;
+    Discussion[] discussionsParticipated;
+  }
+
+  class Proposal  {
+    String title;
+    String description;
+    ProposalStatus status;
+    Category category;
+  }
+
+  class Discussion  {
+    Proposal proposal;
+    Comment[] comments;
+  }
+
+  class Administrator  {
+    String uniqueIdentifier;
+    Proposal[] proposalsManaged;
+    Discussion[] discussionsManaged;
+    EngagementMetric[] engagementMetrics;
+  }
+
+  class EngagementMetric  {
+    int proposalsSubmitted;
+    int votesCast;
+    int commentsMade;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Vote  {
+    Proposal proposal;
+    Citizen citizen;
+  }
+
+  class Comment  {
+    Discussion discussion;
+    String text;
+  }
+
+  composition Citizen -> Proposal[*];
+  composition Citizen -> Vote[*];
+  composition Citizen -> Discussion[*];
+  composition Proposal -> Discussion[*];
+  composition Administrator -> Proposal[*];
+  composition Administrator -> Discussion[*];
+  composition Administrator -> EngagementMetric[*];
+  composition Discussion -> Comment[*];
+  composition Proposal -> Category[1];
+  composition Vote -> Proposal[1];
+  composition Comment -> Discussion[1];
+}

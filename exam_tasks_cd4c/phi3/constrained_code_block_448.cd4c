@@ -1,0 +1,90 @@
+
+classdiagram OnlineIndustrialDesignCourses {
+
+    class Course {
+      String title;
+      String description;
+      List<Topic> topics;
+      List<Instructor> instructors;
+      List<Student> enrolledStudents;
+      List<Assignment> assignments;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Course> coursesTaught;
+      List<Assignment> assignmentsGiven;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+      List<Assignment> submittedAssignments;
+      String progress;
+    }
+
+    class Topic {
+      String name;
+      List<Course> courses;
+    }
+
+    class Assignment {
+      String title;
+      String feedback;
+      String grade;
+      String submissionDate;
+      String dueDate;
+    }
+
+    association Course 
+      hasInstructors [many]
+      -> Instructor;
+
+    association Course 
+      hasTopics [many]
+      -> Topic;
+
+    association Course 
+      hasEnrolledStudents [many]
+      -> Student;
+
+    association Course 
+      hasAssignments [many]
+      -> Assignment;
+
+    association Instructor 
+      hasCoursesTaught [many]
+      -> Course;
+
+    association Instructor 
+      hasAssignmentsGiven [many]
+      -> Assignment;
+
+    association Student 
+      hasEnrolledCourses [many]
+      -> Course;
+
+    association Student 
+      hasSubmittedAssignments [many]
+      -> Assignment;
+
+    association Course 
+      hasMaterials [many]
+      -> Material;
+
+    association Student 
+      hasProgress [many]
+      -> Progress;
+
+    class Material {
+      String type;
+      String content;
+    }
+
+    class Progress {
+      String grade;
+      String completionStatus;
+    }
+}

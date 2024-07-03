@@ -1,0 +1,25 @@
+
+
+
+
+classdiagram RealTimeTranslationSystem  {
+
+  class DictionaryDatabase  {
+    Map<String, Map<String, String>> wordTranslations;  }
+
+  class TextProcessor  {
+    String[] tokenizeText(String text);  }
+
+  class Translator  {
+    String translateText(String text, Language from, Language to);  }
+
+  class UserInterface  {
+    void displayTranslatedText(String translatedText);  }
+
+  class Language  {
+    String code;  }
+
+  class Word  {
+    String text;  }
+
+  composition DictionaryDatabase -> (has) Map<<String, Map>>;  composition TextProcessor -> (has) String;  composition Translator -> (has) DictionaryDatabase;  composition UserInterface -> (has) Translator;  association Language -> (has) Word;  association Word -> (has) Language;  }

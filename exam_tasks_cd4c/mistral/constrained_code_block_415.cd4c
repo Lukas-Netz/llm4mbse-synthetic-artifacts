@@ -1,0 +1,54 @@
+
+classdiagram WritingWorkshop {
+
+  class Workshop {
+    String name;
+    String uniqueIdentifier;
+    Instructor [ ] instructors;
+  }
+
+  class User {
+    String username;
+    String email;
+    Session [ ] attendedSessions;
+  }
+
+  class Session {
+    String title;
+    Date date;
+    User [ ] attendees;
+    Discussion [ ] discussions;
+  }
+
+  class Discussion {
+    String title;
+    String description;
+    Comment [ ] comments;
+  }
+
+  class Comment {
+    String text;
+    Date timestamp;
+  }
+
+  class Instructor {
+    String name;
+    String bio;
+    Session [ ] createdSessions;
+  }
+
+  association Workshop --o000o- 											{ 											ordered						}
+   		;
+  association Workshop --o000o- 											{ 											ordered						}
+   		;
+  association Session --o000o- 											{ 											ordered						}
+   		;
+  association Session --o000o- 											{ 											ordered						}
+   		;
+  association User --o000o- 											{ 											ordered						}
+   		;
+  association Discussion --o000o- 										{ 											ordered						}
+   		;
+  association Comment --o000o- 											{ 											ordered						}
+   		;
+}

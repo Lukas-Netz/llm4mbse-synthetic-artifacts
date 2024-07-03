@@ -1,0 +1,79 @@
+
+classdiagram RailwayManagementSystem {
+
+    class RailwayNetwork {
+      TrainScheduler scheduler;
+      TrackMonitor monitor;
+      TrainMaintenayer trainMaintenayer;
+      TrackMaintenayer trackMaintenayer;
+      LineManager lineManager;
+      TrainManager trainManager;
+    }
+
+    class TrainScheduler {
+      void scheduleTrain(Train train, Line line, Time time);
+      void rescheduleTrain(Train train, Line line, Time time);
+      List<Train> getTrainSchedule(Line line);
+    }
+
+    class TrackMonitor {
+      void checkTrackCondition(Line line);
+      void reportTrackCondition(Line line);
+      List<Line> getAllLines();
+    }
+
+    class TrainMaintenayer {
+      void performMaintenance(Train train);
+      void scheduleMaintenance(Train train, Time time);
+      List<Train> getTrainsNeedingMaintenance();
+    }
+
+    class TrackMaintenayer {
+      void performMaintenance(Line line);
+      void scheduleMaintenance(Line line, Time time);
+      List<Line> getAllLinesNeedingMaintenance();
+    }
+
+    class LineManager {
+      void addLine(Line line);
+      void removeLine(Line line);
+      Line getLine(int lineId);
+    }
+
+    class TrainManager {
+      void addTrain(Train train);
+      void removeTrain(Train train);
+      Train getTrain(int trainId);
+    }
+
+    class Train {
+      int trainId;
+      Line assignedLine;
+      Time schedule;
+      boolean isOperational;
+    }
+
+    class Line {
+      int lineId;
+      String name;
+      List<Train> trains;
+    }
+
+    class Time {
+      int hour;
+      int minute;
+    }
+
+    association TrainScheduler -> RailwayNetwork;
+    association TrackMonitor -> RailwayNetwork;
+    association TrainMaintenayer -> RailwayNetwork;
+    association TrackMaintenayer -> RailwayNetwork;
+    association LineManager -> RailwayNetwork;
+    association TrainManager -> RailwayNetwork;
+
+    composition TrainScheduler -> Train;
+    composition TrackMonitor -> Line;
+    composition TrainMaintenayer -> Train;
+    composition TrackMaintenayer -> Line;
+   
+ }

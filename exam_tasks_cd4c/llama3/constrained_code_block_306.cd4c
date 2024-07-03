@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram PropertyManagement  {
+
+  class Property  {
+    String uniqueIdentifier;
+    String address;
+    Room  room  ;  }
+  class Room  {
+    String uniqueIdentifier;
+    String name;
+    int size;
+    Property  property;
+    Tenant  tenant  ;  }
+  class Tenant  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    Room  room  ;  }
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+  class MaintenanceSchedule  {
+    Date date;
+    Property  property;
+    Room  room;
+  }
+  class Rent  {
+    double amount;
+    Room  room;
+  }
+  class Report  {
+    String title;
+    String content;
+  }
+  composition Property  ->  (has) Room  [1..*];
+  composition Room  ->  (has) Tenant  [0..1];
+  composition Tenant  ->  (has) Room  [0..*];
+  composition Property  ->  (has) MaintenanceSchedule  [0..*];
+  composition Room  ->  (has) MaintenanceSchedule  [0..*];
+  composition Property  ->  (has) Rent  [0..*];
+  composition Room  ->  (has) Rent  [0..1];
+  composition Report  ->  (has) Property  [0..*];
+  composition Report  ->  (has) Room  [0..*];
+  composition Report  ->  (has) Tenant  [0..*];
+}

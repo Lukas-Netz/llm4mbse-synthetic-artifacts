@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram WildlifeMonitoringSystem  {
+
+  class Sensor  {
+    String sensorId;
+    String sensorType;
+    Data data;
+  }
+
+  class Camera  {
+    String cameraId;
+    String cameraType;
+    Data data;
+  }
+
+  class Drone  {
+    String droneId;
+    String droneType;
+    Data data;
+  }
+
+  class Data  {
+    String species;
+    String habitat;
+    String behavior;
+  }
+
+  class Species  {
+    String speciesName;
+    Habitat habitat;
+  }
+
+  class Habitat  {
+    String habitatName;
+  }
+
+  class ParkRanger  {
+    String rangerId;
+  }
+
+  class Conservationist  {
+    String conservationistId;
+  }
+
+  class System  {
+    Sensor  sensor;
+    Camera  camera;
+    Drone  drone;
+    ParkRanger  parkRanger;
+    Conservationist  conservationist;
+  }
+
+  composition System -> (has) Sensor;
+  composition System -> (has) Camera;
+  composition System -> (has) Drone;
+  composition System -> (has) ParkRanger;
+  composition System -> (has) Conservationist;
+  composition Sensor -> Data;
+  composition Camera -> Data;
+  composition Drone -> Data;
+  composition Species -> Habitat;
+  association ParkRanger -> System;
+  association Conservationist -> System;
+  }

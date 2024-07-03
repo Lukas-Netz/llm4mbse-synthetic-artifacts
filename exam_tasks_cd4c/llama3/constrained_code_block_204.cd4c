@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram EmailMarketingSystem  {
+
+  class Customer  {
+    String name;
+    String email;
+    PurchaseHistory purchaseHistory;
+  }
+
+  class PurchaseHistory  {
+    List<Purchase> purchases;
+  }
+
+  class Purchase  {
+    String product;
+    Date date;
+  }
+
+  class EmailTemplate  {
+    String subject;
+    String body;
+  }
+
+  class Campaign  {
+    EmailTemplate template;
+    CustomerSegment targetSegment;
+    Date sendDate;
+  }
+
+  class CustomerSegment  {
+    List<Customer> customers;
+    String name;
+  }
+
+  class Reporting  {
+    List<EmailCampaignReport> reports;
+  }
+
+  class EmailCampaignReport  {
+    Campaign campaign;
+    int openRate;
+    int clickThroughRate;
+    int conversionRate;
+  }
+
+  composition Customer -> PurchaseHistory;
+  composition Campaign -> EmailTemplate;
+  composition Campaign -> CustomerSegment;
+  composition Reporting -> EmailCampaignReport;
+  association CustomerSegment -> Customer [1..*];
+  association Campaign -> Reporting [1..*];
+}

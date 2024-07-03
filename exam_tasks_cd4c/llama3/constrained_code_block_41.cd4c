@@ -1,0 +1,67 @@
+
+
+
+classdiagram InsuranceClaim  {
+
+  class Claim  {
+    String uniqueIdentifier;
+    ClaimStatus status;
+    Claimant claimant;
+    InsuranceType insuranceType;
+    Date incidentDate;
+    double claimAmount;
+  }
+
+  class Claimant  {
+    String name;
+    Address address;
+    ContactInformation contactInfo;
+  }
+
+  class Adjuster  {
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class Address  {
+    String street;
+    String city;
+    String state;
+    String zip;
+  }
+
+  class ContactInformation  {
+    String phone;
+    String email;
+  }
+
+  enum ClaimStatus  {
+    Pending, Approved, Denied;
+  }
+
+  enum InsuranceType  {
+    Car, Home, Life;
+  }
+
+  class CarClaim extends Claim  {
+    String vehicleMake;
+    String vehicleModel;
+  }
+
+  class HomeClaim extends Claim  {
+    String propertyAddress;
+  }
+
+  class LifeClaim extends Claim  {
+    String policyNumber;
+  }
+
+  composition Claim -> Claimant;
+  composition Claim -> Adjuster;
+  composition Claim -> InsuranceType;
+  composition Claim -> Date;
+  composition Claim -> double;
+  composition Claimant -> Address;
+  composition Claimant -> ContactInformation;
+  composition Adjuster -> ContactInformation;
+}

@@ -1,0 +1,68 @@
+
+classdiagram BlockchainGamingPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    void createNFT();
+    void buyNFT(NFT nft);
+    void sellNFT(NFT nft);
+    void tradeNFT(User user, NFT nft);
+  }
+
+  class NFT {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    String type;
+    NFT(String uniqueIdentifier, String name, String description, String type);
+  }
+
+  class Collection {
+    String uniqueIdentifier;
+    String name;
+    boolean isPublic;
+    Collection(String uniqueIdentifier, String name, boolean isPublic);
+    void addNFT(NFT nft);
+    void removeNFT(NFT nft);
+  }
+
+  class Marketplace {
+    String uniqueIdentifier;
+    void buyNFT(User buyer, NFT nft, double price);
+    void sellNFT(User seller, NFT nft, double price);
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    User buyer;
+    User seller;
+    NFT nft;
+    double price;
+    String timestamp;
+  }
+
+  class SmartContract {
+    String uniqueIdentifier;
+    void execute(Transaction transaction);
+  }
+
+  class GameWorld {
+    String uniqueIdentifier;
+    String name;
+    String rules;
+    String challenges;
+  }
+
+  composition User [*] GameWorld
+  -- composition/ 											{ 											ordered						}
+ 				;
+  composition NFT [*] Collection
+  -- composition/ 											{ 											ordered						}
+ 				;
+  association User [*] Marketplace
+  -- association/ 											{ 											ordered						}
+ 				;
+  association Transaction [1..*] SmartContract
+  -- association/ 											{ 											ordered						}
+ 				;
+}

@@ -1,0 +1,60 @@
+
+
+classdiagram DrugDiscoverySystem {
+
+  class CompoundDatabase {
+    private Map<String, Compound> compounds;
+
+    public Compound getCompound(String name);
+    public void addCompound(Compound compound);
+  }
+
+  class MachineLearningModel {
+    private Model model;
+
+    public double predictBindingPotential(Compound compound, TargetProtein targetProtein);
+  }
+
+  class SimulationEnvironment {
+    private BiologicalSystem system;
+
+    public void simulateCompoundBehavior(Compound compound);
+  }
+
+  class UserInterface {
+    private CompoundDatabase compoundDatabase;
+    private MachineLearningModel machineLearningModel;
+    private SimulationEnvironment simulationEnvironment;
+
+    public void searchForCompounds(String property);
+    public double predictBindingPotential(Compound compound);
+    public void simulateCompoundBehavior(Compound compound);
+    public void retrieveResults(Simulation simulation);
+  }
+
+  class Compound {
+    private String name;
+    private Map<String, Object> properties;
+
+    public String getName();
+    public void setProperties(Map<String, Object> properties);
+  }
+
+  class TargetProtein {
+    private String name;
+    private Map<String, Object> properties;
+
+    public String getName();
+    public void setProperties(Map<String, Object> properties);
+  }
+
+  class BiologicalSystem {
+    private Map<String, Object> properties;
+
+    public void setProperties(Map<String, Object> properties);
+  }
+
+  composition UserInterface -> (has) CompoundDatabase;
+  composition UserInterface -> (has) MachineLearningModel;
+  composition UserInterface -> (has) SimulationEnvironment;
+}

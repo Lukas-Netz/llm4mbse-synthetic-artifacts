@@ -1,0 +1,56 @@
+
+classdiagram OnlinePhysicsPlatform {
+
+    class Course {
+      String name;
+      String description;
+      String courseId;
+      List<Assignment> assignments;
+      List<Homework> homeworks;
+    }
+
+    class Student {
+      String studentId;
+      List<Course> enrolledCourses;
+    }
+
+    class Instructor {
+      String instructorId;
+      List<Course> taughtCourses;
+    }
+
+    class Assignment {
+      String assignmentName;
+      String assignmentDescription;
+      Date dueDate;
+      List<AssignmentSubmission> submissions;
+    }
+
+    class Homework {
+      String homeworkName;
+      String homeworkDescription;
+      Date dueDate;
+      List<HomeworkSubmission> submissions;
+    }
+
+    class AssignmentSubmission {
+      String studentId;
+      String assignmentId;
+      String grade;
+    }
+
+    class HomeworkSubmission {
+      String studentId;
+      String homeworkId;
+      String grade;
+    }
+
+    association Student -> Course [*];
+    association Instructor -> Course [*];
+    association Course -> Assignment [*];
+    association Course -> Homework [*];
+    association Student -> AssignmentSubmission [*];
+    association Student -> HomeworkSubmission [*];
+    association Instructor -> Assignment [*];
+    association Instructor -> Homework [*];
+}

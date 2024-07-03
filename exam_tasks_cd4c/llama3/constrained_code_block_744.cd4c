@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram VRSystem  {
+
+  class VRHeadset  {
+    Computer computer;
+  }
+
+  class VREnvironment  {
+    String name;
+    String description;
+  }
+
+  abstract class TrainingModule  {
+    String name;
+    String description;
+    Objective[] objectives;
+  }
+
+  class SpacewalkModule extends TrainingModule  {
+    String[] tasks;
+  }
+
+  class SpaceSuitMaintenanceModule extends TrainingModule  {
+    String[] procedures;
+  }
+
+  class PlanetaryExplorationModule extends TrainingModule  {
+    String[] landmarks;
+  }
+
+  class Objective  {
+    String description;
+  }
+
+  class Computer  {
+    VRHeadset vrHeadset;
+  }
+
+  composition VRHeadset -> Computer;
+  composition VREnvironment -> TrainingModule;
+  composition TrainingModule -> Objective[*];
+  composition TrainingModule -> VRHeadset;
+  composition TrainingModule -> VREnvironment;
+}

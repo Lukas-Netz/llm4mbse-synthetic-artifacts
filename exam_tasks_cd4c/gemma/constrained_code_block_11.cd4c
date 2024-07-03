@@ -1,0 +1,20 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  	  	  	  	  {Hub hub; BackupPower backupPower;}
+  
+  	  	  	  	  
+  	  	  	  	  
+  	  	  	  	  composition SmartHome -> Hub;
+  	  	  	  	  composition SmartHome -> BackupPower [0..1];
+  	  	  	  	  
+  	  	  	  	  
+  	  	  	  	  
+  composition Hub -> Device [*];
+  
+  }

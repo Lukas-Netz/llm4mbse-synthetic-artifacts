@@ -1,0 +1,107 @@
+
+
+classdiagram VirtualTeamBuilding {
+
+    class Team {
+      String name;
+      String description;
+      Leader leader;
+
+      Team(String name, String description, Leader leader);
+    }
+
+    class TeamMember {
+      String name;
+      String email;
+      Role role;
+
+      TeamMember(String name, String email, Role role);
+    }
+
+    class Activity {
+      String name;
+      String description;
+      Type type;
+      Team team;
+
+      Activity(String name, String description, Type type, Team team);
+    }
+
+    enum Role {
+      Leader, Member, Guest
+    
+
+    
+;
+
+    enum Type  
+    
+    ;
+
+  composition Team  (has aLeader)  
+  
+  
+  
+;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Team  (participatesIn)  -> Activity
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association TeamMember  (participatesIn)  -> Activity
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+}

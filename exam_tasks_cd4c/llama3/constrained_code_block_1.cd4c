@@ -1,0 +1,93 @@
+
+
+
+
+classdiagram HealthcareManagementSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    MedicalCondition  [  ] medicalConditions;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+    Patient  [  ] assignedPatients;
+  }
+
+  class MedicalRecord  {
+    Patient patient;
+    Diagnosis  [  ] diagnoses;
+    TreatmentPlan  [  ] treatmentPlans;
+    TestResult  [  ] testResults;
+  }
+
+  class DoctorPatientInteraction  {
+    Doctor doctor;
+    Patient patient;
+    Date date;
+    InteractionType interactionType;
+  }
+
+  class Medication  {
+    String uniqueIdentifier;
+    String name;
+    DosageInstructions dosageInstructions;
+    PrescriptionDate prescriptionDate;
+    ExpirationDate expirationDate;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+
+  class MedicalCondition  {
+    String name;
+    DiagnosisDate diagnosisDate;
+    TreatmentPlan  [  ] treatmentPlans;
+  }
+
+  class Diagnosis  {
+    Date date;
+    String diagnosis;
+  }
+
+  class TreatmentPlan  {
+    String treatment;
+  }
+
+  class TestResult  {
+    String result;
+  }
+
+  class Specialty  {
+    String name;
+  }
+
+  class InteractionType  {
+    String type;
+  }
+
+  class DosageInstructions  {
+    String instructions;
+  }
+
+  class PrescriptionDate  {
+    Date date;
+  }
+
+  class ExpirationDate  {
+    Date date;
+  }
+
+  composition Patient -> MedicalCondition [ 1..* ];
+  composition Doctor -> Patient [ 1..* ];
+  composition MedicalRecord -> Patient [ 1 ];
+  composition DoctorPatientInteraction -> Doctor [ 1 ];
+  composition DoctorPatientInteraction -> Patient [ 1 ];
+  }

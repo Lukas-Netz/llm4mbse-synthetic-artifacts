@@ -1,0 +1,64 @@
+
+classdiagram Telemedicine {
+
+  class Patient {
+    String uniqueIdentifier;
+    Appointment [
+     ] scheduledAppointments;
+  }
+
+  class Doctor {
+    String uniqueIdentifier;
+    Profile profile;
+    Appointment [
+     ] scheduledAppointments;
+  }
+
+  class Profile {
+    String qualifications;
+    String specialties;
+  }
+
+  class Appointment {
+    String date;
+    String time;
+    AppointmentStatus status;
+    VideoConference videoConference;
+    File [
+     ] sharedFiles;
+  }
+
+  enum AppointmentStatus {
+    Scheduled, Cancelled, Completed;
+  }
+
+  class VideoConference {
+    boolean isActive;
+  }
+
+  class File {
+    String name;
+    String content;
+  }
+
+  class Rating {
+    int rating;
+    String feedback;
+  }
+
+  class Report {
+    String patientDemographics;
+    String doctorAvailability;
+    String appointmentSchedulingStatistics;
+  }
+
+  composition Telemedicine -> Patient [*];
+  composition Telemedicine -> Doctor [*];
+  association Patient -> Appointment [*];
+  association Doctor -> Appointment [*];
+  association Appointment -> VideoConference;
+  association Appointment -> File [*];
+  association Patient -> Rating;
+  association Report -> Patient [*];
+  association Report -> Doctor [*];
+}

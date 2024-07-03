@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram MedicalConsultationPlatform  {
+
+  class Patient  {
+    String name;
+    String email;
+    String phoneNumber;
+    -> Consultation [*];
+  }
+
+  class Doctor  {
+    String name;
+    String email;
+    String phoneNumber;
+    -> Patient [*];
+  }
+
+  class Consultation  {
+    Date date;
+    Time time;
+    String description;
+    -> Patient;
+    -> Doctor;
+    -> Diagnosis [*];
+    -> Treatment [*];
+  }
+
+  class Diagnosis  {
+    String name;
+    String description;
+  }
+
+  class Treatment  {
+    String name;
+    String description;
+  }
+
+  composition Doctor -> Patient [*];
+  composition Consultation -> Patient;
+  composition Consultation -> Doctor;
+  composition Consultation -> Diagnosis [*];
+  composition Consultation -> Treatment [*];
+}
+

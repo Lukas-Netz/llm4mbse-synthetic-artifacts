@@ -1,0 +1,84 @@
+
+classdiagram DigitalSignage {
+
+  class CMS {
+    -> Content [*];
+    -> Schedule [*];
+    -> PerformanceTracker;
+  }
+
+  class Player {
+    -> Content [*];
+    -> RemoteControl;
+  }
+
+  class Screen {
+    -> Content [*];
+    -> RemoteControl;
+    -> ContentType;
+  }
+
+  class Network {
+    -> CMS;
+    -> Player;
+    -> Screen;
+    -> PriorityManager;
+    -> Authentication;
+    -> Authorization;
+  }
+
+  class Content {
+    String contentType;
+  }
+
+  class TextContent extends Content {
+    String text;
+  }
+
+  class ImageContent extends Content {
+    String imageUrl;
+  }
+
+  class VideoContent extends Content {
+    String videoUrl;
+  }
+
+  class Schedule {
+    Content content;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  class PerformanceTracker {
+    int views;
+    int engagement;
+  }
+
+  class RemoteControl {
+  }
+
+  class ContentType {
+    String type;
+  }
+
+  class TextContentType extends ContentType {
+    String type = "text";
+  }
+
+  class ImageContentType extends ContentType {
+    String type = "image";
+  }
+
+  class VideoContentType extends ContentType {
+    String type = "video";
+  }
+
+  class PriorityManager {
+  }
+
+  class Authentication {
+  }
+
+  class Authorization {
+  }
+}

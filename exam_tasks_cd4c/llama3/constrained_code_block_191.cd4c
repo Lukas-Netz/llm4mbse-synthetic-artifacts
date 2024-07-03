@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram QKDSystem  {
+
+  class QKE  {
+    int keyLength;
+    EncodingMethod encodingMethod;
+  }
+
+  class QKD  {
+    int keyLength;
+    DecodingMethod decodingMethod;
+  }
+
+  class QC  {
+    double transmissionRate;
+    double transmissionDistance;
+  }
+
+  class CC  {
+    double transmissionRate;
+    double transmissionDistance;
+  }
+
+  class CKM  {
+    int keyStorageCapacity;
+    KeyVerificationMethod keyVerificationMethod;
+  }
+
+  class Alice  {
+    QKE qke;
+  }
+
+  class Bob  {
+    QKD qkd;
+  }
+
+  class Charlie  {
+    CKM ckM;
+  }
+
+  composition Alice -> QKE;
+  composition Bob -> QKD;
+  composition Charlie -> CKM;
+
+  association Alice -> QC;
+  association Bob -> QC;
+  association Charlie -> CC;
+
+  composition QC -> (transmits) QKE;
+  composition QC -> (transmits) QKD;
+  composition CC -> (transmits) Charlie;
+
+  interface EncodingMethod;
+  interface DecodingMethod;
+  interface KeyVerificationMethod;
+}

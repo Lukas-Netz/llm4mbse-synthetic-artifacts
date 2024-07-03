@@ -1,0 +1,42 @@
+
+classdiagram InventoryControl {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    String type;
+  }
+
+  class Location {
+    String uniqueIdentifier;
+    String name;
+    String address;
+    String type;
+  }
+
+  class InventoryItem {
+    String uniqueIdentifier;
+    String productID;
+    String locationID;
+    int quantity;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    String productID;
+    int quantity;
+  }
+
+  class Report {
+    String uniqueIdentifier;
+    String type;
+    String content;
+  }
+
+  composition InventoryItem [*] InventoryItem -> Product [1..*];
+  composition InventoryItem [*] InventoryItem -> Location [1..*];
+  composition Order [*] Order -> Product [1..*];
+  association Report [*] Report -> InventoryItem [*];
+  association Report [*] Report -> Order [*];
+}

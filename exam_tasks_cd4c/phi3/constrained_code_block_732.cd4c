@@ -1,0 +1,61 @@
+
+classdiagram AutomatedCoralReefRestoration {
+
+    class ReefRestorationSystem {
+      Hub centralHub;
+      List<UnderwaterSensor> underwaterSensors;
+      List<Drone> drones;
+      Database database;
+      UserInterface userInterface;
+    }
+
+    class UnderwaterSensor {
+      String sensorId;
+      WaterQualityData waterQualityData;
+      TemperatureData temperatureData;
+      CoralHealthData coralHealthData;
+    }
+
+    class Drone {
+      String droneId;
+      void plantCoral(CoralFragment coralFragment);
+      void monitorReef();
+    }
+
+    class CoralFragment {
+      String fragmentId;
+      String species;
+    }
+
+    class WaterQualityData {
+      float pH;
+      float salinity;
+      float turbidity;
+    }
+
+    class TemperatureData {
+      float temperature;
+    }
+
+    class CoralHealthData {
+      float coralHealthIndex;
+    }
+
+    class Database {
+      List<HistoricalData> historicalData;
+    }
+
+    class HistoricalData {
+      String timestamp;
+      String data;
+    }
+
+    class UserInterface {
+      void displayData();
+    }
+
+    association ReefRestorationSystem -> List<<UnderwaterSensor>>;
+    association ReefRestorationSystem -> List<<Drone>>;
+    association ReefRestorationSystem -> Database;
+    association ReefRestorationSystem -> UserInterface;
+}

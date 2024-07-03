@@ -1,0 +1,61 @@
+
+classdiagram MeteorologicalForecasting {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String location;
+    int temperature;
+    int humidity;
+    int windSpeed;
+    int pressure;
+  }
+
+  class WeatherForecast {
+    WeatherStation weatherStation;
+    Date date;
+    Time time;
+    WeatherCondition weatherCondition;
+  }
+
+  class WeatherCondition {
+    String name;
+    String description;
+  }
+
+  class WeatherAlert {
+    WeatherForecast weatherForecast;
+    AlertSeverity severity;
+    String message;
+  }
+
+  enum AlertSeverity {
+    Low, Moderate, High;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class UserPreferences {
+    User user;
+    List<PreferredWeatherCondition> preferredWeatherConditions;
+    List<AlertSeverity> alertSeverityLevels;
+    List<NotificationMethod> notificationMethods;
+  }
+
+  class PreferredWeatherCondition {
+    WeatherCondition weatherCondition;
+  }
+
+  enum NotificationMethod {
+    Email, SMS, PushNotification;
+  }
+
+  association User -> UserPreferences [*];
+  association WeatherStation -> WeatherForecast [*];
+  association WeatherForecast -> WeatherCondition;
+  association WeatherForecast -> WeatherAlert [*];
+  association User -> WeatherForecast [*];
+}

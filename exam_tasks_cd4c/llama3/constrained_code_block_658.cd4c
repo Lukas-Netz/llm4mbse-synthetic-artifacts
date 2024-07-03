@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram MusicCollaborationPlatform  {
+
+  class Project  {
+    String name;
+    Track[] tracks;
+    Collaborator[] collaborators;
+    Rating[] ratings;
+  }
+
+  class Track  {
+    String name;
+    Artist[] artists;
+    Version[] versions;
+  }
+
+  class Artist  {
+    String name;
+    Project[] projects;
+  }
+
+  class Version  {
+    String name;
+    Instrument[] instruments;
+  }
+
+  class Instrument  {
+    String name;
+    Setting[] settings;
+  }
+
+  class Setting  {
+    String name;
+    String value;
+  }
+
+  class Collaborator  {
+    String name;
+    Project[] projects;
+  }
+
+  class Rating  {
+    int score;
+    String comment;
+    Project project;
+  }
+
+  composition Project -> Track[*];
+  composition Track -> Artist[*];
+  composition Track -> Version[*];
+  composition Version -> Instrument[*];
+  composition Instrument -> Setting[*];
+  composition Project -> Collaborator[*];
+  composition Project -> Rating[*];
+  composition Artist -> Project[*];
+  composition Collaborator -> Project[*];
+  composition Rating -> Project[*];
+}

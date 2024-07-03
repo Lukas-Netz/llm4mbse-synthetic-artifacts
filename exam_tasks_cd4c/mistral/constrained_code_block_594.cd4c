@@ -1,0 +1,40 @@
+
+classdiagram AATS {
+
+  class Drone {
+    String uniqueIdentifier;
+    Location currentLocation;
+    DroneStatus status;
+    int maxCapacity;
+    Passenger [ ] passengers;
+  }
+
+  class ControlSystem {
+    -> Drone [*];
+    Task assignTask(Location pickup, Location dropoff, int priority);
+    void monitorDrones();
+    void updateDronesLocation();
+  }
+
+  class Task {
+    Location pickup;
+    Location dropoff;
+    int priority;
+  }
+
+  class Passenger {
+    String name;
+    Location destination;
+  }
+
+  enum DroneStatus {
+    Available, Busy;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  composition ControlSystem -> Drone [*];
+}

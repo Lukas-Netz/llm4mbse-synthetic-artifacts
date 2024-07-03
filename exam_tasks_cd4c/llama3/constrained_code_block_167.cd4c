@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram ConsumerDataManagement  {
+
+  class Consumer  {
+    String uniqueIdentifier;
+    String name;
+    Preference  preference;
+  }
+
+  class Preference  {
+    String favoriteProduct;
+    String preferredCommunicationChannel;
+    String preferredLanguage;
+  }
+
+  class Interaction  {
+    String type;
+    Date date;
+    Time time;
+    String details;
+  }
+
+  class BehaviorAnalysis  {
+    String insights;
+    String suspiciousBehavior;
+  }
+
+  class Report  {
+    String data;
+    String behavior;
+  }
+
+  class DataProtection  {
+    boolean compliance;
+  }
+
+  class ConsumerData  {
+    Consumer consumer;
+    Interaction interaction;
+  }
+
+  composition Consumer -> Preference;
+  composition Consumer -> Interaction;
+  composition Interaction -> Consumer;
+  composition BehaviorAnalysis -> Consumer;
+  composition Report -> ConsumerData;
+  composition DataProtection -> ConsumerData;
+}

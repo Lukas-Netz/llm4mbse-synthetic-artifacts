@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram AutonomousFlyingCar  {
+
+  class FlyingCar  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    DeviceStatus status;
+    Sensor[] sensors;
+    Actuator[] actuators;
+  }
+
+  class ControlUnit  {
+    FlyingCar[] flyingCars;
+    void sendCommand(FlyingCar flyingCar, Command command);
+    void monitorStatus();
+    void receiveSensorData(FlyingCar flyingCar, SensorData data);
+  }
+
+  class SatelliteNetwork  {
+    void sendCommand(ControlUnit controlUnit, Command command);
+    void receiveSensorData(FlyingCar flyingCar, SensorData data);
+  }
+
+  class Sensor  {
+    String type;
+    double value;
+  }
+
+  class Actuator  {
+    String type;
+    void activate();
+  }
+
+  class Command  {
+    String type;
+    String target;
+  }
+
+  class SensorData  {
+    String type;
+    double value;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+    double altitude;
+  }
+
+  enum DeviceStatus  {
+    Airborne, Grounded;
+  }
+
+  composition ControlUnit -> FlyingCar[*];
+  composition SatelliteNetwork -> ControlUnit;
+  composition FlyingCar -> Sensor[*];
+  composition FlyingCar -> Actuator[*];
+}

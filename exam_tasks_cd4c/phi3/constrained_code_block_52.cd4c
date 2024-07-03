@@ -1,0 +1,63 @@
+
+classdiagram LaboratoryInformationManagementSystem {
+
+    class Laboratory {
+      String uniqueIdentifier;
+      String name;
+      LaboratoryType type;
+    }
+
+    class Sample {
+      String uniqueIdentifier;
+      Laboratory laboratory;
+      SampleType type;
+    }
+
+    class Test {
+      String uniqueIdentifier;
+      Sample sample;
+      TestType type;
+    }
+
+    class Result {
+      String uniqueIdentifier;
+      Test test;
+      String outcome;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+    }
+
+    enum LaboratoryType {
+      Chemistry, Biology, Physics
+   
+   
+   ;}
+
+    enum SampleType {
+      Blood, Tissue, Environmental
+
+   
+   ;}
+
+    enum TestType {
+      DNA_Sequencing, PCR, ELISA
+
+   
+   ;}
+
+    enum TestOutcome {
+      Positive, Negative
+
+   
+   ;}
+
+    association Laboratory -> Sample [*];
+    association Sample -> Test [*];
+    association Test -> Result [*];
+    composition Laboratory -> LaboratoryInformationManagementSystem;
+    composition LaboratoryInformationManagementSystem -> User [*];
+    composition Laboratory -> LaboratoryInformationManagementSystem;
+}

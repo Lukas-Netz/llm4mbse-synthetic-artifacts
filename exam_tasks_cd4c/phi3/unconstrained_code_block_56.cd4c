@@ -1,0 +1,55 @@
+
+classdiagram EmployeeTraining {
+
+  class Employee {
+    String name;
+    String id;
+    EmployeeRequest requestTraining;
+    TrainingPlan trainingPlan;
+    EmployeeCompletion completion;
+    TrainerEvaluation evaluation;
+    TrainingCertification certification;
+  }
+
+  class EmployeeRequest {
+    String requestDetails;
+  }
+
+  class TrainingManager {
+    void reviewRequest(EmployeeRequest request);
+    void assignTrainer(Employee employee);
+    void evaluateCompletion(EmployeeCompletion completion);
+    void certifyCompletion(EmployeeCompletion completion);
+  }
+
+  class Trainer {
+    void createTrainingPlan(Employee employee);
+    void evaluatePerformance(EmployeeCompletion completion);
+  }
+
+  class TrainingPlan {
+    String planDetails;
+  }
+
+  class EmployeeCompletion {
+    boolean isCompleted;
+  }
+
+  class TrainerEvaluation {
+    String evaluationDetails;
+  }
+
+  class TrainingCertification {
+    boolean isCertified;
+  }
+
+  association Employee -> TrainingManager [*];
+  association Employee -> Trainer [*];
+  association Employee -> TrainingPlan [*];
+  association Employee -> EmployeeCompletion [*];
+  association Employee -> TrainerEvaluation [*];
+  association Employee -> TrainingCertification [*];
+
+  association EmployeeRequest -> TrainingManager [*];
+  association TrainingManager -> Trainer [*];
+}

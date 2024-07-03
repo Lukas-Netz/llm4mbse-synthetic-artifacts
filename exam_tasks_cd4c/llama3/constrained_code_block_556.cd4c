@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram EnvironmentalImpactAssessment  {
+
+  class Database  {
+    EnvironmentalFactor  [ ] environmentalFactors;
+  }
+
+  abstract class EnvironmentalFactor  {
+    String name;
+    String description;
+  }
+
+  class GreenhouseGasEmission extends EnvironmentalFactor  {
+    double amount;
+  }
+
+  class WaterUsage extends EnvironmentalFactor  {
+    double amount;
+  }
+
+  class WasteGeneration extends EnvironmentalFactor  {
+    double amount;
+  }
+
+  class Calculator  {
+    Database database;
+    double calculateImpact( EnvironmentalFactor  factor );
+  }
+
+  class ReportingModule  {
+    Calculator calculator;
+    Report generateReport();
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition Database  -> EnvironmentalFactor  [1..*];
+  composition Calculator  -> Database;
+  composition ReportingModule  -> Calculator;
+  association EnvironmentalFactor  -> Calculator [1..*];
+  association Report  -> ReportingModule [1..*];
+}

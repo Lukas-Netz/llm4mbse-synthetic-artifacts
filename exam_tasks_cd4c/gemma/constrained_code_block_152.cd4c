@@ -1,0 +1,42 @@
+
+
+classdiagram SmartLightingControlSystem {
+
+  class CentralControlUnit {
+    -> Zone [*];
+    void addZone(Zone zone);
+    void removeZone(Zone zone);
+    void adjustLampBrightness(Zone zone, int brightness);
+    int getSensorReading(Zone zone);
+  }
+
+  class Zone {
+    String identifier;
+    String name;
+    -> Device [*];
+  }
+
+  class Device {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Lamp extends Device {
+    int brightnessLevel;
+    void turnOn();
+    void turnOff();
+    void adjustBrightness(int brightness);
+  }
+
+  class Sensor extends Device {
+    int ambientLightLevel;
+    void provideFeedback(CentralControlUnit ccu);
+  }
+
+  enum DeviceStatus {
+    On, Off;
+  }
+
+  composition CentralControlUnit -> Zone [*];
+  composition Zone -> Device [*];
+}

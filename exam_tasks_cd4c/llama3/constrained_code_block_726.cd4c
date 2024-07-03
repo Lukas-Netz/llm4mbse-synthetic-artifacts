@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram MedicalRecords  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    MedicalRecord  [  ] medicalRecords;
+  }
+
+  class MedicalRecord  {
+    String uniqueIdentifier;
+    Diagnosis diagnosis;
+    Treatment treatment;
+    Medication medication;
+  }
+
+  class Diagnosis  {
+    String name;
+    String description;
+  }
+
+  class Treatment  {
+    String name;
+    String description;
+  }
+
+  class Medication  {
+    String name;
+    String description;
+  }
+
+  class HealthcareProvider  {
+    String uniqueIdentifier;
+    Role role;
+    Patient  [  ] patients;
+  }
+
+  enum Role  {
+    Doctor,
+    Nurse,
+    Administrator;
+  }
+
+  class Doctor extends HealthcareProvider  {
+    void prescribeMedication(Medication medication);
+    void viewMedicalRecords();
+  }
+
+  class Nurse extends HealthcareProvider  {
+    void administerMedication(Medication medication);
+    void viewMedicalRecords();
+  }
+
+  class Administrator extends HealthcareProvider  {
+    void manageHealthcareProviders();
+    void manageMedicalRecords();
+  }
+
+  composition Patient  ->  (has) MedicalRecord  [  * ];
+  composition HealthcareProvider  ->  (has) Patient  [  * ];
+  composition MedicalRecord  ->  (has) Diagnosis;
+  composition MedicalRecord  ->  (has) Treatment;
+  composition MedicalRecord  ->  (has) Medication;
+  composition Doctor  ->  (can) prescribeMedication;
+  composition Nurse  ->  (can) administerMedication;
+  composition Administrator  ->  (can) manageHealthcareProviders;
+  composition Administrator  ->  (can) manageMedicalRecords;
+}

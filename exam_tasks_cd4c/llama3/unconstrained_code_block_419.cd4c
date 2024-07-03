@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram GreenhouseSystem  {
+
+  class Greenhouse  {
+    String uniqueIdentifier;
+    GreenhouseType type;
+  }
+
+  enum GreenhouseType  {
+    Indoor, Outdoor;
+  }
+
+  class IndoorGreenhouse extends Greenhouse  {
+    AirCirculation airCirculation;
+    IrrigationSystem irrigationSystem;
+  }
+
+  class OutdoorGreenhouse extends Greenhouse  {
+    SoilType soilType;
+    SunlightExposure sunlightExposure;
+  }
+
+  class ClimateControlSystem  {
+    Temperature temperature;
+    Humidity humidity;
+    Light light;
+  }
+
+  class Sensor  {
+    Greenhouse greenhouse;
+    Condition condition;
+    Alert alert;
+  }
+
+  class Condition  {
+    String description;
+  }
+
+  class Alert  {
+    String message;
+  }
+
+  class Farmer  {
+    Greenhouse greenhouse;
+    ClimateControlSystem climateControlSystem;
+  }
+
+  class Plant  {
+    Greenhouse greenhouse;
+    GrowthStatus growthStatus;
+  }
+
+  enum GrowthStatus  {
+    Healthy, Unhealthy;
+  }
+
+  composition Greenhouse -> ClimateControlSystem;
+  composition Greenhouse -> Sensor;
+  composition Farmer -> Greenhouse;
+  composition Plant -> Greenhouse;
+}

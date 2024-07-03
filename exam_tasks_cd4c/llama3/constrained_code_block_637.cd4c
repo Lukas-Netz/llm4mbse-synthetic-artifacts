@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram MRI  {
+
+  class Scanner  {
+    String type;
+    ScannerState state;
+  }
+
+  class Computer  {
+    Scanner scanner;
+    ImageStorage imageStorage;
+  }
+
+  class Console  {
+    Scanner scanner;
+  }
+
+  class Sequence  {
+    String name;
+    EchoTime echoTime;
+    RepetitionTime repetitionTime;
+  }
+
+  class Image  {
+    Sequence sequence;
+    String format;
+  }
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+  }
+
+  class PatientDatabase  {
+    Patient[] patients;
+  }
+
+  class ImageStorage  {
+    Image[] images;
+  }
+
+  enum ScannerState  {
+    Idle, Scanning, Maintenance;
+  }
+
+  enum EchoTime  {
+    Short, Medium, Long;
+  }
+
+  enum RepetitionTime  {
+    Short, Medium, Long;
+  }
+
+  composition Scanner -> Computer;
+  composition Computer -> Scanner;
+  composition Console -> Scanner;
+  composition Sequence -> Image[*];
+  composition Image -> Sequence;
+  composition Patient -> PatientDatabase;
+  composition PatientDatabase -> Patient[*];
+  composition ImageStorage -> Image[*];
+}

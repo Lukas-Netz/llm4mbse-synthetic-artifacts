@@ -1,0 +1,64 @@
+
+classdiagram VehicleManagement {
+  enum VehicleStatus {
+    Shop, Road, Storage;
+  }
+  enum VehicleMaintenanceType {
+     diamant;
+  }
+  enum VehicleRepairType {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleMake {
+     diamant;
+  }
+  enum VehicleModel {
+     diamant;
+  }
+  enum VehicleYear {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  enum VehicleVin {
+     diamant;
+  }
+  
+  }

@@ -1,0 +1,78 @@
+
+classdiagram DigitalNutritionCoachingSystem {
+
+    class User {
+      String name;
+      int age;
+      String healthGoals;
+      FoodIntake dietaryData;
+      PhysicalActivity activityData;
+    }
+
+    class FoodIntake {
+      List<FoodItem> foodItems;
+    }
+
+    class FoodItem {
+      String name;
+      int calories;
+      String nutritionalInfo;
+    }
+
+    class PhysicalActivity {
+      List<ActivityType> activityTypes;
+    }
+
+    class ActivityType {
+      String name;
+      int duration;
+      String intensity;
+    }
+
+    class HealthAppIntegration {
+      WearableDevice wearableDevice;
+      HealthApp healthApp;
+    }
+
+    class WearableDevice {
+      String deviceType;
+      String data;
+    }
+
+    class HealthApp {
+      String appName;
+      String data;
+    }
+
+    class Dashboard {
+      String progress;
+      String goals;
+    }
+
+    class Notification {
+      String message;
+      String time;
+    }
+
+    class Recommendation {
+      String foodList;
+      String recipes;
+      String exerciseList;
+      String supplementList;
+      String resources;
+    }
+
+    class DigitalNutritionCoachingSystem {
+      List<User> users;
+      Dashboard dashboard;
+      Notification notification;
+      Recommendation recommendation;
+      HealthAppIntegration integration;
+    }
+
+  association DigitalNutritionCoachingSystem -> (has) Users;
+  association DigitalNutritionCoachingSystem -> (has) Dashboard;
+  association DigitalNutritionCoachingSystem -> (has) Notification;
+  association DigitalNutritionCoachingSystem -> (has) Recommendation;
+  composition DigitalNutritionCoachingSystem -> (has) HealthAppIntegration;
+}

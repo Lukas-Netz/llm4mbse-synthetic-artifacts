@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram SocialNetwork  {
+
+  class User  {
+    String username;
+    String password;
+    Set<User> friends;
+    List<Post> posts;
+  }
+
+  class Post  {
+    String content;
+    String type;  (textImageVideo)
+    Set<User> recipients;
+    boolean isPublic;
+  }
+
+  class Comment  {
+    Post post;
+    User user;
+    String content;
+  }
+
+  class Link  {
+    String url;
+    String description;
+  }
+
+  class NewsFeed  {
+    List<Post> posts;
+  }
+
+  class Notification  {
+    User user;
+    Post post;
+    Comment comment;
+    FriendRequest friendRequest;
+  }
+
+  class FriendRequest  {
+    User requester;
+    User requestee;
+  }
+
+  class Block  {
+    User blocker;
+    User blocked;
+  }
+
+  composition User -> (has) friends;
+  composition User -> (has) posts;
+  composition Post -> (has) recipients;
+  composition NewsFeed -> (contains) posts;
+  composition Notification -> (references) post;
+  composition Notification -> (references) comment;
+  composition Notification -> (references) friendRequest;
+  composition FriendRequest -> (references) requester;
+  composition FriendRequest -> (references) requestee;
+  composition Block -> (references) blocker;
+  composition Block -> (references) blocked;
+}

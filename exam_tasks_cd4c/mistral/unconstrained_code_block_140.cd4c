@@ -1,0 +1,50 @@
+
+classdiagram QuantumSatelliteCommunication {
+
+  class Satellite {
+    QuantumKeyGenerator quantumKeyGenerator;
+    QuantumKeyDistributor quantumKeyDistributor;
+    CommunicationModule communicationModule;
+  }
+
+  class GroundStation {
+    QuantumKeyReceiver quantumKeyReceiver;
+    CommunicationModule communicationModule;
+  }
+
+  class QuantumKey {
+    String keyId;
+    String keyValue;
+  }
+
+  class QuantumKeyGenerator {
+    Set<QuantumKey> generatedKeys;
+  }
+
+  class QuantumKeyDistributor {
+    Set<GroundStation> groundStations;
+  }
+
+  class QuantumKeyReceiver {
+    QuantumKey receivedKey;
+  }
+
+  class CommunicationModule {
+    QuantumKey quantumKey;
+  }
+
+  class ControlCenter {
+    QuantumKeyGenerator quantumKeyGenerator;
+    QuantumKeyDistributor quantumKeyDistributor;
+    Set<GroundStation> groundStations;
+  }
+
+  composition Satellite -> QuantumKeyGenerator;
+  composition Satellite -> QuantumKeyDistributor;
+  composition Satellite -> CommunicationModule;
+  composition GroundStation -> QuantumKeyReceiver;
+  composition GroundStation -> CommunicationModule;
+  association ControlCenter -> QuantumKeyGenerator;
+  association ControlCenter -> QuantumKeyDistributor;
+  association ControlCenter -> GroundStation [*];
+}

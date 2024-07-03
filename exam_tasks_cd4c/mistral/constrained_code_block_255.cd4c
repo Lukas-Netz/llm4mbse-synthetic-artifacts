@@ -1,0 +1,54 @@
+
+classdiagram CarRental {
+
+  class Vehicle {
+    String vehicleId;
+    String vehicleType;
+    String features;
+    String characteristics;
+  }
+
+  class Sedan extends Vehicle {}
+  class SUV extends Vehicle {}
+  class Truck extends Vehicle {}
+
+  class Customer {
+    String customerId;
+    String name;
+    String contactInfo;
+  }
+
+  class Rental {
+    String rentalId;
+    String startDate;
+    String endDate;
+    Vehicle vehicle;
+    Customer customer;
+    RentalStatus status;
+  }
+
+  enum RentalStatus {
+    Available, Rented, Overdue;
+  }
+
+  class Branch {
+    String branchId;
+    String location;
+    Vehicle [][] vehicles;
+    Customer [][] customers;
+    Rental [][] rentals;
+  }
+
+  class Report {
+    String reportId;
+    String reportType;
+    String generatedDate;
+    String results;
+  }
+
+  composition Branch -> Vehicle [*];
+  composition Branch -> Customer [*];
+  composition Branch -> Rental [*];
+  association Customer --oRental;
+  association Rental --oVehicle;
+}

@@ -1,0 +1,32 @@
+
+classdiagram PrecisionAgriculture {
+
+    class Sensor {
+      String type;
+      String location;
+      String data;
+    }
+
+    class Drone {
+      String id;
+      String camera;
+      Sensor[] sensors;
+    }
+
+    class WeatherStation {
+      String location;
+      String data;
+    }
+
+    class CentralHub {
+      Sensor[] sensors;
+      Drone[] drones;
+      WeatherStation weatherStation;
+      void analyzeData();
+      void provideRecommendations();
+    }
+
+    association CentralHub <-> Sensor [*];
+    association CentralHub <-> Drone [*];
+    association CentralHub <-> WeatherStation;
+}

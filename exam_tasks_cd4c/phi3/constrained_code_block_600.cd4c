@@ -1,0 +1,33 @@
+
+classdiagram SatelliteInternetConstellation {
+
+    class Satellite {
+      String uniqueIdentifier;
+      Orbit orbit;
+      SatelliteType type;
+    }
+
+    class GroundStation {
+      String uniqueIdentifier;
+      String location;
+      List<Satellite> assignedSatellites;
+    }
+
+    class NetworkManagementSystem {
+      String uniqueIdentifier;
+      void routeDataPackets(Satellite source, Satellite destination);
+    }
+
+    enum SatelliteType {
+      LEO, MEO, GEO;
+    }
+
+    enum Orbit {
+      LowEarth, MediumEarth, Geostationary;
+    }
+
+    association Satellite -> GroundStation [0..*];
+    association GroundStation -> NetworkManagementSystem [1..*];
+    composition Satellite -> SatelliteType;
+    composition Satellite -> Orbit;
+}

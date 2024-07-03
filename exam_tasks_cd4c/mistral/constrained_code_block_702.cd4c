@@ -1,0 +1,76 @@
+
+classdiagram EndangeredLanguages {
+
+  class EndangeredLanguageDatabase {
+    Language [						] languages;
+  }
+
+  class Language {
+    String name;
+    Grammar grammar;
+    Vocabulary vocabulary;
+    Syntax syntax;
+  }
+
+  class Grammar {
+    String structure;
+    String morphology;
+  }
+
+  class Vocabulary {
+    String words;
+    String phrases;
+  }
+
+  class Syntax {
+    String sentenceStructure;
+    String wordOrder;
+  }
+
+  class TextDataProcessor {
+    void analyze(String text);
+  }
+
+  class AIChatbot {
+    void interact(User user);
+  }
+
+  class LanguageLearningApp {
+    void practice(User user);
+  }
+
+  class LanguageDocumentation {
+    AudioRecording audio;
+    VideoRecording video;
+  }
+
+  class LanguageExchangePlatform {
+    NativeSpeaker [						] nativeSpeakers;
+    Learner [						] learners;
+  }
+
+  class LanguageImmersionProgram {
+    void participate(User user);
+  }
+
+  class User {
+    String username;
+    String password;
+    String proficiencyLevel;
+  }
+
+  class AudioRecording {
+    String recording;
+  }
+
+  class VideoRecording {
+    String recording;
+  }
+
+  composition EndangeredLanguageDatabase -> Language [*];
+  association TextDataProcessor -> Language [*];
+  association AIChatbot -> Language [*];
+  association LanguageLearningApp -> Language [*];
+  association LanguageDocumentation -> Language [*];
+  composition LanguageExchangePlatform -> NativeSpeaker [*];
+ 				}

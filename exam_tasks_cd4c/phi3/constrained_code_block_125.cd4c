@@ -1,0 +1,51 @@
+
+classdiagram ITAssetManagement {
+
+    class Department {
+      String name;
+      String departmentId;
+      List<ITAsset> assets;
+      void addAsset(ITAsset asset);
+      void removeAsset(ITAsset asset);
+      void transferAsset(ITAsset asset, Department destinationDepartment);
+      void scheduleMainteneance(ITAsset asset, MaintenanceTask task);
+      void unscheduleMaintenance(ITAsset asset, MaintenanceTask task);
+      List<ITAsset> getAssets();
+    }
+
+    abstract class ITAsset {
+      String assetId;
+      String status;
+    }
+
+    class Hardware extends ITAsset {
+      String serialNumber;
+      String manufacturer;
+      Date purchaseDate;
+    }
+
+    class Software extends ITAsset {
+      String licenseKey;
+      String version;
+      Date installationDate;
+    }
+
+    class NetworkDevice extends ITAsset {
+      String ipAddress;
+      String macAddress;
+      String networkTopology;
+    }
+
+    class MaintenanceTask {
+      String taskId;
+      String description;
+      Date scheduledDate;
+    }
+
+    association Department -> ITAsset [*];
+    association Department -> MaintenanceTask [*];
+    association ITAsset -> Department [*];
+    association ITAsset -> MaintenanceTask [*];
+    composition Department -> List<<ITAsset>>;
+    composition Department -> List<<MaintenanceTask>>;
+}

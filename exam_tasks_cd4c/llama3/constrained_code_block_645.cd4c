@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram QuantumNetwork  {
+
+  class QuantumNode  {
+    String uniqueIdentifier;
+    NodeState state;
+    Set<QuantumKey> quantumKeys;
+  }
+
+  class QuantumChannel  {
+    String uniqueIdentifier;
+    int capacityBps;
+    ChannelState state;
+  }
+
+  class QuantumKey  {
+    String uniqueIdentifier;
+    PublicKey publicKey;
+    PrivateKey privateKey;
+  }
+
+  class CentralAuthority  {
+    Set<QuantumNode> nodes;
+    Set<QuantumChannel> channels;
+    void addNode(QuantumNode node);
+    void removeNode(QuantumNode node);
+    void addChannel(QuantumChannel channel);
+    void removeChannel(QuantumChannel channel);
+    void monitorNetwork();
+  }
+
+  enum NodeState  {
+    Idle, Sending, Receiving;
+  }
+
+  enum ChannelState  {
+    Active, Inactive;
+  }
+
+  composition CentralAuthority  ->  (has) QuantumNode[*];
+  composition CentralAuthority  ->  (has) QuantumChannel[*];
+  composition QuantumNode  ->  (has) QuantumKey[*];
+  composition QuantumChannel  ->  (connects) QuantumNode[*];
+}

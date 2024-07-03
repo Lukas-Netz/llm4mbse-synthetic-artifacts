@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram MentalHealthPlatform  {
+
+  class User  {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Therapist extends User  {
+    String qualifications;
+    int experience;
+    Availability availability;
+  }
+
+  class Resource  {
+    String title;
+    String description;
+    String[] tags;
+  }
+
+  class Profile  {
+    String goals;
+    String progress;
+    String achievements;
+  }
+
+  class Availability  {
+    String days;
+    String hours;
+  }
+
+  class Session  {
+    User user;
+    Therapist therapist;
+    Date date;
+  }
+
+  class Goal  {
+    String description;
+    Date deadline;
+  }
+
+  class Progress  {
+    String description;
+    Date date;
+  }
+
+  composition User -> Profile;
+  composition Therapist -> Availability;
+  composition Resource -> tags;
+  composition User -> Session;
+  composition Session -> Therapist;
+  composition User -> Goal;
+  composition Goal -> Progress;
+}
+

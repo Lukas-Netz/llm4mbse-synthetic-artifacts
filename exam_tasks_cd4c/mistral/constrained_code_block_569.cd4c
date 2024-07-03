@@ -1,0 +1,65 @@
+
+classdiagram MRI {
+
+  class MRI {
+    Scanner scanner;
+    Computer computer;
+    Console console;
+  }
+
+  class Scanner {
+    Type type;
+    State state;
+  }
+
+  enum Type {
+    																			T1, T2, Diffusion, Functional
+ 										;}
+
+  enum State {
+    Idle, Scanning, Maintenance
+ 										;}
+
+  class Computer {
+    void controlScanner();
+    void storeImages();
+  }
+
+  class Console {
+    void controlScanner();
+    void viewImages();
+  }
+
+  class Sequence {
+    Settings settings;
+  }
+
+  class Settings {
+    int echoTime;
+    int repetitionTime;
+  }
+
+  class Image {
+    Format format;
+  }
+
+  enum Format {
+    DICOM, JPEG
+ 										;}
+
+  class PatientDatabase {
+    -> Patient [*];
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+  }
+
+  composition MRI -> Scanner;
+  composition MRI -> Computer;
+  composition MRI -> Console;
+  composition Sequence -> Image [*];
+  association PatientDatabase -> Patient;
+}

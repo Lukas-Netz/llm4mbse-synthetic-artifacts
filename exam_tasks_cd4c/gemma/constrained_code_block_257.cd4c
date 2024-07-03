@@ -1,0 +1,142 @@
+
+
+classdiagram VRExperiencePlatform {
+
+  class User {
+    String uniqueIdentifier;
+    List<VRExperience> experiences;
+  }
+
+  class VRExperience {
+    String title;
+    String description;
+    List<Scene> scenes;
+  }
+
+  class Scene {
+    String name;
+    String description;
+    List<Object> objects;
+  }
+
+  class Object {
+    String name;
+    String description;
+    List<Property> properties;
+  }
+
+  class Property {
+    String name;
+    String value;
+  }
+
+  composition User -> (has) List<<VRExperience>>
+
+  abstract  
+  
+  
+  
+;
+
+  composition VRExperience -> (has) List<<Scene>>
+
+  abstract  
+  
+  
+;
+
+  composition Scene -> (has) List<<Object>>
+
+  abstract  
+  
+  
+;
+
+  composition Object -> (has) List<<Property>>
+
+  abstract  
+  
+  
+;
+
+  association User -VRExperience
+
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+  association VRExperience -Scene
+
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+  association Scene -Object
+
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+  association Object -Property
+
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+  association Property -Value
+
+  -- association  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+;
+
+}

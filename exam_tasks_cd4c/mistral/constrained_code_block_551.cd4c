@@ -1,0 +1,47 @@
+
+classdiagram RapidDNA {
+
+  class DNAAnalyzer {
+    Type type;
+  }
+
+  enum Type {
+    PCR, STR
+ ;}
+
+  class DNADatabase {
+    Type type;
+  }
+
+  enum Type {
+    Local, Remote
+ ;}
+
+  class UserInterface {
+    Type type;
+  }
+
+  enum Type {
+    Web, Desktop
+ ;}
+
+  class QualityControl {
+    Type type;
+  }
+
+  enum Type {
+    Manual, Automated
+ ;}
+
+  class RapidDNA {
+    DNAAnalyzer analyzer;
+    DNADatabase database;
+    UserInterface ui;
+    QualityControl qc;
+  }
+
+  composition RapidDNA -> DNAAnalyzer;
+  composition RapidDNA -> DNADatabase;
+  composition RapidDNA -> UserInterface;
+  composition RapidDNA -> QualityControl;
+}

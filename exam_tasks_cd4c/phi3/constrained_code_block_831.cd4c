@@ -1,0 +1,62 @@
+
+classdiagram VRDesignTool {
+
+    class VRDesignTool {
+      String name;
+      int version;
+      List<Scene> scenes;
+    }
+
+    class Scene {
+      List<Object> objects;
+    }
+
+    abstract class Object {
+      String uniqueIdentifier;
+    }
+
+    class  Model extends Object {
+      int position;
+      int rotation;
+      int scale;
+    }
+
+    class Texture extends Object {
+      int resolution;
+      String format;
+    }
+
+    class Light extends Object {
+      int intensity;
+      String color;
+      int position;
+    }
+
+    class Renderer {
+      void renderScene(Scene scene);
+    }
+
+    class User {
+      String username;
+      String password;
+      Permissions permissions;
+    }
+
+    class Permissions {
+      boolean canCreateScene;
+      boolean canEditScene;
+      boolean canDeleteScene;
+      boolean canImportModel;
+      boolean canExportModel;
+      boolean canImportTexture;
+      boolean canExportTexture;
+      boolean canImportLight;
+      boolean canExportLight;
+    }
+
+    composition VRDesignTool -> (has) Scene;
+    composition VRDesignTool -> (has) Renderer;
+    composition VRDesignTool -> (has) User;
+    composition Scene -> (has) Object [*];
+    composition User -> (has) Permissions;
+}

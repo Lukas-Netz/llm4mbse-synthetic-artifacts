@@ -1,0 +1,49 @@
+
+classdiagram AcademicCredentials {
+
+  class Student {
+    String uniqueIdentifier;
+    AcademicRecord [ ] academicRecords;
+  }
+
+  abstract class AcademicRecord {
+    String type;
+    Map<String, String> attributes;
+  }
+
+  class Diploma extends AcademicRecord {
+  }
+
+  class Transcript extends AcademicRecord {
+  }
+
+  class Certificate extends AcademicRecord {
+  }
+
+  class Institution {
+    String uniqueIdentifier;
+    Set<Student> students;
+    Set<AcademicRecord> academicRecords;
+  }
+
+  class Blockchain {
+    void addAcademicRecord(AcademicRecord record);
+    boolean verifyAcademicRecord(AcademicRecord record);
+  }
+
+  class StudentProof {
+    AcademicRecord record;
+    String proof;
+  }
+
+  class InstitutionVerification {
+    AcademicRecord record;
+    boolean isAuthentic;
+  }
+
+  composition Student -> AcademicRecord [*];
+  composition Institution -> Student [*];
+  composition Institution -> AcademicRecord [*];
+  association StudentProof -- Student;
+  association InstitutionVerification -- Institution;
+}

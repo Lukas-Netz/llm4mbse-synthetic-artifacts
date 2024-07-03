@@ -1,0 +1,45 @@
+
+classdiagram SupplyChain {
+
+  class Blockchain {
+    Transaction [][] ledger;
+  }
+
+  class ContractCreator {
+    Contract createContract();
+    deployContract(Contract contract);
+    manageContracts();
+  }
+
+  class Contract {
+    String uniqueIdentifier;
+    Party [] parties;
+    Transaction [ ] transactions;
+    ContractStatus status;
+  }
+
+  class Party {
+    String uniqueIdentifier;
+    String walletAddress;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    TransactionStatus status;
+  }
+
+  enum ContractStatus {
+    Active, Inactive;
+  }
+
+  enum TransactionStatus {
+    Pending, Confirmed, Rejected;
+  }
+
+  association ContractCreator --oContract;
+  association Contract --oParty [*];
+  association Contract --oTransaction [*];
+  association Party --oTransaction [*];
+  association Blockchain --oTransaction [*];
+}

@@ -1,0 +1,34 @@
+
+
+classdiagram AvalanchePredictionSystem {
+
+    class WeatherStation {
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    class SensorNetwork {
+      SnowDepthSensor snowDepthSensor;
+      SnowDensitySensor snowDensitySensor;
+      OtherSensor otherSensors;
+    }
+
+    class PredictionModel {
+      Data data;
+      RiskLevel riskLevel;
+      String prediction;
+    }
+
+    enum RiskLevel {
+      Low, Moderate, High, Extreme
+    
+    
+
+;
+  }
+
+  composition AvalanchePredictionSystem -> (has) WeatherStation;
+  composition AvalanchePredictionSystem -> (has) SensorNetwork [0..1];
+  composition AvalanchePredictionSystem -> (has) PredictionModel [0..1];
+}

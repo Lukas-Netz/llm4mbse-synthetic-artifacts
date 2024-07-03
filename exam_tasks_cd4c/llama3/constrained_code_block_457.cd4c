@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram CodingBootcamp  {
+
+  class Course  {
+    String name;
+    String description;
+    int duration;
+    Instructor instructor;
+    Section[] sections;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String bio;
+  }
+
+  class Section  {
+    String name;
+    Date startDate;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    CourseEnrollment[] enrollments;
+  }
+
+  class CourseEnrollment  {
+    Course course;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Exercise  {
+    String name;
+    int completed;
+    int timeSpent;
+  }
+
+  class Payment  {
+    Student student;
+    Course course;
+    Date date;
+    double amount;
+  }
+
+  composition Course -> Instructor;
+  composition Course -> Section[*];
+  composition Student -> CourseEnrollment[*];
+  composition CourseEnrollment -> Course;
+  composition Payment -> Student;
+  composition Payment -> Course;
+}

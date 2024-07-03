@@ -1,0 +1,77 @@
+
+classdiagram RemoteDesktop {
+
+  class User {
+    String username;
+    String password;
+    String biometricData;
+  }
+
+  class Computer {
+    String os;
+    String ipAddress;
+    String connectionType;
+  }
+
+  abstract class Connection {
+    String protocol;
+    int port;
+  }
+
+  class VPN extends Connection {
+  }
+
+  class SSH extends Connection {
+  }
+
+  abstract class DataTransfer {
+    String type;
+  }
+
+  class FileTransfer extends DataTransfer {
+  }
+
+  class ScreenSharing extends DataTransfer {
+  }
+
+  abstract class Encryption {
+    String algorithm;
+  }
+
+  class AES extends Encryption {
+  }
+
+  class RSA extends Encryption {
+  }
+
+  abstract class NetworkProtocol {
+    String name;
+  }
+
+  class TCP extends NetworkProtocol {
+  }
+
+  class UDP extends NetworkProtocol {
+  }
+
+  abstract class NetworkTopology {
+    String name;
+  }
+
+  class LAN extends NetworkTopology {
+  }
+
+  class WAN extends NetworkTopology {
+  }
+
+  abstract class NetworkDevice {
+    String name;
+  }
+
+  class Router extends NetworkDevice {
+  }
+
+  class Switch extends NetworkDevice {
+  }
+
+  		}

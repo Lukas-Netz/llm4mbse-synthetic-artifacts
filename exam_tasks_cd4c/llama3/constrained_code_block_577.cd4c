@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram PrecisionLivestockFarmingSystem  {
+
+  class Animal  {
+    String name;
+    Location location;
+    VitalSigns vitalSigns;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class VitalSigns  {
+    double temperature;
+    int heartRate;
+    int respiratoryRate;
+  }
+
+  class SensorData  {
+    Animal animal;
+    SensorType sensorType;
+    double value;
+  }
+
+  class SensorType  {
+    String name;
+  }
+
+  class Alert  {
+    Animal animal;
+    String message;
+  }
+
+  class Recommendation  {
+    Animal animal;
+    String message;
+  }
+
+  class HeatMap  {
+    Animal animal;
+    double value;
+  }
+
+  class Analytics  {
+    Animal animal;
+    HeatMap heatMap;
+    Alert alert;
+  }
+
+  class Sensor  {
+    SensorType sensorType;
+    double value;
+  }
+
+  class Farm  {
+    List<Animal> animals;
+    List<Sensor> sensors;
+  }
+
+  composition Farm -> Animal[*];
+  composition Farm -> Sensor[*];
+  composition Animal -> SensorData[*];
+  composition SensorData -> SensorType;
+  composition Analytics -> Animal;
+  composition Recommendation -> Animal;
+  composition HeatMap -> Animal;
+  composition Alert -> Animal;
+}

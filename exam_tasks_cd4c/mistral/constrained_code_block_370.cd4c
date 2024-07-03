@@ -1,0 +1,60 @@
+
+classdiagram TicketingSystem {
+
+  class Event {
+    String name;
+    Date date;
+    String location;
+    EventType type;
+  }
+
+  enum EventType {
+    CONCERT, CONFERENCE;
+  }
+
+  class Ticket {
+    String uniqueIdentifier;
+    double price;
+    TicketType type;
+  }
+
+  enum TicketType {
+    GENERAL_ADMISSION, VIP, PREMIUM;
+  }
+
+  class Attendee {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String phoneNumber;
+    Event [ ] assignedEvents;
+    Ticket [ ] purchasedTickets;
+  }
+
+  class Report {
+    Event event;
+    double totalRevenue;
+  }
+
+  class Notification {
+    Attendee recipient;
+    String message;
+  }
+
+  composition Event [ * ] assignsAttendee [  inverse  ]
+  -- composition/ 											;
+  composition Ticket [ * ] purchasesAttendee [  inverse  ]
+
+  -- association
+  <<stereotype>> 											;
+  association Event_Ticket {
+   								ordered
+   		}
+
+  association 																																			-- Attendee_Event
+  {
+   								ordered
+   		}
+
+ 			;
+}

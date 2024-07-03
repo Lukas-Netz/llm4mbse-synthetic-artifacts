@@ -1,0 +1,93 @@
+
+classdiagram VRTrainingSimulation {
+
+    class Scenario {
+      String scenarioId;
+      DifficultyLevel difficulty;
+      Duration duration;
+      int numberOfObjectives;
+      List<Objective> objectives;
+      List<Obstacle> obstacles;
+      List<Reward> rewards;
+    }
+
+    class UserProfile {
+      User user;
+      List<Scenario> completedScenarios;
+      List<Objective> achievedObjectives;
+      List<Reward> earnedRewards;
+    }
+
+    class User {
+      String userId;
+      List<UserProfile> profiles;
+    }
+
+    class VirtualObject {
+      String objectId;
+      String objectType;
+    }
+
+    class Building extends VirtualObject {
+      String buildingId;
+      String buildingType;
+    }
+
+    class Vehicle extends VirtualObject {
+      String vehicleId;
+      String vehicleType;
+    }
+
+    class Character extends VirtualObject {
+      String characterId;
+      String characterType;
+    }
+
+    class Objective {
+      String objectiveId;
+      String objectiveType;
+    }
+
+    class Obstacle {
+      String obstacleId;
+      String obstacleType;
+    }
+
+    class Reward {
+      String rewardId;
+      String rewardType;
+    }
+
+    class ScenarioEditor {
+      List<Scenario> scenarios;
+      TerrainEditor terrainEditor;
+      ObjectEditor objectEditor;
+      ObjectiveEditor objectiveEditor;
+      void createScenario();
+      void editScenario(Scenario scenario);
+      void deleteScenario(Scenario scenario);
+    }
+
+    class TerrainEditor {
+      void createTerrain();
+      void editTerrain(Terrain terrain);
+    }
+
+    class ObjectEditor {
+      void createObject(VirtualObject object);
+      void editObject(VirtualObject object);
+    }
+
+    class ObjectiveEditor {
+      void createObjective(Objective objective);
+      void editObjective(Objective objective);
+    }
+
+    composition User -> (has) UserProfile;
+    composition User -> (has) List<<UserProfile>>;
+    composition Scenario -> (has) List<<Objective>>;
+    composition Scenario -> (has) List<<Obstacle>>;
+    composition Scenario -> (has) List<<Reward>>;
+    composition Scenario -> (has) ScenarioEditor;
+   
+ }

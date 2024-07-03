@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram SmartHomeSecurity  {
+
+  class CentralHub  {
+    Device  device;
+    CloudBackend cloudBackend;
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    void monitorDeviceStatus();
+    void detectSecurityThreats();
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Light extends Device  {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Thermostat extends Device  {
+    int temperature;
+    ThermostatMode mode;
+  }
+
+  class SecurityCamera extends Device  {
+    String resolution;
+    boolean isRecording;
+  }
+
+  class CloudBackend  {
+    void analyzeData();
+    void detectThreats();
+  }
+
+  enum DeviceStatus  {
+    On, Off;
+  }
+
+  enum ThermostatMode  {
+    Heating, Cooling;
+  }
+
+  composition CentralHub -> (has) Device;
+  composition CentralHub -> (has) CloudBackend;
+  composition CloudBackend -> (has) CentralHub;
+}

@@ -1,0 +1,51 @@
+
+classdiagram VoiceActingPlatform {
+
+  class Student {
+    String name;
+    String email;
+    -> Class [*];
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    -> Class [*];
+    -> Student [*];
+    int rate(Student student);
+  }
+
+  class Class {
+    String name;
+    String description;
+    String schedule;
+    Instructor instructor;
+    -> Student [*];
+  }
+
+  class Administrator {
+    String name;
+    String email;
+    -> Instructor [*];
+    -> Class [*];
+    -> Student [*];
+  }
+
+  class ProgressReport {
+    Student student;
+    Class class;
+    int progress;
+  }
+
+  class RatingReport {
+    Instructor instructor;
+    int totalRatings;
+    int averageRating;
+  }
+
+  composition Student -> Class;
+  composition Instructor -> Class;
+  composition Administrator -> Instructor;
+  composition Administrator -> Class;
+  composition Administrator -> Student;
+}

@@ -1,0 +1,35 @@
+
+classdiagram VRMApp {
+
+    class VRMApp {
+      Library meditationSessions;
+      List meditationTechniques;
+      UserProgress userProgress;
+    }
+
+    class Library {
+      String sessionName;
+      String sessionDescription;
+      MeditationTheme theme;
+      List<MeditationTechnique> techniques;
+    }
+
+    class MeditationTechnique {
+      String techniqueName;
+      String techniqueDescription;
+      MentalStateEffect effect;
+    }
+
+    class MentalStateEffect {
+      String effectDescription;
+    }
+
+    class UserProgress {
+      int sessionsCompleted;
+      int totalMeditationTime;
+    }
+
+    association VRMApp -> Library;
+    association VRMApp -> MeditationTechnique;
+    association VRMApp -> UserProgress;
+}

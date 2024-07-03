@@ -1,0 +1,54 @@
+
+classdiagram PointOfSale {
+
+    class POS {
+      Product[] products;
+      Customer[] customers;
+      SalesTransaction[] salesTransactions;
+
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      void addSalesTransaction(SalesTransaction salesTransaction);
+      void removeSalesTransaction(SalesTransaction salesTransaction);
+      double calculateTotalCost(SalesTransaction salesTransaction);
+    }
+
+    class Product {
+      int productId;
+      String name;
+      double price;
+      String category;
+    }
+
+    class Customer {
+      int customerId;
+      String name;
+      String contactInfo;
+    }
+
+    class SalesTransaction {
+      int transactionId;
+      Date transactionDate;
+      double totalCost;
+      Product[] productsIncluded;
+    }
+
+    association POS 
+      has
+      [Product]
+      -> products;
+
+    association POS 
+      has
+      [Customer]
+      -> customers;
+
+    association POS 
+      has
+      [SalesTransaction]
+      -> salesTransactions;
+
+    composition POS -> SalesTransaction [1..*];
+}

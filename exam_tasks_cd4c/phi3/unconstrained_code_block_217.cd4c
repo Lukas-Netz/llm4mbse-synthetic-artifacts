@@ -1,0 +1,47 @@
+
+classdiagram ResearchStation {
+
+    class LivingQuarters {
+      private Rooms privateRooms;
+      private Kitchen sharedKitchen;
+      private CommonAreas commonAreas;
+    }
+
+    class Laboratories {
+      private Equipment equipment;
+      private SampleStorage sampleStorage;
+      private Workstations workstations;
+    }
+
+    class MedicalCenter {
+      private ExaminationRooms examinationRooms;
+      private MedicalEquipment medicalEquipment;
+      private MedicalSupplies medicalSupplies;
+    }
+
+    class LogisticsCenter {
+      private StorageRooms storageRooms;
+      private Warehouse warehouse;
+      private MaintenanceWorkshop maintenanceWorkshop;
+    }
+
+    class CommunicationCenter {
+      private CommunicationEquipment communicationEquipment;
+      private SatelliteDish satelliteDish;
+      private BackupPower backupPower;
+    }
+
+    class ResearchStation {
+      LivingQuarters livingQuarters;
+      Laboratories laboratories;
+      MedicalCenter medicalCenter;
+      LogisticsCenter logisticsCenter;
+      CommunicationCenter communicationCenter;
+    }
+
+    association ResearchStation -> LivingQuarters [*];
+    association ResearchStation -> Laboratories [*];
+    association ResearchStation -> MedicalCenter [*];
+    association ResearchStation -> LogisticsCenter [*];
+    association ResearchStation -> CommunicationCenter [*];
+}

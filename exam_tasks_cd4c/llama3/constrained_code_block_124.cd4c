@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram EnergyMonitoring  {
+
+  class Building  {
+    String uniqueIdentifier;
+    Sensor  sensor  ; 
+    Meter  meter  ; 
+    Controller  controller  ; 
+  }
+
+  class Sensor  {
+    Temperature temperature;
+    Humidity humidity;
+    Light light;
+    Building  building  ; 
+    Meter  meter  ; 
+    Controller  controller  ; 
+  }
+
+  class Meter  {
+    double energyConsumptionKWh;
+    Building  building  ; 
+    Controller  controller  ; 
+  }
+
+  class Controller  {
+    Building  building  ; 
+    Sensor  sensor  ; 
+    Meter  meter  ; 
+  }
+
+  class CentralServer  {
+    void collectData(Building building);
+    void sendNotification(Building building);
+  }
+
+  enum Temperature  {
+    Celsius, Fahrenheit;
+  }
+
+  enum Humidity  {
+    Percentage;
+  }
+
+  enum Light  {
+    Lux;
+  }
+
+  composition Building  ->  (has) Sensor; 
+  composition Building  ->  (has) Meter; 
+  composition Building  ->  (has) Controller; 
+  composition Sensor  ->  (has) Meter; 
+  composition Sensor  ->  (has) Controller; 
+  composition Meter  ->  (has) Controller; 
+  composition CentralServer  ->  (has) Building  [*]; 
+}

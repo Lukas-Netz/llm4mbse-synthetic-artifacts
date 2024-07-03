@@ -1,0 +1,50 @@
+
+classdiagram ARTrainingSimulationSystem {
+
+    class ScenarioManager {
+      void loadScenario(String scenarioId);
+      Scenario getScenarioData(String scenarioId);
+    WritableScenarioData writeScenarioData(Scenario scenario);
+    }
+
+    class ARDisplay {
+      void renderScene(WritableScenarioData scenarioData);
+      void displayPilotInput(String input);
+    }
+
+    class PilotInterface {
+      void inputCommand(String command);
+      String getPilotInput();
+    }
+
+    class PerformanceTracker {
+      void trackPerformance(PilotInterface pilotInterface);
+      Feedback provideFeedback(PilotInterface pilotInterface);
+    }
+
+    class ScenarioDatabase {
+      Scenario getScenario(String scenarioId);
+    }
+
+    class Scenario {
+      String id;
+      WritableScenarioData data;
+    }
+
+    class WritableScenarioData {
+      String scenarioId;
+      String sceneDescription;
+      String difficultyLevel;
+    }
+
+    class Feedback {
+      String message;
+      String performanceMetrics;
+    }
+
+    association ScenarioManager <-> ARDisplay;
+    association ScenarioManager <-> PerformanceTracker;
+    association ScenarioManager <-> ScenarioDatabase;
+    association PilotInterface <-> PerformanceTracker;
+    association ARDisplay <-> PilotInterface;
+}

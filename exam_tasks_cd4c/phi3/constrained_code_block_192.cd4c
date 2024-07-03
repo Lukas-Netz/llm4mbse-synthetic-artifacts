@@ -1,0 +1,52 @@
+
+classdiagram BlockchainIdentitySystem {
+
+    class User {
+      String uniqueIdentifier;
+      List<Identity> identities;
+      void createIdentity(Identity identity);
+      void updateIdentity(Identity identity);
+      void deleteIdentity(Identity identity);
+    }
+
+    class Identity {
+      String name;
+      String description;
+      Status status;
+      Organization organization;
+    }
+
+    class Organization {
+      String name;
+      List<User> users;
+      List<Identity> identities;
+      void createIdentity(Identity identity);
+      void updateIdentity(Identity identity);
+      void deleteIdentity(Identity identity);
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      Node node;
+      void verifyIntegrity();
+      void updateBlockchain(Block block);
+    }
+
+    class Node {
+      String uniqueIdentifier;
+      Blockchain blockchain;
+      void verifyBlockchain();
+      void updateBlockchain(Block block);
+    }
+
+    enum Status {
+      Active, Inactive;
+    }
+
+  composition User -> (has) Identity;
+  composition User -> (has) Organization;
+  composition Organization -> (has) Identity;
+  composition Organization -> (has) User;
+  composition Blockchain -> (has) Node;
+  composition Node -> (has) Blockchain;
+}

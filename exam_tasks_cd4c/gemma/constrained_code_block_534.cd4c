@@ -1,0 +1,72 @@
+
+
+classdiagram AquacultureManagementSystem {
+
+  class Farm {
+    String name;
+    List<Tank> tanks;
+    WaterQualityMonitor monitor;
+    FeedingSchedule schedule;
+  }
+
+  class Tank {
+    String id;
+    Fish fish;
+    WaterQualitySensor sensor;
+  }
+
+  class Fish {
+    String name;
+    Weight weight;
+    HealthStatus healthStatus;
+  }
+
+  class WaterQualityMonitor {
+    Sensor readings;
+    WaterQualityReport report;
+  }
+
+  class WaterQualitySensor {
+    Reading reading;
+  }
+
+  class FeedingSchedule {
+    TimeSlot slots;
+    FoodType food;
+  }
+
+  class HealthStatus {
+    Symptoms symptoms;
+    Treatment treatment;
+  }
+
+  class SensorReadings {
+    Reading reading;
+  }
+
+  class Reading {
+    Timestamp timestamp;
+    Measurement measurement;
+  }
+
+  class FoodType {
+    String name;
+    Nutrition nutrition;
+  }
+
+  class TimeSlot {
+    Hour hour;
+    Minute minute;
+  }
+
+  composition Farm -> (has) Tanks [*];
+  composition Farm -> (has) WaterQualityMonitor;
+  composition Tank -> (has) Fish;
+  composition Tank -> (has) WaterQualitySensor;
+  association Farm - FeedingSchedule
+  -- association  -  
+  
+
+  
+
+ ;}

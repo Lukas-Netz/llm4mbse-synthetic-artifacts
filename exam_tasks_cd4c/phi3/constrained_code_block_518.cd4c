@@ -1,0 +1,47 @@
+
+classdiagram Excavation {
+
+    class Archaeologist {
+      String uniqueIdentifier;
+      List<String> assignedLayers;
+    }
+
+    class Layer {
+      String uniqueIdentifier;
+      List<Artifact> artifacts;
+    }
+
+    class Artifact {
+      String uniqueIdentifier;
+      ArtifactCategory category;
+    }
+
+    class ExcavationStatus {
+      String status;
+    }
+
+    class Excavation {
+      Archaeologist leader;
+      List<Layer> layers;
+      ExcavationStatus status;
+      void addArchaeologist(Archaeologist archaeologist);
+      void removeArchaeologist(Archaeologist archaeologist);
+      void assignArchaeologist(Archaeologist archaeologist, Layer layer);
+      void reassignArchaeologist(Archaeologist archaeologist, Layer layer);
+      void updateStatus(ExcavationStatus status);
+    }
+
+    enum ArtifactCategory {
+      Pottery, Tools, Relics;
+    }
+
+  composition Excavation -> (has) Archaeologist;
+  composition Excavation -> (has) Layer [*];
+  composition Excavation -> (has) ExcavationStatus;
+  composition Archaeologist -> (has) assignedLayers [*];
+  composition Archaeologist -> (has) assignedLayers;
+  composition Layer -> (has) artifacts [*];
+  composition Layer -> (has) artifacts;
+  composition Artifact -> (has) category;
+  composition Artifact -> (has) uniqueIdentifier;
+}

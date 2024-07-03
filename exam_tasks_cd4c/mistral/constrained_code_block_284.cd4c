@@ -1,0 +1,93 @@
+
+classdiagram RetailManagement {
+
+  class Store {
+    String name;
+    String uniqueIdentifier;
+    Department [ ] departments;
+  }
+
+  class Department {
+    String name;
+    String uniqueIdentifier;
+    Product [ ] products;
+  }
+
+  abstract class Product {
+    String name;
+    String uniqueIdentifier;
+    double price;
+  }
+
+  class Clothing extends Product {
+    String size;
+    String color;
+    String material;
+  }
+
+  class Electronics extends Product {
+    String brand;
+    String model;
+    int warranty;
+  }
+
+  class HomeGoods extends Product {
+    String material;
+    String size;
+    String color;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    String customerName;
+    Product [ ] products;
+  }
+
+  class Customer {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Sales {
+    String uniqueIdentifier;
+    double amount;
+    Order order;
+  }
+
+  class Inventory {
+    String uniqueIdentifier;
+    int quantity;
+    Product product;
+  }
+
+  class CustomerInformation {
+    String uniqueIdentifier;
+    String name;
+    String contactInfo;
+  }
+
+  class Administrator {
+    String uniqueIdentifier;
+    String name;
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void addDepartment(Department department);
+    void removeDepartment(Department department);
+    void addCustomer(Customer customer);
+    void removeCustomer(Customer customer);
+  }
+
+  class Reports {
+    String uniqueIdentifier;
+    String type;
+    String data;
+  }
+
+  composition Store -> Department [*];
+  composition Department -> Product [*];
+  association Order -> Customer;
+  association Sales -> Order;
+  association Inventory -> Product;
+  association CustomerInformation -> Customer;
+  association Administrator -> Store;
+ 				}

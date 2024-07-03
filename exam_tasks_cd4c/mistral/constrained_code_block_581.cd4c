@@ -1,0 +1,48 @@
+
+classdiagram AutonomousUnderwaterExploration {
+
+  class Submarine {
+    String name;
+    String uniqueIdentifier;
+    Position position;
+
+    void moveUp();
+    void moveDown();
+    void moveForward();
+    void moveBackward();
+    void moveLeft();
+    void moveRight();
+  }
+
+  class Position {
+    int xCoordinate;
+    int yCoordinate;
+    int depth;
+  }
+
+  abstract class Sensor {
+    String type;
+    Position location;
+  }
+
+  class Sonar extends Sensor {
+    int range;
+  }
+
+  class Camera extends Sensor {
+    String image;
+  }
+
+  class WaterQuality extends Sensor {
+    float pHLevel;
+  }
+
+  class Hub {
+    void receiveData(Submarine submarine);
+    void displaySubmarineLocation();
+    void displaySensorData();
+  }
+
+  composition Submarine -> Position;
+  composition Submarine -> (has) Sensor [*];
+}

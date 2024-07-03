@@ -1,0 +1,44 @@
+
+
+#  classdiagram AutomatedMarketingAnalytics
+
+  
+	{classdiagram
+	
+	  
+	  
+	  
+	  {class AutomatedMarketingAnalytics
+		  
+		  
+	;
+	  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  compositionsAutomatedMarketingAnalytics -> (has) DataIngestion
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  {
+	  
+	  
+	  ordered
+	  
+	}
+	  
+	;
+	}

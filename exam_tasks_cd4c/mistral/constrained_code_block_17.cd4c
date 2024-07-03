@@ -1,0 +1,51 @@
+
+classdiagram SupplyChain {
+
+  class Supplier {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] providedProducts;
+  }
+
+  class Manufacturer {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] producibleProducts;
+  }
+
+  class Distributor {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] sellableProducts;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    Product [ ] purchasableProducts;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Inventory {
+    int quantity;
+  }
+
+  class Order {
+    Product product;
+    Inventory inventory;
+  }
+
+  composition Supplier -> Product [*];
+  composition Manufacturer -> Product [*];
+  composition Distributor -> Product [*];
+  composition Customer -> Product [*];
+  association Supplier -- Manufacturer;
+  association Manufacturer -- Distributor;
+  association Distributor -- Customer;
+  association Order -- Product;
+  association Order -- Inventory;
+}

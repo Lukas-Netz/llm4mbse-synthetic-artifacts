@@ -1,0 +1,46 @@
+
+classdiagram VirtualRealitySportsTraining {
+
+    class Trainer {
+      void createGame(Game game);
+      void assignPlayerToGame(Player player, Game game);
+      void viewPlayerProgress(Player player);
+      void adjustGameDifficulty(Game game);
+    }
+
+    class Player {
+      String uniqueIdentifier;
+      String name;
+      int skillLevel;
+      List<Challenge> completedChallenges;
+    }
+
+    class Game {
+      String name;
+      String description;
+      List<Level> levels;
+    }
+
+    class Level {
+      String difficultyLevel;
+      int score;
+      List<Challenge> challenges;
+    }
+
+    class Challenge {
+      String difficultyLevel;
+      int score;
+      List<Outcome> possibleOutcomes;
+    }
+
+    class Outcome {
+      String result;
+    }
+
+    composition Trainer -> Game;
+    composition Trainer -> Player;
+    composition Player -> Game;
+    composition Game -> Level;
+    composition Level -> Challenge;
+    composition Challenge -> Outcome;
+}

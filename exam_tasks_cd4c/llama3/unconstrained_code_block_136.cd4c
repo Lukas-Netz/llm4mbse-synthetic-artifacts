@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram OnlineTutoringPlatform  {
+
+  class Student  {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Tutor  {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Session  {
+    int id;
+    Tutor tutor;
+    Student student;
+    DateTime startTime;
+    DateTime endTime;
+    String description;
+  }
+
+  class Course  {
+    int id;
+    String name;
+    String description;
+    List<Session> sessions;
+  }
+
+  class Payment  {
+    int id;
+    double amount;
+    PaymentMethod paymentMethod;
+  }
+
+  enum PaymentMethod  {
+    CREDIT_CARD, PAYPAL, BANK_TRANSFER;
+  }
+
+  composition Student -> Profile;
+  composition Tutor -> Profile;
+  composition Session -> Tutor;
+  composition Session -> Student;
+  composition Course -> Session[*];
+  composition Payment -> Student;
+}

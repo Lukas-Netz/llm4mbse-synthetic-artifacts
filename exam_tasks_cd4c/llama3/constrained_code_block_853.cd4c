@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram InternetConnectedAppliances  {
+
+  class Appliance  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Appliance associatedAppliance;
+    double temperature;
+    double humidity;
+    double powerConsumption;
+  }
+
+  class Controller  {
+    String uniqueIdentifier;
+    Appliance associatedAppliance;
+    boolean isOn;
+    int setting;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String password;
+  }
+
+  class CentralHub  {
+    Appliance  [] appliances;
+    Sensor  [] sensors;
+    Controller  [] controllers;
+    User  [] users;
+    void addUser(User user);
+    void addAppliance(Appliance appliance);
+    void addSensor(Sensor sensor);
+    void addController(Controller controller);
+    void monitorApplianceStatus();
+    void sendNotification(Appliance appliance);
+    void controlAppliance(Appliance appliance);
+  }
+
+  composition CentralHub -> (has) Appliance  [*];
+  composition CentralHub -> (has) Sensor  [*];
+  composition CentralHub -> (has) Controller  [*];
+  composition CentralHub -> (has) User  [*];
+  association Appliance -> (has) Sensor  [1..*];
+  association Appliance -> (has) Controller  [1..*];
+  association User -> (has) Appliance  [*];
+}

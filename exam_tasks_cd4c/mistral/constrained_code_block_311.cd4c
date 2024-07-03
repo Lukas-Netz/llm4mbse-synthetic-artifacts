@@ -1,0 +1,60 @@
+
+classdiagram DigitalMarketingAnalytics {
+
+  class Campaign {
+    String name;
+    Date startDate;
+    Date endDate;
+    double budget;
+  }
+
+  class Click {
+    Campaign campaign;
+    Date timestamp;
+  }
+
+  class Conversion {
+    Campaign campaign;
+    Date timestamp;
+  }
+
+  class Revenue {
+    Campaign campaign;
+    double amount;
+    Date timestamp;
+  }
+
+  class Performance {
+    Campaign campaign;
+    int clicks;
+    int conversions;
+    double revenue;
+  }
+
+  class Analysis {
+    Campaign campaign;
+    double performanceScore;
+    String recommendations;
+  }
+
+  class DigitalMarketingAnalytics {
+    Campaign [ ] campaigns;
+    Click [ ] clicks;
+    Conversion [ ] conversions;
+    Revenue [ ] revenues;
+    Performance [ ] performances;
+    Analysis [ ] analyses;
+
+    void addCampaign(Campaign campaign);
+    void addClick(Click click);
+    void addConversion(Conversion conversion);
+    void addRevenue(Revenue revenue);
+    Performance getPerformance(Campaign campaign);
+    Analysis getAnalysis(Campaign campaign);
+  }
+
+  association DigitalMarketingAnalytics -> Campaign [*];
+  association DigitalMarketingAnalytics -> Click [*];
+  association DigitalMarketingAnalytics -> Conversion [*];
+  association DigitalMarketingAnalytics -> Revenue [*];
+}

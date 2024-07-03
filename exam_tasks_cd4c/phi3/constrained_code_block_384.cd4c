@@ -1,0 +1,50 @@
+
+classdiagram OnlineGrocery {
+
+    class Customer {
+      String uniqueId;
+      String name;
+      String address;
+    }
+
+    class Order {
+      Customer customer;
+      List<Product> products;
+      String orderId;
+      String status;
+      void placeOrder();
+      void viewOrderHistory();
+      void trackOrderStatus();
+    }
+
+    class Product {
+      String uniqueId;
+      String name;
+      double price;
+      int quantity;
+      String category;
+      Product(String name, double price, int quantity, String category);
+    }
+
+    class Category {
+      String name;
+      List<Product> products;
+      void addProduct(Product product);
+      void removeProduct(Product product);
+    }
+
+    class Admin {
+      void manageProducts();
+      void manageCategories();
+      void manageCustomers();
+    }
+
+    association Customer -> Order [0..*];
+    association Order -> Product [*];
+    association Order -> Customer [1];
+    association Order -> Admin [1];
+    association Admin -> Order [1];
+    association Admin -> Product [1];
+    association Admin -> Category [1];
+    association Category -> Product [1];
+}

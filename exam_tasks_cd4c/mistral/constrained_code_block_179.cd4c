@@ -1,0 +1,50 @@
+
+classdiagram VirtualPropertyTours {
+
+  class Property {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+  }
+
+  enum PropertyType {
+    Residential, Commercial, Industrial;
+  }
+
+  class Tour {
+    String uniqueIdentifier;
+    Property property;
+  }
+
+  class Scene {
+    String uniqueIdentifier;
+    Tour tour;
+  }
+
+  class Object {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    double price;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    void createTour();
+    void editTour();
+    void deleteTour();
+    void rateTour();
+    void commentTour();
+  }
+
+  composition Property [*] Tour [navigable]
+  -- composition/ 											{ 											ordered }
+ 				;
+  composition Tour [*] Scene [navigable]
+  -- composition/ 											{ 											ordered }
+ 				;
+  composition Scene [*] Object [navigable]
+  -- composition/ 											{ 											ordered }
+ 				;
+}

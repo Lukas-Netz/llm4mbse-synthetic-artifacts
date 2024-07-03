@@ -1,0 +1,36 @@
+
+classdiagram CryptocurrencyWallet {
+
+  class Wallet {
+    String uniqueIdentifier;
+    String password;
+    Account [ ] accounts;
+    Transaction [ ] transactions;
+    Contact [ ] contacts;
+  }
+
+  class Account {
+    String uniqueAddress;
+    double balance;
+  }
+
+  class Transaction {
+    String timestamp;
+    double amount;
+    String type;
+  }
+
+  class Contact {
+    String uniqueAddress;
+    String label;
+    String name;
+  }
+
+  enum Type {
+    Send, Receive;
+  }
+
+  composition Wallet -> Account [*];
+  composition Wallet -> Transaction [*];
+  composition Wallet -> Contact [*];
+}

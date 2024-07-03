@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram UnderwritingSystem  {
+
+  class Customer  {
+    int age;
+    HealthStatus healthStatus;
+    Occupation occupation;
+    int income;
+    FamilyHistory familyHistory;
+    MedicalHistory medicalHistory;
+  }
+
+  enum HealthStatus  {
+    Healthy,
+    Smoker,
+    Diabetic,
+    Other
+  ;}
+
+  enum Occupation  {
+    OfficeWorker,
+    ManualLaborer,
+    Other
+  ;}
+
+  enum FamilyHistory  {
+    NoHistory,
+    HeartDisease,
+    Cancer
+  ;}
+
+  class MedicalHistory  {
+    String previousIllnesses;
+    String previousSurgeries;
+  }
+
+  class RiskProfile  {
+    double riskFactor;
+    double premiumQuote;
+  }
+
+  class Underwriter  {
+    void evaluateCustomer(Customer customer);
+    RiskProfile getRiskProfile(Customer customer);
+  }
+
+  composition Underwriter -> RiskProfile;
+  composition RiskProfile -> Customer;
+  association Customer -> Underwriter;
+}

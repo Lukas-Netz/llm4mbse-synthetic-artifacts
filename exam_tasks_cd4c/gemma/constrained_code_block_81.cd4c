@@ -1,0 +1,36 @@
+
+
+classdiagram ChatbotSystem {
+
+  class ChatbotSystem {
+    Hub hub;
+  }
+
+  class Hub {
+    -> Chatbot [*];
+    void routeRequest(UserRequest request);
+    trackConversationHistory(ConversationHistory history);
+  }
+
+  class Chatbot {
+    String uniqueIdentifier;
+    Skills skills;
+  }
+
+  class Skills {
+    boolean languageUnderstanding;
+    boolean sentimentAnalysis;
+    boolean responseGeneration;
+  }
+
+  class UserRequest {
+    String content;
+  }
+
+  class ConversationHistory {
+    Map<String, List<String>> history;
+  }
+
+  composition ChatbotSystem -> (has) Hub;
+  composition Hub -> Chatbot [*];
+}

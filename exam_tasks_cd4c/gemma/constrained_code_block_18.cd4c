@@ -1,0 +1,51 @@
+
+
+classdiagram FarmTech {
+
+    class Farm {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Equipment {
+      String uniqueIdentifier;
+      String type;
+      EquipmentStatus status;
+    }
+
+    enum EquipmentStatus {
+      Available, InUse, Broken
+    
+    
+
+;
+    }
+
+    class Crop {
+      String cropType;
+      Date plantingDate;
+      Date harvestDate;
+    }
+
+    class Sensor {
+      String sensorType;
+      int readingFrequency;
+    }
+
+    class WeatherStation {
+      int temperature;
+      int humidity;
+      int precipitation;
+    }
+
+    class FarmOperator {
+      String name;
+      String contactInfo;
+      Farm farm;
+    }
+
+  composition Farm -> (has) FarmOperator [0..1];
+  composition Farm -> (has) Crop [*];
+  composition Farm -> (has) Equipment [*];
+  association Sensor -> WeatherStation;
+}

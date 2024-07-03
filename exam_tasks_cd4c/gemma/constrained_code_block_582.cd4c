@@ -1,0 +1,92 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{class SmartHome
+  
+  
+  
+  
+  
+  {composition SmartHome  (has  Hub)
+  
+  
+  
+  ;composition SmartHome  (has  BackupPower)  
+  
+  
+  
+;composition Hub  (has  Device)  
+  
+  
+  
+;composition Hub  (has  BackupPower)  
+  
+  
+  
+;enum DeviceStatus
+  
+  
+  
+;enum ThermostatMode
+  
+  
+  
+  ;class Light
+  
+  
+  
+  ;class Thermostat
+  
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;class BackupPower
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;class SprayingDrone
+  
+  
+  
+  ;class MonitoringDrone
+  
+  
+  
+  ;class Field
+  
+  
+  
+  ;class WeatherStation
+  
+  
+  
+  ;weatherStation  Provides  (provides  WeatherData)  
+  
+  
+  
+;weatherData  Provides  (provides  Temperature)  
+  
+  
+;weatherData  Provides  (provides  Humidity)  
+  
+  
+;weatherData  Provides  (provides  WindSpeed)  
+  
+  
+  
+;weatherData  Provides  (provides  SprayingData)  
+  
+  
+  
+; }
+}

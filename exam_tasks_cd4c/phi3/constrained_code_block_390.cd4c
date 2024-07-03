@@ -1,0 +1,52 @@
+
+classdiagram WeddingPlanningPlatform {
+
+    class Wedding {
+      int weddingId;
+      Date weddingDate;
+      String weddingLocation;
+      List<Guest> guests;
+      List<Vendor> vendors;
+    }
+
+    class Guest {
+      String name;
+      String email;
+      boolean isRsvpConfirmed;
+      Wedding wedding;
+    }
+
+    class Vendor {
+      String name;
+      String contactInfo;
+      double rating;
+      VendorCategory category;
+      Wedding wedding;
+    }
+
+    class VendorCategory {
+      String categoryName;
+    }
+
+    class WeddingPlanningPlatform {
+      List<Wedding> weddings;
+      void addWedding(Wedding wedding);
+      void editWedding(Wedding wedding);
+      void deleteWedding(Wedding wedding);
+      List<Guest> getGuests(Wedding wedding);
+      void addGuest(Guest guest);
+      void editGuest(Guest guest);
+      void deleteGuest(Guest guest);
+      List<Vendor> getVendors(Wedding wedding);
+      void addVendor(Vendor vendor);
+      void editVendor(Vendor vendor);
+      void deleteVendor(Vendor vendor);
+      void sendReminder(Guest guest);
+      List<Vendor> getVendorsByCategory(VendorCategory category, Wedding wedding);
+    }
+
+    association WeddingPlanningPlatform -> (has) Wedding;
+    association Wedding -> (has) Guest;
+    association Wedding -> (has) Vendor;
+    association Wedding -> (has) VendorCategory;
+}

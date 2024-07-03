@@ -1,0 +1,64 @@
+
+classdiagram DigitalMagazinePlatform {
+
+    class User {
+      String username;
+      String password;
+      String role;
+    }
+
+    class Author extends User {
+      String name;
+      String email;
+      List<Magazine> publishedMagazines;
+    }
+
+    class Subscriber extends User {
+      String name;
+      String email;
+      List<Magazine> subscribedMagazines;
+    }
+
+    class Magazine {
+      String title;
+      String description;
+      List<Article> articles;
+    }
+
+    class Article {
+      String title;
+      String content;
+      List<String> tags;
+    }
+
+    class TextArticle extends Article {
+    }
+
+    class MultimediaArticle extends Article {
+      List<String> multimediaFiles;
+    }
+
+    class ImageFile extends MultimediaFile {
+    }
+
+    class VideoFile extends MultimediaFile {
+    }
+
+    class AudioFile extends MultimediaFile {
+    }
+
+    class MultimediaFile {
+      String fileType;
+    }
+
+    composition User -> (has) Author;
+    composition User -> (has) Subscriber;
+    composition Author -> (has) Magazine;
+    composition Subscriber -> (has) Magazine;
+    composition Magazine -> (has) Article;
+    composition Article -> (has) TextArticle;
+    composition Article -> (has) MultimediaArticle;
+    composition MultimediaArticle -> (has) ImageFile;
+    composition MultimediaArticle -> (has) VideoFile;
+    composition MultimediaArticle -> (has) AudioFile;
+}

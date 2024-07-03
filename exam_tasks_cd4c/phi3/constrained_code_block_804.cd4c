@@ -1,0 +1,39 @@
+
+classdiagram SmartGrid {
+
+    class Server {
+      void collectData(SmartMeter meter);
+      void storeData(SmartMeter meter);
+      SmartMeter getData(String meterId);
+    }
+
+    class SmartMeter {
+      String meterId;
+      double energyConsumption;
+    }
+
+    class Analytics {
+      void calculateAverage(SmartMeter[] meters);
+      void identifyPeakHours(SmartMeter[] meters);
+      void detectAnomalies(SmartMeter[] meters);
+    }
+
+    class Visualization {
+      void displayChart(SmartMeter[] meters);
+      void displayGraph(SmartMeter[] meters);
+      void displayTable(SmartMeter[] meters);
+      void setAlerts(SmartMeter[] meters);
+    }
+
+    association Server 
+      has -> SmartMeter [*];
+
+    association SmartMeter 
+      with -> Analytics;
+
+    association SmartMeter 
+      with -> Visualization;
+
+    composition Server -> Analytics;
+    composition Server -> Visualization;
+}

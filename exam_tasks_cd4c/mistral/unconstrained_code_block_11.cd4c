@@ -1,0 +1,63 @@
+
+classdiagram InventoryManagement {
+
+  class Product {
+    String uniqueIdentifier;
+    ProductStatus status;
+    int quantity;
+    double price;
+    String supplier;
+    String deliveryDate;
+    String expirationDate;
+    String category;
+    String subcategory;
+    String description;
+    String image;
+    String video;
+    List<Review> reviews;
+  }
+
+  class Review {
+    String author;
+    int rating;
+    String comment;
+  }
+
+  enum ProductStatus {
+    InStock, OutOfStock;
+  }
+
+  class Warehouse {
+    String uniqueIdentifier;
+    List<Product> products;
+  }
+
+  class Movement {
+    Product product;
+    Warehouse from;
+    Warehouse to;
+    String date;
+  }
+
+  class Report {
+    String type;
+    List<Product> products;
+  }
+
+  class Alert {
+    Product product;
+    String message;
+  }
+
+  class History {
+    Movement movement;
+    String date;
+  }
+
+  composition Warehouse -> Product [*];
+  association Movement -> Product [1];
+  association Movement -> Warehouse [1];
+  association Report -> Product [*];
+  association Alert -> Product [1];
+  association History -> Movement [1];
+}

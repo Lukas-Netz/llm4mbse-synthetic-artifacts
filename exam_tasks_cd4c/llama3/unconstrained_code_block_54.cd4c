@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram DigitalSignatureSolution  {
+
+  class DigitalSignatureService  {
+    void createDigitalSignature(User user, Document document);
+    void verifyDigitalSignature(User user, Document document);
+    void revokeDigitalSignature(User user, Document document);
+  }
+
+  class DocumentRepository  {
+    void storeDocument(Document document, DigitalSignature signature);
+    Document retrieveDocument(String documentId);
+  }
+
+  class UserManagerSystem  {
+    void createUser(User user);
+    void authenticateUser(User user);
+  }
+
+  class CertificateAuthority  {
+    void issueCertificate(User user);
+    void revokeCertificate(User user);
+  }
+
+  class User  {
+    String username;
+    String password;
+    DigitalCertificate digitalCertificate;
+  }
+
+  class Document  {
+    String documentId;
+    String documentContent;
+    DigitalSignature digitalSignature;
+  }
+
+  class DigitalCertificate  {
+    String certificateId;
+    String certificateContent;
+  }
+
+  class DigitalSignature  {
+    String signatureId;
+    String signatureContent;
+  }
+
+  composition DigitalSignatureService -> (uses) CertificateAuthority;
+  composition DigitalSignatureService -> (uses) UserManagerSystem;
+  composition DocumentRepository -> (stores) Document;
+  composition UserManagerSystem -> (manages) User;
+  composition CertificateAuthority -> (issues) DigitalCertificate;
+}

@@ -1,0 +1,59 @@
+
+
+
+classdiagram EnergyManagement  {
+
+  class CentralUnit {
+    Sensor[] sensors;
+    Meter[] meters;
+    Device[] devices;
+    void readSensorData();
+    void monitorEnergyConsumption();
+    void controlDevices();
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+  }
+
+  class LightingDevice extends Device {
+    int brightnessLevel;
+    String color;
+  }
+
+  class RefrigerationDevice extends Device {
+    int temperatureSetting;
+    int coolingCapacity;
+  }
+
+  class HeatingDevice extends Device {
+    int temperatureSetting;
+    int heatingCapacity;
+  }
+
+  class Sensor {
+    String type;
+    double value;
+  }
+
+  class Meter {
+    double energyConsumptionKWh;
+  }
+
+  class Building {
+    CentralUnit centralUnit;
+  }
+
+  composition Building -> CentralUnit;
+  composition CentralUnit -> Sensor[*];
+  composition CentralUnit -> Meter[*];
+  composition CentralUnit -> Device[*];
+  composition Device -> (has) uniqueIdentifier;
+  composition LightingDevice -> (has) brightnessLevel;
+  composition LightingDevice -> (has) color;
+  composition RefrigerationDevice -> (has) temperatureSetting;
+  composition RefrigerationDevice -> (has) coolingCapacity;
+  composition HeatingDevice -> (has) temperatureSetting;
+  composition HeatingDevice -> (has) heatingCapacity;
+  composition Sensor -> (has) type;
+  }

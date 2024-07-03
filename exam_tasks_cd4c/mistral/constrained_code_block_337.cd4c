@@ -1,0 +1,54 @@
+
+classdiagram OTP {
+
+  class User {
+    String uniqueIdentifier;
+    TradingAccount [ ] tradingAccounts;
+  }
+
+  class TradingAccount {
+    String uniqueIdentifier;
+    double balance;
+    Transaction [ ] transactions;
+  }
+
+  class FinancialInstrument {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+  }
+
+  class Exchange {
+    String uniqueIdentifier;
+    FinancialInstrument [ ] instruments;
+    TradingAccount [ ] accounts;
+  }
+
+  class Transaction {
+    FinancialInstrument instrument;
+    String type;
+    double quantity;
+    double price;
+    String timestamp;
+  }
+
+  class Notification {
+    String event;
+    FinancialInstrument instrument;
+    String message;
+  }
+
+  class OTPAdmin {
+    void addExchange(Exchange exchange);
+    void removeExchange(Exchange exchange);
+    void addTradingAccount(TradingAccount tradingAccount);
+    void removeTradingAccount(TradingAccount tradingAccount);
+    void addFinancialInstrument(FinancialInstrument financialInstrument);
+    void removeFinancialInstrument(FinancialInstrument financialInstrument);
+    void configureNotificationSystem(Notification notification);
+  }
+
+  composition User -> TradingAccount [*];
+  composition Exchange -> FinancialInstrument [*];
+  composition Exchange -> TradingAccount [*];
+}

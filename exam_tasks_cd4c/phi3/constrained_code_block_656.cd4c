@@ -1,0 +1,55 @@
+
+classdiagram FoodTraceability {
+
+    class Farmer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> harvestedProducts;
+    }
+
+    class Distributor {
+      String uniqueIdentifier;
+      String name;
+      List<Product> purchasedProducts;
+      void purchaseFromFarmer(Farmer farmer, Product product);
+      void sellToRetailer(Retailer retailer, Product product);
+    }
+
+    class Retailer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> soldProducts;
+      void purchaseFromDistributor(Distributor distributor, Product product);
+      void sellToConsumer(Consumer consumer, Product product);
+    }
+
+    class Consumer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> purchasedProducts;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      String batchNumber;
+      Date productionDate;
+      String certifications;
+      String labels;
+      String origin;
+      void addCertification(String certification);
+      void addLabel(String label);
+    }
+
+    class Blockchain {
+      void recordTransaction(Product product);
+      void verifyProductAuthenticity(Product product);
+      void detectTampering(Product product);
+    }
+
+    association Farmer -> Product [*];
+    association Distributor -> Product [*];
+    association Retailer -> Product [*];
+    association Product -> Blockchain [*];
+}

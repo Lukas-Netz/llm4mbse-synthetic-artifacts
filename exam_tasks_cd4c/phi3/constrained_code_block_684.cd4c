@@ -1,0 +1,49 @@
+
+classdiagram UrbanVerticalFarmingSystem {
+
+    class Farm {
+      String name;
+      String location;
+      List<Module> modules;
+    }
+
+    class Module {
+      String name;
+      String type;
+      int capacity;
+      List<Plant> plants;
+    }
+
+    class Plant {
+      String name;
+      String type;
+      GrowthStage stage;
+      Nutrient nutrient;
+      double yield;
+    }
+
+    class Nutrient {
+      String name;
+      double concentration;
+    }
+
+    class IrrigationSystem {
+      String name;
+      String type;
+      List<Nutrient> nutrients;
+      void distributeNutrients(Plant plant);
+    }
+
+    enum GrowthStage {
+      Seedling, Maturation, Harvest;
+    }
+
+    enum IrrigationType {
+      DripIrrigation, SprayIrrigation;
+    }
+
+    association Farm -> List<<Module>>;
+    association Module -> List<<Plant>>;
+    association Plant -> List<<Nutrient>>;
+    association IrrigationSystem -> List<<Nutrient>>;
+}

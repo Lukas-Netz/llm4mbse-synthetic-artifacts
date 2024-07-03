@@ -1,0 +1,46 @@
+
+classdiagram BlockchainIdentitySystem {
+
+    class User {
+      String uniqueIdentifier;
+      List<Identity> identities;
+    }
+
+    class Identity {
+      String uniqueIdentifier;
+      Set<Attribute> attributes;
+    }
+
+    class Attribute {
+      String value;
+      Date lastUpdated;
+    }
+
+    class PersonalAttribute extends Attribute {
+      String name;
+      Date dateOfBirth;
+      String address;
+    }
+
+    class ProfessionalAttribute extends Attribute {
+      String jobTitle;
+      String employer;
+      String workExperience;
+    }
+
+    class PublicAttribute extends Attribute {
+      String socialMediaProfile;
+      String onlinePresence;
+    }
+
+    class Verification {
+      verify(Attribute attribute);
+      update(Attribute attribute);
+    }
+
+    association User -> List<<Identity>>;
+    association Identity -> Set<<Attribute>>;
+    composition Identity -> Attribute [*];
+    composition User -> Identity [*];
+    composition User -> Verification [*];
+}

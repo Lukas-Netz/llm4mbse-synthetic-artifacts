@@ -1,0 +1,152 @@
+
+classdiagram CloudERP {
+
+    class Employee {
+      String uniqueID;
+      String name;
+      String jobTitle;
+      Department department;
+      Role role;
+    }
+
+    class Department {
+      String name;
+      List<Employee> employees;
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<Task> tasks;
+      Department department;
+    }
+
+    class Task {
+      String name;
+      String description;
+      List<Employee> assignedEmployees;
+      Project project;
+    }
+
+    class Customer {
+      String name;
+      ContactInfo contactInfo;
+      List<Order> orders;
+    }
+
+    class Order {
+      Customer customer;
+      List<Product> products;
+      BigDecimal totalCost;
+    }
+
+    class Product {
+      String name;
+      String description;
+      BigDecimal price;
+      boolean isAvailable;
+    }
+
+    class ContactInfo {
+      String email;
+      String phoneNumber;
+    }
+
+    <<association>> class Employee {
+      Department department;
+      Role role;
+    }
+
+    <<association>> class Department {
+      List<Employee> employees;
+      Project project;
+    }
+
+    <<association>> class Project {
+      Department department;
+      List<Task> tasks;
+    }
+
+    <<association>> class Task {
+      Project project;
+      List<Employee> assignedEmployees;
+    }
+
+    <<association>> class Customer {
+      List<Order> orders;
+    }
+
+    <<association>> class Order {
+      Customer customer;
+      List<Product> products;
+    }
+
+    <<association>> class Product {
+      List<Order> orders;
+    }
+
+    class ERPSystem {
+      List<Employee> employees;
+      List<Department> departments;
+      List<Project> projects;
+      List<Task> tasks;
+      List<Customer> customers;
+      List<Order> orders;
+      List<Product> products;
+
+      void addEmployee(Employee employee);
+      void removeEmployee(Employee employee);
+      void addDepartment(Department department);
+      void removeDepartment(Department department);
+      void addProject(Project project);
+      void removeProject(Project project);
+      void addTask(Task task);
+      void removeTask(Task task);
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      void addOrder(Order order);
+      void removeOrder(Order order);
+      void addProduct(Product product);
+     }
+
+    <<association>> class ERPSystem {
+      List<Employee> employees;
+      List<Department> departments;
+      List<Project> projects;
+      List<Task> tasks;
+      List<Customer> customers;
+      List<Order> orders;
+      List<Product> products;
+
+      void addEmployee(Employee employee);
+      void removeEmployee(Employee employee);
+      void addDepartment(Department department);
+      void removeDepartment(Department department);
+      void addProject(Project project);
+      void removeProject(Project project);
+      void addTask(Task task);
+      void removeTask(Task task);
+      void addCustomer(Customer customer);
+      void removeCustomer(Customer customer);
+      void addOrder(Order order);
+      void removeOrder(Order order);
+      void addProduct(Product product);
+     }
+
+    <<association>> class Employee {
+      Department department;
+      Role role;
+    }
+
+    <<association>> class Department {
+      List<Employee> employees;
+      Project project;
+    }
+
+    <<association>> class Project {
+      Department department;
+      List<Task> tasks;
+    }
+
+   
+}

@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram HRSystem  {
+
+  class EmployeeProfile  {
+    String name;
+    String jobTitle;
+    String department;
+    String uniqueIdentifier;
+  }
+
+  class TrainingProgram  {
+    String description;
+    String uniqueIdentifier;
+  }
+
+  class PerformanceEvaluation  {
+    String uniqueIdentifier;
+    Attendance attendance;
+    Productivity productivity;
+    QualityOfWork qualityOfWork;
+  }
+
+  class Attendance;
+  class Productivity;
+  class QualityOfWork;
+
+  class JobTitle  {
+    String title;
+  }
+
+  class Recommendation  {
+    TrainingProgram trainingProgram;
+    EmployeeProfile employee;
+  }
+
+  class Report  {
+    PerformanceEvaluation performanceEvaluation;
+  }
+
+  composition EmployeeProfile -> JobTitle [0..*];
+  composition TrainingProgram -> JobTitle [0..*];
+  composition PerformanceEvaluation -> JobTitle [1];
+  composition Recommendation -> EmployeeProfile [1];
+  composition Report -> PerformanceEvaluation [1];
+}

@@ -1,0 +1,74 @@
+
+classdiagram RemoteWorkforceManagement {
+
+  class Employee {
+    String name;
+    String email;
+    String availability;
+    Skill [ ] skills;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Skill [ ] requiredSkills;
+    Phase [ ] phases;
+    Task [ ] tasks;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Employee [ ] assignees;
+    TaskDependency [ ] dependencies;
+    Phase phase;
+  }
+
+  class Phase {
+    String name;
+    String description;
+  }
+
+  class TaskDependency {
+    Task dependentTask;
+    Task dependentOnTask;
+  }
+
+  class Skill {
+    String name;
+    String description;
+  }
+
+  class Report {
+    String type;
+    String content;
+  }
+
+  class Notification {
+    Employee recipient;
+    String message;
+    String type;
+  }
+
+  class Calendar {
+    Employee employee;
+    String event;
+    String date;
+  }
+
+  class Email {
+    Employee recipient;
+    String subject;
+    String body;
+  }
+
+  composition Employee [ * ] has [  many ]  (assignedTo)  -> Project;
+  composition Project [ * ] has [  many ]  (hasTasks)  -> Task;
+  composition Task [ * ] has [  many ]  (assignedTo)  -> Employee;
+  composition Project [ * ] has [  many ]  (requiresSkills)  -> Skill;
+  composition Employee [ * ] has [  many ]  (hasSkills)  -> Skill;
+  association Report [ * ] isGeneratedBy  -> System;
+  association Notification [ * ] isSentBy  -> System;
+  association Calendar [ * ] belongsTo  -> Employee;
+  association Email [ * ] isSentBy  -> System;
+}

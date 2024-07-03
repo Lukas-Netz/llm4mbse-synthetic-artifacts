@@ -1,0 +1,66 @@
+
+classdiagram MobileIdentity {
+
+    class Server {
+      UserAccountManager accountManager;
+      OTPService otpService;
+      NotificationService notificationService;
+      UserDataStorage userDataStorage;
+
+      void authenticateUser(User user);
+      void sendOTP(User user, String userId);
+      void verifyOTP(User user, String userId, String otp);
+      void storeUserData(User user);
+      UserData retrieveUserData(String userId);
+      void sendNotification(User user, String message);
+    WritableString getUserId();
+    }
+
+    class MobileApp {
+      UserAccountManager accountManager;
+      OTPService otpService;
+      NotificationService notificationService;
+      UserDataStorage userDataStorage;
+
+      void authenticateUser(String userId);
+      void verifyOTP(String userId, String otp);
+      UserData retrieveUserData(String userId);
+      void receiveNotification(String message);
+    }
+
+    class User {
+      String username;
+      String password;
+      String userId;
+      String name;
+      String address;
+      String phoneNumber;
+    }
+
+    class UserAccountManager {
+      Map<String, User> userAccounts;
+      void addUser(User user);
+      User retrieveUser(String userId);
+    }
+
+    class OTPService {
+      String generateOTP(String userId);
+      boolean verifyOTP(String userId, String otp);
+    }
+
+    class NotificationService {
+      void sendNotification(User user, String message);
+    }
+
+    class UserDataStorage {
+      Map<String, UserData> userData;
+      void storeUserData(User user);
+      UserData retrieveUserData(String userId);
+    }
+
+    class UserData {
+      String name;
+      String address;
+      String phoneNumber;
+    }
+}

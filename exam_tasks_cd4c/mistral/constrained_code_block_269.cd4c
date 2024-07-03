@@ -1,0 +1,48 @@
+
+classdiagram TaxFiling {
+
+  class Taxpayer {
+    String name;
+    Date dateOfBirth;
+    String socialSecurityNumber;
+    TaxReturn [ ] taxReturns;
+    int totalIncome;
+    int totalDeductions;
+  }
+
+  class TaxReturn {
+    String uniqueIdentifier;
+    FilingStatus filingStatus;
+    int income;
+    Deduction [ ] deductions;
+    TaxReturnStatus status;
+  }
+
+  enum FilingStatus {
+    Single, Married, HeadOfHousehold, QualifyingWidow, etc;
+  }
+
+  enum TaxReturnStatus {
+    Pending, Approved, Rejected;
+  }
+
+  class Deduction {
+    String type;
+    int amount;
+    TaxReturn taxReturn;
+  }
+
+  class SystemAdmin {
+    void approveTaxReturn(TaxReturn taxReturn);
+    void rejectTaxReturn(TaxReturn taxReturn);
+  }
+
+  class Report {
+    void generateReport();
+  }
+
+  composition Taxpayer -- TaxReturn [*];
+  composition TaxReturn -- Deduction [*];
+  association SystemAdmin -- TaxReturn;
+  association Report -- Taxpayer;
+}

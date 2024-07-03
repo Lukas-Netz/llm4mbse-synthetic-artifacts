@@ -1,0 +1,55 @@
+
+classdiagram QuantumSensingSystem {
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+      SensorStatus status;
+    }
+
+    class SensorType {
+      String typeName;
+    }
+
+    class SensorStatus {
+      boolean calibrated;
+    }
+
+    class MagneticSensor extends Sensor {
+      int sensitivity;
+      int range;
+    }
+
+    class ElectricSensor extends Sensor {
+      int voltage;
+      int current;
+    }
+
+    class OpticalSensor extends Sensor {
+      double wavelength;
+      int resolution;
+    }
+
+    class SensorData {
+      double temperature;
+      double pressure;
+      double humidity;
+    }
+
+    class SensorDataStorage {
+      Map<String, SensorData> dataMap;
+      void addData(String sensorId, SensorData data);
+      SensorData getData(String sensorId);
+    }
+
+    class SensorManagement {
+      List<Sensor> sensors;
+      void addSensor(Sensor sensor);
+      void removeSensor(String sensorId);
+      void updateCalibration(String sensorId, boolean calibrated);
+      SensorData getSensorData(String sensorId);
+    }
+
+  composition SensorManagement -> (has) SensorDataStorage;
+  composition SensorManagement -> (has) List<<Sensor>>;
+}

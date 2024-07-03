@@ -1,0 +1,34 @@
+
+
+
+
+classdiagram BiometricPaymentSystem  {
+
+  class Card  {
+    String uniqueIdentifier;
+    User user;
+  }
+
+  class User  {
+    String name;
+    Fingerprint fingerprint;
+    Card  [  ]
+  Fingerprint  ;
+
+  class Terminal   ;
+
+  class Transaction   ;
+  int amount;
+  TransactionType type;
+
+  class Fingerprint  ;
+
+  enum TransactionType   ;
+
+  composition User   ;
+  composition Terminal   ;
+  composition Transaction   ;
+  composition Card   ;
+
+}
+  }

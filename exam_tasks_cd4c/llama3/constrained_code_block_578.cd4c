@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram MineAutomation  {
+
+  class Mine  {
+    String name;
+    String uniqueIdentifier;
+    Shaft[] shafts;
+  }
+
+  class Shaft  {
+    String name;
+    String uniqueIdentifier;
+    Level[] levels;
+  }
+
+  class Level  {
+    String name;
+    String uniqueIdentifier;
+    Equipment[] equipment;
+  }
+
+  abstract class Equipment  {
+    String uniqueIdentifier;
+    String type;
+    Status status;
+  }
+
+  class Drill extends Equipment  {
+    int drillDepth;
+  }
+
+  class Loader extends Equipment  {
+    int loadCapacity;
+  }
+
+  class Personnel  {
+    String name;
+    String uniqueIdentifier;
+    Role role;
+    Shaft assignedShaft;
+  }
+
+  enum Role  {
+    Miner,
+    Engineer,
+    Manager
+  ;}
+
+  class SafetyDevice  {
+    String type;
+    Status status;
+  }
+
+  enum Status  {
+    Operational,
+    Malfunctioning,
+    Alert
+  ;}
+
+  composition Mine -> Shaft[*];
+  composition Shaft -> Level[*];
+  composition Level -> Equipment[*];
+  composition Mine -> Personnel[*];
+  composition Mine -> SafetyDevice[*];
+  association Personnel -> Shaft [1..1];
+  association Equipment -> Level [1..1];
+  association SafetyDevice -> Mine [1..1];
+  association Personnel -> Mine [1..1];
+  association Level -> Shaft [1..1];
+  }

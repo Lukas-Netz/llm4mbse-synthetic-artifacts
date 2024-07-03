@@ -1,0 +1,68 @@
+
+classdiagram HighFrequencyTradingPlatform {
+
+    class TradingEngine {
+      void executeTrade(Trade trade);
+      void createStrategy(Strategy strategy);
+    Writes tradeExecutionLog;
+    Writes strategyPerformanceLog;
+    }
+
+    class RiskManagementSystem {
+      void monitorRiskExposure(Trader trader);
+      void generateRiskReport(Trader trader);
+    }
+
+    class DataFeed {
+      void provideRealTimeData(Trader trader);
+      void updateMarketData();
+    }
+
+    class Trader {
+      String username;
+      TradingEngine tradingEngine;
+      RiskManagementSystem riskManagementSystem;
+      DataFeed dataFeed;
+      Strategy strategy;
+      void monitorTrades();
+      void adjustStrategy();
+    }
+
+    class Strategy {
+      String name;
+      String description;
+      Map<String, Object> parameters;
+      void execute(Trader trader);
+    }
+
+    class UserInterface {
+      void displayMarketData(Trader trader);
+      void displayTradeExecutionReports(Trader trader);
+      void displayStrategyPerformanceMetrics(Trader trader);
+    }
+
+    class ReportingSystem {
+      void generateReport(Trader trader);
+      void customizeReport(Trader trader, String reportType);
+    }
+
+    association Trader -> TradingEngine;
+    association Trader -> RiskManagementSystem;
+    association Trader -> DataFeed;
+    association Trader -> UserInterface;
+    association Trader -> Strategy;
+    association Trader -> ReportingSystem;
+
+    composition TradingEngine -> Trade;
+    composition TradingEngine -> TradeExecutionLog;
+    composition TradingEngine -> StrategyPerformanceLog;
+
+    composition RiskManagementSystem -> RiskReport;
+
+    composition DataFeed -> MarketData;
+
+    composition UserInterface -> MarketData;
+    composition UserInterface -> TradeExecutionReports;
+   
+
+}

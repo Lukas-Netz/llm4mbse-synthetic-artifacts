@@ -1,0 +1,47 @@
+
+classdiagram DigitalGovernmentTransparencyPlatform {
+
+    class CitizenPortal {
+      void submitRequest(Request request);
+      Request getRequestStatus(String requestId);
+      void rateTransparency(Request requestId, TransparencyRating rating);
+    }
+
+    class GovernmentPortal {
+      void respondToRequest(Request request, Response response);
+      Response getResponse(String requestId);
+    }
+
+    class Request {
+      String requestId;
+      String requestType;
+      String requestDetails;
+    }
+
+    class Response {
+      String responseId;
+      String responseContent;
+      String responseType;
+    }
+
+    class TransparencyRating {
+      int rating;
+      String feedback;
+    }
+
+    class Database {
+      Map<String, Request> requests;
+      Map<String, Response> responses;
+      Map<String, TransparencyRating> ratings;
+
+      void storeRequest(Request request);
+      void storeResponse(Response response);
+      void storeRating(String requestId, TransparencyRating rating);
+    }
+
+    association CitizenPortal -> Request [*];
+    association GovernmentPortal -> Response [*];
+    association Request -> Database [*];
+    association Response -> Database [*];
+    association Request -> TransparencyRating [*];
+}

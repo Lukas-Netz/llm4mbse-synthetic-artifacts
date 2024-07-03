@@ -1,0 +1,46 @@
+
+classdiagram PharmaceuticalSystem {
+
+    class Compound {
+      String uniqueId;
+      String name;
+      MolecularStructure structure;
+    }
+
+    class Target {
+      String uniqueId;
+      String name;
+      String description;
+      List<Compound> associatedCompounds;
+    }
+
+    class Assay {
+      String uniqueId;
+      String name;
+      String description;
+      List<Experiment> associatedExperiments;
+    }
+
+    class Experiment {
+      String uniqueId;
+      String name;
+      String description;
+      List<Result> results;
+    }
+
+    class Result {
+      String uniqueId;
+      String name;
+      double value;
+    }
+
+    class Predictor {
+      double predictAffinity(Compound compound, Target target);
+    }
+
+    composition Compound -> Target [*];
+    composition Target -> Compound [*];
+    composition Assay -> Experiment [*];
+    composition Experiment -> Result [*];
+    composition Compound -> Predictor [0..1];
+}

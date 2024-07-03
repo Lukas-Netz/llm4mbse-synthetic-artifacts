@@ -1,0 +1,46 @@
+
+classdiagram SmartFarming {
+
+    class Farm {
+      Sensor[] sensors;
+      WeatherStation weatherStation;
+      CentralHub hub;
+    }
+
+    class Sensor {
+      String type;
+      String location;
+      float soilMoisture;
+      float temperature;
+      float humidity;
+    }
+
+    class WeatherStation {
+      String location;
+      float temperature;
+      float humidity;
+      float precipitation;
+    }
+
+    class CentralHub {
+      Farm[] farms;
+      void collectData();
+      void provideRecommendations();
+    }
+
+    class Crop {
+      String type;
+      float optimalSoilMoisture;
+      float optimalTemperature;
+      float optimalHumidity;
+    }
+
+    class Wheat extends Crop;
+    class Corn extends Crop;
+    class Soybeans extends Crop;
+
+    composition Farm -> (has) Sensor[*];
+    composition Farm -> (has) WeatherStation;
+    composition Farm -> (has) CentralHub;
+    composition CentralHub -> Farm[*];
+}

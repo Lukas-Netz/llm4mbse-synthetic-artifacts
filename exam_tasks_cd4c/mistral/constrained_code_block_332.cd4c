@@ -1,0 +1,55 @@
+
+classdiagram CSP {
+
+  class CSP {
+    DataRepository dataRepository;
+    DataProcessingUnit dataProcessingUnit;
+    UserInterface userInterface;
+    BackupSystem backupSystem;
+    MonitoringSystem monitoringSystem;
+  }
+
+  class DataRepository {
+    DataType [ ] data;
+  }
+
+  enum DataType {
+    Financial, Personal, Confidential;
+  }
+
+  class DataProcessingUnit {
+    void encrypt(Data data);
+    void decrypt(Data data);
+    void compress(Data data);
+  }
+
+  class UserInterface {
+    void login(String username, String password);
+    void manageData();
+  }
+
+  class BackupSystem {
+    BackupServer [ ] backupServers;
+  }
+
+  class BackupServer {
+    int capacity;
+    StorageType storageType;
+  }
+
+  enum StorageType {
+    Cloud, Local;
+  }
+
+  class MonitoringSystem {
+    void logActivity(String activity);
+    void detectSecurityThreats();
+  }
+
+  composition CSP -> DataRepository;
+  composition CSP -> DataProcessingUnit;
+  composition CSP -> UserInterface;
+  composition CSP -> BackupSystem;
+  composition CSP -> MonitoringSystem;
+  association CSP -> BackupServer [*];
+}

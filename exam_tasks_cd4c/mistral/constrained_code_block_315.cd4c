@@ -1,0 +1,87 @@
+
+classdiagram OnlineScheduling {
+
+  class User {
+    String username;
+    String password;
+    Calendar [ ] calendars;
+  }
+
+  class Calendar {
+    String name;
+    Appointment [ ] appointments;
+    Meeting [ ] meetings;
+    Event [ ] events;
+  }
+
+  abstract class Appointment {
+    String title;
+    String description;
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    Role [ ] attendees;
+    boolean isRecurring;
+    RecurrencePattern recurrence;
+    boolean hasReminder;
+  }
+
+  abstract class Meeting {
+    String title;
+    String description;
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    Role [ ] attendees;
+    boolean isRecurring;
+    RecurrencePattern recurrence;
+    boolean hasReminder;
+  }
+
+  abstract class Event {
+    String title;
+    String description;
+    LocalDateTime startTime;
+    LocalDateTime endTime;
+    Role [ ] attendees;
+    boolean isRecurring;
+    RecurrencePattern recurrence;
+    boolean hasReminder;
+  }
+
+  enum Role {
+    Organizer, Participant, Observer;
+  }
+
+  class RecurrencePattern {
+    Frequency frequency;
+    Interval interval;
+    DayOfWeek [ ] daysOfWeek;
+    Month [ ] months;
+  }
+
+  enum Frequency {
+    Daily, Weekly, Monthly;
+  }
+
+  enum Month {
+    JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER;
+  }
+
+  class DayOfWeek {
+    String dayName;
+  }
+
+  class Integration {
+    String provider;
+    String apiKey;
+  }
+
+  association User --o000o-{  ordered } 					;
+  association Calendar --o000o-{  ordered } 				;
+  association Appointment --o000o-{  ordered } 			;
+  association Meeting --o000o-{  ordered } 				;
+  association Event --o000o-{  ordered } 					;
+  association Role --o000o-{  ordered } 					;
+  association RecurrencePattern --o000o-{  ordered } 		;
+  association Frequency --o000o-{  ordered } 				;
+  association Month --o000o-{  ordered } 					;
+ 				}

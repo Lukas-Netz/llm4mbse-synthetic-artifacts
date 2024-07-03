@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram AutonomousCargoShip  {
+
+  class CargoShip  {
+    String uniqueIdentifier;
+    String name;
+    Location currentLocation;
+  }
+
+  class NavigationSystem  {
+    double speed;
+    double direction;
+    GPS coordinates;
+  }
+
+  class CargoManagement  {
+    double cargoWeight;
+    CargoType cargoType;
+    CargoStatus cargoStatus;
+  }
+
+  class CargoContainer  {
+    double containerWeight;
+    ContainerType containerType;
+    ContainerStatus containerStatus;
+  }
+
+  class NavigationSystemType  {
+    String type;
+  }
+
+  class CargoType  {
+    String type;
+  }
+
+  class ContainerType  {
+    String type;
+  }
+
+  class ContainerStatus  {
+    String status;
+  }
+
+  class CargoStatus  {
+    String status;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class GPS  {
+    double latitude;
+    double longitude;
+  }
+
+  composition CargoShip -> (has) NavigationSystem[*];
+  composition CargoShip -> (has) CargoManagement;
+  composition CargoShip -> (has) CargoContainer[*];
+  composition NavigationSystem -> (has) NavigationSystemType;
+  composition CargoManagement -> (has) CargoType;
+  composition CargoContainer -> (has) ContainerType;
+  composition CargoContainer -> (has) ContainerStatus;
+  composition CargoShip -> (has) Location;
+  composition NavigationSystem -> (has) GPS;
+}

@@ -1,0 +1,177 @@
+
+
+# 
+
+classdiagram Smarthome
+
+  
+
+{classdiagramComplete
+
+  
+
+  
+
+  
+
+  
+
+{class SmartHome
+
+    
+
+    ; Hub andBackupPower
+
+    
+
+    ; Devices
+
+  
+
+  
+
+  classHub
+
+    
+
+    ; Devices
+
+    voidaddDevice(Device device)
+
+    
+
+    ; Remove Device
+
+    
+
+    ; Backup Power
+
+    
+
+    ; Check BackupPowerStatus
+
+  
+
+  
+
+  ; Devices
+
+  abstractclassDevice
+
+    
+
+    ; Unique Identifier
+
+    ; Device Status
+
+  
+
+  
+
+  ; Light Device
+
+  
+
+  ; Thermostat Device
+
+  
+
+  ; Security Camera
+
+  
+
+  ; BackupPower
+
+  
+
+  enumDeviceStatus
+
+    
+
+    ; On
+
+    
+
+    Off
+
+  
+
+  
+
+  ; Thermostat Mode
+
+  
+
+    ; Heating
+
+    Cooling
+
+  
+
+  
+
+  ; Weather Station
+
+  
+
+  
+
+  ; Weather Data
+
+  
+
+  
+
+  ; Weather Data
+
+  
+
+  
+
+  ;
+
+  }
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  compositionsmartHome->(has)Hub
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  }

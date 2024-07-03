@@ -1,0 +1,31 @@
+
+classdiagram PersonalAssistant {
+
+  class AI {
+    void processUserRequest();
+    void learnUserPreferences();
+    void provideRecommendations();
+    void integrateWithDevices();
+  }
+
+  abstract class Device {
+    void interactWithAI();
+  }
+
+  class VoiceAssistant extends Device {
+    String voiceRecognitionCapabilities;
+    String naturalLanguageProcessing;
+  }
+
+  class SmartSpeaker extends Device {
+    String musicPlayback;
+    String voiceControl;
+  }
+
+  class WearableDevice extends Device {
+    String fitnessTracking;
+    String notificationManagement;
+  }
+
+  composition AI -> Device [*];
+}

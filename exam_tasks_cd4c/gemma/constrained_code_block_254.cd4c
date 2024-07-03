@@ -1,0 +1,60 @@
+
+
+classdiagram LanguageLearningApp {
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Account {
+    User user;
+    String language;
+    Goal goal;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    List<Exercise> exercises;
+  }
+
+  class Exercise {
+    String type;
+    String content;
+  }
+
+  class ConversationPractice {
+    String language;
+    String nativeSpeaker;
+  }
+
+  class Dictionary {
+    String word;
+    String definition;
+  }
+
+  class Thesaurus {
+    String word;
+    List<Synonym> synonyms;
+  }
+
+  class Synonym {
+    String synonym;
+  }
+
+  class LeaderBoard {
+    List<User> users;
+    int ranking;
+  }
+
+  composition Account -> (has) User;
+  composition Account -> (has) Language;
+  composition Account -> (has) Goal;
+  composition Lesson -> (has) Exercises;
+  association ConversationPractice -> User;
+  association Dictionary -> User;
+  association Thesaurus -> User;
+  association LeaderBoard -> User;
+}

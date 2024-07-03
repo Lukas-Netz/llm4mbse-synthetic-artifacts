@@ -1,0 +1,45 @@
+
+classdiagram QuantumSecureCommunication {
+
+    class KeyGenerator {
+      public QuantumResistantKeyPair generateKeyPair();
+    }
+
+    class KeyDistributor {
+      private QuantumResistantKeyPair privateKey;
+      public void distributePublicKey(QuantumResistantKeyPair publicKey);
+      public void requestKeyRevocation();
+    }
+
+    class MessageEncryptor {
+      public String encryptMessage(QuantumResistantKeyPair publicKey, String message);
+    }
+
+    class MessageDecryptor {
+      public String decryptMessage(QuantumResistantKeyPair privateKey, String encryptedMessage);
+    }
+
+    class KeyRevocation {
+      public void revokeKey(QuantumResistantKeyPair publicKey);
+    }
+
+    class QuantumResistantKeyPair {
+      String publicKey;
+      String privateKey;
+    }
+
+    association KeyGenerator -> KeyDistributor;
+    association KeyDistributor -> MessageEncryptor;
+    association KeyDistributor -> KeyRevocation;
+    association KeyDistributor -> MessageDecryptor;
+    association MessageEncryptor -> MessageDecryptor;
+    composition KeyDistributor -> QuantumResistantKeyPair {
+     
+   
+
+ordered
+
+    }
+
+   
+;}

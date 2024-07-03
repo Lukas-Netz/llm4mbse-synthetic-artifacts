@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram PredictiveDemandForecastingSystem  {
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Warehouse  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class ProductWarehouse  {
+    Product product;
+    Warehouse warehouse;
+  }
+
+  class HistoricalSalesData  {
+    Date date;
+    int quantity;
+  }
+
+  class ForecastingModel  {
+    String type;
+    double confidenceLevel;
+  }
+
+  class PredictedDemand  {
+    Product product;
+    Warehouse warehouse;
+    int quantity;
+  }
+
+  class Exception  {
+    String type;
+    String description;
+  }
+
+  class Administrator  {
+    void inputHistoricalSalesData(HistoricalSalesData data);
+    void configureForecastingModel(ForecastingModel model);
+    void viewPredictedDemand(PredictedDemand demand);
+  }
+
+  composition Warehouse -> ProductWarehouse [*];
+  composition Product -> ProductWarehouse [*];
+  composition Administrator -> HistoricalSalesData [*];
+  composition Administrator -> ForecastingModel [*];
+  composition Administrator -> PredictedDemand [*];
+}

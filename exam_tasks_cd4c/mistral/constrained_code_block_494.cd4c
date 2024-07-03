@@ -1,0 +1,43 @@
+
+classdiagram ParticleAccelerator {
+
+  class ParticleAccelerator {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Beamline {
+    String name;
+    String uniqueIdentifier;
+    Magnet [ ] magnets;
+    Detector [ ] detectors;
+  }
+
+  abstract class Magnet {
+    String name;
+    String type;
+    Properties properties;
+  }
+
+  class Quadrupole extends Magnet {}
+  class Dipole extends Magnet {}
+
+  class Properties {
+    double strength;
+    double current;
+  }
+
+  class Detector {
+    String name;
+    String type;
+    Properties properties;
+  }
+
+  class Calorimeter extends Detector {}
+  class Spectrometer extends Detector {}
+
+  class ControlSystem {
+    ParticleAccelerator accelerator;
+    String [ ] commands;
+  }
+}

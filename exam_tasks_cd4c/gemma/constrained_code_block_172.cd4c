@@ -1,0 +1,111 @@
+
+
+classdiagram SmartContractPlatform {
+
+  class User {
+    String uniqueIdentifier;
+  }
+
+  class SmartContract {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Type type;
+
+    enum Type  
+    
+    ;
+
+    SimpleContract extends  
+    
+    ;
+
+    ComplexContract extends  
+    
+    ;
+
+    void create()
+    
+    ;
+
+    void execute()
+    
+    ;
+
+    void manage()
+    
+    ;
+  }
+
+  class Condition {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Type type;
+
+    enum Type  
+    
+    ;
+
+    SingleCondition extends  
+    
+    ;
+
+    MultiCondition extends  
+    
+    ;
+
+    void create()
+    
+    ;
+
+    void execute()
+    
+    ;
+
+    void manage()
+    
+    ;
+  }
+
+  class Execution {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    Status status;
+
+    enum Status  
+    
+    ;
+
+    void create()
+    
+    ;
+
+    void manage()
+    
+    ;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    Status status;
+
+    enum Status  
+    
+    ;
+
+    void create()
+    
+    ;
+
+    void manage()
+    
+    ;
+  }
+
+  composition User -> SmartContract [*];
+  composition SmartContract -> Condition [*];
+  composition SmartContract -> Execution [*];
+  composition SmartContract -> Transaction [*];
+}

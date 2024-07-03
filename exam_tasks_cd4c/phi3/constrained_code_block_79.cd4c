@@ -1,0 +1,74 @@
+
+classdiagram ProjectManagementTool {
+
+    class Project {
+      String uniqueId;
+      String name;
+      String description;
+      ProjectState state;
+      List<Task> tasks;
+      List<TeamMember> teamMembers;
+      List<Milestone> milestones;
+    }
+
+    class Task {
+      String uniqueId;
+      String name;
+      String description;
+      Project project;
+      TaskState state;
+    }
+
+    class TeamMember {
+      String uniqueId;
+      String name;
+      String role;
+      List<Project> projects;
+    }
+
+    class Milestone {
+      String uniqueId;
+      String name;
+      String description;
+      Project project;
+      MilestoneState state;
+    }
+
+    enum ProjectState {
+      Planning, InProgress, Completed
+   
+   
+   ;}
+
+    enum TaskState {
+      Open, InProgress, Completed
+
+   
+   ;}
+
+    enum MilestoneState {
+      Planned, InProgress, Completed
+
+   
+   ;}
+
+    association Project -> List<<Task>>;
+    association Project -> List<<TeamMember>>;
+    association Project -> List<<Milestone>>;
+
+    association Task -> Project;
+    association Task -> List<<TeamMember>>;
+    association Task -> List<<Milestone>>;
+
+    association TeamMember -> Project;
+    association TeamMember -> List<<Task>>;
+    association TeamMember -> List<<Milestone>>;
+
+    association Milestone -> Project;
+    association Milestone -> List<<Task>>;
+    association Milestone -> List<<TeamMember>>;
+
+    composition Project -> List<<Task>>;
+   
+
+}

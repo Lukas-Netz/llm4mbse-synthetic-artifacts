@@ -1,0 +1,34 @@
+
+classdiagram VoiceActivatedAssistant {
+
+  class VA {
+    String uniqueIdentifier;
+    String[] voiceCommands;
+    Skill [ ] skills;
+    Intent [ ] intents;
+    Entity [ ] entities;
+    Slot [ ] slots;
+  }
+
+  abstract class Skill {
+    boolean isEnabled;
+    String parameters;
+  }
+
+  abstract class Intent {
+    String goal;
+  }
+
+  abstract class Entity {
+    String name;
+  }
+
+  abstract class Slot {
+    String name;
+  }
+
+  composition VA -> Skill [*];
+  composition VA -> Intent [*];
+  composition VA -> Entity [*];
+  composition VA -> Slot [*];
+}

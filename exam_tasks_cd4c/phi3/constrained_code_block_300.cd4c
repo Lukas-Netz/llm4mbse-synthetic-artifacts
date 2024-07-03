@@ -1,0 +1,44 @@
+
+classdiagram HomeSecuritySystem {
+
+    class HomeSecuritySystem {
+      Hub hub;
+      List<Sensor> sensors;
+      List<Camera> cameras;
+      BackupPower backupPower;
+    }
+
+    class Hub {
+      -> Sensor [*];
+      -> Camera [*];
+      void addSensor(Sensor sensor);
+      void addCamera(Camera camera);
+      void removeSensor(Sensor sensor);
+      void removeCamera(Camera camera);
+      void receiveAlert(Sensor sensor, Camera camera);
+      void remoteControl();
+      String backupPowerStatus();
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      String zone;
+      boolean isActive;
+    }
+
+    class Camera {
+      String uniqueIdentifier;
+      String zone;
+      boolean isActive;
+    }
+
+    class BackupPower {
+      int capacityWh;
+      int powerDuration;
+    }
+
+    composition HomeSecuritySystem -> (has) Hub;
+    composition HomeSecuritySystem -> (has) BackupPower [0..1];
+    composition Hub -> Sensor [*];
+    composition Hub -> Camera [*];
+}

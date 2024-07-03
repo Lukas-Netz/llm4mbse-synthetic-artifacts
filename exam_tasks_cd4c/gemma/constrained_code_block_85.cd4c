@@ -1,0 +1,392 @@
+
+
+<<h1>>  
+
+#  
+
+classdiagram QuantumCrypto
+
+  
+
+{
+
+  class QuantumCryptoSystem {
+
+    Sender sender;
+    Receiver receiver;
+    QuantumChannel quantumChannel;
+
+  }
+
+  class Sender {
+
+    KeyGenerationModule keyGenerationModule;
+
+    void generateSharedSecretKey(Receiver receiver);
+
+  }
+
+  class Receiver {
+
+    KeyVerificationModule keyVerificationModule;
+
+    void verifySharedSecretKey(Sender sender);
+
+  }
+
+  class QuantumChannel {
+
+    EncodingScheme encodingScheme;
+
+    void transmitQubit(Qubit qubit);
+
+  }
+
+  class Qubit {
+
+    int value;
+
+  }
+
+  enum EncodingScheme {
+    SchemeA, SchemeB, SchemeC
+  
+
+  
+
+  
+;
+
+  composition QuantumCryptoSystem  (has  Sender);
+  composition QuantumCryptoSystem  (has  Receiver);
+  composition QuantumCryptoSystem  (has  QuantumChannel);
+
+}
+
+#
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association Sender  (uses)  <-> QuantumChannel
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association Receiver  (uses)  <-> QuantumChannel
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association QuantumChannel  (uses)  <-> Qubit
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association QuantumChannel  (uses)  <-> EncodingScheme
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association QuantumCryptoSystem  (uses)  <-> ClassicalChannel
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association ClassicalChannel  (uses)  <-> SharedSecretKey
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association SharedSecretKey  (uses)  <-> Sender
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  association SharedSecretKey  (uses)  <-> Receiver
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+
+}

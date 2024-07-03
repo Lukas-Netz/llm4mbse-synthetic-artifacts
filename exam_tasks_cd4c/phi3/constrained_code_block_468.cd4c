@@ -1,0 +1,80 @@
+
+classdiagram DigitalUrbanPlanningPlatform {
+
+    class UrbanPlanningPlatform {
+      District district;
+      Block block;
+      Building building;
+      TransportationInfrastructure infrastructure;
+      SensorData sensorData;
+      UrbanAnalytics analytics;
+      StakeholderCollaboration collaboration;
+    }
+
+    class District {
+      String name;
+      List<Block> blocks;
+      District()
+   
+      ;
+    }
+
+    class Block {
+      String identifier;
+      PopulationDensity density;
+      LandUse landUse;
+      ZoningInfo zoningInfo;
+      List<Building> buildings;
+      Block()
+    ;
+    }
+
+    class Building {
+      String identifier;
+      String name;
+      FloorArea floorArea;
+      int numberOfFloors;
+      ConstructionDate constructionDate;
+      Building()
+    ;
+    }
+
+    class TransportationInfrastructure {
+      Road road;
+      Highway highway;
+      PublicTransportation publicTransportation;
+      TransportationInfrastructure()
+    ;
+    }
+
+    class SensorData {
+      TrafficCamera camera;
+      AirQualitySensor airQualitySensor;
+      NoisePollutionSensor noisePollutionSensor;
+      SensorData()
+    ;
+    }
+
+    class UrbanAnalytics {
+      PopulationGrowth growth;
+      TrafficPatterns patterns;
+      EnvironmentalImpact impact;
+      UrbanAnalytics()
+    ;
+    }
+
+    class StakeholderCollaboration {
+      UrbanPlanner planner;
+      Developer developer;
+      StakeholderCollaboration()
+    ;
+    }
+
+    composition UrbanPlanningPlatform -> (has) District;
+    composition UrbanPlanningPlatform -> (has) Block;
+    composition UrbanPlanningPlatform -> (has) Building;
+    composition UrbanPlanningPlatform -> (has) TransportationInfrastructure;
+    composition UrbanPlanningPlatform -> (has) SensorData;
+    composition UrbanPlanningPlatform -> (has) UrbanAnalytics;
+    composition UrbanPlanningPlatform -> (has) StakeholderCollaboration;
+}

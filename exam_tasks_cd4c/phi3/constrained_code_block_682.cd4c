@@ -1,0 +1,53 @@
+
+classdiagram MobileVeterinaryClinic {
+
+    class MVC {
+      String name;
+      String uniqueIdentifier;
+      Team team;
+      Schedule schedule;
+      Inventory inventory;
+    }
+
+    class Team {
+      List<TeamMember> teamMembers;
+    }
+
+    class TeamMember {
+      String name;
+      String role;
+    }
+
+    class Schedule {
+      List<Visit> visits;
+    }
+
+    class Visit {
+      String location;
+      List<Animal> animals;
+    }
+
+    class Animal {
+      String name;
+      String species;
+      List<MedicalCondition> conditions;
+    }
+
+    class MedicalCondition {
+      String condition;
+    }
+
+    class Inventory {
+      List<MedicalSupply> supplies;
+    }
+
+    class MedicalSupply {
+      String name;
+      int quantity;
+    }
+
+    association MVC 
+      hasTeam [aggregation]
+      -> Schedule [*];
+      -interfacesInventory;
+}

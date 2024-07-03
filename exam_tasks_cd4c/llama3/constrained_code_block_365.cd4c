@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram MusicDistributionSystem  {
+
+  class Artist  {
+    String name;
+    String identifier;
+  }
+
+  class Album  {
+    String title;
+    String identifier;
+    Artist artist;
+  }
+
+  class Track  {
+    String title;
+    String identifier;
+    Album album;
+  }
+
+  class Playlist  {
+    String name;
+    String identifier;
+    Artist artist;
+  }
+
+  class TrackPlaylist  {
+    Track track;
+    Playlist playlist;
+  }
+
+  composition Artist -> Album [0..*];
+  composition Album -> Track [0..*];
+  composition Playlist -> Track [0..*];
+  composition Artist -> Playlist [0..*];
+  composition Track -> TrackPlaylist [0..*];
+  composition Playlist -> TrackPlaylist [0..*];
+}

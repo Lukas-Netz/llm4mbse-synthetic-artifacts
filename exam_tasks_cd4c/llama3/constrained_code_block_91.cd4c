@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram RoboticAssemblySystem  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    RobotType type;
+    ToolSet tools;
+    Task currentTask;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    ProductType type;
+    ComponentSet components;
+    AssemblyStatus status;
+  }
+
+  class QualityControl  {
+    void checkProduct(Product product);
+  }
+
+  class Reporting  {
+    void generateReport();
+  }
+
+  class Task  {
+    String description;
+  }
+
+  class ToolSet  {
+    Tool  [ ] tools;
+  }
+
+  class ComponentSet  {
+    Component  [ ] components;
+  }
+
+  class AssemblyStatus  {
+    String status;
+  }
+
+  enum RobotType  {
+    Welding, Drilling, Assembly;
+  }
+
+  enum ProductType  {
+    CarParts, Electronics, Machinery;
+  }
+
+  composition Robot  ->  (has) ToolSet;
+  composition Robot  ->  (has) Task;
+  composition Product  ->  (has) ComponentSet;
+  composition Product  ->  (has) AssemblyStatus;
+  composition QualityControl  ->  (has) Product;
+  composition Reporting  ->  (has) Product;
+}

@@ -1,0 +1,44 @@
+
+classdiagram ArtSystem {
+
+  class Artist {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Artwork {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Artist artist;
+  }
+
+  class Collector {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Collector collector;
+    Artist artist;
+    Artwork artwork;
+    double amount;
+  }
+
+  class Blockchain {
+    Transaction [ ] transactions;
+
+    void addTransaction(Transaction transaction);
+    boolean verifyTransaction(Transaction transaction);
+    boolean verifyArtwork(Artwork artwork);
+    Artwork getArtwork(String uniqueIdentifier);
+    Collector getCollector(String uniqueIdentifier);
+    Artist getArtist(String uniqueIdentifier);
+  }
+
+  composition ArtSystem -> Blockchain;
+  composition Blockchain -> Transaction [*];
+  association Artist <-> Artwork;
+  association Collector <-> Transaction;
+}

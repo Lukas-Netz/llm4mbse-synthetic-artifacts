@@ -1,0 +1,57 @@
+
+
+classdiagram OnlineSustainableLivingCourses {
+
+  class User {
+    private String name;
+    private String bio;
+    private List<Course> coursesEnrolled;
+    private List<Badge> badgesEarned;
+  }
+
+  class Course {
+    private String title;
+    private String description;
+    private int duration;
+    private Instructor instructor;
+    private List<Prerequisite> prerequisites;
+    private List<Review> reviews;
+  }
+
+  class Instructor {
+    private String name;
+    private String bio;
+    private List<Expertise> expertise;
+  }
+
+  class Badge {
+    private String name;
+    private String description;
+  }
+
+  class Prerequisite {
+    private Course course;
+    private int minScore;
+  }
+
+  class Review {
+    private String author;
+    private int rating;
+    private String reviewText;
+  }
+
+  class CourseProgress {
+    private User user;
+    private Course course;
+    private int lessonsCompleted;
+    private int timeSpentOnEachLesson;
+  }
+
+  composition User -> (has) CourseEnrolled [*];
+  composition User -> (has) BadgesEarned [*];
+  composition Course -> (has) Instructor;
+  composition Course -> (has) Prerequisites [*];
+  composition Course -> (has) Reviews [*];
+  composition CourseProgress -> (has) User;
+  composition CourseProgress -> (has) Course;
+}

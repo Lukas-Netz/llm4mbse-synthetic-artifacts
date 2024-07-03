@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram DigitalWallet  {
+
+  class UserAccount  {
+    String uniqueIdentifier;
+    String password;
+    -> PaymentMethod[*];
+  }
+
+  class PaymentMethod  {
+    PaymentMethodType type;
+    String uniqueIdentifier;
+  }
+
+  enum PaymentMethodType  {
+    CreditCard,
+    DebitCard,
+    DigitalCurrency
+  ;}
+
+  class Transaction  {
+    UserAccount user;
+    PaymentMethod paymentMethod;
+    double amount;
+    String description;
+    Receipt receipt;
+  }
+
+  class Receipt  {
+    Transaction transaction;
+    String details;
+  }
+
+  class Balance  {
+    UserAccount user;
+    double amount;
+  }
+
+  composition UserAccount -> PaymentMethod[*];
+  composition Transaction -> UserAccount;
+  composition Transaction -> PaymentMethod;
+  composition Transaction -> Receipt;
+  composition Balance -> UserAccount;
+}

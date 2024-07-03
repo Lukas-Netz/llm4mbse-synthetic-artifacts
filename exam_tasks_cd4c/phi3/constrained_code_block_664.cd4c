@@ -1,0 +1,70 @@
+
+classdiagram BlockchainGamingPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      String password;
+      void registerUser();
+      void loginUser();
+    Authority userAuthority;
+    }
+
+    class Game {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      List<GameVersion> gameVersions;
+      void createGame();
+      void manageGame();
+      Authority gameAuthority;
+    }
+
+    class GameVersion {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      User gameOwner;
+      Game game;
+      void createGameVersion();
+      void manageGameVersion();
+      Authority gameVersionAuthority;
+    }
+
+    class Player {
+      String uniqueIdentifier;
+      GameVersion gameVersion;
+      void joinGameVersion();
+      void leaveGameVersion();
+      Authority playerAuthority;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      String timestamp;
+      String description;
+      void recordTransaction();
+      void verifyTransaction();
+      Authority transactionAuthority;
+    }
+
+    class SmartContract {
+      String uniqueIdentifier;
+      GameVersion gameVersion;
+      void deployContract();
+      void executeContract();
+      Authority smartContractAuthority;
+    }
+
+    composition User -> (has) Authority;
+    composition Game -> (has) GameAuthority;
+    composition Game -> (has) GameVersions [*];
+    composition GameVersion -> (has) Game;
+    composition GameVersion -> (has) GameOwner;
+    composition GameVersion -> (has) GameVersions [*];
+    composition Player -> (has) GameVersion;
+    composition Player -> (has) PlayerAuthority;
+    composition Transaction -> (has) TransactionAuthority;
+    composition SmartContract -> (has) SmartContractAuthority;
+}

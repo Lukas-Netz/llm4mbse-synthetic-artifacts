@@ -1,0 +1,55 @@
+
+classdiagram OnlineEvents {
+
+  class Event {
+    String name;
+    Date startDate;
+    Date endDate;
+    String description;
+    List<Speaker> speakers;
+    List<Session> sessions;
+  }
+
+  class Speaker {
+    String name;
+    String email;
+    String bio;
+    List<Event> events;
+  }
+
+  class Session {
+    String title;
+    Time startTime;
+    Time endTime;
+    List<Speaker> speakers;
+    List<Attendee> attendees;
+  }
+
+  class Attendee {
+    String name;
+    String email;
+    boolean isAttended;
+  }
+
+  class Report {
+    String eventName;
+    int totalAttendees;
+    int popularSessionCount;
+  }
+
+  class PaymentGateway {
+    void processPayment(String attendeeEmail, double amount);
+  }
+
+  enum EventType {
+    Live, PreRecorded, Hybrid;
+  }
+
+  association Event --o000o- 											{ 											ordered						}						;
+  association Event --o000o- 											{ 											ordered						}						;
+  association Speaker --o000o- 											{ 											ordered						}						;
+  association Session --o000o- 											{ 											ordered						}						;
+  association Session --o000o- 											{ 											ordered						}						;
+  association Attendee --o000o- 											{ 											ordered						}						;
+  association PaymentGateway --o000o- 									{ 											ordered						}						;
+}

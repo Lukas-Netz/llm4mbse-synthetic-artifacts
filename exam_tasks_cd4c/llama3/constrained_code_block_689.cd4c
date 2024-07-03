@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram AgriculturalRobotics  {
+
+  class CentralHub  {
+    Robot  robot  ; 
+    WeatherStation weatherStation; 
+    Database database; 
+    void manageRobots(); 
+    void receiveWeatherData(); 
+  }
+
+  abstract class Robot  {
+    Sensor  sensor  ; 
+    Task  task  ; 
+    void performTask(); 
+  }
+
+  class AutonomousTractor extends Robot  {
+    void plantSeeds(); 
+  }
+
+  class AutonomousHarvester extends Robot  {
+    void harvestCrops(); 
+  }
+
+  class AutonomousPruningMachine extends Robot  {
+    void prunePlants(); 
+  }
+
+  class WeatherStation  {
+    Temperature temperature; 
+    Humidity humidity; 
+    Precipitation precipitation; 
+  }
+
+  class Database  {
+    void storeData(); 
+    void provideInsights(); 
+  }
+
+  class Sensor  {
+    SoilMoisture soilMoisture; 
+    Temperature temperature; 
+    CropHealth cropHealth; 
+  }
+
+  enum Task  {
+    PLANTING, PRUNING, HARVESTING; 
+  }
+
+  enum SensorType  {
+    SOIL_MOISTURE, TEMPERATURE, CROP_HEALTH; 
+  }
+
+  composition CentralHub  ->  (has) Robot; 
+  composition CentralHub  ->  (has) WeatherStation; 
+  composition CentralHub  ->  (has) Database; 
+  composition Robot  ->  (has) Sensor; 
+  composition WeatherStation  ->  (has) Temperature; 
+  composition WeatherStation  ->  (has) Humidity; 
+  composition WeatherStation  ->  (has) Precipitation; 
+  composition Database  ->  (has) Data; 
+}

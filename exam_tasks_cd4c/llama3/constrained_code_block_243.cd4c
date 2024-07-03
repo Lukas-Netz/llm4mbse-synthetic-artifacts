@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram QualityAssurance  {
+
+  class Product  {
+    String name;
+    String description;
+    Date productionDate;
+    ProductType type;
+  }
+
+  enum ProductType  {
+    Electronic, Mechanical, Chemical;
+  }
+
+  class TestingModule  {
+    ProductDatabase database;
+    Sensor[] sensors;
+  }
+
+  class ReportingModule  {
+    TestingModule testingModule;
+  }
+
+  class UserInterface  {
+    ProductDatabase database;
+  }
+
+  class ProductDatabase  {
+    Product[] products;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType  {
+    Digital, Analog;
+  }
+
+  composition ProductDatabase  ->  (has) Product[*];
+  composition TestingModule  ->  (has) Sensor[*];
+  composition ReportingModule  ->  (has) TestingModule;
+  composition UserInterface  ->  (has) ProductDatabase;
+  composition Product  ->  (has) ProductType;
+  composition Sensor  ->  (has) SensorType;
+}

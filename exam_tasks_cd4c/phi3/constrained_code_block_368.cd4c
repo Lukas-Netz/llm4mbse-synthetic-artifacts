@@ -1,0 +1,33 @@
+
+classdiagram ComicPlatform {
+
+    class ComicBook {
+      String title;
+      Date publicationDate;
+      String description;
+      List<Author> authors;
+    WritesComicBook();
+    }
+
+    class Author {
+      String name;
+      String bio;
+      WritesAuthor();
+    }
+
+    class Publisher {
+      String name;
+      String contactEmail;
+      PublishesComicBook();
+    }
+
+    class ComicBookList {
+      List<ComicBook> comicBooks;
+      void displayAllComicBooks();
+      void filterComicBooks(Author author, Publisher publisher, Date publicationDate);
+      void displayComicBooksByAuthor(Author author);
+      void displayComicBooksByPublisher(Publisher publisher);
+      void displayComicBooksByAuthor(String title);
+      void displayPublishersByComicBook(ComicBook comicBook);
+    }
+}

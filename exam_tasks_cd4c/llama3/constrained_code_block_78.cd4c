@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram MarketResearchCompany  {
+
+  class Project  {
+    String uniqueIdentifier;
+    String name;
+    -> Client;
+    -> Survey[*];
+  }
+
+  class Client  {
+    String name;
+    -> Project[*];
+  }
+
+  class Survey  {
+    String name;
+    String description;
+    -> Question[*];
+  }
+
+  class Question  {
+    String type;
+    -> Answer[*];
+  }
+
+  class Answer  {
+    String text;
+  }
+
+  class Analyst  {
+    String name;
+    String role;
+    -> Skill[*];
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class Tool  {
+    String name;
+  }
+
+  class AnalyticsService  {
+    -> Project;
+    -> Analyst;
+  }
+
+  composition Project -> Client;
+  composition Project -> Survey[*];
+  composition Survey -> Question[*];
+  composition Question -> Answer[*];
+  composition Analyst -> Skill[*];
+  composition AnalyticsService -> Project;
+  composition AnalyticsService -> Analyst;
+}

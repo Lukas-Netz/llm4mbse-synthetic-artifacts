@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram RetailSystem  {
+
+  class Database  {
+    ProductCatalog productCatalog;
+    CustomerProfile customerProfile;
+    SalesData salesData;
+  }
+
+  class RecommendationEngine  {
+    Database database;
+    ProductCatalog productCatalog;
+    CustomerProfile customerProfile;
+    void generateRecommendations(Customer customer);
+  }
+
+  class ProductCatalog  {
+    Product[] products;
+    Product getProduct(String productId);
+  }
+
+  class InventoryManagement  {
+    Database database;
+    Product[] products;
+    void updateInventory(Product product, int quantity);
+  }
+
+  class CustomerProfile  {
+    Customer[] customers;
+    void updateProfile(Customer customer);
+  }
+
+  class SalesData  {
+    Sales[] sales;
+    void analyzeSales();
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    Category category;
+  }
+
+  class Customer  {
+    String name;
+    PurchaseHistory purchaseHistory;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class PurchaseHistory  {
+    Product[] products;
+  }
+
+  composition Database -> (has) ProductCatalog;
+  composition Database -> (has) CustomerProfile;
+  composition Database -> (has) SalesData;
+  composition RecommendationEngine -> (uses) Database;
+  composition RecommendationEngine -> (uses) ProductCatalog;
+  composition RecommendationEngine -> (uses) CustomerProfile;
+  composition InventoryManagement -> (uses) Database;
+  composition CustomerProfile -> (has) Customer;
+  composition SalesData -> (has) Sales;
+}

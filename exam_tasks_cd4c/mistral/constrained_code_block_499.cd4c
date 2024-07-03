@@ -1,0 +1,49 @@
+
+classdiagram QuantumEncryption {
+
+  class Sender {
+    String uniqueIdentifier;
+    SenderType type;
+    String name;
+    String password;
+    String IPAddress;
+    int portNumber;
+  }
+
+  class Receiver {
+    String uniqueIdentifier;
+    ReceiverType type;
+    String name;
+    String password;
+    String IPAddress;
+    int portNumber;
+  }
+
+  enum SenderType {
+    Human, Machine;
+  }
+
+  enum ReceiverType {
+    Human, Machine;
+  }
+
+  class QKDModule {
+    void generateKeys();
+    void exchangeKeys(Sender sender, Receiver receiver);
+  }
+
+  class EncryptedData {
+    String encryptedData;
+  }
+
+  class QuantumKey {
+    String key;
+  }
+
+  composition Sender -> QKDModule;
+  composition Receiver -> QKDModule;
+  association Sender -- QKDModule;
+  association Receiver -- QKDModule;
+  association Sender -- EncryptedData;
+  association Receiver -- EncryptedData;
+}

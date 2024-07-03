@@ -1,0 +1,59 @@
+
+classdiagram SecureAccess {
+
+    class User {
+      String username;
+      String password;
+      UserRole role;
+      List<User> managedUsers;
+    }
+
+    class Device {
+      String deviceType;
+    }
+
+    class Laptop extends Device {
+      int batteryLife;
+      int screenSize;
+    }
+
+    class Desktop extends Device {
+    }
+
+    class Session {
+      DateTime startTime;
+      DateTime endTime;
+      Device device;
+      User user;
+      UserRole userRole;
+    }
+
+    class Resource {
+      String resourceType;
+    }
+
+    class File extends Resource {
+      int size;
+      String fileType;
+    }
+
+    class Folder extends Resource {
+    }
+
+    class AccessControl {
+      Map<User, List<Resource>> accessHistory;
+      Map<Resource, List<User>> accessPermissions;
+    }
+
+    association User {
+      
+    ordered
+     }- AccessControl [has]
+      -> Session [*]
+      -
+     
+    {
+     
+    ordered
+     }
+     ;}

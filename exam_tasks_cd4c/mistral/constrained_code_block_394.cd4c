@@ -1,0 +1,70 @@
+
+classdiagram DigitalProductDesignTool {
+
+  class DesignElement {
+    String uniqueIdentifier;
+    String type;
+  }
+
+  enum DesignElementType {
+    Icon, Shape, Color;
+  }
+
+  class DesignTool {
+    String uniqueIdentifier;
+    String type;
+    Properties properties;
+  }
+
+  class Properties {
+    FontSize fontSize;
+    Color color;
+    Shape shape;
+    String other;
+  }
+
+  enum FontSize {
+    Small, Medium, Large;
+  }
+
+  class Shape {
+    String type;
+    String properties;
+  }
+
+  class Color {
+    String hexCode;
+  }
+
+  class Design {
+    String uniqueIdentifier;
+    String type;
+    DesignElement [][] elements;
+  }
+
+  class Version {
+    String uniqueIdentifier;
+    String designUniqueIdentifier;
+    String versionNumber;
+  }
+
+  class Publication {
+    String uniqueIdentifier;
+    String designUniqueIdentifier;
+    String format;
+  }
+
+  class Designer {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  composition DesignTool [*] Designer [manyToMany]
+  (has) -> Designer;
+  composition Design [*] Designer [manyToMany]
+  (has) -> Designer;
+  composition Version [*] Design [manyToMany]
+  (has) -> Design;
+  composition Publication [*] Design [manyToMany]
+  (has) -> Design;
+}

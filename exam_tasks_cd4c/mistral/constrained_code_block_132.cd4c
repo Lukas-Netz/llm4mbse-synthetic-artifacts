@@ -1,0 +1,37 @@
+
+classdiagram DataLossPrevention {
+
+  class SensitiveData {
+    String id;
+    String content;
+  }
+
+  class NetworkNode {
+    String id;
+    String type;
+  }
+
+  class AccessEvent {
+    NetworkNode node;
+    SensitiveData data;
+    EventType eventType;
+    Timestamp timestamp;
+  }
+
+  enum EventType {
+    Access, Copy, Move;
+  }
+
+  class DataLossPreventionSystem {
+    -> NetworkNode [*];
+    -> AccessEvent [*];
+    void monitorNetwork();
+    void alertITDepartment(AccessEvent event);
+    void generateReport();
+    void integrateWithSecurityTools();
+    void provideUserInterface();
+  }
+
+  composition DataLossPreventionSystem -> NetworkNode [*];
+  association DataLossPreventionSystem -> AccessEvent [*];
+}

@@ -1,0 +1,43 @@
+
+classdiagram AquaticDrone {
+
+  class Drone {
+    String uniqueIdentifier;
+    DroneType type;
+  }
+
+  enum DroneType {
+    Underwater, Surface;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, pH, FishSpecies;
+  }
+
+  class Fish {
+    String uniqueIdentifier;
+    FishSpecies species;
+  }
+
+  enum FishSpecies {
+    Salmon, Trout, Bass;
+  }
+
+  class WaterBody {
+    String uniqueIdentifier;
+  }
+
+  class Researcher {
+    String uniqueIdentifier;
+  }
+
+  composition Drone [*] has [many] (is_attached_to) -> Sensor [*];
+  composition Drone [*] tracks [many] -> Fish [*];
+  composition WaterBody [*] contains [many] -> Fish [*];
+  association Researcher [*] operates [many] -> Drone [*];
+}

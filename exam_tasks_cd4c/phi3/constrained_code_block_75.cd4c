@@ -1,0 +1,66 @@
+
+classdiagram IntellectualProperty {
+
+    class IPAsset {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      Date expirationDate;
+      Date registrationDate;
+      Date creationDate;
+      List<Owner> owners;
+      String industry;
+      IPAssetStatus status;
+    }
+
+    class Owner {
+      String name;
+      String emailAddress;
+      String type;
+    }
+
+    class Person extends Owner {
+      Person(String name, String emailAddress);
+    }
+
+    class Organization extends Owner {
+      String name;
+      String taxID;
+      Organization(String name, String taxID);
+    }
+
+    class Industry {
+      String name;
+      String description;
+    }
+
+    class IPAssetStatus {
+      String status;
+    }
+
+    class Patent extends IPAsset {
+      Patent(String uniqueIdentifier, String title, String description, Date expirationDate);
+    }
+
+    class Trademark extends IPAsset {
+      Trademark(String uniqueIdentifier, String title, String description, Date registrationDate);
+    }
+
+    class Copyright extends IPAsset {
+      Copyright(String uniqueIdentifier, String title, String description, Date creationDate);
+    }
+
+    class IPManagementSystem {
+      void addIPAsset(IPAsset asset);
+      void removeIPAsset(IPAsset asset);
+      IPAsset searchByKeyword(String keyword);
+      IPAsset searchByTitle(String title);
+      IPAsset searchByOwner(Owner owner);
+      void updateIPAssetStatus(String uniqueIdentifier, IPAssetStatus status);
+    }
+
+    composition IPAsset -> (has) Owner [*];
+    composition IPAsset -> (has) Industry [*];
+    composition IPAsset -> (has) IPAssetStatus;
+    composition IPAsset -> (has) IPManagementSystem;
+}

@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram LanguageExchange  {
+
+  class User  {
+    String name;
+    String email;
+    String password;
+    Language language;
+    Profile profile;
+  }
+
+  class Profile  {
+    User user;
+    String bio;
+  }
+
+  class Language  {
+    String name;
+    String code;
+  }
+
+  class Connection  {
+    User user1;
+    User user2;
+    Language language;
+  }
+
+  class Activity  {
+    User user;
+    Language language;
+    ActivityType type;
+  }
+
+  enum ActivityType  {
+    TextConversation,
+    VoiceConversation,
+    VideoConversation,
+    GrammarLesson,
+    VocabularyExercise,
+    LanguageQuiz
+  ;}
+
+  class Progress  {
+    User user;
+    Language language;
+    int score;
+  }
+
+  class Administrator  {
+    String name;
+    String email;
+    String password;
+  }
+
+  composition User -> Profile;
+  composition User -> Language;
+  composition Connection -> User [2];
+  composition Activity -> User;
+  composition Progress -> User;
+  composition Administrator -> User [1..*];
+}

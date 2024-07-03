@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram CCS  {
+
+  class CCSSystem  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class CaptureUnit extends Device  {
+    CaptureTechnology technology;
+    double amountCaptured;
+  }
+
+  class TransportationUnit extends Device  {
+    TransportationMethod method;
+    double distanceTraveled;
+  }
+
+  class StorageUnit extends Device  {
+    GeologicalFormation formation;
+    double amountStored;
+  }
+
+  class MonitoringUnit  {
+    void trackCO2Levels();
+    void alertSystem();
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  enum DeviceStatus  {
+    Operational, NonOperational;
+  }
+
+  enum CaptureTechnology  {
+    PostCombustion, PreCombustion, Oxyfuel;
+  }
+
+  enum TransportationMethod  {
+    Pipeline, Truck;
+  }
+
+  enum GeologicalFormation  {
+    SalineAquifer, DepletedOilField, DepletedGasField;
+  }
+
+  composition CCSSystem -> (has) CaptureUnit;
+  composition CCSSystem -> (has) TransportationUnit;
+  composition CCSSystem -> (has) StorageUnit;
+  composition CCSSystem -> (has) MonitoringUnit;
+  composition CaptureUnit -> (has) CaptureTechnology;
+  composition TransportationUnit -> (has) TransportationMethod;
+  composition StorageUnit -> (has) GeologicalFormation;
+}

@@ -1,0 +1,50 @@
+
+classdiagram GenomeEditingSoftware {
+
+    class Project {
+      String name;
+      String description;
+      List<Gene> genes;
+      User assignedUser;
+      void editGene(Gene gene);
+      void deleteProject();
+    }
+
+    class Gene {
+      String name;
+      String sequence;
+      GeneStatus status;
+      List<EditHistory> editHistory;
+    }
+
+    class EditHistory {
+      Gene gene;
+      String editDetails;
+      Date editDate;
+    }
+
+    class User {
+      String name;
+      String email;
+      String role;
+    }
+
+    class Admin extends User {
+      void createProject();
+      void editProject();
+      void deleteProject();
+    }
+
+    class Editor extends User {
+      void editGene();
+    }
+
+    enum GeneStatus {
+      Unedited, Edited;
+    }
+
+    association Project <-> User;
+    association Gene <-> EditHistory;
+    composition Admin -> User [0..1];
+    composition Editor -> User [0..1];
+}

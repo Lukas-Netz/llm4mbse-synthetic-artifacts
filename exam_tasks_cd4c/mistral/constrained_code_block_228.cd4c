@@ -1,0 +1,35 @@
+
+classdiagram WaterQualityMonitoring {
+
+  class Sensor {
+    String location;
+    SensorType type;
+    int pH;
+    float temperature;
+    int turbidity;
+  }
+
+  class MonitoringStation {
+    String location;
+    MonitoringStationType type;
+    Sensor [ ][  ] sensors;
+  }
+
+  class CentralDatabase {
+    void storeData(MonitoringStation station);
+    void provideRealTimeUpdates(MonitoringStation station);
+    void alertAuthorities(MonitoringStation station);
+    void getHistoricalData(String location);
+  }
+
+  enum SensorType {
+    pH, Temperature, Turbidity;
+  }
+
+  enum MonitoringStationType {
+    Stationary, Mobile;
+  }
+
+  composition CentralDatabase -> MonitoringStation [*];
+  composition MonitoringStation -> Sensor [*];
+}

@@ -1,0 +1,51 @@
+
+classdiagram MobileAppAnalytics {
+
+    class MobileApp {
+      String appIdentifier;
+      int appVersion;
+    }
+
+    class User {
+      String userIdentifier;
+      UserSegment segment;
+    }
+
+    class UserSegment {
+      String ageGroup;
+      String location;
+      String interests;
+    }
+
+    class Analytics {
+      String appIdentifier;
+      String userIdentifier;
+      SessionDuration sessionDuration;
+      BounceRate bounceRate;
+      ConversionRate conversionRate;
+    }
+
+    class Report {
+      Analytics data;
+      String appIdentifier;
+      UserSegment segment;
+      TimePeriod timePeriod;
+    }
+
+    class AnomalyDetection {
+      Analytics data;
+      void detectAnomalies();
+    }
+
+    class AppDeveloper {
+      void viewAnalytics(Analytics data);
+      void viewReports(Report report);
+    }
+
+    association MobileApp -> Analytics [*];
+    association User -> Analytics [*];
+    association Analytics -> Report [*];
+    association Analytics -> AnomalyDetection [*];
+    association Analytics -> AppDeveloper [*];
+    composition Report -> Analytics;
+}

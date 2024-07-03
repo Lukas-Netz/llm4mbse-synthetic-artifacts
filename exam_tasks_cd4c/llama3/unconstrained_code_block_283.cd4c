@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram QuantumEncryptionSystem  {
+
+  class Entity  {
+    String uniqueIdentifier;
+  }
+
+  class Human extends Entity  {
+    String name;
+    String password;
+  }
+
+  class Machine extends Entity  {
+    String ipAddress;
+    int portNumber;
+  }
+
+  class QKDModule  {
+    void generateKeys();
+    void exchangeKeys(Entity sender, Entity receiver);
+  }
+
+  class Key  {
+    BitSequence bits;
+  }
+
+  class BitSequence  {
+    Bit[] bits;
+  }
+
+  class Bit  {
+    boolean value;
+  }
+
+  class Data  {
+    String content;
+  }
+
+  class Sender extends Entity  {
+    Key key;
+    void encrypt(Data data);
+  }
+
+  class Receiver extends Entity  {
+    Key key;
+    void decrypt(Data data);
+  }
+
+  composition QKDModule -> (generates) Key;
+  composition Sender -> (uses) Key;
+  composition Receiver -> (uses) Key;
+  composition Sender -> (encrypts) Data;
+  composition Receiver -> (decrypts) Data;
+}

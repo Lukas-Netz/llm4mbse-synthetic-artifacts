@@ -1,0 +1,58 @@
+
+classdiagram BioprintingSystem {
+
+  class Bioprinter {
+    String name;
+    String manufacturer;
+    int printSpeed;
+    int printVolume;
+    Biomaterial[] supportedMaterials;
+  }
+
+  class Biomaterial {
+    String name;
+    String composition;
+    String structure;
+    PrintQuality printQuality;
+  }
+
+  enum PrintQuality {
+    Low, Medium, High;
+  }
+
+  class PrintJob {
+    Biomaterial material;
+    PrintQuality quality;
+    int printSpeed;
+    String status;
+  }
+
+  class PrintQueue {
+    PrintJob[] jobs;
+  }
+
+  class PrintController {
+    Bioprinter[] printers;
+    PrintQueue queue;
+  }
+
+  class ResearchAndDevelopment {
+    PrintJob[] experiments;
+  }
+
+  class QualityControl {
+    PrintJob[] samples;
+  }
+
+  class CustomerService {
+    PrintJob[] requests;
+  }
+
+  composition BioprintingSystem -> (has) PrintController;
+  composition PrintController -> Bioprinter [*];
+  association PrintController -> PrintQueue;
+  association PrintQueue -> PrintJob [*];
+  association ResearchAndDevelopment -> PrintJob [*];
+  association QualityControl -> PrintJob [*];
+  association CustomerService -> PrintJob [*];
+}

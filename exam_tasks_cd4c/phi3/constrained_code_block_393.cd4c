@@ -1,0 +1,121 @@
+
+classdiagram VirtualDanceClassPlatform {
+
+    class User {
+      String username;
+      String password;
+      String role;
+    }
+
+    class Instructor extends User {
+      String danceStyleSpecialty;
+      String bio;
+      List<DanceClass> createdClasses;
+    }
+
+    class Student extends User {
+      String danceExperience;
+      String goals;
+      List<DanceClass> attendedClasses;
+    }
+
+    class DanceClass {
+      String name;
+      String description;
+      Schedule schedule;
+      Instructor instructor;
+      List<Student> students;
+    }
+
+    class Schedule {
+      String startTime;
+      String endTime;
+      String frequency;
+    }
+
+    association Instructor -> DanceClass [1..*]
+    derived 
+    {
+      ordered
+     }
+
+   
+;
+    association Student -> DanceClass [1..*]
+    derived 
+    {
+      ordered
+    }
+
+   
+;
+    composition Instructor -> createdClasses {
+      ordered
+    }
+
+   
+;
+    composition Student -> attendedClasses {
+      ordered
+    }
+
+   
+;
+    association DanceClass -> Schedule
+
+   
+;
+    association DanceClass -> Instructor
+
+   
+;
+    association DanceClass -> Student
+
+   
+;
+    association User -> Instructor
+
+   
+;
+    association User -> Student
+
+   
+;
+    composition User -> createdClasses {
+      ordered
+    }
+
+   
+;
+    composition User -> attendedClasses {
+      ordered
+    }
+
+   
+;
+    composition User -> reviews {
+      ordered
+    }
+
+   
+;
+    composition User -> ratings {
+      ordered
+    }
+
+   
+;
+    composition User -> bio {
+      ordered
+    }
+
+   
+;
+    composition User -> danceExperience {
+      ordered
+    }
+
+   
+;
+   
+}

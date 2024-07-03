@@ -1,0 +1,57 @@
+
+classdiagram VotingSystem {
+
+  class Voter {
+    String uniqueIdentifier;
+    String publicKey;
+  }
+
+  class Candidate {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Election {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Ballot {
+    Election election;
+    List<Vote> votes;
+  }
+
+  class Vote {
+    Ballot ballot;
+    Candidate candidate;
+  }
+
+  class Block {
+    String hash;
+    List<Vote> votes;
+    Block previousBlock;
+  }
+
+  abstract class Transaction {
+    Block block;
+  }
+
+  class VoteTransaction extends Transaction {
+    Ballot ballot;
+    Candidate candidate;
+  }
+
+  class Blockchain {
+    Block genesisBlock;
+    Block currentBlock;
+  }
+
+  composition VotingSystem -> Voter [*];
+  composition VotingSystem -> Candidate [*];
+  composition VotingSystem -> Election [*];
+  composition Ballot -> Vote [*];
+  composition Blockchain -> Block [*];
+  association Voter <-> VoteTransaction;
+  association Candidate <-> VoteTransaction;
+}

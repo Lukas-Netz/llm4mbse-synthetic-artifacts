@@ -1,0 +1,62 @@
+
+classdiagram RoboticSurgerySimulator {
+
+  class Simulator {
+    String name;
+    int version;
+  }
+
+  class RoboticArm {
+    String name;
+    String type;
+  }
+
+  class Console {
+    String name;
+    String type;
+  }
+
+  class Scenario {
+    String name;
+    String description;
+  }
+
+  class Task {
+    String name;
+    String description;
+  }
+
+  class Step {
+    String name;
+    String description;
+  }
+
+  class Action {
+    String name;
+    String description;
+  }
+
+  class User {
+    String name;
+    String role;
+  }
+
+  class Database {
+    Simulator simulator;
+    RoboticArm roboticArm;
+    Console console;
+    Scenario [ ] scenarios;
+    Task [ ] tasks;
+    Step [ ] steps;
+    Action [ ] actions;
+    User [ ] users;
+  }
+
+  composition Simulator -> Database;
+  composition RoboticArm -> Database;
+  composition Console -> Database;
+  association Scenario -- [  many ] Task;
+  association Task -- [  many ] Step;
+  association Action -- [  many ] RoboticArm;
+  association User -- [  many ] Console;
+}

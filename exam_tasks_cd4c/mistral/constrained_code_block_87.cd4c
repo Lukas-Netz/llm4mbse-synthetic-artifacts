@@ -1,0 +1,74 @@
+
+classdiagram DisasterRecovery {
+
+  class DataCenter {
+    -> Server [*];
+    String uniqueIdentifier;
+    ServerStatus status;
+  }
+
+  class Server {
+    String uniqueIdentifier;
+    ServerStatus status;
+  }
+
+  enum ServerStatus {
+    Online, Offline;
+  }
+
+  class BackupSystem {
+    -> BackupLocation [*];
+    String uniqueIdentifier;
+    BackupLocationStatus status;
+  }
+
+  class BackupLocation {
+    String uniqueIdentifier;
+    BackupLocationStatus status;
+  }
+
+  enum BackupLocationStatus {
+    Available, Unavailable;
+  }
+
+  class Network {
+    -> Node [*];
+    String uniqueIdentifier;
+    NetworkStatus status;
+  }
+
+  class Node {
+    String uniqueIdentifier;
+    NetworkStatus status;
+  }
+
+  enum NetworkStatus {
+    Online, Offline;
+  }
+
+  class RecoveryTeam {
+    -> Member [*];
+    String uniqueIdentifier;
+    MemberStatus status;
+  }
+
+  class Member {
+    String uniqueIdentifier;
+    MemberStatus status;
+  }
+
+  enum MemberStatus {
+    Available, Unavailable;
+  }
+
+  class RecoveryPlan {
+    String uniqueIdentifier;
+    String resources;
+    String priority;
+  }
+
+  composition DataCenter -> Server [*];
+  composition BackupSystem -> BackupLocation [*];
+  composition Network -> Node [*];
+  composition RecoveryTeam -> Member [*];
+}

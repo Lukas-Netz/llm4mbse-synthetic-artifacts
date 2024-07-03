@@ -1,0 +1,66 @@
+
+
+classdiagram OnlineSociologyCoursesPlatform {
+
+  class Student {
+    private String id;
+    private String name;
+    private String email;
+    private List<Course> enrolledCourses;
+  }
+
+  class Course {
+    private String id;
+    private String title;
+    private String description;
+    private Instructor instructor;
+  }
+
+  class Instructor {
+    private String id;
+    private String name;
+    private String email;
+    private List<Course> courses;
+  }
+
+  class Assignment {
+    private String id;
+    private String title;
+    private String description;
+    private Student submitter;
+    private Instructor grader;
+  }
+
+  class Discussion {
+    private String id;
+    private String title;
+    private String description;
+    private List<Message> messages;
+  }
+
+  class Message {
+    private String author;
+    private String content;
+  }
+
+  class Grade {
+    private Student student;
+    private double value;
+  }
+
+  composition Student -> (has) List<<Course>>
+  abstract  
+  
+  
+
+  {
+    
+  
+
+  ordered
+  }
+
+  
+
+;
+}

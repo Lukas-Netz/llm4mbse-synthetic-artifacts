@@ -1,0 +1,50 @@
+
+classdiagram GestureRecognitionSystem {
+
+    class GestureRecognitionSystem {
+      Camera camera;
+      ProcessingUnit processingUnit;
+      Database database;
+    }
+
+    class Camera {
+      void captureImage();
+    }
+
+    class ProcessingUnit {
+      void processImage(Image image);
+      Gesture recognizeGesture(Image image);
+    }
+
+    class Database {
+      void storeGesture(Gesture gesture);
+      Gesture retrieveGesture(String gestureName);
+    }
+
+    class Gesture {
+      String name;
+      List<Gesture> combinations;
+    }
+
+    class Pointing extends Gesture {
+      String location;
+    }
+
+    class Swiping extends Gesture {
+      String direction;
+    }
+
+    class Tapping extends Gesture {
+      String location;
+    }
+
+    class Rotating extends Gesture {
+      String direction;
+    }
+
+    association GestureRecognitionSystem -> Camera;
+    association GestureRecognitionSystem -> ProcessingUnit;
+    association GestureRecognitionSystem -> Database;
+
+    composition Gesture -> Gesture [*];
+}

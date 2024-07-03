@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram AutonomousMedicalDiagnosisSystem  {
+
+  class CPU  {
+    void analyzeData(SensorData data);
+    Diagnosis diagnose();
+    TreatmentPlan planTreatment();
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier;
+    SensorData reading;
+  }
+
+  class BloodGlucoseSensor extends Sensor  {
+    double glucoseLevel;
+    double insulinDosage;
+  }
+
+  class BloodPressureSensor extends Sensor  {
+    int systolicPressure;
+    int diastolicPressure;
+  }
+
+  class PulseOximeterSensor extends Sensor  {
+    double oxygenSaturation;
+    int heartRate;
+  }
+
+  class SensorData  {
+    Sensor sensor;
+    double value;
+  }
+
+  class Diagnosis  {
+    String diagnosis;
+  }
+
+  class TreatmentPlan  {
+    String treatment;
+  }
+
+  class Database  {
+    Patient patient;
+    MedicalHistory medicalHistory;
+    Diagnosis diagnosis;
+  }
+
+  class Patient  {
+    String name;
+    String medicalRecordNumber;
+  }
+
+  class MedicalHistory  {
+    String medicalCondition;
+    String medication;
+  }
+
+  composition CPU -> SensorData;
+  composition Sensor -> SensorData;
+  composition Database -> Patient;
+  composition Database -> MedicalHistory;
+  composition CPU -> Diagnosis;
+  composition CPU -> TreatmentPlan;
+}

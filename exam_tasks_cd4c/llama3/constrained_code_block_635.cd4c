@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram ArcticResearchStation  {
+
+  class ResearchStation  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+    List<Researcher> researchers;
+    List<Equipment> equipment;
+    List<Experiment> experiments;
+    List<DataLog> dataLogs;
+    StationStatus status;
+  }
+
+  class Researcher  {
+    String name;
+    int personnelNumber;
+    Role role;
+    ResearchStation station;
+  }
+
+  class Equipment  {
+    String uniqueIdentifier;
+    String name;
+    EquipmentType type;
+    ResearchStation station;
+    EquipmentStatus status;
+  }
+
+  class Experiment  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Researcher researcher;
+  }
+
+  class DataLog  {
+    String uniqueIdentifier;
+    Date date;
+    DataLogType type;
+    Experiment experiment;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  enum Role  {
+    Scientist, Engineer, Technician
+  ;}
+
+  enum EquipmentType  {
+    Camera, Sensor, CommunicationDevice
+  ;}
+
+  enum EquipmentStatus  {
+    Functional, NonFunctional
+  ;}
+
+  enum StationStatus  {
+    Operational, NonOperational
+  ;}
+
+  composition ResearchStation -> Researcher [1..*];
+  composition ResearchStation -> Equipment [1..*];
+  composition ResearchStation -> Experiment [1..*];
+  composition ResearchStation -> DataLog [1..*];
+  composition Researcher -> ResearchStation [1];
+  composition Equipment -> ResearchStation [1];
+  composition Experiment -> Researcher [1];
+  composition DataLog -> Experiment [1];
+}

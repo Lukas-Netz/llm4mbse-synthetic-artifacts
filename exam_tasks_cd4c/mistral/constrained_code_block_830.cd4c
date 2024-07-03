@@ -1,0 +1,37 @@
+
+classdiagram SpaceBasedInternet {
+
+  class Satellite {
+    String uniqueIdentifier;
+    String antennaType;
+  }
+
+  class GroundStation {
+    String uniqueIdentifier;
+    -> Satellite [*];
+  }
+
+  abstract class UserDevice {
+    String uniqueIdentifier;
+    UserDeviceStatus status;
+  }
+
+  class SatelliteTerminal extends UserDevice {}
+  class GroundTerminal extends UserDevice {}
+
+  enum UserDeviceStatus {
+    Connected, Disconnected;
+  }
+
+  class CentralManagementSystem {
+    -> Satellite [*];
+    -> GroundStation [*];
+    -> UserDevice [*];
+    void scheduleMaintenance(Satellite satellite);
+    void allocateBandwidth(UserDevice userDevice);
+  }
+
+  composition CentralManagementSystem -> Satellite [*];
+  composition CentralManagementSystem -> GroundStation [*];
+  composition GroundStation -> Satellite [*];
+}

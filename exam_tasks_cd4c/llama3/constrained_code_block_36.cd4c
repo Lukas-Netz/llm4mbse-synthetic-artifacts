@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram EnvironmentalMonitoringSystem  {
+
+  class Sensor  {
+    String type;  # eeprom
+    doublereading;  # temperature
+    doublereading;  # humidity
+    doublereading;  # air quality
+  ;}
+
+  class DataLogger  {
+    Sensor sensor;
+    List<reading> readings;
+  }
+
+  class CentralServer  {
+    List<DataLogger> dataLoggers;
+    Database database;
+    ReportingModule reportingModule;
+    UserInterface userInterface;
+  }
+
+  class Database  {
+    List<reading> readings;
+  }
+
+  class ReportingModule  {
+    void generateReport();
+  }
+
+  class UserInterface  {
+    void displayData();
+  }
+
+  class reading  {
+    double value;
+    Date timestamp;
+  }
+
+  composition CentralServer -> (has) DataLogger[*];
+  composition CentralServer -> (has) Database;
+  composition CentralServer -> (has) ReportingModule;
+  composition CentralServer -> (has) UserInterface;
+  composition DataLogger -> (has) Sensor;
+  composition DataLogger -> (has) reading[*];
+  association Sensor -> DataLogger;
+  association DataLogger -> CentralServer;
+  association CentralServer -> Database;
+  association CentralServer -> ReportingModule;
+  association CentralServer -> UserInterface;
+}

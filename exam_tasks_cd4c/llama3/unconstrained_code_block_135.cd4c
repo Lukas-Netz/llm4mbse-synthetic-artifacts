@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram RemoteDesktop  {
+
+  class Client  {
+    String username;
+    String password;
+    void connect(Server server);
+    void sendCommand(String command);
+  }
+
+  class Server  {
+    String hostname;
+    int port;
+    void executeCommand(String command);
+    void sendOutput(String output);
+  }
+
+  class Session  {
+    Client client;
+    Server server;
+    boolean isRecording;
+    boolean isSaved;
+  }
+
+  class FileTransfer  {
+    String sourceFile;
+    String destinationFile;
+  }
+
+  class ScreenSharing  {
+    boolean isShared;
+  }
+
+  class Chat  {
+    String message;
+  }
+
+  class Recording  {
+    String recordingFile;
+  }
+
+  composition Client -> (has) Session;
+  composition Server -> (has) Session;
+  composition Session -> (has) Client;
+  composition Session -> (has) Server;
+  composition Session -> (has) Recording [0..1];
+  composition Session -> (has) FileTransfer [0..*];
+  composition Session -> (has) ScreenSharing;
+  composition Session -> (has) Chat;
+}

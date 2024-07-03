@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram ConversationalMarketingPlatform  {
+
+  class Conversation  {
+    String uniqueIdentifier;
+    String topic;
+    int priorityLevel;
+    ConversationStatus status;
+  }
+
+  class Agent  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Customer  {
+    String uniqueIdentifier;
+  }
+
+  class Note  {
+    String text;
+    Conversation conversation;
+  }
+
+  class ConversationHistory  {
+    Conversation conversation;
+    List<Note> notes;
+  }
+
+  class Analytics  {
+    Conversation conversation;
+    int outcome;
+  }
+
+  class Platform  {
+    List<Agent> agents;
+    List<Conversation> conversations;
+    List<ConversationHistory> conversationHistories;
+    List<Analytics> analytics;
+  }
+
+  composition Platform -> (has) agents;
+  composition Platform -> (has) conversations;
+  composition Platform -> (has) conversationHistories;
+  composition Platform -> (has) analytics;
+  composition Agent -> (has) notes;
+  composition Conversation -> (has) notes;
+  composition Conversation -> (has) conversationHistory;
+  composition Conversation -> (has) analytics;
+  composition Customer -> (has) conversations;
+}

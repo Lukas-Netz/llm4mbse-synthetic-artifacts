@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram SpaceTourism  {
+
+  class Spacecraft  {
+    String uniqueIdentifier;
+    int capacity;
+    SpacecraftType type;
+    SpacecraftStatus status;
+  }
+
+  enum SpacecraftType  {
+    Luxury, Economy, Research;
+  }
+
+  enum SpacecraftStatus  {
+    Available, InMaintenance;
+  }
+
+  class Astronaut  {
+    String uniqueIdentifier;
+    String name;
+    int experienceLevel;
+  }
+
+  class Reservation  {
+    String passengerName;
+    String contactInformation;
+    TravelPreferences travelPreferences;
+  }
+
+  class TravelPreferences  {
+    String preferredSeat;
+    String preferredMeal;
+  }
+
+  class Booking  {
+    Spacecraft spacecraft;
+    Reservation reservation;
+  }
+
+  class System  {
+    Spacecraft[] spacecraft;
+    Astronaut[] astronauts;
+    Booking[] bookings;
+    int revenue;
+  }
+
+  composition System -> (has) Spacecraft[*];
+  composition System -> (has) Astronaut[*];
+  composition System -> (has) Booking[*];
+  composition Spacecraft -> (has) Astronaut[*];
+  composition Booking -> (has) Spacecraft;
+  composition Booking -> (has) Reservation;
+}

@@ -1,0 +1,86 @@
+
+classdiagram LegalResearchSystem {
+
+  class LegalResearchSystem {
+    CaseRepository caseRepository;
+    LawRepository lawRepository;
+    ConceptRepository conceptRepository;
+    LanguageRepository languageRepository;
+    SearchEngine searchEngine;
+    AnalysisEngine analysisEngine;
+    UserInterface userInterface;
+  }
+
+  class CaseRepository {
+    void addCase(Case case);
+    Case getCase(String caseId);
+  }
+
+  class LawRepository {
+    void addLaw(Law law);
+    Law getLaw(String lawId);
+  }
+
+  class ConceptRepository {
+    void addConcept(Concept concept);
+    Concept getConcept(String conceptId);
+  }
+
+  class LanguageRepository {
+    void addLanguage(Language language);
+    Language getLanguage(String languageCode);
+  }
+
+  class SearchEngine {
+    String searchQuery;
+    void performSearch(String query);
+    List<Result> getSearchResults();
+  }
+
+  class AnalysisEngine {
+    List<Recommendation> analyzeResults(List<Result> results);
+  }
+
+  class UserInterface {
+    void inputSearchQuery(String query);
+    void displayResults(List<Result> results);
+    void displayRecommendations(List<Recommendation> recommendations);
+  }
+
+  class Case {
+    String caseId;
+    String caseText;
+    List<Law> relevantLaws;
+    List<Concept> relevantConcepts;
+  }
+
+  class Law {
+    String lawId;
+    String lawText;
+    List<Case> relevantCases;
+    List<Concept> relevantConcepts;
+  }
+
+  class Concept {
+    String conceptId;
+    String conceptText;
+    List<Case> relevantCases;
+    List<Law> relevantLaws;
+  }
+
+  class Language {
+    String languageCode;
+    String languageName;
+  }
+
+  class Result {
+    String resultText;
+    String source;
+    String type;
+  }
+
+  class Recommendation {
+    String recommendationText;
+    String source;
+  }
+}

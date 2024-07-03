@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram LegalResearchSystem  {
+
+  class Case  {
+    String title;
+    String description;
+    Date date;
+  }
+
+  class Law  {
+    String title;
+    String description;
+    Date date;
+  }
+
+  class LegalConcept  {
+    String name;
+    String description;
+  }
+
+  class Document  {
+    String title;
+    String content;
+    Date date;
+    DocumentType type;
+  }
+
+  enum DocumentType  {
+    COURT_DECISION,
+    LEGISLATION,
+    SCHOLARLY_ARTICLE
+  ;}
+
+  class Language  {
+    String name;
+  }
+
+  class SearchQuery  {
+    String query;
+    Language language;
+  }
+
+  class SearchResult  {
+    Document document;
+    float relevanceScore;
+  }
+
+  class Recommendation  {
+    Document document;
+    String suggestion;
+  }
+
+  class User  {
+    String name;
+    String role;
+  }
+
+  class UserInterface  {
+    void inputSearchQuery(SearchQuery query);
+    void displaySearchResults(List<SearchResult> results);
+    void displayRecommendations(List<Recommendation> recommendations);
+  }
+
+  composition Document -> (has) Language;
+  composition SearchQuery -> (has) Language;
+  composition SearchResult -> (has) Document;
+  composition Recommendation -> (has) Document;
+  composition User -> (has) UserInterface;
+  composition UserInterface -> (has) SearchQuery;
+  composition UserInterface -> (has) SearchResult;
+  composition UserInterface -> (has) Recommendation;
+}

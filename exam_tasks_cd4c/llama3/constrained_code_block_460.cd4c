@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram OnlineFinanceCourseSystem  {
+
+  class Course  {
+    String uniqueId;
+    String name;
+    String description;
+    Topic topic;
+  }
+
+  class Topic  {
+    String uniqueId;
+    String name;
+    String description;
+    Course  [  ] courses;
+  }
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    Enrollment  [  ] enrollments;
+  }
+
+  class Enrollment  {
+    String uniqueId;
+    Course course;
+    User user;
+  }
+
+  class Quiz  {
+    String uniqueId;
+    String name;
+    String description;
+    Course course;
+    Question  [  ] questions;
+  }
+
+  class Question  {
+    String uniqueId;
+    String text;
+    String answer;
+    Quiz quiz;
+  }
+
+  class Score  {
+    String uniqueId;
+    Quiz quiz;
+    User user;
+  }
+
+  class Review  {
+    String uniqueId;
+    Course course;
+    User user;
+  }
+}

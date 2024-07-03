@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram InteractiveWhiteboard  {
+
+  class MainUnit  {
+    String uniqueIdentifier;
+    Computer computer;
+    TouchscreenDisplay display;
+  }
+
+  class Stylus  {
+    String uniqueIdentifier;
+  }
+
+  class SoftwareComponent  {
+    String versionNumber;
+    void update();
+  }
+
+  class Computer  {
+    MainUnit mainUnit;
+  }
+
+  class TouchscreenDisplay  {
+    MainUnit mainUnit;
+  }
+
+  class PresentationMode  {
+    void displaySlidesAndNotes();
+  }
+
+  class DrawingMode  {
+    void drawShapesAndLines();
+  }
+
+  class GameMode  {
+    void playEducationalGames();
+  }
+
+  class Content  {
+    void save();
+    void load();
+  }
+
+  class UserInteraction  {
+    void trackMouseClicks();
+    void trackStylusMovements();
+  }
+
+  composition MainUnit -> Computer;
+  composition MainUnit -> TouchscreenDisplay;
+  composition Stylus -> MainUnit;
+  composition SoftwareComponent -> MainUnit;
+  composition Content -> MainUnit;
+  composition UserInteraction -> MainUnit;
+}

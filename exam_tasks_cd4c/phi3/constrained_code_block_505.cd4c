@@ -1,0 +1,61 @@
+
+classdiagram AirTrafficControlSystem {
+
+    class AirTrafficControlCenter {
+      String uniqueIdentifier;
+      AirspaceRegion region;
+      List<RadarStation> radarStations;
+      List<Aircraft> aircraftInControl;
+      List<AirTrafficController> airTrafficControllers;
+      void monitorAirspace();
+      void controlAircraft();
+    Writes toRadarData();
+    }
+
+    class RadarStation {
+      String uniqueIdentifier;
+      AirspaceSector sector;
+      List<Aircraft> aircraftInSector;
+      void trackAircraft();
+      void sendDataToATCC(AirTrafficControlCenter atcc);
+    }
+
+    class Aircraft {
+      String uniqueIdentifier;
+      int altitude;
+      int speed;
+      String direction;
+    }
+
+    class Pilot {
+      String name;
+      String licenseNumber;
+      int experience;
+    }
+
+    class AirTrafficController {
+      String name;
+      String certificationNumber;
+      int experience;
+    }
+
+    class AirspaceRegion {
+      String name;
+      List<AirTrafficControlCenter> atccs;
+    }
+
+    class AirspaceSector {
+      String name;
+      List<RadarStation> radarStations;
+    }
+
+  composition AirTrafficControlCenter -> (has) AirspaceRegion;
+  composition AirTrafficControlCenter -> (has) AirspaceSector;
+  composition AirTrafficControlCenter -> (has) RadarStation [0..*];
+  composition AirTrafficControlCenter -> (has) Aircraft [0..*];
+  composition AirTrafficControlCenter -> (has) AirTrafficController [0..*];
+  composition RadarStation -> (has) AirspaceSector;
+  composition RadarStation -> (has) Aircraft [0..*];
+  composition Aircraft -> (has) Pilot;
+  composition AirTrafficController -> (has) Pilot;
+}

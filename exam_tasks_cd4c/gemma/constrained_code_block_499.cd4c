@@ -1,0 +1,41 @@
+
+
+classdiagram SkateboardControlUnit {
+
+    class MainBoard {
+      -> Sensor [*];
+      -> Motor;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorStatus status;
+    }
+
+    class Accelerometer extends Sensor {
+      int acceleration;
+      int orientation;
+    }
+
+    class Gyroscope extends Sensor {
+      int rotation;
+      int orientation;
+    }
+
+    class GPS extends Sensor {
+      String location;
+      int speed;
+    }
+
+    class Motor {
+      int speed;
+      int direction;
+    }
+
+    enum SensorStatus {
+      Connected, NotConnected;
+    }
+
+  composition MainBoard -> Sensor [*];
+  composition MainBoard -> Motor;
+}

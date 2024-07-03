@@ -1,0 +1,32 @@
+
+
+classdiagram MassSpectrometryDataAnalysisSystem {
+
+  class Experiment {
+    String identifier;
+    String description;
+    List<MassSpectrometryData> data;
+  }
+
+  class MassSpectrometryData {
+    double mtoChargeRatio;
+    int intensity;
+  }
+
+  class MassSpectrometryDataAnalysisSystem {
+    List<Experiment> experiments;
+
+    void addExperiment(Experiment experiment);
+    void removeExperiment(Experiment experiment);
+    void analyzeExperiment(Experiment experiment);
+    void storeExperimentResults(Experiment experiment);
+    void retrieveExperimentResults(Experiment experiment);
+  }
+
+  composition Experiment -> MassSpectrometryData [0..*]
+  abstract  
+  
+  
+  
+;
+}

@@ -1,0 +1,50 @@
+
+classdiagram NuclearWasteManagement {
+
+    class WasteRepository {
+      String repositoryId;
+      int capacity;
+      void storeWaste(Waste waste);
+    }
+
+    class WasteTransportationSystem {
+      Vehicle vehicle;
+      void transportWaste(Waste waste);
+    }
+
+    class WasteProcessingSystem {
+      Machine machine;
+      void processWaste(Waste waste);
+    }
+
+    class MonitoringSystem {
+      Sensor sensor;
+      void monitorRepository(WasteRepository repository);
+    }
+
+    class Waste {
+      String type;
+      int amount;
+    }
+
+    class Vehicle {
+      String vehicleId;
+      int capacity;
+    }
+
+    class Machine {
+      String machineId;
+      int processingCapacity;
+    }
+
+    class Sensor {
+      String sensorId;
+      boolean detectLeakage;
+      boolean detectContamination;
+    }
+
+    association WasteRepository -> Waste [*];
+    association WasteTransportationSystem -> Waste [*];
+    association WasteProcessingSystem -> Waste [*];
+    association MonitoringSystem -> WasteRepository [*];
+}

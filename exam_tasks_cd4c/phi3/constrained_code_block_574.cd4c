@@ -1,0 +1,23 @@
+
+classdiagram BiofuelProductionSystem {
+
+    class ProductionLine {
+      String biofuelType;
+      int productionCapacity;
+      Equipment equipment;
+    }
+
+    class Equipment {
+      String equipmentType;
+      int equipmentCapacity;
+    }
+
+    class ControlSystem {
+      void monitorProduction(ProductionLine productionLine);
+      void adjustProductionRate(ProductionLine productionLine, int newRate);
+      String getProductionStatus(ProductionLine productionLine);
+    }
+
+    association ProductionLine <-> ControlSystem;
+    composition ProductionLine -> Equipment [1..*];
+}

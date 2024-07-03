@@ -1,0 +1,54 @@
+
+classdiagram AI_DrugDeliverySystem {
+
+    class AI_DrugDeliverySystem {
+      Hub centralHub;
+      Database database;
+    }
+
+    class Hub {
+      -> Robot [*];
+      void updateRobotStatus(Robot robot);
+      Robot getRobotByIdentifier(String identifier);
+      String getRobotLocation(String identifier);
+      String getMedicineLocation();
+      void sendCommand(Robot robot, String command);
+      String retrieveRobotInfo(String identifier);
+      String retrieveDatabaseInfo();
+    }
+
+    abstract class Robot {
+      String identifier;
+      RobotStatus status;
+    }
+
+    class Medicine extends Robot {
+      String type;
+      int dosage;
+    }
+
+    class Sample extends Robot {
+      String sampleType;
+      String sampleId;
+    }
+
+    class Test extends Robot {
+      String testType;
+      String testResults;
+    }
+
+    class RobotStatus {
+      On On;
+      Off Off;
+    }
+
+    class Database {
+      Map<String, Robot> robots;
+      Map<String, String> robotLocations;
+      Map<String, String> robotErrors;
+    }
+
+  composition AI_DrugDeliverySystem -> (has) Hub;
+  composition AI_DrugDeliverySystem -> (has) Database;
+  association Hub -> Robot [*];
+}

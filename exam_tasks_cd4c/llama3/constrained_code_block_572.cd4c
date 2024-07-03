@@ -1,0 +1,82 @@
+
+
+
+classdiagram RadioAstronomyObservatory  {
+
+  class Observatory  {
+    String name;
+    Location location;
+    RadioTelescope  radioTelescope  ;
+    Project  project  ;
+    Astronomer  astronomer  ;
+    DataLibrary  dataLibrary;
+  }
+
+  class RadioTelescope  {
+    String name;
+    Observatory  observatory;
+    type Type;
+  }
+
+  enum type  {
+    SingleDish,
+    Interferometer
+  ;}
+
+  class SingleDish extends RadioTelescope  {
+    int diameter;
+    FrequencyRange frequencyRange;
+  }
+
+  class Interferometer extends RadioTelescope  {
+    Antenna  antenna  ;
+    Correlator correlator;
+  }
+
+  class Antenna  {
+    Location location;
+    type Type;
+  }
+
+  enum type  {
+    Dish,
+    Reflector
+  ;}
+
+  class Correlator  {
+    Image image;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    RadioTelescope  radioTelescope  ;
+  }
+
+  class Astronomer  {
+    String name;
+    Role role;
+  }
+
+  enum Role  {
+    Researcher,
+    Engineer,
+    Technician
+  ;}
+
+  class DataLibrary  {
+    Data data;
+  }
+
+  class Data  {
+    String description;
+  }
+
+  composition Observatory  ->  (has) RadioTelescope  ;
+  composition Observatory  ->  (has) Project  ;
+  composition Observatory  ->  (has) Astronomer  ;
+  composition Observatory  ->  (has) DataLibrary  ;
+  composition RadioTelescope  ->  (has) Antenna  [0..*];
+  composition RadioTelescope  ->  (has) Correlator  [1];
+  composition Project  ->  (has) RadioTelescope  [0..*];
+  }

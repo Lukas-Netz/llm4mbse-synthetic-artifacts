@@ -1,0 +1,28 @@
+
+classdiagram BotanicalIllustrationSystem {
+
+    class Plant {
+      String uniqueIdentifier;
+      String name;
+      List<PlantPart> parts;
+    }
+
+    class PlantPart {
+      String name;
+      String description;
+      List<Illustration> illustrations;
+    }
+
+    class Illustration {
+      String name;
+      String description;
+      String filePath;
+      PlantPart part;
+    }
+
+    association Plant -> PlantPart [*];
+    association PlantPart -> Illustration [*];
+    composition Plant -> List<<PlantPart>>;
+    composition PlantPart -> List<<Illustration>>;
+    association Illustration -> PlantPart [*];
+}

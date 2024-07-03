@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram DigitalHistoricalArchives  {
+
+  class Archive  {
+    String uniqueIdentifier;
+    String name;
+    Document  [] documents;
+  }
+
+  abstract class Document  {
+    String title;
+    String description;
+    Date dateCreated;
+  }
+
+  class TextDocument extends Document  {
+    String textContent;
+  }
+
+  class ImageDocument extends Document  {
+    File imageFile;
+  }
+
+  class AudioDocument extends Document  {
+    File audioFile;
+  }
+
+  class Collection  {
+    String name;
+    String description;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  composition Archive  ->  (has) Document  [*];
+  composition Collection  ->  (has) Archive  [*];
+  composition User  ->  (has) Collection  [*];
+  association Archive  ->  (searches) Document  [*];
+  association User  ->  (creates) Document  [*];
+  association User  ->  (creates) Collection  [*];
+  association User  ->  (edits) Document  [*];
+  association User  ->  (edits) Collection  [*];
+  association User  ->  (deletes) Document  [*];
+  association User  ->  (deletes) Collection  [*];
+}

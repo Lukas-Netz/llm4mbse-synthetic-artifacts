@@ -1,0 +1,68 @@
+
+classdiagram Logistics {
+
+  class Vehicle {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Truck extends Vehicle {
+    int cargoCapacity;
+    String trailerType;
+  }
+
+  class Van extends Vehicle {
+    int cargoCapacity;
+    String cargoType;
+  }
+
+  class Car extends Vehicle {
+    String cargoType;
+    int fuelEfficiencyRating;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Fuel {
+    double level;
+  }
+
+  class Maintenance {
+    String task;
+    String date;
+  }
+
+  class Report {
+    String vehicle;
+    double fuelConsumption;
+    double totalDistance;
+  }
+
+  class CRM {
+    -> Vehicle [*];
+    -> Customer [*];
+    -> Order [*];
+  }
+
+  class Customer {
+    String name;
+    String contact;
+  }
+
+  class Order {
+    String id;
+    Customer customer;
+    Vehicle vehicle;
+    Location destination;
+  }
+
+  composition Vehicle -> Location;
+  composition Vehicle -> Fuel;
+  composition Vehicle -> Maintenance [*];
+  association CRM -> Vehicle [*];
+  association CRM -> Customer [*];
+  association CRM -> Order [*];
+}

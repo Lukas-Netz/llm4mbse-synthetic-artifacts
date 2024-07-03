@@ -1,0 +1,41 @@
+
+classdiagram GenomicDataPrivacySolution {
+
+    class GenomicDataRepository {
+      Map<String, GenomicDataRecord> records;
+      void addRecord(GenomicDataRecord record);
+      GenomicDataRecord getRecord(String identifier);
+    }
+
+    class GenomicDataRecord {
+      String identifier;
+      String individualName;
+      int age;
+      String healthStatus;
+    }
+
+    class DataAnonymization {
+      void anonymizeRecord(GenomicDataRecord record);
+    }
+
+    class DataAccessControl {
+      Role userRole;
+      Attribute attribute;
+      void grantAccess(Role role, Attribute attribute);
+      void revokeAccess(Role role, Attribute attribute);
+    }
+
+    class DataSharing {
+      void shareData(GenomicDataRecord record, String recipient);
+    }
+
+    class DataAuditing {
+      void logAccess(Role role, Attribute attribute, GenomicDataRecord record);
+      void logSharing(String recipient, GenomicDataRecord record);
+    }
+
+    association GenomicDataRepository <-> DataAnonymization;
+    association GenomicDataRepository <-> DataAccessControl;
+    association GenomicDataRepository <-> DataSharing;
+    association GenomicDataRepository <-> DataAuditing;
+}

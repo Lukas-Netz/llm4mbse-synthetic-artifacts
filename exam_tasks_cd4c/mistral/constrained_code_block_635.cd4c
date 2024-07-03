@@ -1,0 +1,51 @@
+
+classdiagram WildlifeMonitoring {
+
+  class Animal {
+    String species;
+    String habitat;
+    String behavior;
+  }
+
+  class Sensor {
+    String type;
+    String location;
+    void collectData(Animal animal);
+  }
+
+  class Camera {
+    String location;
+    void captureImage(Animal animal);
+  }
+
+  class Drone {
+    String location;
+    void flyTo(String location);
+    void collectData(Animal animal);
+  }
+
+  class Data {
+    Animal animal;
+    String timestamp;
+    String data;
+  }
+
+  class Database {
+    void storeData(Data data);
+    Data[] getData(String query);
+  }
+
+  class System {
+    Database database;
+    Sensor [ ] sensors;
+    Camera [ ] cameras;
+    Drone [ ] drones;
+    void analyzeData();
+    void alertRangers(String message);
+  }
+
+  composition System -> Database;
+  composition System -> Sensor [*];
+  composition System -> Camera [*];
+  composition System -> Drone [*];
+}

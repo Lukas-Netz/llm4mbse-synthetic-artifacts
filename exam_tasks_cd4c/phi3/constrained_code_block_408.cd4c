@@ -1,0 +1,73 @@
+
+classdiagram CloudStorage {
+
+  class User {
+    String username;
+    String password;
+    void login();
+    void createAccount();
+    void uploadFile(File file);
+    File downloadFile(String fileId);
+    void createFolder(String folderName);
+    void shareFile(File file, String recipientUsername, Permission permission);
+    void setFilePermission(File file, Permission permission);
+    void searchFiles(String query);
+    void subscribeToNotifications();
+  }
+
+  class File {
+    String fileId;
+    String fileName;
+    String content;
+    String tags;
+    Folder folder;
+    User owner;
+    List<User> sharedWith;
+    Permission permission;
+  }
+
+  class Folder {
+    String folderId;
+    String folderName;
+    List<File> files;
+  }
+
+  class Permission {
+    String permissionType;
+  }
+
+  association User 
+    -> File [1..*];
+  association User 
+    -> Folder [1..*];
+  association User 
+    -> Permission [1..*];
+  association File 
+    -> Folder;
+  association File 
+    -> Permission;
+  association File 
+    -> User;
+  association File 
+    -> User [1..*];
+  association File 
+    -> Folder [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+  association File 
+    -> User [1..*];
+ 
+ 
+ }

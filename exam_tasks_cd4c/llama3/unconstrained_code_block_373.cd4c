@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram InsectFarmingAutomation  {
+
+  class Farm  {
+    String name;
+    Location location;
+  }
+
+  class InsectSpecies  {
+    String name;
+    TemperatureRange temperatureRange;
+  }
+
+  class InsectColony  {
+    String name;
+    int populationSize;
+    InsectSpecies species;
+  }
+
+  class InsectEnclosure  {
+    String name;
+    TemperatureRange temperatureRange;
+    InsectColony colony;
+  }
+
+  class ClimateControlUnit  {
+    String name;
+    TemperatureRange temperatureRange;
+    InsectEnclosure enclosure;
+  }
+
+  class CentralControlSystem  {
+    ClimateControlUnit[] climateControlUnits;
+    void monitorTemperature(InsectEnclosure enclosure);
+    void adjustTemperature(InsectEnclosure enclosure, double temperature);
+  }
+
+  class TemperatureRange  {
+    double minTemperature;
+    double maxTemperature;
+  }
+
+  class InsectHealth  {
+    int foodIntake;
+    int wasteProduction;
+  }
+
+  class Report  {
+    InsectHealth insectHealth;
+    ClimateControlUnit climateControlUnit;
+  }
+
+  composition Farm -> (has) InsectSpecies[*];
+  composition InsectSpecies -> (has) InsectColony[*];
+  composition InsectColony -> (has) InsectEnclosure;
+  composition InsectEnclosure -> (has) ClimateControlUnit;
+  composition ClimateControlUnit -> (has) CentralControlSystem;
+  composition CentralControlSystem -> ClimateControlUnit[*];
+}

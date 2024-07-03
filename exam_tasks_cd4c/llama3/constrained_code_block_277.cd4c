@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram PaymentProcessingSystem  {
+
+  class Transaction  {
+    String transactionId;
+    PaymentGateway paymentGateway;
+    Currency currency;
+    TransactionStatus status;
+    double amount;
+  }
+
+  class PaymentGateway  {
+    String gatewayName;
+    String gatewayUrl;
+  }
+
+  class Customer  {
+    String customerId;
+    String name;
+    String email;
+    List<PaymentMethod> paymentMethods;
+  }
+
+  class PaymentMethod  {
+    String paymentMethodId;
+    String paymentMethodName;
+    double balance;
+  }
+
+  class Receipt  {
+    String receiptId;
+    Transaction transaction;
+    String customerName;
+    String paymentMethod;
+    double amount;
+  }
+
+  class Invoice  {
+    String invoiceId;
+    Transaction transaction;
+    String customerName;
+    String paymentMethod;
+    double amount;
+  }
+
+  class PaymentHistory  {
+    String paymentHistoryId;
+    Customer customer;
+    List<Transaction> transactions;
+  }
+
+  enum TransactionStatus  {
+    Pending, Processing, Completed;
+  }
+
+  enum Currency  {
+    USD, EUR, JPY;
+  }
+
+  composition PaymentProcessingSystem -> (has) Transaction;
+  composition PaymentProcessingSystem -> (has) PaymentGateway;
+  composition PaymentProcessingSystem -> (has) Customer;
+  composition Customer -> (has) PaymentMethod;
+  composition Transaction -> (has) PaymentGateway;
+  composition Transaction -> (has) Currency;
+  composition Receipt -> (has) Transaction;
+  composition Invoice -> (has) Transaction;
+  composition PaymentHistory -> (has) Customer;
+}

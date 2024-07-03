@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram MaritimeNavigationSystem  {
+
+  class Vessel  {
+    String uniqueIdentifier;
+    String name;
+    VesselType type;
+  }
+
+  abstract class NavigationSystem  {
+    Vessel vessel;
+    NavigationData navigationData;
+  }
+
+  class GPS extends NavigationSystem  {
+    GPSData gpsData;
+  }
+
+  class Radar extends NavigationSystem  {
+    RadarData radarData;
+  }
+
+  class Compass extends NavigationSystem  {
+    CompassData compassData;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class VesselType  {
+    String type;
+  }
+
+  class NavigationData  {
+    double latitude;
+    double longitude;
+    double speed;
+    double direction;
+  }
+
+  class GPSData  {
+    double latitude;
+    double longitude;
+  }
+
+  class RadarData  {
+    double range;
+    double bearing;
+  }
+
+  class CompassData  {
+    double direction;
+  }
+
+  class WeatherData  {
+    double windSpeed;
+    double windDirection;
+    boolean precipitation;
+  }
+
+  composition Vessel -> NavigationSystem[*];
+  composition Vessel -> WeatherStation [0..1];
+  composition NavigationSystem -> Vessel;
+  composition WeatherStation -> Vessel;
+
+}

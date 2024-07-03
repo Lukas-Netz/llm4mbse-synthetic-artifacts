@@ -1,0 +1,77 @@
+
+classdiagram WeddingPlatform {
+
+  class Wedding {
+    String uniqueID;
+    Date date;
+    Location location;
+  }
+
+  class Guest {
+    String name;
+    String email;
+    RSVPStatus rsvpStatus;
+  }
+
+  class Vendor {
+    String name;
+    ContactInfo contactInfo;
+    Rating rating;
+    Category category;
+  }
+
+  enum RSVPStatus {
+    Attending, NotAttending, Maybe;
+  }
+
+  class ContactInfo {
+    String phone;
+    String email;
+  }
+
+  class Rating {
+    int stars;
+    int reviews;
+  }
+
+  enum Category {
+    Catering, Photography, Music, Decor, Transportation;
+  }
+
+  class Location {
+    String address;
+    String city;
+    String state;
+    String country;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  class Platform {
+    Wedding [][] weddings;
+    Guest [][] guests;
+    Vendor [][] vendors;
+
+    void addWedding(Wedding wedding);
+    void editWedding(Wedding wedding);
+    void deleteWedding(Wedding wedding);
+
+    void addGuest(Wedding wedding, Guest guest);
+    void editGuest(Wedding wedding, Guest guest);
+    void deleteGuest(Wedding wedding, Guest guest);
+
+    void addVendor(Wedding wedding, Vendor vendor);
+    void editVendor(Wedding wedding, Vendor vendor);
+    void deleteVendor(Wedding wedding, Vendor vendor);
+
+    List<Vendor> getVendors(Wedding wedding);
+    RSVPStatus getGuestRSVPStatus(Wedding wedding, Guest guest);
+    Rating getVendorRating(Vendor vendor);
+
+    void sendReminder(Wedding wedding, Guest guest, String message);
+  }
+}

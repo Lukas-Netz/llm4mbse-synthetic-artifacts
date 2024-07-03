@@ -1,0 +1,46 @@
+
+classdiagram LunarMining {
+
+  class LunarMiningOperation {
+    Module [ ] modules;
+  }
+
+  abstract class Module {
+    String location;
+    ModuleStatus status;
+    Personnel [ ] personnel;
+  }
+
+  class DrillingModule extends Module {
+    Equipment [ ] drillingEquipment;
+  }
+
+  class ProcessingModule extends Module {
+    Equipment [ ] processingEquipment;
+  }
+
+  class StorageModule extends Module {
+    Resource [ ] resources;
+  }
+
+  class Equipment {
+    String type;
+    String serialNumber;
+  }
+
+  class Resource {
+    String type;
+    int quantity;
+  }
+
+  class Personnel {
+    String name;
+    String role;
+  }
+
+  enum ModuleStatus {
+    Operational, Maintenance, Idle;
+  }
+
+  composition LunarMiningOperation -> Module [*];
+}

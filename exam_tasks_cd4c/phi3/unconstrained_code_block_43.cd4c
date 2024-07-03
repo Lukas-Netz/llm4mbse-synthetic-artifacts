@@ -1,0 +1,51 @@
+
+classdiagram BuildingAnalyticsSystem {
+
+    class Building {
+      List<Device> devices;
+      BuildingAnalyticsSystem analyticsSystem;
+    }
+
+    class Device {
+      String deviceId;
+      DeviceType deviceType;
+      double energyConsumption;
+    }
+
+    class Light extends Device {
+      int brightnessLevel;
+    }
+
+    class HVAC extends Device {
+      int temperature;
+      int humidity;
+    }
+
+    class Appliance extends Device {
+      String applianceId;
+      double energyConsumption;
+    }
+
+    class BuildingAnalyticsSystem {
+      List<Building> buildings;
+      void trackEnergyConsumption(Building building);
+      void provideInsights(Building building);
+      void integrateWithBMS(BuildingManagementSystem bms);
+      void integrateWithEMS(EnergyManagementSystem ems);
+      void provideRealTimeData(Building building);
+      void provideHistoricalData(Building building);
+    }
+
+    class BuildingManagementSystem {
+      void manageBuilding(Building building);
+    }
+
+    class EnergyManagementSystem {
+      void manageEnergy(Building building);
+    }
+
+  composition Building -> BuildingAnalyticsSystem;
+  composition Building -> BuildingManagementSystem;
+  composition Building -> EnergyManagementSystem;
+  composition Building -> Device [*];
+}

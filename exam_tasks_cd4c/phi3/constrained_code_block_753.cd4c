@@ -1,0 +1,41 @@
+
+classdiagram HealthcareSystem {
+
+    class PatientRecord {
+      String uniqueIdentifier;
+      String patientName;
+      Date dateOfBirth;
+      List<Diagnosis> diagnoses;
+      List<Treatment> treatments;
+      List<Medication> medications;
+    }
+
+    class HealthcareProvider {
+      void addRecord(PatientRecord record);
+      void updateRecord(PatientRecord record);
+      void deleteRecord(String uniqueIdentifier);
+    }
+
+    class Patient {
+      void viewRecord(String uniqueIdentifier);
+    }
+
+    class SecureDatabase {
+      PatientRecord[] records;
+      void encryptData(PatientRecord record);
+      void decryptData(PatientRecord record);
+      void logChange(String action, PatientRecord record);
+    }
+
+    class Diagnosis;
+    class Treatment;
+    class Medication;
+
+    <<quantumResistant>> class QuantumEncryption;
+
+    composition HealthcareProvider -> PatientRecord [*];
+    composition HealthcareProvider -> SecureDatabase [*];
+    composition Patient -> PatientRecord [*];
+    composition Patient -> SecureDatabase [*];
+    composition SecureDatabase -> PatientRecord [*];
+}

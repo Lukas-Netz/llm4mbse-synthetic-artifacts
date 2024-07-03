@@ -1,0 +1,48 @@
+
+classdiagram DeepSeaExploration {
+
+  class Submarine {
+    String name;
+    String uniqueIdentifier;
+    SubmarineType type;
+  }
+
+  enum SubmarineType {
+    Research, Exploration;
+  }
+
+  class ROV {
+    String name;
+    String uniqueIdentifier;
+    ROVType type;
+  }
+
+  enum ROVType {
+    SampleCollector, ExperimentConductor, Explorer;
+  }
+
+  class ControlCenter {
+    String name;
+    String uniqueIdentifier;
+    ControlCenterType type;
+  }
+
+  enum ControlCenterType {
+    Research, Exploration;
+  }
+
+  class Database {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class CommunicationSystem {
+  }
+
+  composition Submarine [*] has (has) -> ROV [0..1];
+  composition ControlCenter has (has) -> Submarine [1..1];
+  composition ControlCenter has (has) -> Database [1..1];
+  association ControlCenter -> CommunicationSystem [*];
+  association Submarine -> CommunicationSystem [*];
+  association ROV -> CommunicationSystem [*];
+}

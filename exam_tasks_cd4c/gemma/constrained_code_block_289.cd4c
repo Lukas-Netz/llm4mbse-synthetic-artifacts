@@ -1,0 +1,42 @@
+
+
+classdiagram OnlineLanguageExchange {
+
+  class User {
+    int id;
+    String name;
+    String email;
+    boolean isLearner;
+  }
+
+  class Language {
+    String code;
+    String name;
+  }
+
+  class Conversation {
+    int id;
+    List<User> participants;
+  }
+
+  class Message {
+    int id;
+    String textContent;
+    Timestamp timestamp;
+  }
+
+  class Rating {
+    int userFromId;
+    int userToId;
+    int rating;
+  }
+
+  class MatchingAlgorithm {
+    void matchUsers();
+  }
+
+  composition User -> Conversation [*];
+  composition Conversation -> Message [*];
+  composition User -> Rating [*];
+  association MatchingAlgorithm -> User [1..*];
+}

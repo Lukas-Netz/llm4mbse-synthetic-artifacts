@@ -1,0 +1,42 @@
+
+classdiagram CarMaintenance {
+
+  class Vehicle {
+    String make;
+    String model;
+    int year;
+    String VIN;
+    String currentStatus;
+    int mileage;
+  }
+
+  class Maintenance {
+    Vehicle vehicle;
+    MaintenanceType type;
+    LocalDate date;
+    int mileage;
+  }
+
+  class Repair {
+    Vehicle vehicle;
+    RepairType type;
+    LocalDate date;
+    double cost;
+  }
+
+  enum MaintenanceType {
+    OilChange, TireRotation, BrakeService, etc;
+  }
+
+  enum RepairType {
+    EngineRepair, TransmissionRepair, ElectricalRepair, etc;
+  }
+
+  class Fleet {
+    Vehicle [ ] vehicles;
+  }
+
+  composition Fleet -> Vehicle [*];
+  association Maintenance -> Vehicle;
+  association Repair -> Vehicle;
+}

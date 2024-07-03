@@ -1,0 +1,92 @@
+
+
+classdiagram SocialNetworkingSite {
+
+  class User {
+    private String username;
+    private String password;
+    private Set<User> friends;
+    private List<Post> posts;
+
+    User(String username, String password);
+    void addFriend(User user);
+    void removeFriend(User user);
+    void createPost(Post post);
+    void commentOnPost(Post post, String comment);
+    void shareLink(String link);
+  }
+
+  class Post {
+    private String content;
+    private boolean isPublic;
+    private boolean isPrivate;
+    private boolean isShared;
+    private User author;
+    private List<Comment> comments;
+
+    Post(String content, boolean isPublic, boolean isPrivate, boolean isShared, User author);
+    void addComment(Comment comment);
+  }
+
+  class Comment {
+    private String text;
+    private User author;
+
+    Comment(String text, User author);
+  }
+
+  class FriendList {
+    private User owner;
+    private Set<User> friends;
+
+    FriendList(User owner);
+    void addFriend(User user);
+    void removeFriend(User user);
+  }
+
+  class NewsFeed {
+    private User owner;
+    private List<Post> posts;
+
+    NewsFeed(User owner);
+    void addPost(Post post);
+  }
+
+  class BlockList {
+    private User owner;
+    private Set<User> blockedUsers;
+
+    BlockList(User owner);
+    void blockUser(User user);
+    void unblockUser(User user);
+  }
+
+  class Search {
+    private User owner;
+    private List<User> results;
+
+    Search(User owner);
+    void searchUsers(String query);
+  }
+
+  class NotificationSystem {
+    private User owner;
+    private List<Notification> notifications;
+
+    NotificationSystem(User owner);
+    void addNotification(Notification notification);
+  }
+
+  class Notification {
+    private String type;
+    private String message;
+
+    Notification(String type, String message);
+  }
+
+  composition User -> (has) FriendList;
+  composition User -> (has) NewsFeed;
+  composition User -> (has) BlockList;
+  composition User -> (has) Search;
+  composition User -> (has) NotificationSystem;
+}

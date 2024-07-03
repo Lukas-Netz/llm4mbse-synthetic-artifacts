@@ -1,0 +1,88 @@
+
+
+
+
+classdiagram QualityManagementSystem  {
+
+  class QualityPolicy  {
+    String objectives;
+    String procedures;
+  }
+
+  class QualityManual  {
+    String procedures;
+  }
+
+  class QualityObjective  {
+    String description;
+    boolean isSMART;
+  }
+
+  class QualityProcedure  {
+    String description;
+    QualityObjective objective;
+  }
+
+  class QualityRecord  {
+    String description;
+    QualityProcedure procedure;
+  }
+
+  class QualityMetric  {
+    String description;
+    QualityProcedure procedure;
+  }
+
+  class QualityIndicator  {
+    String description;
+    QualityMetric metric;
+  }
+
+  class QualityIssue  {
+    String description;
+    QualityRecord record;
+  }
+
+  class Audit  {
+    Date date;
+    QualityIssue issue;
+  }
+
+  class ManagementReview  {
+    Date date;
+    QualityIssue issue;
+  }
+
+  class CorrectiveAction  {
+    String description;
+    QualityIssue issue;
+  }
+
+  class PreventiveAction  {
+    String description;
+    QualityIssue issue;
+  }
+
+  class QualitySystem  {
+    QualityPolicy policy;
+    QualityManual manual;
+    QualityObjective objective;
+    QualityProcedure procedure;
+    QualityRecord record;
+    QualityMetric metric;
+    QualityIndicator indicator;
+    QualityIssue issue;
+    Audit audit;
+    ManagementReview review;
+    CorrectiveAction action;
+    PreventiveAction preventiveAction;
+  }
+
+  composition QualitySystem -> (has) QualityPolicy;
+  composition QualitySystem -> (has) QualityManual;
+  composition QualitySystem -> (has) QualityObjective;
+  composition QualitySystem -> (has) QualityProcedure;
+  composition QualitySystem -> (has) QualityRecord;
+  composition QualitySystem -> (has) QualityMetric;
+  composition QualitySystem -> (has) QualityIndicator;
+  }

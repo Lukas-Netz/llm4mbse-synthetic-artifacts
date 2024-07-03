@@ -1,0 +1,60 @@
+
+
+classdiagram VotingSystem {
+
+  class Voter {
+    private String address;
+    private String password;
+    private Vote vote;
+
+    Voter(String address, String password);
+    void castVote(Election election, Candidate candidate);
+  }
+
+  class Election {
+    private String name;
+    private List<Candidate> candidates;
+
+    Election(String name);
+    void addCandidate(Candidate candidate);
+    List<Candidate> getCandidates();
+  }
+
+  class Candidate {
+    private String name;
+    private int votes;
+
+    Candidate(String name);
+    void addVote(Voter voter);
+    int getVotes();
+  }
+
+  class Vote {
+    private Voter voter;
+    private Election election;
+    private Candidate candidate;
+
+    Vote(Voter voter, Election election, Candidate candidate);
+  }
+
+  class Blockchain {
+    private List<Vote> votes;
+
+    Blockchain();
+    void addVote(Vote vote);
+    List<Vote> getVotes();
+  }
+
+  class Administrator {
+    private Blockchain blockchain;
+
+    Administrator(Blockchain blockchain);
+    void verifyVote(Vote vote);
+    void auditVotes(Election election);
+  }
+
+  composition Voter -> Vote;
+  composition Election -> Candidate;
+  composition Vote -> Blockchain;
+  composition Administrator -> Blockchain;
+}

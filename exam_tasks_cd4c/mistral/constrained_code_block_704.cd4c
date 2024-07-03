@@ -1,0 +1,41 @@
+
+classdiagram Telepresence {
+
+  class Robot {
+    String name;
+    String uniqueIdentifier;
+    Sensor[] sensors;
+    RobotState state;
+  }
+
+  class UI {
+    boolean isConnected;
+  }
+
+  class Network {
+    boolean isConnected;
+  }
+
+  class Database {
+    Table robotMovements;
+    Table userInteractions;
+    Table systemPerformance;
+  }
+
+  class Sensor {
+    String type;
+  }
+
+  enum RobotState {
+    Idle, Moving, Stopped;
+  }
+
+  class Table {
+    String name;
+    String[] columns;
+  }
+
+  composition Robot -> Sensor [*];
+  association Robot -- Database;
+  association UI -- Network;
+}

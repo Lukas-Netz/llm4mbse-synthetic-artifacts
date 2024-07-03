@@ -1,0 +1,41 @@
+
+classdiagram WildlifeIdentification {
+
+  class Species {
+    String uniqueIdentifier;
+    String color;
+    String shape;
+    String size;
+    String habitat;
+    Image [ ] images;
+  }
+
+  class Image {
+    String filename;
+    String format;
+    int resolution;
+  }
+
+  class User {
+    String username;
+    String password;
+    boolean isAdmin;
+  }
+
+  class Database {
+    Species [ ] species;
+    Image [ ] images;
+    User [ ] users;
+  }
+
+  class MachineLearning {
+    void recognizeImage(Image image);
+    Species identifySpecies(Image image);
+  }
+
+  composition Database -> Species [*];
+  composition Database -> Image [*];
+  composition Database -> User [*];
+  association User --accesses- 											;
+  association MachineLearning --uses- 										;
+}

@@ -1,0 +1,56 @@
+
+classdiagram ProstheticLimbSystem {
+
+  class ProstheticLimb {
+    String uniqueIdentifier;
+    String name;
+    Component [ ] components;
+  }
+
+  abstract class Component {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Hand extends ProstheticLimb {
+  }
+
+  class Arm extends ProstheticLimb {
+  }
+
+  class Leg extends ProstheticLimb {
+  }
+
+  class Foot extends ProstheticLimb {
+  }
+
+  class Finger extends Component {
+  }
+
+  class Joint extends Component {
+  }
+
+  class Socket extends Component {
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    ProstheticLimb [ ] assignedLimb;
+  }
+
+  class ManufacturingProcess {
+    ProstheticLimb limb;
+    String stage;
+  }
+
+  class QualityControl {
+    ProstheticLimb limb;
+    boolean functionality;
+    boolean durability;
+  }
+
+  composition ProstheticLimb -> Component [*];
+  association Patient --oProstheticLimb;
+  association ManufacturingProcess --oProstheticLimb;
+  association QualityControl --oProstheticLimb;
+}

@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram AirTrafficControlSystem  {
+
+  class AirTrafficControlCenter  {
+    String uniqueIdentifier;
+    String region;
+  }
+
+  class RadarStation  {
+    String uniqueIdentifier;
+    String sector;
+  }
+
+  class Aircraft  {
+    String uniqueIdentifier;
+    int altitude;
+    int speed;
+    String direction;
+  }
+
+  class Pilot  {
+    String name;
+    String licenseNumber;
+    int experience;
+  }
+
+  class AirTrafficController  {
+    String name;
+    String certificationNumber;
+    int experience;
+  }
+
+  class AirTrafficControlSystem  {
+    AirTrafficControlCenter  atcc;
+    RadarStation  radarStation;
+    Aircraft  aircraft;
+    Pilot  pilot;
+    AirTrafficController  airTrafficController;
+  }
+
+  composition AirTrafficControlSystem  ->  (has) AirTrafficControlCenter;
+  composition AirTrafficControlSystem  ->  (has) RadarStation;
+  composition AirTrafficControlSystem  ->  (has) Aircraft;
+  composition AirTrafficControlSystem  ->  (has) Pilot;
+  composition AirTrafficControlSystem  ->  (has) AirTrafficController;
+  association AirTrafficControlCenter  ->  (monitors) RadarStation;
+  association RadarStation  ->  (tracks) Aircraft;
+  association AirTrafficController  ->  (monitors) Aircraft;
+}

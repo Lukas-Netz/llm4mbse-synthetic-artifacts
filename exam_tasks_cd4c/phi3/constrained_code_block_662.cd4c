@@ -1,0 +1,40 @@
+
+classdiagram OnlineInterpreterSystem {
+
+    class Interpreter {
+      String uniqueID;
+      String name;
+      int expertiseLevel;
+      List<String> languages;
+    }
+
+    class Language {
+      String code;
+      String name;
+    }
+
+    class Appointment {
+      String interpreterID;
+      String languageCode;
+      String startTime;
+      String endTime;
+    }
+
+    class InterpreterSystem {
+      List<Interpreter> interpreters;
+      List<Language> languages;
+      Map<String, List<Appointment>> interpreterAppointments;
+      Map<String, List<Appointment>> languageAppointments;
+
+      void assignInterpreterToLanguage(Interpreter interpreter, Language language);
+      void scheduleAppointment(Appointment appointment);
+      void trackAppointmentHistory(Interpreter interpreter, Language language);
+      void generateReport();
+    }
+
+    association InterpreterSystem -> Interpreter [*];
+    association InterpreterSystem -> Language [*];
+    association InterpreterSystem -> Appointment [*];
+    association InterpreterSystem -> InterpreterAppointments [*];
+    association InterpreterSystem -> LanguageAppointments [*];
+}

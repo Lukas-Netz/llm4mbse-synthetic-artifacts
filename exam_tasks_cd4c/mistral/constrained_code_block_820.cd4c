@@ -1,0 +1,88 @@
+
+classdiagram VRDesignTool {
+
+  class VRDesignTool {
+    String name;
+    int version;
+  }
+
+  class Scene {
+    String uniqueIdentifier;
+    Object [][] objects;
+  }
+
+  abstract class Object {
+    String uniqueIdentifier;
+    ObjectType type;
+  }
+
+  enum ObjectType {
+    Model3D, Texture, Light;
+  }
+
+  class Model3D extends Object {
+    Position position;
+    Rotation rotation;
+    Scale scale;
+  }
+
+  class Texture extends Object {
+    int resolution;
+    String fileFormat;
+  }
+
+  class Light extends Object {
+    int intensity;
+    Color color;
+    Position position;
+  }
+
+  class Position {
+    float xPos;
+    float yPos;
+    float zPos;
+  }
+
+  class Rotation {
+    float xRot;
+    float yRot;
+    float zRot;
+  }
+
+  class Scale {
+    float xScale;
+    float yScale;
+    float zScale;
+  }
+
+  class Color {
+    float rValue;
+    float gValue;
+    float bValue;
+  }
+
+  class User {
+    String username;
+    String password;
+    int permissions;
+  }
+
+  composition VRDesignTool -> Scene [*];
+  composition Scene -> Object [*];
+  association User [*] uses (VRDesignTool)
+
+  -- Import/
+  {
+    ordered
+    	}
+ 				;
+ 																																														composition VRDesignTool -> (imports) Model3DFile [*];
+ 																																														composition VRDesignTool -> (imports) TextureFile [*];
+
+ 																																													composition Model3D -> (has) Model3DFile;
+ 																																													composition Texture -> (has) TextureFile;
+
+ 																																													composition Model3DFile [*] isa (file)
+ 																						-- Export/
+ 										;
+ 				}

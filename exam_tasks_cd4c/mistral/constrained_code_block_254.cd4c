@@ -1,0 +1,64 @@
+
+classdiagram EbookPublishing {
+
+  class Author {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+  }
+
+  class Book {
+    String title;
+    Author author;
+    Date publicationDate;
+    Genre genre;
+    List<Author> authors;
+  }
+
+  class Reader {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+    Account account;
+  }
+
+  class Account {
+    String username;
+    String password;
+  }
+
+  class ContactInfo {
+    String email;
+    String phone;
+  }
+
+  class Genre {
+    String name;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  class PaymentSystem {
+    void handleTransaction(Reader reader, Book book);
+  }
+
+  class RatingSystem {
+    void rateBook(Reader reader, Book book, int rating);
+    void reviewBook(Reader reader, Book book, String review);
+  }
+
+  class NotificationSystem {
+    void sendUpdate(Reader reader, String message);
+  }
+
+  composition Author [*] Book [manyToMany]
+  -- composition/ 											{ 											ordered}
+ 				;
+  composition Reader [1] Account
+  -- composition/ 											{ 											ordered}
+ 				;
+}

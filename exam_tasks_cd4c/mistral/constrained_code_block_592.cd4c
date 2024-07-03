@@ -1,0 +1,30 @@
+
+classdiagram CRN {
+
+  class CognitiveRadioNetwork {
+    CentralController controller;
+    CognitiveRadio [][ ] radios;
+  }
+
+  class CentralController {
+    void manageRadios();
+    void adaptToEnvironment();
+  }
+
+  class CognitiveRadio {
+    String uniqueIdentifier;
+    RadioState state;
+    DataType dataType;
+  }
+
+  enum RadioState {
+    Idle, Active, Sleeping;
+  }
+
+  enum DataType {
+    Voice, Video, DataPacket;
+  }
+
+  composition CognitiveRadioNetwork -> CentralController;
+  composition CognitiveRadioNetwork -> CognitiveRadio [*];
+}

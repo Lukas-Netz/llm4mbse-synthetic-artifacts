@@ -1,0 +1,97 @@
+
+
+classdiagram OnlineRenewableEnergyCourses {
+
+    class Course {
+      String title;
+      String description;
+      List<Topic> topics;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Course> courses;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Category {
+      String name;
+      List<Course> courses;
+    }
+
+    class Role {
+      String name;
+      List<Instructor> instructors;
+    }
+
+    class ProficiencyLevel {
+      String name;
+      List<Student> students;
+    }
+
+    composition Course -> (has) List<<Topic>>
+    abstract  
+    
+    {
+      
+    ordered
+    }
+
+    ;
+
+    composition Instructor -> (has) List<<Course>>
+    
+    {
+      
+    ordered
+    }
+
+    ;
+
+    composition Student -> (has) List<<Course>>
+
+    {
+      
+    ordered
+    }
+
+    ;
+
+    composition Category -> (has) List<<Course>>
+
+    {
+      
+    ordered
+    }
+
+    ;
+
+    composition Role -> (has) List<<Instructor>>
+
+    {
+      
+    ordered
+    }
+
+    ;
+
+    composition ProficiencyLevel -> (has) List<<Student>>
+
+    {
+      
+    ordered
+    }
+
+    ;
+
+    class Admin {
+      void managePlatform();
+    }
+
+  }

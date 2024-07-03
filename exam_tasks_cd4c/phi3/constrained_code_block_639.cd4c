@@ -1,0 +1,69 @@
+
+classdiagram NaturalDisasterPredictionSystem {
+
+  class NaturalDisasterPredictionSystem {
+    SeismicSensor seismicSensor;
+    WeatherStation weatherStation;
+    SatelliteImagery satelliteImagery;
+    AlertSystem alertSystem;
+    DataAnalytics dataAnalytics;
+    VisualizationTools visualizationTools;
+    HistoricalData historicalData;
+  }
+
+  class SeismicSensor {
+    float seismicActivity;
+    void collectSeismicData();
+  }
+
+  class WeatherStation {
+    float temperature;
+    float humidity;
+    float windSpeed;
+    void collectWeatherData();
+  }
+
+  class SatelliteImagery {
+    String imageData;
+    void collectSatelliteData();
+  }
+
+  <<association>> class AlertSystem {
+    NaturalDisasterPredictionSystem system;
+    void sendAlert(NaturalDisaster disaster);
+  }
+
+  <<association>> class DataAnalytics {
+    NaturalDisasterPredictionSystem system;
+    void analyzeData();
+  }
+
+  <<association>> class VisualizationTools {
+    NaturalDisasterPredictionSystem system;
+    void visualizeData();
+  }
+
+  <<association>> class HistoricalData {
+    NaturalDisasterPredictionSystem system;
+    void loadData();
+  }
+
+  <<association>> class NaturalDisasterPredictionSystem
+    implements DisasterPredictionInterface {
+    SeismicSensor seismicSensor;
+    WeatherStation weatherStation;
+    SatelliteImagery satelliteImagery;
+    AlertSystem alertSystem;
+    DataAnalytics dataAnalytics;
+    VisualizationTools visualizationTools;
+    HistoricalData historicalData;
+  }
+
+  interface DisasterPredictionInterface {
+    NaturalDisaster predictDisaster();
+  }
+
+  enum NaturalDisaster {
+    Earthquake, Hurricane, Flood;
+  }
+}

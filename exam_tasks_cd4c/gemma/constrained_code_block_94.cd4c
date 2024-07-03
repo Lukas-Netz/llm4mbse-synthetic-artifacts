@@ -1,0 +1,51 @@
+
+
+#  classdiagram EmployeeRecognitionPlatform
+
+  
+
+{classdiagram  
+
+  
+
+  
+
+  
+
+  {class SmartHome  
+
+    
+
+  ;
+
+  }
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  composition SmartHome -> Hub;
+
+  composition SmartHome -> BackupPower [0..1];
+
+  composition Hub -> Device [*];
+
+}

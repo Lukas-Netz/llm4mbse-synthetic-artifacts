@@ -1,0 +1,68 @@
+
+
+classdiagram OnlineActingClasses {
+
+    class Student {
+      String id;
+      String name;
+      String email;
+      List<Course> courses;
+    }
+
+    class Instructor {
+      String id;
+      String name;
+      String expertise;
+      List<Course> courses;
+    }
+
+    class Course {
+      String id;
+      String name;
+      String description;
+      Instructor instructor;
+      List<Student> students;
+    }
+
+    class CourseProgress {
+      Student student;
+      Course course;
+      int lessonsCompleted;
+      int grade;
+    }
+
+    class LessonMaterials {
+      Course course;
+      String title;
+      String content;
+    }
+
+    class Assignments {
+      Course course;
+      String title;
+      String description;
+      Student student;
+    }
+
+  composition Student -> Course [0..*];
+  composition Instructor -> Course [0..*];
+  composition Course -> Instructor;
+  composition Course -> Student [0..*];
+  composition CourseProgress -> Course;
+  composition CourseProgress -> Student;
+  association CourseMaterials -> Course;
+  association Assignments -> Course;
+  association Assignments -> Student
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

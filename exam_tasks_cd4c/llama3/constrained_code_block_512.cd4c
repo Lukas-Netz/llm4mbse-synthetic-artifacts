@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram OnlineParentingClassSystem  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    boolean isActive;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String uniqueIdentifier;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    String uniqueIdentifier;
+  }
+
+  class Enrollment  {
+    Course course;
+    Student student;
+  }
+
+  class Assignment  {
+    Course course;
+    String title;
+    Date dueDate;
+  }
+
+  class DiscussionPost  {
+    Course course;
+    Student student;
+    String content;
+    Date postDate;
+  }
+
+  class Progress  {
+    Student student;
+    Assignment assignment;
+    boolean isCompleted;
+  }
+
+  class DiscussionProgress  {
+    Student student;
+    DiscussionPost discussionPost;
+    boolean isParticipated;
+  }
+
+  composition Instructor  ->  (teaches) Course;
+  composition Course  ->  (enrolledBy) Enrollment[*];
+  composition Enrollment  ->  (enrolledBy) Student;
+  composition Course  ->  (has) Assignment[*];
+  composition Assignment  ->  (has) Progress[*];
+  composition Course  ->  (has) DiscussionPost[*];
+  composition DiscussionPost  ->  (has) DiscussionProgress[*];
+}

@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram RoboticsSystem  {
+
+  class Robot  {
+    String name;
+    String uniqueIdentifier;
+    Sensor  sensor  ;  #  orte
+    UI  ;  #  orte
+  class  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  class  orte  ;  #  orte
+
+  class  ;
+
+  }  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  #   class  orte  ;  }

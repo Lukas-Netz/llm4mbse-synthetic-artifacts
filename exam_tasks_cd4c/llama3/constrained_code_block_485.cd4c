@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram OnlineIndustrialDesignCoursesPlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    -> Topic[*];
+  }
+
+  class Instructor  {
+    String name;
+    String bio;
+    -> Course[*];
+  }
+
+  class Student  {
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Topic  {
+    String name;
+    -> Course[*];
+  }
+
+  class Assignment  {
+    String description;
+    -> Student[*];
+    -> Instructor[*];
+  }
+
+  class CourseMaterial  {
+    String name;
+    -> Course[*];
+  }
+
+  class Grade  {
+    int score;
+    -> Student[*];
+    -> Course[*];
+  }
+
+  composition Course -> Topic[*];
+  composition Instructor -> Course[*];
+  composition Student -> Course[*];
+  composition Topic -> Course[*];
+  composition Assignment -> Student[*];
+  composition Assignment -> Instructor[*];
+  composition CourseMaterial -> Course[*];
+  composition Grade -> Student[*];
+  composition Grade -> Course[*];
+}

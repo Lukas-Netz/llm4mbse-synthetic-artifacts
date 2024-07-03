@@ -1,0 +1,51 @@
+
+
+classdiagram ForestFirePredictionSystem {
+
+  class WeatherStation {
+    int temperature;
+    int humidity;
+    int windSpeed;
+
+    void sendData() throws Exception;
+  }
+
+  class VegetationSensor {
+    int vegetationDensity;
+    String vegetationType;
+
+    void sendData() throws Exception;
+  }
+
+  class FireIncidentDatabase {
+    List<FireIncident> fireIncidents;
+
+    void storeIncident(FireIncident fireIncident);
+    FireIncident getIncident(String location);
+  }
+
+  class AIEngine {
+    MachineLearningModel model;
+
+    int predictFireLikelihood(WeatherStation weatherStation, VegetationSensor vegetationSensor);
+  }
+
+  class RecommendationEngine {
+    List<FirePreventionStrategy> firePreventionStrategies;
+    List<FireSuppressionStrategy> fireSuppressionStrategies;
+
+    void generateRecommendations(int fireLikelihood);
+  }
+
+  class UserInterface {
+    GraphicalUserInterface gui;
+
+    void displayFireLikelihood(int fireLikelihood);
+    void displayRecommendations(List<FirePreventionStrategy> firePreventionStrategies, List<FireSuppressionStrategy> fireSuppressionStrategies);
+  }
+
+  composition WeatherStation -> FireIncidentDatabase [1..*];
+  composition VegetationSensor -> FireIncidentDatabase [1..*];
+  composition AIEngine -> FireIncidentDatabase [1..*];
+  composition UserInterface -> AIEngine [1..*];
+}

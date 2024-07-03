@@ -1,0 +1,94 @@
+
+classdiagram CookingPlatform {
+
+  class User {
+    String username;
+    List<ClassEnrollment> classEnrollments;
+    List<RecipeReview> recipeReviews;
+  }
+
+  class Class {
+    String name;
+    String description;
+    List<Recipe> recipes;
+    List<User> enrolledUsers;
+    DateTime nextClassDate;
+  }
+
+  class Recipe {
+    String name;
+    List<Ingredient> ingredients;
+    String instructions;
+    List<ClassEnrollment> classEnrollments;
+    List<RecipeReview> reviews;
+  }
+
+  class ClassEnrollment {
+    User user;
+    Class class;
+  }
+
+  class RecipeReview {
+    User user;
+    Recipe recipe;
+    int rating;
+  }
+
+  interface UserPreferences {
+    String preferredCuisine;
+    int skillLevel;
+  }
+
+  interface RecipeRecommendation {
+    List<Class> recommendedClasses;
+    List<Recipe> recommendedRecipes;
+  }
+
+  <<association>> class User 
+    implements UserPreferences {
+      List<ClassEnrollment> classEnrollments;
+      List<RecipeReview> recipeReviews;
+    }
+
+  <<association>> class Class 
+    implements RecipeRecommendation {
+      List<User> enrolledUsers;
+      DateTime nextClassDate;
+    }
+
+  <<association>> class Recipe 
+    implements RecipeRecommendation {
+      List<ClassEnrollment> classEnrollments;
+      List<RecipeReview> reviews;
+    }
+
+  <<association>> class User 
+    implements UserPreferences {
+      List<ClassEnrollment> classEnrollments;
+      List<RecipeReview> recipeReviews;
+    }
+
+  <<association>> class ClassEnrollment 
+    implements RecipeRecommendation {
+      User user;
+      Class class;
+    }
+
+  <<association>> class RecipeReview 
+    implements RecipeRecommendation {
+      User user;
+      Recipe recipe;
+    }
+
+  <<association>> class Class 
+    implements RecipeRecommendation {
+      List<User> enrolledUsers;
+      DateTime nextClassDate;
+    }
+
+  <<association>> class Recipe 
+    implements RecipeRecommendation {
+      List<ClassEnrollment> classEnrollments;
+      List<RecipeReview> reviews;
+    }
+}

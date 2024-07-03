@@ -1,0 +1,86 @@
+
+
+
+
+classdiagram DigitalHealthRecordSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+    ContactInformation contactInfo;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+  }
+
+  class Nurse  {
+    String uniqueIdentifier;
+    String name;
+    Role role;
+  }
+
+  class Medication  {
+    String uniqueIdentifier;
+    String name;
+    DosageInstructions dosage;
+  }
+
+  class Test  {
+    String uniqueIdentifier;
+    String name;
+    TestResult result;
+  }
+
+  class Appointment  {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+  }
+
+  class Report  {
+    String uniqueIdentifier;
+    Date date;
+    String content;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+
+  class Specialty  {
+    String name;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class DosageInstructions  {
+    String instructions;
+  }
+
+  class TestResult  {
+    String result;
+  }
+
+  composition Patient -> (has) ContactInformation;
+  composition Doctor -> (has) Specialty;
+  composition Nurse -> (has) Role;
+  composition Medication -> (has) DosageInstructions;
+  composition Test -> (has) TestResult;
+  composition Appointment -> (has) Patient;
+  composition Report -> (has) Patient;
+
+  association Patient -> Doctor [0..*];
+  association Patient -> Nurse [0..*];
+  association Patient -> Medication [0..*];
+  association Patient -> Test [0..*];
+  association Patient -> Appointment [0..*];
+  association Report -> Patient [0..*];
+}

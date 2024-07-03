@@ -1,0 +1,76 @@
+
+classdiagram AntiquesMarketplace {
+
+    class AntiquesMarketplace {
+      String name;
+      String uniqueIdentifier;
+      List<Category> categories;
+      List<User> users;
+      List<Antique> antiques;
+      PaymentSystem paymentSystem;
+      RatingSystem ratingSystem;
+    }
+
+    class Category {
+      String name;
+      String description;
+      List<Subcategory> subcategories;
+      AntiquesMarketplace antiques;
+    }
+
+    class Subcategory {
+      String name;
+      String description;
+      List<AntiqueType> antiqueTypes;
+      Category category;
+    }
+
+    class AntiqueType {
+      String name;
+      String description;
+      double price;
+    }
+
+    class Antique {
+      String name;
+      String description;
+      double price;
+      String status;
+      User seller;
+      User buyer;
+      AntiqueType type;
+    }
+
+    class User {
+      String name;
+      String email;
+      String password;
+      List<Listing> listings;
+      Rating rating;
+    }
+
+    class Listing {
+      String status;
+      Antique antique;
+      User seller;
+      User buyer;
+    }
+
+    class PaymentSystem {
+      void processPayment(User buyer, Antique antique, double amount);
+    }
+
+    class RatingSystem {
+      void rateAntique(User rater, Antique antique, int rating);
+      void rateSeller(User rater, User seller, int rating);
+    }
+
+    composition AntiquesMarketplace -> (has) Category;
+    composition AntiquesMarketplace -> (has) Subcategory;
+    composition AntiquesMarketplace -> (has) AntiqueType;
+    composition AntiquesMarketplace -> (has) Antique;
+    composition AntiquesMarketplace -> (has) User;
+    composition AntiquesMarketplace -> (has) Listing;
+    composition AntiquesMarketplace -> (has) PaymentSystem;
+    composition AntiquesMarketplace -> (has) RatingSystem;
+}

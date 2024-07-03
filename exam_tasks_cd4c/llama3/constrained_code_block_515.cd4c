@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram AstronomyPlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    Schedule schedule;
+    Instructor instructor;
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    OfficeHours officeHours;
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Assignment  {
+    String title;
+    String description;
+    Date submissionDeadline;
+    Grade grade;
+  }
+
+  class Discussion  {
+    String title;
+    boolean isStarted;
+  }
+
+  class Schedule  {
+    Date startDate;
+    Date endDate;
+    int duration;
+  }
+
+  class OfficeHours  {
+    Date start;
+    Date end;
+  }
+
+  class Grade  {
+    double value;
+  }
+
+  class Progress  {
+    Grade overallGrade;
+    Assignment[] grades;
+  }
+
+  composition Course -> (has) Instructor;
+  composition Course -> (has) Assignment[*];
+  composition Course -> (has) Discussion[*];
+  composition Student -> (enrollsIn) Course[*];
+  composition Assignment -> (has) Grade;
+  composition Progress -> (has) Grade;
+  composition AstronomyPlatform -> (has) Course[*];
+  composition AstronomyPlatform -> (has) Instructor[*];
+  composition AstronomyPlatform -> (has) Student[*];
+}

@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram DigitalHealthMonitoringSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    HealthMetric[] healthMetrics;
+  }
+
+  class HealthMetric  {
+    String name;
+    String unitOfMeasurement;
+    double value;
+  }
+
+  class Sensor  {
+    String type;
+    HealthMetric healthMetric;
+    DataLogger dataLogger;
+  }
+
+  class DataLogger  {
+    int maxStorageDays;
+    HealthMetric healthMetric;
+  }
+
+  class AnalysisTool  {
+    String name;
+    String description;
+  }
+
+  class Report  {
+    String patientIdentifier;
+    HealthMetric healthMetric;
+    String analysisResult;
+  }
+
+  class Alert  {
+    String patientIdentifier;
+    HealthMetric healthMetric;
+    String alertMessage;
+  }
+
+  composition Patient -> HealthMetric[*];
+  composition Sensor -> HealthMetric;
+  composition DataLogger -> HealthMetric;
+  composition AnalysisTool -> Report[*];
+  composition Alert -> Patient;
+  composition Patient -> Sensor[*];
+  composition Sensor -> DataLogger;
+  composition DataLogger -> AnalysisTool;
+}

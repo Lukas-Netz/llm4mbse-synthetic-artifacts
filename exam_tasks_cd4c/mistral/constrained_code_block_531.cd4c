@@ -1,0 +1,44 @@
+
+classdiagram GlacierMonitoring {
+
+  class Glacier {
+    String uniqueIdentifier;
+    String location;
+    GlacierType type;
+    Size size;
+  }
+
+  enum GlacierType {
+    Alpine, Continental, IceSheet;
+  }
+
+  class Size {
+    int area;
+    int volume;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+    void measureTemperature();
+    void measureHumidity();
+  }
+
+  class DataLogger {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+    Sensor associatedSensor;
+    void collectData();
+  }
+
+  class Researcher {
+    String uniqueIdentifier;
+    Glacier associatedGlacier;
+    void analyzeData();
+  }
+
+  composition Glacier -> Sensor [*];
+  composition Glacier -> DataLogger [*];
+  composition DataLogger -> Sensor;
+  association Researcher -- Glacier;
+}

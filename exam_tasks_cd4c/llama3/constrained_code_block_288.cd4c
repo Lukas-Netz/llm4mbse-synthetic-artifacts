@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram VOD  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    -> Rental[*];
+  }
+
+  class Movie  {
+    String title;
+    int releaseYear;
+    String genre;
+    -> Rental[*];
+  }
+
+  class TVShow  {
+    String title;
+    int releaseYear;
+    String genre;
+    -> Rental[*];
+  }
+
+  class Rental  {
+    Date startDate;
+    Date endDate;
+    RentalStatus status;
+    -> User;
+  }
+
+  class Administrator  {
+    String uniqueIdentifier;
+    String name;
+    AdministratorRole role;
+  }
+
+  class ContentManager extends Administrator  {
+    void addMovie(Movie movie);
+    void removeMovie(Movie movie);
+    void modifyMovie(Movie movie);
+  }
+
+  class UserManager extends Administrator  {
+    void addUser(User user);
+    void removeUser(User user);
+    void modifyUser(User user);
+  }
+
+  class PaymentSystem  {
+    void processTransaction(Rental rental);
+  }
+
+  enum AdministratorRole  {
+    ContentManager, UserManager;
+  }
+
+  enum RentalStatus  {
+    Active, Inactive;
+  }
+}

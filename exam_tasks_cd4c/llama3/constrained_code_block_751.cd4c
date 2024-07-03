@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram BaseballAnalytics  {
+
+  class Player  {
+    String name;
+    int jerseyNumber;
+    Position position;
+    boolean isBatter;
+    boolean isPitcher;
+  }
+
+  class Game  {
+    Date date;
+    Time time;
+    Location location;
+    boolean isRegularSeason;
+    boolean isPostseason;
+  }
+
+  class Team  {
+    String name;
+    League league;
+    -> Player[*];
+  }
+
+  class Batter extends Player  {
+    double battingAverage;
+    int runsBattedIn;
+    int homeRuns;
+  }
+
+  class Pitcher extends Player  {
+    double earnedRunAverage;
+    int strikeouts;
+    int walks;
+  }
+
+  class Position  {
+    String name;
+  }
+
+  class League  {
+    String name;
+  }
+
+  class Location  {
+    String city;
+    String stadium;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition Team -> Player[*];
+  composition Player -> (has) Position;
+  composition Player -> (has) Batter[*]  ?;
+  composition Player -> (has) Pitcher[*]  ?;
+  composition Game -> Team[*];
+  composition Report -> (has) Player[*];
+  composition Report -> (has) Team[*];
+  composition Report -> (has) Game[*];
+}

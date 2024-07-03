@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram MarketResearchSystem  {
+
+  class DataRepository  {
+    String customerID;
+    String name;
+    int age;
+    String location;
+    String purchaseHistory;
+    String preferences;
+  }
+
+  class DataAnalysis  {
+    AlgorithmType algorithmType;
+    TrainingData trainingData;
+    AnalysisResults analysisResults;
+  }
+
+  class Visualization  {
+    VisualizationType visualizationType;
+    DataToVisualize dataToVisualize;
+    VisualizationResults visualizationResults;
+  }
+
+  class Dashboard  {
+    String userID;
+    UserRole userRole;
+    DashboardSettings dashboardSettings;
+  }
+
+  class AlgorithmType  {
+    String type;
+  }
+
+  class TrainingData  {
+    String data;
+  }
+
+  class AnalysisResults  {
+    String results;
+  }
+
+  class VisualizationType  {
+    String type;
+  }
+
+  class DataToVisualize  {
+    String data;
+  }
+
+  class VisualizationResults  {
+    String results;
+  }
+
+  class DashboardSettings  {
+    String settings;
+  }
+
+  class UserRole  {
+    String role;
+  }
+
+  composition DataRepository -> (has) customerData;
+  composition DataAnalysis -> (uses) DataRepository;
+  composition Visualization -> (uses) DataAnalysis;
+  composition Dashboard -> (uses) Visualization;
+  composition DataRepository -> (has) customerData [1..*];
+  composition DataAnalysis -> (has) analysisResults [1..*];
+  composition Visualization -> (has) visualizationResults [1..*];
+  composition Dashboard -> (has) dashboardSettings [1..*];
+}

@@ -1,0 +1,49 @@
+
+classdiagram HomeBrewing {
+
+  class Controller {
+    WaterTank waterTank;
+    HeatingElement heatingElement;
+    CoolingElement coolingElement;
+    BrewingVessel brewingVessel;
+    Sensor temperatureSensor;
+    Sensor pressureSensor;
+    Sensor liquidLevelSensor;
+  }
+
+  class WaterTank {
+    int capacity;
+    void fill();
+    void empty();
+  }
+
+  class HeatingElement {
+    boolean isOn;
+  }
+
+  class CoolingElement {
+    boolean isOn;
+  }
+
+  class BrewingVessel {
+    int volume;
+    void clean();
+  }
+
+  class BrewingStep {
+    String name;
+    int temperature;
+    int duration;
+  }
+
+  class Sensor {
+    String type;
+    int value;
+  }
+
+  composition Controller -> WaterTank;
+  composition Controller -> HeatingElement;
+  composition Controller -> CoolingElement;
+  composition Controller -> BrewingVessel;
+  composition Controller -> Sensor [*];
+}

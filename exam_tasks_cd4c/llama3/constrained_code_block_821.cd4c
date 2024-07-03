@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram SmartFarm  {
+
+  class Farm  {
+    String name;
+    List<Animal> animals;
+  }
+
+  class Animal  {
+    String breed;
+    int age;
+    HealthStatus healthStatus;
+    List<SensorData> sensorData;
+  }
+
+  class SensorData  {
+    Date timestamp;
+    double temperature;
+    double humidity;
+    double movement;
+  }
+
+  class CameraData  {
+    Date timestamp;
+    Image image;
+  }
+
+  class Hub  {
+    List<Animal> animals;
+    List<SensorData> sensorData;
+    List<CameraData> cameraData;
+    Report report;
+  }
+
+  class Report  {
+    List<AnimalBehavior> animalBehaviors;
+    List<Recommendation> recommendations;
+  }
+
+  class AnimalBehavior  {
+    Animal animal;
+    String behavior;
+  }
+
+  class Recommendation  {
+    Animal animal;
+    String recommendation;
+  }
+
+  class Sensor  {
+    Farm farm;
+    Animal animal;
+    SensorType type;
+  }
+
+  enum SensorType  {
+    TEMPERATURE,
+    HUMIDITY,
+    MOVEMENT;
+  }
+
+  enum HealthStatus  {
+    HEALTHY,
+    SICK;
+  }
+
+  composition Farm  ->  (has) Animal[*];
+  composition Animal  ->  (has) SensorData[*];
+  composition Hub  ->  (has) Animal[*];
+  composition Hub  ->  (has) SensorData[*];
+  composition Hub  ->  (has) CameraData[*];
+  composition Report  ->  (has) AnimalBehavior[*];
+  composition Report  ->  (has) Recommendation[*];
+  composition Sensor  ->  (has) Farm;
+  composition Sensor  ->  (has) Animal;
+}

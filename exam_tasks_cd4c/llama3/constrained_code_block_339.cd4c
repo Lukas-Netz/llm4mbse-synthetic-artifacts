@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram CollaborationTool  {
+
+  class Team  {
+    String name;
+    String description;
+    Member[] members;
+  }
+
+  class Member  {
+    String username;
+    String email;
+    Team[] teams;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    File[] files;
+    Task[] tasks;
+    Team team;
+  }
+
+  class File  {
+    String name;
+    int size;
+    FileType type;
+  }
+
+  enum FileType  {
+    Document, Image, Video
+  ;}
+
+  class Task  {
+    String name;
+    String description;
+    Member[] assignees;
+    Comment[] comments;
+  }
+
+  class Comment  {
+    String text;
+    Member author;
+    Task task;
+  }
+
+  class Chat  {
+    String message;
+    Member sender;
+    Project project;
+  }
+
+  class VideoConference  {
+    String topic;
+    Member[] participants;
+    Project project;
+  }
+
+  composition Team -> Member[*];
+  composition Project -> File[*];
+  composition Project -> Task[*];
+  composition Task -> Comment[*];
+  composition Chat -> Project;
+  composition VideoConference -> Project;
+}

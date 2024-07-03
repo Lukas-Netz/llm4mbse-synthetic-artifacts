@@ -1,0 +1,63 @@
+
+classdiagram GenomicDataPrivacy {
+
+  class GenomicDataRepository {
+    -> GenomicData [*];
+    String uniqueIdentifier;
+    String individualName;
+    int age;
+    HealthStatus healthStatus;
+  }
+
+  class GenomicData {
+    String uniqueIdentifier;
+    String genomicType;
+  }
+
+  class DataAnonymization {
+    void maskData(GenomicData data);
+    void tokenizeData(GenomicData data);
+    void generalizeData(GenomicData data);
+  }
+
+  class DataAccessControl {
+    void checkAccess(User user, GenomicData data);
+    void grantAccess(User user, GenomicData data);
+    void revokeAccess(User user, GenomicData data);
+  }
+
+  class User {
+    String username;
+    Role role;
+    Attribute[] attributes;
+  }
+
+  enum Role {
+    ADMIN, RESEARCHER;
+  }
+
+  class DataSharing {
+    void shareData(GenomicData data, User recipient);
+    void receiveData(GenomicData data);
+  }
+
+  class DataAuditing {
+    void logAccess(User user, GenomicData data);
+    void logSharing(User user, GenomicData data, User recipient);
+  }
+
+  class HealthStatus {
+    String status;
+  }
+
+  association GenomicDataRepository -> DataAnonymization;
+  association GenomicDataRepository -> DataAccessControl;
+  association GenomicDataRepository -> DataSharing;
+  association GenomicDataRepository -> DataAuditing;
+  association DataAnonymization -> GenomicData;
+  association DataAccessControl -> User;
+  association DataSharing -> User;
+  association DataSharing -> GenomicData;
+  association DataAuditing -> User;
+  association DataAuditing -> GenomicData;
+}

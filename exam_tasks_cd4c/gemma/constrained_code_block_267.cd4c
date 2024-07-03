@@ -1,0 +1,40 @@
+
+
+classdiagram FoodDeliveryPlatform {
+
+  class Customer {
+    String name;
+    List<Order> orders;
+  }
+
+  class Order {
+    int orderID;
+    Customer customer;
+    List<Item> items;
+    double totalCost;
+    OrderStatus status;
+  }
+
+  class Item {
+    String name;
+    double price;
+    String description;
+  }
+
+  class Restaurant {
+    String name;
+    String address;
+    List<Item> items;
+    List<Order> orders;
+  }
+
+  class OrderStatus {
+    String name;
+  }
+
+  composition Customer -> (has) Order [*];
+  composition Order -> (has) Customer;
+  composition Order -> (has) List<<Item>>;
+  composition Restaurant -> (has) List<<Order>>;
+  association OrderStatus -> Order;
+}

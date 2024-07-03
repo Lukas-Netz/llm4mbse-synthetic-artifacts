@@ -1,0 +1,42 @@
+
+classdiagram DisasterRecovery {
+
+    class DataCenter {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    WritableDataCenter();
+      void monitorStatus();
+    }
+
+    class BackupSystem {
+      String uniqueIdentifier;
+      DeviceStatus status;
+      BackupLocation[] backupLocations;
+      void monitorStatus();
+    }
+
+    class Network {
+      String uniqueIdentifier;
+      DeviceStatus status;
+      NetworkNode[] networkNodes;
+      void monitorStatus();
+    }
+
+    class RecoveryTeam {
+      String uniqueIdentifier;
+      DeviceStatus status;
+      void allocateResources();
+      void prioritizeTasks();
+    }
+
+    class RecoveryPlan {
+      String planDetails;
+      void executePlan();
+    }
+
+    association DataCenter -> Network [*];
+    association DataCenter -> BackupSystem [*];
+    association Network -> BackupSystem [*];
+    composition RecoveryTeam -> DisasterRecovery;
+    composition RecoveryPlan -> DisasterRecovery;
+}

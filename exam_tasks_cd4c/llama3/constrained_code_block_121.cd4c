@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram MobileHealthMonitoringSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    VitalSigns vitalSigns;
+    MedicalConditions medicalConditions;
+  }
+
+  class VitalSign  {
+    String name;
+    String unitOfMeasurement;
+    double currentReading;
+  }
+
+  class MedicalCondition  {
+    String name;
+    List<String> symptoms;
+  }
+
+  class Medication  {
+    String name;
+    int dosage;
+    int frequency;
+  }
+
+  class TreatmentPlan  {
+    String name;
+    String description;
+    List<Medication> medications;
+    List<VitalSign> vitalSignsToMonitor;
+  }
+
+  class Alert  {
+    String type;
+    SeverityLevel severity;
+    String message;
+  }
+
+  class HealthcareProfessional  {
+    String name;
+    ContactInformation contactInfo;
+    List<Patient> patients;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+
+  enum SeverityLevel  {
+    Low, High;
+  }
+
+  composition Patient -> (has) VitalSigns;
+  composition Patient -> (has) MedicalConditions;
+  composition Patient -> (has) TreatmentPlan;
+  composition HealthcareProfessional -> (has) Patient[*];
+  composition TreatmentPlan -> (has) Medication[*];
+  composition TreatmentPlan -> (has) VitalSign[*];
+  composition Alert -> (has) Patient;
+  composition Alert -> (has) HealthcareProfessional;
+}

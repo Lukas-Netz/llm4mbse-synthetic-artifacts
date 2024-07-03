@@ -1,0 +1,103 @@
+
+
+classdiagram FinancialPlanningSystem {
+
+  class UserAccount {
+    String username;
+    String password;
+    List<Transaction> transactions;
+  }
+
+  class Transaction {
+    Date date;
+    int amount;
+    String type;
+    UserAccount userAccount;
+  }
+
+  class FinancialGoal {
+    String name;
+    String description;
+    int targetAmount;
+    List<BudgetItem> budgetItems;
+  }
+
+  class BudgetItem {
+    String name;
+    int amount;
+  }
+
+  class Recommendation {
+    String recommendation;
+    FinancialGoal financialGoal;
+  }
+
+  class Budget {
+    int totalAmount;
+    List<BudgetItem> budgetItems;
+  }
+
+  class Report {
+    String reportType;
+    List<Transaction> transactions;
+    List<FinancialGoal> financialGoals;
+    List<Budget> budgets;
+  }
+
+  composition UserAccount -> (has) List<<Transaction>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+
+  
+
+;
+  composition FinancialGoal -> (has) List<<BudgetItem>>
+  
+
+  
+
+  
+  
+  
+;
+  composition Budget -> (has) List<<BudgetItem>>
+
+  
+
+  
+  
+  
+;
+  composition Report -> (has) List<<Transaction>>
+  
+
+  
+
+  
+  
+  
+;
+  composition Report -> (has) List<<FinancialGoal>>
+  
+
+  
+
+  
+  
+  
+;
+  composition Report -> (has) List<<Budget>>
+
+  
+
+  
+  
+  
+;
+
+}

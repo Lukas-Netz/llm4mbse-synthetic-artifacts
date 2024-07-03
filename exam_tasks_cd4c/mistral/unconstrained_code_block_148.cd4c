@@ -1,0 +1,70 @@
+
+classdiagram AquariumDisplay {
+
+  class Aquarium {
+    String uniqueIdentifier;
+    String name;
+    AquariumType type;
+  }
+
+  class Display {
+    String uniqueIdentifier;
+    String name;
+    DisplayType type;
+  }
+
+  class Fish {
+    String uniqueIdentifier;
+    String name;
+    FishSpecies species;
+  }
+
+  class AquaticPlant {
+    String uniqueIdentifier;
+    String name;
+    AquaticPlantSpecies species;
+  }
+
+  class InteractiveElement {
+    String uniqueIdentifier;
+    String name;
+    InteractiveElementType type;
+  }
+
+  class UserProfile {
+    String uniqueIdentifier;
+    String name;
+    Set<Preference> preferences;
+  }
+
+  enum AquariumType {
+    Freshwater, Saltwater, CoralReef;
+  }
+
+  enum DisplayType {
+    Touchscreen, Projection, LED;
+  }
+
+  enum FishSpecies {
+    Goldfish, Betta, Clownfish;
+  }
+
+  enum AquaticPlantSpecies {
+    Anubias, JavaFern, SwordPlant;
+  }
+
+  enum InteractiveElementType {
+    Joystick, Button, Sensor;
+  }
+
+  enum Preference {
+    Language, FontSize, Theme;
+  }
+
+  composition AquariumDisplay -> (has) Aquarium [*];
+  composition AquariumDisplay -> (has) Display [*];
+  composition AquariumDisplay -> (has) Fish [*];
+  composition AquariumDisplay -> (has) AquaticPlant [*];
+  composition AquariumDisplay -> (has) InteractiveElement [*];
+  composition UserProfile -> (has) Preference [*];
+}

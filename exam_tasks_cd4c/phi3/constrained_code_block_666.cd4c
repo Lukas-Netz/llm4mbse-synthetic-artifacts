@@ -1,0 +1,71 @@
+
+classdiagram RenewableEnergyForecastingSystem {
+
+    class WeatherStation {
+      TemperatureSensor temperatureSensor;
+      HumiditySensor humiditySensor;
+      WindSpeedSensor windSpeedSensor;
+      SolarRadiationSensor solarRadiationSensor;
+      void collectData();
+    }
+
+    class MLModel {
+      double learningRate;
+      int numHiddenLayers;
+      void trainModel(WeatherStation weatherStation);
+      double predictEnergyProduction(WeatherStation weatherStation);
+    }
+
+    class Database {
+      HistoricalDataHistoricalData historicalData;
+      PredictedEnergyProductionPredictedEnergyProduction predictedEnergyProduction;
+      MachineLearningModelParametersMachineLearningModelParameters modelParameters;
+      void storeData(HistoricalData historicalData, PredictedEnergyProduction predictedEnergyProduction, MachineLearningModelParameters modelParameters);
+      void retrieveData(WeatherStation weatherStation);
+    }
+
+    class UI {
+      Graph predictedEnergyProductionGraph;
+      Form modelParametersForm;
+      void displayPredictedEnergyProduction(Database database);
+      void adjustModelParameters(Form form);
+    }
+
+    class TemperatureSensor {
+      double temperature;
+      void readTemperature();
+    }
+
+    class HumiditySensor {
+      double humidity;
+      void readHumidity();
+    }
+
+    class WindSpeedSensor {
+      double windSpeed;
+      void readWindSpeed();
+    }
+
+    class SolarRadiationSensor {
+      double solarRadiation;
+      void readSolarRadiation();
+    }
+
+    class HistoricalData {
+      List<WeatherStation> weatherData;
+    }
+
+    class PredictedEnergyProduction {
+      double solarPanelProduction;
+      double windTurbineProduction;
+    }
+
+    class MachineLearningModelParameters {
+      double learningRate;
+      int numHiddenLayers;
+    }
+
+    association WeatherStation -> MLModel [*];
+    association WeatherStation -> Database [*];
+    association Database -> UI [*];
+}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram EmergencyResponseTrainingSystem  {
+
+  class ScenarioManager  {
+    List<Scenario> scenarios;
+    void createScenario(Scenario scenario);
+    void startScenario(Scenario scenario);
+    void stopScenario(Scenario scenario);
+  }
+
+  class Scenario  {
+    String name;
+    String description;
+    List<Objective> objectives;
+  }
+
+  class Trainee  {
+    String uniqueIdentifier;
+    List<Skill> skills;
+  }
+
+  class PerformanceTracker  {
+    Map<Trainee, Performance> traineePerformances;
+    void trackPerformance(Trainee trainee, Objective objective);
+    void generateReport();
+  }
+
+  class Performance  {
+    int timeTaken;
+    int mistakesMade;
+    int overallScore;
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class Objective  {
+    String name;
+    String description;
+  }
+
+  composition ScenarioManager -> (has) List<<Scenario>>; 
+  composition Trainee -> (has) List<<Skill>>; 
+  composition PerformanceTracker -> (has) Map<<Trainee, Performance>>; 
+  association Scenario -> (has) List<<Objective>>; 
+  association Trainee -> (has) Performance; 
+}

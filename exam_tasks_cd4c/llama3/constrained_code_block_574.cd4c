@@ -1,0 +1,99 @@
+
+
+
+classdiagram ResearchStation  {
+
+  class LivingQuarters  {
+    private Room[] rooms;
+    private Kitchen kitchen;
+    private CommonArea[] commonAreas;
+  }
+
+  class Laboratory  {
+    private Equipment[] equipment;
+    private SampleStorage sampleStorage;
+    private DataAnalysisWorkstation[] workstations;
+  }
+
+  class MedicalCenter  {
+    private ExaminationRoom[] examinationRooms;
+    private MedicalEquipment[] medicalEquipment;
+    private MedicalSupplyStorage medicalSupplyStorage;
+  }
+
+  class LogisticsCenter  {
+    private StorageRoom[] storageRooms;
+    private Warehouse warehouse;
+    private MaintenanceWorkshop maintenanceWorkshop;
+  }
+
+  class CommunicationCenter  {
+    private CommunicationEquipment[] communicationEquipment;
+    private SatelliteDish satelliteDish;
+    private BackupPowerSystem backupPowerSystem;
+  }
+
+  class Room  {
+    private String name;
+    private int capacity;
+  }
+
+  class Kitchen  {
+    private CookingFacilities cookingFacilities;
+  }
+
+  class CommonArea  {
+    private String name;
+  }
+
+  class Equipment  {
+    private String name;
+    private String description;
+  }
+
+  class SampleStorage  {
+    private String name;
+  }
+
+  class DataAnalysisWorkstation  {
+    private String name;
+  }
+
+  class ExaminationRoom  {
+    private String name;
+  }
+
+  class MedicalEquipment  {
+    private String name;
+    private String description;
+  }
+
+  class MedicalSupplyStorage  {
+    private String name;
+  }
+
+  class StorageRoom  {
+    private String name;
+  }
+
+  class Warehouse  {
+    private String name;
+  }
+
+  class MaintenanceWorkshop  {
+    private String name;
+  }
+
+  class CommunicationEquipment  {
+    private String name;
+  }
+
+  class SatelliteDish  {
+    private String name;
+  }
+
+  class BackupPowerSystem  {
+    private int capacity;
+  }
+
+  }

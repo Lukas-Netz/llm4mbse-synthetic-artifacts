@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram VirtualRealityWildlifeSafari  {
+
+  class Safari  {
+    String name;
+    Reserve  [] reserves;
+  }
+
+  class Reserve  {
+    String name;
+    Animal  [] animals;
+    Habitat  [] habitats;
+  }
+
+  class Animal  {
+    String name;
+    Species species;
+    Feature  [] features;
+  }
+
+  class Feature  {
+    String name;
+    String description;
+  }
+
+  class User  {
+    SafariExperience  [] safariExperiences;
+  }
+
+  class SafariExperience  {
+    DateTime startTime;
+    DateTime endTime;
+    Animal  [] animalsSeen;
+  }
+
+  class Guide  {
+    String name;
+    SafariExperience  [] safariExperiencesLed;
+  }
+
+  class Habitat  {
+    String name;
+    Animal  [] animalsInhabiting;
+  }
+
+  class Species  {
+    String name;
+  }
+
+  class Behavior extends Feature  {
+    String description;
+  }
+
+  class PhysicalAttribute extends Feature  {
+    String value;
+  }
+
+  composition Safari  ->  (has) Reserve  [*];
+  composition Reserve  ->  (has) Animal  [*];
+  composition Reserve  ->  (has) Habitat  [*];
+  composition User  ->  (has) SafariExperience  [*];
+  composition Guide  ->  (has) SafariExperience  [*];
+  composition Animal  ->  (has) Feature  [*];
+  composition Habitat  ->  (has) Animal  [*];
+  association Safari  ->  (has) Guide  [1..1];
+  association User  ->  (has) Guide  [1..1];
+  }

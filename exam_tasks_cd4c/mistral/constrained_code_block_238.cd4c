@@ -1,0 +1,72 @@
+
+classdiagram AIPlatform {
+
+  class UserProfile {
+    String uniqueIdentifier;
+    UserInterests interests;
+    UserPreferences preferences;
+    UserBehavior behavior;
+  }
+
+  class UserInterests {
+    String[] categories;
+  }
+
+  class UserPreferences {
+    String contentType;
+    int contentLength;
+    boolean explicitContent;
+  }
+
+  class UserBehavior {
+    int interactionFrequency;
+    int contentEngagement;
+  }
+
+  class RecommendationEngine {
+    MachineLearningAlgorithm algorithm;
+    UserProfile userProfile;
+    void generateRecommendations();
+  }
+
+  interface MachineLearningAlgorithm {
+    void train(UserProfile userProfile);
+    ContentItem[] recommend();
+  }
+
+  class ContentProvider {
+    ContentItem[] contentItems;
+  }
+
+  abstract class ContentItem {
+    String title;
+    String contentType;
+    int contentLength;
+    boolean explicitContent;
+  }
+
+  class Article extends ContentItem {
+    String author;
+    String publication;
+  }
+
+  class Video extends ContentItem {
+    int duration;
+  }
+
+  class Image extends ContentItem {
+    String resolution;
+  }
+
+  class UserInterface {
+    RecommendationEngine recommendationEngine;
+    ContentProvider contentProvider;
+    void displayRecommendations();
+    void handleUserInteraction();
+  }
+
+  composition AIPlatform -> UserProfileManager [*];
+  composition AIPlatform -> RecommendationEngine [1];
+  composition AIPlatform -> ContentProvider [1];
+  composition AIPlatform -> UserInterface [1];
+}

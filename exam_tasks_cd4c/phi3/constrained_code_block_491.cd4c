@@ -1,0 +1,75 @@
+
+classdiagram UniversityOnlineCourse {
+
+    class Course {
+      String name;
+      String description;
+      String courseId;
+      List<Instructor> instructors;
+      List<Section> sections;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String instructorId;
+      List<Course> taughtCourses;
+    }
+
+    class Student {
+      String name;
+      String email;
+      String studentId;
+      List<Section> enrolledSections;
+    }
+
+    class Section {
+      String sectionId;
+      String startDate;
+      String endDate;
+      int maxCapacity;
+      List<Student> enrolledStudents;
+      Course course;
+    }
+
+    association Course 
+        to [Roles] 
+        -> Instructor;
+
+    association Course 
+        to [Roles] 
+        -> Student;
+
+    association Section 
+        to [Roles] 
+        -> Instructor;
+
+    association Section 
+        to [Roles] 
+        -> Student;
+
+    composition Course -> Instructor [1..*];
+    composition Course -> Student [1..*];
+    composition Section -> Instructor [1..*];
+    composition Section -> Student [1..*];
+
+    association Course 
+        to [Courses] 
+        -> List<<Section>>;
+
+    association Student 
+        to [Courses] 
+        -> List<<Section>>;
+
+    association Section 
+        to [Courses] 
+        -> List<<Section>>;
+
+    association Student 
+        to [Sections] 
+        -> List<<Section>>;
+
+    association Course 
+        to [Sections] 
+        -> List<<Section>>;
+}

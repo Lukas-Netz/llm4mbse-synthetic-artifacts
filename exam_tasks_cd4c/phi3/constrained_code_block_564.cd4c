@@ -1,0 +1,35 @@
+
+classdiagram OceanAcidificationMonitoring {
+
+    class MonitoringStation {
+      String stationId;
+      Sensor[] sensors;
+      void sendDataToDatabase(Database database);
+    }
+
+    class Database {
+      void storeData(MonitoringStation station);
+      void analyzeData();
+      Report generateReport();
+    }
+
+    class Scientist {
+      String name;
+      String expertise;
+      List<Publication> publications;
+      void analyzeData(Database database);
+      Report generateReport();
+    }
+
+    class Report {
+      String reportId;
+      String pHLevel;
+      String temperature;
+      String recommendations;
+    }
+
+    association MonitoringStation -> Database [*];
+    association Scientist -> Database [*];
+    association Scientist -> Report [*];
+    composition Database -> Report [*];
+}

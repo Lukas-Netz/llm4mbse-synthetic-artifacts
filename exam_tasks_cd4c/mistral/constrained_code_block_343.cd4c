@@ -1,0 +1,39 @@
+
+classdiagram CDN {
+
+  class Node {
+    String uniqueIdentifier;
+    Location location;
+    NodeStatus status;
+  }
+
+  class Origin extends Node {
+    String content;
+    int bandwidth;
+  }
+
+  class Edge extends Node {
+    String cachedContent;
+    int bandwidth;
+  }
+
+  class Request {
+    String uniqueIdentifier;
+    String userIdentifier;
+    String contentIdentifier;
+  }
+
+  enum NodeStatus {
+    Active, Inactive;
+  }
+
+  class Location {
+    String name;
+    double latitude;
+    double longitude;
+  }
+
+  composition CDN -> Node [*];
+  composition Node -> (has) Location;
+  association Request -- (uses) Node;
+}

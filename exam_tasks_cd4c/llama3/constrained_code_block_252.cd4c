@@ -1,0 +1,59 @@
+
+
+
+classdiagram BlockchainPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+  }
+
+  abstract class SmartContract  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class SimpleSmartContract extends SmartContract  {
+    Condition condition;
+  }
+
+  class ComplexSmartContract extends SmartContract  {
+    List<Condition> conditions;
+  }
+
+  abstract class Condition  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class SingleCondition extends Condition  {
+    Condition condition;
+  }
+
+  class MultiCondition extends Condition  {
+    List<Condition> conditions;
+  }
+
+  class Execution  {
+    String uniqueIdentifier;
+    Date timestamp;
+    Status status;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Date timestamp;
+    Status status;
+  }
+
+  class Status  {
+    String value;
+  }
+
+  composition User -> (has) SmartContract[*];
+  composition SmartContract -> (has) Condition[*];
+  composition Execution -> (has) SmartContract;
+  composition Transaction -> (has) SmartContract;
+  composition Condition -> (has) SmartContract;
+}

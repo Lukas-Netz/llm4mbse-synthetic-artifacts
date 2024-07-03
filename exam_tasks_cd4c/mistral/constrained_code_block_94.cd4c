@@ -1,0 +1,52 @@
+
+classdiagram SmartGrid {
+
+  class CentralControlCenter {
+    String name;
+    String location;
+    void monitorGrid();
+    void controlGrid();
+  }
+
+  class Substation {
+    String name;
+    String location;
+    PowerLine [ ] powerLines;
+  }
+
+  class PowerLine {
+    String name;
+    int length;
+    Substation [ ] substations;
+  }
+
+  class Transformer {
+    String name;
+    int capacity;
+    PowerLine [ ] powerLines;
+  }
+
+  class Meter {
+    String name;
+    String location;
+    Household [ ] households;
+  }
+
+  class SmartAppliance {
+    String name;
+    String type;
+    Household [ ] households;
+  }
+
+  class Household {
+    String name;
+    String location;
+  }
+
+  composition CentralControlCenter -> Substation [*];
+  composition Substation -> PowerLine [*];
+  composition PowerLine -> Transformer [*];
+  composition Transformer -> PowerLine [*];
+  composition Meter -> Household [*];
+  composition SmartAppliance -> Household [*];
+}

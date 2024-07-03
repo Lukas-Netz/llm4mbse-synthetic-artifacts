@@ -1,0 +1,87 @@
+
+classdiagram RealTimeDataAnalytics {
+
+  class DataSource {
+    String id;
+    String type;
+    DataSource(String id, String type);
+  }
+
+  interface SensorDataSource extends DataSource {
+    double[] readSensors();
+  }
+
+  interface DatabaseDataSource extends DataSource {
+    List<Map<String, Object>> readData(String query);
+  }
+
+  interface ApiDataSource extends DataSource {
+    Map<String, Object> readData(String url);
+  }
+
+  class DataProcessor {
+    List<Filter> filters;
+    List<Aggregation> aggregations;
+    List<Transformation> transformations;
+    DataProcessor(List<Filter> filters, List<Aggregation> aggregations, List<Transformation> transformations);
+    List<Map<String, Object>> processData(List<Map<String, Object>> data);
+  }
+
+  interface Filter {
+    boolean apply(Map<String, Object> data);
+  }
+
+  interface Aggregation {
+    Map<String, Object> aggregate(List<Map<String, Object>> data);
+  }
+
+  interface Transformation {
+    Map<String, Object> transform(Map<String, Object> data);
+  }
+
+  class DataVisualizer {
+    Chart chart;
+    Table table;
+    Map map;
+    DataVisualizer(Chart chart, Table table, Map map);
+    void visualizeData(List<Map<String, Object>> data);
+  }
+
+  class Chart {
+    String type;
+    List<Map<String, Object>> data;
+  }
+
+  class Table {
+    List<List<Map<String, Object>>> rows;
+  }
+
+  class Map {
+    List<Map<String, Object>> data;
+  }
+
+  class UserInterface {
+    DataSource[] dataSources;
+    DataProcessor processor;
+    DataVisualizer visualizer;
+    UserInterface(DataSource[] dataSources, DataProcessor processor, DataVisualizer visualizer);
+    void selectDataSource(DataSource dataSource);
+    void defineProcessingRules();
+    void visualizeResults();
+  }
+
+  class Database {
+    void storeData(List<Map<String, Object>> data);
+  }
+
+  class Security {
+    void encryptData(List<Map<String, Object>> data);
+    void authenticateUser(String username, String password);
+  }
+
+  composition RealTimeDataAnalytics -> (has) DataProcessor;
+  composition RealTimeDataAnalytics -> (has) DataVisualizer;
+  composition RealTimeDataAnalytics -> (has) Database;
+  composition RealTimeDataAnalytics -> (has) Security;
+  association UserInterface -> DataSource [*];
+  }

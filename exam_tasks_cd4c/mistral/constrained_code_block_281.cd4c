@@ -1,0 +1,43 @@
+
+classdiagram OnlineLearningPortal {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Instructor instructor;
+    CourseSection [ ] sections;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    Course [ ] courses;
+  }
+
+  class Student {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    CourseSection [ ] enrolledSections;
+  }
+
+  class CourseSection {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    int maxCapacity;
+    Student [ ] students;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Course -> Instructor;
+  composition Course -> CourseSection [*];
+  composition CourseSection -> Student [*];
+}

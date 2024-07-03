@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram VirtualDataRoom  {
+
+  class VirtualDataRoom  {
+    String uniqueIdentifier;
+    String name;
+    Document  [ ] documents;
+  }
+
+  class Document  {
+    String title;
+    String description;
+    int versionNumber;
+    User  [ ] users;
+  }
+
+  class User  {
+    String employeeId;
+    Role role;
+    String username;
+    String password;
+  }
+
+  enum Role  {
+    Viewer,
+    Editor,
+    Administrator
+  ;}
+
+  class Activity  {
+    Date timestamp;
+    String action;
+    Document document;
+    User user;
+  }
+
+  composition VirtualDataRoom  ->  (has) Document  [ 0..* ];
+  composition Document  ->  (has) User  [ 0..* ];
+  composition User  ->  (has) Activity  [ 0..* ];
+  association VirtualDataRoom  ->  (uses) User;
+  association Document  ->  (uses) User;
+  association Activity  ->  (uses) User;
+  association Activity  ->  (uses) Document;
+}

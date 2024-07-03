@@ -1,0 +1,44 @@
+
+classdiagram AIAssistant {
+
+    class AI {
+      void processRequest(String request);
+      void learnPreferences(UserPreferences preferences);
+      Recommendation provideRecommendation();
+      void integrateDevice(Device device);
+    }
+
+    class Device {
+      void interactWithAI(String command);
+    }
+
+    class VoiceAssistant extends Device {
+      boolean voiceRecognition;
+      boolean nlpCapabilities;
+    }
+
+    class SmartSpeaker extends Device {
+      boolean musicPlayback;
+      boolean voiceControl;
+    }
+
+    class WearableDevice extends Device {
+      boolean fitnessTracking;
+      boolean notificationManagement;
+    }
+
+    class UserPreferences {
+      String favoriteMusic;
+      String preferredLanguage;
+      boolean fitnessGoals;
+    }
+
+    class Recommendation {
+      String suggestion;
+    }
+
+  composition AI -> Device [*];
+  association VoiceAssistant -> AI;
+  association SmartSpeaker -> AI;
+  association WearableDevice -> AI;
+}

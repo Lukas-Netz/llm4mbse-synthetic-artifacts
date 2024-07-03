@@ -1,0 +1,70 @@
+
+classdiagram FitnessApp {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void createAccount();
+      void logout();
+      WorkoutRoutine createWorkoutRoutine();
+      void manageWorkoutRoutine();
+      WorkoutProgress trackWorkoutProgress();
+      WorkoutHistory viewWorkoutHistory();
+      FitnessGoal setFitnessGoal();
+      void connectWithFriends();
+      void joinFitnessChallenge();
+    WritableLeaderboard viewLeaderboard();
+      NotificationSystem setNotificationPreferences();
+      void integrateWithDevice();
+    }
+
+    class WorkoutRoutine {
+      String routineName;
+      List<Exercise> exercises;
+      void addExercise(Exercise exercise);
+      void removeExercise(Exercise exercise);
+      void setSetsAndReps(int sets, int reps);
+    }
+
+    class Exercise {
+      String exerciseName;
+      int sets;
+      int reps;
+    }
+
+    class WorkoutProgress {
+      int workoutsCompleted;
+      double totalDistanceCovered;
+      double totalCaloriesBurned;
+    }
+
+    class WorkoutHistory {
+      Date workoutDate;
+      Time workoutTime;
+      WorkoutProgress workoutDetails;
+    }
+
+    class FitnessGoal {
+      String goalType;
+      double targetValue;
+    }
+
+    class Leaderboard {
+      String challengeName;
+      List<User> topPerformers;
+    }
+
+    class NotificationSystem {
+      void sendReminder();
+      void sendMotivationalMessage();
+    }
+
+    composition User -> (has) WorkoutRoutine;
+    composition User -> (has) WorkoutProgress;
+    composition User -> (has) WorkoutHistory;
+    composition User -> (has) FitnessGoal;
+    composition User -> (has) Leaderboard;
+    composition User -> (has) NotificationSystem;
+    composition User -> (has) Device;
+}

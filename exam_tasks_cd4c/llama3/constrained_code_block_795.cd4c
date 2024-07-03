@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram PrecisionAgriculture  {
+
+  class CentralHub  {
+    SensorData sensorData;
+    DroneData droneData;
+    WeatherData weatherData;
+    CropGrowth cropGrowth;
+    PestDisease pestDisease;
+    Recommendation recommendation;
+  }
+
+  class Sensor  {
+    SoilMoisture soilMoisture;
+    Temperature temperature;
+    NutrientLevel nutrientLevel;
+  }
+
+  class Drone  {
+    Camera camera;
+    Sensor sensor;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class Crop  {
+    GrowthStage growthStage;
+  }
+
+  class SensorData  {
+    Sensor[] sensors;
+  }
+
+  class DroneData  {
+    Drone[] drones;
+  }
+
+  class WeatherData  {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class CropGrowth  {
+    Crop[] crops;
+  }
+
+  class PestDisease  {
+    Pest[] pests;
+    Disease[] diseases;
+  }
+
+  class Recommendation  {
+    Irrigation irrigation;
+    Fertilization fertilization;
+  }
+
+  composition CentralHub -> (has) SensorData;
+  composition CentralHub -> (has) DroneData;
+  composition CentralHub -> (has) WeatherData;
+  composition CentralHub -> (has) CropGrowth;
+  composition CentralHub -> (has) PestDisease;
+  composition CentralHub -> (has) Recommendation;
+  composition Sensor -> (has) SoilMoisture;
+  composition Sensor -> (has) Temperature;
+  composition Sensor -> (has) NutrientLevel;
+  }

@@ -1,0 +1,45 @@
+
+
+classdiagram CrossBorderPaymentSystem {
+
+    class Bank {
+      Account accounts;
+    }
+
+    class Account {
+      String accountNumber;
+      String currency;
+      double balance;
+    }
+
+    class Transaction {
+      Account fromAccount;
+      Account toAccount;
+      PaymentMethod paymentMethod;
+      double amount;
+      Currency currency;
+      ExchangeRate exchangeRate;
+    }
+
+    class Currency {
+      String name;
+      int value;
+    }
+
+    class ExchangeRate {
+      Currency fromCurrency;
+      Currency toCurrency;
+      double rate;
+    }
+
+    class PaymentMethod {
+      String name;
+      boolean isElectronic;
+    }
+
+  composition Bank -> Account [*];
+  composition Transaction -> Account [2];
+  association Currency -> ExchangeRate;
+  association ExchangeRate -> Currency;
+  association PaymentMethod -> Transaction;
+}

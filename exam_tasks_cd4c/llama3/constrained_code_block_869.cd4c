@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram SmartGrid  {
+
+  class Server  {
+    DataStorage dataStorage;
+  }
+
+  class SmartMeter  {
+    String uniqueIdentifier;
+    kWh energyConsumption;
+  }
+
+  class Analytics  {
+    void calculateAverageEnergyConsumption();
+    void identifyPeakHours();
+    void detectAnomalies();
+  }
+
+  class Visualization  {
+    void displayData();
+    void setAlerts();
+  }
+
+  class DataStorage  {
+    List<SmartMeter> smartMeters;
+  }
+
+  class kWh  {
+    double value;
+  }
+
+  composition Server -> DataStorage;
+  composition DataStorage -> SmartMeter [*];
+  composition Analytics -> DataStorage;
+  composition Visualization -> DataStorage;
+  association SmartMeter -> energyConsumption;
+  association Analytics -> DataStorage;
+  association Visualization -> DataStorage;
+}

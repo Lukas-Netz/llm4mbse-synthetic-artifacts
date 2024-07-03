@@ -1,0 +1,69 @@
+
+
+classdiagram GenomicDataPrivacySolution {
+
+  class GenomicDataRepository {
+    GenomicDataRecord genomicDataRecord;
+  }
+
+  class GenomicDataRecord {
+    String uniqueIdentifier;
+    String name;
+    int age;
+    String healthStatus;
+    String genomicData;
+  }
+
+  class DataAnonymization {
+    DataAnonymizationRule anonymizationRule;
+  }
+
+  class DataAnonymizationRule {
+    String name;
+    String description;
+    List<DataAnonymizationTechnique> techniques;
+  }
+
+  class DataAnonymizationTechnique {
+    String name;
+    String description;
+    Function<GenomicDataRecord, GenomicDataRecord> anonymizationFunction;
+  }
+
+  class DataAccessControl {
+    AccessControlPolicy accessControlPolicy;
+  }
+
+  class AccessControlPolicy {
+    String name;
+    List<AccessControlRule> rules;
+  }
+
+  class AccessControlRule {
+    String name;
+    String description;
+    List<String> permittedRoles;
+    List<String> permittedAttributes;
+  }
+
+  class DataSharing {
+    SecureCommunicationProtocol secureCommunicationProtocol;
+  }
+
+  class DataAuditing {
+    DataAuditLog dataAuditLog;
+  }
+
+  class DataAuditLog {
+    String timestamp;
+    String action;
+    String actor;
+    GenomicDataRecord dataRecord;
+  }
+
+  composition GenomicDataRepository -> (has) GenomicDataRecord;
+  composition DataAnonymization -> (has) DataAnonymizationRule;
+  composition DataAccessControl -> (has) AccessControlPolicy;
+  composition DataSharing -> (has) SecureCommunicationProtocol;
+  composition DataAuditing -> (has) DataAuditLog;
+}

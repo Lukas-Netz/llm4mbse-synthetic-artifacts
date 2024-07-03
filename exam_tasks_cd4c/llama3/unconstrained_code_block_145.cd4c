@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram CustomerFeedbackSystem  {
+
+  class Customer  {
+    String name;
+    String email;
+  }
+
+  class Product  {
+    String name;
+    String description;
+  }
+
+  class Service  {
+    String name;
+    String description;
+  }
+
+  class Category  {
+    String name;
+    Product product;
+    Service service;
+  }
+
+  class Subcategory  {
+    String name;
+    Category category;
+  }
+
+  class Feedback  {
+    String text;
+    Customer customer;
+    Category category;
+    Subcategory subcategory;
+    FeedbackStatus status;
+  }
+
+  enum FeedbackStatus  {
+    New, InProgress, Resolved, Rejected;
+  }
+
+  class FeedbackSummary  {
+    int positiveCount;
+    int negativeCount;
+    double averageRating;
+  }
+
+  class CustomerSummary  {
+    int totalFeedbackCount;
+    double averageRating;
+  }
+
+  class ProductSummary  {
+    int totalFeedbackCount;
+    double averageRating;
+  }
+
+  class ServiceSummary  {
+    int totalFeedbackCount;
+    double averageRating;
+  }
+
+  composition Customer -> Feedback [*];
+  composition Product -> Category [*];
+  composition Service -> Category [*];
+  composition Category -> Subcategory [*];
+  composition Feedback -> Category;
+  composition Feedback -> Subcategory;
+  composition Feedback -> Customer;
+  composition Feedback -> FeedbackStatus;
+  composition FeedbackSummary -> Feedback [*];
+  composition CustomerSummary -> Customer [*];
+  composition ProductSummary -> Product [*];
+  composition ServiceSummary -> Service [*];
+}

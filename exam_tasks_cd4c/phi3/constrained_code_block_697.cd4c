@@ -1,0 +1,55 @@
+
+classdiagram SmartKioskAdvertisingSystem {
+
+    class Kiosk {
+      String uniqueIdentifier;
+      Location location;
+      List<Advertisement> advertisements;
+      void displayAdvertisement(Advertisement advertisement);
+      void collectCustomerInteraction(Customer customer);
+      void configureDisplay(TimeOfDay timeOfDay, DayOfWeek dayOfWeek, Location location);
+    }
+
+    class Advertisement {
+      String uniqueIdentifier;
+      String title;
+      String description;
+    }
+
+    class Customer {
+      String contactInformation;
+      void selectAdvertisement(Kiosk kiosk, Advertisement advertisement);
+      void provideContactInformation(Kiosk kiosk);
+    }
+
+    class Location {
+      String address;
+    }
+
+    class TimeOfDay {
+      String time;
+    }
+
+    class DayOfWeek {
+      String day;
+    }
+
+    association Kiosk 
+      has -> List<< Advertisement >>;
+
+    association Kiosk 
+      has -> List<< CustomerInteraction >>;
+
+    association Kiosk 
+      has -> Configuration;
+
+    class CustomerInteraction {
+      Advertisement advertisement;
+      String interactionDetails;
+    }
+
+    association Customer 
+      has -> List<< CustomerInteraction >>;
+
+    composition Kiosk -> Configuration;
+}

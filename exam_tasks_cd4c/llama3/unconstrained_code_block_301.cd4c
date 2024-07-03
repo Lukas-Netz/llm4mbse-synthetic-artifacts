@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram PesticideManagementSystem  {
+
+  class Farm  {
+    String uniqueIdentifier;
+    String name;
+    -> Field[*];
+  }
+
+  class Field  {
+    String uniqueIdentifier;
+    String name;
+    -> Crop[*];
+    -> Farm;
+  }
+
+  class Crop  {
+    String uniqueIdentifier;
+    String name;
+    -> PesticideApplication[*];
+    -> Field;
+  }
+
+  class PesticideApplication  {
+    String uniqueIdentifier;
+    Date date;
+    Pesticide pesticide;
+    int amount;
+    ApplicationMethod method;
+    -> Crop;
+  }
+
+  class Pesticide  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Regulation  {
+    String type;
+    int maximumAllowedAmount;
+    ApplicationMethod allowedMethod;
+  }
+
+  composition Farm -> Field[*];
+  composition Field -> Crop[*];
+  composition Crop -> PesticideApplication[*];
+  composition PesticideApplication -> Crop;
+  composition Pesticide -> PesticideApplication[*];
+  composition Regulation -> PesticideApplication[*];
+}

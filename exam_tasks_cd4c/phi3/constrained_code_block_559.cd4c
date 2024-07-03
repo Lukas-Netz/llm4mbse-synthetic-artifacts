@@ -1,0 +1,76 @@
+
+classdiagram CityPlanningDigitalTwin {
+
+    class City {
+      String name;
+      String geographicLocation;
+      District[] districts;
+      Infrastructure[] infrastructureComponents;
+      Service[] services;
+    }
+
+    class District {
+      String name;
+      City city;
+      Block[] blocks;
+      DistrictProperty[] districtProperties;
+    }
+
+    class Block {
+      String name;
+      District district;
+      BlockProperty[] blockProperties;
+    }
+
+    class InfrastructureComponent {
+      String name;
+      double length;
+      double capacity;
+      InfrastructureStatus status;
+    }
+
+    class InfrastructureStatus {
+      boolean isOperational;
+    }
+
+    class Service {
+      String name;
+      ServiceProperty[] serviceProperties;
+    }
+
+    class ServiceProperty {
+      String propertyName;
+      double propertyValue;
+    }
+
+    class DistrictProperty {
+      String propertyName;
+      double propertyValue;
+    }
+
+    class BlockProperty {
+      String propertyName;
+      double propertyValue;
+    }
+
+    association City 
+      has -> Districts [*];
+      -interfacesInfrastructureComponents;
+      -interfacesServices;
+
+    association District 
+      has -> Blocks [*];
+      -interfacesDistrictProperties;
+
+    association Block 
+      has -> Districts [*];
+      -interfacesBlockProperties;
+
+    association InfrastructureComponent 
+      has -> City [*];
+      -interfacesInfrastructureStatus;
+
+    association Service 
+      has -> City [*];
+      -interfacesServiceProperties;
+}

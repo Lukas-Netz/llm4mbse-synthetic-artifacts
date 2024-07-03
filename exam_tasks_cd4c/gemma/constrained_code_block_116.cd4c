@@ -1,0 +1,51 @@
+
+
+classdiagram AI_Driven_HR_Solutions {
+
+  class EmployeeProfile {
+    private String name;
+    private String jobTitle;
+    private String department;
+    private int uniqueIdentifier;
+
+    EmployeeProfile(String name, String jobTitle, String department, int uniqueIdentifier);
+  }
+
+  class TrainingPrograms {
+    private String uniqueIdentifier;
+    private String description;
+
+    TrainingPrograms(String uniqueIdentifier, String description);
+  }
+
+  class PerformanceEvaluation {
+    private String uniqueIdentifier;
+    private String jobTitle;
+    private String trainingProgram;
+    private Map<String, Integer> metrics;
+
+    PerformanceEvaluation(String uniqueIdentifier, String jobTitle, String trainingProgram, Map<String, Integer> metrics);
+  }
+
+  class TrainingProgramRecommendation {
+    private String employeeJobTitle;
+    private String trainingProgram;
+
+    TrainingProgramRecommendation(String employeeJobTitle, String trainingProgram);
+  }
+
+  class PerformanceReport {
+    private String employeeName;
+    private String jobTitle;
+    private String trainingProgram;
+    private Map<String, Integer> metrics;
+
+    PerformanceReport(String employeeName, String jobTitle, String trainingProgram, Map<String, Integer> metrics);
+  }
+
+  composition EmployeeProfile -> (has) TrainingPrograms [0..1];
+  composition EmployeeProfile -> (has) PerformanceEvaluation [0..1];
+  composition TrainingPrograms -> (has) PerformanceEvaluation [0..1];
+  composition PerformanceEvaluation -> (has) TrainingProgramRecommendation [0..1];
+  composition PerformanceEvaluation -> (has) PerformanceReport [0..1];
+}

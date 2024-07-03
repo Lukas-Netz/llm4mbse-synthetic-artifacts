@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram MembershipManagementSystem  {
+
+  class Member  {
+    String uniqueId;
+    String name;
+    String email;
+    Date birthDate;  (forIndividual)
+    String companyName;  (forOrganization)
+  }
+
+  class MembershipPlan  {
+    String name;
+    String description;
+    PricingTier  [ ] pricingTiers;
+  }
+
+  class PricingTier  {
+    String name;
+    String description;
+    Set  benefits;
+  }
+
+  class Payment  {
+    Member member;
+    MembershipPlan plan;
+    PricingTier tier;
+    PaymentMethod paymentMethod;
+    Date paymentDate;
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  class Invoice  {
+    String uniqueId;
+    Date date;
+    double totalAmount;
+    Member member;
+  }
+
+  class Discount  {
+    Member member;
+    MembershipPlan plan;
+    PricingTier tier;
+    double discountAmount;
+  }
+
+  composition Member  ->  (has) Payment  [0..*];
+  composition MembershipPlan  ->  (has) PricingTier  [0..*];
+  composition Payment  ->  (has) PaymentMethod;
+  composition Invoice  ->  (has) Member;
+  composition Discount  ->  (has) Member;
+  composition Discount  ->  (has) MembershipPlan;
+  composition Discount  ->  (has) PricingTier;
+}

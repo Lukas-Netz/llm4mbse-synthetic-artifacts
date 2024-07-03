@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram MedicalImageProcessing  {
+
+  class MedicalImage  {
+    String type;  (XrayCTScanMRI)
+    byte[] imageBytes;
+  }
+
+  class Feature  {
+    String type;  (TumorFractureOrgan)
+    Point location;
+    double size;
+  }
+
+  class Point  {
+    int xCoordinate;
+    int yCoordinate;
+  }
+
+  class Report  {
+    List<Feature> features;
+    String analysisText;
+  }
+
+  class MedicalImageProcessor  {
+    void processImage(MedicalImage image);
+    Report generateReport(MedicalImage image);
+  }
+
+  class MedicalImageAnalyzer  {
+    void analyzeImage(MedicalImage image);
+  }
+
+  class MedicalImageIntegrator  {
+    void integrateWithEquipment(MedicalImage image);
+  }
+
+  class MedicalProfessional  {
+    void useSystem(MedicalImage image);
+  }
+
+  composition MedicalImageProcessor  -> MedicalImageAnalyzer;
+  composition MedicalImageProcessor  -> MedicalImageIntegrator;
+  composition MedicalProfessional  -> MedicalImageProcessor;
+  composition MedicalImage  -> Feature [*];
+  composition Report  -> Feature [*];
+}

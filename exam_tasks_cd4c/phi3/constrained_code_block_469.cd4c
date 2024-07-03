@@ -1,0 +1,52 @@
+
+classdiagram BiologyPlatform {
+
+    class Course {
+      String name;
+      String description;
+      String courseId;
+      List<Assignment> assignments;
+    }
+
+    class Student {
+      String studentId;
+      List<Course> enrolledCourses;
+    }
+
+    class Instructor {
+      String instructorId;
+      List<Course> taughtCourses;
+    }
+
+    class Assignment {
+      String assignmentName;
+      String assignmentDescription;
+      Date dueDate;
+    }
+
+    class Grade {
+      int value;
+      String grade;
+    }
+
+    class Progress {
+      int completedAssignments;
+      Grade totalGrade;
+    }
+
+    class Admin {
+      void manageInstructors();
+      void manageCourses();
+      void viewStudentProgress();
+    }
+
+    association Student -> Course [*];
+    association Student -> List<<Assignment>>;
+    association Instructor -> Course [*];
+    association Course -> List<<Assignment>>;
+    composition Course -> Grade;
+    composition Course -> Progress;
+    composition Student -> Progress;
+    composition Instructor -> Admin;
+    composition Admin -> Progress;
+}

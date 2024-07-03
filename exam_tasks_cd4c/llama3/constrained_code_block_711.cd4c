@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram PrecisionMedicine  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    GenomicData genomicData;
+  }
+
+  class GenomicData  {
+    DNASequence dnaSequence;
+    GeneExpression geneExpression;
+  }
+
+  class DNASequence  {
+    String sequence;
+  }
+
+  class GeneExpression  {
+    Map<String, Double> expressionLevels;
+  }
+
+  class Gene  {
+    String uniqueIdentifier;
+    String function;
+    String location;
+  }
+
+  class Disease  {
+    String uniqueIdentifier;
+    String symptoms;
+    String diagnosis;
+    String treatmentOptions;
+  }
+
+  class Treatment  {
+    String uniqueIdentifier;
+    String medication;
+    String dosage;
+    String sideEffects;
+  }
+
+  class Analysis  {
+    Patient patient;
+    Disease disease;
+    Gene gene;
+    Treatment treatment;
+  }
+
+  class Recommendation  {
+    Patient patient;
+    Treatment treatment;
+  }
+
+  class PatientDoctor  {
+    Patient patient;
+    Doctor doctor;
+  }
+
+  class Doctor  {
+    String name;
+  }
+
+  composition Patient -> GenomicData;
+  composition GenomicData -> DNASequence;
+  composition GenomicData -> GeneExpression;
+  composition Gene -> GeneExpression;
+  composition Disease -> Treatment;
+  composition Analysis -> Patient;
+  composition Analysis -> Disease;
+  composition Analysis -> Gene;
+  composition Recommendation -> Patient;
+  }

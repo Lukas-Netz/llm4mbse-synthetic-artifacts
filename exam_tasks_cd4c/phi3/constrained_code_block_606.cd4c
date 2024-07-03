@@ -1,0 +1,31 @@
+
+classdiagram AirQualityMonitoringSystem {
+
+    class Sensor {
+      String pollutantType;
+      double concentration;
+    }
+
+    class MonitoringStation {
+      String stationId;
+      List<Sensor> sensors;
+    }
+
+    class CentralDatabase {
+      Map<String, List<Sensor>> data;
+      void updateData(MonitoringStation station, List<Sensor> newData);
+      double calculateAirQualityIndex(MonitoringStation station);
+    }
+
+    class Dashboard {
+      String currentAirQualityIndex;
+      String airQualityCategory;
+      void updateIndex(MonitoringStation station);
+    }
+
+    association MonitoringStation -> Sensor [*];
+    association MonitoringStation -> CentralDatabase [1];
+    association MonitoringStation -> Dashboard [1];
+    composition CentralDatabase -> Map<<String, List>>;
+    composition Dashboard -> String;
+}

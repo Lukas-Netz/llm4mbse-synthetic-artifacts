@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram TactileFeedbackSystem  {
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+    Position position;
+    Orientation orientation;
+    VibrationLevel vibrationLevel;
+  }
+
+  enum DeviceType  {
+    HapticFeedback, VibrationFeedback, TactileFeedback
+  ;}
+
+  class Position  {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Orientation  {
+    double roll;
+    double pitch;
+    double yaw;
+  }
+
+  class VibrationLevel  {
+    int level;
+  }
+
+  class HapticFeedbackDevice extends Device  {
+    double resistance;
+  }
+
+  class VibrationFeedbackDevice extends Device  {
+    double vibrationFrequency;
+  }
+
+  class TactileFeedbackDevice extends Device  {
+    double textureChangeRate;
+  }
+
+  class VRHeadset  {
+    -> Device[*];
+  }
+
+  class StandaloneController  {
+    -> Device[*];
+  }
+
+  composition VRHeadset -> Device[*];
+  composition StandaloneController -> Device[*];
+}

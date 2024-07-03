@@ -1,0 +1,49 @@
+
+classdiagram CognitiveRadio {
+
+  class CognitiveRadio {
+    String uniqueIdentifier;
+    RadioStatus status;
+    RadioMode mode;
+    Transmitter [ ] transmitters;
+    Receiver [ ] receivers;
+  }
+
+  enum RadioStatus {
+    Active, Inactive;
+  }
+
+  enum RadioMode {
+    Sensing, Transmission, Reception;
+  }
+
+  class Transmitter {
+    String frequencyBand;
+  }
+
+  class Receiver {
+    String frequencyBand;
+  }
+
+  class SpectrumManager {
+    -> CognitiveRadio [*];
+    void allocateFrequencyBand(CognitiveRadio cr, String frequencyBand);
+    void deallocateFrequencyBand(CognitiveRadio cr, String frequencyBand);
+    void monitorCRActivity();
+    void detectInterference();
+  }
+
+  class Database {
+    -> CognitiveRadio [*];
+    -> String [*] final;
+    -> String [*] final;
+    -> String [*] final;
+  }
+
+  composition CognitiveRadio -> Transmitter [*];
+  composition CognitiveRadio -> Receiver [*];
+  association SpectrumManager -> CognitiveRadio;
+  association Database -> CognitiveRadio;
+  association Database -> String;
+  association Database -> String;
+}

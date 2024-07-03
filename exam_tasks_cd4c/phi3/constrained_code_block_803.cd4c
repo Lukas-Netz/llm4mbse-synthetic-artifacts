@@ -1,0 +1,52 @@
+
+classdiagram AutonomousFarmingSystem {
+
+    class FarmingSystem {
+      Sensor[] sensors;
+      Actuator[] actuators;
+      ControlUnit controlUnit;
+      Database database;
+    }
+
+    class Sensor {
+      String type;
+      String data;
+    }
+
+    class Actuator {
+      void controlTemperature(int temperature);
+      void controlHumidity(int humidity);
+      void controlLightLevel(int lightLevel);
+    }
+
+    class ControlUnit {
+      void receiveSensorData(Sensor sensor);
+      void sendActuatorCommand(Actuator actuator, String command);
+    }
+
+    class Database {
+      Plant[] plants;
+      Plant getPlantByIdentifier(String identifier);
+    }
+
+    class Plant {
+      String type;
+      String growthStage;
+      NutrientRequirements nutrientRequirements;
+      String trayIdentifier;
+    }
+
+    class NutrientRequirements {
+      int nutrientLevel;
+    }
+
+    composition FarmingSystem -> (has) Sensor[*];
+    composition FarmingSystem -> (has) Actuator[*];
+    composition FarmingSystem -> (has) ControlUnit;
+    composition FarmingSystem -> (has) Database;
+
+    association FarmingSystem -> Sensor [*];
+    association FarmingSystem -> Actuator [*];
+    association FarmingSystem -> ControlUnit;
+    association FarmingSystem -> Database;
+}

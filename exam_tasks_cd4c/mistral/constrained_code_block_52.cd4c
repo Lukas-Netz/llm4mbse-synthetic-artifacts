@@ -1,0 +1,91 @@
+
+classdiagram LIMS {
+
+  class Laboratory {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  class Sample {
+    String uniqueIdentifier;
+    String laboratory;
+    String type;
+  }
+
+  class Test {
+    String uniqueIdentifier;
+    String sample;
+    String type;
+  }
+
+  class Result {
+    String uniqueIdentifier;
+    String test;
+    String outcome;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String role;
+  }
+
+  composition Laboratory [*] LaboratorySystem
+  -- (has)
+
+  compositionSample [*] - 											;
+  composition Test [*] Sample -- (has)
+  compositionResult [*] - 											;
+  composition User [*] LaboratorySystem -- (has)
+
+  operationCreateLaboratory
+ 																																		;
+ 																																														composition Laboratory [1..*] LaboratorySystem
+
+ 																																	-- updateLaboratory
+ 																																		;
+ 																																														composition Laboratory [1..*] LaboratorySystem
+
+ 																																	-- deleteLaboratory
+ 																																		;
+ 																																														composition Laboratory [1..*] LaboratorySystem
+
+ 																																	-- createSample
+ 																																		;
+ 																																														composition Sample [1..*] LaboratorySystem
+
+ 																																	-- updateSample
+ 																																		;
+ 																																														composition Sample [1..*] LaboratorySystem
+
+ 																																	-- deleteSample
+ 																																		;
+ 																																														composition Sample [1..*] LaboratorySystem
+
+ 																																	-- createTest
+ 																																		;
+ 																																														composition Test [1..*] LaboratorySystem
+
+ 																																	-- updateTest
+ 																																		;
+ 																																														composition Test [1..*] LaboratorySystem
+
+ 																																	-- deleteTest
+ 																																		;
+ 																																														composition Test [1..*] LaboratorySystem
+
+ 																																	-- createResult
+ 																																		;
+ 																																														composition Result [1..*] LaboratorySystem
+
+ 																																	-- updateResult
+ 																																		;
+ 																																														composition Result [1..*] LaboratorySystem
+
+ 																																	-- deleteResult
+ 																																		;
+ 																																														composition Result [1..*] LaboratorySystem
+
+ 																																	-- viewLaboratoryInformation
+ 																																		;
+ 				}

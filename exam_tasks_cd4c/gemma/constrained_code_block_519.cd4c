@@ -1,0 +1,53 @@
+
+
+classdiagram VirtualRealityDentalTrainingSystem {
+
+  class DentalProcedure {
+    String name;
+    List<ProcedureStep> steps;
+  }
+
+  class Trainee {
+    String name;
+    int id;
+    TraineeProgress progress;
+  }
+
+  class Simulation {
+    DentalProcedure procedure;
+    Trainee trainee;
+    SimulationResult result;
+  }
+
+  class Feedback {
+    Trainee trainee;
+    List<String> feedback;
+  }
+
+  class ProcedureStep {
+    String description;
+    List<SubStep> subSteps;
+  }
+
+  class SubStep {
+    String description;
+  }
+
+  class TraineeProgress {
+    List<ProcedureStep> completedSteps;
+    List<ProcedureStep> remainingSteps;
+  }
+
+  class SimulationResult {
+    Trainee trainee;
+    Procedure procedure;
+    List<String> errors;
+  }
+
+  composition Trainee -> TraineeProgress;
+  composition Simulation -> Procedure;
+  composition Procedure -> Steps;
+  association ProcedureStep -> SubStep;
+  association Trainee -> Feedback;
+  association Simulation -> Feedback;
+}

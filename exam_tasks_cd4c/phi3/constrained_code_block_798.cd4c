@@ -1,0 +1,59 @@
+
+classdiagram BionicLimbSystem {
+
+    class BionicLimb {
+      void adjustSettings();
+      void monitorPerformance();
+    }
+
+    class BrainComputerInterface {
+      void readBrainSignals();
+      void sendSignals(BrainSignal signal);
+    }
+
+    class ControlUnit {
+      void interpretSignals(BrainSignal signal);
+      void sendCommands(LimbCommand command);
+    }
+
+    class Limb {
+      void executeCommand(LimbCommand command);
+    }
+
+    class SoftwareComponent {
+      void customizeSettings();
+      void monitorPerformance();
+    }
+
+    class PowerSource {
+      void providePower();
+    }
+
+    class BatteryManagementSystem {
+      void manageBattery();
+    }
+
+    class BrainSignal {
+      int signalStrength;
+      String signalType;
+    }
+
+    class LimbCommand {
+      String commandType;
+      String commandDetails;
+    }
+
+    association BionicLimb -> BrainComputerInterface;
+    association BionicLimb -> ControlUnit;
+    association BionicLimb -> Limb;
+    association BionicLimb -> SoftwareComponent;
+    association BionicLimb -> PowerSource;
+    association BionicLimb -> BatteryManagementSystem;
+
+    association BrainComputerInterface -> BionicLimb;
+    association ControlUnit -> BionicLimb;
+    association Limb -> BionicLimb;
+    association SoftwareComponent -> BionicLimb;
+    association PowerSource -> BionicLimb;
+   
+ }

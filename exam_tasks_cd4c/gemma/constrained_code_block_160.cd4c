@@ -1,0 +1,36 @@
+
+
+classdiagram MarketResearchSystem {
+
+  class DataRepository {
+    int customerId;
+    String name;
+    int age;
+    String location;
+    List<PurchaseHistory> purchaseHistory;
+    Preferences preferences;
+  }
+
+  class DataAnalysis {
+    AlgorithmType algorithmType;
+    TrainingData trainingData;
+    AnalysisResults analysisResults;
+  }
+
+  class Visualization {
+    VisualizationType visualizationType;
+    Data dataToBeVisualized;
+    VisualizationResults visualizationResults;
+  }
+
+  class Dashboard {
+    int userId;
+    String userRole;
+    DashboardSettings dashboardSettings;
+  }
+
+  composition MarketResearchSystem -> (has) DataRepository;
+  composition MarketResearchSystem -> (has) DataAnalysis;
+  composition MarketResearchSystem -> (has) Visualization;
+  composition MarketResearchSystem -> (has) Dashboard;
+}

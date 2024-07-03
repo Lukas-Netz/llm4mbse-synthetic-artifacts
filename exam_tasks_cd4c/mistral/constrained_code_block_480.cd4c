@@ -1,0 +1,30 @@
+
+classdiagram VRGeologyTours {
+
+  class Tour {
+    String name;
+    String description;
+    Stop [ ] stops;
+  }
+
+  class Stop {
+    String name;
+    String description;
+    Resource [ ] resources;
+  }
+
+  class Resource {
+    String name;
+    String description;
+    String type;
+  }
+
+  class User {
+    String name;
+    Tour currentTour;
+  }
+
+  association User -- Tour;
+  composition Tour -- Stop [*];
+  composition Stop -- Resource [*];
+}

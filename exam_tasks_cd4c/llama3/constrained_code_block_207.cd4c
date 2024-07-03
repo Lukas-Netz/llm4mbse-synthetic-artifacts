@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram PredictiveSupplyChain  {
+
+  class Supplier  {
+    String uniqueId;
+    String name;
+    String location;
+    -> Product[*];
+  }
+
+  class Product  {
+    String uniqueId;
+    String name;
+    String category;
+    -> Supplier[*];
+  }
+
+  class Warehouse  {
+    String uniqueId;
+    String name;
+    String location;
+    -> Product[*];
+  }
+
+  class Order  {
+    String uniqueId;
+    String customerName;
+    Date orderDate;
+    -> Product[*];
+  }
+
+  class Inventory  {
+    String uniqueId;
+    Product product;
+    Warehouse warehouse;
+    int quantity;
+  }
+
+  class Transportation  {
+    String uniqueId;
+    Order order;
+    Supplier supplier;
+    Warehouse warehouse;
+  }
+
+  class Bottleneck  {
+    String description;
+    Date predictedDate;
+  }
+
+  class Disruption  {
+    String description;
+    Date predictedDate;
+  }
+
+  composition Supplier -> Product;
+  composition Product -> Supplier;
+  composition Warehouse -> Product;
+  composition Order -> Product;
+  composition Inventory -> Product;
+  composition Inventory -> Warehouse;
+  composition Transportation -> Order;
+  composition Transportation -> Supplier;
+  composition Transportation -> Warehouse;
+
+  <<stereotype>> class PredictiveModel {
+    void analyzeSupplyChain();
+    void predictBottlenecks();
+    void predictDisruptions();
+  }
+}

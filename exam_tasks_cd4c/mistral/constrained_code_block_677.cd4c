@@ -1,0 +1,33 @@
+
+classdiagram AUG {
+
+  class Glider {
+    String uniqueIdentifier;
+    Sensor [ ] sensors;
+    Battery battery;
+    double range;
+  }
+
+  class Sensor {
+    String type;
+    double value;
+  }
+
+  class Battery {
+    double capacity;
+    double chargeLevel;
+  }
+
+  class CentralHub {
+    Glider [ ] gliders;
+    Database database;
+  }
+
+  class Database {
+    void storeData(Glider glider);
+    void analyzeData();
+    void visualizeData();
+  }
+
+  composition CentralHub -> Glider [*];
+}

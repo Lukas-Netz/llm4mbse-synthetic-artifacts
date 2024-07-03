@@ -1,0 +1,70 @@
+
+classdiagram LegalCaseManagement {
+
+    class Case {
+      String caseId;
+      String title;
+      String description;
+      Client client;
+      Lawyer lawyer;
+      List<Party> parties;
+      List<Event> events;
+    }
+
+    class Client {
+      String clientId;
+      String name;
+      String address;
+      String contactInfo;
+    }
+
+    class Lawyer {
+      String lawyerId;
+      String name;
+      String address;
+      String contactInfo;
+    }
+
+    class Judge {
+      String judgeId;
+      String name;
+      String address;
+      String contactInfo;
+    }
+
+    class Party {
+      String partyId;
+      String role;
+      Party(String role);
+    }
+
+    class Event {
+      String eventId;
+      String date;
+      String time;
+      String location;
+    }
+
+    class CaseManagement {
+      void addCase(Case case);
+      void updateCase(Case case);
+      void removeCase(Case case);
+      void addEvent(Event event);
+      void updateEvent(Event event);
+      void removeEvent(Event event);
+      void sendNotification(Party party, Event event);
+      void trackCaseProgress(Case case);
+    }
+
+    association Case -> Client;
+    association Case -> Lawyer;
+    association Case -> Judge;
+    association Case -> Party;
+    association Case -> Event;
+
+    composition Client -> Case;
+    composition Lawyer -> Case;
+    composition Judge -> Case;
+    composition Party -> Case;
+    composition Event -> Case;
+}

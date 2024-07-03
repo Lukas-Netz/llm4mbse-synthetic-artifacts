@@ -1,0 +1,103 @@
+
+classdiagram GIS {
+
+  class City {
+    String name;
+    Country country;
+    List<Boundary> boundaries;
+    List<PointOfInterest> pointsOfInterest;
+    List<Road> roads;
+    List<WeatherStation> weatherStations;
+  }
+
+  class Country {
+    String name;
+    List<City> cities;
+  }
+
+  class Boundary {
+    String type;
+    double length;
+  }
+
+  class PointOfInterest {
+    String name;
+    String description;
+  }
+
+  class Road {
+    String type;
+    double length;
+    TrafficCondition trafficCondition;
+  }
+
+  class WeatherStation {
+    String location;
+    double temperature;
+    double precipitation;
+    DateTime recordedTime;
+  }
+
+  class TrafficCondition {
+    String status;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> Country country;
+    <<association>> List<City> cities;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> List<PointOfInterest> pointsOfInterest;
+    <<association>> List<Road> roads;
+    <<association>> List<WeatherStation> weatherStations;
+  }
+
+  <<association>> class City {
+    <<association>> Country country;
+    List<Boundary> boundaries;
+    List<PointOfInterest> pointsOfInterest;
+    List<Road> roads;
+    List<WeatherStation> weatherStations;
+  }
+
+  <<association>> class Country {
+    List<City> cities;
+  }
+
+  <<association>> class Boundary {
+    City city;
+  }
+
+  <<association>> class PointOfInterest {
+    City city;
+  }
+
+  <<association>> class Road {
+    City city;
+  }
+
+  <<association>> class WeatherStation {
+    City city;
+  }
+
+  <<association>> class TrafficCondition {
+    Road road;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> List<City> cities;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> List<PointOfInterest> pointsOfInterest;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> List<Road> roads;
+  }
+
+  <<association>> class GISSystem {
+    <<association>> List<WeatherStation> weatherStations;
+  }
+}

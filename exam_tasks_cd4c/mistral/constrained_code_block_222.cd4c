@@ -1,0 +1,80 @@
+
+classdiagram AutomatedQualityAssurance {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Date productionDate;
+    ProductType productType;
+  }
+
+  enum ProductType {
+    Electronic, Mechanical, Chemical;
+  }
+
+  class TestResult {
+    Product product;
+    QualityParameters qualityParameters;
+    boolean isDefective;
+  }
+
+  class QualityParameters {
+    ProductType productType;
+    Sensor sensor;
+    Map<String, Double> parameterValues;
+  }
+
+  interface Sensor {
+    String uniqueIdentifier;
+    ProductType assignedProductType;
+  }
+
+  class DigitalSensor implements Sensor {
+    String uniqueIdentifier;
+    ProductType assignedProductType;
+    void measureQualityParameters(QualityParameters qualityParameters);
+  }
+
+  class AnalogSensor implements Sensor {
+    String uniqueIdentifier;
+    ProductType assignedProductType;
+    void measureQualityParameters(QualityParameters qualityParameters);
+  }
+
+  class Report {
+    List<TestResult> testResults;
+    String summary;
+    List<String> defects;
+  }
+
+  class UserInterface {
+    ProductDatabase productDatabase;
+    TestingModule testingModule;
+    ReportingModule reportingModule;
+
+    void inputProductInformation(Product product);
+    void viewReports();
+    void updateProductDatabase();
+  }
+
+  class ProductDatabase {
+    List<Product> products;
+  }
+
+  class TestingModule {
+    List<Sensor> sensors;
+    void simulateProductionProcess(Product product);
+  }
+
+  class ReportingModule {
+    void generateReport(List<TestResult> testResults);
+  }
+
+  composition AutomatedQualityAssurance -> UserInterface;
+  composition UserInterface -> ProductDatabase;
+  composition UserInterface -> TestingModule;
+  composition UserInterface -> ReportingModule;
+  composition TestingModule -> Sensor [*];
+  association Product -> TestResult [*];
+}

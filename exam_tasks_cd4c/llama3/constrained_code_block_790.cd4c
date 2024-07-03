@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram RoboticBeeSystem  {
+
+  class Hub  {
+    -> RoboticBee[*];
+    -> WeatherStation;
+    void assignTask(RoboticBee bee, Task task);
+    void monitorBeeStatus(RoboticBee bee);
+    void adjustWeatherSettings();
+  }
+
+  abstract class RoboticBee  {
+    String uniqueIdentifier;
+    BeeStatus status;
+  }
+
+  class Honeybee extends RoboticBee  {
+    int pollenCapacity;
+  }
+
+  class Bumblebee extends RoboticBee  {
+    int pollenCapacity;
+  }
+
+  class Butterfly extends RoboticBee  {
+    FlowerType flowerType;
+  }
+
+  class WeatherStation  {
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  enum BeeStatus  {
+    Idle, Busy;
+  }
+
+  enum Task  {
+    Pollinate, Explore;
+  }
+
+  enum FlowerType  {
+    Sunflower, Daisy;
+  }
+}

@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram VRSystem  {
+
+  class VRSystem  {
+    User[] users;
+    Model[] models;
+  }
+
+  abstract class User  {
+    String uniqueIdentifier;
+  }
+
+  class Architect extends User  {
+    void createModel(Model model);
+    void editModel(Model model);
+    void visualizeModel(Model model);
+  }
+
+  class Stakeholder extends User  {
+    void viewModel(Model model);
+    void commentOnModel(Model model);
+  }
+
+  abstract class Model  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Building extends Model  {
+    double dimensions;
+    String material;
+    String texture;
+  }
+
+  class Room extends Model  {
+    double dimensions;
+    String material;
+    String texture;
+  }
+
+  class Furniture extends Model  {
+    double dimensions;
+    String material;
+    String texture;
+  }
+
+  class Comment  {
+    String text;
+    User author;
+  }
+
+  composition VRSystem -> (has) User[*];
+  composition VRSystem -> (has) Model[*];
+  composition User -> (has) Model[*];
+  composition Model -> (has) Comment[*];
+  composition Architect -> (can) createModel;
+  composition Architect -> (can) editModel;
+  composition Architect -> (can) visualizeModel;
+  composition Stakeholder -> (can) viewModel;
+  composition Stakeholder -> (can) commentOnModel;
+  composition Building -> (has) dimensions;
+  composition Building -> (has) material;
+  }

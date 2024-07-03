@@ -1,0 +1,84 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- classdiagramComplete
+  
+  
+  
+  
+  
+  {class SmartHome
+    
+    
+ ;- Hub
+    
+    
+ <eos> BackupPower
+    
+  
+  
+;- Device
+  
+  
+  
+  Light
+  
+  
+  
+  ;Thermostat
+  
+  
+  
+  SecurityCamera
+  
+  
+  
+  ;BackupPower
+  
+  
+  
+  enumDeviceStatus
+  
+  
+  
+  ;ThermostatMode
+  
+  
+  
+  enumThermostatMode
+  
+  
+  
+  ;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Smarthome -> Hub
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  }

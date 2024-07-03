@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram RecipeSharingPlatform  {
+
+  class Recipe  {
+    String name;
+    String description;
+    Ingredient[] ingredients;
+  }
+
+  class Ingredient  {
+    String name;
+    int quantity;
+    UnitOfMeasurement unit;
+  }
+
+  class UnitOfMeasurement  {
+    String name;
+  }
+
+  class CookingMethod  {
+    String name;
+    Step[] steps;
+  }
+
+  class Step  {
+    String name;
+    String description;
+    Ingredient[] ingredients;
+  }
+
+  class User  {
+    Recipe[] recipes;
+  }
+
+  class Cuisine  {
+    String name;
+  }
+
+  class Course  {
+    String name;
+  }
+
+  class Rating  {
+    int rating;
+    Review review;
+  }
+
+  class Review  {
+    String text;
+  }
+
+  class RecipeCategory  {
+    Recipe recipe;
+    Cuisine cuisine;
+    Course course;
+    CookingMethod cookingMethod;
+  }
+
+  class RecipeSuggestion  {
+    Recipe recipe;
+    User user;
+  }
+
+  composition Recipe -> Ingredient[*];
+  composition Recipe -> CookingMethod[*];
+  composition Recipe -> Step[*];
+  composition User -> Recipe[*];
+  composition RecipeCategory -> Recipe[*];
+  composition RecipeSuggestion -> Recipe[*];
+  composition RecipeSuggestion -> User[*];
+}

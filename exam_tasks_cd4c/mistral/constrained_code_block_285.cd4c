@@ -1,0 +1,44 @@
+
+classdiagram PaymentGateway {
+
+  class PaymentGateway {
+    String uniqueIdentifier;
+    String name;
+    Transaction [
+     ] transactions;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    java.util.Date creationDate;
+    TransactionStatus status;
+    PaymentMethod paymentMethod;
+  }
+
+  enum TransactionStatus {
+    Pending, Successful, Failed;
+  }
+
+  abstract class PaymentMethod {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class CreditCard extends PaymentMethod {
+    String cardNumber;
+    String expirationDate;
+    String cvv;
+  }
+
+  class PayPal extends PaymentMethod {
+    String email;
+  }
+
+  class BankTransfer extends PaymentMethod {
+    String accountNumber;
+    String routingNumber;
+  }
+
+  composition PaymentGateway -> Transaction [*];
+}

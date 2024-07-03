@@ -1,0 +1,75 @@
+
+classdiagram WildlifeConservation {
+
+  class Species {
+    String uniqueIdentifier;
+    String name;
+    String classification;
+  }
+
+  class Population {
+    String uniqueIdentifier;
+    Species species;
+    int numberOfIndividuals;
+    AgeDistribution ageDistribution;
+    Habitat habitat;
+  }
+
+  class AgeDistribution {
+    int young;
+    int adult;
+    int old;
+  }
+
+  class Habitat {
+    String uniqueIdentifier;
+    String location;
+    int size;
+    String type;
+  }
+
+  class Observation {
+    String uniqueIdentifier;
+    Population population;
+    LocalDateTime dateTime;
+    String location;
+    int numberOfIndividuals;
+  }
+
+  class Researcher {
+    String uniqueIdentifier;
+    String name;
+    String expertise;
+    String researchInterests;
+    Species species;
+  }
+
+  association Species [*] Researcher [many]
+  -- Researcher readonly
+  {
+    ordered
+  }
+
+  		;
+  association Species [*] Population [many]
+  -- Population readonly
+  {
+    ordered
+  }
+
+ 		;
+  association Population [*] Habitat [many]
+  -- Habitat readonly
+  {
+    ordered
+  }
+
+ 		;
+  association Population [*] Observation [many]
+  -- Observation readonly
+  {
+    ordered
+  }
+
+ 		;
+}

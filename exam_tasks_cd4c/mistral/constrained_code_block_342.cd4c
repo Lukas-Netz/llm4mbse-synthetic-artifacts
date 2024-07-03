@@ -1,0 +1,63 @@
+
+classdiagram AuctionSite {
+
+  class Category {
+    String name;
+    String description;
+    Item [
+     ] items;
+  }
+
+  abstract class Item {
+    String name;
+    String description;
+    double startingPrice;
+    ItemStatus status;
+  }
+
+  class Product extends Item {
+    double weight;
+    String dimensions;
+    String material;
+  }
+
+  class Service extends Item {
+    double duration;
+    String provider;
+  }
+
+  class Collectible extends Item {
+    int rarity;
+    int editionNumber;
+  }
+
+  enum ItemStatus {
+    Active, Closed;
+  }
+
+  class UserAccount {
+    String username;
+    String password;
+    UserRole role;
+  }
+
+  enum UserRole {
+    Buyer, Seller, Admin;
+  }
+
+  class Payment {
+    double amount;
+    Item item;
+    UserAccount buyer;
+    PaymentStatus status;
+  }
+
+  enum PaymentStatus {
+    Pending, Completed, Failed;
+  }
+
+  composition AuctionSite -> Category [*];
+  composition Category -> Item [*];
+  composition UserAccount -> UserRole;
+  composition Payment -> Item;
+}

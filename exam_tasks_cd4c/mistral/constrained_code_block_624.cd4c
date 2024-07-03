@@ -1,0 +1,102 @@
+
+classdiagram FinancialPlanning {
+
+  class UserProfile {
+    String username;
+    String password;
+    String email;
+    String firstName;
+    String lastName;
+    int riskTolerance;
+    FinancialGoal [ ] goals;
+  }
+
+  class FinancialData {
+    String bankAccount;
+    String creditCard;
+    String investmentPortfolio;
+  }
+
+  class AnalysisEngine {
+    FinancialData data;
+    UserProfile user;
+    PersonalizedAdvice analyze();
+  }
+
+  class RecommendationEngine {
+    PersonalizedAdvice advice;
+    InvestmentRecommendation [ ] investments;
+    SavingsRecommendation [ ] savings;
+    BudgetingRecommendation [ ] budgeting;
+    Recommendation generateRecommendations();
+  }
+
+  class TransactionManager {
+    FinancialInstitution [ ] institutions;
+    void performTransaction(Transaction transaction);
+  }
+
+  class Reporting {
+    UserProfile user;
+    FinancialData data;
+    Report generateReport();
+  }
+
+  class FinancialInstitution {
+    String name;
+    String apiKey;
+  }
+
+  class PersonalizedAdvice {
+    String message;
+  }
+
+  class InvestmentRecommendation {
+    String investmentName;
+    double recommendedAmount;
+  }
+
+  class SavingsRecommendation {
+    double recommendedAmount;
+    String savingsGoal;
+  }
+
+  class BudgetingRecommendation {
+    double recommendedBudget;
+    String budgetCategory;
+  }
+
+  class Transaction {
+    String type;
+    double amount;
+    FinancialInstitution institution;
+  }
+
+  class FinancialGoal {
+    String name;
+    double targetAmount;
+    double currentAmount;
+  }
+
+  class Currency {
+    String code;
+    double exchangeRate;
+  }
+
+  class Language {
+    String code;
+    String name;
+  }
+
+  class User {
+    UserProfile profile;
+    Language language;
+    Currency currency;
+  }
+
+  association User -> UserProfile [1];
+  association User -> Language [0..1];
+  association User -> Currency [0..1];
+  association AnalysisEngine -> FinancialData [1];
+ 
+  }

@@ -1,0 +1,87 @@
+
+classdiagram OnlineReputationManagementSystem {
+
+  class Company {
+    String name;
+    String website;
+    List<SocialMediaProfile> socialMediaProfiles;
+    List<Review> reviews;
+    List<Rating> ratings;
+    UserManager userManager;
+  }
+
+  class SocialMediaProfile {
+    String platform;
+    String username;
+    List<Comment> comments;
+  }
+
+  class Review {
+    String content;
+    User reviewer;
+    UserManager userManager;
+  }
+
+  class Rating {
+    int score;
+    UserManager userManager;
+  }
+
+  class UserManager {
+    List<User> users;
+    Map<User, Permission> permissionsMap;
+    void addUser(User user);
+    void removeUser(User user);
+    User getUser(String username);
+    Permission getPermission(User user);
+  }
+
+  class User {
+    String username;
+    String email;
+    Permission permission;
+  }
+
+  class Permission {
+    String name;
+    String description;
+  }
+
+  <<association>> class OnlineReputationManagementSystem {
+    Company company;
+    UserManager userManager;
+    <<association>> SocialMediaProfile socialMediaProfile;
+    <<association>> Review review;
+    <<association>> Rating rating;
+    <<association>> User user;
+    <<association>> Permission permission;
+  }
+
+  <<association>> class Review {
+    User reviewer;
+    UserManager userManager;
+  }
+
+  <<association>> class Rating {
+    User user;
+    UserManager userManager;
+  }
+
+  <<association>> class Comment {
+    User author;
+    UserManager userManager;
+  }
+
+  <<association>> class Permission {
+    User user;
+  }
+
+  <<association>> class User {
+    UserManager userManager;
+  }
+
+  <<association>> class UserManager {
+    List<User> users;
+    Map<User, Permission> permissionsMap;
+  }
+}

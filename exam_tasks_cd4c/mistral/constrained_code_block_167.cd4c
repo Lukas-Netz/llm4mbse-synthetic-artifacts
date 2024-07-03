@@ -1,0 +1,67 @@
+
+classdiagram SupplyChain {
+
+  class Manufacturer {
+    produce();
+  }
+
+  class Production {
+    produceItem(Item item);
+  }
+
+  class Warehouse {
+    storeItem(Item item);
+  }
+
+  class Transportation {
+    transportItem(Item item, ModeOfTransportation mode);
+  }
+
+  class Delivery {
+    deliverItem(Item item);
+  }
+
+  class Item {
+    String itemId;
+    ItemType type;
+    GoodsType goodsType;
+    Shipment shipment;
+  }
+
+  class Shipment {
+    String shipmentId;
+    Location location;
+    ShipmentStatus status;
+    Date shipmentDate;
+    Date expectedDeliveryDate;
+  }
+
+  class Location {
+    String country;
+    String region;
+  }
+
+  enum ItemType {
+    RawMaterial, WorkInProgress, FinishedGoods;
+  }
+
+  enum GoodsType {
+    Bulk, Pallet, Parcel;
+  }
+
+  enum ShipmentStatus {
+    InProduction, InTransportation, InStorage, Delivered;
+  }
+
+  enum ModeOfTransportation {
+    Air, Land, Sea;
+  }
+
+  composition Manufacturer -> Production;
+  composition Production -> Warehouse;
+  composition Warehouse -> Transportation;
+  composition Transportation -> Delivery;
+  association Item --o00o- 											;
+  association Shipment --o00o- 										;
+  association Location --o00o- 										;
+}

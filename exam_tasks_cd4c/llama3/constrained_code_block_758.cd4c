@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram TextileCenter  {
+
+  class Textile  {
+    String uniqueIdentifier;
+    String name;
+    TextileType type;
+    Condition condition;
+    Provenance provenance;
+    ConservationStatus conservationStatus;
+  }
+
+  enum TextileType  {
+    Fabric, Garment, Accessory;
+  }
+
+  enum Condition  {
+    Excellent, Good, Fair, Poor;
+  }
+
+  enum ConservationStatus  {
+    NotConserved, InProgress, Restored;
+  }
+
+  class Provenance  {
+    String origin;
+    Date date;
+    List<String> previousOwners;
+  }
+
+  class Conservator  {
+    String uniqueIdentifier;
+    String name;
+    List<Textile> textiles;
+  }
+
+  class ConservationWork  {
+    Textile textile;
+    Conservator conservator;
+    Date startDate;
+    Date endDate;
+    String progress;
+  }
+
+  composition Textile -> (has) Provenance;
+  composition Textile -> (has) ConservationStatus;
+  composition Textile -> (has) Conservator [0..1];
+  composition Conservator -> Textile [0..*];
+  composition ConservationWork -> Textile;
+  composition ConservationWork -> Conservator;
+}

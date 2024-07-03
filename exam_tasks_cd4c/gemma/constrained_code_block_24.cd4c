@@ -1,0 +1,390 @@
+
+
+classdiagram CustomerRelationshipManagement {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String emailAddress;
+  }
+
+  class Account {
+    String uniqueIdentifier;
+    String accountName;
+    AccountType accountType;
+    Customer customer;
+  }
+
+  class Contact {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+    Account account;
+    Relationship relationship;
+  }
+
+  enum Relationship {
+    Owner, Manager, Employee
+  
+
+  
+
+  
+;
+
+  enum AccountType  
+  
+  
+
+  ;
+
+  composition CustomerRelationshipManagement  (has  Customer)
+  
+  
+
+  
+
+;
+
+  composition CustomerRelationshipManagement  (has  Account)
+
+  
+
+  
+
+  ;
+
+  composition CustomerRelationshipManagement  (has  Contact)
+
+  
+
+  
+
+  ;
+
+  composition CustomerRelationshipManagement  (has  Account)
+
+  
+
+  
+
+  ;
+
+  composition CustomerRelationshipManagement  (has  Relationship)
+
+  
+
+  
+
+  ;
+
+  composition CustomerRelationshipManagement  (has  AccountType)
+
+  
+
+  
+
+  ;
+
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association CustomerRelationshipManagement  (has  )  -> Customer
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Account
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Contact
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Relationship
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> AccountType
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Customer
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Account
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Contact
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> Relationship
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ association CustomerRelationshipManagement  (has  )  -> AccountType
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ ;
+
+}

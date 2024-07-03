@@ -1,0 +1,54 @@
+
+
+classdiagram RetailMerchandisingSystem {
+
+    class Database {
+      void storeProductInformation(Product product);
+      Product getProductInformation(String productID);
+    }
+
+    class RecommendationEngine {
+      List<ProductRecommendation> generateRecommendations(Customer customer);
+    }
+
+    class ProductCatalog {
+      Product getProduct(String productID);
+      void updateProductInformation(Product product);
+    }
+
+    class InventoryManagement {
+      void trackInventory(Product product, int quantity);
+      boolean isProductInStock(Product product);
+    }
+
+    class CustomerProfile {
+      void storeCustomerPreferences(Customer customer);
+      CustomerPreferences getCustomerPreferences(Customer customer);
+    }
+
+    class Customer {
+      String name;
+      List<Purchase> purchaseHistory;
+      Preferences preferences;
+    }
+
+    class Purchase {
+      String productID;
+      int quantity;
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+      String category;
+    }
+
+  composition Database -> (has) InventoryManagement;
+  composition Database -> (has) CustomerProfile;
+  association RecommendationEngine -> CustomerProfile;
+  association ProductCatalog -> Product;
+  association InventoryManagement -> Product;
+  association CustomerProfile -> Purchase;
+  association Purchase -> Product;
+}

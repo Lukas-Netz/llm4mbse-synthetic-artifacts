@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram EHRSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    -> MedicalCondition[*];
+    -> Medication[*];
+    -> TestResult[*];
+    -> Appointment[*];
+    -> MedicalProcedure[*];
+  }
+
+  class MedicalCondition  {
+    String name;
+    String description;
+  }
+
+  class Medication  {
+    String name;
+    int dosage;
+    String frequency;
+  }
+
+  class TestResult  {
+    String name;
+    double value;
+    Date date;
+  }
+
+  class Appointment  {
+    Date date;
+    Time time;
+    Doctor doctor;
+  }
+
+  class MedicalProcedure  {
+    String name;
+    Date date;
+    Doctor doctor;
+  }
+
+  class Doctor  {
+    String name;
+    String specialty;
+    Hospital hospital;
+  }
+
+  class Hospital  {
+    String name;
+  }
+
+  class MedicalSummary  {
+    Patient patient;
+    -> MedicalCondition[*];
+    -> Medication[*];
+    -> TestResult[*];
+    -> MedicalProcedure[*];
+  }
+
+  class DoctorSchedule  {
+    Doctor doctor;
+    -> Appointment[*];
+    -> MedicalProcedure[*];
+  }
+
+  composition Patient -> MedicalCondition;
+  composition Patient -> Medication;
+  composition Patient -> TestResult;
+  composition Patient -> Appointment;
+  composition Patient -> MedicalProcedure;
+  composition Doctor -> Hospital;
+  composition MedicalSummary -> Patient;
+  composition DoctorSchedule -> Doctor;
+}

@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram WildlifeIdentificationSystem  {
+
+  class Species  {
+    String uniqueIdentifier;
+    String name;
+    Characteristics characteristics;
+    Habitat habitat;
+    Image[] images;
+  }
+
+  class Characteristics  {
+    String color;
+    String shape;
+    int size;
+  }
+
+  class Habitat  {
+    String location;
+    String description;
+  }
+
+  class Image  {
+    String filename;
+    Species species;
+  }
+
+  class User  {
+    String username;
+    String password;
+    boolean isAdmin;
+  }
+
+  class MachineLearningAlgorithm  {
+    void train(Species[] species);
+    Species identify(Image image);
+  }
+
+  class Database  {
+    void store(Species species);
+    Species retrieve(String uniqueIdentifier);
+  }
+
+  composition Species -> (has) Characteristics;
+  composition Species -> (has) Habitat;
+  composition Species -> (has) Image[*];
+  composition User -> (has) MachineLearningAlgorithm;
+  composition Database -> (has) Species[*];
+  association User -> (uses) Database;
+  association MachineLearningAlgorithm -> (uses) Database;
+}

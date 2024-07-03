@@ -1,0 +1,52 @@
+
+classdiagram DevOpsPlatform {
+
+  class Project {
+    String name;
+    int version;
+    Developer [  ] developers;
+    Tester [ ] testers;
+    Deployer deployer;
+  }
+
+  class Developer {
+    String uniqueIdentifier;
+    Project [ ] projects;
+  }
+
+  class Tester {
+    String uniqueIdentifier;
+    Project [ ] projects;
+  }
+
+  class Deployer {
+    String uniqueIdentifier;
+    Project [ ] projects;
+  }
+
+  class Environment {
+    String name;
+    Project [ ] projects;
+  }
+
+  class Tool {
+    String name;
+    Project [ ] projects;
+  }
+
+  class VersionControlSystem extends Tool { }
+  class ContinuousIntegrationTool extends Tool { }
+  class ContinuousDeploymentTool extends Tool { }
+
+  class ProjectStatus {
+    int version;
+    String buildStatus;
+    String deploymentStatus;
+  }
+
+  composition Project -> Developer [*];
+  composition Project -> Tester [*];
+  composition Project -> Deployer;
+  composition Environment -> Project [*];
+  composition Tool -> Project [*];
+}

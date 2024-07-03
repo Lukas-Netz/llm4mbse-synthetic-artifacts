@@ -1,0 +1,78 @@
+
+classdiagram FitnessApp {
+
+  class User {
+    String username;
+    String password;
+    WorkoutRoutine [ ] workoutRoutines;
+    FitnessGoal [ ] fitnessGoals;
+    Friend [ ] friends;
+    FitnessChallenge [ ] challenges;
+  }
+
+  class WorkoutRoutine {
+    String name;
+    Exercise [ ] exercises;
+    Set [ ] sets;
+    Rep [ ] reps;
+  }
+
+  class Exercise {
+    String name;
+    String muscleGroup;
+  }
+
+  class Set {
+    int reps;
+    int weight;
+  }
+
+  class Rep {
+    int reps;
+    int weight;
+  }
+
+  class FitnessGoal {
+    String goalType;
+    int targetValue;
+    int currentValue;
+  }
+
+  class Friend {
+    User friend;
+    User user;
+  }
+
+  class FitnessChallenge {
+    String name;
+    Date startDate;
+    Date endDate;
+    User [ ] participants;
+    int totalDistance;
+    int totalCalories;
+  }
+
+  class Leaderboard {
+    FitnessChallenge challenge;
+    User [ ] topPerformers;
+  }
+
+  class Notification {
+    User user;
+    String message;
+    boolean isReminder;
+  }
+
+  class WearableDevice {
+    String deviceName;
+    int activityLevel;
+  }
+
+  association User <-> WorkoutRoutine;
+  association User <-> FitnessGoal;
+  association User <-> Friend;
+  association User <-> FitnessChallenge;
+  association FitnessChallenge <-> Leaderboard;
+  association User <-> Notification;
+  association WearableDevice <-> User [0..*];
+}

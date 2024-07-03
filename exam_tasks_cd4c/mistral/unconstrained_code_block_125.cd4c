@@ -1,0 +1,35 @@
+
+classdiagram MarineRenewableEnergy {
+
+  class FloatingPlatform {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  abstract class Turbine {
+    String uniqueIdentifier;
+    TurbineStatus status;
+  }
+
+  class WindTurbine extends Turbine {}
+  class TidalTurbine extends Turbine {}
+
+  class ControlSystem {
+    void monitorPerformance();
+    void adjustSpeed();
+    void sendMaintenanceRequest();
+  }
+
+  class WeatherStation {
+    int windSpeed;
+    String windDirection;
+  }
+
+  enum TurbineStatus {
+    Operational, NonOperational;
+  }
+
+  composition FloatingPlatform -> Turbine [1..*];
+  composition FloatingPlatform -> ControlSystem;
+  association FloatingPlatform -> WeatherStation;
+}

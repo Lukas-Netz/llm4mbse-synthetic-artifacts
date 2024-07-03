@@ -1,0 +1,49 @@
+
+classdiagram DroneSprayingSystem {
+
+  class Drone {
+    String uniqueIdentifier;
+    DroneType type;
+  }
+
+  enum DroneType {
+    Spraying, Monitoring;
+  }
+
+  class SprayingDrone extends Drone {
+    int sprayCapacity;
+  }
+
+  class MonitoringDrone extends Drone {
+    Camera camera;
+  }
+
+  class Camera {
+    void takePicture();
+  }
+
+  class Field {
+    String name;
+    int size;
+  }
+
+  class WeatherStation {
+    int temperature;
+    int humidity;
+    int windSpeed;
+  }
+
+  class DroneSprayingSystem {
+    Drone [ ] drones;
+    Field [ ] fields;
+    WeatherStation weatherStation;
+    void manageDrones();
+    void manageFields();
+    void manageWeatherStation();
+    void provideSprayingInfo();
+  }
+
+  composition DroneSprayingSystem -> Drone [*];
+  composition DroneSprayingSystem -> Field [*];
+  composition DroneSprayingSystem -> WeatherStation;
+}

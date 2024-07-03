@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram GeneticCounselingService  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+  }
+
+  class GeneticTest  {
+    String uniqueIdentifier;
+    String name;
+    boolean result;
+  }
+
+  class CounselingSession  {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+    -> Patient;
+    -> GeneticTest;
+  }
+
+  class Report  {
+    String uniqueIdentifier;
+    Date date;
+    String content;
+    -> Patient;
+    -> CounselingSession;
+  }
+
+  class Recommendation  {
+    String uniqueIdentifier;
+    String content;
+    boolean status;
+    -> Patient;
+    -> GeneticTest;
+  }
+
+  class GeneticCounselingService  {
+    -> Patient[*];
+    -> GeneticTest[*];
+    -> CounselingSession[*];
+    -> Report[*];
+    -> Recommendation[*];
+  }
+
+  composition GeneticCounselingService -> (has) Patient[*];
+  composition GeneticCounselingService -> (has) GeneticTest[*];
+  composition GeneticCounselingService -> (has) CounselingSession[*];
+  composition GeneticCounselingService -> (has) Report[*];
+  composition GeneticCounselingService -> (has) Recommendation[*];
+  association CounselingSession -> (has) Patient;
+  association CounselingSession -> (has) GeneticTest;
+  association Report -> (has) Patient;
+  association Report -> (has) CounselingSession;
+  association Recommendation -> (has) Patient;
+  association Recommendation -> (has) GeneticTest;
+}

@@ -1,0 +1,47 @@
+
+classdiagram BCI {
+
+  class Headset {
+    String name;
+    String uniqueIdentifier;
+    Sensor [ ] sensors;
+  }
+
+  class ProcessingUnit {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class ControlDevice {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class User {
+    String name;
+    String uniqueIdentifier;
+    Session [ ] sessions;
+  }
+
+  class Session {
+    String uniqueIdentifier;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  class Sensor {
+    String type;
+    String uniqueIdentifier;
+  }
+
+  class BrainSignal {
+    String uniqueIdentifier;
+    String processedInformation;
+  }
+
+  composition Headset -> Sensor [*];
+  association User <- Session [*];
+  association Session -- BrainSignal [*];
+  association ProcessingUnit -- BrainSignal [*];
+  association ControlDevice -- BrainSignal [*];
+}

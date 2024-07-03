@@ -1,0 +1,38 @@
+
+classdiagram InteriorDesignPlatform {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Room [ ] rooms;
+  }
+
+  class Room {
+    String name;
+    double size;
+    FurnitureItem [ ] furnitureItems;
+  }
+
+  abstract class FurnitureItem {
+    String name;
+    String description;
+    double price;
+  }
+
+  class Chair extends FurnitureItem { }
+  class Table extends FurnitureItem { }
+  class Lamp extends FurnitureItem { }
+
+  composition User -> Project [*];
+  composition Project -> Room [*];
+  composition Room -> FurnitureItem [*];
+
+  class  Visualization {
+    Room room;
+  }
+}

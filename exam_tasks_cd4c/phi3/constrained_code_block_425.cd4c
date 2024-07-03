@@ -1,0 +1,48 @@
+
+classdiagram DigitalWritingWorkshop {
+
+    class Workshop {
+      String name;
+      String uniqueIdentifier;
+      List<Session> sessions;
+    }
+
+    class Session {
+      String title;
+      Date date;
+      List<Attendee> attendees;
+      List<Discussion> discussions;
+    }
+
+    class Attendee {
+      String username;
+      String email;
+      List<Session> sessionsAttended;
+    }
+
+    class Discussion {
+      String title;
+      String description;
+      List<Comment> comments;
+    }
+
+    class Comment {
+      String text;
+      Date timestamp;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Session> sessionsCreated;
+      List<Discussion> discussionsModerated;
+    }
+
+    composition Workshop -> Session [*];
+    composition Workshop -> Instructor [*];
+    composition Session -> Attendee [*];
+    composition Session -> Discussion [*];
+    composition Discussion -> Comment [*];
+    composition Instructor -> Session [*];
+    composition Instructor -> Discussion [*];
+}

@@ -1,0 +1,80 @@
+
+classdiagram CloudStorage {
+
+  class Company {
+    String name;
+    Department [][] departments;
+  }
+
+  class Department {
+    String name;
+    User [][] users;
+    Folder [][] folders;
+  }
+
+  class User {
+    String username;
+    String password;
+    UserType userType;
+    Permission [][] permissions;
+  }
+
+  enum UserType {
+    Administrator, Manager, RegularUser;
+  }
+
+  class Folder {
+    String name;
+    File [][] files;
+    Folder [][] subFolders;
+    String content;
+    String metadata;
+    String [][ ] tags;
+  }
+
+  class File {
+    String name;
+    String content;
+    String metadata;
+    String [][ ] tags;
+    Version [][ ] versions;
+  }
+
+  class Version {
+    String timestamp;
+    String content;
+    String metadata;
+    String [][ ] tags;
+  }
+
+  class Permission {
+    User user;
+    PermissionLevel level;
+  }
+
+  enum PermissionLevel {
+    Read, Write, Admin;
+  }
+
+  class Encryption {
+    String encryptedContent;
+    String decryptedContent;
+  }
+
+  class AccessControl {
+    User user;
+    boolean isAllowed;
+  }
+
+  class BackupRecovery {
+    String backupLocation;
+    String recoveryLocation;
+  }
+
+  composition Company -> Department [*];
+  composition Department -> User [*];
+  composition Department -> Folder [*];
+  composition Folder -> File [*];
+  composition Folder -> SubFolder [*];
+  composition File -> Version [*];
+}

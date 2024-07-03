@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram ArtAuction  {
+
+  class Artist  {
+    String name;
+  }
+
+  class Artwork  {
+    String title;
+    String description;
+    double price;
+    List<Bid> bidHistory;
+  }
+
+  class Bid  {
+    double amount;
+    Artist bidder;
+    Date timestamp;
+  }
+
+  class IndividualBidder  {
+    String name;
+    String email;
+  }
+
+  class CorporateBidder  {
+    String companyName;
+    String contactPerson;
+  }
+
+  class Bidder  {
+    String name;
+    String email;
+    int reputation;
+  }
+
+  class Painting extends Artwork  {
+  }
+
+  class Sculpture extends Artwork  {
+  }
+
+  class Print extends Artwork  {
+  }
+
+  composition Artist  ->  (has) Artwork[*];
+  composition Artwork  ->  (has) Bid[*];
+  composition Bidder  ->  (has) Artwork[*];
+  composition Artwork  ->  (has) Bidder[*];
+}
+

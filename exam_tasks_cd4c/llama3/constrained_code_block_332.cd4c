@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram HRSystem  {
+
+  class Company  {
+    String name;
+    List<Employee> employees;
+  }
+
+  class Employee  {
+    String name;
+    String jobTitle;
+    JobDescription jobDescription;
+    Department department;
+    List<Attendance> attendances;
+  }
+
+  class JobDescription  {
+    String description;
+  }
+
+  class Department  {
+    String name;
+    List<JobTitle> jobTitles;
+  }
+
+  class JobTitle  {
+    String title;
+  }
+
+  class Attendance  {
+    Date date;
+    boolean present;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  class Policy  {
+    String title;
+    String content;
+  }
+
+  composition Company -> Employee[*];
+  composition Employee -> Department;
+  composition Department -> JobTitle[*];
+  composition Company -> Policy[*];
+  composition Company -> Report[*];
+}

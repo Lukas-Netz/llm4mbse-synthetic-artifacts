@@ -1,0 +1,92 @@
+
+classdiagram Ecommerce {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    CustomerProfile [  ] profiles;
+  }
+
+  class CustomerProfile {
+    String uniqueIdentifier;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    double price;
+    String category;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Customer customer;
+    Product [ ] products;
+    OrderStatus status;
+  }
+
+  enum OrderStatus {
+    Created,
+    Processing,
+    Shipped,
+    Delivered,
+    Cancelled;
+  }
+
+  class PaymentGateway {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class ShippingProvider {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class CustomerReview {
+    String uniqueIdentifier;
+    Customer customer;
+    Product product;
+    int rating;
+    String review;
+  }
+
+  class Analytics {
+    String uniqueIdentifier;
+    CustomerSegmentation [ ] segments;
+  }
+
+  class CustomerSegmentation {
+    String uniqueIdentifier;
+    String name;
+    Customer [ ] customers;
+  }
+
+  class Personalization {
+    String uniqueIdentifier;
+    Customer [ ] customers;
+    Product [ ] recommendations;
+  }
+
+  class PersonalizedOffer {
+    String uniqueIdentifier;
+    Customer [ ] customers;
+    Product [ ] offers;
+  }
+
+  class Integration {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  composition Customer -> CustomerProfile [*];
+  composition Order -> Product [*];
+  association Customer -> CustomerReview [*];
+  association Customer -> Personalization [*];
+  association Customer -> PersonalizedOffer [*];
+  association Customer -> Integration [*];
+  association Product -> Order [*];
+  }

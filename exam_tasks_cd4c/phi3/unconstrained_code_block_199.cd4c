@@ -1,0 +1,58 @@
+
+classdiagram DigitalCivicEngagementPlatform {
+
+    class Citizen {
+      String uniqueIdentifier;
+      void submitProposal(Proposal proposal);
+      void voteOnProposal(Proposal proposal);
+      void engageInDiscussion(Discussion discussion);
+    }
+
+    class Proposal {
+      String title;
+      String description;
+      ProposalStatus status;
+      String category;
+      void submitProposal(Citizen citizen);
+      void voteOnProposal(Citizen citizen);
+      void updateStatus(ProposalStatus newStatus);
+    }
+
+    class Discussion {
+      Proposal relatedProposal;
+      String title;
+      void addComment(Citizen citizen, String comment);
+      void moderateComment(Citizen moderator, String comment);
+    }
+
+    class Administrator {
+      String uniqueIdentifier;
+      void manageProposal(Proposal proposal);
+      void manageDiscussion(Discussion discussion);
+      void trackEngagementMetrics();
+    }
+
+    class EngagementMetrics {
+      int proposalsSubmitted;
+      int votesCast;
+      int commentsMade;
+      void updateMetrics(Proposal proposal, int votes, int comments);
+    }
+
+    enum ProposalStatus {
+      Pending, Approved, Rejected;
+    }
+
+    enum DiscussionModeration {
+      Approved, Rejected;
+    }
+
+    composition Citizen -> (has) Proposal;
+    composition Citizen -> (has) Discussion;
+    composition Proposal -> (has) Discussion;
+    composition Administrator -> (has) EngagementMetrics;
+    composition Administrator -> (has) Proposal;
+    composition Administrator -> (has) Discussion;
+    composition EngagementMetrics -> (has) Proposal;
+    composition EngagementMetrics -> (has) Discussion;
+}

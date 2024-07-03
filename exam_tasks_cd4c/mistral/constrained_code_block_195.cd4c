@@ -1,0 +1,51 @@
+
+classdiagram CityTraffic {
+
+  class Intersection {
+    String uniqueIdentifier;
+    TrafficLightController controller;
+    List<Vehicle> vehicles;
+  }
+
+  class TrafficLightController {
+    Intersection intersection;
+    String name;
+    TrafficLightType type;
+    void setColor(TrafficLightColor color, int duration);
+    void adjustTrafficLight(List<Vehicle> vehicles);
+  }
+
+  class TrafficLight {
+    String name;
+    TrafficLightType type;
+    TrafficLightColor color;
+  }
+
+  enum TrafficLightColor {
+    Red, Yellow, Green;
+  }
+
+  enum TrafficLightType {
+    Regular, Pedestrian;
+  }
+
+  class Vehicle {
+    String uniqueIdentifier;
+    VehicleType type;
+    int speed;
+  }
+
+  enum VehicleType {
+    Car, Truck, Bike;
+  }
+
+  class CentralTrafficManagement {
+    List<TrafficLightController> intersections;
+    void receiveData(TrafficLightController controller);
+    void provideRealTimeTrafficInfo();
+  }
+
+  composition Intersection -> TrafficLightController;
+  composition Intersection -> List<<Vehicle>>;
+  composition CentralTrafficManagement -> List<<TrafficLightController>>;
+}

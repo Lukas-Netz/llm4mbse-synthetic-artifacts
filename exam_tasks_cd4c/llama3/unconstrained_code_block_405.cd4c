@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram LuxuryFashionAuthenticationSystem  {
+
+  class LuxuryFashionItem  {
+    String uniqueIdentifier;
+    String description;
+    String serialNumber;
+    LFIType type;
+  }
+
+  enum LFIType  {
+    Clothing, Accessories, Jewelry;
+  }
+
+  class Owner  {
+    String uniqueIdentifier;
+    String name;
+    String address;
+  }
+
+  class ProvenanceRecord  {
+    String origin;
+    String productionProcess;
+    String materialsUsed;
+  }
+
+  class Blockchain  {
+    List<ProvenanceRecord> provenanceRecords;
+    List<Owner> owners;
+  }
+
+  class SmartContract  {
+    void verifyAuthenticity(LuxuryFashionItem lfi);
+    void transferOwnership(LuxuryFashionItem lfi, Owner newOwner);
+  }
+
+  class Authentication  {
+    boolean verifyAuthenticity(LuxuryFashionItem lfi);
+  }
+
+  class LuxuryFashionItemService  {
+    void addLFI(LuxuryFashionItem lfi);
+    void updateProvenanceRecord(LuxuryFashionItem lfi, ProvenanceRecord newProvenanceRecord);
+    void transferOwnership(LuxuryFashionItem lfi, Owner newOwner);
+    LuxuryFashionItem retrieveLFI(String uniqueIdentifier);
+  }
+
+  composition LuxuryFashionItemService -> (has) Blockchain;
+  composition Blockchain -> (has) ProvenanceRecord[*];
+  composition Blockchain -> (has) Owner[*];
+  composition SmartContract -> (has) Authentication;
+  composition LuxuryFashionItem -> (has) ProvenanceRecord;
+  composition LuxuryFashionItem -> (has) Owner;
+}

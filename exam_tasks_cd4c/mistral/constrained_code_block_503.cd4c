@@ -1,0 +1,62 @@
+
+classdiagram AUVSystem {
+
+  class AUV {
+    String uniqueIdentifier;
+    AUVType type;
+    Location currentLocation;
+    AUVStatus status;
+  }
+
+  enum AUVType {
+    Research, Exploration, Maintenance;
+  }
+
+  enum AUVStatus {
+    Operational, NonOperational;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+    double depth;
+  }
+
+  class ResearchAUV extends AUV {
+    Sensor sensor;
+  }
+
+  class ExplorationAUV extends AUV {
+    Camera camera;
+  }
+
+  class MaintenanceAUV extends AUV {
+    Tool tool;
+  }
+
+  class Sensor {
+    String sensorType;
+  }
+
+  class Camera {
+    String resolution;
+  }
+
+  class Tool {
+    String toolType;
+  }
+
+  class SurfaceStation {
+    -> AUV [*];
+    void sendCommand(AUV auv, String command);
+    void receiveData(AUV auv, String data);
+  }
+
+  class PowerLevel {
+    double level;
+    double threshold;
+  }
+
+  composition SurfaceStation -> AUV [*];
+  association AUV -- PowerLevel;
+}

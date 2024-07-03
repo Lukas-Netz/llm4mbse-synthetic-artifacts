@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram CustomerSupportSystem  {
+
+  class KnowledgeBase  {
+    Product[] products;
+    Service[] services;
+  }
+
+  class NLPModule  {
+    InquiryType analyze(Inquiry inquiry);
+  }
+
+  class Database  {
+    Customer[] customers;
+    Interaction[] interactions;
+  }
+
+  class Chatbot  {
+    void interact(Customer customer, Inquiry inquiry);
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+  }
+
+  class Service  {
+    String name;
+    String description;
+  }
+
+  class Inquiry  {
+    InquiryType type;
+    String text;
+  }
+
+  enum InquiryType  {
+    PRODUCT_INFO,
+    ORDER_STATUS,
+    TECHNICAL_SUPPORT
+  ;}
+
+  class Customer  {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Interaction  {
+    Customer customer;
+    Inquiry inquiry;
+    Response response;
+  }
+
+  class Response  {
+    String text;
+  }
+
+  composition KnowledgeBase -> (contains) Product[*];
+  composition KnowledgeBase -> (contains) Service[*];
+  composition Database -> (stores) Customer[*];
+  composition Database -> (stores) Interaction[*];
+  composition Chatbot -> (interacts) Customer[*];
+  composition Chatbot -> (handles) Inquiry[*];
+  composition NLPModule -> (analyzes) Inquiry[*];
+}

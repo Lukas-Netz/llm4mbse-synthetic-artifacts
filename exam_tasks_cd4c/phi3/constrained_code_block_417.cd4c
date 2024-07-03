@@ -1,0 +1,71 @@
+
+classdiagram VirtualWineTastingPlatform {
+
+    class WineTasting {
+      String uniqueID;
+      String name;
+      String description;
+      Date date;
+      List<Wine> wines;
+    }
+
+    class Wine {
+      String name;
+      int vintage;
+      int rating;
+    }
+
+    class User {
+      String uniqueID;
+      String name;
+      String email;
+      List<WineTasting> attendedWineTastings;
+      List<Wine> ratedWines;
+    }
+
+    class WineTastingRating {
+      User user;
+      Wine wine;
+      int rating;
+    }
+
+    class WineTastingStats {
+      int userCount;
+      int wineCount;
+    }
+
+    association WineTasting 
+      has 
+        (List)
+        -> Wine;
+
+    association User 
+      has 
+        (List)
+        -> WineTasting;
+
+    association Wine 
+      has 
+        (List)
+        -> WineTastingRating;
+
+    association WineTastingRating 
+      has 
+        (User)
+        -> Wine;
+
+    association User 
+      has 
+        (List)
+        -> WineTastingRating;
+
+    association WineTastingStats 
+      has 
+        (User)
+        -> WineTasting;
+
+    association WineTastingStats 
+      has 
+        (Wine)
+        -> Wine;
+}

@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram VirtualRealitySustainableEnergy  {
+
+  class RenewableEnergySource  {
+    EnergyOutput energyOutput;
+    Efficiency efficiency;
+    Cost cost;
+  }
+
+  class SolarEnergy extends RenewableEnergySource  {
+    float irradiance;
+  }
+
+  class WindEnergy extends RenewableEnergySource  {
+    float windSpeed;
+  }
+
+  class HydroEnergy extends RenewableEnergySource  {
+    float waterFlowRate;
+  }
+
+  class Grid  {
+    EnergyOutput energyDemand;
+  }
+
+  class Simulation  {
+    RenewableEnergySource[] renewableEnergySources;
+    Grid grid;
+    Visualization visualization;
+  }
+
+  class Visualization  {
+    EnergyOutput[] energyOutputs;
+    Efficiency[] efficiencies;
+    Cost[] costs;
+  }
+
+  composition Simulation -> (has) RenewableEnergySource[*];
+  composition Simulation -> (has) Grid;
+  composition Simulation -> (has) Visualization;
+  composition Grid -> (has) EnergyOutput;
+}
+

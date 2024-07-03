@@ -1,0 +1,56 @@
+
+
+classdiagram ArtworkProvenance {
+
+  class Artwork {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Type type;
+  }
+
+  class ProvenanceRecord {
+    String artworkIdentifier;
+    Date dateOfAcquisition;
+    String buyer;
+    String seller;
+  }
+
+  class Transaction {
+    String artworkIdentifier;
+    String buyer;
+    String seller;
+    Date date;
+  }
+
+  class Entity {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Artist extends Entity {
+  }
+
+  class Gallery extends Entity {
+  }
+
+  class Museum extends Entity {
+  }
+
+  class Collector extends Entity {
+  }
+
+  class Certificate {
+    String artworkIdentifier;
+    Date dateIssued;
+    String issuer;
+    Signature signature;
+  }
+
+  composition Artwork -> ProvenanceRecord [0..*]
+  abstract  
+  
+  
+  
+;
+}

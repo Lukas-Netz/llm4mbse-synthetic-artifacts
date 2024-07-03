@@ -1,0 +1,50 @@
+
+
+classdiagram OnlineGraphicDesignServices {
+
+  class Client {
+    String name;
+    String id;
+    Request request;
+  }
+
+  class Request {
+    String type;
+    String deadline;
+  }
+
+  class Designer {
+    String id;
+    String name;
+    Skills skills;
+    Rating rating;
+    List<Request> requests;
+  }
+
+  class Skills {
+    String software;
+    List<String> areas;
+  }
+
+  class Rating {
+    int stars;
+    String comments;
+  }
+
+  class Company {
+    List<Designer> designers;
+    List<Client> clients;
+    List<Request> requests;
+  }
+
+  composition Client -> Request [0..1];
+  composition Designer -> Request [0..*];
+  composition Company -> Designer [*];
+  composition Company -> Client [*];
+  association Client - Company
+  -- association  -  
+
+  
+
+  
+ ;}

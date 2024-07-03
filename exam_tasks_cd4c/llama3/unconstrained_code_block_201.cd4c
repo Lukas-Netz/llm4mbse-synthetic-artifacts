@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram VideoEditingSystem  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Video  {
+    String id;
+    String title;
+    String description;
+  }
+
+  class Clip  {
+    int start;
+    int end;
+    Video video;
+  }
+
+  class Effect  {
+    String name;
+    String description;
+  }
+
+  class Transition  {
+    String name;
+    String description;
+  }
+
+  class Project  {
+    String title;
+    String description;
+    User user;
+    List<Clip> clips;
+    List<Effect> effects;
+    List<Transition> transitions;
+  }
+
+  composition User -> (has) Project [1..*];
+  composition Project -> (has) Clip [1..*];
+  composition Project -> (has) Effect [0..*];
+  composition Project -> (has) Transition [0..*];
+  composition Clip -> (has) Video;
+  composition Effect -> (has) none;
+  composition Transition -> (has) none;
+}

@@ -1,0 +1,68 @@
+
+classdiagram GeneticCounselingService {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      Date dateOfBirth;
+    }
+
+    class GeneticTest {
+      String testId;
+      String testName;
+      String result;
+    }
+
+    class CounselingSession {
+      String sessionId;
+      Date sessionDate;
+      Time sessionTime;
+      Patient patient;
+      GeneticTest test;
+    }
+
+    class Report {
+      String reportId;
+      Date reportDate;
+      String content;
+      CounselingSession session;
+    }
+
+    class Recommendation {
+      String recommendationId;
+      String content;
+      String status;
+      Patient patient;
+      GeneticTest test;
+    }
+
+    class GeneticCounselingService {
+      Patient[] patients;
+      GeneticTest[] geneticTests;
+      CounselingSession[] counselingSessions;
+      Report[] reports;
+      Recommendation[] recommendations;
+
+      void addPatient(Patient patient);
+      void updatePatient(Patient patient);
+      void deletePatient(Patient patient);
+
+      void addGeneticTest(GeneticTest test);
+      void updateGeneticTest(GeneticTest test);
+      void deleteGeneticTest(GeneticTest test);
+
+      void addCounselingSession(CounselingSession session);
+      void updateCounselingSession(CounselingSession session);
+      void deleteCounselingSession(CounselingSession session);
+
+      void generateReport(Patient patient, GeneticTest test);
+      void provideRecommendation(Patient patient, GeneticTest test);
+      void updateRecommendationStatus(Recommendation recommendation);
+    }
+
+  composition GeneticCounselingService -> (has) Patient[*];
+  composition GeneticCounselingService -> (has) GeneticTest[*];
+  composition GeneticCounselingService -> (has) CounselingSession[*];
+  composition GeneticCounselingService -> (has) Report[*];
+  composition GeneticCounselingService -> (has) Recommendation[*];
+}

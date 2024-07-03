@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram MarineTrafficManagement  {
+
+  class Hub  {
+    Vessel  [ ] vessels;
+    Buoy  [ ] buoys;
+    void trackVessel(Vessel vessel);
+    void monitorBuoy(Buoy buoy);
+    void sendAlert(Vessel vessel, String message);
+  }
+
+  abstract class Vessel  {
+    String uniqueIdentifier;
+    String name;
+    VesselType type;
+    void sendAndReceiveMessage(String message);
+  }
+
+  class Buoy  {
+    String uniqueIdentifier;
+    Location location;
+    BuoyType type;
+    void sendAndReceiveMessage(String message);
+  }
+
+  enum VesselType  {
+    CargoShip, Tanker, PassengerShip
+  ;}
+
+  enum BuoyType  {
+    NavigationBuoy, WarningBuoy
+  ;}
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Message  {
+    String content;
+    MessageTypes type;
+  }
+
+  enum MessageTypes  {
+    NavigationMessage, WeatherReport, EmergencyAlert
+  ;}
+
+  composition Hub  ->  (has) Vessel  [ * ];
+  composition Hub  ->  (has) Buoy  [ * ];
+  composition Vessel  ->  (has) Location;
+  composition Buoy  ->  (has) Location;
+  composition Vessel  ->  (has) Message;
+  composition Buoy  ->  (has) Message;
+}

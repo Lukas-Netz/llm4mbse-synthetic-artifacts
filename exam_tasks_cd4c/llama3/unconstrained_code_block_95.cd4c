@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram LanguageLearningSystem  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Course  {
+    String courseId;
+    String name;
+    String description;
+    -> Lesson[*];
+    -> VocabularyWord[*];
+    -> GrammarRule[*];
+    -> PracticeExercise[*];
+  }
+
+  class Lesson  {
+    String lessonId;
+    String name;
+    String description;
+  }
+
+  class VocabularyWord  {
+    String wordId;
+    String meaning;
+    String translation;
+  }
+
+  class GrammarRule  {
+    String ruleId;
+    String description;
+    String example;
+  }
+
+  class PracticeExercise  {
+    String exerciseId;
+    String name;
+    String description;
+  }
+
+  class Score  {
+    int score;
+    -> User;
+  }
+
+  composition User -> Course [1..*];
+  composition Course -> Lesson [1..*];
+  composition Course -> VocabularyWord [1..*];
+  composition Course -> GrammarRule [1..*];
+  composition Course -> PracticeExercise [1..*];
+  composition Score -> User [1..1];
+}

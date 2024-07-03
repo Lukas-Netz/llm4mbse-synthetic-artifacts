@@ -1,0 +1,40 @@
+
+classdiagram BiometricAttendanceSystem {
+
+    class Employee {
+      String uniqueIdentifier;
+      String name;
+      String jobTitle;
+      AttendanceRecord[] attendanceRecords;
+    }
+
+    class AttendanceRecord {
+      Date date;
+      Time time;
+      Device device;
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    class DeviceStatus {
+      Online offline;
+    }
+
+    class Report {
+      String type;
+      String content;
+    }
+
+    association Employee -> AttendanceRecord [*];
+    composition Employee -> AttendanceRecord;
+    composition Employee -> Device [*];
+    composition Device -> DeviceStatus;
+    association Device -> AttendanceRecord [*];
+    composition Device -> DeviceStatus;
+
+    association AttendanceRecord -> Report [*];
+    composition AttendanceRecord -> Report;
+}

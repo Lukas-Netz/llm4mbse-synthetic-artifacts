@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram CognitiveRadioSpectrumManagement  {
+
+  class CognitiveRadio  {
+    String uniqueIdentifier;
+    boolean status;
+    Transmitter[] transmitters;
+    Receiver[] receivers;
+  }
+
+  class SpectrumManager  {
+    void allocateFrequencyBand(CognitiveRadio cr, FrequencyBand fb);
+    void deallocateFrequencyBand(CognitiveRadio cr, FrequencyBand fb);
+    void monitorCRActivity(CognitiveRadio cr);
+    void detectInterference();
+  }
+
+  class FrequencyBand  {
+    String name;
+    int frequency;
+  }
+
+  class Transmitter  {
+    CognitiveRadio cr;
+    FrequencyBand fb;
+  }
+
+  class Receiver  {
+    CognitiveRadio cr;
+    FrequencyBand fb;
+  }
+
+  class Database  {
+    void storeCRInfo(CognitiveRadio cr);
+    void storeFrequencyBandInfo(FrequencyBand fb);
+    void storeSpectrumUsageInfo(CognitiveRadio cr, FrequencyBand fb);
+  }
+
+  composition CognitiveRadio -> (has) Transmitter[*];
+  composition CognitiveRadio -> (has) Receiver[*];
+  composition SpectrumManager -> (has) Database;
+  composition FrequencyBand -> (is) allocatedTo [0..1]  -  ;
+
+  enum Status  {
+    Active, Inactive;
+  }
+}

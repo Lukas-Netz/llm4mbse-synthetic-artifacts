@@ -1,0 +1,55 @@
+
+classdiagram AutomatedML {
+
+  class DataIngestion {
+    -> DataSource [*];
+    void collectData();
+  }
+
+  class DataSource {
+    String name;
+  }
+
+  class DataPreprocessing {
+    Data data;
+    void handleMissingValues();
+    void encodeCategoricalVariables();
+    void scaleNumericalVariables();
+  }
+
+  class Data {
+    List<Feature> features;
+    String target;
+  }
+
+  class Feature {
+    String name;
+    String type;
+    Object value;
+  }
+
+  enum FeatureType {
+    Categorical, Numerical, Text;
+  }
+
+  class MachineLearning {
+    Data data;
+    Model model;
+    void trainModel();
+    void evaluateModel();
+  }
+
+  interface Model {
+    void predict(Data data);
+  }
+
+  class Deployment {
+    Model model;
+    void deployModel();
+  }
+
+  composition DataIngestion -> DataSource [*];
+  association DataPreprocessing -> Data;
+  association MachineLearning -> Data;
+  association Deployment -> Model;
+}

@@ -1,0 +1,48 @@
+
+classdiagram ARPlatform {
+
+  class AREngine {
+    int resolution;
+    int frameRate;
+    RenderingMode renderingMode;
+  }
+
+  enum RenderingMode {
+    OPENGL, VULKAN, METAL;
+  }
+
+  abstract class ARContent {
+    Position position;
+    Scale scale;
+    Rotation rotation;
+  }
+
+  class ThreeDModel extends ARContent {
+  }
+
+  class Text extends ARContent {
+    int textSize;
+    String textColor;
+  }
+
+  class Image extends ARContent {
+  }
+
+  class ARDevice {
+    int cameraResolution;
+    int screenResolution;
+    int processingPower;
+  }
+
+  class ARUser {
+    String name;
+    String email;
+    String password;
+  }
+
+  composition ARPlatform -> AREngine;
+  composition AREngine -> ARContent [*];
+  composition ARDevice -> ARPlatform;
+  association ARUser -> ARPlatform;
+  association ARUser -> ARContent;
+}

@@ -1,0 +1,30 @@
+
+classdiagram InvoiceProcessingSystem {
+
+    class Supplier {
+      int supplierId;
+      String name;
+    }
+
+    class Invoice {
+      int invoiceNumber;
+      Supplier supplier;
+      Date invoiceDate;
+      double totalAmount;
+      boolean paymentStatus;
+    }
+
+    class InvoiceProcessingSystem {
+      List<Invoice> invoices;
+      void addInvoice(Invoice invoice);
+      void removeInvoice(Invoice invoice);
+      Invoice getInvoice(int invoiceNumber);
+      void updatePaymentStatus(int invoiceNumber, boolean status);
+      double getTotalPaid();
+      double getTotalPending();
+      void sendReminder(Supplier supplier);
+    }
+
+    association InvoiceProcessingSystem -> Invoice [*];
+    association Supplier -> Invoice [*];
+}

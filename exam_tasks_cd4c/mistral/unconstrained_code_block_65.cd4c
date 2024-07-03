@@ -1,0 +1,87 @@
+
+classdiagram CloudInfrastructure {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Subscription {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    SubscriptionType type;
+    Customer customer;
+    Set<Service> services;
+  }
+
+  enum SubscriptionType {
+    Monthly, Yearly, Custom;
+  }
+
+  abstract class Service {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class VM extends Service {
+    String type;
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  abstract class Storage extends Service {
+    int capacity;
+    double price;
+  }
+
+  class HDD extends Storage {}
+  class SSD extends Storage {}
+  class ObjectStorage extends Storage {}
+
+  abstract class Network extends Service {
+    String name;
+    String description;
+    Set<Rule> rules;
+  }
+
+  class VLAN extends Network {}
+  class VPN extends Network {}
+  class LoadBalancer extends Network {}
+
+  abstract class Security extends Service {
+    String name;
+    String description;
+    Set<Rule> rules;
+  }
+
+  class Firewall extends Security {}
+  class IDS extends Security {}
+  class Encryption extends Security {}
+
+  abstract class Monitoring extends Service {
+    String name;
+    String description;
+    Set<Metric> metrics;
+  }
+
+  class VMMonitoring extends Monitoring {}
+  class StorageMonitoring extends Monitoring {}
+  class NetworkMonitoring extends Monitoring {}
+
+  class Rule {
+    String name;
+    String description;
+  }
+
+  class Metric {
+    String name;
+    String description;
+  }
+
+  composition Customer -> Subscription [*];
+  composition Subscription -> Service [*];
+}

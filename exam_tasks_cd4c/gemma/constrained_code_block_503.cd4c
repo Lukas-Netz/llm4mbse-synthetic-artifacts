@@ -1,0 +1,47 @@
+
+
+classdiagram ArtworkAuthenticationSystem {
+
+  class Artist {
+    String identifier;
+    String name;
+
+    createArtwork(String title, String description);
+  }
+
+  class Artwork {
+    String identifier;
+    String title;
+    String description;
+    Artist artist;
+
+    verifyArtworkAuthenticity();
+  }
+
+  class Collector {
+    String identifier;
+    String name;
+
+    purchaseArtwork(Artwork artwork);
+  }
+
+  class Transaction {
+    Collector collector;
+    Artist artist;
+    Artwork artwork;
+    double amount;
+
+    recordTransaction();
+  }
+
+  class Blockchain {
+    storeTransaction(Transaction transaction);
+    verifyTransaction(Transaction transaction);
+  }
+
+  composition Artist -> Artwork [0..*];
+  composition Collector -> Transaction [0..*];
+  association Artwork -> Artist;
+  association Artwork -> Transaction;
+  association Transaction -> Blockchain;
+}

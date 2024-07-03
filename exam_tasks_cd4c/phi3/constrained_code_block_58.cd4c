@@ -1,0 +1,110 @@
+
+classdiagram HealthcareSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String demographics;
+      MedicalHistory medicalHistory;
+      TreatmentPlan treatmentPlan;
+    }
+
+    class MedicalHistory {
+      String condition;
+      String diagnosis;
+      String treatment;
+    }
+
+    class TreatmentPlan {
+      String treatmentType;
+      String treatmentDetails;
+    }
+
+    class Appointment {
+      String appointmentDate;
+      String appointmentTime;
+      String appointmentStatus;
+    }
+
+    class LabResult {
+      String resultType;
+      String resultValue;
+    }
+
+    class MedicationList {
+      String medicationName;
+      String dosage;
+      String frequency;
+    }
+
+    class MedicalRecord {
+      String recordType;
+      String recordDetails;
+    }
+
+    class MedicalDevice {
+      String deviceType;
+      String deviceStatus;
+    }
+
+    class MedicalTest {
+      String testType;
+      String testResult;
+    }
+
+    class MedicalTreatment {
+      String treatmentType;
+      String treatmentDetails;
+    }
+
+    class MedicalCondition {
+      String conditionType;
+      String conditionDetails;
+    }
+
+    class MedicalProcedure {
+      String procedureType;
+      String procedureDetails;
+    }
+
+    class MedicalEquipment {
+      String equipmentType;
+      String equipmentStatus;
+    }
+
+    class MedicalSupply {
+      String supplyType;
+      String supplyDetails;
+    }
+
+    class MedicalDevice {
+      String deviceType;
+      String deviceStatus;
+    }
+
+    class MedicalTest {
+      String testType;
+      String testResult;
+    }
+
+    class MedicalTreatment {
+      String treatmentType;
+      String treatmentDetails;
+    }
+
+    class MedicalCondition {
+      String conditionType;
+      String conditionDetails;
+    }
+
+    class MedicalProcedure {
+      String procedureType;
+      String procedureDetails;
+    }
+
+    class MedicalEquipment {
+      String equipmentType;
+      String equipmentStatus;
+    }
+
+   
+}

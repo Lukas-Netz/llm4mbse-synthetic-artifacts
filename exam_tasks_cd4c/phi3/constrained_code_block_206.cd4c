@@ -1,0 +1,47 @@
+
+classdiagram PharmaceuticalAI {
+
+    class CompoundDatabase {
+      Map<String, Compound> compounds;
+      void searchCompoundsByProperty(String property, String value);
+    }
+
+    class MachineLearningModel {
+      void predictBindingPotential(Compound compound, String targetProtein);
+    }
+
+    class SimulationEnvironment {
+      void simulateCompoundBehavior(Compound compound, String biologicalSystem);
+      void retrieveSimulationResults(String simulationId);
+    }
+
+    class UserInterface {
+      void inputParameters(String parameters);
+      void retrieveResults(String simulationId);
+    }
+
+    class Compound {
+      String name;
+      Map<String, String> properties;
+    }
+
+    class TargetProtein {
+      String name;
+    }
+
+    class Simulation {
+      String id;
+      String biologicalSystem;
+      String result;
+    }
+
+    association PharmaceuticalAI -> CompoundDatabase;
+    association PharmaceuticalAI -> MachineLearningModel;
+    association PharmaceuticalAI -> SimulationEnvironment;
+    association PharmaceuticalAI -> UserInterface;
+
+    association CompoundDatabase -> Compound [*];
+    association MachineLearningModel -> Compound;
+    association SimulationEnvironment -> Simulation [*];
+    association UserInterface -> Simulation [*];
+}

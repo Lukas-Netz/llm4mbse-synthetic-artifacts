@@ -1,0 +1,39 @@
+
+classdiagram SmartTextileSystem {
+
+    class RawMaterials {
+      String yarn;
+      String fabric;
+      String thread;
+    }
+
+    class Machines {
+      Weaving machine;
+      Knitting machine;
+      Cutting machine;
+    }
+
+    class QualityControl {
+      Inspection process;
+      Testing process;
+      Certification process;
+    }
+
+    class ProductionTeam {
+      Worker worker;
+      Supervisor supervisor;
+      QualityControlInspector inspector;
+    }
+
+    class SmartTextile {
+      RawMaterials rawMaterials;
+      Machines machines;
+      QualityControl qualityControl;
+      ProductionTeam productionTeam;
+    }
+
+    association SmartTextile -> RawMaterials;
+    association SmartTextile -> Machines;
+    association SmartTextile -> QualityControl;
+    association SmartTextile -> ProductionTeam;
+}

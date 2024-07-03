@@ -1,0 +1,30 @@
+
+
+classdiagram AssetTokenizationSystem {
+
+    class User {
+      String uniqueIdentifier;
+    }
+
+    class Asset {
+      String uniqueIdentifier;
+    }
+
+    class Token {
+      String uniqueIdentifier;
+      Asset asset;
+    }
+
+    class SmartContract {
+      void execute() throws Exception;
+    }
+
+    class Blockchain {
+      void recordTransaction(Token token, User buyer, User seller);
+    }
+
+  composition User -> (has) Token [*];
+  composition Asset -> (has) Token [*];
+  association Token -> SmartContract;
+  association SmartContract -> Blockchain;
+}

@@ -1,0 +1,69 @@
+
+classdiagram DigitalPaymentSystem {
+
+  class Customer {
+    String customerId;
+    String name;
+    String address;
+    String phoneNumber;
+    String email;
+    String preferredLanguage;
+    String preferredCurrency;
+    List<Transaction> transactionHistory;
+  }
+
+  class Merchant {
+    String merchantId;
+    String merchantName;
+    String merchantAddress;
+    String merchantPhoneNumber;
+    String merchantEmail;
+    String preferredLanguage;
+    String preferredCurrency;
+    List<Transaction> transactionHistory;
+  }
+
+  class Transaction {
+    String transactionId;
+    String transactionType;
+    String status;
+    String amount;
+    String currency;
+    String customerId;
+    String merchantId;
+    DateTime transactionDateTime;
+    String transactionDetails;
+  }
+
+  class PaymentGateway {
+    String gatewayId;
+    String gatewayName;
+    String gatewayType;
+    String gatewayUrl;
+    List<Transaction> gatewayTransactionHistory;
+  }
+
+  class FinancialInstitution {
+    String institutionId;
+    String institutionName;
+    String institutionType;
+    String institutionUrl;
+    List<Transaction> institutionTransactionHistory;
+  }
+
+  class TransactionValidator {
+    String validateTransaction(Transaction transaction);
+  }
+
+  <<association>> class DigitalPaymentSystem {
+    Customer customer;
+    Merchant merchant;
+    PaymentGateway paymentGateway;
+    FinancialInstitution financialInstitution;
+    TransactionValidator transactionValidator;
+  }
+
+  <<association>> class Transaction {
+    DigitalPaymentSystem paymentSystem;
+  }
+}

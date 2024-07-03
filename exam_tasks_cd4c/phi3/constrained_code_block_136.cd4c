@@ -1,0 +1,55 @@
+
+classdiagram IntelligentTrafficSystem {
+
+    class TrafficSystem {
+      Sensor sensor;
+      Camera camera;
+      TrafficLight trafficLight;
+      Database database;
+    }
+
+    class Sensor {
+      String locationIdentifier;
+      int trafficSpeed;
+      int trafficVolume;
+      int occupancy;
+    }
+
+    class Camera {
+      String locationIdentifier;
+      String imageData;
+    }
+
+    class TrafficLight {
+      String locationIdentifier;
+      TrafficLightState state;
+    }
+
+    class TrafficLightState {
+      enum StateType
+        ;
+        StateType state;
+    }
+
+    class Database {
+      Map<String, Sensor> sensors;
+      Map<String, Camera> cameras;
+      Map<String, TrafficLight> trafficLights;
+      Map<String, TrafficPattern> trafficPatterns;
+    }
+
+    class TrafficPattern {
+      String locationIdentifier;
+      String patternData;
+    }
+
+    association TrafficSystem 
+      has
+        -> Sensor;
+      -
+        association TrafficSystem -> Camera;
+      -
+        association TrafficSystem -> TrafficLight;
+      -
+        association TrafficSystem -> Database;
+}

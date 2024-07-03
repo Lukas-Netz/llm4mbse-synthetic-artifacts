@@ -1,0 +1,82 @@
+
+classdiagram ManufacturingPlant {
+
+    class Plant {
+      ProductionLine[] productionLines;
+      ControlSystem controlSystem;
+      QualityControl qualityControl;
+    }
+
+    class ProductionLine {
+      String name;
+      String uniqueIdentifier;
+      ProductionLine[] machines;
+      void start();
+      void stop();
+    }
+
+    abstract class Machine {
+      String name;
+      String uniqueIdentifier;
+      MachineStatus status;
+    }
+
+    class CNCMachine extends Machine {
+      int spindleSpeed;
+      String cuttingTool;
+    }
+
+    class  ThreeDPrinter extends Machine {
+      int printSpeed;
+      int layerThickness;
+    }
+
+    class Robot extends Machine {
+      int armLength;
+      String gripperType;
+    }
+
+    enum MachineStatus {
+      Operational, NotOperational;
+    }
+
+    class ControlSystem {
+      void startProductionLine(ProductionLine productionLine);
+      void stopProductionLine(ProductionLine productionLine);
+      MachineStatus[] getMachineStatus(Machine[] machines);
+      void sendNotification(String message);
+    }
+
+    class QualityControl {
+      Inspector[] inspectors;
+      ProductType[] productTypes;
+      void inspectProduct(Inspector inspector, ProductType productType);
+      void generateReport();
+    }
+
+    class Inspector {
+      String name;
+      String uniqueIdentifier;
+      ProductType[] productTypes;
+      QualityRating inspectProduct(ProductType productType);
+    }
+
+    class ProductType {
+      String name;
+    }
+
+    class QualityRating {
+      int rating;
+    }
+
+  composition Plant -> (has) ProductionLine[*];
+  composition Plant -> (has) ControlSystem;
+  composition Plant -> (has) QualityControl;
+  composition ProductionLine -> (has) Machine[*];
+  composition ControlSystem -> (has) MachineStatus[*];
+  composition ControlSystem -> (has) Notification[*];
+  composition QualityControl -> (has) Inspector[*];
+  composition QualityControl -> (has) ProductType[*];
+ 
+ 
+ }

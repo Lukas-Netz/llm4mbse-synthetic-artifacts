@@ -1,0 +1,61 @@
+
+classdiagram CustomerSuccessPlatform {
+
+    class Customer {
+      String uniqueIdentifier;
+      List<String> associatedCompanies;
+    }
+
+    class Company {
+      String uniqueIdentifier;
+      List<Customer> customers;
+    }
+
+    class CustomerDatabase {
+      Map<String, Customer> customers;
+      void addCustomer(Customer customer);
+      Customer getCustomer(String uniqueIdentifier);
+    }
+
+    class CustomerEngagement {
+      Map<String, Customer> customers;
+      void sendCampaign(String uniqueIdentifier, Campaign campaign);
+      void sendMessage(String uniqueIdentifier, String message);
+    }
+
+    class CustomerFeedback {
+      Map<String, Customer> customers;
+      void collectFeedback(String uniqueIdentifier);
+      Insights getCustomerSatisfactionInsights(String uniqueIdentifier);
+    }
+
+    class CustomerSupport {
+      Map<String, Customer> customers;
+      void manageSupportRequest(String uniqueIdentifier, SupportRequest request);
+      Response getSupportResponse(String uniqueIdentifier);
+    }
+
+    class Campaign {
+      String campaignId;
+      String targetedMessage;
+    }
+
+    class SupportRequest {
+      String requestId;
+      String customerRequest;
+    }
+
+    class Insights {
+      String customerSatisfactionLevel;
+    }
+
+    association Customer -> CustomerDatabase;
+    association Customer -> CustomerEngagement;
+    association Customer -> CustomerFeedback;
+    association Customer -> CustomerSupport;
+
+    association Company -> CustomerDatabase;
+    association Company -> CustomerEngagement;
+    association Company -> CustomerFeedback;
+    association Company -> CustomerSupport;
+}

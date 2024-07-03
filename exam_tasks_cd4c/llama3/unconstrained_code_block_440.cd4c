@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram VotingSystem  {
+
+  class Blockchain  {
+    void addVote(Vote vote);
+    boolean verifyVote(Vote vote);
+  }
+
+  class VotingPlatform  {
+    void createVotingSession(VotingSession session);
+    void manageVotingSession(VotingSession session);
+    void verifyVote(Vote vote);
+  }
+
+  class Voter  {
+    String uniqueIdentifier;
+    void castVote(Vote vote);
+  }
+
+  class VotingSession  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    List<Candidate> candidates;
+  }
+
+  class Candidate  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Admin  {
+    void createVotingSession(VotingSession session);
+    void manageVotingSession(VotingSession session);
+  }
+
+  class Moderator  {
+    void verifyVote(Vote vote);
+  }
+
+  class Vote  {
+    Voter voter;
+    VotingSession session;
+    Candidate candidate;
+  }
+
+  composition VotingPlatform -> (has) Blockchain;
+  composition VotingPlatform -> (has) Voter[*];
+  composition VotingSession -> (has) Candidate[*];
+  composition Vote -> (has) Voter;
+  composition Vote -> (has) VotingSession;
+  composition Vote -> (has) Candidate;
+}

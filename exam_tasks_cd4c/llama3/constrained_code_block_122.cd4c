@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram SmartFactorySolutions  {
+
+  class ProductionLine  {
+    String name;
+    String uniqueIdentifier;
+    ProductionArea productionArea;
+    Machine  machine  ; 
+  }
+
+  class Machine  {
+    String uniqueIdentifier;
+    MachineType type;
+  }
+
+  class Robot extends Machine  {
+    double movementSpeed;
+    double precision;
+  }
+
+  class LaserCutter extends Machine  {
+    double cuttingSpeed;
+    double precision;
+  }
+
+  class AssemblyMachine extends Machine  {
+    double assemblySpeed;
+    double quality;
+  }
+
+  class ProductionArea  {
+    String name;
+    String uniqueIdentifier;
+    ProductionLine  productionLine  ; 
+  }
+
+  class QualityControlDepartment  {
+    String name;
+    String uniqueIdentifier;
+    ProductionArea productionArea;
+  }
+
+  enum MachineType  {
+    Robot, LaserCutter, AssemblyMachine;
+  }
+
+  composition ProductionLine -> (has) Machine;
+  composition ProductionArea -> (has) ProductionLine;
+  composition QualityControlDepartment -> (has) ProductionArea;
+}

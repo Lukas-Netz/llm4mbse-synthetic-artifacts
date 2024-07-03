@@ -1,0 +1,40 @@
+
+
+classdiagram WaterQualityMonitoringSystem {
+
+    class Sensor {
+      String uniqueIdentifier;
+      List<Parameter> parameters;
+    }
+
+    class Parameter {
+      String name;
+      int value;
+    }
+
+    class DataLogger {
+      Sensor sensor;
+      Database database;
+    }
+
+    class Analyzer {
+      WaterQualityStation station;
+      List<Sensor> sensors;
+    }
+
+    class WaterQualityStation {
+      String uniqueIdentifier;
+      List<DataLogger> dataLoggers;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      AccessToSystem system;
+    }
+
+  composition Sensor -> DataLogger;
+  composition DataLogger -> Database;
+  composition Analyzer -> WaterQualityStation;
+  composition WaterQualityStation -> Database;
+  association User -> AccessToSystem;
+}

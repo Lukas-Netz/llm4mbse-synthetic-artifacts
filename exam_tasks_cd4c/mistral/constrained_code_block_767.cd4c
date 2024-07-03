@@ -1,0 +1,49 @@
+
+classdiagram SmartGrid {
+
+  class Sensor {
+    String location;
+    float voltage;
+    float current;
+    float power;
+  }
+
+  class Meter {
+    String household;
+    float energyConsumption;
+  }
+
+  class Substation {
+    String area;
+    void controlFlow();
+  }
+
+  class CentralControlCenter {
+    void receiveData();
+    void sendCommands();
+  }
+
+  class BackupPowerSupply {
+    float capacity;
+  }
+
+  class Cybersecurity {
+    void monitor();
+    void detectThreat();
+    void alertControlCenter();
+    void preventOrMitigateThreat();
+  }
+
+  class DataAnalytics {
+    void analyzeData();
+    void provideInsights();
+  }
+
+  composition SmartGrid -> CentralControlCenter;
+  composition SmartGrid -> BackupPowerSupply;
+  composition CentralControlCenter -> Cybersecurity;
+  composition CentralControlCenter -> DataAnalytics;
+  association Sensor [*] to (measures) -> SmartGrid;
+  association Meter [*] to (measures) -> SmartGrid;
+  association Substation [*] to (manages) -> SmartGrid;
+}

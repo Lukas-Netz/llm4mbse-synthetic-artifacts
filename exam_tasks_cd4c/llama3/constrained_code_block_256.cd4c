@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram SmartIndustrialSensorSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+    double value;
+  }
+
+  enum SensorType  {
+    Temperature, Pressure, Vibration;
+  }
+
+  class Actuator  {
+    String uniqueIdentifier;
+  }
+
+  class CentralControlUnit  {
+    Sensor  sensor  ;
+    Actuator  actuator  ;
+    void receiveCommand(String command);
+  }
+
+  class DataStorageUnit  {
+    void storeData(Sensor sensor, double value);
+  }
+
+  class DataAnalyticsModule  {
+    void analyzeData(Sensor sensor, double value);
+    void alertOperators(String message);
+  }
+
+  class System  {
+    CentralControlUnit centralControlUnit;
+    DataStorageUnit dataStorageUnit;
+    DataAnalyticsModule dataAnalyticsModule;
+  }
+
+  composition System  ->  (has) CentralControlUnit;
+  composition System  ->  (has) DataStorageUnit;
+  composition System  ->  (has) DataAnalyticsModule;
+  composition CentralControlUnit  ->  (has) Sensor;
+  composition CentralControlUnit  ->  (has) Actuator;
+  composition DataStorageUnit  ->  (has) Sensor;
+  composition DataAnalyticsModule  ->  (has) Sensor;
+}

@@ -1,0 +1,40 @@
+
+
+
+
+classdiagram VoiceAssistant  {
+
+  class VoiceAssistant  {
+    String uniqueIdentifier;
+    boolean isConfigured;
+    Set<Skill> skills;
+    Set<Intent> intents;
+    Set<Entity> entities;
+    Set<Slot> slots;
+  }
+
+  abstract class Skill  {
+    boolean isEnabled;
+    Map<String, String> parameters;
+  }
+
+  class Intent  {
+    String goal;
+    Set<Entity> requiredEntities;
+  }
+
+  class Entity  {
+    String type;
+    String value;
+  }
+
+  class Slot  {
+    String type;
+    String value;
+  }
+
+  composition VoiceAssistant  ->  (has) Skill[*];
+  composition VoiceAssistant  ->  (has) Intent[*];
+  composition VoiceAssistant  ->  (has) Entity[*];
+  composition VoiceAssistant  ->  (has) Slot[*];
+}

@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram AvalanchePredictionSystem  {
+
+  class WeatherStation  {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class SensorNetwork  {
+    Sensor  sensor  ;  }
+  class Sensor  {
+    SnowDepth snowDepth;
+    SnowDensity snowDensity;
+  }
+
+  class PredictionModel  {
+    WeatherStation weatherStation;
+    SensorNetwork sensorNetwork;
+    AvalancheRiskLevel avalancheRiskLevel;
+  }
+
+  enum AvalancheRiskLevel  {
+    Low, Moderate, High, Extreme;
+  }
+
+  class UserInterface  {
+    PredictionModel predictionModel;
+    void displayAvalancheRisk();
+    void provideRecommendations();
+  }
+
+  class AlertSystem  {
+    PredictionModel predictionModel;
+    void sendAlert();
+  }
+
+  composition WeatherStation  ->  (monitors) SensorNetwork;
+  composition SensorNetwork  ->  (measures) Sensor;
+  composition PredictionModel  ->  (uses) WeatherStation;
+  composition PredictionModel  ->  (uses) SensorNetwork;
+  composition UserInterface  ->  (displays) PredictionModel;
+  composition AlertSystem  ->  (sends) PredictionModel;
+}

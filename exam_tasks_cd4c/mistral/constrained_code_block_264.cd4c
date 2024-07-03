@@ -1,0 +1,67 @@
+
+classdiagram DigitalWorkspace {
+
+  class User {
+    String username;
+    String password;
+    String email;
+  }
+
+  class Asset {
+    String id;
+    String name;
+    String category;
+    String tags;
+    int version;
+    String permissions;
+  }
+
+  class Document extends Asset {
+    String format;
+    int size;
+  }
+
+  class Image extends Asset {
+    String resolution;
+    int size;
+  }
+
+  class Video extends Asset {
+    String resolution;
+    int duration;
+  }
+
+  class Folder {
+    String name;
+    Asset [][ ] contents;
+  }
+
+  class Report {
+    String type;
+    String data;
+  }
+
+  class Analytics {
+    String usage;
+    String performance;
+  }
+
+  class Integration {
+    String system;
+    String tool;
+  }
+
+  class UserInterface {
+    String design;
+    String functionality;
+  }
+
+  composition DigitalWorkspace -> User [*];
+  composition DigitalWorkspace -> Asset [*];
+  composition Asset -> Folder [*];
+  association User -> Asset [*];
+  association DigitalWorkspace -> Report [1];
+  association DigitalWorkspace -> Analytics [1];
+  association DigitalWorkspace -> Integration [*];
+  association DigitalWorkspace -> UserInterface [1];
+}

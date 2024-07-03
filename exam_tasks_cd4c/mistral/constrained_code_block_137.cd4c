@@ -1,0 +1,54 @@
+
+classdiagram EMM {
+
+  class Device {
+    String uniqueIdentifier;
+    String deviceType;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    Device [  ] devices;
+  }
+
+  class Application {
+    String uniqueIdentifier;
+    String applicationType;
+  }
+
+  class Policy {
+    String uniqueIdentifier;
+    String policyType;
+  }
+
+  class Report {
+    String uniqueIdentifier;
+    String reportType;
+  }
+
+  class EMM {
+    Device [  ] devices;
+    User [  ] users;
+    Application [  ] applications;
+    Policy [  ] policies;
+    Report [  ] reports;
+
+    void registerDevice(Device device);
+    void manageDevice(Device device);
+    void registerUser(User user);
+    void manageUser(User user);
+    void registerApplication(Application application);
+    void manageApplication(Application application);
+    void assignPolicy(Policy policy, Device device);
+    void assignPolicy(Policy policy, User user);
+    void monitorUsage();
+    void enforceSecurity();
+    void provideAlerts();
+  }
+
+  composition EMM -> Device [*];
+  composition EMM -> User [*];
+  composition EMM -> Application [*];
+  composition EMM -> Policy [*];
+  composition EMM -> Report [*];
+}

@@ -1,0 +1,41 @@
+
+classdiagram RemoteITSupport {
+
+    class User {
+      String username;
+      List<Device> devices;
+      List<Issue> issues;
+    }
+
+    class Device {
+      String deviceId;
+      List<Issue> issues;
+    }
+
+    class Issue {
+      String issueId;
+      String description;
+      Technician assignedTechnician;
+      DateTime createdAt;
+      DateTime resolvedAt;
+      String status;
+      int timeSpentMinutes;
+    }
+
+    class Technician {
+      String technicianId;
+      List<Issue> assignedIssues;
+    }
+
+    association User -> List<<Device>>;
+    association User -> List<<Issue>>;
+    association Issue -> Technician;
+    association Issue -> List<<Issue>>;
+    association Technician -> List<<Issue>>;
+
+    composition User -> List<<Device>>;
+    composition User -> List<<Issue>>;
+    composition Issue -> Technician;
+    composition Issue -> List<<Issue>>;
+    composition Technician -> List<<Issue>>;
+}

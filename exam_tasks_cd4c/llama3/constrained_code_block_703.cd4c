@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram CreativeWritingAssistant  {
+
+  class Hub  {
+    -> Assistant[*];
+    void receiveText(Text text);
+    void updateKnowledgeBase(KnowledgeBase knowledgeBase);
+    void monitorAssistantPerformance(Assistant assistant);
+  }
+
+  abstract class Assistant  {
+    String uniqueIdentifier;
+    Genre genre;
+    -> Algorithm[*];
+    -> KnowledgeBase;
+  }
+
+  class Text  {
+    String content;
+  }
+
+  class Algorithm  {
+    AlgorithmType type;
+  }
+
+  enum AlgorithmType  {
+    GrammarCorrection,
+    SentenceSuggestion,
+    ContentGeneration
+  ;}
+
+  class KnowledgeBase  {
+    -> Text[*];
+  }
+
+  class Genre  {
+    String name;
+  }
+
+  class Rating  {
+    int rating;
+    Review review;
+  }
+
+  class Review  {
+    String content;
+  }
+
+  composition Hub  ->  (has) Assistant[*];
+  composition Assistant  ->  (has) Algorithm[*];
+  composition Assistant  ->  (has) KnowledgeBase;
+  composition KnowledgeBase  ->  (has) Text[*];
+  composition Assistant  ->  (has) Rating[*];
+}

@@ -1,0 +1,64 @@
+
+classdiagram IIoT {
+
+  class Sensor {
+    Equipment equipment;
+    void collectData();
+  }
+
+  class Actuator {
+    Equipment equipment;
+    void performAction();
+  }
+
+  abstract class Equipment {
+    String uniqueIdentifier;
+    EquipmentType type;
+  }
+
+  class Pump extends Equipment {
+    double pressure;
+  }
+
+  class Valve extends Equipment {
+    double flowRate;
+  }
+
+  class Motor extends Equipment {
+    double temperature;
+  }
+
+  enum EquipmentType {
+    Pump, Valve, Motor;
+  }
+
+  class CentralControlUnit {
+    -> Sensor [*];
+    -> Actuator [*];
+    void collectData();
+    void analyzeData();
+    void sendCommands();
+  }
+
+  class UserInterface {
+    CentralControlUnit centralControlUnit;
+    void monitor();
+    void control();
+  }
+
+  interface WebApp {
+    void displayData();
+    void sendCommands();
+  }
+
+  interface MobileApp {
+    void displayData();
+    void sendCommands();
+  }
+
+  composition CentralControlUnit -> Sensor [*];
+  composition CentralControlUnit -> Actuator [*];
+  association CentralControlUnit -- UserInterface;
+  association CentralControlUnit -- WebApp;
+  association CentralControlUnit -- MobileApp;
+}

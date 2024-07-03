@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram PublicSafetySystem  {
+
+  class EmergencyCall  {
+    EmergencyType type;
+    Location location;
+    Status status;
+  }
+
+  class EmergencyResponder  {
+    Location location;
+  }
+
+  class Dispatcher  {
+    Location location;
+  }
+
+  class Stakeholder  {
+    String name;
+  }
+
+  class Message  {
+    String content;
+    Stakeholder sender;
+    Stakeholder recipient;
+  }
+
+  class EmergencyCallData  {
+    EmergencyCall emergencyCall;
+    Status status;
+  }
+
+  class PublicSafetySystem  {
+    EmergencyCallData emergencyCallData;
+    EmergencyResponder emergencyResponder;
+    Dispatcher dispatcher;
+    Stakeholder stakeholder;
+  }
+
+  composition PublicSafetySystem -> (has) EmergencyCallData;
+  composition PublicSafetySystem -> (has) EmergencyResponder;
+  composition PublicSafetySystem -> (has) Dispatcher;
+  composition PublicSafetySystem -> (has) Stakeholder;
+
+  association EmergencyCall -> EmergencyResponder [1..*];
+  association EmergencyCall -> Dispatcher [1..*];
+  association EmergencyResponder -> PublicSafetySystem [1..*];
+  association Dispatcher -> PublicSafetySystem [1..*];
+  association Stakeholder -> PublicSafetySystem [1..*];
+  association Message -> Stakeholder [1..*];
+  association Message -> Stakeholder [1..*];
+  association EmergencyCallData -> EmergencyCall [1..*];
+  association EmergencyCallData -> Status [1..*];
+}

@@ -1,0 +1,70 @@
+
+classdiagram Aquaculture {
+
+  class FishTank {
+    String uniqueIdentifier;
+    String tankType;
+    String tankLocation;
+  }
+
+  class Fish {
+    String uniqueIdentifier;
+    FishTank tank;
+    double weight;
+    double length;
+    int age;
+  }
+
+  class WaterQuality {
+    FishTank tank;
+    double pH;
+    double temperature;
+    double oxygenLevels;
+  }
+
+  class Equipment {
+    String uniqueIdentifier;
+    FishTank tank;
+    String equipmentType;
+  }
+
+  class Maintenance {
+    Equipment equipment;
+    String maintenanceSchedule;
+    String reminder;
+  }
+
+  class Report {
+    FishTank tank;
+    String healthAndGrowth;
+    String waterQuality;
+    String equipmentMaintenance;
+  }
+
+  class Alert {
+    FishTank tank;
+    String anomaly;
+    String issue;
+  }
+
+  composition FishTank [*] Fish [manyToMany]
+  -- composition/ 											;
+  composition WaterQuality [1] FishTank [manyToOne]
+  -- composition/ 											;
+  composition Equipment [*] FishTank [manyToMany]
+  -- composition/ 											;
+  composition Maintenance [1] Equipment [manyToOne]
+  -- composition/ 											;
+  composition Report [1] FishTank [manyToOne]
+  -- composition/ 											;
+  composition Alert [1] FishTank [manyToOne]
+
+  -- Stereotypes/ 											;
+  <<interface>> class IReportGenerator {
+    Report generateReport();
+  }
+
+  <<interface>> class IAlertGenerator {
+    Alert generateAlert();
+  }
+}

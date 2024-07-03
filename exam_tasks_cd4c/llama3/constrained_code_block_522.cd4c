@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram DisasterResponseTraining  {
+
+  class Scenario  {
+    String name;
+    String description;
+    Set<Objective> objectives;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    Role role;
+    int experienceLevel;
+  }
+
+  enum Role  {
+    Firefighter,
+    Paramedic,
+    EMT,
+    Other
+  ;}
+
+  class Object  {
+    String name;
+    boolean isInteractive;
+  }
+
+  class Interaction  {
+    User user;
+    Object object;
+    Action action;
+  }
+
+  enum Action  {
+    OpenDoor,
+    PickUpObject,
+    Other
+  ;}
+
+  class Feedback  {
+    Interaction interaction;
+    boolean isCorrect;
+  }
+
+  class PerformanceMetrics  {
+    User user;
+    Scenario scenario;
+    int timeTaken;
+    double accuracy;
+    int overallScore;
+  }
+
+  composition Scenario -> (has) Object[*];
+  composition Scenario -> (has) Objective[*];
+  composition User -> (has) Role;
+  composition Object -> (has) Interaction[*];
+  composition Interaction -> (has) Feedback;
+  composition PerformanceMetrics -> (has) User;
+  composition PerformanceMetrics -> (has) Scenario;
+}

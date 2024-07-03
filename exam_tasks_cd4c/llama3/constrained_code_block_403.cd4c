@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram TicketingSystem  {
+
+  class Event  {
+    String name;
+    Date date;
+    Location location;
+    Event.Type type;
+  }
+
+  enum Event {
+    Concert, Conference
+  ;}
+
+  class Ticket  {
+    String uniqueIdentifier;
+    double price;
+    Ticket.Type type;
+  }
+
+  enum Ticket {
+    GeneralAdmission, VIP, etc
+  ;}
+
+  class Attendee  {
+    String name;
+    String email;
+    String phoneNumber;
+    Set<Ticket> tickets;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class Report  {
+    Event event;
+    double revenue;
+  }
+
+  composition Event -> (has) Location;
+  composition Attendee -> (has) Ticket[*];
+  composition Report -> (has) Event;
+  association Event -> (has) Attendee[*];
+  association Ticket -> (has) Attendee;
+  association Event -> (has) Report;
+  <<stereotype>> interface NotificationService;
+  <<stereotype>> interface ReportGenerator;
+}

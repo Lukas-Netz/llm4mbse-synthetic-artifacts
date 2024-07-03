@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram UrbanFarm  {
+
+  class Crop  {
+    String uniqueId;
+    String name;
+    CropType type;
+    GrowthStage growthStage;
+    double height;
+    double weight;
+  }
+
+  enum CropType  {
+    Vegetable, Fruit, Grain;
+  }
+
+  enum GrowthStage  {
+    Seedling, Germination, Growth, Harvest;
+  }
+
+  class Sensor  {
+    String uniqueId;
+    String location;
+    SensorType type;
+  }
+
+  enum SensorType  {
+    Temperature, Humidity, Light, SoilMoisture;
+  }
+
+  class Farm  {
+    String uniqueId;
+    String name;
+    Crop  [ ] crops;
+    Sensor  [ ] sensors;
+  }
+
+  class Recommendation  {
+    String cropId;
+    String farmId;
+    String advice;
+  }
+
+  class Scenario  {
+    String cropId;
+    String farmId;
+    String description;
+  }
+
+  composition Farm  ->  (has) Crop  [ * ];
+  composition Farm  ->  (has) Sensor  [ * ];
+  composition Recommendation  ->  (refers) Crop;
+  composition Scenario  ->  (refers) Crop;
+  composition Scenario  ->  (refers) Farm;
+}

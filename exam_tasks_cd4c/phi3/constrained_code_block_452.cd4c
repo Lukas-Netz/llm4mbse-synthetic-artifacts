@@ -1,0 +1,95 @@
+
+classdiagram VRAutomotiveDesignSystem {
+
+    class Car {
+      String uniqueId;
+      String name;
+      List<Component> components;
+    }
+
+    class Component {
+      String uniqueId;
+      String name;
+      String type;
+    }
+
+    class User {
+      String uniqueId;
+      String name;
+      List<Car> designedCars;
+    }
+
+    class Design {
+      Car car;
+      User user;
+      List<Component> components;
+      DesignStatus status;
+      void addComponent(Component component);
+      void removeComponent(Component component);
+      void editDesign();
+      void deleteDesign();
+    }
+
+    enum DesignStatus {
+      InProgress, Completed
+   
+   
+  
+(class, association, composition)
+   
+ ;
+  Car car;
+  Design design;
+  User user;
+}
+
+classdiagram
+
+   
+   
+  
+ 
+ 
+ ;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ compositionsUser -> (has) Design;
+compositionsCar -> (has) Design;
+compositionsDesign -> (has) Car;
+compositionsDesign -> (has) User;
+associationsDesign -> (uses) Component;
+associationsDesign -> (uses) Car;
+associationsDesign -> (uses) User;
+associationsComponent -> (uses) Car;
+associationsComponent -> (uses) Design;
+associationsUser -> (uses) Design;
+associationsUser -> (uses) Car;
+associationsUser -> (uses) Design;
+associationsUser -> (uses) Component;
+associationsUser -> (uses) Design;
+
+
+
+ 
+}

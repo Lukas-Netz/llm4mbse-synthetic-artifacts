@@ -1,0 +1,52 @@
+
+classdiagram OnlineCourseSystem {
+
+  class Instructor {
+    String name;
+    String email;
+    String expertise;
+  }
+
+  class Course {
+    String title;
+    String description;
+    int duration;
+    Instructor instructor;
+    CourseLevel level;
+    Topic [ ] topics;
+  }
+
+  enum CourseLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Topic {
+    String title;
+    String description;
+    Topic [ ] subtopics;
+    Category category;
+  }
+
+  enum Category {
+    Materials, DesignPrinciples, ConstructionTechniques;
+  }
+
+  class Student {
+    String name;
+    String email;
+    Course [ ] completedCourses;
+  }
+
+  class Progress {
+    Student student;
+    Course [ ] enrolledCourses;
+    Topic [ ] completedTopics;
+    int overallScore;
+  }
+
+  composition Instructor teaches [  many ] -> Course;
+  composition Course has [  many ] -> Topic;
+  composition Topic has [  many ] -> Subtopic;
+  association Student enrolls [  many ] -> Course;
+  association Progress tracks [  one ] -> Student;
+}

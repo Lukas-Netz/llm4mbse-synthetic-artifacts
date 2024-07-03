@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram GeneEditingSystem  {
+
+  class Gene {
+    String name;
+    String sequence;
+  }
+
+  class GeneEditingTool {
+    String name;
+    String description;
+  }
+
+  class GeneEditingProject {
+    Gene gene;
+    GeneEditingTool tool;
+    ProjectStatus status;
+  }
+
+  class User {
+    String username;
+    Role role;
+  }
+
+  enum Role {
+    ADMIN,
+    RESEARCHER,
+    TECHNICIAN
+  ;}
+
+  class ProjectStatus {
+    boolean success;
+    int successfulEdits;
+    int failedEdits;
+  }
+
+  class Report {
+    int successfulEdits;
+    int failedEdits;
+    double successRate;
+  }
+
+  class Administrator extends User {
+    void addUser(User user);
+    void removeUser(User user);
+    void manageTools(GeneEditingTool tool);
+    void viewProjects();
+  }
+
+  class Researcher extends User {
+    void viewAndEditProjects(GeneEditingProject project);
+    void addAndRemoveGenes(Gene gene);
+    void viewTools();
+  }
+
+  class Technician extends User {
+    void viewAndEditProjects(GeneEditingProject project);
+    void addAndRemoveTools(GeneEditingTool tool);
+    void viewResults();
+  }
+
+  composition GeneEditingSystem -> (has) User[*];
+  composition GeneEditingSystem -> (has) Gene[*];
+  composition GeneEditingSystem -> (has) GeneEditingTool[*];
+  composition GeneEditingSystem -> (has) GeneEditingProject[*];
+  composition GeneEditingProject -> (has) Gene;
+  composition GeneEditingProject -> (has) GeneEditingTool;
+  composition Report -> (has) GeneEditingProject[*];
+  composition Administrator -> (has) User[*];
+  composition Researcher -> (has) GeneEditingProject[*];
+  composition Technician -> (has) GeneEditingProject[*];
+}

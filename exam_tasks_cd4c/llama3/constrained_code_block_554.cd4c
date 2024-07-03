@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram NuclearReactorControlSystem  {
+
+  class Reactor  {
+    String uniqueIdentifier;
+    ReactorStatus status;
+  }
+
+  class CoolingSystem  {
+    String type;
+    int capacity;
+  }
+
+  class MonitoringSystem  {
+    Sensor  sensor  ;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    double readingValue;
+  }
+
+  class AlarmSystem  {
+    AlarmCondition condition;
+  }
+
+  class AlarmCondition  {
+    String description;
+  }
+
+  class SystemAdministrator  {
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void modifySensor(Sensor sensor);
+    void addAlarm(AlarmCondition condition);
+    void removeAlarm(AlarmCondition condition);
+    void modifyAlarm(AlarmCondition condition);
+  }
+
+  composition Reactor  ->  (has) MonitoringSystem;
+  composition MonitoringSystem  ->  (has) Sensor  [*];
+  composition AlarmSystem  ->  (has) AlarmCondition  [*];
+  composition SystemAdministrator  ->  (has) Reactor;
+  composition SystemAdministrator  ->  (has) CoolingSystem;
+  composition SystemAdministrator  ->  (has) MonitoringSystem;
+  composition SystemAdministrator  ->  (has) AlarmSystem;
+}

@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram BrainwaveControlledDeviceSystem  {
+
+  class BCI  {
+    int samplingRate;
+    int frequencyRange;
+    String signalProcessingAlgorithm;
+  }
+
+  class DeviceController  {
+    void processBrainWaveData(BrainWaveData brainWaveData);
+    void filterBrainWaveData(BrainWaveData brainWaveData);
+    void amplifyBrainWaveData(BrainWaveData brainWaveData);
+    void decodeBrainWaveData(BrainWaveData brainWaveData);
+  }
+
+  class ControlledDevice  {
+    int movementRange;
+    int speed;
+    int precision;
+  }
+
+  class UserProfile  {
+    int userId;
+    BrainWavePattern brainWavePattern;
+    DevicePreference devicePreference;
+  }
+
+  class BrainWaveData  {
+    float[] brainWaveSignal;
+    int timestamp;
+  }
+
+  class BrainWavePattern  {
+    float[] dominantFrequency;
+    float[] powerSpectralDensity;
+  }
+
+  class DevicePreference  {
+    int deviceType;
+    int deviceSettings;
+  }
+
+  composition UserProfile  ->  (has) BrainWavePattern;
+  composition UserProfile  ->  (has) DevicePreference;
+  composition DeviceController  ->  (uses) BCI;
+  composition DeviceController  ->  (controls) ControlledDevice;
+  composition UserProfile  ->  (uses) DeviceController;
+  composition DeviceController  ->  (stores) UserProfile;
+  association UserProfile  ->  (many) UserProfile;
+  association DeviceController  ->  (many) UserProfile;
+  association BCI  ->  (many) DeviceController;
+  association ControlledDevice  ->  (many) DeviceController;
+}

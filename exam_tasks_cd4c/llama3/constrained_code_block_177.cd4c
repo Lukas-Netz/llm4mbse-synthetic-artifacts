@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram RemoteLearningPlatform  {
+
+  class Course  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Subject;
+  }
+
+  class Module  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Course;
+  }
+
+  class Quiz  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Module;
+  }
+
+  class Assignment  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Module;
+  }
+
+  class Video  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Module;
+  }
+
+  class Instructor  {
+    String uniqueIdentifier;
+    String name;
+    String contactEmail;
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    String name;
+    String contactEmail;
+  }
+
+  class Enrollment  {
+    String uniqueIdentifier;
+    -> Course;
+    -> Student;
+  }
+
+  class Subject  {
+    String name;
+  }
+
+  composition Course -> Subject;
+  composition Module -> Course;
+  composition Quiz -> Module;
+  composition Assignment -> Module;
+  composition Video -> Module;
+  composition Enrollment -> Course;
+  composition Enrollment -> Student;
+}

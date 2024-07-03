@@ -1,0 +1,310 @@
+
+classdiagram MusicCollaborationPlatform {
+
+    class Artist {
+      String artistId;
+      String name;
+      List<MusicProject> projects;
+      void inviteArtist(Artist artist);
+      void commentTrack(Track track, String comment);
+      void likeTrack(Track track);
+      void shareTrack(Track track);
+    }
+
+    class MusicProject {
+      String projectId;
+      String title;
+      List<Track> tracks;
+      Artist leadArtist;
+      List<Artist> collaborators;
+      void addTrack(Track track);
+      void removeTrack(Track track);
+      void searchTracks(String keyword);
+      void sortTracks(SortCriteria criteria);
+    }
+
+    class Track {
+      String trackId;
+      String title;
+      int duration;
+      Artist artist;
+      List<Comment> comments;
+      void searchTracks(String keyword);
+      void sortTracks(SortCriteria criteria);
+    }
+
+    class Comment {
+      String commentId;
+      String commentText;
+      Artist commenter;
+      Track track;
+    }
+
+    enum SortCriteria {
+      Popularity, DateCreated
+   
+   
+   ()
+   
+
+;
+    composition Artist 
+   
+   
+
+;
+    composition MusicProject 
+   
+   
+
+;
+    composition Track 
+   
+   
+
+;
+    composition Comment 
+   
+   
+
+;
+    composition Artist 
+   
+   
+
+;
+    composition MusicProject 
+   
+   
+
+;
+    composition Track 
+   
+   
+
+;
+    composition Comment 
+   
+   
+
+;
+    composition Artist 
+   
+   
+
+;
+    composition MusicProject 
+   
+   
+
+;
+    composition Track 
+   
+   
+
+;
+    composition Comment 
+   
+   
+
+;
+    composition Artist 
+   
+   
+
+;
+    composition MusicProject 
+   
+   
+
+;
+    composition Track 
+   
+   
+
+;
+    composition Comment 
+   
+   
+
+;
+    composition Artist 
+   
+   
+
+;
+    composition MusicProject 
+   
+   
+
+;
+    composition Track 
+   
+   
+
+;
+    composition Comment 
+   
+   
+
+;
+   
+
+}
+
+enum SortCriteria {
+  Popularity, DateCreated
+
+ 
+
+;
+   
+
+}
+
+enum ArtistStatus {
+  Active, Inactive
+
+ 
+
+;
+   
+
+}
+
+enum TrackStatus {
+  Unreleased, Released
+
+ 
+
+;
+   
+
+}
+
+class Artist {
+  String artistId;
+  String name;
+  List<MusicProject> projects;
+  void inviteArtist(Artist artist);
+  void commentTrack(Track track, String comment);
+  void likeTrack(Track track);
+  void shareTrack(Track track);
+}
+
+class MusicProject {
+  String projectId;
+  String title;
+  List<Track> tracks;
+  Artist leadArtist;
+  List<Artist> collaborators;
+  void addTrack(Track track);
+  void removeTrack(Track track);
+  void searchTracks(String keyword);
+  void sortTracks(SortCriteria criteria);
+}
+
+class Track {
+  String trackId;
+  String title;
+  int duration;
+  Artist artist;
+  List<Comment> comments;
+  void searchTracks(String keyword);
+  void sortTracks(SortCriteria criteria);
+}
+
+class Comment {
+  String commentId;
+  String commentText;
+  Artist commenter;
+  Track track;
+}
+
+enum SortCriteria {
+  Popularity, DateCreated
+
+ 
+
+;
+   
+
+}
+
+enum ArtistStatus {
+  Active, Inactive
+
+ 
+
+;
+   
+
+}
+
+enum TrackStatus {
+  Unreleased, Released
+
+ 
+
+;
+   
+
+}
+
+class Artist {
+  String artistId;
+  String name;
+  List<MusicProject> projects;
+  void inviteArtist(Artist artist);
+  void commentTrack(Track track, String comment);
+  void likeTrack(Track track);
+  void shareTrack(Track track);
+}
+
+class MusicProject {
+  String projectId;
+  String title;
+  List<Track> tracks;
+  Artist leadArtist;
+  List<Artist> collaborators;
+  void addTrack(Track track);
+  void removeTrack(Track track);
+  void searchTracks(String keyword);
+  void sortTracks(SortCriteria criteria);
+}
+
+class Track {
+  String trackId;
+  String title;
+  int duration;
+  Artist artist;
+  List<Comment> comments;
+  void searchTracks(String keyword);
+  void sortTracks(SortCriteria criteria);
+easy to
+
+ 
+
+;
+   
+
+}
+
+class Comment {
+  String commentId;
+  String commentText;
+  Artist commenter;
+  Track track;
+}
+
+enum SortCriteria {
+  Popularity, DateCreated
+
+ 
+
+;
+   
+
+}
+
+}

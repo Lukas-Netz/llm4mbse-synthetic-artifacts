@@ -1,0 +1,44 @@
+
+classdiagram FoodPrinterSystem {
+
+    class Printer {
+      int printSpeed;
+      int resolution;
+      String materialType;
+      void printRecipe(Recipe recipe);
+      void pausePrintJob();
+      void cancelPrintJob();
+    }
+
+    class RecipeDatabase {
+      List<Recipe> recipes;
+      void addRecipe(Recipe recipe);
+      void removeRecipe(Recipe recipe);
+      void updateRecipe(Recipe recipe);
+      List<Recipe> filterRecipes(String filter);
+    }
+
+    class UserInterface {
+      void displayRecipeInfo(Recipe recipe);
+      void adjustPrintSettings(Printer printer);
+      void monitorPrintingProcess(Printer printer);
+    }
+
+    class Recipe {
+      String name;
+      List<String> ingredients;
+      int cookingTime;
+      NutritionalInfo nutritionalInfo;
+    }
+
+    class NutritionalInfo {
+      int calories;
+      int protein;
+      int carbohydrates;
+      int fat;
+    }
+
+  composition Printer -> RecipeDatabase;
+  composition Printer -> UserInterface;
+  composition RecipeDatabase -> UserInterface;
+}

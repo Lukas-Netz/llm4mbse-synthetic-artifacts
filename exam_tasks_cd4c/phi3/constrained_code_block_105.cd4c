@@ -1,0 +1,32 @@
+
+classdiagram ChatbotSystem {
+
+    class Chatbot {
+      String uniqueIdentifier;
+      String department;
+      SkillSet skills;
+      String conversationHistory;
+    }
+
+    class SkillSet {
+      LanguageUnderstanding languageUnderstanding;
+      SentimentAnalysis sentimentAnalysis;
+      ResponseGeneration responseGeneration;
+    }
+
+    class Department {
+      String name;
+    }
+
+    class Hub {
+      Chatbot[] chatbots;
+      String userRequest;
+      String userResponse;
+      void routeRequest(String request, String department);
+      void trackConversation(String chatbotId, String conversation);
+    }
+
+    association Chatbot -> Department [*];
+    composition Hub -> Chatbot [*];
+    composition Hub -> Chatbot [*];
+}

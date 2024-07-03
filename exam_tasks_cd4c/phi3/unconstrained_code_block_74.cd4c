@@ -1,0 +1,56 @@
+
+classdiagram EnterpriseRiskManagement {
+
+    class ERMSystem {
+      Department department;
+      Team team;
+      Risk risk;
+      Report report;
+      User user;
+      Dashboard dashboard;
+    }
+
+    class Department {
+      String name;
+      List<Team> teams;
+      List<Risk> risks;
+    }
+
+    class Team {
+      String name;
+      List<Risk> risks;
+    }
+
+    class Risk {
+      String type;
+      int likelihood;
+      int impact;
+      String mitigationMeasures;
+      Department department;
+      Team team;
+    }
+
+    class Report {
+      String title;
+      List<Risk> risks;
+      int overallRiskScore;
+    }
+
+    class User {
+      String username;
+      String password;
+      String role;
+    }
+
+    class Dashboard {
+      List<Risk> risks;
+      String title;
+    }
+
+    composition ERMSystem -> (has) Department;
+    composition ERMSystem -> (has) Team;
+    composition ERMSystem -> (has) Risk;
+    composition ERMSystem -> (has) Report;
+    composition ERMSystem -> (has) User;
+    composition ERMSystem -> (has) Dashboard;
+}

@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram Game  {
+
+  class GameSession  {
+    GameMode gameMode;
+    Player[] players;
+  }
+
+  enum GameMode  {
+    SinglePlayer, MultiPlayer;
+  }
+
+  class Level  {
+    String name;
+    List<Feature> features;
+  }
+
+  class Feature  {
+    String name;
+  }
+
+  class Character  {
+    String name;
+    Health health;
+    Strength strength;
+    Speed speed;
+  }
+
+  class Player extends Character  {
+    int score;
+  }
+
+  class Enemy extends Character  {
+  }
+
+  class PowerUp extends Character  {
+  }
+
+  class Score  {
+    int value;
+  }
+
+  class Leaderboard  {
+    List<Player> topScorers;
+  }
+
+  composition GameSession -> (has) GameMode;
+  composition GameSession -> (has) Player[*];
+  composition Level -> (has) Feature[*];
+  composition Character -> (has) Health;
+  composition Character -> (has) Strength;
+  composition Character -> (has) Speed;
+  composition Player -> (has) Score;
+  composition Leaderboard -> (has) Player[*];
+}

@@ -1,0 +1,62 @@
+
+classdiagram DataLossPreventionSystem {
+
+    class DataLossPreventionSystem {
+      Hub hub;
+      SensitiveDataTracker tracker;
+      SecurityToolIntegration integration;
+      UserInterface ui;
+    }
+
+    class Hub {
+      -> SensitiveDataTracker [*];
+      -> SecurityToolIntegration [*];
+      -> UserInterface [*];
+      void monitorDataAccess();
+      void monitorDataCopy();
+      void monitorDataMove();
+      void trackDataHistory();
+      void generateReport();
+      void alertITDepartment();
+    }
+
+    class SensitiveDataTracker {
+      String sensitiveData;
+      DataAccessEvent event;
+      DataCopyEvent event;
+      DataMoveEvent event;
+      void identifySensitiveData();
+      void trackDataAccess();
+      void trackDataCopy();
+      void trackDataMove();
+      void generateReport();
+      void alertITDepartment();
+    }
+
+    class SecurityToolIntegration {
+      void integrateWithSecurityTools();
+    }
+
+    class UserInterface {
+      void displayMonitoringResults();
+      void displayReports();
+      void displayAlerts();
+    }
+
+    enum DataAccessEvent {
+      Accessed;
+    }
+
+    enum DataCopyEvent {
+      Copied;
+    }
+
+    enum DataMoveEvent {
+      Moved;
+    }
+
+  composition DataLossPreventionSystem -> (has) Hub;
+  composition DataLossPreventionSystem -> (has) SensitiveDataTracker;
+  composition DataLossPreventionSystem -> (has) SecurityToolIntegration;
+  composition DataLossPreventionSystem -> (has) UserInterface;
+}

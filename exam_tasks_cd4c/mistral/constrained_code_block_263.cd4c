@@ -1,0 +1,68 @@
+
+classdiagram OnlineTutoring {
+
+  class Student {
+    String username;
+    String password;
+    Profile profile;
+  }
+
+  class Profile {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Tutor {
+    String username;
+    String password;
+    Qualifications qualifications;
+    AreasOfExpertise areasOfExpertise;
+  }
+
+  class Qualifications {
+    String degree;
+    String institution;
+    int yearsOfExperience;
+  }
+
+  class AreasOfExpertise {
+    String subject;
+    String level;
+  }
+
+  class Session {
+    String ID;
+    Student student;
+    Tutor tutor;
+    DateTime startTime;
+    DateTime endTime;
+    String description;
+  }
+
+  class Course {
+    String ID;
+    String name;
+    String description;
+    Session [
+     ] sessions;
+  }
+
+  class Payment {
+    String ID;
+    Student student;
+    Session session;
+    PaymentMethod paymentMethod;
+    double amount;
+  }
+
+  enum PaymentMethod {
+    CreditCard, PayPal, BankTransfer;
+  }
+
+  association Student --o00o- 											;
+  association Tutor --o00o- 											;
+  association Session --o00o- 											;
+  association Course --o00o- 											;
+  association Payment --o00o- 											;
+}

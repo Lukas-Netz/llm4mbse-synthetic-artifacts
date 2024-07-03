@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram MaritimeDisasterSimulation  {
+
+  class Vessel  {
+    String uniqueIdentifier;
+    String name;
+    int sizeGrossTons;
+    CargoType cargoType;
+  }
+
+  enum CargoType  {
+    Container, Oil, Passenger
+  ;}
+
+  class Disaster  {
+    Vessel affectedVessel;
+    DisasterType type;
+  }
+
+  enum DisasterType  {
+    Fire, Collision
+  ;}
+
+  class RescueTeam  {
+    Vessel affectedVessel;
+    RescueAction action;
+  }
+
+  enum RescueAction  {
+    DeployLifeboat, ProvideMedicalAid
+  ;}
+
+  class Simulation  {
+    Vessel  vessel;
+    Disaster  disaster;
+    RescueTeam rescueTeam;
+  }
+
+  composition Vessel  ->  (has) CargoType;
+  composition Disaster  ->  (has) Vessel;
+  composition RescueTeam  ->  (has) Vessel;
+  composition Simulation  ->  (has) Vessel;
+  composition Simulation  ->  (has) Disaster;
+  composition Simulation  ->  (has) RescueTeam;
+}

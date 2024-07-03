@@ -1,0 +1,81 @@
+
+classdiagram HomeRenovation {
+
+  class Homeowner {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Contractor {
+    String name;
+    String email;
+    String password;
+    List<Image> workImages;
+    List<Video> workVideos;
+  }
+
+  class Image {
+    String url;
+    String description;
+  }
+
+  class Video {
+    String url;
+    String description;
+  }
+
+  class Project {
+    Homeowner homeowner;
+    String location;
+    String description;
+    List<Contractor> contractors;
+    List<Quote> quotes;
+  }
+
+  class Quote {
+    Contractor contractor;
+    double price;
+  }
+
+  class Rating {
+    Homeowner homeowner;
+    Contractor contractor;
+    int stars;
+    String review;
+  }
+
+  class Payment {
+    Contractor contractor;
+    double amount;
+    String paymentMethod;
+  }
+
+  association Homeowner [*] has_one_or_more_Projects [Project]
+  (has_many)
+  -> Contractor [*]
+  <<has_many>>
+  -
+  {
+    ordered
+    }
+  ;
+
+  association Project [*] has_many_to_many_with_Contractor [Contractor]
+  (has_many)
+  -> Quote [*]
+  <<has_many>>
+  ;
+
+  association Contractor [*] has_many_Ratings [Rating]
+  (has_many)
+  -> Rating [*]
+  <<has_many>>
+  ;
+
+  association Payment [1] has_one_Contractor [Contractor]
+  (has_one)
+  -> Contractor [1]
+  <<has_one>>
+  ;
+}

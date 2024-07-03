@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram PrecisionAgriculture  {
+
+  class Sensor  {
+    String uniqueId;
+    Location location;
+    SensorType type;
+  }
+
+  class Drone  {
+    String uniqueId;
+    Location location;
+    DroneType type;
+  }
+
+  class CentralHub  {
+    Sensor[] sensors;
+    Drone[] drones;
+    Crop[] crops;
+    Farmer[] farmers;
+  }
+
+  class Crop  {
+    String uniqueId;
+    CropType type;
+    GrowthStage growthStage;
+  }
+
+  class Farmer  {
+    String uniqueId;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phoneNumber;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  enum SensorType  {
+    Temperature,
+    Humidity,
+    SoilMoisture
+  ;}
+
+  enum DroneType  {
+    FixedWing,
+    MultiRotor
+  ;}
+
+  enum CropType  {
+    Wheat,
+    Corn,
+    Soybean
+  ;}
+
+  enum GrowthStage  {
+    Planting,
+    Germination,
+    Growth,
+    Harvest
+  ;}
+
+  composition CentralHub -> (has) Sensor[*];
+  composition CentralHub -> (has) Drone[*];
+  composition CentralHub -> (has) Crop[*];
+  composition CentralHub -> (has) Farmer[*];
+  association Sensor -> (monitors) Crop;
+  association Drone -> (captures) Crop;
+  association Farmer -> (owns) Crop;
+}

@@ -1,0 +1,45 @@
+
+classdiagram RideSharing {
+
+  class Driver {
+    String name;
+    String uniqueIdentifier;
+    float rating;
+    -> Vehicle [*];
+  }
+
+  class Vehicle {
+    String make;
+    String model;
+    String licensePlateNumber;
+    Driver driver;
+  }
+
+  class Passenger {
+    String name;
+    String uniqueIdentifier;
+    String pickupLocation;
+    String dropoffLocation;
+  }
+
+  class RideRequest {
+    String pickupLocation;
+    String dropoffLocation;
+    RideType requestedType;
+    String requestedTime;
+  }
+
+  enum RideType {
+    Economy, Premium, Luxury;
+  }
+
+  class Ride {
+    RideType type;
+    float price;
+  }
+
+  composition Driver -> Vehicle [*];
+  association Passenger --oRideRequest;
+  association RideRequest --oDriver;
+  association Ride --oPassenger;
+}

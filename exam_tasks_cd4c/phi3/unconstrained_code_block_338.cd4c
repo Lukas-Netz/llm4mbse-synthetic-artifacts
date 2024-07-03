@@ -1,0 +1,48 @@
+
+classdiagram BiometricAccessControl {
+
+    class BiometricAccessControl {
+      ControlUnit controlUnit;
+      Database database;
+    }
+
+    class ControlUnit {
+      BiometricDevice[] biometricDevices;
+      User[] users;
+      AccessControlPolicy[] accessControlPolicies;
+      void addUser(User user);
+      void removeUser(User user);
+      void updateAccessControlPolicy(AccessControlPolicy policy);
+      boolean authenticateUser(User user, BiometricDevice device);
+    }
+
+    class User {
+      String uniqueIdentifier;
+      List<Role> roles;
+    }
+
+    class Role {
+      String name;
+    }
+
+    class BiometricDevice {
+      String deviceType;
+      BiometricData captureData;
+    }
+
+    class BiometricData {
+      String dataType;
+      String dataValue;
+    }
+
+    class Database {
+      User[] users;
+      BiometricData[] biometricData;
+      AccessControlPolicy[] accessControlPolicies;
+    }
+
+    class AccessControlPolicy {
+      String policyName;
+      String policyDetails;
+    }
+}

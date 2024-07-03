@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram DocumentCollaboration  {
+
+  class Document  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    DocumentType type;
+    VersionHistory versionHistory;
+  }
+
+  enum DocumentType  {
+    TEXT, IMAGE, VIDEO;
+  }
+
+  class VersionHistory  {
+    DocumentVersion  [  ] versions;
+  }
+
+  class DocumentVersion  {
+    String content;
+    Date timestamp;
+  }
+
+  class User  {
+    String username;
+  }
+
+  class Task  {
+    String description;
+    User assignee;
+  }
+
+  class Comment  {
+    String text;
+    User author;
+  }
+
+  class Mention  {
+    User mentionedUser;
+  }
+
+  class Collaboration  {
+    Document document;
+    User  [  ] collaborators;
+  }
+
+  class Invitation  {
+    Document document;
+    User invitedUser;
+  }
+
+  composition Document  ->  (has) VersionHistory;
+  composition Document  ->  (has) Task  [0..*];
+  composition Document  ->  (has) Comment  [0..*];
+  composition Document  ->  (has) Mention  [0..*];
+  composition Collaboration  ->  (has) Document;
+  composition Collaboration  ->  (has) User  [0..*];
+  composition Invitation  ->  (has) Document;
+  composition Invitation  ->  (has) User;
+}

@@ -1,0 +1,45 @@
+
+classdiagram CustomerSupport {
+
+  class KnowledgeBase {
+    Product [][] products;
+  }
+
+  class Product {
+    String name;
+    String description;
+    float price;
+  }
+
+  class NLPModule {
+    String analyze(String inquiry);
+  }
+
+  class Database {
+    Customer [][] customers;
+    Inquiry [][] inquiries;
+  }
+
+  class Customer {
+    String name;
+    String email;
+    String phone;
+  }
+
+  class Inquiry {
+    String type;
+    String content;
+    String response;
+  }
+
+  class Chatbot {
+    NLPModule nlpModule;
+    Database database;
+    void interact(String inquiry);
+  }
+
+  composition CustomerSupport -> KnowledgeBase;
+  composition CustomerSupport -> NLPModule;
+  composition CustomerSupport -> Database;
+  association CustomerSupport -> Chatbot [*];
+}

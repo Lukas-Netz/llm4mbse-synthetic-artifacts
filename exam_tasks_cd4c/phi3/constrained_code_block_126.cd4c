@@ -1,0 +1,40 @@
+
+classdiagram EmployeeRecognitionPlatform {
+
+    class Employee {
+      String uniqueIdentifier;
+      String name;
+      String jobTitle;
+    }
+
+    class RecognitionEvent {
+      String description;
+      Date date;
+      List<Employee> recipients;
+      RecognitionType type;
+    }
+
+    class RecognitionType {
+      String name;
+    }
+
+    class Admin {
+      void createRecognitionType(RecognitionType type);
+      void editRecognitionType(RecognitionType type);
+      void deleteRecognitionType(RecognitionType type);
+      List<RecognitionEvent> getEmployeeRecognitionHistory(Employee employee);
+      List<Employee> getColleagueRecognitionHistory(Employee employee);
+    }
+
+    class EmployeeRecognitionPlatform {
+      List<Employee> employees;
+      List<RecognitionEvent> recognitionEvents;
+      List<RecognitionType> recognitionTypes;
+      Admin admin;
+    }
+
+    composition EmployeeRecognitionPlatform -> (has) Admin;
+    composition EmployeeRecognitionPlatform -> (has) List<<Employee>>;
+    composition EmployeeRecognitionPlatform -> (has) List<<RecognitionEvent>>;
+    composition EmployeeRecognitionPlatform -> (has) List<<RecognitionType>>;
+}

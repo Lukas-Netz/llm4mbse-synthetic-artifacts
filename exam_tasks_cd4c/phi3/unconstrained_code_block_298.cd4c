@@ -1,0 +1,43 @@
+
+classdiagram WildlifeConservation {
+
+    class Node {
+      String uniqueIdentifier;
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+    WritableTransaction data;
+    }
+
+    class Organization {
+      String name;
+      void createProject(Project project);
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+    }
+
+    class Species {
+      String name;
+    }
+
+    class Project {
+      String name;
+      Species species;
+      void addTransaction(Transaction transaction);
+      void verifyTransaction(Transaction transaction);
+    }
+
+    class Transaction {
+      String timestamp;
+      Organization organization;
+      Project project;
+      Species species;
+      void recordConservationData();
+    }
+
+    composition Node -> Transaction [*];
+    composition Organization -> Project [*];
+    composition Organization -> Transaction [*];
+    composition Project -> Transaction [*];
+    composition Project -> Species [*];
+    composition Transaction -> Species [*];
+}

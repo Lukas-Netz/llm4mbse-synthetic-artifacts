@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram OnlineDating  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    Profile profile;
+    List<String> preferredMatches;
+    List<String> blockedUsers;
+  }
+
+  class Profile  {
+    int age;
+    String location;
+    List<String> interests;
+    String description;
+  }
+
+  class SearchCriteria  {
+    int ageRange;
+    String location;
+    List<String> interests;
+  }
+
+  class Message  {
+    String content;
+    User sender;
+    User recipient;
+  }
+
+  class Rating  {
+    int rating;
+    User rater;
+    User rated;
+  }
+
+  class Payment  {
+    double amount;
+    User payer;
+  }
+
+  class PremiumFeatures  {
+    boolean increasedVisibility;
+    boolean advancedSearchFilters;
+  }
+
+  class Website  {
+    List<User> users;
+    Search search;
+    Messaging messaging;
+    Payment payment;
+  }
+
+  composition Website -> (has) users;
+  composition Website -> (has) search;
+  composition Website -> (has) messaging;
+  composition Website -> (has) payment;
+  association User -> (has) profile;
+  association User -> (has) preferredMatches;
+  association User -> (has) blockedUsers;
+  association User -> (has) ratings;
+  association User -> (has) messages;
+  association User -> (has) payments;
+  association User -> (has) premiumFeatures;
+}

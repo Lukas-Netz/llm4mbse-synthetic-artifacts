@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram BiomedicalResearch  {
+
+  class Researcher  {
+    String uniqueIdentifier;
+    String name;
+    String affiliation;
+  }
+
+  class ResearchProject  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    Researcher leader;
+  }
+
+  class ResearchData  {
+    String uniqueIdentifier;
+    String type;
+    String content;
+    ResearchProject project;
+  }
+
+  class Collaboration  {
+    ResearchProject project;
+    Researcher  researcher1;
+    Researcher  researcher2;
+  }
+
+  class DataSharing  {
+    ResearchData data;
+    Researcher sharer;
+    Researcher receiver;
+  }
+
+  class DataIntegrity  {
+    ResearchData data;
+  }
+
+  composition ResearchProject -> Researcher;
+  composition ResearchData -> ResearchProject;
+  composition Collaboration -> ResearchProject;
+  composition DataSharing -> ResearchData;
+  composition DataIntegrity -> ResearchData;
+
+  <<stereotype>> abstract class Data {
+    String content;
+  }
+
+  class GenomicData extends Data {
+    String genomicSequence;
+  }
+
+  class ClinicalData extends Data {
+    String clinicalInformation;
+  }
+}

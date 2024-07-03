@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram VirtualRealityAstronomyTourSystem  {
+
+  class Tour  {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Stop  {
+    String name;
+    String description;
+    List<Object> objects;
+  }
+
+  class Object  {
+    String name;
+    String description;
+    Map<String, String> attributes;
+  }
+
+  class User  {
+    String name;
+    List<Tour> takenTours;
+  }
+
+  class Administrator  {
+    List<Object> availableObjects;
+  }
+
+  composition Tour -> Stop[*];
+  composition Stop -> Object[*];
+  composition User -> Tour[*];
+  composition Administrator -> Object[*];
+}

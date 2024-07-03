@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram AutomatedMLSystem  {
+
+  class DataIngestionModule  {
+    DataSource  dataSources  ;  }
+  class DataPreprocessingModule  {
+    DataTransformer  dataTransformer  ;  }
+  class MachineLearningModule  {
+    ModelTrainer  modelTrainer  ;  }
+  class DeploymentModule  {
+    ModelDeployer  modelDeployer  ;  }
+
+  class Data  {
+    String  customerData  ;  }
+
+  class DataSource  {
+    String  sourceName  ;  }
+
+  class DataTransformer  {
+    void  handleMissingValues  ;  }
+    enum DataTransformerType  {  HANDLING_MISSING_VALUES, ENCODING_CATEGORICAL_VARIABLES, SCALING_NUMERICAL_VARIABLES  ;  }
+
+  class ModelTrainer  {
+    void  trainModel  ;  }
+    enum ModelType  {  DECISION_TREE, RANDOM_FOREST, NEURAL_NETWORK  ;  }
+
+  class ModelDeployer  {
+    void  deployModel  ;  }
+
+  composition AutomatedMLSystem  ->  (has) DataIngestionModule;
+  composition AutomatedMLSystem  ->  (has) DataPreprocessingModule;
+  composition AutomatedMLSystem  ->  (has) MachineLearningModule;
+  composition AutomatedMLSystem  ->  (has) DeploymentModule;
+  composition DataIngestionModule  ->  (has) DataSource;
+  composition DataPreprocessingModule  ->  (has) DataTransformer;
+  composition MachineLearningModule  ->  (has) ModelTrainer;
+  composition DeploymentModule  ->  (has) ModelDeployer;
+}

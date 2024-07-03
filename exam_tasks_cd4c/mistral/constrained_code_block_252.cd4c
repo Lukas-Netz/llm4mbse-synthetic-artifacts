@@ -1,0 +1,65 @@
+
+classdiagram CloudDatabase {
+
+  class Database {
+    Project [  ] projects;
+    Table [ ] tables;
+    Column [ ] columns;
+  }
+
+  class Client {
+    String uniqueIdentifier;
+    Project assignedProject;
+  }
+
+  class Project {
+    String name;
+    Database database;
+  }
+
+  class Table {
+    String name;
+    Database database;
+    Column [ ] columns;
+  }
+
+  class Column {
+    String name;
+    Table table;
+  }
+
+  interface Authentication {
+    boolean authenticate(String username, String password);
+  }
+
+  interface Authorization {
+    boolean hasPermission(String user, String resource);
+  }
+
+  class DataIntegrity {
+    void ensureConsistency();
+  }
+
+  class BackupAndRecovery {
+    void backup();
+    void recover();
+  }
+
+  class UserInterface {
+    void create(String data);
+    void read(String data);
+    void update(String data);
+    void delete(String data);
+  }
+
+  composition Database -> Project [*];
+  composition Database -> Table [*];
+  composition Table -> Column [*];
+  association Client -- Project;
+  association Client -- Database;
+  association Database -- Authentication;
+  association Database -- Authorization;
+  association Database -- DataIntegrity;
+  association Database -- BackupAndRecovery;
+  association Database -- UserInterface;
+}

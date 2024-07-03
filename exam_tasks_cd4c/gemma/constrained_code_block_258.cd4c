@@ -1,0 +1,66 @@
+
+
+#  classdiagram MedicalConsultationPlatform
+
+  
+
+{class Patient extends User {
+  private String name;
+  private String email;
+  private String phoneNumber;
+  private List<Consultation> consultations;
+
+  public String getName()
+  
+  
+  
+  ;
+
+  public void setName(String name)
+  
+  
+  
+  ;
+
+  public String getEmail()
+  
+  
+  
+  ;
+
+  public void setEmail(String email)
+  
+  
+  
+  ;
+
+  public String getPhoneNumber()
+  
+  
+  
+  ;
+
+  public void setPhoneNumber(String phoneNumber)
+  
+  
+  
+  ;
+
+  public List<Consultation> getConsultations()
+  
+  
+  
+  ;
+
+  public void addConsultation(Consultation consultation)
+  
+  
+  
+  ;
+
+  public void removeConsultation(Consultation consultation)
+  
+  
+  
+  ;
+}}

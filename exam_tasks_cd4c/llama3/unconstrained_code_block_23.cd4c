@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram FraudDetectionSystem  {
+
+  class Transaction  {
+    double amount;
+    Date date;
+    TransactionType type;
+  }
+
+  class User  {
+    String accountNumber;
+    String name;
+    TransactionHistory transactionHistory;
+  }
+
+  class TransactionHistory  {
+    Transaction[] transactions;
+  }
+
+  class FraudDetectionAlgorithm  {
+    void analyzeTransaction(Transaction transaction);
+    boolean isSuspicious(Transaction transaction);
+  }
+
+  class AlertSystem  {
+    void sendAlert(SuspiciousTransaction transaction);
+  }
+
+  class DataAnalytics  {
+    void analyzeTransactions(Transaction[] transactions);
+    String getFraudulentActivityTypes();
+  }
+
+  class MachineLearning  {
+    void trainModel(Transaction[] transactions);
+    void improveDetectionCapabilities();
+  }
+
+  class SuspiciousTransaction  {
+    Transaction transaction;
+    boolean isSuspicious;
+  }
+
+  class TransactionType  {
+    String type;
+  }
+
+  composition FraudDetectionSystem -> (has) TransactionData;
+  composition FraudDetectionSystem -> (has) UserData;
+  composition FraudDetectionSystem -> (has) FraudDetectionAlgorithm;
+  composition FraudDetectionSystem -> (has) AlertSystem;
+  composition FraudDetectionSystem -> (has) DataAnalytics;
+  composition FraudDetectionSystem -> (has) MachineLearning;
+
+  association Transaction -> User;
+  association Transaction -> FraudDetectionAlgorithm;
+  association SuspiciousTransaction -> AlertSystem;
+  association DataAnalytics -> Transaction;
+  association MachineLearning -> Transaction;
+}

@@ -1,0 +1,46 @@
+
+classdiagram AssetManagement {
+
+  class Asset {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Equipment extends Asset {
+    String serialNumber;
+    String manufacturer;
+    String model;
+  }
+
+  class Vehicle extends Asset {
+    String licensePlateNumber;
+    String make;
+    String model;
+  }
+
+  class Furniture extends Asset {
+    String material;
+    String color;
+    String size;
+  }
+
+  class Maintenance {
+    Asset asset;
+    Date date;
+    String type;
+  }
+
+  class AssetRepository {
+    Asset [][] assets;
+  }
+
+  class ReportGenerator {
+    AssetRepository repository;
+    void generateStatusReport();
+    void generateMaintenanceHistoryReport();
+  }
+
+  composition AssetRepository -> Asset [*];
+  association AssetRepository -> Maintenance [*];
+  association ReportGenerator -> AssetRepository;
+}

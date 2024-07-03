@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram DigitalMakeupApplications  {
+
+  class Product  {
+    String name;
+    String brand;
+    Category category;
+    List<Ingredient> ingredients;
+    double price;
+    boolean available;
+  }
+
+  class Ingredient  {
+    String name;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class MakeupLook  {
+    List<Product> products;
+    List<Technique> techniques;
+    Image image;
+  }
+
+  class Technique  {
+    String name;
+  }
+
+  class Image  {
+    byte[] data;
+  }
+
+  class User  {
+    String name;
+  }
+
+  class Collaboration  {
+    MakeupLook makeupLook;
+    List<User> collaborators;
+  }
+
+  class RenderingEngine  {
+    void generateImage(MakeupLook makeupLook);
+  }
+
+  class Report  {
+    List<MakeupLook> popularLooks;
+    List<Product> mostFrequentlyUsedProducts;
+    List<Collaboration> successfulCollaborations;
+  }
+
+  composition Product -> Ingredient [1..*];
+  composition MakeupLook -> Product [1..*];
+  composition MakeupLook -> Technique [1..*];
+  composition Collaboration -> MakeupLook [1..1];
+  composition RenderingEngine -> MakeupLook [1..1];
+  composition Report -> MakeupLook [1..*];
+}

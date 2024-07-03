@@ -1,0 +1,84 @@
+
+classdiagram SupplyChainVisibility {
+
+    class SupplyChainVisibilitySystem {
+      ProductionStage production;
+      TransportationStage transportation;
+      StorageStage storage;
+      DeliveryStage delivery;
+      InventoryLevel inventory;
+      ShipmentStatus shipment;
+      TransportationMode transportationMode;
+      CountryRegion countryRegion;
+      GoodType goodType;
+      ShipmentType shipmentType;
+    }
+
+    class ProductionStage {
+      String location;
+      Date productionDate;
+      Good good;
+      InventoryLevel inventoryLevel;
+    }
+
+    class TransportationStage {
+      String location;
+      Date transportationDate;
+      Good good;
+      InventoryLevel inventoryLevel;
+      TransportationMode transportationMode;
+      Shipment shipment;
+    }
+
+    class StorageStage {
+      String location;
+      Date storageDate;
+      Good good;
+      InventoryLevel inventoryLevel;
+    }
+
+    class DeliveryStage {
+      String location;
+      Date deliveryDate;
+      Good good;
+      ShipmentStatus shipmentStatus;
+    }
+
+    class InventoryLevel {
+      int quantity;
+    }
+
+    class ShipmentStatus {
+      String location;
+      Date statusDate;
+      Date expectedDeliveryDate;
+    }
+
+    class TransportationMode {
+      String mode;
+    }
+
+    class CountryRegion {
+      String country;
+      String region;
+    }
+
+    class GoodType {
+      String type;
+    }
+
+    class ShipmentType {
+      String type;
+    }
+
+  composition SupplyChainVisibilitySystem -> (has) ProductionStage;
+  composition SupplyChainVisibilitySystem -> (has) TransportationStage;
+  composition SupplyChainVisibilitySystem -> (has) StorageStage;
+  composition SupplyChainVisibilitySystem -> (has) DeliveryStage;
+  composition SupplyChainVisibilitySystem -> (has) InventoryLevel;
+  composition SupplyChainVisibilitySystem -> (has) ShipmentStatus;
+  composition SupplyChainVisibilitySystem -> (has) TransportationMode;
+  composition SupplyChainVisibilitySystem -> (has) CountryRegion;
+  composition SupplyChainVisibilitySystem -> (has) GoodType;
+  composition SupplyChainVisibilitySystem -> (has) ShipmentType;
+}

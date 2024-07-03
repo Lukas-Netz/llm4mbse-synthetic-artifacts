@@ -1,0 +1,79 @@
+
+classdiagram MLOps {
+
+  class Model {
+    String id;
+    FeatureSet features;
+    HyperparameterSet hyperparameters;
+    PerformanceMetrics metrics;
+    VersionHistory history;
+  }
+
+  class FeatureSet {
+    String[] featureNames;
+    String[] featureTypes;
+  }
+
+  class HyperparameterSet {
+    String[] hyperparameterNames;
+    String[] hyperparameterTypes;
+    String[] hyperparameterValues;
+  }
+
+  class PerformanceMetrics {
+    String[] metricNames;
+    double[] metricValues;
+  }
+
+  class VersionHistory {
+    String[] changes;
+    String[] dates;
+  }
+
+  class DataSource {
+    String name;
+    String type;
+  }
+
+  class Database extends DataSource {
+  }
+
+  class DataWarehouse extends DataSource {
+  }
+
+  class CloudStorage extends DataSource {
+  }
+
+  class ModelValidator {
+    Model model;
+    void validate();
+  }
+
+  class ModelDeployer {
+    Model model;
+    void deploy();
+  }
+
+  class ModelMonitor {
+    Model model;
+    void monitor();
+  }
+
+  class InsightsProvider {
+    Model model;
+    void provideInsights();
+  }
+
+  class VisualizationProvider {
+    Model model;
+    void provideVisualizations();
+  }
+
+  composition MLOps -> Model [*];
+  composition Model -> DataSource [*];
+  association ModelValidator -> Model;
+  association ModelDeployer -> Model;
+  association ModelMonitor -> Model;
+  association InsightsProvider -> Model;
+ 
+}

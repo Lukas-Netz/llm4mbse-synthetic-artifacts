@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram AutonomousUnderwaterExplorationSystem  {
+
+  class Submarine  {
+    String name;
+    String uniqueIdentifier;
+    Position currentPosition;
+    void move(Direction direction);
+    void collectData();
+    void sendData(Hub hub);
+  }
+
+  class Sensor  {
+    SensorType type;
+    Data data;
+    Location location;
+  }
+
+  class Hub  {
+    void receiveData(Submarine submarine);
+    void displayData();
+  }
+
+  enum Direction  {
+    Up, Down, Forward, Backward, Left, Right
+  ;}
+
+  enum SensorType  {
+    Sonar, Camera, WaterQuality
+  ;}
+
+  enum Data  {
+    Range, Image, pHLevel
+  ;}
+
+  class Position  {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Location  {
+    double xCoordinate;
+    double yCoordinate;
+  }
+
+  composition Submarine -> Sensor [*];
+  composition Hub -> Submarine;
+  composition Sensor -> Location;
+}

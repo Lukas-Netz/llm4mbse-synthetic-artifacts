@@ -1,0 +1,86 @@
+
+classdiagram SmartSpeaker {
+
+    class User {
+      String type;
+    }
+
+    class Query {
+      String text;
+    }
+
+    class Response {
+      String text;
+      String image;
+      Audio audio;
+    }
+
+    class KnowledgeBase {
+      Map<String, String> topics;
+      void addTopic(String topic, String info);
+      String getInfo(String topic);
+    }
+
+    class ExternalAPI {
+      String getInfoFromAPI(String query);
+    }
+
+    class SmartSpeaker {
+      User user;
+      Query query;
+      Response response;
+      KnowledgeBase knowledgeBase;
+      ExternalAPI externalAPI;
+
+      void processQuery(Query query);
+      Response generateResponse(Query query);
+      void integrateWithDevices(String deviceType);
+      void learnFromFeedback(String feedback);
+    }
+
+    association SmartSpeaker 
+      has 
+        -> User;
+
+    association SmartSpeaker 
+      has 
+        -> Query;
+
+    association SmartSpeaker 
+      has 
+        -> Response;
+
+    association SmartSpeaker 
+      has 
+        -> KnowledgeBase;
+
+    association SmartSpeaker 
+      has 
+        -> ExternalAPI;
+
+    association SmartSpeaker 
+      has 
+        -> User [*];
+
+    association SmartSpeaker 
+      has 
+        -> Query [*];
+
+    association SmartSpeaker 
+      has 
+        -> Response [*];
+
+    association SmartSpeaker 
+      has 
+        -> KnowledgeBase;
+
+    association SmartSpeaker 
+      has 
+        -> ExternalAPI;
+
+    composition SmartSpeaker -> User;
+    composition SmartSpeaker -> Query;
+    composition SmartSpeaker -> Response;
+    composition SmartSpeaker -> KnowledgeBase;
+   
+ }

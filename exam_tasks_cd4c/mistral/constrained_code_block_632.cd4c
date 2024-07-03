@@ -1,0 +1,56 @@
+
+classdiagram QuantumResistantCrypto {
+
+  class KeyGenerator {
+    PublicKey generateKeyPair();
+  }
+
+  class KeyDistributor {
+    PublicKey publicKey;
+    PrivateKey privateKey;
+    void distributePublicKey(PublicKey publicKey);
+    void revokeKey(PublicKey publicKey);
+  }
+
+  class MessageEncryptor {
+    PublicKey publicKey;
+    String encryptMessage(String message);
+  }
+
+  class MessageDecryptor {
+    PrivateKey privateKey;
+    String decryptMessage(String encryptedMessage);
+  }
+
+  class KeyRevocationManager {
+    void requestRevocation(PublicKey publicKey);
+  }
+
+  class PublicKey {
+    String keyId;
+    String algorithm;
+  }
+
+  class PrivateKey {
+    String keyId;
+    String encryption;
+  }
+
+  class Message {
+    String content;
+  }
+
+  class QuantumResistantCryptoSystem {
+    KeyGenerator keyGenerator;
+    KeyDistributor keyDistributor;
+    MessageEncryptor messageEncryptor;
+    MessageDecryptor messageDecryptor;
+    KeyRevocationManager keyRevocationManager;
+  }
+
+  composition QuantumResistantCryptoSystem -> KeyGenerator;
+  composition QuantumResistantCryptoSystem -> KeyDistributor;
+  composition QuantumResistantCryptoSystem -> MessageEncryptor;
+  composition QuantumResistantCryptoSystem -> MessageDecryptor;
+  composition QuantumResistantCryptoSystem -> KeyRevocationManager;
+}

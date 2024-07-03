@@ -1,0 +1,40 @@
+
+
+classdiagram ARNavigationSystem {
+
+  class Device {
+    String uniqueIdentifier;
+    Map map;
+    CurrentLocation currentLocation;
+  }
+
+  class Map {
+    PointOfInterest poiList;
+  }
+
+  class PointOfInterest {
+    String name;
+    LatLong coordinates;
+  }
+
+  class RoutePlanner {
+    Device device;
+    Destination destination;
+    ShortestPath shortestPath;
+  }
+
+  class CurrentLocation {
+    LatLong coordinates;
+  }
+
+  class LatLong {
+    double latitude;
+    double longitude;
+  }
+
+  composition Device -> (has) Map;
+  composition Device -> (has) CurrentLocation;
+  association RoutePlanner -> Device;
+  association RoutePlanner -> Destination;
+  association CurrentLocation -> Map;
+}

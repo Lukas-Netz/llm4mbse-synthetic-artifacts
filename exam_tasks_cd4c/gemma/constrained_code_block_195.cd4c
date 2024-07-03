@@ -1,0 +1,140 @@
+
+
+classdiagram OnlineSurveyTool {
+
+    class User {
+      String name;
+      String email;
+      List<Survey> surveys;
+    }
+
+    class Survey {
+      String title;
+      String description;
+      Date startDate;
+      Date endDate;
+      List<Question> questions;
+    }
+
+    class Question {
+      String type;
+      List<Option> options;
+    }
+
+    class Option {
+      String text;
+      boolean isCorrect;
+    }
+
+    class Response {
+      User user;
+      Survey survey;
+      List<Answer> answers;
+    }
+
+    class Answer {
+      Question question;
+      String text;
+    }
+
+    class Administrator {
+      List<User> users;
+      List<Survey> surveys;
+      List<Question> questions;
+    }
+
+    class Analytics {
+      SurveyResults results;
+    }
+
+  composition User -> (has) List<<Survey>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Survey -> (has) List<<Question>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Question -> (has) List<<Option>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Response -> (has) User
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Response -> (has) Survey
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Administrator -> (has) List<<User>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Administrator -> (has) List<<Survey>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Administrator -> (has) List<<Question>>
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+  composition Analytics -> (has) SurveyResults
+  abstract  {
+  
+  
+  
+  ordered  
+  
+}
+  
+  ;
+}

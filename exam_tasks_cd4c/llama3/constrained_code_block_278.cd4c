@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram CarRental  {
+
+  class Vehicle  {
+    VehicleType type;
+    VehicleFeatures features;
+    int capacity;
+  }
+
+  class Customer  {
+    String name;
+    String email;
+    String phone;
+  }
+
+  class Rental  {
+    Vehicle vehicle;
+    Customer customer;
+    Date startDate;
+    Date endDate;
+    double totalCost;
+  }
+
+  class Branch  {
+    String name;
+    Vehicle  [ ] vehicles;
+    Customer  [ ] customers;
+    Rental  [ ] rentals;
+  }
+
+  class Report  {
+    String type;
+    String data;
+  }
+
+  class VehicleType  {
+    String name;
+  }
+
+  class VehicleFeatures  {
+    String feature;
+    String description;
+  }
+
+  composition Branch  ->  (has) Vehicle  [ * ];
+  composition Branch  ->  (has) Customer  [ * ];
+  composition Branch  ->  (has) Rental  [ * ];
+
+  association Vehicle  ->  VehicleType;
+  association Vehicle  ->  VehicleFeatures;
+  association Customer  ->  Rental;
+  association Rental  ->  Vehicle;
+  association Rental  ->  Customer;
+  association Branch  ->  Report;
+
+  <<stereotype>> interface ReportGenerator;
+  class ReportGeneratorImpl implements ReportGenerator;
+  <<stereotype>> interface VehicleRepository;
+  class VehicleRepositoryImpl implements VehicleRepository;
+  }

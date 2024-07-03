@@ -1,0 +1,59 @@
+
+classdiagram VirtualRealty {
+
+    class Property {
+      String uniqueId;
+      String name;
+      String description;
+      PropertyType type;
+    }
+
+    class Room {
+      String uniqueId;
+      String name;
+      String description;
+      RoomType type;
+      Room[] rooms;
+    }
+
+    class Object {
+      String uniqueId;
+      String name;
+      String description;
+    }
+
+    class User {
+      String uniqueId;
+      String name;
+      String password;
+    }
+
+    class Tour {
+      String uniqueId;
+      Room[] rooms;
+      Object[] objects;
+    }
+
+    class VRDevice {
+      String uniqueId;
+      String name;
+      VRDeviceType type;
+    }
+
+    enum PropertyType {
+      Residential, Commercial, Industrial;
+    }
+
+    enum RoomType {
+      LivingRoom, Bedroom, Office;
+    }
+
+    enum VRDeviceType {
+      Oculus, Vive;
+    }
+
+    association Property -> Room[*];
+    association Room -> Object[*];
+    association User -> Tour[*];
+    association VRDevice -> Tour[*];
+}

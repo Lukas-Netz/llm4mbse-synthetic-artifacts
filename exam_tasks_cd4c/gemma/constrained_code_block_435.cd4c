@@ -1,0 +1,34 @@
+
+
+classdiagram AquaponicsSystem {
+
+  class AquaponicsSystem {
+    ControlCenter controlCenter;
+    StorageTank storageTank;
+    FiltrationSystem filtrationSystem;
+  }
+
+  class ControlCenter {
+    Sensors sensors;
+    Pumps pumps;
+    Valves valves;
+  }
+
+  class Sensors {
+    WaterQualitySensor waterQualitySensor;
+    TemperatureSensor temperatureSensor;
+    pHSensor pHSensor;
+  }
+
+  class StorageTank {
+    Water reservoir;
+  }
+
+  class FiltrationSystem {
+    Filter filter;
+  }
+
+  composition AquaponicsSystem -> (has) ControlCenter;
+  composition AquaponicsSystem -> (has) StorageTank [0..1];
+  composition AquaponicsSystem -> (has) FiltrationSystem [0..1];
+}

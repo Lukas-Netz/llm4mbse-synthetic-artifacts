@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram LegalDocumentService  {
+
+  class Document  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+  }
+
+  class DocumentDatabase  {
+    Document[] documents;
+  }
+
+  class SearchEngine  {
+    void search(String keyword, String author, Date date);
+  }
+
+  class DocumentEditor  {
+    void createDocument(Document document);
+    void editDocument(Document document);
+    void modifyDocument(Document document);
+  }
+
+  class NotificationSystem  {
+    void sendReminder(User user, Document document, Date deadline);
+  }
+
+  class User  {
+    String username;
+    String password;
+    boolean isAdmin;
+  }
+
+  class AccessControl  {
+    void grantAccess(User user, Document document);
+    void revokeAccess(User user, Document document);
+  }
+
+  composition DocumentDatabase -> Document[*];
+  composition SearchEngine -> DocumentDatabase;
+  composition DocumentEditor -> DocumentDatabase;
+  composition NotificationSystem -> User[*];
+  composition AccessControl -> User[*];
+  composition AccessControl -> Document[*];
+}

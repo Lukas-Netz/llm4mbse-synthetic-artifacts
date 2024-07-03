@@ -1,0 +1,52 @@
+
+classdiagram DataLossPreventionSystem {
+
+    class DataLossPreventionSystem {
+      Hub hub;
+      SensitiveDataTracker tracker;
+      AlertsNotifications notifications;
+      ReportsGenerator reportsGenerator;
+      UserInterface userInterface;
+    }
+
+    class Hub {
+      -> SensitiveDataTracker [*];
+      -> AlertsNotifications [*];
+      -> ReportsGenerator [*];
+      -> UserInterface [*];
+      void monitorDataAccess();
+      void monitorDataCopy();
+      void monitorDataMove();
+      void generateReport();
+    }
+
+    class SensitiveDataTracker {
+      String sensitiveData;
+      DataAccessHistory history;
+      void trackDataAccess(String data);
+      void trackDataCopy(String data);
+      void trackDataMove(String data);
+    }
+
+    class AlertsNotifications {
+      void sendAlert(String data);
+      void sendNotification(String data);
+    }
+
+    class ReportsGenerator {
+      void generateReport(String data);
+    }
+
+    class UserInterface {
+      void displayDataAccessHistory();
+      void displayDataCopyHistory();
+      void displayDataMoveHistory();
+      void displayReport();
+    }
+
+  composition DataLossPreventionSystem -> (has) Hub;
+  composition DataLossPreventionSystem -> (has) SensitiveDataTracker;
+  composition DataLossPreventionSystem -> (has) AlertsNotifications;
+  composition DataLossPreventionSystem -> (has) ReportsGenerator;
+  composition DataLossPreventionSystem -> (has) UserInterface;
+}

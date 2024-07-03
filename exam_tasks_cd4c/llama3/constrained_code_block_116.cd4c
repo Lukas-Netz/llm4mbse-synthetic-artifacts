@@ -1,0 +1,45 @@
+
+
+
+classdiagram FinancialSystem  {
+
+  class Account  {
+    String accountNumber;
+    double balance;
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    String type;  (depositwithdrawaltransfer)
+  }
+
+  class Report  {
+    List<Transaction> transactions;
+  }
+
+  class User  {
+    String username;
+    String password;
+    PermissionLevel permissionLevel;
+  }
+
+  class FinancialInstitution  {
+    List<Account> accounts;
+    List<User> users;
+  }
+
+  class PermissionLevel  {
+    String name;
+  }
+
+  composition FinancialInstitution -> (has) accounts;
+  composition FinancialInstitution -> (has) users;
+  composition Account -> (has) transactions;
+  composition Report -> (has) transactions;
+  composition User -> (has) permissionLevel;
+  association FinancialInstitution -> User [1..*];
+  association Account -> Transaction [0..*];
+  association Report -> Account [1..*];
+  association User -> FinancialInstitution [1..*];
+}

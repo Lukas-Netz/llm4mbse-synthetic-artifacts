@@ -1,0 +1,67 @@
+
+classdiagram HydraulicPress {
+  class Press {
+    String name;
+    String type;
+    Status status;
+  }
+  class Conduit {
+    String stickied;
+    Status miniatur;
+  }
+  enum ConduitType {
+    Pressure, Temperature, Position;
+  }
+  enum ConduitStatus {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  enum ConduitValue {
+    Working, Malfunctioning;
+  }
+  
+  }

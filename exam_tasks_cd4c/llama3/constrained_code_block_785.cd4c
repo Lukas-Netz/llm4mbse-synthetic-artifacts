@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram FoodPrintingSystem  {
+
+  class Printer  {
+    int printSpeed;
+    int resolution;
+    MaterialType materialType;
+    void printRecipe(RemoteRecipe recipe);
+    void pausePrint();
+    void cancelPrint();
+  }
+
+  class RecipeDatabase  {
+    List<Recipe> recipes;
+    void addRecipe(Recipe recipe);
+    void removeRecipe(Recipe recipe);
+    void updateRecipe(Recipe recipe);
+    List<Recipe> filterRecipes(Ingredient ingredient);
+    List<Recipe> filterRecipes(CookingTime cookingTime);
+    List<Recipe> filterRecipes(NutritionalInformation nutritionalInfo);
+  }
+
+  class UserInterface  {
+    void displayRecipeInfo(Recipe recipe);
+    void adjustPrintSettings(PrintSettings settings);
+    void monitorPrintProcess();
+  }
+
+  class Recipe  {
+    String name;
+    List<Ingredient> ingredients;
+    CookingTime cookingTime;
+    NutritionalInformation nutritionalInfo;
+  }
+
+  class RemoteRecipe  {
+    Recipe recipe;
+    PrintSettings printSettings;
+  }
+
+  class PrintSettings  {
+    int printSpeed;
+    int resolution;
+    MaterialType materialType;
+  }
+
+  enum MaterialType  {
+    PLA, ABS, PETG;
+  }
+
+  enum CookingTime  {
+    SHORT, MEDIUM, LONG;
+  }
+
+  enum NutritionalInformation  {
+    LOW, MEDIUM, HIGH;
+  }
+
+  composition Printer  ->  (has) PrintSettings;
+  composition RecipeDatabase  ->  (has) List<<Recipe>>;
+  composition UserInterface  ->  (has) Printer;
+  composition Recipe  ->  (has) List<<Ingredient>>;
+  composition RemoteRecipe  ->  (has) Recipe;
+  composition PrintSettings  ->  (has) MaterialType;
+}

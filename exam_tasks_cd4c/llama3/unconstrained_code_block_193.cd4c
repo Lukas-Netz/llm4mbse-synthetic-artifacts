@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram DigitalInvestmentPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Portfolio portfolio;
+  }
+
+  class Portfolio  {
+    -> FinancialInstrument[*];
+  }
+
+  class FinancialInstrument  {
+    String uniqueIdentifier;
+    String type;
+    double price;
+    int quantity;
+  }
+
+  class Transaction  {
+    User user;
+    FinancialInstrument financialInstrument;
+    Date date;
+    Time time;
+    int quantity;
+  }
+
+  class MarketData  {
+    double currentPrice;
+    int tradingVolume;
+  }
+
+  class Analytics  {
+    PortfolioPerformance portfolioPerformance;
+    MarketTrend marketTrend;
+  }
+
+  class PortfolioPerformance  {
+    double totalValue;
+    double returnOnInvestment;
+  }
+
+  class MarketTrend  {
+    double trendDirection;
+    double trendStrength;
+  }
+
+  composition User -> Portfolio;
+  composition Portfolio -> FinancialInstrument[*];
+  composition Transaction -> User;
+  composition Transaction -> FinancialInstrument;
+  composition MarketData -> FinancialInstrument;
+  composition Analytics -> Portfolio;
+}

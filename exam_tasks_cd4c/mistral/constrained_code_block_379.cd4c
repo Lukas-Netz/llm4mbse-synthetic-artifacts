@@ -1,0 +1,69 @@
+
+classdiagram OnlineHomeRental {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Property {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+    Location location;
+    int pricePerNight;
+    int minStayDuration;
+    int maxGuests;
+    List<Amenity> amenities;
+  }
+
+  enum PropertyType {
+    Apartment, House, Room;
+  }
+
+  class Location {
+    String city;
+    String state;
+    String zipCode;
+  }
+
+  class Amenity {
+    String name;
+  }
+
+  class Photo {
+    String url;
+  }
+
+  class Review {
+    User reviewer;
+    int rating;
+    String comment;
+  }
+
+  class RentalAgreement {
+    Property property;
+    User renter;
+    LocalDate startDate;
+    LocalDate endDate;
+    int rent;
+    List<Fee> fees;
+  }
+
+  class Fee {
+    String name;
+    int amount;
+  }
+
+  class PropertyListing {
+    Property property;
+    User owner;
+  }
+
+  association User [*] hasMany (has)  -> PropertyListing [*];
+  association User [*] hasMany (has)  -> Review [*];
+  association Property [*] hasMany (has)  -> Photo [*];
+  association RentalAgreement [1] hasOne (has)  -> Property [1];
+  association RentalAgreement [1] hasOne (has)  -> User [1];
+}

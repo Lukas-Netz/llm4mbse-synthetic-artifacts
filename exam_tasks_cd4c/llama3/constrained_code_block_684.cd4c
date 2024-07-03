@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram ARTrainingSimulation  {
+
+  class ScenarioManager  {
+    List<Scenario> scenarios;
+    void startScenario(Scenario scenario);
+    void updateScenario(Scenario scenario);
+  }
+
+  class Scenario  {
+    String name;
+    List<SimulationData> data;
+  }
+
+  class SimulationData  {
+    String type;
+    Object value;
+  }
+
+  class ARDisplay  {
+    void render(Scenario scenario);
+  }
+
+  class PilotInterface  {
+    void interact(Scenario scenario);
+  }
+
+  class PerformanceTracker  {
+    PilotPerformance pilotPerformance;
+    void track(PilotPerformance pilotPerformance);
+  }
+
+  class PilotPerformance  {
+    double score;
+    int attempts;
+  }
+
+  class ScenarioDatabase  {
+    List<Scenario> scenarios;
+    Scenario getScenario(String name);
+  }
+
+  composition ScenarioManager -> (has) ScenarioDatabase;
+  composition ScenarioManager -> (has) ARDisplay;
+  composition ScenarioManager -> (has) PilotInterface;
+  composition ScenarioManager -> (has) PerformanceTracker;
+  composition Scenario -> (has) SimulationData;
+  composition PilotPerformance -> (has) PilotPerformance;
+}

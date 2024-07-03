@@ -1,0 +1,70 @@
+
+classdiagram OnlineTherapyPlatform {
+
+    class Therapist {
+      String uniqueIdentifier;
+      String name;
+      String specialization;
+    }
+
+    class Client {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+    }
+
+    class Session {
+      String uniqueIdentifier;
+      Date date;
+      Time time;
+      int duration;
+      Therapist therapist;
+      Client client;
+    }
+
+    class Rating {
+      String therapistIdentifier;
+      String clientIdentifier;
+      int ratingValue;
+    }
+
+    class Review {
+      String therapistIdentifier;
+      String clientIdentifier;
+      String reviewText;
+    }
+
+    class OnlineTherapyPlatform {
+      List<Therapist> therapists;
+      List<Client> clients;
+      List<Session> sessions;
+      List<Rating> ratings;
+      List<Review> reviews;
+
+      void addTherapist(Therapist therapist);
+      void addClient(Client client);
+      void addSession(Session session);
+      void addRating(Rating rating);
+      void addReview(Review review);
+      List<Therapist> getAvailableTherapists(Date date);
+      List<Session> getAvailableSessions(Therapist therapist);
+      List<Session> getAvailableSessions(Client client);
+      List<Therapist> getTherapistsWithSpecialization(String specialization);
+      List<Client> getClientsWithTherapist(Therapist therapist);
+      List<Session> getSessionsWithTherapist(Therapist therapist);
+      List<Rating> getRatingsForTherapist(String therapistIdentifier);
+      List<Review> getReviewsForTherapist(String therapistIdentifier);
+      List<Rating> getRatings();
+      List<Review> getReviews();
+      List<Therapist> getTherapistsWithRating(int ratingValue);
+      List<Client> getClientsWithRating(int ratingValue);
+      List<Session> getSessionsWithRating(int ratingValue);
+      List<Review> getReviewsWithSession(Session session);
+    }
+
+  composition OnlineTherapyPlatform -> (has) Therapists;
+  composition OnlineTherapyPlatform -> (has) Clients;
+  composition OnlineTherapyPlatform -> (has) Sessions;
+  composition OnlineTherapyPlatform -> (has) Ratings;
+  composition OnlineTherapyPlatform -> (has) Reviews;
+}

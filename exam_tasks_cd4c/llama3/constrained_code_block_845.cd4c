@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram SolarVehicles  {
+
+  class VehicleModel  {
+    String name;
+    String uniqueIdentifier;
+    SolarPanel solarPanel;
+    Battery battery;
+    Speed speed;
+  }
+
+  class SolarPanel  {
+    double efficiency;
+    boolean isUpgraded;
+  }
+
+  class Battery  {
+    int capacity;
+    boolean isUpgraded;
+  }
+
+  class Speed  {
+    int value;
+  }
+
+  class Vehicle  {
+    VehicleModel model;
+    String uniqueIdentifier;
+    Location location;
+    Status status;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Status  {
+    boolean isAvailable;
+  }
+
+  class Fleet  {
+    Vehicle  [] vehicles;
+  }
+
+  class Company  {
+    VehicleModel  [] models;
+    Fleet fleet;
+  }
+
+  composition Company -> (has) Fleet;
+  composition Company -> (has) VehicleModel [*];
+  composition Fleet -> Vehicle [*];
+  composition VehicleModel -> SolarPanel;
+  composition VehicleModel -> Battery;
+  composition VehicleModel -> Speed;
+}

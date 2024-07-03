@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram FinancialPlatform  {
+
+  class Customer  {
+    String username;
+    String password;
+    Account account;
+  }
+
+  class Account  {
+    String accountNumber;
+    double balance;
+    TransactionHistory transactionHistory;
+  }
+
+  class TransactionHistory  {
+    List<Transaction> transactions;
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    String description;
+  }
+
+  class Budget  {
+    double income;
+    double expenses;
+    double savings;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class UserManagement  {
+    List<Customer> customers;
+  }
+
+  class TransactionMonitoring  {
+    List<Transaction> transactions;
+  }
+
+  class SystemMaintenance  {
+    void performMaintenance();
+  }
+
+  class AccountManagement  {
+    void freezeAccount(Account account);
+    void unfreezeAccount(Account account);
+    void closeAccount(Account account);
+  }
+
+  composition Customer -> (has) Account;
+  composition Account -> (has) TransactionHistory;
+  composition Budget -> (has) Customer;
+  composition Administrator -> (has) UserManagement;
+  composition Administrator -> (has) TransactionMonitoring;
+  composition Administrator -> (has) SystemMaintenance;
+  composition AccountManagement -> (has) Account;
+}

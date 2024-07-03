@@ -1,0 +1,80 @@
+
+classdiagram VRSimulation {
+
+  class SimulationEnvironment {
+    Scenario scenario;
+    Sensor [ ] sensors;
+  }
+
+  class Scenario {
+    Object [ ] objects;
+  }
+
+  abstract class Object {
+    Position position;
+    Size size;
+    Color color;
+  }
+
+  class Tree extends Object {
+  }
+
+  class Animal extends Object {
+  }
+
+  class Building extends Object {
+  }
+
+  abstract class Sensor {
+    String type;
+  }
+
+  class TemperatureSensor extends Sensor {
+  }
+
+  class HumiditySensor extends Sensor {
+  }
+
+  class LightSensor extends Sensor {
+  }
+
+  class UserInterface {
+    User [ ] users;
+  }
+
+  enum UserRole {
+    Administrator, Teacher, Student
+ 
+ 
+ 
+ 
+ 
+ ;
+  }
+
+  class User {
+    String username;
+    UserRole role;
+  }
+
+  class Position {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Size {
+    double width;
+    double height;
+    double depth;
+  }
+
+  class Color {
+    String rgb;
+  }
+
+  association SimulationEnvironment --oUserInterface;
+  association Scenario --oUser;
+  association Object --oUserInterface;
+  association Sensor --oSimulationEnvironment;
+}

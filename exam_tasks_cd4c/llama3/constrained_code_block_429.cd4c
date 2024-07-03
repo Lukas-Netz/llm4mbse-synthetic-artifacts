@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram FinancialPlanningSystem  {
+
+  class UserAccount  {
+    String username;
+    String password;
+    -> Transaction[*];
+    -> FinancialGoal[*];
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    TransactionType type;
+    -> UserAccount;
+  }
+
+  enum TransactionType  {
+    Deposit,
+    Withdrawal,
+    Transfer
+  ;}
+
+  class FinancialGoal  {
+    String name;
+    String description;
+    double targetAmount;
+    -> UserAccount;
+  }
+
+  class Recommendation  {
+    String suggestion;
+    -> UserAccount;
+    -> FinancialGoal;
+  }
+
+  class Budget  {
+    double budgetAmount;
+    -> FinancialGoal;
+  }
+
+  class BudgetingReport  {
+    -> UserAccount;
+    -> FinancialGoal;
+  }
+
+  class Reporting  {
+    -> UserAccount;
+    -> Transaction[*];
+    -> FinancialGoal[*];
+  }
+
+  composition UserAccount -> (has) Transaction[*];
+  composition UserAccount -> (has) FinancialGoal[*];
+  composition FinancialGoal -> (has) Budget;
+  composition BudgetingReport -> (has) UserAccount;
+  composition Reporting -> (has) UserAccount;
+  composition Reporting -> (has) Transaction[*];
+  composition Reporting -> (has) FinancialGoal[*];
+}

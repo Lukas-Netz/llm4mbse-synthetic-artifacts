@@ -1,0 +1,33 @@
+
+
+
+
+classdiagram SkillAssessment  {
+
+  class Employee  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Skill  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Assessment  {
+    Employee employee;
+    Skill skill;
+    int score;
+    Date date;
+  }
+
+  class Report  {
+    Employee employee;
+    List<Assessment> assessments;
+  }
+
+  composition Employee -> Assessment [*];
+  composition Skill -> Assessment [*];
+  composition Report -> Employee [1];
+}

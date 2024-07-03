@@ -1,0 +1,37 @@
+
+classdiagram WasteCollection {
+
+  class CentralControlUnit {
+    -> WasteCollectionVehicle [*];
+    -> WasteContainer [*];
+    void assignWasteContainerToLocation(WasteContainer container, Location location);
+    void scheduleWasteCollectionRoute(WasteCollectionVehicle vehicle);
+    void monitorWasteCollectionVehicleStatus();
+  }
+
+  abstract class WasteCollectionVehicle {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Compactor extends WasteCollectionVehicle {
+  }
+
+  class Sweeper extends WasteCollectionVehicle {
+  }
+
+  class WasteContainer {
+    Location location;
+    int capacity;
+  }
+
+  enum VehicleStatus {
+    Available, NotAvailable;
+  }
+
+  class Location {
+  }
+
+  composition CentralControlUnit -> WasteCollectionVehicle [*];
+  composition CentralControlUnit -> WasteContainer [*];
+}

@@ -1,0 +1,33 @@
+
+classdiagram POS {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    double price;
+    String type;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class SalesTransaction {
+    String uniqueIdentifier;
+    Date date;
+    double totalCost;
+    Customer customer;
+    Product [ ] products;
+  }
+
+  enum ProductType {
+    Food, Beverages, Merchandise;
+  }
+
+  composition POS -> Product [*];
+  composition POS -> Customer [*];
+  composition SalesTransaction -> Customer;
+  composition SalesTransaction -> Product [*];
+}

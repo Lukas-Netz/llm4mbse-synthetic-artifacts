@@ -1,0 +1,31 @@
+
+
+classdiagram QuantumResistanceSystem {
+
+    class KeyGenerator {
+      generateKeyPair();
+    }
+
+    class KeyDistributor {
+      distributePublicKey(String recipient);
+      revokePublicKey(String recipient);
+    }
+
+    class MessageEncryptor {
+      encryptMessage(String message, String recipientKey);
+    }
+
+    class KeyRevocationManager {
+      handleRevocationRequest(String recipient);
+    }
+
+    class KeyPair {
+      public KeyPair(String recipient, String privateKey, String publicKey);
+      private privateKey;
+      private publicKey;
+    }
+
+    composition KeyDistributor -> (has) KeyRevocationManager;
+    composition KeyGenerator -> (has) KeyPair;
+    association KeyPair -> MessageEncryptor [1..*];
+}

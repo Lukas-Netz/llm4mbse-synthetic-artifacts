@@ -1,0 +1,73 @@
+
+
+classdiagram GamePlatform
+
+  
+
+{
+class Platform {
+  String name;
+  Set<Game> games;
+}
+
+class Game {
+  String title;
+  Date releaseDate;
+  int rating;
+  Genre genre;
+  Set<GameDeveloper> developers;
+  Set<Review> reviews;
+}
+
+class GameDeveloper {
+  String name;
+  Set<Game> gamesDeveloped;
+}
+
+class Review {
+  int rating;
+  String comment;
+}
+
+class Genre {
+  String name;
+}
+
+class PlatformManager {
+  void addPlatform(Platform platform);
+  void removePlatform(Platform platform);
+  void updatePlatform(Platform platform);
+  Platform getPlatform(String name);
+  Set<Platform> getPlatforms();
+}
+
+class GameManager {
+  void addGame(Game game);
+  void removeGame(Game game);
+  void updateGame(Game game);
+  Game getGame(String title);
+  Set<Game> getGamesByGenre(Genre genre);
+  Set<Game> getGamesByPlatform(Platform platform);
+  Set<Game> getGamesByDeveloper(GameDeveloper developer);
+}
+
+class ReviewManager {
+  void addReview(Review review);
+  void removeReview(Review review);
+  void updateReview(Review review);
+  Review getReview(String title);
+  Set<Review> getReviews(Game game);
+}
+
+class SearchManager {
+  Set<Game> searchGames(String query);
+}
+
+class AdminManager {
+  void addGameDeveloper(GameDeveloper developer);
+  void removeGameDeveloper(GameDeveloper developer);
+  void updateGameDeveloper(GameDeveloper developer);
+  GameDeveloper getGameDeveloper(String name);
+  Set<GameDeveloper> getGameDevelopers();
+}
+}

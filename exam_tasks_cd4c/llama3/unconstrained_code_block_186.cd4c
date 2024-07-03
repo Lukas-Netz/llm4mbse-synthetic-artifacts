@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram DatingApp  {
+
+  class User  {
+    String username;
+    String email;
+    String password;
+    Interest[] interests;
+    AgeRange ageRange;
+    Location location;
+  }
+
+  class Interest  {
+    String name;
+  }
+
+  class AgeRange  {
+    int min;
+    int max;
+  }
+
+  class Location  {
+    String city;
+    String state;
+    String country;
+  }
+
+  class Profile  {
+    User user;
+    Match[] matches;
+  }
+
+  class Match  {
+    User user;
+    Rating rating;
+  }
+
+  class Rating  {
+    int value;
+  }
+
+  class Moderator  {
+    boolean isAdmin;
+  }
+
+  class View  {
+    User viewer;
+    User viewed;
+  }
+
+  class PremiumFeature  {
+    boolean isPremium;
+  }
+
+  class Search  {
+    Interest[] interests;
+    AgeRange ageRange;
+    Location location;
+  }
+
+  composition User -> Profile;
+  composition Profile -> Match[*];
+  composition Match -> Rating;
+  composition User -> View[*];
+  composition View -> User[*];
+  composition PremiumFeature -> User[*];
+  composition Search -> User[*];
+  composition Moderator -> User[*];
+}

@@ -1,0 +1,54 @@
+
+classdiagram CoursePlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    String topic;
+    Date startDate;
+    Date endDate;
+    Quiz [ ] quizzes;
+    Assignment [ ] assignments;
+  }
+
+  class Topic {
+    String name;
+    Course [ ] courses;
+  }
+
+  class User {
+    String username;
+    String password;
+    String role;
+  }
+
+  class Instructor extends User {
+    Course [ ] courses;
+  }
+
+  class Student extends User {
+    Course [ ] enrolledCourses;
+  }
+
+  class Quiz {
+    String title;
+    String description;
+    boolean isSubmitted;
+    int score;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    boolean isSubmitted;
+    int grade;
+  }
+
+  composition CoursePlatform -> (has) User [*];
+  composition CoursePlatform -> (has) Topic [*];
+  composition Instructor -> Course [*];
+  composition Student -> Course [*];
+  composition Course -> Quiz [*];
+  composition Course -> Assignment [*];
+}

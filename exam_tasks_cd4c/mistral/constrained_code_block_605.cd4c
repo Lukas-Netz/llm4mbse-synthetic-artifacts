@@ -1,0 +1,58 @@
+
+classdiagram DroneSurveillance {
+
+  class Drone {
+    String uniqueIdentifier;
+    Sensor [][] sensors;
+    void enableSensor(Sensor sensor);
+    void disableSensor(Sensor sensor);
+  }
+
+  abstract class Sensor {
+    boolean isEnabled;
+    SensorType type;
+  }
+
+  class CameraSensor extends Sensor {
+    int resolution;
+  }
+
+  class MicrophoneSensor extends Sensor {
+    int sensitivity;
+  }
+
+  class GPSSensor extends Sensor {
+    double latitude;
+    double longitude;
+  }
+
+  enum SensorType {
+    Camera, Microphone, GPS;
+  }
+
+  class Object {
+    String id;
+    double locationLatitude;
+    double locationLongitude;
+    double speed;
+    double direction;
+  }
+
+  class Database {
+    Object [][] objects;
+  }
+
+  class CentralHub {
+    Drone [][] drones;
+    Database database;
+    void sendCommand(Drone drone, Command command);
+    Object getObject(String id);
+  }
+
+  enum Command {
+    Track, StopTracking, Alert;
+  }
+
+  composition CentralHub -> Drone [*];
+  composition CentralHub -> Database;
+}

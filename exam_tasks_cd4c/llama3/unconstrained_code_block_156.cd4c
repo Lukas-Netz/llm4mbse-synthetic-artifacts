@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram DigitalSignage  {
+
+  class Screen  {
+    String uniqueIdentifier;
+    Location location;
+    -> ContentItem[*];
+  }
+
+  class ContentItem  {
+    String title;
+    String description;
+    ContentType type;
+  }
+
+  class Zone  {
+    String name;
+    String description;
+    -> Screen[*];
+  }
+
+  class Administrator  {
+    -> ContentItem[*];
+    -> Zone[*];
+  }
+
+  class Analytics  {
+    ScreenUsage screenUsage;
+    ContentPerformance contentPerformance;
+  }
+
+  enum ContentType  {
+    Image, Video, Text;
+  }
+
+  enum ScreenUsage  {
+    ViewCount, Engagement;
+  }
+
+  enum ContentPerformance  {
+    ViewRate, EngagementRate;
+  }
+
+  composition Screen -> (has) ContentItem[*];
+  composition Zone -> (has) Screen[*];
+  composition Administrator -> (has) ContentItem[*];
+  composition Administrator -> (has) Zone[*];
+}

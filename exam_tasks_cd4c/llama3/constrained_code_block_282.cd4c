@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram FitnessApp  {
+
+  class User  {
+    String username;
+    String password;
+    WorkoutRoutine[] workoutRoutines;
+    Goal[] goals;
+    Friend[] friends;
+  }
+
+  class WorkoutRoutine  {
+    String name;
+    Exercise[] exercises;
+    int sets;
+    int reps;
+  }
+
+  class Exercise  {
+    String name;
+    int sets;
+    int reps;
+  }
+
+  class Workout  {
+    Date date;
+    Time time;
+    WorkoutRoutine routine;
+    int distance;
+    int caloriesBurned;
+  }
+
+  class Goal  {
+    String type;  (weightLossMuscleGainEndurance)
+    int targetValue;
+  }
+
+  class Friend  {
+    User user;
+  }
+
+  class Challenge  {
+    String name;
+    WorkoutRoutine routine;
+    User[] participants;
+    Leaderboard leaderboard;
+  }
+
+  class Leaderboard  {
+    User[] topPerformers;
+  }
+
+  class Notification  {
+    String message;
+    Date sentDate;
+  }
+
+  class WearableDevice  {
+    String name;
+    int steps;
+    int distance;
+    int caloriesBurned;
+  }
+
+  composition User -> (has) WorkoutRoutine[*];
+  composition User -> (has) Goal[*];
+  composition User -> (has) Friend[*];
+  composition WorkoutRoutine -> (has) Exercise[*];
+  composition Workout -> (has) WorkoutRoutine;
+  composition Goal -> (has) User;
+  composition Friend -> (has) User;
+  composition Challenge -> (has) WorkoutRoutine;
+  composition Leaderboard -> (has) Challenge;
+  composition Notification -> (has) User;
+  }

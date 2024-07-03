@@ -1,0 +1,59 @@
+
+
+classdiagram WeatherForecastingSystem {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String location;
+    int temperature;
+    int humidity;
+    int windSpeed;
+    int pressure;
+  }
+
+  class WeatherForecast {
+    WeatherStation station;
+    Date date;
+    Time time;
+    WeatherCondition condition;
+  }
+
+  class WeatherCondition {
+    String name;
+    String description;
+  }
+
+  class WeatherAlert {
+    WeatherForecast forecast;
+    int severityLevel;
+    String message;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String emailAddress;
+    List<Preference> preferences;
+  }
+
+  class Preference {
+    WeatherCondition condition;
+    int severityLevel;
+    NotificationMethod method;
+  }
+
+  composition WeatherStation -> WeatherForecast [*];
+  composition WeatherForecast -> WeatherCondition;
+  composition User -> Preference [*];
+  association User -> WeatherAlert [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

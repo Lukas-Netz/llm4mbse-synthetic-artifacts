@@ -1,0 +1,41 @@
+
+classdiagram NeuralInterfaceDevice {
+
+    class NeuralInterfaceDevice {
+      BrainComputerInterface bci;
+      ControlUnit controlUnit;
+      UserInterface userInterface;
+    }
+
+    class BrainComputerInterface {
+      String bciIdentifier;
+      List<ControlUnit> connectedControlUnits;
+      void detectBrainSignals();
+      void transmitSignals(ControlUnit controlUnit);
+    }
+
+    class ControlUnit {
+      String controlUnitIdentifier;
+      List<Device> connectedDevices;
+      void interpretSignals(BrainComputerInterface bci);
+      void sendCommand(Device device);
+    }
+
+    class Device {
+      String deviceIdentifier;
+      ControlUnit controlUnit;
+      void executeCommand(ControlUnit controlUnit);
+    }
+
+    class UserInterface {
+      void configureSystem();
+      void monitorPerformance();
+    }
+
+  composition NeuralInterfaceDevice -> (has) BrainComputerInterface;
+  composition NeuralInterfaceDevice -> (has) ControlUnit;
+  composition NeuralInterfaceDevice -> (has) UserInterface;
+  association BrainComputerInterface -> ControlUnit [*];
+  association BrainComputerInterface -> Device [*];
+  association ControlUnit -> Device [*];
+}

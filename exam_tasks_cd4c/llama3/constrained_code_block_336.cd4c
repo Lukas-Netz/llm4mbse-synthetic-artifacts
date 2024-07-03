@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram TravelManagementSoftware  {
+
+  class Trip  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    String destination;
+    TripStatus status;
+  }
+
+  class Employee  {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+  }
+
+  class TravelAgency  {
+    String uniqueIdentifier;
+    String name;
+    String contactPerson;
+  }
+
+  class TripBooking  {
+    Trip trip;
+    Employee employee;
+    TravelAgency agency;
+  }
+
+  enum TripStatus  {
+    Booked,
+    Cancelled,
+    Completed
+  ;}
+
+  composition Employee -> TripBooking[*];
+  composition TravelAgency -> TripBooking[*];
+  composition Trip -> TripBooking[*];
+  composition TripBooking -> Trip;
+  composition TripBooking -> Employee;
+  composition TripBooking -> TravelAgency;
+}

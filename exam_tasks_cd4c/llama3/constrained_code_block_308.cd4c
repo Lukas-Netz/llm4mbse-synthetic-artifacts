@@ -1,0 +1,91 @@
+
+
+
+
+classdiagram PersonalFinance  {
+
+  class User  {
+    String username;
+    String password;
+    Account  [  ] accounts;
+  }
+
+  class Account  {
+    String name;
+    AccountType type;
+    double balance;
+  }
+
+  class Transaction  {
+    Date date;
+    String description;
+    double amount;
+    TransactionType type;
+  }
+
+  class Budget  {
+    String category;
+    double amount;
+  }
+
+  class Goal  {
+    double targetAmount;
+    Date targetDate;
+  }
+
+  class AccountType  {
+    String type;
+  }
+
+  class TransactionType  {
+    String type;
+  }
+
+  composition User  ->  (has) Account  [  *  ];
+  composition Account  ->  (has) Transaction  [  *  ];
+  composition Budget  ->  (has) Goal  [  *  ];
+
+  <<operation>>  -  class User  {
+    void addUser(Account account);
+    void editUser(User user);
+    void deleteUser(User user);
+  }
+
+  <<operation>>  -  class Account  {
+    void addTransaction(Transaction transaction);
+    void editAccount(Account account);
+    void deleteAccount(Account account);
+  }
+
+  <<operation>>  -  class Transaction  {
+    void addTransaction(Transaction transaction);
+  }
+
+  <<operation>>  -  class Budget  {
+    void setBudget(Budget budget);
+  }
+
+  <<operation>>  -  class Goal  {
+    void setGoal(Goal goal);
+  }
+
+  <<operation>>  -  class AccountType  {
+    void setAccountType(AccountType accountType);
+  }
+
+  <<operation>>  -  class TransactionType  {
+    void setTransactionType(TransactionType transactionType);
+  }
+
+  <<report>>  -  class User  {
+    double getTotalBalance();
+  }
+
+  <<report>>  -  class Transaction  {
+    void generateReport();
+  }
+
+  <<alert>>  -  class User  {
+    void sendAlert();
+  }
+}

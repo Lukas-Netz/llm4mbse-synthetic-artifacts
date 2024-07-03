@@ -1,0 +1,303 @@
+
+classdiagram IntelligentProcessAutomation {
+
+    class IPA {
+      Workflow workflow;
+      UserInterface userInterface;
+    }
+
+    class Workflow {
+      String workflowId;
+      Task[] tasks;
+      void addTask(Task task);
+      void removeTask(Task task);
+      void addActivity(Activity activity);
+      void removeActivity(Activity activity);
+    }
+
+    class Task {
+      String taskId;
+      TaskType type;
+      Activity[] activities;
+      void addActivity(Activity activity);
+      void removeActivity(Activity activity);
+    }
+
+    class Activity {
+      ActivityType type;
+    }
+
+    class UserInterface {
+      void createWorkflow();
+      void editWorkflow();
+      void deleteWorkflow();
+      void createTask();
+      void editTask();
+      void deleteTask();
+      void createActivity();
+      void editActivity();
+      void deleteActivity();
+    }
+
+    enum WorkflowType {
+      SalesOrderProcessing,
+      InventoryManagement,
+      CustomerSupport
+   
+   
+  
+(enum)
+
+   
+;
+
+    association Workflow 
+
+     
+   ;
+
+    association Task 
+
+     
+   ;
+
+    association Activity 
+
+     
+   ;
+
+    composition Workflow 
+
+     
+   ;
+
+    composition Task 
+
+     
+   ;
+
+    composition Activity 
+
+     
+   ;
+
+    association UserInterface 
+
+     
+   ;
+
+}
+
+enum WorkflowType {
+  SalesOrderProcessing,
+  InventoryManagement,
+  CustomerSupport
+
+ 
+
+(enum)
+
+
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+}
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+enum ActivityType 
+
+ 
+   
+;
+
+enum TaskType 
+
+ 
+   
+;
+
+}

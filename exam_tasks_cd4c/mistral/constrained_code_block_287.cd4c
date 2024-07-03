@@ -1,0 +1,49 @@
+
+classdiagram FSM {
+
+  class Technician {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+    Region region;
+    ServiceRequest [ ] assignedRequests;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+    ServiceRequest [ ] serviceRequests;
+  }
+
+  class ServiceRequest {
+    String uniqueIdentifier;
+    String description;
+    PriorityLevel priority;
+    Technician assignedTechnician;
+    ServiceRequestStatus status;
+  }
+
+  class Region {
+    String uniqueIdentifier;
+    Technician [ ] technicians;
+  }
+
+  class ContactInfo {
+    String phone;
+    String email;
+  }
+
+  enum PriorityLevel {
+    Low, Medium, High;
+  }
+
+  enum ServiceRequestStatus {
+    Pending, InProgress, Completed, Cancelled;
+  }
+
+  composition Region -> Technician [*];
+  association Technician <- ServiceRequest [*];
+  association Customer <- ServiceRequest [*];
+  association Region -- Region;
+}

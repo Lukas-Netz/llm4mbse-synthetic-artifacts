@@ -1,0 +1,28 @@
+
+classdiagram QuantumResistantNetwork {
+
+  class Node {
+    String uniqueIdentifier;
+    String ipAddress;
+    PublicKey publicKey;
+  }
+
+  class Edge {
+    String uniqueIdentifier;
+    int bandwidth;
+    int latency;
+  }
+
+  class CentralAuthority {
+    Node [ ] nodes;
+    Edge [ ] edges;
+  }
+
+  class PublicKey {
+    String key;
+  }
+
+  composition CentralAuthority -> Node [*];
+  composition CentralAuthority -> Edge [*];
+  association Node -- Edge;
+}

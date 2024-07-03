@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram CropHarvester  {
+
+  class Harvester  {
+    String uniqueIdentifier;
+    Location location;
+    Sensor sensor;
+    Action action;
+  }
+
+  class Sensor  {
+    CropGrowth cropGrowth;
+  }
+
+  class Action  {
+    Cutting cutting;
+    Collecting collecting;
+    Storing storing;
+  }
+
+  class Cutting  {
+    int height;
+    int speed;
+  }
+
+  class Collecting  {
+    int capacity;
+  }
+
+  class Storing  {
+    int capacity;
+  }
+
+  class Storing  {
+    int capacity;
+  }
+
+  class CropGrowth  {
+    int stage;
+    int yield;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class CentralControlUnit  {
+    Harvester[] harvesters;
+    Database database;
+  }
+
+  class Database  {
+    Crop[] crops;
+  }
+
+  class Crop  {
+    String type;
+    CropGrowth growth;
+  }
+
+  composition CentralControlUnit -> Harvester[*];
+  composition Harvester -> Sensor;
+  composition Harvester -> Action;
+  composition Sensor -> CropGrowth;
+  composition Action -> Cutting;
+  composition Action -> Collecting;
+  composition Action -> Storing;
+  composition Database -> Crop[*];
+}

@@ -1,0 +1,30 @@
+
+
+classdiagram SpaceBasedSolarPower {
+
+    class SpaceStation {
+      SolarPanel solarPanels;
+      PowerTransmissionSystem powerTransmissionSystem;
+      FaultDetection faultDetection;
+    }
+
+    class SolarPanel {
+      String uniqueIdentifier;
+      boolean status;
+      SurfaceArea area;
+      Efficiency efficiency;
+      Orientation orientation;
+    }
+
+    class PowerTransmissionSystem {
+      int capacityMW;
+    }
+
+    class FaultDetection {
+      void detectFault(SolarPanel panel);
+    }
+
+  composition SpaceStation -> (has) SolarPanel [*];
+  composition SpaceStation -> (has) PowerTransmissionSystem;
+  composition SpaceStation -> (has) FaultDetection;
+}

@@ -1,0 +1,36 @@
+
+classdiagram ArtificialWombTechnology {
+
+    class ArtificialWomb {
+      WombChamber chamber;
+      ControlUnit controlUnit;
+      MonitoringSystem monitoringSystem;
+    }
+
+    class WombChamber {
+      String embryo;
+      void setTemperature(int temperature);
+      void setHumidity(int humidity);
+      void setGasComposition(String gasComposition);
+    }
+
+    class ControlUnit {
+      void controlTemperature(int temperature);
+      void controlHumidity(int humidity);
+      void controlGasComposition(String gasComposition);
+    }
+
+    class MonitoringSystem {
+      void monitorEmbryoHealth();
+      void detectAnomalies();
+    }
+
+    class Sensor {
+      void detectIssues();
+    }
+
+    composition ArtificialWomb -> (has) WombChamber;
+    composition ArtificialWomb -> (has) ControlUnit;
+    composition ArtificialWomb -> (has) MonitoringSystem;
+    composition ArtificialWomb -> (has) Sensor;
+}

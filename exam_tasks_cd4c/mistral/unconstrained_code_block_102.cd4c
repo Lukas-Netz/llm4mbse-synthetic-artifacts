@@ -1,0 +1,79 @@
+
+classdiagram VeterinaryPractice {
+
+  class VeterinaryPractice {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Veterinarian {
+    String name;
+    String uniqueIdentifier;
+    Specialization specialization;
+    Veterinarian(String name, String uniqueIdentifier, Specialization specialization);
+  }
+
+  enum Specialization {
+    Surgery, Pediatrics, InternalMedicine, Dermatology, Other;
+  }
+
+  class Animal {
+    String name;
+    String species;
+    String uniqueIdentifier;
+    MedicalRecord medicalRecord;
+  }
+
+  class MedicalRecord {
+    List<Vaccination> vaccinations;
+    List<Medication> medications;
+    List<MedicalCondition> medicalConditions;
+  }
+
+  class Vaccination {
+    String name;
+    Date date;
+  }
+
+  class Medication {
+    String name;
+    Date startDate;
+    Date endDate;
+  }
+
+  class MedicalCondition {
+    String name;
+    Date diagnosisDate;
+  }
+
+  class Appointment {
+    Date date;
+    Time time;
+    String description;
+    Veterinarian veterinarian;
+    Animal animal;
+  }
+
+  class InventoryItem {
+    String name;
+    int quantity;
+    double unitPrice;
+  }
+
+  class Inventory {
+    List<InventoryItem> items;
+  }
+
+  class Report {
+    int numberOfAnimalsSeenByVeterinarian(Veterinarian veterinarian);
+    int numberOfAppointmentsScheduled();
+    int inventoryLevels(InventoryItem item);
+  }
+
+  composition VeterinaryPractice -> Veterinarian [*];
+  composition VeterinaryPractice -> Animal [*];
+  association VeterinaryPractice -> Appointment [*];
+  association Veterinarian -> Appointment [*];
+  association Animal -> Appointment [*];
+  association VeterinaryPractice -> Inventory [1];
+}

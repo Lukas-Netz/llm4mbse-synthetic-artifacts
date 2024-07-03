@@ -1,0 +1,53 @@
+
+classdiagram AutonomousMapping {
+
+  class UnderwaterVehicle {
+    String name;
+    String uniqueIdentifier;
+    Sensor depthSensor;
+    Sensor temperatureSensor;
+    Sensor waterQualitySensor;
+    SeafloorTerrain terrain;
+    Memory memory;
+  }
+
+  class SurfaceVessel {
+    String name;
+    String uniqueIdentifier;
+    Communication communication;
+    Navigation navigation;
+  }
+
+  class Sensor {
+    String type;
+  }
+
+  class Memory {
+    void storeData(Data data);
+  }
+
+  class SeafloorTerrain {
+    String type;
+  }
+
+  class Data {
+    String seafloorData;
+  }
+
+  class Communication {
+    void sendData(Data data);
+    void receiveData(Data data);
+  }
+
+  class Navigation {
+    void navigateUV();
+  }
+
+  composition UV -> (has) depthSensor;
+  composition UV -> (has) temperatureSensor;
+  composition UV -> (has) waterQualitySensor;
+  composition UV -> (has) memory;
+  composition UV -> (has) SeafloorTerrain;
+  association UV -- UV;
+  association SV -- UV;
+}

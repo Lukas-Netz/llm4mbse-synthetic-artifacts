@@ -1,0 +1,34 @@
+
+classdiagram MES {
+
+  class ProductionPlanning {
+    void planProductionSchedule();
+  }
+
+  class ProductionControl {
+    void monitorProduction();
+    void controlProduction();
+  }
+
+  class QualityControl {
+    void monitorQuality();
+  }
+
+  class Database {
+    void storeProductionData();
+    void storeQualityData();
+  }
+
+  class Production {
+    ProductionStatus status;
+  }
+
+  enum ProductionStatus {
+    InProgress, Completed, Paused;
+  }
+
+  composition MES -> ProductionPlanning;
+  composition MES -> ProductionControl;
+  composition MES -> QualityControl;
+  composition MES -> Database;
+}

@@ -1,0 +1,87 @@
+
+classdiagram AutomatedGolfCourseMaintenance {
+
+    class GolfCourse {
+      String name;
+      List<Hole> holes;
+    }
+
+    class Hole {
+      String name;
+      Set<Fairway> fairways;
+      Set<Rough> roughs;
+      Set<Green> greens;
+    }
+
+    class Fairway {
+      String name;
+      Coordinate location;
+    }
+
+    class Rough {
+      String name;
+      Coordinate location;
+    }
+
+    class Green {
+      String name;
+      Coordinate location;
+    }
+
+    class MaintenanceEquipment {
+      String name;
+      String type;
+      Coordinate location;
+      Status status;
+    }
+
+    class MaintenanceSchedule {
+      String name;
+      List<MaintenanceTask> tasks;
+    }
+
+    class MaintenanceTask {
+      String name;
+      String description;
+      MaintenanceEquipment equipment;
+      Coordinate location;
+      DateTime dueDate;
+      Status status;
+    }
+
+    class WeatherMonitoring {
+      Temperature temperature;
+      Humidity humidity;
+      WindSpeed windSpeed;
+      Precipitation precipitation;
+    }
+
+    class AlertSystem {
+      void sendAlert(MaintenanceTask task);
+      void sendAlert(MaintenanceEquipment equipment);
+    }
+
+    enum Status {
+      Operational, Malfunctioning, Replaced;
+    }
+
+    enum Type {
+      Mower, Aerator, Irrigation;
+    }
+
+    enum Coordinate {
+      xCoordinate, yCoordinate;
+    }
+
+    enum DateTime {
+      date, time;
+    }
+
+    association GolfCourse -> MaintenanceSchedule [1..];
+    association GolfCourse -> WeatherMonitoring;
+    association GolfCourse -> AlertSystem;
+    association Hole -> Fairway [1..];
+    association Hole -> Rough [1..];
+    association Hole -> Green [1..];
+   
+ }

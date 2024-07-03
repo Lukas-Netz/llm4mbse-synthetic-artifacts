@@ -1,0 +1,55 @@
+
+classdiagram RecipeManagement {
+
+  class Recipe {
+    String name;
+    String description;
+    int cookingTime;
+    String cuisine;
+    CookingInstructions instructions;
+  }
+
+  class Ingredient {
+    String name;
+    String category;
+    int quantity;
+    String unit;
+  }
+
+  class CookingInstructions {
+    String[] steps;
+  }
+
+  class ShoppingList {
+    Ingredient[] ingredients;
+  }
+
+  class MealPlan {
+    Recipe[] recipes;
+    Ingredient[] ingredients;
+    int day;
+  }
+
+  enum Cuisine {
+    ITALIAN, CHINESE, MEXICAN;
+  }
+
+  enum IngredientCategory {
+    DAIRY, MEAT, VEGETABLES;
+  }
+
+  class User {
+    String username;
+    String password;
+    Recipe[] recipes;
+    Ingredient[] ingredients;
+    CookingInstructions[] instructions;
+  }
+
+  composition RecipeManagement -> User;
+  composition Recipe -> Ingredient [*];
+  composition Recipe -> CookingInstructions;
+  composition ShoppingList -> Ingredient [*];
+  composition MealPlan -> Recipe [*];
+  composition MealPlan -> Ingredient [*];
+}

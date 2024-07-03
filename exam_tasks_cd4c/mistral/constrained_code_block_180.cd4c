@@ -1,0 +1,63 @@
+
+classdiagram AIContentGen {
+
+  class ContentGenerator {
+    UserProfileManager userProfileManager;
+    KnowledgeBase knowledgeBase;
+    PlatformAdapter platformAdapter;
+    ContentGeneratorAlgorithms algorithms;
+
+    String generateContent(String userInput, String contentType, String tone);
+  }
+
+  class KnowledgeBase {
+    Map<String, Topic> topics;
+  }
+
+  class Topic {
+    String name;
+    List<String> subtopics;
+    List<String> relatedTopics;
+  }
+
+  class UserProfileManager {
+    String userID;
+    UserPreferences preferences;
+    List<Feedback> feedback;
+  }
+
+  class UserPreferences {
+    String contentType;
+    String tone;
+    List<String> topics;
+  }
+
+  class Feedback {
+    String contentID;
+    int rating;
+    String feedbackText;
+  }
+
+  class FeedbackLoop {
+    UserProfileManager userProfileManager;
+    KnowledgeBase knowledgeBase;
+    ContentGenerator contentGenerator;
+
+    void collectFeedback(String contentID, int rating, String feedbackText);
+    void updateSystem(List<Feedback> feedback);
+  }
+
+  class PlatformAdapter {
+    String platform;
+    String format;
+
+    String adaptContent(String content, String platform, String format);
+  }
+
+  composition ContentGenerator -> KnowledgeBase;
+  composition ContentGenerator -> UserProfileManager;
+  composition ContentGenerator -> PlatformAdapter;
+  composition FeedbackLoop -> UserProfileManager;
+  composition FeedbackLoop -> KnowledgeBase;
+  composition ContentGenerator -> FeedbackLoop;
+}

@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram Elearning  {
+
+  class Course  {
+    String name;
+    String description;
+    List<Lesson> lessons;
+  }
+
+  class Lesson  {
+    String name;
+    String description;
+    List<Quiz> quizzes;
+  }
+
+  class Quiz  {
+    String name;
+    String description;
+    List<Question> questions;
+  }
+
+  class Question  {
+    String text;
+    String correctAnswer;
+    List<String> possibleAnswers;
+  }
+
+  class User  {
+    String username;
+    String password;
+    boolean isAdmin;
+  }
+
+  class Instructor extends User  {
+    List<Course> createdCourses;
+  }
+
+  class Student extends User  {
+    List<Course> enrolledCourses;
+    Map<Course, Integer> courseProgress;
+  }
+
+  composition Course -> Lesson;
+  composition Lesson -> Quiz;
+  composition Quiz -> Question;
+  composition User -> Course [0..*];
+  composition Instructor -> Course [0..*];
+  composition Student -> Course [0..*];
+}

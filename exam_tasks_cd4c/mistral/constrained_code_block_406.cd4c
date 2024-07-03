@@ -1,0 +1,46 @@
+
+classdiagram MathTutoring {
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+    float score;
+  }
+
+  class Teacher {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] taughtCourses;
+  }
+
+  class Course {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Teacher [ ] teachers;
+    Student [ ] students;
+  }
+
+  class ProgressReport {
+    Student student;
+    Course course;
+    float score;
+  }
+
+  class TeacherPerformanceReport {
+    Teacher teacher;
+    float averageStudentScore;
+  }
+
+  composition Student [*] enrollsIn (Course)
+  -- Teacher [*] -  {ordered} 					;
+  composition Course [*] has (Teacher)
+  -- Student [*] -  {ordered} 					;
+  composition Course [*] has (TeacherPerformanceReport)
+  -- Course [*] -  {ordered} 					;
+  composition Course [*] has (ProgressReport)
+  -- Student [*] -  {ordered} 					;
+}

@@ -1,0 +1,66 @@
+
+classdiagram ConnectedCar {
+
+  class Vehicle {
+    String VIN;
+    GPS gps;
+    Bluetooth bluetooth;
+    WiFi wifi;
+    Computer computer;
+    Payment payment;
+    Sensor [ ] sensors;
+  }
+
+  class GPS {
+    String location;
+    double speed;
+    String direction;
+  }
+
+  class Bluetooth {
+    String pairedDevices;
+  }
+
+  class WiFi {
+    String networkConnected;
+  }
+
+  class Computer {
+    void sendDataToCloud();
+  }
+
+  class Payment {
+    void charge(double amount);
+  }
+
+  class Sensor {
+    String parameter;
+    double value;
+  }
+
+  class Fleet {
+    Vehicle [ ] vehicles;
+    FleetAdmin admin;
+  }
+
+  class FleetAdmin {
+    void monitorPerformance();
+    void trackLocation();
+    void receiveAlerts();
+  }
+
+  class Cloud {
+    void storeData();
+    void processData();
+  }
+
+  composition Vehicle -> GPS;
+  composition Vehicle -> Bluetooth;
+  composition Vehicle -> WiFi;
+  composition Vehicle -> Computer;
+  composition Vehicle -> Payment;
+  composition Vehicle -> Sensor [*];
+  composition Fleet -> Vehicle [*];
+  association FleetAdmin -- Fleet;
+  association Cloud -- Vehicle;
+}

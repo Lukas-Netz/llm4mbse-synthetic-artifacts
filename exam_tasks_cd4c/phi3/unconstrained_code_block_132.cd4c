@@ -1,0 +1,63 @@
+
+classdiagram InventoryControlSystem {
+
+    class Product {
+      int productId;
+      String name;
+      String description;
+      ProductType type;
+    }
+
+    class Location {
+      int locationId;
+      String name;
+      String address;
+      LocationType type;
+    }
+
+    class InventoryItem {
+      int inventoryId;
+      int productId;
+      int locationId;
+      int quantity;
+    }
+
+    class Order {
+      int orderId;
+      int productId;
+      int quantity;
+    }
+
+    class Report {
+      String reportType;
+      String content;
+    }
+
+    class InventoryControlSystem {
+      List<Product> products;
+      List<Location> locations;
+      List<InventoryItem> inventoryItems;
+      List<Order> orders;
+      List<Report> reports;
+
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      Product getProductById(int productId);
+      void addLocation(Location location);
+      void removeLocation(Location location);
+      Location getLocationById(int locationId);
+      void addInventoryItem(InventoryItem inventoryItem);
+      void removeInventoryItem(InventoryItem inventoryItem);
+      InventoryItem getInventoryItemById(int inventoryId);
+      void addOrder(Order order);
+      void removeOrder(Order order);
+      Order getOrderById(int orderId);
+      void generateReport(String reportType);
+    }
+
+  composition InventoryControlSystem -> (has) Products;
+  composition InventoryControlSystem -> (has) Locations;
+  composition InventoryControlSystem -> (has) InventoryItems;
+  composition InventoryControlSystem -> (has) Orders;
+  composition InventoryControlSystem -> (has) Reports;
+}

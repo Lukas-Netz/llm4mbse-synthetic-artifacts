@@ -1,0 +1,55 @@
+
+classdiagram LuxuryFashionAuthSystem {
+
+    class LuxuryFashionItem {
+      String uniqueIdentifier;
+      String description;
+      String serialNumber;
+      enum ItemType
+   
+     
+ ;}
+
+  class Owner {
+    String uniqueIdentifier;
+    String name;
+    String address;
+    List<LuxuryFashionItem> ownedItems;
+  }
+
+  class ProvenanceRecord {
+    String origin;
+    String productionProcess;
+    String materialsUsed;
+    LuxuryFashionItem item;
+  Written by
+   
+ 
+ 
+ 
+ ;}
+
+  class Blockchain {
+    List<ProvenanceRecord> provenanceRecords;
+    List<Owner> owners;
+    void addProvenanceRecord(ProvenanceRecord record);
+    void addOwner(Owner owner);
+    void verifyAuthenticity(LuxuryFashionItem item);
+    void transferOwnership(LuxuryFashionItem item, Owner newOwner);
+  }
+
+  class SmartContract {
+    void executeVerification(LuxuryFashionItem item);
+    void executeTransfer(LuxuryFashionItem item, Owner newOwner);
+  }
+
+  class AuthenticationSystem {
+    Blockchain blockchain;
+    SmartContract smartContract;
+    void addItem(LuxuryFashionItem item);
+    void updateProvenance(LuxuryFashionItem item, ProvenanceRecord record);
+    void transferOwnership(LuxuryFashionItem item, Owner newOwner);
+    void verifyItem(LuxuryFashionItem item);
+    void getItemInfo(LuxuryFashionItem item);
+  }
+}

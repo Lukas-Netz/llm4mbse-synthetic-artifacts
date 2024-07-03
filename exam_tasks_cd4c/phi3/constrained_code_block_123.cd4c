@@ -1,0 +1,43 @@
+
+classdiagram ARNavigationSystem {
+
+    class Device {
+      void renderMap();
+      void displayInstructions(String destination);
+      Location getCurrentLocation();
+    }
+
+    class Map {
+      PointOfInterest[] pointsOfInterest;
+      void addPOI(PointOfInterest poi);
+      PointOfInterest getPOI(String identifier);
+    }
+
+    class PointOfInterest {
+      String identifier;
+      String name;
+      Location location;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class RoutePlanner {
+      Location start;
+      Location destination;
+      Path calculateShortestPath();
+    }
+
+    class Path {
+      PointOfInterest[] points;
+    }
+
+    composition Device -> Map;
+    composition Device -> RoutePlanner;
+    association Device.currentLocation -> Location;
+    association Map.pointsOfInterest -> PointOfInterest[*];
+    association RoutePlanner.start -> Location;
+    association RoutePlanner.destination -> Location;
+}

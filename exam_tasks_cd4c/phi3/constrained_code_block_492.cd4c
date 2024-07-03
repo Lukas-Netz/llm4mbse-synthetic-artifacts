@@ -1,0 +1,172 @@
+
+classdiagram DigitalDisabilitySupportPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      String password;
+      List<Profile> profiles;
+      void register();
+      void login();
+    Writes userProfile();
+    }
+
+    class Profile {
+      User user;
+      String disabilityType;
+      List<Accommodation> accommodations;
+      List<User> connectedUsers;
+      void createProfile();
+      void manageProfile();
+    }
+
+    class Accommodation {
+      String name;
+      String description;
+      void addAccommodation();
+    }
+
+    class Resource {
+      String title;
+      String description;
+      String accessibilityInfo;
+      List<User> users;
+      void addResource();
+    }
+
+    class Community {
+      String name;
+      String description;
+      List<User> members;
+      void createCommunity();
+      void joinCommunity();
+    }
+
+    class Business {
+      String name;
+      String description;
+      String accessibilityInfo;
+      List<User> businessListings;
+      void addBusiness();
+    }
+
+    class Volunteer {
+      String name;
+      String email;
+      List<User> assignedUsers;
+      void assignVolunteer();
+    }
+
+    class Goal {
+      String title;
+      String description;
+      int progress;
+      void setGoal();
+    }
+
+    association User - Profile [aggregation]
+   
+    -> Profile {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Profile - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Profile - Accommodation [aggregation]
+   
+    -> Accommodation {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Resource - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Community - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Business - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Volunteer - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Goal - User [aggregation]
+   
+    -> User {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+}

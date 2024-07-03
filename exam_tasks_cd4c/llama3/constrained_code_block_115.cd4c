@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram ConnectedCarPlatform  {
+
+  class Vehicle  {
+    String vin;
+    GPS gps;
+    Bluetooth bluetooth;
+    Wifi wifi;
+    Sensor  sensor  ; 
+    Computer computer;
+  }
+
+  class GPS  {
+    Location location;
+    Speed speed;
+    Direction direction;
+  }
+
+  class Bluetooth  {
+    Device device;
+  }
+
+  class Wifi  {
+    Internet internet;
+  }
+
+  class Sensor  {
+    Parameter parameter;
+  }
+
+  class Computer  {
+    Data data;
+  }
+
+  class Cloud  {
+    DataStorage dataStorage;
+    DataProcessing dataProcessing;
+  }
+
+  class Fleet  {
+    Vehicle  vehicle  ; 
+    Administrator administrator;
+  }
+
+  class Administrator  {
+    Vehicle  vehicle  ; 
+  }
+
+  class Payment  {
+    Transaction transaction;
+  }
+
+  composition Vehicle  ->  (has) GPS;
+  composition Vehicle  ->  (has) Bluetooth;
+  composition Vehicle  ->  (has) Wifi;
+  composition Vehicle  ->  (has) Sensor;
+  composition Vehicle  ->  (has) Computer;
+  composition Vehicle  ->  (has) Cloud;
+  composition Fleet  ->  (has) Vehicle;
+  composition Payment  ->  (has) Transaction;
+}

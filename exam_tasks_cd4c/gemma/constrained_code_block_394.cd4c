@@ -1,0 +1,52 @@
+
+
+classdiagram VeterinaryPractice {
+
+  class VeterinaryPractice {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Veterinarian {
+    String name;
+    String uniqueIdentifier;
+    String specialization;
+  }
+
+  class Animal {
+    String name;
+    String species;
+    String uniqueIdentifier;
+    MedicalRecord medicalRecord;
+  }
+
+  class MedicalRecord {
+    List<Vaccination> vaccinations;
+    List<Medication> medications;
+    List<MedicalCondition> medicalConditions;
+  }
+
+  class Appointment {
+    Date date;
+    Time time;
+    String description;
+    Veterinarian veterinarian;
+    Animal animal;
+  }
+
+  class InventoryItem {
+    String name;
+    int quantity;
+    double unitPrice;
+  }
+
+  class Inventory {
+    List<InventoryItem> items;
+  }
+
+  composition VeterinaryPractice -> (has) Veterinarian [*];
+  composition VeterinaryPractice -> (has) Animal [*];
+  composition Appointment -> (has) Veterinarian;
+  composition Appointment -> (has) Animal;
+  composition Inventory -> (has) InventoryItem [*];
+}

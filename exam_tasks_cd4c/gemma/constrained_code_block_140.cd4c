@@ -1,0 +1,37 @@
+
+
+classdiagram CognitiveSearchSolution {
+
+    class KnowledgeGraph {
+      void addKnowledge(String text, Image image, Video video);
+      KnowledgeSearchResult searchKnowledge(String query);
+    }
+
+    class SearchEngine {
+      KnowledgeSearchResult search(String query);
+    }
+
+    class TextSearch extends SearchEngine {
+      void searchText(String query);
+    }
+
+    class ImageSearch extends SearchEngine {
+      void searchImage(String query);
+    }
+
+    class VideoSearch extends SearchEngine {
+      void searchVideo(String query);
+    }
+
+    class UserInterface {
+      void inputQuery(String query);
+      void displayResults(KnowledgeSearchResult results);
+      void filterResults(KnowledgeSearchResult results);
+      void sortResults(KnowledgeSearchResult results);
+      void rankResults(KnowledgeSearchResult results);
+    }
+
+  composition KnowledgeGraph -> SearchEngine [*];
+  composition UserInterface -> SearchEngine [*];
+  association UserInterface -> KnowledgeGraph;
+}

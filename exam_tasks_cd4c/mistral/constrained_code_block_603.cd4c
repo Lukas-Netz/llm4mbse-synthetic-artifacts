@@ -1,0 +1,59 @@
+
+classdiagram DigitalTwinHealthcare {
+
+  class Patient {
+    String patientId;
+    String name;
+    String medicalHistory;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class TreatmentPlan {
+    String treatmentName;
+    String description;
+    SimulationResult simulationResult;
+  }
+
+  class SimulationResult {
+    double successRate;
+    double averageRecoveryTime;
+  }
+
+  interface MedicalDevice {
+    void connect();
+    void disconnect();
+    PatientData getData();
+  }
+
+  class MedicalSystem {
+    MedicalDevice [ ] devices;
+  }
+
+  class PatientData {
+    String patientId;
+    String vitalSigns;
+    String labResults;
+  }
+
+  class DataAnalytics {
+    RealTimeData realTimeData;
+    Insights insights;
+  }
+
+  class RealTimeData {
+    PatientData patientData;
+    String timestamp;
+  }
+
+  class Insights {
+    String recommendations;
+    String analysis;
+  }
+
+  composition DigitalTwinHealthcare -> Patient [*];
+  composition DigitalTwinHealthcare -> TreatmentPlan [*];
+  composition DigitalTwinHealthcare -> SimulationResult [*];
+  composition DigitalTwinHealthcare -> MedicalDevice [*];
+  composition DigitalTwinHealthcare -> MedicalSystem [*];
+  composition DigitalTwinHealthcare -> DataAnalytics [1];
+}

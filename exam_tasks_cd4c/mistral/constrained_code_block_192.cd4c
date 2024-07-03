@@ -1,0 +1,64 @@
+
+classdiagram LanguageLearning {
+
+  class UserAccount {
+    String username;
+    String password;
+  }
+
+  class Course {
+    String courseID;
+    String name;
+    String description;
+    Course(String courseID, String name, String description);
+    void addLesson(Lesson lesson);
+    void removeLesson(Lesson lesson);
+  }
+
+  class Lesson {
+    String lessonID;
+    String name;
+    String description;
+    void addVocabularyWord(VocabularyWord word);
+    void removeVocabularyWord(VocabularyWord word);
+    void addGrammarRule(GrammarRule rule);
+    void removeGrammarRule(GrammarRule rule);
+    void addPracticeExercise(PracticeExercise exercise);
+    void removePracticeExercise(PracticeExercise exercise);
+  }
+
+  class VocabularyWord {
+    String wordID;
+    String meaning;
+    String translation;
+  }
+
+  class GrammarRule {
+    String ruleID;
+    String description;
+    String example;
+  }
+
+  class PracticeExercise {
+    String exerciseID;
+    String name;
+    String description;
+  }
+
+  class Scoring {
+    int score;
+  }
+
+  composition UserAccount [*] Course [has_many]
+  -- composition/ 											;
+  composition Course [*] Lesson [has_many]
+  -- composition/ 											;
+  composition Lesson [*] VocabularyWord [has_many]
+  -- composition/ 											;
+  composition Lesson [*] GrammarRule [has_many]
+  -- composition/ 											;
+  composition Lesson [*] PracticeExercise [has_many]
+  -- composition/ 											;
+  association UserAccount [*] Scoring [has]
+  -- association/ 											;
+}

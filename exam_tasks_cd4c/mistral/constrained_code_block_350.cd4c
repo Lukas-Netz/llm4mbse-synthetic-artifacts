@@ -1,0 +1,60 @@
+
+classdiagram Classifieds {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    UserType userType;
+  }
+
+  enum UserType {
+    Buyer, Seller;
+  }
+
+  class Category {
+    String name;
+  }
+
+  class Ad {
+    String title;
+    String description;
+    double price;
+    Category category;
+    User user;
+    List<String> images;
+    List<String> videos;
+    AdStatus status;
+    int views;
+    int responses;
+  }
+
+  enum AdStatus {
+    Active, Pending, Expired;
+  }
+
+  class SearchResult {
+    Ad ad;
+    double distance;
+  }
+
+  class SearchQuery {
+    String keyword;
+    Category category;
+    String location;
+    double minPrice;
+    double maxPrice;
+    int minViews;
+    int minResponses;
+    int minDate;
+    int maxDate;
+  }
+
+  composition User [*] categories [n1]
+  -- User [*] << posts >>  -  {  ordered } 					;
+  composition User [*] ads [n1]
+  -- Ad [*] << has >> 											;
+  association SearchResult [*] SearchQuery [n1]
+  -- SearchResult [*] << matches >> 							;
+}

@@ -1,0 +1,54 @@
+
+classdiagram MusicCollaboration {
+
+  class Artist {
+    String name;
+    String uniqueIdentifier;
+    MusicProject [ ] ownedProjects;
+  }
+
+  class MusicProject {
+    String uniqueIdentifier;
+    String title;
+    Artist [ ] collaborators;
+    Track [ ] tracks;
+  }
+
+  class Track {
+    String uniqueIdentifier;
+    String title;
+    int duration;
+    Comment [ ] comments;
+    Like [ ] likes;
+    Artist creator;
+  }
+
+  class Comment {
+    String text;
+    Artist author;
+  }
+
+  class Like {
+    Artist artist;
+  }
+
+  class SearchResult {
+    MusicProject musicProject;
+    Track track;
+  }
+
+  class SortCriteria {
+    String criteria;
+  }
+
+  composition Artist -> MusicProject [*];
+  composition MusicProject -> Track [*];
+  association Artist <-> MusicProject;
+  association Artist <-> Track;
+  association Comment -> Track;
+  association Like -> Track;
+  association Artist -> Comment;
+  association Artist -> Like;
+  association SearchResult <-> MusicProject;
+  association SearchResult <-> Track;
+}

@@ -1,0 +1,49 @@
+
+classdiagram DocumentManagement {
+
+  class DocumentRepository {
+    Document [][] documents;
+  }
+
+  class DocumentType {
+    String name;
+    String structure;
+    String content;
+  }
+
+  class DocumentVersion {
+    Document document;
+    int versionNumber;
+    String timestamp;
+  }
+
+  class User {
+    String username;
+    String password;
+    Role role;
+  }
+
+  class Role {
+    String name;
+    String permissions;
+  }
+
+  class DocumentChange {
+    DocumentVersion previousVersion;
+    DocumentVersion currentVersion;
+    String timestamp;
+    String description;
+  }
+
+  class Document {
+    DocumentType documentType;
+    DocumentVersion currentVersion;
+    DocumentVersion [][] versions;
+  }
+
+  composition DocumentRepository -> Document [*];
+  composition Document -> DocumentVersion [*];
+  association User -- Document;
+  association Role -- User;
+  association DocumentChange -- DocumentVersion;
+}

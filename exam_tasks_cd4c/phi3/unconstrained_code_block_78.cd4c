@@ -1,0 +1,32 @@
+
+classdiagram BlockchainVotingSystem {
+
+    class Voter {
+      String voterId;
+      void castVote(VotingOption option);
+    }
+
+    class VotingOption {
+      String optionName;
+    }
+
+    class ElectionResult {
+      String winner;
+      int totalVotes;
+    }
+
+    class Blockchain {
+      void recordVote(Voter voter, VotingOption option);
+      ElectionResult getElectionResult();
+    }
+
+    class Administrator {
+      void verifyVote(Voter voter, VotingOption option);
+      void verifyElectionResult();
+    }
+
+    composition Voter -> (has) Blockchain;
+    composition Voter -> (has) Administrator;
+    composition Blockchain -> (has) ElectionResult;
+    composition Administrator -> (has) Blockchain;
+}

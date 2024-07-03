@@ -1,0 +1,51 @@
+
+classdiagram CityPlanning {
+
+  class City {
+    String name;
+    String geographicLocation;
+    Infrastructure [ ] infrastructure;
+    Service [ ] services;
+  }
+
+  class District {
+    String name;
+    City city;
+    Block [ ] blocks;
+    double populationDensity;
+    String landUse;
+    String infrastructure;
+  }
+
+  class Block {
+    String name;
+    District district;
+    double populationDensity;
+    String landUse;
+    String infrastructure;
+    int uniqueIdentifier;
+  }
+
+  class Infrastructure {
+    String type;
+    double length;
+    int capacity;
+    InfrastructureStatus status;
+  }
+
+  class Service {
+    String type;
+    double frequency;
+    double coverage;
+    double quality;
+  }
+
+  enum InfrastructureStatus {
+    Operational, Maintenance, UnderConstruction;
+  }
+
+  composition City -> District [*];
+  composition District -> Block [*];
+  composition City -> Infrastructure [*];
+  composition City -> Service [*];
+}

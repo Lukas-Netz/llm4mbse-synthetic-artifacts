@@ -1,0 +1,85 @@
+
+classdiagram FisheriesSystem {
+
+    class FisheryRegistry {
+      Map<String, Fishery> fisheries;
+      void registerFishery(Fishery fishery);
+      Fishery getFishery(String identifier);
+    }
+
+    class VesselRegistry {
+      Map<String, Vessel> vessels;
+      void registerVessel(Vessel vessel);
+      Vessel getVessel(String identifier);
+    }
+
+    class FishingTripRegistry {
+      Map<String, FishingTrip> fishingTrips;
+      void registerFishingTrip(FishingTrip fishingTrip);
+      FishingTrip getFishingTrip(String identifier);
+    }
+
+    class CatchRecordRegistry {
+      Map<String, CatchRecord> catchRecords;
+      void registerCatchRecord(CatchRecord catchRecord);
+      CatchRecord getCatchRecord(String identifier);
+    }
+
+    class CertificationRegistry {
+      Map<String, Certification> certifications;
+      void registerCertification(Certification certification);
+      Certification getCertification(String identifier);
+    }
+
+    class AuditorRegistry {
+      Map<String, Auditor> auditors;
+      void registerAuditor(Auditor auditor);
+      Auditor getAuditor(String identifier);
+    }
+
+    class Fishery {
+      String identifier;
+      List<Vessel> vessels;
+    }
+
+    class Vessel {
+      String identifier;
+      String name;
+      List<FishingTrip> fishingTrips;
+    }
+
+    class FishingTrip {
+      String identifier;
+      Date startDate;
+      Date endDate;
+      List<CatchRecord> catchRecords;
+      void setStatus(FishingTripStatus status);
+    }
+
+    class CatchRecord {
+      String identifier;
+      String fishType;
+      double weight;
+      Date timestamp;
+    }
+
+    class Certification {
+      String identifier;
+      String type;
+      List<Fishery> fisheries;
+      List<Vessel> vessels;
+    }
+
+    class Auditor {
+      String identifier;
+      String name;
+      List<Certification> certifications;
+    }
+
+    association FisheryRegistry -> Fishery [*];
+    association VesselRegistry -> Vessel [*];
+    association FishingTripRegistry -> FishingTrip [*];
+    association CatchRecordRegistry -> CatchRecord [*];
+    association CertificationRegistry -> Certification [*];
+    association AuditorRegistry -> Auditor [*];
+}

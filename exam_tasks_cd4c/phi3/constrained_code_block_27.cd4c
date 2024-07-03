@@ -1,0 +1,265 @@
+
+classdiagram BiometricAuthenticationSystem {
+
+    class AuthenticationServer {
+      Database userDatabase;
+      void verifyIdentity(String userId);
+      void addUser(User user);
+      void updateBiometricTemplate(String userId, BiometricTemplate template);
+    }
+
+    class BiometricDevice {
+      String deviceId;
+      BiometricType type;
+      void captureData();
+      BiometricData processData();
+    }
+
+    class User {
+      String userId;
+      Set<BiometricTemplate> biometricTemplates;
+    }
+
+    class BiometricTemplate {
+      String templateData;
+    }
+
+    enum BiometricType {
+      Fingerprint, FacialRecognition, IrisScan
+   
+   
+   ()
+   
+
+;
+    composition BiometricDevice 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+    association AuthenticationServer 
+   
+   
+
+;
+    association BiometricDevice 
+   
+   
+
+;
+    association User 
+   
+   
+
+;
+    association BiometricTemplate 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+    composition BiometricDevice 
+   
+   
+
+;
+    composition User 
+   
+   
+
+;
+    composition BiometricTemplate 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+    composition User 
+   
+   
+
+;
+    composition BiometricDevice 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+    composition User 
+   
+   
+
+;
+    composition BiometricDevice 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+    composition User 
+   
+   
+
+;
+    composition BiometricDevice 
+   
+   
+
+;
+    composition AuthenticationServer 
+   
+   
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+class User {
+  String userId;
+  Set<BiometricTemplate> biometricTemplates;
+}
+
+class BiometricTemplate {
+  String templateData;
+}
+
+class AuthenticationServer {
+  Database userDatabase;
+  void verifyIdentity(String userId);
+  void addUser(User user);
+  void updateBiometricTemplate(String userId, BiometricTemplate template);
+}
+
+class BiometricDevice {
+  String deviceId;
+  BiometricType type;
+  void captureData();
+  BiometricData processData();
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+enum BiometricType {
+  Fingerprint, FacialRecognition, IrisScan
+
+
+;
+   
+
+}
+
+
+
+
+
+}

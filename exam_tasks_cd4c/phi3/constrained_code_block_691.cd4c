@@ -1,0 +1,847 @@
+
+classdiagram SolarpureSystem {
+
+    class Solarpanel {
+      int powerGenerated;
+      void generateElectricity();
+    }
+
+    class WaterTank {
+      String waterSource;
+      String storageCapacity;
+    }
+
+    class PurificationUnit {
+      boolean filtrationEnabled;
+      boolean uvtEnabled;
+      boolean disinfectionEnabled;
+      void purifyWater();
+    }
+
+    class Sensor {
+      String sensorType;
+      String reading;
+    }
+
+    class MobileApp {
+      void monitorSystem();
+      void enableStage(PurificationStage stage);
+      void disableStage(PurificationStage stage);
+      void receiveAlert(String alertMessage);
+    }
+
+    enum PurificationStage {
+      Filtration, UVTreatment, Disinfection
+   
+   
+   ("solarpanel", "watertank", "purificationunit", "sensor", "mobileapp");
+    association Solarpanel 
+    (has one)
+   
+   
+   throws WaterTank
+   
+   
+  
+;
+   
+    association WaterTank
+    (has one)
+   
+   
+   throws PurificationUnit
+   
+   
+  
+;
+   
+    association PurificationUnit
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    association Sensor
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    association MobileApp
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition Solarpanel 
+    (has one)
+   
+   
+   throws WaterTank
+   
+   
+  
+;
+   
+    composition WaterTank 
+    (has one)
+   
+   
+   throws PurificationUnit
+   
+   
+  
+;
+   
+    composition PurificationUnit 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    composition Sensor 
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    composition MobileApp 
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition PurificationStage 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    composition Sensor 
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    composition MobileApp 
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition PurificationStage 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    composition Sensor 
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    composition MobileApp 
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition PurificationStage 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    composition Sensor 
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    composition MobileApp 
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition PurificationStage 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+}
+
+
+class PurificationStage {
+  String stageName;
+  boolean enabled;
+}
+
+
+class Sensor {
+  String sensorType;
+  String reading;
+}
+
+
+class MobileApp {
+  void monitorSystem();
+  void enableStage(PurificationStage stage);
+  void disableStage(PurificationStage stage);
+  void receiveAlert(String alertMessage);
+}
+
+
+class Solarpanel {
+  int powerGenerated;
+  void generateElectricity();
+}
+
+
+class WaterTank {
+  String waterSource;
+  String storageCapacity;
+}
+
+
+class PurificationUnit {
+  boolean filtrationEnabled;
+  boolean uvtEnabled;
+  boolean disinfectionEnabled;
+  void purifyWater();
+}
+
+
+enum PurificationStage {
+  Filtration, UVTreatment, Disinfection
+
+ 
+
+   
+  
+;
+   
+    association Solarpanel 
+    (has one)
+   
+   
+   throws WaterTank
+   
+   
+  
+;
+   
+    composition WaterTank 
+    (has one)
+   
+   
+   throws PurificationUnit
+   
+   
+  
+;
+   
+    composition PurificationUnit 
+    (has one)
+   
+   
+   throws Sensor
+   
+   
+  
+;
+   
+    composition Sensor 
+    (has one)
+   
+   
+   throws MobileApp
+   
+   
+  
+;
+   
+    composition MobileApp 
+    (has one)
+   
+   
+   throws PurificationStage
+   
+   
+  
+;
+   
+    composition PurificationStage 
+    (has one)
+   
+   
+  
+;
+   
+   
+  
+
+  
+
+   
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+object  
+  
+  
+  
+<br
+  
+  
+  
+  <?,java.lang.java  
+  
+<br  
+  
+ 
+  
+ <?  
+  
+ 
+  
+ 
+  
+ 
+>
+  
+ 
+  
+  
+>  
+  
+.  
+  
+  
+  
+  
+  
+class  
+  
+  
+  
+[  
+  
+]  
+  
+[  
+  
+]  
+  
+[  
+  
+]
+  
+ 
+[  
+  
+]
+  
+  []
+  
+  []
+
+  
+ [  
+  
+]
+  
+  []
+
+
+ 
+ [
+
+  
+
+]
+
+  
+ []
+  
+  []
+  
+  [
+  
+
+ ][
+  
+
+ ][
+  
+  ][
+ 
+  
+]
+  
+ 
+[
+  
+  ][
+  
+ 
+]
+
+ 
+  []
+ 
+  
+>
+  
+  
+ 
+ 
+ > 
+ 
+ 
+.int 
+  
+ 
+ 
+ 
+ [] 
+ 
+ 
+[ 
+ 
+ 
+]
+ 
+  
+[
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][
+ 
+ 
+ ][ 
+ 
+ 
+] 
+ 
+ 
+[]
+ 
+ 
+ [ 
+ 
+ 
+]
+ 
+ 
+ [ 
+ 
+ 
+] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[ 
+ 
+ 
+] 
+ 
+ 
+[] 
+ 
+ 
+[] 
+ 
+ 
+[] 
+ 
+ 
+[] 
+ 
+ 
+[] 
+ 
+ 
+[] 
+ 
+ 
+ 
+ 
+ 
+sine 
+ 
+ 
+() 
+ 
+ 
+ 
+ 
+ 
+throwshape 
+ 
+ 
+ 
+ 
+ 
+; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  to int 
+ 
+ 
+ 
+ 
+ 
+;
+ 
+ 
+ 
+ 
+ 
+
+nationalm 
+
+
+ 
+ 
+nationalsea 
+ 
+ 
+    
+ ;
+national 
+ 
+ 
+ 
+ 
+ nE 
+     
+ 
+ 
+;
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+NLangine 
+ 
+national 
+ 
+ 
+ 
+
+
+ 
+;
+ 
+   
+ 
+
+ 
+
+national 
+
+national 
+
+
+
+
+
+
+
+
+
+
+;
+nS andc
+
+
+
+
+
+
+ 
+ 
+
+;
+nElect
+
+
+
+
+
+
+
+
+
+
+
+void
+
+ 
+
+
+
+
+
+
+
+
+;
+nbrs
+ 
+   
+ 
+
+ 
+if 
+
+ 
+ 
+   
+ ;}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+    static 
+ 
+ 
+classtruct 
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+implementstandy, ifc
+ 
+ 
+
+
+ 
+
+
+
+<
+
+System
+ 
+ 
+ 
+ 
+ 
+ > 
+ 
+ 
+;
+
+
+  }

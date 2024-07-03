@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram RailwayManagementSystem  {
+
+  class RailwayLine  {
+    String name;
+    Track[] tracks;
+  }
+
+  class Track  {
+    String name;
+    Condition condition;
+  }
+
+  class Train  {
+    String name;
+    RailwayLine[] lines;
+    Schedule schedule;
+  }
+
+  class Schedule  {
+    Date departureTime;
+    Date arrivalTime;
+    RailwayLine line;
+  }
+
+  class Condition  {
+    String status;
+  }
+
+  class Maintenance  {
+    Date date;
+    Track track;
+  }
+
+  class RailwayManagementSystem  {
+    RailwayLine[] lines;
+    Train[] trains;
+    Maintenance[] maintenance;
+  }
+
+  composition RailwayManagementSystem -> RailwayLine[*];
+  composition RailwayLine -> Track[*];
+  composition Train -> Schedule[*];
+  composition RailwayLine -> Train[*];
+  composition Track -> Maintenance[*];
+  composition RailwayManagementSystem -> Maintenance[*];
+}

@@ -1,0 +1,47 @@
+
+classdiagram AgriculturalNanotech {
+
+    class Farm {
+      Manager manager;
+      Field[] fields;
+      NanotechComponent nanotech;
+    }
+
+    class Field {
+      Farm farm;
+      String fieldId;
+      Crop[] crops;
+    }
+
+    class Crop {
+      String name;
+      CropType type;
+      GrowthStage stage;
+    }
+
+    class CropType {
+      enum TypeEnum
+        ;
+    }
+
+    class GrowthStage {
+      enum StageEnum
+        ;
+    }
+
+    class NanotechComponent {
+      double particleSize;
+      double concentration;
+    }
+
+    class Manager {
+      void plantCrops(Field field, Crop[] crops);
+      void harvestCrops(Field field);
+      void monitorCropGrowth(Field field);
+    }
+
+    composition Farm -> (has) Manager;
+    composition Farm -> (has) Field[*];
+    composition Farm -> (has) NanotechComponent;
+    composition Field -> (has) Crop[*];
+}

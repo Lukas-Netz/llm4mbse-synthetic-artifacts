@@ -1,0 +1,90 @@
+
+classdiagram CollaborationSoftware {
+
+    class Team {
+      String name;
+      String teamId;
+      List<Member> members;
+      List<File> sharedFiles;
+      List<Task> tasks;
+      void addMember(Member member);
+      void removeMember(Member member);
+      void assignMemberToTask(Task task, Member member);
+      void shareFile(File file, Member member);
+      void trackFileChange(File file, Member member, String changeDetails);
+    }
+
+    class Member {
+      String username;
+      String memberId;
+      List<Team> teams;
+      void joinTeam(Team team);
+      void leaveTeam(Team team);
+    }
+
+    class File {
+      String fileName;
+      long size;
+      String fileId;
+      void uploadFile(Team team, File file);
+      void downloadFile(Team team, Member member);
+      void deleteFile(Team team, Member member);
+      void trackFileChange(Team team, Member member, String changeDetails);
+    }
+
+    class Task {
+      String taskName;
+      String taskDescription;
+      String taskId;
+      List<Member> assignedMembers;
+      void createTask(Team team, String taskName, String taskDescription);
+      void assignTask(Team team, Task task, Member member);
+      void markTaskStatus(Team team, Task task, String status);
+    }
+
+    association Team -> Member [1..*];
+    association Team -> File [1..*];
+    association Team -> Task [1..*];
+
+    association Member -> Team [0..*];
+    association Member -> File [0..*];
+    association Member -> Task [0..*];
+
+    association File -> Team [1..*];
+    association File -> Task [1..*];
+
+    composition Team {
+     
+    
+ordered
+
+    }
+
+    composition (File) -> Team {
+     
+    
+ordered
+
+    }
+
+   
+;
+
+    composition Task {
+     
+    
+ordered
+
+    }
+
+    composition (Task) -> Team {
+     
+    
+ordered
+
+    }
+
+   
+;
+
+}

@@ -1,0 +1,51 @@
+
+classdiagram SpaceElevator {
+
+    class SpaceElevator {
+      GroundStation groundStation;
+      Cable cable;
+      Counterweight counterweight;
+      SpaceStation spaceStation;
+    }
+
+    class GroundStation {
+      void manageSystem();
+    }
+
+    class Cable {
+      String segmentId;
+      int length;
+      List<CableSegment> segments;
+    }
+
+    class Counterweight {
+      void balanceCable();
+    }
+
+    class SpaceStation {
+      String stationId;
+      String name;
+      Set<Service> services;
+    }
+
+    class Service {
+      String name;
+    }
+
+    class Astronaut {
+      String astronautId;
+      String name;
+      Set<Skill> skills;
+    }
+
+    class Skill {
+      String skillType;
+    }
+
+    composition SpaceElevator -> (has) GroundStation;
+    composition SpaceElevator -> (has) Cable;
+    composition SpaceElevator -> (has) Counterweight;
+    composition SpaceElevator -> (has) SpaceStation [*];
+    composition SpaceStation -> Service [*];
+    composition SpaceStation -> Astronaut [*];
+}

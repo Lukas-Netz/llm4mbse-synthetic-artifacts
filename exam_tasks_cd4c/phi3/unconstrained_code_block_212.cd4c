@@ -1,0 +1,47 @@
+
+classdiagram HydroponicFarmingSystem {
+
+    class HydroponicFarmingSystem {
+      List<Module> modules;
+      List<Sensor> sensors;
+      WaterManagementSystem waterManagementSystem;
+      Database database;
+    }
+
+    class Module {
+      String name;
+      String uniqueIdentifier;
+      Crop crop;
+    }
+
+    class Crop {
+      String type;
+      GrowthStage stage;
+      NutrientRequirements requirements;
+      Date harvestDate;
+    }
+
+    class Sensor {
+      String type;
+      float temperature;
+      float humidity;
+      float lightLevel;
+    }
+
+    class WaterManagementSystem {
+      float waterLevel;
+      float pHLevel;
+      void adjustWaterLevel(float level);
+      void adjustPHLevel(float pH);
+    }
+
+    class Database {
+      void storeCropData(Crop crop);
+      Crop retrieveCropData(String uniqueIdentifier);
+    }
+
+  association HydroponicFarmingSystem -> Module [*];
+  association HydroponicFarmingSystem -> Sensor [*];
+  association HydroponicFarmingSystem -> WaterManagementSystem [0..1];
+  association HydroponicFarmingSystem -> Database [0..1];
+}

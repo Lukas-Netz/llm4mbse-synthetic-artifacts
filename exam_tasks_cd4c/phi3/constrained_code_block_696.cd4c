@@ -1,0 +1,64 @@
+
+classdiagram AcademicCredentialSystem {
+
+    class Student {
+      String studentId;
+      Set<AcademicRecord> academicRecords;
+    }
+
+    class AcademicRecord {
+      enum RecordType
+        ;
+      String degree;
+      double GPA;
+      Date dateOfIssuance;
+      String recordId;
+    }
+
+    class Institution {
+      String institutionId;
+      Set<Student> students;
+      Set<AcademicRecord> academicRecords;
+    }
+
+    class Blockchain {
+      void storeRecord(AcademicRecord record);
+      AcademicRecord retrieveRecord(String recordId);
+    }
+
+    <<association>>
+    class Student {
+      AcademicRecord academicRecords;
+    }
+
+    <<association>>
+    class Institution {
+      Student students;
+      AcademicRecord academicRecords;
+    }
+
+    <<association>>
+    class AcademicRecord {
+      Institution institution;
+    }
+
+    <<association>>
+    class Blockchain {
+      AcademicRecord academicRecords;
+    }
+
+    <<association>>
+    class Student {
+      Blockchain blockchain;
+    }
+
+    <<association>>
+    class Institution {
+      Blockchain blockchain;
+    }
+
+    <<association>>
+    class AcademicRecord {
+      Blockchain blockchain;
+    }
+}

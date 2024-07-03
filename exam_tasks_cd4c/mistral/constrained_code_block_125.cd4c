@@ -1,0 +1,53 @@
+
+classdiagram CarInfotainment {
+
+  class CentralUnit {
+    void playMusic(MusicSource source);
+    void displayNavigation(NavigationData data);
+    void controlClimate(ClimateControlData data);
+  }
+
+  class TouchscreenDisplay {
+    void showMusicControls();
+    void showNavigation();
+    void showClimateControls();
+    void displayVehicleData(VehicleData data);
+  }
+
+  class Speakers {
+    void playAudio(AudioData data);
+  }
+
+  interface MusicSource {
+    AudioData getAudioData();
+  }
+
+  class CDPlayer implements MusicSource {
+  }
+
+  class USBPlayer implements MusicSource {
+  }
+
+  class OnlineStreamer implements MusicSource {
+  }
+
+  class NavigationData {
+    String turnByTurnDirections;
+    String mapData;
+  }
+
+  class ClimateControlData {
+    int temperature;
+    int fanSpeed;
+  }
+
+  class VehicleData {
+    int speed;
+    int fuelLevel;
+  }
+
+  composition CarInfotainment -> CentralUnit;
+  composition CarInfotainment -> TouchscreenDisplay;
+  composition CarInfotainment -> Speakers [*];
+  association CentralUnit -- MusicSource [*];
+}

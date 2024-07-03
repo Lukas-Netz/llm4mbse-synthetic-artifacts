@@ -1,0 +1,66 @@
+
+
+classdiagram PersonalFinanceCourseSystem {
+
+  class Course {
+    int id;
+    String name;
+    String description;
+    List<Topic> topics;
+  }
+
+  class Topic {
+    int id;
+    String name;
+    String description;
+    List<Course> courses;
+  }
+
+  class User {
+    int id;
+    String name;
+    String email;
+    List<Enrollment> enrollments;
+  }
+
+  class Enrollment {
+    int id;
+    Course course;
+    User user;
+  }
+
+  class Quiz {
+    int id;
+    String name;
+    String description;
+    Course course;
+    List<Question> questions;
+  }
+
+  class Question {
+    int id;
+    String text;
+    String answer;
+    Quiz quiz;
+  }
+
+  class Score {
+    int id;
+    Quiz quiz;
+    User user;
+    int score;
+  }
+
+  class Review {
+    int id;
+    Course course;
+    User user;
+    String reviewText;
+  }
+
+  composition User -> (has) Enrollment [*];
+  composition Course -> (has) Topic [*];
+  composition Quiz -> (has) Question [*];
+  composition Score -> (has) Quiz [*];
+  composition Review -> (has) Course [*];
+}

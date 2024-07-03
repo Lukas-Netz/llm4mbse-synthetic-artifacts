@@ -1,0 +1,54 @@
+
+
+classdiagram AquaticDroneFishTrackingSystem {
+
+  class AquaticDroneFishTrackingSystem {
+    Drones drones;
+    Sensors sensors;
+    Fish fish;
+    WaterBodies waterBodies;
+    Researchers researchers;
+  }
+
+  class Drone {
+    String uniqueIdentifier;
+    Sensors sensors;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    WaterParameter parameter;
+  }
+
+  class Fish {
+    String uniqueIdentifier;
+    Species species;
+    Size size;
+  }
+
+  class WaterBody {
+    String uniqueIdentifier;
+  }
+
+  class Researcher {
+    String uniqueIdentifier;
+  }
+
+  enum WaterParameter {
+    Temperature, pHLevel, FishSpecies;
+  }
+
+  enum Species {
+    Tuna, Salmon, Trout;
+  }
+
+  enum Size {
+    Small, Medium, Large;
+  }
+
+  composition AquaticDroneFishTrackingSystem -> (has) Drones [*];
+  composition AquaticDroneFishTrackingSystem -> (has) Sensors [*];
+  composition AquaticDroneFishTrackingSystem -> (has) Fish [*];
+  composition AquaticDroneFishTrackingSystem -> (has) WaterBodies [*];
+  composition AquaticDroneFishTrackingSystem -> (has) Researchers [*];
+}

@@ -1,0 +1,61 @@
+
+classdiagram RetailAssistant {
+
+    class RetailAssistantSystem {
+      UI userInterface;
+      NLPModule naturalLanguageProcessor;
+      KnowledgeBase knowledgeBase;
+      ResponseGenerator responseGenerator;
+      DialogueManager dialogueManager;
+    }
+
+    class UI {
+      void displayUI();
+      String getUserInput();
+    }
+
+    class NLPModule {
+      String analyzeInput(String input);
+      ProductInfo extractProductInfo(String input);
+      PromotionInfo extractPromotionInfo(String input);
+      StorePolicyInfo extractStorePolicyInfo(String input);
+      GeneralInfo extractGeneralInfo(String input);
+    }
+
+    class KnowledgeBase {
+      Product product;
+      Promotion promotion;
+      StorePolicy storePolicy;
+      StoreGeneralInfo generalInfo;
+    }
+
+    class ResponseGenerator {
+      String generateResponse(ProductInfo productInfo, PromotionInfo promotionInfo, StorePolicyInfo storePolicyInfo, GeneralInfo generalInfo);
+    }
+
+    class DialogueManager {
+      void manageDialogue(String input, ProductInfo productInfo, PromotionInfo promotionInfo, StorePolicyInfo storePolicyInfo, GeneralInfo generalInfo);
+    }
+
+    class ProductInfo {
+      String name;
+      String features;
+      double price;
+      boolean isAvailable;
+    }
+
+    class PromotionInfo {
+      String promotionName;
+      double discount;
+    }
+
+    class StorePolicyInfo {
+      String returnPolicy;
+      String exchangePolicy;
+    }
+
+    class GeneralInfo {
+      String storeHours;
+      String storeLocation;
+    }
+}

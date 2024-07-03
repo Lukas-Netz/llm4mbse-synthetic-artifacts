@@ -1,0 +1,57 @@
+
+classdiagram ContentManagementSystem {
+
+    class Content {
+        String title;
+        String content;
+        Date publicationDate;
+        String category;
+    }
+
+    class Article extends Content {
+        String[] categories;
+    }
+
+    class Image extends Content {
+        String description;
+        String filePath;
+        String[] assignedArticles;
+    }
+
+    class Video extends Content {
+        String description;
+        String filePath;
+        String[] assignedArticles;
+    }
+
+    class User {
+        String username;
+        String password;
+        String role;
+        Permissions permissions;
+    }
+
+    class Permissions {
+        boolean canCreate;
+        boolean canEdit;
+        boolean canView;
+    }
+
+    association Content -> Article [*];
+    association Content -> Image [*];
+    association Content -> Video [*];
+
+    composition User -> Permissions;
+    composition User -> Content [*];
+
+    association Article -> Permissions [*];
+    association Image -> Permissions [*];
+    association Video -> Permissions [*];
+
+    association Article -> Image [*];
+    association Article -> Video [*];
+
+    association User -> Article [*];
+    association User -> Image [*];
+    association User -> Video [*];
+}

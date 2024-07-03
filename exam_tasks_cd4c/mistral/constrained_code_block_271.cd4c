@@ -1,0 +1,52 @@
+
+classdiagram RemoteLearning {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String topic;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    Course [ ] teaches;
+  }
+
+  class Student {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    CourseEnrollment [ ] enrollments;
+  }
+
+  class CourseEnrollment {
+    Student student;
+    Course course;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Grades {
+    Student student;
+    Course course;
+    int grade;
+  }
+
+  class Notifications {
+    String content;
+    String recipientType;
+    String recipientIdentifier;
+  }
+
+  composition CourseEnrollment <- Student;
+  composition CourseEnrollment <- Course;
+  association Instructor <- Course;
+  association Student <- CourseEnrollment;
+  association Grades <- Student;
+  association Grades <- Course;
+  association Notifications <- Student;
+  association Notifications <- Instructor;
+}

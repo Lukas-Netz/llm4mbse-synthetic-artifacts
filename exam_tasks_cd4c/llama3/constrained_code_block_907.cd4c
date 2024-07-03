@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram BehavioralTherapyPlatform  {
+
+  class Therapist  {
+    String name;
+    String email;
+    String password;
+    -> Patient[*];
+  }
+
+  class Patient  {
+    String name;
+    String email;
+    String password;
+    -> TherapySession[*];
+  }
+
+  class TherapySession  {
+    Date date;
+    Time time;
+    int duration;
+    -> Therapist;
+    -> Patient;
+    -> Goal[*];
+  }
+
+  class Goal  {
+    String description;
+    GoalStatus status;
+  }
+
+  enum GoalStatus  {
+    IN_PROGRESS,
+    COMPLETED,
+    CANCELLED
+  ;}
+
+  composition Therapist -> Patient[*];
+  composition Patient -> TherapySession[*];
+  composition TherapySession -> Therapist;
+  composition TherapySession -> Patient;
+  composition TherapySession -> Goal[*];
+}

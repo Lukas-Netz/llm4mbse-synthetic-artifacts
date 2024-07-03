@@ -1,0 +1,112 @@
+
+classdiagram MusicStorageSystem {
+
+    class MusicStorageSystem {
+      Hub hub;
+      BackupPower backupPower;
+    }
+
+    class Hub {
+      -> Device [*];
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      String checkBackupPowerStatus();
+    }
+
+    abstract class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    class User {
+      String username;
+      String password;
+      List<MusicFile> musicFiles;
+    }
+
+    class MusicFile {
+      String filePath;
+      String fileType;
+      String fileSize;
+      String fileLocation;
+    }
+
+    class MusicFileType {
+      String type;
+      String fileExtension;
+    }
+
+    enum DeviceStatus {
+      On, Off;
+    }
+
+    enum MusicFileType {
+      MP3, WAV, FLAC;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+    class SearchResult {
+      List<MusicFile> results;
+    }
+
+    class Filter {
+      String genre;
+      String mood;
+      String tempo;
+      String volume;
+    }
+
+    class Playback {
+      String deviceType;
+      String playerType;
+      String playerName;
+    }
+
+    class MusicService {
+      String serviceName;
+      String serviceProvider;
+    }
+
+    class MusicFileType {
+      String type;
+      String fileExtension;
+    }
+
+    class MusicFile {
+      String filePath;
+      MusicFileType fileType;
+      String fileSize;
+      String fileLocation;
+    }
+
+    class User {
+      String username;
+      String password;
+      List<MusicFile> musicFiles;
+    }
+
+    class MusicFileType {
+      String type;
+      String fileExtension;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+    class SearchResult {
+      List<MusicFile> results;
+    }
+
+    class Filter {
+      String genre;
+      String mood;
+      String tempo;
+      String volume;
+    }
+
+   
+}

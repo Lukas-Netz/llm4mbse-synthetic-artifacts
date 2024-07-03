@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram AutonomousSubseaVehicle  {
+
+  class AutonomousSubseaVehicle  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+    SensorSet sensors;
+    PropulsionSystem propulsionSystem;
+    PowerSource powerSource;
+    CommunicationSystem communicationSystem;
+  }
+
+  class SensorSet  {
+    Sonar sonar;
+    Camera camera;
+    WaterQualitySensor waterQualitySensor;
+  }
+
+  class PropulsionSystem  {
+    PropulsionType type;
+  }
+
+  class PowerSource  {
+    PowerSourceType type;
+  }
+
+  class CommunicationSystem  {
+    CommunicationType type;
+  }
+
+  class MissionControlCenter  {
+    AutonomousSubseaVehicle asv;
+    MissionPlan missionPlan;
+  }
+
+  class MissionPlan  {
+    TaskSet tasks;
+  }
+
+  class TaskSet  {
+    Task task;
+  }
+
+  class Task  {
+    TaskType type;
+  }
+
+  enum DeviceStatus  {
+    Operational, NotOperational;
+  }
+
+  enum PropulsionType  {
+    Electric, Hydraulic;
+  }
+
+  enum PowerSourceType  {
+    Batteries, FuelCell;
+  }
+
+  enum CommunicationType  {
+    Radio, Satellite;
+  }
+
+  enum TaskType  {
+    Mapping, Inspection, Sampling;
+  }
+}
+

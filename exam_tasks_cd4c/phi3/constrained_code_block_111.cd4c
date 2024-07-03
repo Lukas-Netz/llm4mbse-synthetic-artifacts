@@ -1,0 +1,56 @@
+
+classdiagram AutomatedTradingPlatform {
+
+    class Account {
+      String uniqueIdentifier;
+      double balance;
+      List<Order> orders;
+    }
+
+    class Order {
+      String orderId;
+      Account account;
+      OrderType type;
+      double quantity;
+      double price;
+      TimeLimit timeLimit;
+      TriggerType triggerType;
+    }
+
+    class OrderType {
+      String type;
+    }
+
+    class LimitOrder extends Order {
+      TimeLimit timeLimit;
+    }
+
+    class StopOrder extends Order {
+      TriggerType triggerType;
+    }
+
+    class MarketOrder extends Order {
+      double price;
+    }
+
+    class Asset {
+      String assetId;
+      String name;
+      double currentPrice;
+    }
+
+    class Portfolio {
+      List<Asset> assets;
+      double totalValue;
+    }
+
+    class AutomatedTradingPlatform {
+      void placeOrder(Order order);
+      double getAccountBalance(Account account);
+      Portfolio getPortfolio(Account account);
+    }
+
+    association Account -> Order [*];
+    association Portfolio -> Asset [*];
+    composition Account -> Portfolio;
+}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram VirtualEscapeRoom  {
+
+  class VirtualEscapeRoom  {
+    String name;
+    String uniqueIdentifier;
+    Theme theme;
+  }
+
+  class Theme  {
+    String type;  (horror   )
+  }
+
+  class Puzzle  {
+    int difficultyLevel;
+    String solution;
+  }
+
+  class Player  {
+    String uniqueIdentifier;
+    int score;
+  }
+
+  class Game  {
+    VirtualEscapeRoom room;
+    Player player;
+    Timer timer;
+  }
+
+  class Timer  {
+    int timeLeft;
+  }
+
+  class Administrator  {
+    void createRoom(VirtualEscapeRoom room);
+    void editRoom(VirtualEscapeRoom room);
+    void deleteRoom(VirtualEscapeRoom room);
+    void managePlayerScore(Player player);
+    void manageRoomSettings(VirtualEscapeRoom room);
+  }
+
+  composition VirtualEscapeRoom  ->  (has) Theme;
+  composition VirtualEscapeRoom  ->  (has) Puzzle[*];
+  composition Game  ->  (has) VirtualEscapeRoom;
+  composition Game  ->  (has) Player;
+  composition Game  ->  (has) Timer;
+  composition Administrator  ->  (has) VirtualEscapeRoom[*];
+}

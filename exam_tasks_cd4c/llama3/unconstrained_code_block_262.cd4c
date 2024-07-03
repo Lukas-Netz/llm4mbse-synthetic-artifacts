@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram DigitalSportsCoachingSystem  {
+
+  class Athlete  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    -> Team[*];
+  }
+
+  class Coach  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    -> Team[*];
+  }
+
+  class Team  {
+    String uniqueIdentifier;
+    String name;
+    SportType sportType;
+    -> Athlete[*];
+    -> Coach[*];
+  }
+
+  class PerformanceMetric  {
+    String name;
+    double value;
+  }
+
+  class TrainingPlan  {
+    String name;
+    -> Exercise[*];
+    -> Drill[*];
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+  }
+
+  class Drill  {
+    String name;
+    String description;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  class Notification  {
+    String message;
+    Date scheduledTime;
+  }
+
+  composition Athlete -> Team;
+  composition Coach -> Team;
+  composition Team -> Athlete;
+  composition Team -> Coach;
+  composition TrainingPlan -> Exercise;
+  composition TrainingPlan -> Drill;
+  composition Report -> PerformanceMetric;
+  composition Notification -> Athlete;
+  composition Notification -> Coach;
+}

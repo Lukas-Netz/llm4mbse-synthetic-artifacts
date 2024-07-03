@@ -1,0 +1,54 @@
+
+
+classdiagram VirtualReality {
+
+    class VRSystem {
+      Simulation simulation;
+      User user;
+    }
+
+    class Simulation {
+      -> Scenario [*];
+      void startScenario(Scenario scenario);
+      void stopScenario(Scenario scenario);
+      int getUserScore(User user);
+    }
+
+    class Scenario {
+      String uniqueIdentifier;
+      String name;
+      String description;
+    }
+
+    class User {
+      String name;
+      Rank rank;
+      int score;
+    }
+
+    enum Rank { Trainee, Instructor; }
+
+    class Instructor {
+      String name;
+      Rank rank;
+      Role role;
+    }
+
+    class Role {
+      String name;
+      List<String> responsibilities;
+    }
+
+    class ScenarioObject {
+      String uniqueIdentifier;
+      String name;
+      String description;
+    }
+
+    composition VRSystem -> (has) Simulation;
+    composition VRSystem -> (has) User;
+    composition Simulation -> Scenario [*];
+    association User -> Simulation;
+    association Instructor -> Simulation;
+    association ScenarioObject -> Simulation;
+}

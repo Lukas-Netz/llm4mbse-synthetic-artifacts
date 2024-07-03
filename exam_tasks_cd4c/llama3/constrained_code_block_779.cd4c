@@ -1,0 +1,36 @@
+
+
+
+
+classdiagram WildlifeConservation  {
+
+  class Node  {
+    String uniqueIdentifier;
+    Transaction[] transactions;
+  }
+
+  class Organization  {
+    String name;
+    Project[] projects;
+  }
+
+  class Species  {
+    String name;
+  }
+
+  class Project  {
+    String name;
+    Species species;
+  }
+
+  class Transaction  {
+    String timestamp;
+    String data;
+  }
+
+  composition Node -> (has) Transaction[*];
+  composition Organization -> (has) Project[*];
+  composition Project -> (has) Species;
+  composition Node -> (has) Transaction[*];
+  composition Transaction -> (is) verified [0..1];
+}

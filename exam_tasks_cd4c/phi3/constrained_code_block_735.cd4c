@@ -1,0 +1,38 @@
+
+classdiagram ForestFirePredictionSystem {
+
+    class WeatherStation {
+      void collectData();
+      void transmitData(String data);
+    }
+
+    class VegetationSensor {
+      void collectData();
+      void transmitData(String data);
+    }
+
+    class FireIncidentDatabase {
+      void storeIncident(String incidentData);
+      String retrieveIncident(String location);
+    }
+
+    class AIEngine {
+      void analyzeData(String weatherData, String vegetationData);
+      float predictFireLikelihood();
+    }
+
+    class RecommendationEngine {
+      String generateRecommendations(float likelihood);
+    }
+
+    class UserInterface {
+      void displayPrediction(float likelihood);
+      void displayRecommendations(String recommendations);
+    }
+
+    composition WeatherStation -> (has) AIEngine;
+    composition WeatherStation -> (has) VegetationSensor;
+    composition AIEngine -> (has) FireIncidentDatabase;
+    composition AIEngine -> (has) RecommendationEngine;
+    composition RecommendationEngine -> (has) UserInterface;
+}

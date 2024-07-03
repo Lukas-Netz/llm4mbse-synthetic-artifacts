@@ -1,0 +1,76 @@
+
+classdiagram RestaurantDeliveryPlatform {
+
+    class Restaurant {
+      String name;
+      String uniqueIdentifier;
+      Menu menu;
+    }
+
+    class Menu {
+      List<Dish> dishes;
+    }
+
+    class Dish {
+      String name;
+      double price;
+      String description;
+    }
+
+    class Customer {
+      String name;
+      String uniqueIdentifier;
+      List<Order> placedOrders;
+    }
+
+    class Order {
+      String orderId;
+      Customer customer;
+      Restaurant restaurant;
+      List<Dish> dishes;
+    }
+
+    class DeliveryAgent {
+      String name;
+      String uniqueIdentifier;
+      double rating;
+    }
+
+    class OrderRating {
+      DeliveryAgent agent;
+      double rating;
+    }
+
+    class Invoice {
+      Restaurant restaurant;
+      List<Order> orders;
+    }
+
+    association Restaurant 
+      hasMenu
+      -> Menu;
+
+    association Customer 
+      hasPlacedOrders
+      -> Order;
+
+    association Order 
+      hasCustomer
+      -> Customer;
+
+    association Order 
+      hasRestaurant
+      -> Restaurant;
+
+    association Order 
+      hasDishes
+      -> Dish;
+
+    composition Customer -> Order [*];
+    composition Customer -> OrderRating [*];
+    composition Order -> DeliveryAgent [*];
+    composition Order -> OrderRating [*];
+    composition Restaurant -> Menu [*];
+    composition Restaurant -> Invoice [*];
+    composition Order -> Invoice [*];
+}

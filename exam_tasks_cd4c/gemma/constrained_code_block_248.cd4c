@@ -1,0 +1,59 @@
+
+
+classdiagram WebHostingService {
+
+  class WebHostingService {
+    Hub hub;
+    BackupPower backupPower;
+  }
+
+  class Hub {
+    -> Website [*];
+    void addWebsite(Website website);
+    void removeWebsite(Website website);
+    String checkBackupPowerStatus();
+  }
+
+  class Website {
+    String domainName;
+    User user;
+    HostingPlan hostingPlan;
+  }
+
+  class User {
+    String username;
+    String password;
+    -> Website [*];
+  }
+
+  class HostingPlan {
+    String name;
+    Features features;
+  }
+
+  class Features {
+    int storageCapacity;
+    int bandwidth;
+    int numEmailAccounts;
+  }
+
+  class BackupPower {
+    int capacityWh;
+  }
+
+  enum DeviceStatus {
+    On, Off;
+  }
+
+  enum ThermostatMode {
+    Heating, Cooling;
+  }
+
+  composition WebHostingService -> (has) Hub;
+  composition WebHostingService -> (has) BackupPower [0..1];
+  composition Hub -> Website [*];
+  association Website -> User;
+  association Website -> HostingPlan;
+  association User -> Website [*];
+  composition HostingPlan -> (has) Features;
+}

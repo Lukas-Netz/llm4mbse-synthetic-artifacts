@@ -1,0 +1,44 @@
+
+classdiagram AdvancedRoboticsSurgerySystem {
+
+    class RoboticArm {
+      List<SurgicalInstrument> instruments;
+      void performSurgery(SurgicalProcedure procedure);
+    WritableList<SurgicalInstrument> availableInstruments;
+      void switchInstrument(SurgicalInstrument instrument);
+    }
+
+    class ControlUnit {
+      RoboticArm roboticArm;
+      List<SurgicalInstrument> availableInstruments;
+      void switchInstrument(SurgicalInstrument instrument);
+      void provideFeedback(SurgicalProcedure procedure);
+    }
+
+    class SurgicalConsole {
+      DisplayScreen displayScreen;
+      UserInterface userInterface;
+      void controlRoboticArm(SurgicalProcedure procedure);
+    }
+
+    class SurgicalProcedure {
+      String name;
+      SurgicalInstrument instrument;
+    }
+
+    class SurgicalInstrument {
+      String uniqueIdentifier;
+    }
+
+    class Database {
+      List<SurgicalProcedure> procedures;
+      List<SurgicalInstrument> instruments;
+    }
+
+    composition AdvancedRoboticsSurgerySystem -> (has) RoboticArm;
+    composition AdvancedRoboticsSurgerySystem -> (has) ControlUnit;
+    composition AdvancedRoboticsSurgerySystem -> (has) SurgicalConsole;
+    association RoboticArm -> SurgicalInstrument [*];
+    association ControlUnit -> SurgicalInstrument [*];
+    association SurgicalConsole -> SurgicalProcedure [*];
+}

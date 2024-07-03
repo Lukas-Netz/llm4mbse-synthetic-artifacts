@@ -1,0 +1,74 @@
+
+classdiagram RiskManagement {
+
+  class Risk {
+    String uniqueIdentifier;
+    String description;
+    RiskSeverity severity;
+  }
+
+  enum RiskSeverity {
+    Low, Medium, High;
+  }
+
+  class MitigationStrategy {
+    String uniqueIdentifier;
+    String description;
+    MitigationStatus status;
+    Employee responsible;
+  }
+
+  enum MitigationStatus {
+    Active, Inactive;
+  }
+
+  class Employee {
+    String uniqueIdentifier;
+    String name;
+    String role;
+  }
+
+  class Department {
+    String uniqueIdentifier;
+    String name;
+    Employee [ ] employees;
+  }
+
+  class Policy {
+    String uniqueIdentifier;
+    String description;
+    PolicyStatus status;
+  }
+
+  enum PolicyStatus {
+    Active, Inactive;
+  }
+
+  class RiskAssessmentAndMitigationPlan {
+    String uniqueIdentifier;
+    String description;
+    PlanStatus status;
+  }
+
+  enum PlanStatus {
+    Active, Inactive;
+  }
+
+  class RiskRegister {
+    Risk [ ] risks;
+    MitigationStrategy [ ] mitigationStrategies;
+  }
+
+  class Company {
+    RiskRegister riskRegister;
+    RiskAssessmentAndMitigationPlan plan;
+    Policy [ ] policies;
+  }
+
+  composition Company -> RiskRegister;
+  composition Company -> RiskAssessmentAndMitigationPlan;
+  composition Company -> Policy [*];
+  association Company -> Department [*];
+  association Risk -> MitigationStrategy [*];
+  association Employee -> Department [*];
+}

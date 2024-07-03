@@ -1,0 +1,61 @@
+
+classdiagram PersonalTrainingPlatform {
+
+  class Trainer {
+    String name;
+    String email;
+    String password;
+    Skills skills;
+    Availability availability;
+  }
+
+  class Client {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Session {
+    Date date;
+    Time time;
+    Duration duration;
+    boolean isScheduled;
+    boolean isCancelled;
+  }
+
+  class WorkoutHistory {
+    Session [
+     ] sessions;
+    Goal goal;
+  }
+
+  class Goal {
+    String name;
+    int progress;
+  }
+
+  class Skills {
+    String [
+     ] skills;
+  }
+
+  class Availability {
+    Time [
+     ] availableTimes;
+  }
+
+  class Analytics {
+    int sessionsBooked;
+    double clientRetentionRate;
+    int averageSessionDuration;
+  }
+
+  association Trainer --o_1_o_ [*] - 											;
+  association Client --o_1_o_ [*] - 											;
+  association Session --o_1_o_ [*] - 											;
+  association WorkoutHistory --o_1_o_ [*] - 									;
+  association Goal --o_1_o_ [*] - 											;
+  association Skills --o_1_o_ [*] - 											;
+  association Availability --o_1_o_ [*] - 									;
+  association Analytics --o_1_o_ [*] - 										;
+}

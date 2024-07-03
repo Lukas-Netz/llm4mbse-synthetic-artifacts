@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram ParticleAccelerator  {
+
+  class Accelerator  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Beamline  {
+    String name;
+    String uniqueIdentifier;
+    -> Magnet[*];
+    -> Detector[*];
+  }
+
+  abstract class Magnet  {
+    String name;
+    MagnetType type;
+    Map<String, String> properties;
+  }
+
+  enum MagnetType  {
+    Quadrupole, Dipole
+  ;}
+
+  class Detector  {
+    String name;
+    String type;
+    Map<String, String> properties;
+  }
+
+  class ControlSystem  {
+    -> Accelerator;
+    Command[] commands;
+    StatusUpdate[] statusUpdates;
+  }
+
+  class Command  {
+    String name;
+    String description;
+  }
+
+  class StatusUpdate  {
+    String beamIntensity;
+    String particleEnergy;
+    String magnetSettings;
+  }
+
+  composition Accelerator -> Beamline[*];
+  composition Beamline -> Magnet[*];
+  composition Beamline -> Detector[*];
+  composition ControlSystem -> Accelerator;
+  composition Accelerator -> ControlSystem;
+}

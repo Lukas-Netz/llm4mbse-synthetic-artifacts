@@ -1,0 +1,58 @@
+
+
+classdiagram OnlineGroceryDeliverySystem {
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String address;
+    }
+
+    class Order {
+      Customer customer;
+      List<Product> products;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      double price;
+      Category category;
+      int quantity;
+      double unitPrice;
+    }
+
+    enum Category {
+      FreshProduce, DairyProducts, PackagedGoods
+    
+
+    
+;
+  }
+
+    class Category {
+      String name;
+    }
+
+    class Admin {
+      void manageProducts();
+      void manageCategories();
+      void manageCustomers();
+    }
+
+  composition Customer -> Order [0..*]
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  ;
+}

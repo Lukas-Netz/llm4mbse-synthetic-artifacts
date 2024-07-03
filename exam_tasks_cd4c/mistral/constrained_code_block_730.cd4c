@@ -1,0 +1,57 @@
+
+classdiagram LuxuryFashion {
+
+  class LuxuryFashionItem {
+    String uniqueIdentifier;
+    String description;
+    String serialNumber;
+    LuxuryFashionItemType type;
+  }
+
+  enum LuxuryFashionItemType {
+    Clothing, Accessory, Jewelry;
+  }
+
+  class Owner {
+    String uniqueIdentifier;
+    String name;
+    String address;
+    LuxuryFashionItem [][ ] ownedLFIs;
+  }
+
+  class Provenance {
+    String origin;
+    String productionProcess;
+    String materials;
+  }
+
+  class Blockchain {
+    ProvenanceRecord [ ] provenanceRecords;
+    OwnershipRecord [ ] ownershipRecords;
+  }
+
+  class ProvenanceRecord {
+    LuxuryFashionItem uniqueIdentifier;
+    Provenance provenance;
+  }
+
+  class OwnershipRecord {
+    LuxuryFashionItem uniqueIdentifier;
+    Owner owner;
+  }
+
+  class Authentication {
+    boolean verifyAuthenticity(LuxuryFashionItem item);
+  }
+
+  class SmartContract {
+    void addLFI(LuxuryFashionItem item, Provenance provenance);
+    void updateProvenance(LuxuryFashionItem item, Provenance newProvenance);
+    void transferOwnership(LuxuryFashionItem item, Owner newOwner);
+  }
+
+  composition LuxuryFashion -> (has) Blockchain;
+  composition Blockchain -> ProvenanceRecord [*];
+  composition Blockchain -> OwnershipRecord [*];
+  association Owner -> LuxuryFashionItem [*];
+}

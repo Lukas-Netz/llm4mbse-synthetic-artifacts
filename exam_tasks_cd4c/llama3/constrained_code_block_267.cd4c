@@ -1,0 +1,65 @@
+
+
+
+classdiagram SmartMeterSystem  {
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  enum DeviceType  {
+    ElectricityMeter,
+    WaterMeter,
+    GasMeter
+  ;}
+
+  class DataPoint  {
+    String timestamp;
+    double value;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    Administrator,
+    Analyst,
+    Viewer
+  ;}
+
+  class Report  {
+    String name;
+    String description;
+    List<Filter> filters;
+    List<Aggregation> aggregations;
+  }
+
+  class Filter  {
+    String field;
+    String operator;
+    String value;
+  }
+
+  class Aggregation  {
+    String field;
+    AggregationType type;
+  }
+
+  enum AggregationType  {
+    Sum,
+    Average,
+    Count
+  ;}
+
+  composition Device  -> DataPoint [*];
+  composition User  -> Role;
+  composition Report  -> Filter [*];
+  composition Report  -> Aggregation [*];
+  composition SmartMeterSystem  -> Device [*];
+  composition SmartMeterSystem  -> User [*];
+  composition SmartMeterSystem  -> Report [*];
+}

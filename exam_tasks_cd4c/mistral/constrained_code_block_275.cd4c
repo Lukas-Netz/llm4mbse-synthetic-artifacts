@@ -1,0 +1,56 @@
+
+classdiagram VideoConferencing {
+
+  class Conference {
+    String uniqueIdentifier;
+    String name;
+    DateTime startTime;
+    DateTime endTime;
+    Room [  ] rooms;
+  }
+
+  class Room {
+    String uniqueIdentifier;
+    int maxCapacity;
+    Participant occupant;
+  }
+
+  abstract class Participant {
+    String name;
+    String email;
+  }
+
+  class User extends Participant {
+    String uniqueIdentifier;
+  }
+
+  class Guest extends Participant {
+  }
+
+  class SystemAdmin extends User {
+    void manageConference();
+    void manageParticipants();
+    void manageRooms();
+  }
+
+  class Video {
+    void transmit(Participant sender, Participant receiver);
+  }
+
+  class Audio {
+    void transmit(Participant sender, Participant receiver);
+  }
+
+  class File {
+    void share(Participant sender, Participant receiver);
+  }
+
+  class Chat {
+    void sendMessage(Participant sender, Participant receiver, String message);
+  }
+
+  composition Conference -> Room [*];
+  composition Room -> Participant [0..1];
+  association Conference -> Participant [*];
+  association SystemAdmin <-> Conference;
+}

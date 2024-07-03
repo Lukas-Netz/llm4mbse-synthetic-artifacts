@@ -1,0 +1,93 @@
+
+classdiagram WeatherForecastingSystem {
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String city;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    OtherWeatherConditions otherWeatherConditions;
+  }
+
+  class WeatherAlgorithm {
+    String forecastingModel;
+    WeatherStation weatherStation;
+    WeatherForecast forecast;
+  }
+
+  class UserInterface {
+    WeatherForecast forecast;
+    String displayType;
+  }
+
+  class WeatherDatabase {
+    HistoricalWeatherData historicalData;
+  }
+
+  class WeatherForecast {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    Precipitation precipitation;
+  }
+
+  class HistoricalWeatherData {
+    String date;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    Precipitation precipitation;
+  }
+
+  class Temperature {
+    double value;
+    TemperatureUnit unit;
+  }
+
+  class Humidity {
+    double value;
+    HumidityUnit unit;
+  }
+
+  class WindSpeed {
+    double value;
+    WindSpeedUnit unit;
+  }
+
+  class Precipitation {
+    double value;
+    PrecipitationUnit unit;
+  }
+
+  class OtherWeatherConditions {
+    String condition;
+    double value;
+    OtherWeatherConditionUnit unit;
+  }
+
+  enum TemperatureUnit {
+    Celsius, Fahrenheit;
+  }
+
+  enum HumidityUnit {
+    Percentage, RelativeHumidity;
+  }
+
+  enum WindSpeedUnit {
+    MilesPerHour, KilometersPerHour;
+  }
+
+  enum PrecipitationUnit {
+    Inches, Millimeters;
+  }
+
+  enum OtherWeatherConditionUnit {
+    Unknown, Units;
+  }
+
+  composition WeatherForecastingSystem -> WeatherStation [*];
+  composition WeatherAlgorithm -> WeatherStation;
+  composition UserInterface -> WeatherForecast;
+  association WeatherDatabase -> WeatherAlgorithm;
+}

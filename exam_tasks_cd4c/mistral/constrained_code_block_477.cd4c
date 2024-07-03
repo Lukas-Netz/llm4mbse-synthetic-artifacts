@@ -1,0 +1,59 @@
+
+classdiagram AnimalAdoption {
+
+  class User {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile {
+    String name;
+    String email;
+    String phone;
+  }
+
+  class Shelter {
+    String uniqueIdentifier;
+    Profile profile;
+    Animal [][][][] inventory;
+  }
+
+  class Animal {
+    String uniqueIdentifier;
+    String name;
+    String breed;
+    int age;
+    String location;
+  }
+
+  class Adoption {
+    User user;
+    Animal animal;
+    Date adoptionDate;
+  }
+
+  association User [*] Shelter [many]
+  -- User-{
+    ordered
+    }
+
+ 			;
+  association User [*] Adoption [many]
+  -- User-{
+    ordered
+    }
+
+ 			;
+  association Shelter [*] Adoption [many]
+  -- Shelter-{
+    ordered
+    }
+
+ 			;
+  association Animal [*] Shelter [many]
+  -- Animal-{
+    ordered
+    }
+
+ 			;
+}

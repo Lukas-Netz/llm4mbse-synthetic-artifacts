@@ -1,0 +1,50 @@
+
+classdiagram VDR {
+
+  class VDR {
+    String uniqueIdentifier;
+    String name;
+    Document [
+     ] documents;
+  }
+
+  class Document {
+    String title;
+    String description;
+    int versionNumber;
+    User [
+     ] assignedUsers;
+    File format;
+  }
+
+  class User {
+    String uniqueID;
+    String name;
+    Role role;
+    VDR [
+     ] vdrs;
+    Document [
+     ] documents;
+  }
+
+  enum Role {
+    Internal, External;
+  }
+
+  class InternalUser extends User {
+    String employeeID;
+  }
+
+  class ExternalUser extends User {
+    String username;
+    String password;
+  }
+
+  class File {
+    String format;
+  }
+
+  association VDR -- Document [*];
+  association Document -- User [*];
+  association User -- VDR [*];
+}

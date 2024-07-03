@@ -1,0 +1,81 @@
+
+classdiagram MaritimeDisasterSimulation {
+
+    class Vessel {
+      String name;
+      int grossTons;
+      VesselType type;
+      VesselCargo cargo;
+      VesselStatus status;
+      Position position;
+      Speed speed;
+      Direction direction;
+    }
+
+    class VesselType {
+      String typeName;
+    }
+
+    class VesselCargo {
+      String cargoType;
+    }
+
+    class VesselStatus {
+      String statusName;
+    }
+
+    class Position {
+      double latitude;
+      double longitude;
+    }
+
+    class Speed {
+      double knots;
+    }
+
+    class Direction {
+      String cardinalDirection;
+    }
+
+    class Disaster {
+      DisasterType type;
+      Vessel affectedVessel;
+      DisasterEffects effects;
+    }
+
+    class DisasterType {
+      String typeName;
+    }
+
+    class DisasterEffects {
+      boolean fire;
+      boolean collision;
+      boolean injuredCrew;
+      boolean sinking;
+    }
+
+    class RescueTeam {
+      String teamName;
+      Lifeboat lifeboat;
+      MedicalAid medicalAid;
+    }
+
+    class Lifeboat {
+      int capacity;
+      boolean deployed;
+    }
+
+    class MedicalAid {
+      boolean provided;
+    }
+
+    association Vessel -> VesselStatus;
+    association Vessel -> VesselCargo;
+    association Vessel -> Position;
+    association Vessel -> Speed;
+    association Vessel -> Direction;
+    composition Vessel -> Disaster;
+    composition Vessel -> RescueTeam;
+
+   
+}

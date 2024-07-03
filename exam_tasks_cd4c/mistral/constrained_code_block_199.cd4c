@@ -1,0 +1,59 @@
+
+classdiagram DrugDiscovery {
+
+  class Compound {
+    String id;
+    Map<String, Double> properties;
+  }
+
+  class TargetProtein {
+    String id;
+  }
+
+  class MLModel {
+    TargetProtein target;
+    Compound predict(Compound compound);
+  }
+
+  class SimulationEnvironment {
+    Compound compound;
+    void simulate();
+    Result retrieveResult();
+  }
+
+  class Result {
+    String id;
+    Map<String, Double> results;
+  }
+
+  class UserInterface {
+    SimulationEnvironment simulationEnvironment;
+    void search(String property, Double value);
+    void predict(Compound compound, TargetProtein target);
+    void simulate(Compound compound);
+    void retrieveResult(String id);
+  }
+
+  composition Database [*] Compound [o_o]
+  -- UserInterface << contains >> - 											{
+   								ordered
+					}
+ 				;
+ 				-																								association
+ 				{
+   								ordered
+					}
+ 				-																								association
+ 																																		-- SimulationEnvironment << contains >> -
+ 										{
+   								ordered
+					}
+ 				;
+ 				-																								association
+ 																																																																Result
+ 																																		-- Result << contains >> -
+ 										{
+   								ordered
+					}
+ 				;
+}

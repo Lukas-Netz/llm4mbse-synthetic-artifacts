@@ -1,0 +1,77 @@
+
+classdiagram VRHistoricalTours {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Guide extends User {
+    boolean isGuide;
+  }
+
+  class Tour {
+    String name;
+    String description;
+    TourStatus status;
+    Stop [ ] stops;
+  }
+
+  enum TourStatus {
+    Draft,
+    Pending,
+    Approved,
+    Rejected;
+  }
+
+  class Stop {
+    String name;
+    String description;
+    Media [ ] media;
+  }
+
+  abstract class Media {
+    String name;
+    String description;
+    String url;
+  }
+
+  class Image extends Media {
+  }
+
+  class Video extends Media {
+  }
+
+  class Audio extends Media {
+  }
+
+  composition User [*] Tour [  many ]
+  -- Guide [*] -{  ordered } 					;
+  composition Tour [*] Stop [ many ]
+  -- User [*] -{  ordered } 					;
+  composition Stop [*] Media [ many ]
+
+  -- Guide [*] -{  ordered } 					;
+  association User [*] Tour [  many ]
+  -- User [*] -{  ordered } 					;
+  association Guide [*] Tour [  many ]
+
+  -- User [*] -{  ordered } 					;
+  association User [*] Stop [  many ]
+  -- User [*] -{  ordered } 					;
+  association Guide [*] Stop [  many ]
+
+  -- Stop [*] -{  ordered } 					;
+  association Stop [*] Media [  many ]
+
+  -- Tour [*] -{  ordered } 					;
+  association Tour [*] Media [  many ]
+
+  -- Guide [*] -{  ordered } 					;
+  association Guide [*] Media [  many ]
+
+  -- User [*] -{  ordered } 					;
+  association User [*] Media [  many ]
+
+  -- Tour [*] -{  ordered } 					;
+ 				}

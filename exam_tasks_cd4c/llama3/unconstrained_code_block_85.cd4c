@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram SupplyChainVisibility  {
+
+  class SupplyChain  {
+    -> Shipment[*];
+  }
+
+  abstract class Shipment  {
+    String shipmentId;
+    Date shipmentDate;
+    Date expectedDeliveryDate;
+    Location location;
+  }
+
+  class Production  extends Shipment  {
+    -> Item[*];
+  }
+
+  class Transportation  extends Shipment  {
+    -> ModeOfTransportation;
+  }
+
+  class Storage  extends Shipment  {
+    -> Warehouse;
+  }
+
+  class Delivery  extends Shipment  {
+    -> Customer;
+  }
+
+  class Item  {
+    String itemCode;
+    int quantity;
+  }
+
+  class ModeOfTransportation  {
+    String mode;
+  }
+
+  class Warehouse  {
+    String warehouseCode;
+  }
+
+  class Customer  {
+    String customerCode;
+  }
+
+  class Location  {
+    String locationCode;
+  }
+
+  composition SupplyChain -> Shipment[*];
+  composition Shipment -> Item[*];
+  composition Shipment -> ModeOfTransportation;
+  composition Shipment -> Warehouse;
+  composition Shipment -> Customer;
+  composition Item -> SupplyChain;
+  composition ModeOfTransportation -> Shipment;
+  composition Warehouse -> Shipment;
+  composition Customer -> Shipment;
+}

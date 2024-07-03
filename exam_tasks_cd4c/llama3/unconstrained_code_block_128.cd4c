@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram ContentPersonalization  {
+
+  class User  {
+    String uniqueIdentifier;
+    PreferenceSet preferences;
+  }
+
+  class PreferenceSet  {
+    Set<String> favoriteGenres;
+    Set<String> favoriteAuthors;
+    Set<String> favoriteTopics;
+  }
+
+  class Content  {
+    String title;
+    String author;
+    String genre;
+    String topic;
+  }
+
+  class Recommendation  {
+    User user;
+    Content content;
+    double score;
+  }
+
+  class AIModel  {
+    void analyzeUserBehavior(User user);
+    void analyzeContentMetadata(Content content);
+    Recommendation generateRecommendation(User user);
+  }
+
+  class UserContentInteraction  {
+    void updateUserPreferences(User user, Content content);
+  }
+
+  composition User -> PreferenceSet;
+  composition Content -> Recommendation;
+  composition AIModel -> Recommendation;
+  composition UserContentInteraction -> User;
+  composition UserContentInteraction -> Content;
+}

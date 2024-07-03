@@ -1,0 +1,80 @@
+
+
+classdiagram RatingsAndReviews {
+
+  class User {
+    private String name;
+    private String email;
+    private String password;
+
+    public void createAccount() throws Exception;
+    public void login() throws Exception;
+  }
+
+  class Product {
+    private String name;
+    private String description;
+    private int rating;
+    private List<Review> reviews;
+
+    public void addReview(Review review) throws Exception;
+    public void removeReview(Review review) throws Exception;
+  }
+
+  class Service {
+    private String name;
+    private String description;
+    private int rating;
+    private List<Review> reviews;
+
+    public void addReview(Review review) throws Exception;
+    public void removeReview(Review review) throws Exception;
+  }
+
+  class Business {
+    private String name;
+    private String description;
+    private int rating;
+    private List<Review> reviews;
+
+    public void addReview(Review review) throws Exception;
+    public void removeReview(Review review) throws Exception;
+  }
+
+  class Review {
+    private String author;
+    private int rating;
+    private String reviewText;
+
+    public Review(String author, int rating, String reviewText) throws Exception;
+  }
+
+  class ReviewManager {
+    private List<Review> reviews;
+
+    public void addReview(Review review) throws Exception;
+    public void removeReview(Review review) throws Exception;
+    public void approveReview(Review review) throws Exception;
+    public void rejectReview(Review review) throws Exception;
+  }
+
+  class UserAccountManager {
+    private List<User> users;
+
+    public void addUser(User user) throws Exception;
+    public void removeUser(User user) throws Exception;
+    public void approveUser(User user) throws Exception;
+    public void rejectUser(User user) throws Exception;
+  }
+
+  class Platform {
+    private UserAccountManager userAccountManager;
+    private ReviewManager reviewManager;
+
+    public void manageUsers() throws Exception;
+    public void manageReviews() throws Exception;
+  }
+
+  composition Platform -> (has) UserAccountManager;
+  composition Platform -> (has) ReviewManager;
+}

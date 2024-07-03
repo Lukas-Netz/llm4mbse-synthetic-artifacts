@@ -1,0 +1,101 @@
+
+
+
+
+classdiagram MeteorologicalForecastingSystem  {
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    Location location;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    Pressure pressure;
+  }
+
+  class WeatherForecast  {
+    WeatherStation weatherStation;
+    Date date;
+    Time time;
+    WeatherCondition weatherCondition;
+  }
+
+  class WeatherCondition  {
+    String name;
+    String description;
+  }
+
+  class WeatherAlert  {
+    WeatherForecast weatherForecast;
+    SeverityLevel severityLevel;
+    String message;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String emailAddress;
+  }
+
+  class UserPreference  {
+    User user;
+    PreferredWeatherCondition preferredWeatherCondition;
+    AlertSeverityLevel alertSeverityLevel;
+    NotificationMethod notificationMethod;
+  }
+
+  class Location  {
+    String city;
+    String state;
+    String country;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class WindSpeed  {
+    double value;
+  }
+
+  class Pressure  {
+    double value;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  class Time  {
+    int hour;
+    int minute;
+  }
+
+  class SeverityLevel  {
+    String name;
+  }
+
+  class PreferredWeatherCondition  {
+    WeatherCondition weatherCondition;
+  }
+
+  class AlertSeverityLevel  {
+    String name;
+  }
+
+  class NotificationMethod  {
+    String name;
+  }
+
+  composition WeatherStation -> WeatherForecast [1..*];
+  composition WeatherForecast -> WeatherCondition  [1..1];
+  composition WeatherForecast -> WeatherAlert [0..*];
+  
+
+}

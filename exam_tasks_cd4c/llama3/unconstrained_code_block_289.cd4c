@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram NuclearWasteManagement  {
+
+  class WasteRepository  {
+    String uniqueIdentifier;
+    int capacity;
+  }
+
+  class WasteTransportationSystem  {
+    Vehicle  vehicle;
+  }
+
+  class WasteProcessingSystem  {
+    Machine  machine;
+  }
+
+  class MonitoringSystem  {
+    Sensor  sensor;
+  }
+
+  class Vehicle  {
+    int capacity;
+  }
+
+  class Machine  {
+    int capacity;
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class Rule  {
+    String description;
+  }
+
+  class Regulation  {
+    Rule  rule;
+  }
+
+  composition WasteRepository  ->  (has) MonitoringSystem;
+  composition WasteTransportationSystem  ->  (has) Vehicle;
+  composition WasteProcessingSystem  ->  (has) Machine;
+  composition MonitoringSystem  ->  (has) Sensor;
+  association WasteRepository  ->  (has) Regulation;
+  association WasteTransportationSystem  ->  (has) Regulation;
+  association WasteProcessingSystem  ->  (has) Regulation;
+}
+

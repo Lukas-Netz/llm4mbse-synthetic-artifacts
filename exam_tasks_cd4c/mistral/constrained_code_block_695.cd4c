@@ -1,0 +1,63 @@
+
+classdiagram GamingPlatform {
+
+  class GamingPlatform {
+    List<Game> games;
+    List<Currency> currencies;
+    List<GameMode> gameModes;
+    List<GameDeveloper> gameDevelopers;
+  }
+
+  class Game {
+    String name;
+    String description;
+    List<Player> players;
+    GameMode gameMode;
+    GameState state;
+  }
+
+  enum GameState {
+    Active, Inactive;
+  }
+
+  class Player {
+    String username;
+    String password;
+    PlayerType type;
+  }
+
+  enum PlayerType {
+    Human, AI;
+  }
+
+  class AIPlayer {
+    int difficultyLevel;
+  }
+
+  class Currency {
+    String name;
+    double value;
+  }
+
+  class GameMode {
+    String name;
+    String description;
+  }
+
+  class GameDeveloper {
+    String name;
+    List<Game> games;
+  }
+
+  class GameSession {
+    DateTime startTime;
+    DateTime endTime;
+    List<Player> players;
+  }
+
+  composition GamingPlatform -> Game [*];
+  composition Game -> GameMode [1];
+  composition Game -> GameSession [*];
+  composition Game -> Player [*];
+  composition GameDeveloper -> Game [*];
+}

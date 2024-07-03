@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram CoralReefMonitoring  {
+
+  class Sensor  {
+    String type;  # eeprom
+    WaterQualityData  ;  # eeprom
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  # eeprom
+
+  class  ;  
+
+ }
+}

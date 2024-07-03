@@ -1,0 +1,56 @@
+
+classdiagram SupplyChainManagement {
+
+    class Good {
+      String uniqueIdentifier;
+      String type;
+      String serialNumber;
+      String expirationDate;
+      Good(String uniqueIdentifier, String type, String serialNumber, String expirationDate);
+    cvt(String uniqueIdentifier, String type, String serialNumber, String expirationDate);
+    }
+
+    class Supplier {
+      String name;
+      String location;
+      String reputation;
+      Supplier(String name, String location, String reputation);
+    }
+
+    class Distributor {
+      String name;
+      String location;
+      String reputation;
+      Distributor(String name, String location, String reputation);
+    }
+
+    class Movement {
+      Good good;
+      Supplier supplier;
+      Distributor distributor;
+      String fromLocation;
+      String toLocation;
+      Movement(Good good, Supplier supplier, Distributor distributor, String fromLocation, String toLocation);
+    cvt(Good good, Supplier supplier, Distributor distributor, String fromLocation, String toLocation);
+    }
+
+    class Blockchain {
+      List<Movement> movements;
+      verifyAuthenticity(Good good);
+    }
+
+    class SupplyChain {
+      Supplier supplier;
+      Distributor distributor;
+      Blockchain blockchain;
+      SupplyChain(Supplier supplier, Distributor distributor, Blockchain blockchain);
+    }
+
+    composition SupplyChain -> (has) Blockchain;
+    composition SupplyChain -> (has) Supplier;
+    composition SupplyChain -> (has) Distributor;
+    composition Supplier -> (has) Distributor;
+    composition Distributor -> (has) Blockchain;
+    composition Good -> (has) Movement;
+    composition Movement -> (has) Blockchain;
+}

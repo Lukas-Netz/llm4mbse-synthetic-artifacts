@@ -1,0 +1,60 @@
+
+classdiagram CloudBackup {
+
+  class User {
+    String username;
+    String password;
+    BackupAccount [ ] backupAccounts;
+  }
+
+  abstract class BackupAccount {
+    String id;
+    User user;
+    BackupAccountType type;
+  }
+
+  class PersonalBackupAccount extends BackupAccount {
+    final int storageCapacityGB = 100;
+  }
+
+  class BusinessBackupAccount extends BackupAccount {
+    final int storageCapacityTB = 1;
+  }
+
+  enum BackupAccountType {
+    Personal, Business;
+  }
+
+  class File {
+    String id;
+    BackupAccount backupAccount;
+    String fileType;
+  }
+
+  class BackupJob {
+    String id;
+    BackupAccount backupAccount;
+    String schedule;
+  }
+
+  class Storage {
+    int totalCapacityPB;
+    StorageNode [ ] nodes;
+  }
+
+  class StorageNode {
+    String id;
+    int storageCapacityPB;
+  }
+
+  class Notification {
+    String message;
+    User recipient;
+  }
+
+  composition User -> BackupAccount [*];
+  composition BackupAccount -> File [*];
+  composition BackupAccount -> BackupJob [*];
+  composition Storage -> StorageNode [*];
+  association User <-> Notification;
+}

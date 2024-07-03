@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram AUGs  {
+
+  class Glider  {
+    String uniqueIdentifier;
+    SensorSet sensors;
+    RechargeableBattery battery;
+  }
+
+  class SensorSet  {
+    TemperatureSensor temperatureSensor;
+    SalinitySensor salinitySensor;
+    OtherParametersSensor otherParametersSensor;
+  }
+
+  class TemperatureSensor  {
+    double temperature;
+  }
+
+  class SalinitySensor  {
+    double salinity;
+  }
+
+  class OtherParametersSensor  {
+    double otherParameters;
+  }
+
+  class RechargeableBattery  {
+    int capacity;
+    int range;
+  }
+
+  class Hub  {
+    Glider[] gliders;
+    DataCollector dataCollector;
+  }
+
+  class DataCollector  {
+    void collectData(Glider glider);
+  }
+
+  class Database  {
+    void storeData(Glider glider);
+    void provideAnalytics(Glider glider);
+    void provideVisualization(Glider glider);
+  }
+
+  composition Hub -> Glider[*];
+  composition Database -> Glider[*];
+  association Glider -> SensorSet;
+  association Glider -> RechargeableBattery;
+  association Hub -> DataCollector;
+  association Database -> Glider;
+}

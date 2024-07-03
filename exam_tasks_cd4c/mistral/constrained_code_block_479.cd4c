@@ -1,0 +1,61 @@
+
+classdiagram University {
+
+  class Course {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Instructor [  ] instructors;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [  ] courses;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    CourseSection [  ] enrolledSections;
+  }
+
+  class CourseSection {
+    String uniqueIdentifier;
+    String startDate;
+    String endDate;
+    int maxCapacity;
+    Student [  ] students;
+  }
+
+  class Grade {
+    Student student;
+    int grade;
+  }
+
+  composition University -> Course;
+  composition University -> Instructor;
+  composition University -> Student;
+  composition Course -> Instructor [*];
+  composition CourseSection -> Student [*];
+  association Course -> CourseSection [* ];
+  association Student -> CourseSection [*];
+
+  interface AvailableCourses {
+    Course [ ] getAvailableCourses(Student student);
+  }
+
+  interface AvailableSections {
+    CourseSection [ ] getAvailableSections(Student student, Course course);
+  }
+
+  interface EnrollmentStatus {
+    EnrollmentStatus getEnrollmentStatus(Student student, CourseSection section);
+  }
+
+  interface Grades {
+    Grade [ ] getGrades(Student student, CourseSection section);
+  }
+}

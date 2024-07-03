@@ -1,0 +1,280 @@
+
+classdiagram SmartFarmWeatherStation {
+
+    class WeatherStation {
+      String identifier;
+      String location;
+      WeatherData data;
+      Sensor[] sensors;
+    }
+
+    class WeatherData {
+      float temperature;
+      float humidity;
+      float windSpeed;
+      float precipitation;
+    }
+
+    class Sensor {
+      String type;
+    }
+
+    class Hub {
+      WeatherStation[] weatherStations;
+      void aggregateData();
+      void analyzeData();
+      void remoteMonitoring();
+    }
+
+    enum WeatherStationType {
+      Basic, Advanced, Premium
+   
+   
+   ()
+   
+
+;
+    association WeatherStation 
+   
+   
+
+;
+    association Hub 
+   
+   
+
+;
+    composition Hub 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+    composition WeatherStation 
+   
+   
+
+;
+   
+
+}
+
+enum WeatherStationType {
+  Basic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, WindSpeed, Precipitation, UVRadiation, AirQuality, SoilMoisture
+
+ 
+
+;
+   
+
+}
+
+class WeatherData {
+  float temperature;
+  float humidity;
+  float windSpeed;
+  float precipitation;
+}
+
+class Sensor {
+  String type;
+}
+
+class Hub {
+  WeatherStation[] weatherStations;
+  void aggregateData();
+  void analyzeData();
+  void remoteMonitoring();
+}
+
+class WeatherStation {
+  String identifier;
+  String location;
+  WeatherData data;
+  Sensor[] sensors;
+}
+
+enum WeatherStationType {
+  Basic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, WindSpeed, Precipitation, UVRadiation, AirQuality, SoilMoisture
+
+ 
+
+;
+   
+
+}
+
+enum WeatherStationType {
+  Basic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, WindSpeed, Precipitation, UVRadiation, AirQuality, SoilMoisture
+
+ 
+
+;
+   
+
+}
+
+enum WeatherStationType {
+  Basic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, WindSpeed, Precipitation, UVRadiation, AirQuality, SoilMoisture
+
+ 
+
+;
+   
+
+}
+
+enum WeatherStationType {
+  Basic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Humidity, WindSpeed, Precipitation, UVRadiation, AirQuality, SoilMoisture
+
+ 
+
+;
+   
+
+}
+
+enum WeatherStationType {
+eBasic, Advanced, Premium
+
+ 
+
+;
+   
+
+}
+
+
+
+
+
+}

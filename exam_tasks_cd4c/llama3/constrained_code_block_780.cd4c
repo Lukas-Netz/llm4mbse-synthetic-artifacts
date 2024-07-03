@@ -1,0 +1,87 @@
+
+
+
+
+classdiagram GolfCourseMaintenance  {
+
+  class GolfCourse  {
+    String name;
+    Hole  [ ] holes;
+  }
+
+  class Hole  {
+    String name;
+    Fairway  [ ] fairways;
+    Rough  [ ] roughs;
+    Green  [ ] greens;
+  }
+
+  class Fairway  {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  class Rough  {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  class Green  {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  class MaintenanceEquipment  {
+    String name;
+    EquipmentType type;
+    Location location;
+    Status status;
+  }
+
+  enum EquipmentType  {
+    Mower, Aerator, IrrigationSystem;
+  }
+
+  enum Status  {
+    Available, Malfunctioning, NeedsReplacement;
+  }
+
+  class MaintenanceSchedule  {
+    GolfCourse golfCourse;
+    Date date;
+    Time time;
+    MaintenanceTask  [ ] tasks;
+  }
+
+  class MaintenanceTask  {
+    String name;
+    String description;
+    EquipmentType requiredEquipment;
+    Location location;
+    Status status;
+  }
+
+  class WeatherData  {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+    Precipitation precipitation;
+  }
+
+  class Alert  {
+    String message;
+    MaintenanceTask task;
+  }
+
+  composition GolfCourse  ->  (has) Hole  [ * ];
+  composition Hole  ->  (has) Fairway  [ * ];
+  composition Hole  ->  (has) Rough  [ * ];
+  composition Hole  ->  (has) Green  [ * ];
+  composition MaintenanceSchedule  ->  (has) MaintenanceTask  [ * ];
+  composition MaintenanceTask  ->  (has) MaintenanceEquipment  [ 1 ];
+  composition WeatherData  ->  (has) Temperature;
+  composition WeatherData  ->  (has) Humidity;
+  }

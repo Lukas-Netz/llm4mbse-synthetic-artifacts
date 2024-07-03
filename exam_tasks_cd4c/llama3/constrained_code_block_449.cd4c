@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram FashionEcommerce  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile  profile;
+  }
+
+  class Profile  {
+    BodyMeasurements bodyMeasurements;
+    FashionPreferences fashionPreferences;
+    WardrobeItems wardrobeItems;
+  }
+
+  class BodyMeasurements  {
+    int height;
+    int weight;
+    BodyShape bodyShape;
+  }
+
+  class FashionPreferences  {
+    Style style;
+    ColorPalette colorPalette;
+    PreferredClothingItems preferredClothingItems;
+  }
+
+  class WardrobeItems  {
+    ClothingItems clothingItems;
+    Accessories accessories;
+    Shoes shoes;
+  }
+
+  class ClothingItems  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Accessories  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Shoes  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class OutfitRecommendation  {
+    List<ClothingItems> recommendedItems;
+  }
+
+  class RatingAndReview  {
+    int rating;
+    String review;
+  }
+
+  composition User  ->  (has) Profile;
+  composition Profile  ->  (has) BodyMeasurements;
+  composition Profile  ->  (has) FashionPreferences;
+  composition Profile  ->  (has) WardrobeItems;
+  composition WardrobeItems  ->  (has) ClothingItems;
+  composition WardrobeItems  ->  (has) Accessories;
+  composition WardrobeItems  ->  (has) Shoes;
+  composition OutfitRecommendation  ->  (has) ClothingItems;
+  composition RatingAndReview  ->  (has) OutfitRecommendation;
+}

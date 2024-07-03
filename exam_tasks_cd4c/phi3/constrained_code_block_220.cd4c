@@ -1,0 +1,110 @@
+
+classdiagram RealEstatePlatform {
+
+    class User {
+      enum RoleType
+        ;
+      String userID;
+      String name;
+      RoleType role;
+    }
+
+    class Property {
+      String propertyID;
+      String location;
+      double price;
+      RealEstateAgent agent;
+      List<Offer> offers;
+    }
+
+    class Offer {
+      String offerID;
+      User buyer;
+      Property property;
+      double offerPrice;
+      boolean isAccepted;
+    }
+
+    class RealEstateAgent {
+      String agentID;
+      String name;
+      List<Property> managedProperties;
+    }
+
+    class Transaction {
+      String transactionID;
+      String userID;
+      String propertyID;
+      String status;
+      String timestamp;
+    }
+
+    class Report {
+      String reportID;
+      String type;
+      String data;
+    }
+
+    <<association>> class User {
+      RoleType role;
+      String userID;
+      String name;
+    }
+
+    <<association>> class Property {
+      String propertyID;
+      String location;
+      double price;
+      RealEstateAgent agent;
+      List<Offer> offers;
+    }
+
+    <<association>> class Offer {
+      String offerID;
+      User buyer;
+      Property property;
+      double offerPrice;
+      boolean isAccepted;
+    }
+
+    <<association>> class RealEstateAgent {
+      String agentID;
+      String name;
+      List<Property> managedProperties;
+    }
+
+    <<association>> class Transaction {
+      String transactionID;
+      String userID;
+      String propertyID;
+      String status;
+      String timestamp;
+    }
+
+    <<association>> class Report {
+      String reportID;
+      String type;
+      String data;
+    }
+
+    <<composition>> class Property {
+      RealEstateAgent agent;
+    }
+
+    <<composition>> class Offer {
+      Property property;
+    }
+
+    <<composition>> class Transaction {
+      User user;
+      Property property;
+    }
+
+    <<composition>> class Report {
+      Transaction transaction;
+    }
+
+    <<aggregation>> class RealEstateAgent {
+      List<Property> managedProperties;
+    }
+}

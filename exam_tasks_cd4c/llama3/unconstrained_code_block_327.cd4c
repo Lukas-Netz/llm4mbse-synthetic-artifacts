@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram PersonalizedLearningPlatform  {
+
+  class Student  {
+    String username;
+    String password;
+    LearningHistory learningHistory;
+  }
+
+  class Instructor  {
+    String username;
+    String password;
+    Course[] coursesCreated;
+  }
+
+  class Course  {
+    String title;
+    Curriculum curriculum;
+    Assessment[] assessments;
+    Instructor instructor;
+  }
+
+  class Curriculum  {
+    Topic[] topics;
+  }
+
+  class Assessment  {
+    String type;
+    int points;
+  }
+
+  class LearningHistory  {
+    Course[] coursesEnrolled;
+    Performance[] performances;
+  }
+
+  class Performance  {
+    Course course;
+    int score;
+  }
+
+  class Recommendation  {
+    Course course;
+    double confidence;
+  }
+
+  class Platform  {
+    Student[] students;
+    Course[] courses;
+    Instructor[] instructors;
+  }
+
+  composition Platform -> (has) Student[*];
+  composition Platform -> (has) Course[*];
+  composition Platform -> (has) Instructor[*];
+  composition Student -> (has) LearningHistory;
+  composition Course -> (has) Curriculum;
+  composition Course -> (has) Assessment[*];
+  composition LearningHistory -> (has) Performance[*];
+  composition Recommendation -> (has) Course;
+}

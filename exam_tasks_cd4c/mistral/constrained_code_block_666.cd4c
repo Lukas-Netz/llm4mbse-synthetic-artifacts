@@ -1,0 +1,47 @@
+
+classdiagram SkateboardControlUnit {
+
+  class MainBoard {
+    Motor motor;
+    Sensor [ ] sensors;
+    void readSensorData();
+    void controlMotor(int speed, Direction direction);
+    void adjustSettings();
+  }
+
+  abstract class Sensor {
+    String uniqueIdentifier;
+    SensorStatus status;
+  }
+
+  class Accelerometer extends Sensor {
+    int acceleration;
+    int orientation;
+  }
+
+  class Gyroscope extends Sensor {
+    int rotation;
+    int orientation;
+  }
+
+  class GPS extends Sensor {
+    String location;
+    int speed;
+  }
+
+  class Motor {
+    int speed;
+    Direction direction;
+  }
+
+  enum SensorStatus {
+    Connected, Disconnected;
+  }
+
+  enum Direction {
+    Forward, Reverse;
+  }
+
+  composition MainBoard -> Motor;
+  composition MainBoard -> Sensor [*];
+}

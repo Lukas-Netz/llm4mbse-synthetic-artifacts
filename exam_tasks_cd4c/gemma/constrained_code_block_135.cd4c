@@ -1,0 +1,10 @@
+
+
+classdiagram RemotePatientDiagnostics
+
+  
+
+{class Patient {
+  String uniqueIdentifier;
+  List<VitalSign> vitalSigns;
+}}

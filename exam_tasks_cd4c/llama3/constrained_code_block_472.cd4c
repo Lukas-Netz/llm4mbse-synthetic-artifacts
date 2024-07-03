@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram VRTours  {
+
+  class Tour  {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Stop  {
+    String name;
+    String description;
+    List<Media> media;
+  }
+
+  class Media  {
+    String name;
+    String description;
+    String url;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Guide  {
+    String username;
+    String password;
+  }
+
+  class TourManager  {
+    List<Tour> tours;
+    void createTour(Tour tour);
+    void editTour(Tour tour);
+    void deleteTour(Tour tour);
+    void addStop(Tour tour, Stop stop);
+    void removeStop(Tour tour, Stop stop);
+    void addMedia(Stop stop, Media media);
+    void removeMedia(Stop stop, Media media);
+  }
+
+  class GuideManager  {
+    List<Tour> approvedTours;
+    void approveTour(Tour tour);
+    void rejectTour(Tour tour);
+  }
+
+  composition User -> Tour [1..*];
+  composition Guide -> TourManager [1..*];
+  composition Guide -> GuideManager [1..*];
+  composition Tour -> Stop [1..*];
+  composition Stop -> Media [1..*];
+}

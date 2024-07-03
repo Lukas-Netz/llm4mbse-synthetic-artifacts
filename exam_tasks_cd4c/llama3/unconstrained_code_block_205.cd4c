@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram HomeRentalPlatform  {
+
+  class Property  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+    Location location;
+    int pricePerNight;
+    int minStayDuration;
+    int maxGuests;
+    List<Amenity> amenities;
+  }
+
+  class Location  {
+    String city;
+    String state;
+    String zipCode;
+  }
+
+  class Amenity  {
+    String name;
+  }
+
+  class PropertyType  {
+    String name;
+  }
+
+  class User  {
+    String username;
+  }
+
+  class RentalAgreement  {
+    Property property;
+    User user;
+    Date startDate;
+    Date endDate;
+    int rent;
+    int deposit;
+    List Fee;
+  }
+
+  class Fee  {
+    String name;
+    int amount;
+  }
+
+  class Inquiry  {
+    Property property;
+    User user;
+    String message;
+  }
+
+  class PropertyOwner  {
+    List<Property> properties;
+  }
+
+  class User  {
+    List<Inquiry> inquiries;
+  }
+
+  composition Property -> (has) Location;
+  composition Property -> (has) Amenity [0..*];
+  composition RentalAgreement -> (has) Property;
+  composition RentalAgreement -> (has) User;
+  composition PropertyOwner -> (has) Property [1..*];
+  composition User -> (has) Inquiry [0..*];
+}

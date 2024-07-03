@@ -1,0 +1,45 @@
+
+
+classdiagram VirtualAssistant {
+
+  class UserInterface {
+    void interactWithAssistant();
+  }
+
+  class NaturalLanguageProcessing {
+    void understandCommand(String command);
+  }
+
+  class TaskManagement {
+    void performTask(String task);
+  }
+
+  class DeviceControl {
+    void controlDevice(String device, String action);
+  }
+
+  class DataStorage {
+    void storeData(String data);
+    void retrieveData(String data);
+  }
+
+  class Integration {
+    void integrateWithOtherServices();
+  }
+
+  class VirtualAssistant {
+    UserInterface ui;
+    NaturalLanguageProcessing nlp;
+    TaskManagement tm;
+    DeviceControl dc;
+    DataStorage ds;
+    Integration intg;
+  }
+
+  composition VirtualAssistant -> (has) UserInterface;
+  composition VirtualAssistant -> (has) NaturalLanguageProcessing;
+  composition VirtualAssistant -> (has) TaskManagement;
+  composition VirtualAssistant -> (has) DeviceControl;
+  composition VirtualAssistant -> (has) DataStorage;
+  composition VirtualAssistant -> (has) Integration;
+}

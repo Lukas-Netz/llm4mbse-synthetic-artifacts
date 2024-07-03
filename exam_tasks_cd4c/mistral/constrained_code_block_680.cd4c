@@ -1,0 +1,43 @@
+
+classdiagram VRMApp {
+
+  class VRMApp {
+    Library library;
+    List<MeditationTechnique> techniques;
+    UserProgress progress;
+  }
+
+  class Library {
+    -> MeditationSession [*];
+  }
+
+  class MeditationSession {
+    String name;
+    String description;
+    MeditationTheme theme;
+    List<MeditationTechnique> techniques;
+  }
+
+  enum MeditationTheme {
+    StressRelief, Focus, Relaxation, etc;
+  }
+
+  class MeditationTechnique {
+    String name;
+    String description;
+    MeditationEffect effect;
+  }
+
+  enum MeditationEffect {
+    ReduceStress, ImproveFocus, etc;
+  }
+
+  class UserProgress {
+    int sessionsCompleted;
+    int totalTimeMeditated;
+  }
+
+  interface Device {
+    void playMeditationSession(MeditationSession session);
+  }
+}

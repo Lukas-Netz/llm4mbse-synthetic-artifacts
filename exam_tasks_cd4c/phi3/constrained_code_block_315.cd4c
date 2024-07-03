@@ -1,0 +1,21 @@
+
+classdiagram MarketingAnalytics {
+
+    class Campaign {
+      String name;
+      Date startDate;
+      Date endDate;
+      int budget;
+      int clicks;
+      int conversions;
+      double revenue;
+    }
+
+    class Analytics {
+      void trackCampaignPerformance(Campaign campaign);
+      void analyzeCampaignPerformance(Campaign campaign);
+      void provideRecommendations(Campaign campaign);
+    }
+
+    composition Campaign -> (has) Analytics;
+}

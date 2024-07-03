@@ -1,0 +1,28 @@
+
+classdiagram OrganPrinting {
+
+  class OrganDesign {
+    String uniqueIdentifier;
+    String name;
+    String size;
+    String material;
+  }
+
+  class DesignTool {
+    void createDesign(String name, String size, String material);
+    void modifyDesign(String uniqueIdentifier, String size, String material);
+  }
+
+  class Printer {
+    int capacity;
+    void printOrgan(OrganDesign design);
+  }
+
+  class QualityControl {
+    void checkOrgan(OrganDesign design);
+  }
+
+  composition OrganPrinting -> DesignTool;
+  composition OrganPrinting -> Printer;
+  composition OrganPrinting -> QualityControl;
+}

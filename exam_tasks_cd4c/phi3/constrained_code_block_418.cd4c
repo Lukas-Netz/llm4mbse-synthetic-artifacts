@@ -1,0 +1,64 @@
+
+classdiagram CoursePlatform {
+
+    class Course {
+      String title;
+      String description;
+      String courseId;
+      CourseLevel level;
+      List<CourseMaterial> materials;
+    }
+
+    class User {
+      String userId;
+      String role;
+      List<Course> enrolledCourses;
+    }
+
+    class Instructor extends User {
+      void createCourse(Course course);
+      void manageCourseMaterials(Course course);
+    }
+
+    class Student extends User {
+      void submitAssignment(Course course);
+      void trackProgress(Course course);
+    }
+
+    class CourseMaterial {
+      String materialId;
+      String type;
+      List<Lesson> lessons;
+    }
+
+    class Lesson {
+      String lessonId;
+      String lessonContent;
+    }
+
+    class CourseReview {
+      String courseId;
+      String userId;
+      String rating;
+    }
+
+    class CourseEnrollment {
+      String userId;
+      String courseId;
+      boolean enrolled;
+    }
+
+    class CourseCompletion {
+      String userId;
+      String courseId;
+      boolean completed;
+    }
+
+    association Course -> CourseMaterial [1..*];
+    association Course -> CourseEnrollment [0..*];
+    association Course -> CourseCompletion [0..*];
+    association User -> Course [0..*];
+    composition Instructor -> User;
+    composition Student -> User;
+    composition CourseReview -> Course;
+}

@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram MedicalImagingSoftware  {
+
+  class Image  {
+    String uniqueIdentifier;
+    String description;
+  }
+
+  class Algorithm  {
+    String name;
+    String description;
+  }
+
+  class Patient  {
+    String name;
+    int age;
+    String medicalHistory;
+  }
+
+  class Filter extends Algorithm  {
+  }
+
+  class Transformation extends Algorithm  {
+  }
+
+  class XRayImage extends Image  {
+  }
+
+  class CTScanImage extends Image  {
+  }
+
+  class MRIScanImage extends Image  {
+  }
+
+  class ImageProcessor  {
+    void applyAlgorithm(Image image, Algorithm algorithm);
+    void displayResults(Image image);
+  }
+
+  class PatientRecord  {
+    Patient patient;
+    Image[] images;
+    Algorithm[] algorithms;
+  }
+
+  composition PatientRecord -> (has) Patient;
+  composition PatientRecord -> (has) Image[*];
+  composition PatientRecord -> (has) Algorithm[*];
+  composition ImageProcessor -> (has) Algorithm;
+  composition ImageProcessor -> (has) Image;
+  composition PatientRecord -> (has) ImageProcessor;
+}

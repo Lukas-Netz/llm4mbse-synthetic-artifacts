@@ -1,0 +1,80 @@
+
+
+
+
+classdiagram SmartUrbanFarming  {
+
+  class CentralHub  {
+    Sensor[] sensors;
+    Actuator[] actuators;
+    Crop[] crops;
+    void collectData();
+    void sendCommands();
+  }
+
+  abstract class Sensor  {
+    String type;
+  }
+
+  class TemperatureSensor extends Sensor  {
+    double value;
+  }
+
+  class HumiditySensor extends Sensor  {
+    double value;
+  }
+
+  class LightSensor extends Sensor  {
+    double value;
+  }
+
+  class SoilMoistureSensor extends Sensor  {
+    double value;
+  }
+
+  abstract class Actuator  {
+    String type;
+  }
+
+  class IrrigationActuator extends Actuator  {
+    void irrigate();
+  }
+
+  class HeatingActuator extends Actuator  {
+    void heat();
+  }
+
+  class CoolingActuator extends Actuator  {
+    void cool();
+  }
+
+  class Crop  {
+    String uniqueIdentifier;
+    CropType type;
+    GrowthStage growthStage;
+    WaterRequirements waterRequirements;
+    NutrientNeeds nutrientNeeds;
+  }
+
+  enum CropType  {
+    LeafyGreens, Herbs, Microgreens;
+  }
+
+  enum GrowthStage  {
+    Seedling, Germination, Maturation;
+  }
+
+  enum WaterRequirements  {
+    Low, Medium, High;
+  }
+
+  enum NutrientNeeds  {
+    Low, Medium, High;
+  }
+
+  composition CentralHub -> (has) Sensor[*];
+  composition CentralHub -> (has) Actuator[*];
+  composition CentralHub -> (has) Crop[*];
+  composition Crop -> (has) GrowthStage;
+  composition Crop -> (has) WaterRequirements;
+  }

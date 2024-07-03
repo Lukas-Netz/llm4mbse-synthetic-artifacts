@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram InvestmentPlatform  {
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    String password;
+  }
+
+  class Portfolio  {
+    String uniqueId;
+    User user;
+    Asset  [] assets;
+  }
+
+  class Asset  {
+    String uniqueId;
+    String name;
+    AssetType type;
+  }
+
+  class Transaction  {
+    Portfolio portfolio;
+    Asset asset;
+    TransactionType type;
+  }
+
+  class MarketData  {
+    Asset asset;
+    double currentPrice;
+    double high;
+    double low;
+    int volume;
+  }
+
+  class AIEngine  {
+    MarketData marketData;
+    InvestmentRecommendation recommendation;
+  }
+
+  enum AssetType  {
+    STOCK,
+    BOND,
+    ETF
+  ;}
+
+  enum TransactionType  {
+    BUY,
+    SELL,
+    TRANSFER
+  ;}
+
+  enum InvestmentRecommendation  {
+    BUY,
+    SELL,
+    HOLD
+  ;}
+
+  composition User  ->  (has) Portfolio;
+  composition Portfolio  ->  (has) Asset  [*];
+  composition Transaction  ->  (has) Portfolio;
+  composition Transaction  ->  (has) Asset;
+  composition MarketData  ->  (has) Asset;
+  composition AIEngine  ->  (has) MarketData;
+}

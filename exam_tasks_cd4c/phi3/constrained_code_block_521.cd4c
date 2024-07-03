@@ -1,0 +1,47 @@
+
+classdiagram AutonomousAgriculture {
+
+    class Farm {
+      String name;
+      String location;
+    }
+
+    class Field {
+      String name;
+      int size;
+      String cropType;
+      FieldStatus status;
+    }
+
+    class Tractor {
+      String uniqueIdentifier;
+      String name;
+      TractorType type;
+      Field currentField;
+      TractorStatus status;
+    }
+
+    enum TractorType {
+      Seeding, Spraying, Harvesting
+   
+   
+   ;}
+
+    enum FieldStatus {
+      Prepared, Seeded, Sprayed, Harvested
+   
+   
+   ;}
+
+    enum TractorStatus {
+      Assigned, Operating, Idle
+   
+   
+   ;}
+
+    association Farm -> (has) Field [*];
+    association Farm -> (has) Tractor [*];
+    association Field -> (has) Tractor [*];
+    association Field -> (has) FieldStatus;
+    association Tractor -> (has) FieldStatus;
+}

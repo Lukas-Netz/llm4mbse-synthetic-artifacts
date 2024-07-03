@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram PatientMonitoringSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    String medicalRecordNumber;
+  }
+
+  abstract class MedicalDevice  {
+    String uniqueIdentifier;
+  }
+
+  class ECG extends MedicalDevice  {
+    float heartRate;
+  }
+
+  class BloodPressure extends MedicalDevice  {
+    int systolic;
+    int diastolic;
+  }
+
+  class OxygenSaturation extends MedicalDevice  {
+    float saturation;
+  }
+
+  class MonitoringStation  {
+    String uniqueIdentifier;
+    Patient  patient;
+  }
+
+  composition Patient  ->  (has) MedicalDevice  [*];
+  composition MedicalDevice  ->  (has) Patient  [*];
+  composition MonitoringStation  ->  (has) Patient  [1];
+  composition MonitoringStation  ->  (has) MedicalDevice  [*];
+  association Patient  ->  (monitoredBy) MonitoringStation  [1];
+  association MedicalDevice  ->  (monitoredBy) MonitoringStation  [1];
+}

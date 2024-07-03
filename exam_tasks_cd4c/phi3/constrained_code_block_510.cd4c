@@ -1,0 +1,33 @@
+
+classdiagram EnvironmentImpactAssessment {
+
+    class EnvironmentImpactAssessmentTool {
+      Database database;
+      Calculator calculator;
+      ReportingModule reportingModule;
+    }
+
+    class Database {
+      EnvironmentFactor[] factors;
+      void addFactor(EnvironmentFactor factor);
+      EnvironmentFactor getFactor(String name);
+    }
+
+    class EnvironmentFactor {
+      String name;
+      double impactValue;
+    }
+
+    class Calculator {
+      EnvironmentFactor[] factors;
+      double calculateImpact();
+    }
+
+    class ReportingModule {
+      String generateReport();
+    }
+
+    composition EnvironmentImpactAssessmentTool -> (has) Database;
+    composition EnvironmentImpactAssessmentTool -> (has) Calculator;
+    composition EnvironmentImpactAssessmentTool -> (has) ReportingModule;
+}

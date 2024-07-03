@@ -1,0 +1,39 @@
+
+classdiagram BioInspiredRobotics {
+
+  class Colony {
+    Queen queen;
+    Robot [
+     ] robots;
+    FoodSource [
+     ] foodSources;
+  }
+
+  class Queen {
+    String currentLocation;
+    int numRobots;
+  }
+
+  abstract class Robot {
+    String uniqueIdentifier;
+    String currentLocation;
+    String targetLocation;
+  }
+
+  class WorkerRobot extends Robot {
+    int foodStored;
+  }
+
+  class ScoutRobot extends Robot {
+    int explorationDistance;
+  }
+
+  class FoodSource {
+    String location;
+    int foodQuantity;
+  }
+
+  composition Colony -> Queen;
+  composition Colony -> Robot [*];
+  composition Colony -> FoodSource [*];
+}

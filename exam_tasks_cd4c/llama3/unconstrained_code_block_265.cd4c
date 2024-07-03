@@ -1,0 +1,85 @@
+
+
+
+
+classdiagram MentalHealthPlatform  {
+
+  class User  {
+    String username;
+    String password;
+    Profile profile;
+    SessionHistory sessionHistory;
+    RatingAndReview ratingAndReview;
+  }
+
+  class Therapist  {
+    String username;
+    String password;
+    Profile profile;
+    Schedule schedule;
+    SessionHistory sessionHistory;
+    RatingAndReview ratingAndReview;
+  }
+
+  class Session  {
+    Date date;
+    Time time;
+    Therapist therapist;
+    User user;
+    SessionType type;
+  }
+
+  class SupportGroup  {
+    String name;
+    Therapist therapist;
+    User[] users;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String language;
+    String currency;
+  }
+
+  class Schedule  {
+    Date[] dates;
+    Time[] times;
+  }
+
+  class SessionHistory  {
+    Session[] sessions;
+  }
+
+  class RatingAndReview  {
+    int rating;
+    String review;
+  }
+
+  class SessionType  {
+    String type;
+  }
+
+  class WearableDevice  {
+    String deviceID;
+    String type;
+  }
+
+  class MobileApp  {
+    String appId;
+    String type;
+  }
+
+  composition User -> Profile;
+  composition Therapist -> Profile;
+  composition Session -> Therapist;
+  composition Session -> User;
+  composition SupportGroup -> Therapist;
+  composition SupportGroup -> User;
+  composition Schedule -> Therapist;
+  composition SessionHistory -> User;
+  composition RatingAndReview -> User;
+  composition SessionType -> Session;
+  composition WearableDevice -> User;
+  composition MobileApp -> User;
+}

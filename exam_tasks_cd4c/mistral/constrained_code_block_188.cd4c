@@ -1,0 +1,55 @@
+
+classdiagram ContentModeration {
+
+  class User {
+    String username;
+  }
+
+  class Content {
+    String id;
+    String type;
+    String content;
+  }
+
+  abstract class Moderator {
+    void analyze(Content content);
+  }
+
+  class HumanModerator extends Moderator {
+    void review(Content content);
+    boolean approve(Content content);
+    boolean reject(Content content);
+  }
+
+  class AIModerator extends Moderator {
+    boolean flagForReview(Content content);
+  }
+
+  class HybridModerator extends Moderator {
+    boolean analyzeAndDecide(Content content);
+  }
+
+  class ContentReview {
+    Content content;
+    Moderator moderator;
+    boolean isApproved;
+    boolean isRejected;
+    boolean isFlaggedForReview;
+    boolean isAnalyzedAndDecided;
+  }
+
+  class ContentModerationSystem {
+    -> User [*];
+    -> Content [*];
+    -> HumanModerator [*];
+    -> AIModerator [*];
+    -> HybridModerator [*];
+    ContentReview [ ] contentReviews;
+  }
+
+  association User --o000oContent;
+  association Content --o000oContentReview;
+  association HumanModerator --o000oContentReview;
+  association AIModerator --o000oContentReview;
+  association HybridModerator --o000oContentReview;
+}

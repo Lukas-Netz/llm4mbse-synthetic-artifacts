@@ -1,0 +1,48 @@
+
+classdiagram VideoCallingPlatform {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+  }
+
+  class Call {
+    User caller;
+    User callee;
+    CallStatus status;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  enum CallStatus {
+    Ringing, Connected, Disconnected;
+  }
+
+  class CallSession {
+    Call call;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  class Message {
+    User sender;
+    String content;
+    DateTime timestamp;
+  }
+
+  class File {
+    User sender;
+    String fileName;
+    String fileType;
+    byte[] fileData;
+  }
+
+  composition User [*] Call [manyToMany]
+  --  User [*] << CallSession
+  >>- 											;
+  association CallSession -- Call;
+  association CallSession -- Message [0..*];
+  association CallSession -- File [0..*];
+}

@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram Ecommerce  {
+
+  class Website  {
+    String name;
+    String uniqueIdentifier;
+    User user;
+    Product  product  ; 
+    Order  order  ; 
+    Setting  setting  ; 
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    String image;
+    Category category;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Order  {
+    String status;
+    List<OrderItem> orderItems;
+  }
+
+  class OrderItem  {
+    Product product;
+    int quantity;
+    double totalPrice;
+  }
+
+  class Setting  {
+    PaymentMethod paymentMethod;
+    ShippingOption shippingOption;
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  class ShippingOption  {
+    String name;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  composition Website  ->  (has) User;
+  composition Website  ->  (has) Product  [*];
+  composition Website  ->  (has) Order  [*];
+  composition Website  ->  (has) Setting  [*];
+  composition Product  ->  (has) Category;
+  composition Order  ->  (has) OrderItem  [*];
+  composition Setting  ->  (has) PaymentMethod;
+  composition Setting  ->  (has) ShippingOption;
+}

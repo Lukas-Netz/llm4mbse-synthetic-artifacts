@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram VirtualRealityArtGallery  {
+
+  class Gallery  {
+    String name;
+    String uniqueIdentifier;
+    type PhysicalOrVirtual;
+    location Location;  << PhysicalGallery >>
+
+    Gallery(String name, String uniqueIdentifier, type PhysicalOrVirtual);
+  }
+
+  class Artist  {
+    String name;
+    String uniqueIdentifier;
+    Gallery[] galleries;
+
+    Artist(String name, String uniqueIdentifier);
+  }
+
+  class Artwork  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    type ArtworkType;
+
+    Artwork(String title, String description, type ArtworkType);
+  }
+
+  enum type  {
+    Painting,
+    Sculpture,
+    Installation,
+    PhysicalOrVirtual
+  ;}
+
+  composition Gallery  ->  (has) Artist[*];
+  composition Gallery  ->  (has) Artwork[*];
+  composition Artist  ->  (has) Gallery[*];
+  composition Artwork  ->  (has) Artist;
+}

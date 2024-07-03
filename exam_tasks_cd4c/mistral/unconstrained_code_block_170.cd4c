@@ -1,0 +1,58 @@
+
+classdiagram SelfDrivingTractors {
+
+  class Tractor {
+    String uniqueIdentifier;
+    double latitude;
+    double longitude;
+    SensorData sensorData;
+    Attachment attachment;
+  }
+
+  class SensorData {
+    List<Obstacle> obstacles;
+    List<Vehicle> vehicles;
+    WeatherCondition weather;
+  }
+
+  class Obstacle {
+    double latitude;
+    double longitude;
+  }
+
+  class Vehicle {
+    String uniqueIdentifier;
+    double latitude;
+    double longitude;
+  }
+
+  enum WeatherCondition {
+    Sunny, Rainy, Snowy;
+  }
+
+  class Attachment {
+    String type;
+    String task;
+  }
+
+  class Plow extends Attachment {
+  }
+
+  class Seeder extends Attachment {
+  }
+
+  class Harvester extends Attachment {
+  }
+
+  class Hub {
+    List<Tractor> tractors;
+    void sendCommand(Tractor tractor, Command command);
+    void receiveUpdate(Tractor tractor);
+  }
+
+  enum Command {
+    MoveToLocation, SwitchAttachment;
+  }
+
+  composition Hub -> Tractor [*];
+}

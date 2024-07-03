@@ -1,0 +1,40 @@
+
+
+
+classdiagram CloudIntegration  {
+
+  class Client  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class CloudService  {
+    String uniqueIdentifier;
+    String name;
+    ServiceStatus status;
+  }
+
+  enum ServiceStatus  {
+    Active, Inactive;
+  }
+
+  class StorageService extends CloudService  {
+    int storageSpace;
+  }
+
+  class ComputingService extends CloudService  {
+    int processingPower;
+  }
+
+  class NetworkingService extends CloudService  {
+    int bandwidth;
+  }
+
+  class BillingSystem  {
+    void calculateCost(CloudService service);
+    void generateInvoice(Client client);
+  }
+
+  composition Client -> CloudService[*];
+  composition CloudService -> BillingSystem;
+}

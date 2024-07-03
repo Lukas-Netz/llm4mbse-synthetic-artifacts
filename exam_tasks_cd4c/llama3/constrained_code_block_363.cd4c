@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram FleetManagement  {
+
+  class FleetManager  {
+    Vehicle  vehicle;
+    MaintenanceRecord  maintenanceRecord;
+  }
+
+  abstract class Vehicle  {
+    String uniqueIdentifier;
+    String make;
+    String model;
+    int year;
+    Location currentLocation;
+    MaintenanceHistory maintenanceHistory;
+  }
+
+  class Car extends Vehicle  {
+    String fuelType;
+  }
+
+  class Truck extends Vehicle  {
+    int cargoCapacity;
+  }
+
+  class Motorcycle extends Vehicle  {
+    int engineSize;
+  }
+
+  class MaintenanceRecord  {
+    Vehicle vehicle;
+    Date date;
+    String description;
+  }
+
+  class MaintenanceHistory  {
+    Vehicle vehicle;
+    MaintenanceRecord  maintenanceRecord;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Report  {
+    Vehicle vehicle;
+    String reportType;
+  }
+
+  composition FleetManager  ->  (has) Vehicle;
+  composition FleetManager  ->  (has) MaintenanceRecord;
+  composition Vehicle  ->  (has) Location;
+  composition Vehicle  ->  (has) MaintenanceHistory;
+  composition MaintenanceRecord  ->  (has) Vehicle;
+  composition MaintenanceHistory  ->  (has) Vehicle;
+  composition Report  ->  (has) Vehicle;
+}

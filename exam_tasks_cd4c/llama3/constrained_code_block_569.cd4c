@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram SeismicActivityMonitoringSystem  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    Location location;
+    SensorType type;
+  }
+
+  class MonitoringStation  {
+    String uniqueIdentifier;
+    Location location;
+    Sensor  sensors  ;  (has)
+  }
+
+  class CentralDatabase  {
+    SensorReading  sensorReadings  ;  (has)
+    AnalysisTool  analysisTools  ;  (has)
+  }
+
+  class Earthquake  {
+    double magnitude;
+    Location location;
+    Date timestamp;
+  }
+
+  class Alert  {
+    Earthquake earthquake;
+    EmergencyService emergencyService;
+  }
+
+  class SensorReading  {
+    Sensor sensor;
+    double seismicActivity;
+  }
+
+  enum SensorType  {
+    Accelerometer, Seismometer, GPS;
+  }
+
+  enum Location  {
+    Latitude, Longitude, Elevation;
+  }
+
+  composition CentralDatabase  ->  (has) SensorReading;
+  composition MonitoringStation  ->  (has) Sensor;
+  composition Alert  ->  (has) Earthquake;
+  composition SensorReading  ->  (has) Sensor;
+}

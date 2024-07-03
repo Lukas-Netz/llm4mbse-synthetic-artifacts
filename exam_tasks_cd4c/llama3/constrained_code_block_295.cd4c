@@ -1,0 +1,86 @@
+
+
+
+
+classdiagram CloudStorage  {
+
+  class Company  {
+    Department  [ ] departments;
+  }
+
+  class Department  {
+    String name;
+    FileFolder  [ ] filesAndFolders;
+  }
+
+  class FileFolder  {
+    String name;
+    String path;
+    FileContent content;
+    Metadata metadata;
+    Tag  [ ] tags;
+  }
+
+  class FileContent  {
+    byte  [ ] data;
+  }
+
+  class Metadata  {
+    String creator;
+    String creationDate;
+    String modificationDate;
+  }
+
+  class Tag  {
+    String name;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Role role;
+  }
+
+  enum Role  {
+    Administrator, Manager, RegularUser
+  ;}
+
+  class RoleAssignment  {
+    User user;
+    Department department;
+  }
+
+  class AccessControl  {
+    FileFolder fileFolder;
+    User user;
+    Permission permission;
+  }
+
+  enum Permission  {
+    Read, Write, Delete
+  ;}
+
+  class Backup  {
+    FileFolder fileFolder;
+    Date backupDate;
+  }
+
+  class VersionHistory  {
+    FileFolder fileFolder;
+    Version  [ ] versions;
+  }
+
+  class Version  {
+    FileContent content;
+    Date versionDate;
+  }
+
+  composition Company  ->  (has) Department  [ 0..* ];
+  composition Department  ->  (has) FileFolder  [ 0..* ];
+  composition FileFolder  ->  (has) FileContent;
+  composition FileFolder  ->  (has) Metadata;
+  composition FileFolder  ->  (has) Tag  [ 0..* ];
+  composition User  ->  (has) Role;
+  
+
+}

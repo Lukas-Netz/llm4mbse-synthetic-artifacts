@@ -1,0 +1,50 @@
+
+
+classdiagram TradingSystem {
+
+    class Broker {
+      String uniqueIdentifier;
+      List<Trade> availableTrades;
+    }
+
+    class Trade {
+      String uniqueIdentifier;
+      String name;
+      double currentPrice;
+    }
+
+    class Buyer {
+      String uniqueIdentifier;
+      String name;
+      List<Order> placedOrders;
+    }
+
+    class Seller {
+      String uniqueIdentifier;
+      String name;
+      List<Order> placedOrders;
+    }
+
+    class Order {
+      String uniqueIdentifier;
+      Trade trade;
+      int quantity;
+      double price;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      Trade trade;
+      Buyer buyer;
+      Seller seller;
+      int quantity;
+      double price;
+    }
+
+  composition Broker -> (has) List<<Trade>>
+  abstract  
+  
+  
+  
+;
+}

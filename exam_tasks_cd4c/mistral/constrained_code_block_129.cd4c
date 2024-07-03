@@ -1,0 +1,54 @@
+
+classdiagram IntelligentTrafficSystem {
+
+  class Sensor {
+    String uniqueIdentifier;
+    int trafficSpeed;
+    int trafficVolume;
+    int trafficOccupancy;
+  }
+
+  class Camera {
+    String uniqueIdentifier;
+    String image;
+  }
+
+  class TrafficLight {
+    String uniqueIdentifier;
+    TrafficLightState state;
+  }
+
+  enum TrafficLightState {
+    Red, Yellow, Green;
+  }
+
+  class CentralUnit {
+    -> Sensor [*];
+    -> Camera [*];
+    -> TrafficLight [*];
+    void adjustTrafficLightStates();
+  }
+
+  class Database {
+    -> TrafficLight [*];
+    -> Sensor [*];
+    -> Camera [*];
+    void storeTrafficPatterns();
+    void storeTrafficStatistics();
+  }
+
+  class Driver {
+    void receiveRealTimeTrafficUpdates();
+  }
+
+  class TrafficManagementOfficial {
+    void receiveRealTimeTrafficUpdates();
+  }
+
+  composition CentralUnit -> Sensor [*];
+  composition CentralUnit -> Camera [*];
+  composition CentralUnit -> TrafficLight [*];
+  association Database <-> TrafficLight;
+  association Database <-> Sensor;
+  association Database <-> Camera;
+}

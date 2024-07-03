@@ -1,0 +1,56 @@
+
+classdiagram IntellectualPropertySystem {
+
+    class Creator {
+      String name;
+      String contactInfo;
+      List<IntellectualProperty> createdRights;
+      void createRight(IntellectualProperty right);
+    Writes to
+     
+     ;}
+
+    class IntellectualProperty {
+      String type;
+      String title;
+      String description;
+      Creator creator;
+      Owner owner;
+      List<User> users;
+      void registerWithAuthority();
+      boolean verifyAuthenticity();
+      void transferOwnership(User newOwner);
+      void trackUsage();
+    }
+
+    class Owner {
+      String name;
+      String contactInfo;
+      List<IntellectualProperty> ownedRights;
+      void claimRight(IntellectualProperty right);
+      void releaseRight(IntellectualProperty right);
+    }
+
+    class User {
+      String name;
+      String contactInfo;
+      List<IntellectualProperty> usedRights;
+      void useRight(IntellectualProperty right);
+    }
+
+    class Authority {
+      String name;
+      String contactInfo;
+      List<IntellectualProperty> registeredRights;
+      void enforceRights();
+      void updateRegistration(IntellectualProperty right);
+    }
+
+  composition Creator -> IntellectualProperty [*];
+  composition Owner -> IntellectualProperty [*];
+  composition User -> IntellectualProperty [*];
+  composition Authority -> IntellectualProperty [*];
+  association IntellectualProperty -> Owner [1..*];
+  association IntellectualProperty -> User [1..*];
+  association IntellectualProperty -> Authority [1..*];
+}

@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram EcommerceMarketplace  {
+
+  class Seller  {
+    String uniqueIdentifier;
+    String name;
+    -> Product[*];
+    -> Warehouse[*];
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    double price;
+    -> Category;
+    -> Rating[*];
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Warehouse  {
+    String uniqueIdentifier;
+    String location;
+    -> Product[*];
+  }
+
+  class PaymentSystem  {
+    void makePayment(Customer customer, Order order);
+  }
+
+  class Customer  {
+    -> Order[*];
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    double totalCost;
+    -> Product[*];
+  }
+
+  class ShippingOption  {
+    String name;
+    double cost;
+  }
+
+  class Rating  {
+    int rating;
+    Date timestamp;
+  }
+
+  composition Seller -> Product[*];
+  composition Seller -> Warehouse[*];
+  composition Product -> Category;
+  composition Product -> Rating[*];
+  composition Warehouse -> Product[*];
+  composition Customer -> Order[*];
+  composition Order -> Product[*];
+  composition PaymentSystem -> Customer;
+  composition ShippingOption -> Order;
+}

@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram AutonomousFarm  {
+
+  class Farm  {
+    String name;
+    Location location;
+  }
+
+  class Module  {
+    String name;
+    ModuleType type;
+  }
+
+  enum ModuleType  {
+    Growing, Irrigation, Lighting
+  ;}
+
+  class Crop  {
+    String name;
+    CropType type;
+    GrowthStage growthStage;
+  }
+
+  enum CropType  {
+    Vegetable, Fruit, Grain
+  ;}
+
+  enum GrowthStage  {
+    Seedling, Germination, Growth, Harvest
+  ;}
+
+  class Sensor  {
+    SensorType type;
+    double reading;
+  }
+
+  enum SensorType  {
+    Temperature, Humidity, Light
+  ;}
+
+  class Actuator  {
+    ActuatorType type;
+    double setting;
+  }
+
+  enum ActuatorType  {
+    Pump, Fan, Heater
+  ;}
+
+  composition Farm  ->  (has) Module[*];
+  composition Module  ->  (has) Crop[*];
+  composition Farm  ->  (has) Sensor[*];
+  composition Farm  ->  (has) Actuator[*];
+}

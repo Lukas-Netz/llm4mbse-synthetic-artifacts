@@ -1,0 +1,79 @@
+
+classdiagram RadioAstronomyObservatory {
+
+    class Observatory {
+      String name;
+      String location;
+      List<RadioTelescope> telescopes;
+      List<Project> projects;
+      List<Astronomer> astronomers;
+      List<Data> dataLibrary;
+      List<Publication> publicationLibrary;
+    }
+
+    class RadioTelescope {
+      String name;
+      Observatory observatory;
+      TelescopeType type;
+    }
+
+    class SingleDish {
+      String diameter;
+      String frequencyRange;
+    }
+
+    class Interferometer {
+      List<Antenna> antennas;
+      Correlator correlator;
+    }
+
+    class Antenna {
+      String location;
+      String type;
+    }
+
+    class Correlator {
+      void processSignals();
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<RadioTelescope> assignedTelescopes;
+    }
+
+    class Astronomer {
+      String name;
+      String role;
+    }
+
+    class Data {
+      String data;
+    }
+
+    class Publication {
+      String title;
+      String content;
+    }
+
+    enum TelescopeType {
+      SingleDish, Interferometer;
+    }
+
+    enum AstronomerRole {
+      Researcher, Engineer, Technician;
+    }
+
+  composition Observatory -> (has) RadioTelescope;
+  composition Observatory -> (has) Project;
+  composition Observatory -> (has) Astronomer;
+  composition Observatory -> (has) Data;
+  composition Observatory -> (has) Publication;
+
+  composition RadioTelescope -> (has) Observatory;
+  composition RadioTelescope -> (has) SingleDish [0..1];
+  composition RadioTelescope -> (has) Interferometer [0..1];
+
+ 
+ 
+}

@@ -1,0 +1,75 @@
+
+classdiagram ManufacturingPlant {
+
+  class Plant {
+    String name;
+    ProductionLine [ ] productionLines;
+  }
+
+  class ProductionLine {
+    String name;
+    String uniqueIdentifier;
+    ProductionLineStatus status;
+    Machine [ ] machines;
+  }
+
+  abstract class Machine {
+    String name;
+    String uniqueIdentifier;
+    MachineStatus status;
+  }
+
+  class CNCMachine extends Machine {
+    int spindleSpeed;
+    String cuttingTool;
+  }
+
+  class ThreeDPrinter extends Machine {
+    int printSpeed;
+    int layerThickness;
+  }
+
+  class Robot extends Machine {
+    int armLength;
+    String gripperType;
+  }
+
+  enum ProductionLineStatus {
+    Operational, NonOperational;
+  }
+
+  enum MachineStatus {
+    Operational, NonOperational;
+  }
+
+  class ControlSystem {
+    void startProductionLine(ProductionLine productionLine);
+    void stopProductionLine(ProductionLine productionLine);
+    void monitorMachineStatus(Machine machine);
+    void sendNotification(String message);
+  }
+
+  class QualityControl {
+    Inspector [ ] inspectors;
+  }
+
+  class Inspector {
+    String name;
+    String uniqueIdentifier;
+    InspectorType inspectorType;
+  }
+
+  enum InspectorType {
+    Mechanical, Electronic, Textile;
+  }
+
+  class Report {
+    String qualityRating;
+  }
+
+  composition Plant -> ProductionLine [*];
+  composition ProductionLine -> Machine [*];
+  association ControlSystem -- Plant;
+  association QualityControl -- Plant;
+  association Inspector -- QualityControl;
+}

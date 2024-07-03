@@ -1,0 +1,56 @@
+
+classdiagram VREngineeringSimulation {
+
+    class SimulationEnvironment {
+      Scenario scenario;
+      Device[] devices;
+      User user;
+      void startSimulation();
+      void pauseSimulation();
+      void stopSimulation();
+      void createScenario(Scenario scenario);
+      void editScenario(Scenario scenario);
+      void deleteScenario(Scenario scenario);
+    }
+
+    class Device {
+      String uniqueIdentifier;
+      Vector3D position;
+      Quaternion orientation;
+      Vector3D velocity;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      String role;
+    }
+
+    class Scenario {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Setup setup;
+      void createScenario(Setup setup);
+      void editScenario(Setup setup);
+      void deleteScenario();
+    }
+
+    class Task {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Date deadline;
+    }
+
+    class Setup {
+      String[] rules;
+      String[] devices;
+    }
+
+    association SimulationEnvironment <-> Scenario;
+    association SimulationEnvironment <-> Task;
+    association SimulationEnvironment <-> User;
+    association Scenario <-> Device[*];
+    association Task <-> Scenario;
+}

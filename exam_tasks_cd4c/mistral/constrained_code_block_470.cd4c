@@ -1,0 +1,48 @@
+
+classdiagram OnlineSociologyCourses {
+
+  class Course {
+    String uniqueID;
+    String title;
+    String description;
+    Instructor instructor;
+  }
+
+  class Instructor {
+    String uniqueID;
+    String name;
+    String email;
+  }
+
+  class Student {
+    String uniqueID;
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+  }
+
+  class Assignment {
+    String uniqueID;
+    String title;
+    String description;
+    Student submitter;
+  }
+
+  class Discussion {
+    String uniqueID;
+    String title;
+    String description;
+    Student [ ] participants;
+  }
+
+  class Grade {
+    Student student;
+    double totalScore;
+  }
+
+  composition Course -> Instructor;
+  composition Student -> Course [*];
+  composition Assignment -> Student;
+  composition Discussion -> Student [*];
+  composition Grade -> Student;
+}

@@ -1,0 +1,68 @@
+
+classdiagram ArtTrackingSystem {
+
+    class Artwork {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      ArtworkType type;
+    }
+
+    class ProvenanceRecord {
+      String uniqueIdentifier;
+      Artwork artwork;
+      Date acquisitionDate;
+      String buyer;
+      String seller;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      Artwork artwork;
+      Entity seller;
+      Entity buyer;
+      Date transactionDate;
+    }
+
+    class Entity {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Certificate {
+      String uniqueIdentifier;
+      Artwork artwork;
+      String issuer;
+      String signature;
+    }
+
+    class ArtworkType {
+      String type;
+    }
+
+    association Artwork 
+      has 
+        -> ProvenanceRecord [1..*];
+
+    association Transaction 
+      has 
+        -> Artwork [1];
+
+    association Transaction 
+      has 
+        -> Entity [1..*];
+
+    association Transaction 
+      has 
+        -> Entity [1..*];
+
+    association Certificate 
+      has 
+        -> Artwork [1];
+
+    composition Artwork -> ProvenanceRecord [1..*];
+    composition Transaction -> Artwork [1];
+    composition Transaction -> Entity [1..*];
+    composition Transaction -> Entity [1..*];
+    composition Certificate -> Artwork [1];
+}

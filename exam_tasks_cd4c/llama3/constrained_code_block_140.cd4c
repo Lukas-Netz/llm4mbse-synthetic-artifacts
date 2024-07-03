@@ -1,0 +1,68 @@
+
+
+
+classdiagram CybersecurityIncidentResponse  {
+
+  class IncidentManager  {
+    String incidentId;
+    String status;
+    void assignPersonnelToSystem(Personnel personnel, System system);
+    void assignSystemToPersonnel(Personnel personnel, System system);
+  }
+
+  abstract class System  {
+    String uniqueIdentifier;
+    String ip;
+    String os;
+    String software;
+  }
+
+  class Server extends System  {
+    int cpu;
+    int memory;
+  }
+
+  class Network extends System  {
+    String subnet;
+    String gateway;
+  }
+
+  class Database extends System  {
+    String databaseType;
+    String databaseName;
+  }
+
+  class Personnel  {
+    String name;
+    String role;
+    String contactInfo;
+  }
+
+  class Incident  {
+    String id;
+    String severity;
+    String impact;
+    String resolution;
+    void analyze();
+    void provideRecommendations();
+  }
+
+  class Notification  {
+    String message;
+    Personnel recipient;
+  }
+
+  class LogEntry  {
+    String timestamp;
+    String activity;
+    System system;
+  }
+
+  composition IncidentManager  ->  (has) Incident;
+  composition IncidentManager  ->  (has) Personnel[*];
+  composition IncidentManager  ->  (has) System[*];
+  composition System  ->  (has) LogEntry[*];
+  composition Personnel  ->  (has) Notification[*];
+  composition Incident  ->  (has) LogEntry[*];
+  composition Incident  ->  (has) Notification[*];
+}

@@ -1,0 +1,40 @@
+
+
+
+
+classdiagram OilSpillDetection  {
+
+  class Sensor  {
+    String location;
+    OilSpillData oilSpillData;
+  }
+
+  class Drone  {
+    String location;
+    OilSpillData oilSpillData;
+  }
+
+  class CommandCenter  {
+    Sensor[] sensors;
+    Drone[] drones;
+    OilSpillData oilSpillData;
+    void sendCommand(Sensor sensor, Drone drone);
+  }
+
+  class OilSpillData  {
+    String type;
+    int severity;
+    String location;
+  }
+
+  class OilSpill  {
+    OilSpillData oilSpillData;
+  }
+
+  composition CommandCenter -> (has) Sensor[*];
+  composition CommandCenter -> (has) Drone[*];
+  composition Sensor -> (has) OilSpillData;
+  composition Drone -> (has) OilSpillData;
+  composition OilSpill -> (has) OilSpillData;
+}
+

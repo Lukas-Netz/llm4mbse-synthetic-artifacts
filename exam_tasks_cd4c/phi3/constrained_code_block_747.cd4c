@@ -1,0 +1,48 @@
+
+classdiagram OrchardDigitalTwin {
+
+    class Orchard {
+      String uniqueIdentifier;
+      String location;
+    }
+
+    class Tree {
+      String treeType;
+      int age;
+      HealthStatus healthStatus;
+      Sensor sensor;
+    }
+
+    class Sensor {
+      String sensorType;
+      double temperature;
+      double humidity;
+      double soilMoisture;
+    }
+
+    class WeatherStation {
+      String location;
+      double temperature;
+      double precipitation;
+      double sunlight;
+    }
+
+    class PestAndDisease {
+      String type;
+      int severity;
+      boolean treatmentStatus;
+    }
+
+    class Farmer {
+      String name;
+      String contactInfo;
+      Orchard orchard;
+      void manageOrchard();
+    }
+
+    association Orchard -> [has] Tree;
+    association Tree -> [has] Sensor;
+    association Orchard -> [has] WeatherStation;
+    association Orchard -> [has] PestAndDisease;
+    association Farmer -> [has] Orchard;
+}

@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram VRFitness  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Instructor extends User  {
+    List<Class> classes;
+  }
+
+  class Participant extends User  {
+    List<Class> joinedClasses;
+  }
+
+  class Class  {
+    String name;
+    String description;
+    Schedule schedule;
+    List<Participant> participants;
+    List<Instructor> instructors;
+  }
+
+  class Schedule  {
+    Date startTime;
+    Date endTime;
+  }
+
+  class Rating  {
+    int rating;
+    String review;
+  }
+
+  class VirtualRealityEquipment  {
+    String name;
+    String description;
+    double price;
+  }
+
+  composition Instructor -> Class[*];
+  composition Participant -> Class[*];
+  composition Class -> Instructor[*];
+  composition Class -> Participant[*];
+  composition Class -> Rating[*];
+  composition User -> Profile;
+  composition Instructor -> VirtualRealityEquipment[*];
+}

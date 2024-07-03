@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram CaseManagementSystem  {
+
+  class Case  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    -> Client;
+    -> Lawyer;
+    -> Party[*];
+    -> Event[*];
+  }
+
+  class Client  {
+    String name;
+    String address;
+    String contactInformation;
+  }
+
+  class Lawyer  {
+    String name;
+    String address;
+    String contactInformation;
+  }
+
+  class Judge  {
+    String name;
+    String address;
+    String contactInformation;
+  }
+
+  class Party  {
+    String role;
+    -> Case;
+    -> Client;
+    -> Lawyer;
+    -> Judge;
+  }
+
+  class Event  {
+    Date date;
+    Time time;
+    String location;
+    -> Case;
+  }
+
+  class Notification  {
+    String message;
+    -> Party;
+    -> Event;
+  }
+
+  composition Case -> Party[*];
+  composition Case -> Event[*];
+  composition Party -> Case;
+  composition Event -> Case;
+  composition Notification -> Party;
+  composition Notification -> Event;
+}

@@ -1,0 +1,43 @@
+
+classdiagram EthicalFashion {
+
+  class Garment {
+    String uniqueIdentifier;
+    String description;
+    Component [ ] components;
+  }
+
+  class Component {
+    String uniqueIdentifier;
+    String description;
+    Supplier [ ] suppliers;
+  }
+
+  class Supplier {
+    String uniqueIdentifier;
+    String name;
+    Component [ ] providedComponents;
+  }
+
+  class Factory {
+    String uniqueIdentifier;
+    String name;
+    Garment [ ] producedGarments;
+  }
+
+  class Warehouse {
+    String uniqueIdentifier;
+    String name;
+    Garment [ ] storedGarments;
+  }
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    Garment [ ] purchasedGarments;
+  }
+
+  composition Factory -> Garment [*];
+  composition Warehouse -> Garment [*];
+  composition Customer -> Garment [*];
+}

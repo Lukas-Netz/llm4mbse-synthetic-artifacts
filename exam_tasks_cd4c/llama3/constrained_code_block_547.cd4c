@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram MilitarySystem  {
+
+  class Unit  {
+    String uniqueIdentifier;
+    UnitStatus status;
+    SuperiorUnit superiorUnit;
+    SubordinateUnits subordinateUnits;
+  }
+
+  class SuperiorUnit  {
+    Unit unit;
+  }
+
+  class SubordinateUnits  {
+    Unit unit;
+  }
+
+  abstract class UnitType  {
+    Unit unit;
+  }
+
+  class Infantry extends UnitType  {
+    int numberOfSoldiers;
+    Equipment equipment;
+  }
+
+  class Tank extends UnitType  {
+    int armorLevel;
+    WeaponType weaponType;
+  }
+
+  class Airborne extends UnitType  {
+    AircraftType aircraftType;
+    int crewSize;
+  }
+
+  class Mission  {
+    String uniqueIdentifier;
+    MissionStatus status;
+    Unit assignedUnit;
+    Date startDate;
+    Date endDate;
+  }
+
+  class CommandCenter  {
+    Unit[] units;
+    Mission[] missions;
+  }
+
+  enum UnitStatus  {
+    Active, Inactive;
+  }
+
+  enum MissionStatus  {
+    Completed, Ongoing;
+  }
+
+  enum Equipment  {
+    Rifle, MachineGun, Grenade;
+  }
+
+  enum WeaponType  {
+    Cannon, Rocket, MachineGun;
+  }
+
+  enum AircraftType  {
+    Helicopter, Plane, Glider;
+  }
+
+  composition CommandCenter -> (has) Unit[*];
+  composition CommandCenter -> (has) Mission[*];
+  composition Unit -> (has) SuperiorUnit;
+  composition Unit -> (has) SubordinateUnits[*];
+  composition Mission -> (has) Unit;
+}

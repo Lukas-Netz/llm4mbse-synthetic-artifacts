@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram SolarPurificationSystem  {
+
+  class SolarPanel  {
+    int powerOutputW;  }
+
+  class WaterTank  {
+    int capacityLiters;  }
+
+  class PurificationUnit  {
+    boolean filtrationEnabled;
+    boolean uvTreatmentEnabled;
+    boolean disinfectionEnabled;
+    }
+
+  class Sensor  {
+    int waterQuality;
+    int temperature;
+    int pressure;
+    }
+
+  class MobileApp  {
+    void monitorSystemStatus();
+    void enableDisableStage(String stage);
+    void receiveAlert(String message);
+    }
+
+  class Stage  {
+    String name;
+    boolean enabled;
+    }
+
+  class PurificationStage extends Stage  {
+    }
+
+  class WaterQualitySensor extends Sensor  {
+    }
+
+  class TemperatureSensor extends Sensor  {
+    }
+
+  class PressureSensor extends Sensor  {
+    }
+
+  class System  {
+    SolarPanel solarPanel;
+    WaterTank waterTank;
+    PurificationUnit purificationUnit;
+    Sensor sensor;
+    MobileApp mobileApp;
+    }
+
+  composition System -> (has) SolarPanel;
+  composition System -> (has) WaterTank;
+  composition System -> (has) PurificationUnit;
+  composition System -> (has) Sensor;
+  composition System -> (has) MobileApp;
+  composition PurificationUnit -> Stage[*];
+  composition Stage -> (has) PurificationStage;
+  composition Sensor -> WaterQualitySensor;
+  composition Sensor -> TemperatureSensor;
+  }

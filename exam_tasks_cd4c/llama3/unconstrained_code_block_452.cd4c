@@ -1,0 +1,34 @@
+
+
+
+
+classdiagram LanguageTranslationSystem  {
+
+  class Dictionary  {
+    Map<String, Map<String, String>> wordTranslations;
+  }
+
+  class Translator  {
+    Dictionary dictionary;
+    String translate(String text, String sourceLang, String targetLang);
+  }
+
+  class UserInterface  {
+    Translator translator;
+    void translateText(String text, String sourceLang, String targetLang);
+  }
+
+  class Language  {
+    String name;
+  }
+
+  class Word  {
+    String text;
+    Language language;
+  }
+
+  composition Dictionary -> (contains) Word[*];
+  composition Translator -> (uses) Dictionary;
+  composition UserInterface -> (uses) Translator;
+}
+

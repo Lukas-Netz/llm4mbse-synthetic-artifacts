@@ -1,0 +1,56 @@
+
+classdiagram BlockchainContractPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      void createSmartContract(SmartContract contract);
+      void manageSmartContract(SmartContract contract);
+      void executeSmartContract(SmartContract contract);
+    }
+
+    class SmartContract {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      Condition condition;
+      void execute();
+    }
+
+    class Condition {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      ConditionType type;
+    }
+
+    enum ConditionType {
+      Single, Multi
+   
+   
+   ;}
+
+    class Execution {
+      String uniqueIdentifier;
+      String timestamp;
+      ExecutionStatus status;
+    }
+
+    class Transaction {
+      String uniqueIdentifier;
+      String timestamp;
+      TransactionStatus status;
+    }
+
+    enum ExecutionStatus {
+      Success, Failure, Pending;
+    }
+
+    enum TransactionStatus {
+      Success, Failure, Pending;
+    }
+
+    composition User -> (has) SmartContract;
+    composition SmartContract -> Execution;
+    composition SmartContract -> Transaction;
+    composition SmartContract -> Condition;
+}

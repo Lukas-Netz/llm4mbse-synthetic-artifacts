@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram DroneSurveillance  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    Sensor  sensor;
+  }
+
+  class Sensor  {
+    SensorType type;
+    boolean enabled;
+  }
+
+  enum SensorType  {
+    Camera, Microphone, GPS;
+  }
+
+  class Hub  {
+    Drone  drone;
+    Database database;
+    void sendCommand(Drone drone, Command command);
+    void receiveData(Drone drone, Data data);
+  }
+
+  class Database  {
+    Object  object;
+    void storeObject(Object object);
+    Object retrieveObject(String id);
+  }
+
+  class Command  {
+    CommandType type;
+    Object object;
+  }
+
+  enum CommandType  {
+    TakeOff, Land, Move, Capture;
+  }
+
+  class Data  {
+    Object object;
+  }
+
+  class Object  {
+    String id;
+    Location location;
+    Speed speed;
+    Direction direction;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed  {
+    double value;
+  }
+
+  class Direction  {
+    double value;
+  }
+
+  composition Hub -> Drone [1..*];
+  composition Drone -> Sensor [1..*];
+  composition Hub -> Database [1..1];
+  composition Database -> Object [1..*];
+  association Hub -> Command [1..*];
+  association Drone -> Data [1..*];
+  association Object -> Location [1..1];
+  association Object -> Speed [1..1];
+  }

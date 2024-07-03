@@ -1,0 +1,92 @@
+
+classdiagram DigitalProductDesignTool {
+
+    class DesignElement {
+      String identifier;
+      String type;
+    }
+
+    class Icon extends DesignElement {
+      String iconName;
+    }
+
+    class Shape extends DesignElement {
+      String shapeName;
+    }
+
+    class Color extends DesignElement {
+      String colorName;
+    }
+
+    class Design {
+      String identifier;
+      List<DesignElement> elements;
+    }
+
+    class DesignTool {
+      String name;
+      String properties;
+    }
+
+    class TextEditor extends DesignTool {
+      String fontSize;
+      String fontColor;
+    }
+
+    class ShapeEditor extends DesignTool {
+      String shape;
+    }
+
+    class ColorPicker extends DesignTool {
+      String color;
+    }
+
+    class VersionControl {
+      String versionIdentifier;
+      List<Design> designs;
+    }
+
+    class Publication {
+      String identifier;
+      String format;
+      String exportedFile;
+    }
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+    association DigitalProductDesignTool 
+      hasComponent 
+        (DesignElement) -> Design;
+
+   
+}

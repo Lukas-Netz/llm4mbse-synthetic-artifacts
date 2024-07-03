@@ -1,0 +1,56 @@
+
+classdiagram TradingPlatform {
+
+  class Account {
+    String uniqueIdentifier;
+    double balance;
+    -> Order [*];
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Account account;
+    OrderType type;
+    int quantity;
+    double price;
+  }
+
+  enum OrderType {
+    Buy, Sell;
+  }
+
+  class Asset {
+    String uniqueIdentifier;
+    double currentPrice;
+  }
+
+  class TradingEngine {
+    -> Account [*];
+    -> Asset [*];
+    -> Order [*];
+    void executeTrades();
+    void updateTradeHistory();
+    void updateAccountState();
+  }
+
+  class Trade {
+    Account account;
+    Asset asset;
+    Order order;
+    double tradeAmount;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    UserType type;
+  }
+
+  enum UserType {
+    Administrator, Trader, Analyst;
+  }
+
+  composition TradingPlatform -> TradingEngine;
+  composition TradingEngine -> Account [*];
+  composition TradingEngine -> Asset [*];
+  composition Account -> Order [*];
+}

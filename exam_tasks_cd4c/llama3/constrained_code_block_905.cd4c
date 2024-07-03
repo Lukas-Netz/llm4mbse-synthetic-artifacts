@@ -1,0 +1,92 @@
+
+
+
+
+classdiagram HealthcareSystem  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    MedicalRecord medicalRecord;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    Credentials credentials;
+  }
+
+  class Hospital  {
+    String uniqueIdentifier;
+    Facilities facilities;
+  }
+
+  class Medication  {
+    String uniqueIdentifier;
+    Properties properties;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Patient patient;
+    Doctor doctor;
+    Hospital hospital;
+    String action;
+  }
+
+  class MedicalRecord  {
+    Diagnosis diagnosis;
+    TreatmentPlan treatmentPlan;
+    MedicationList medicationList;
+  }
+
+  class Credentials  {
+    String specialty;
+    Qualifications qualifications;
+  }
+
+  class Facilities  {
+    OperatingRoom operatingRoom;
+    PatientRoom patientRoom;
+    MedicalEquipment medicalEquipment;
+  }
+
+  class Properties  {
+    Dosage dosage;
+    SideEffects sideEffects;
+    Interactions interactions;
+  }
+
+  class Diagnosis  {
+    String diagnosis;
+  }
+
+  class TreatmentPlan  {
+    String treatmentPlan;
+  }
+
+  class MedicationList  {
+    String medicationList;
+  }
+
+  class Dosage  {
+    int dosage;
+  }
+
+  class SideEffects  {
+    String sideEffects;
+  }
+
+  class Interactions  {
+    String interactions;
+  }
+
+  class Qualifications  {
+    String qualifications;
+  }
+
+  composition Patient -> MedicalRecord;
+  composition Doctor -> Credentials;
+  composition Hospital -> Facilities;
+  composition Medication -> Properties;
+  
+
+}

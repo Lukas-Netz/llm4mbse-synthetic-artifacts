@@ -1,0 +1,66 @@
+
+classdiagram FleetManagement {
+
+    class FleetManager {
+      void addVehicle(Vehicle vehicle);
+      void removeVehicle(Vehicle vehicle);
+      void updateVehicle(Vehicle vehicle);
+      void addMaintenayerRecord(MaintenanceRecord record);
+      void removeMaintenanceRecord(MaintenanceRecord record);
+      void updateMaintenanceRecord(MaintenanceRecord record);
+      Report generateReport();
+    }
+
+    class Vehicle {
+      String uniqueIdentifier;
+      String make;
+      String model;
+      int year;
+      VehicleType type;
+      Location currentLocation;
+      List<MaintenanceRecord> maintenanceHistory;
+    }
+
+    class MaintenanceRecord {
+      String task;
+      Date date;
+    }
+
+    class Car extends Vehicle {
+      int maxSpeed;
+    }
+
+    class Truck extends Vehicle {
+      int payloadCapacity;
+    }
+
+    class Motorcycle extends Vehicle {
+      int topSpeed;
+    }
+
+    class Location {
+      String address;
+      double latitude;
+      double longitude;
+    }
+
+    class Report {
+      VehicleUsage usage;
+      MaintenanceSchedule schedule;
+      FuelConsumption consumption;
+    }
+
+    enum VehicleType {
+      Car, Truck, Motorcycle;
+    }
+
+    enum MaintenanceTask {
+      OilChange, TireRotation;
+    }
+
+    association FleetManager -> Vehicle [*];
+    association FleetManager -> MaintenanceRecord [*];
+    composition Vehicle -> MaintenanceRecord [*];
+    composition Vehicle -> Location;
+    composition Vehicle -> Report;
+}

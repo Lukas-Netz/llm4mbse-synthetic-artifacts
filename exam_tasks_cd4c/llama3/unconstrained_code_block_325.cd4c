@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram SportsAnalysisSystem  {
+
+  class Athlete  {
+    String name;
+    String sport;
+  }
+
+  class Team  {
+    String name;
+    String sport;
+  }
+
+  class Match  {
+    Date date;
+    Team homeTeam;
+    Team awayTeam;
+  }
+
+  class Performance  {
+    int goalsScored;
+    int pointsScored;
+    int acesServed;
+  }
+
+  class Statistics  {
+    int totalGoalsScored;
+    int totalPointsScored;
+    int totalAcesServed;
+  }
+
+  class Report  {
+    String athleteName;
+    String teamName;
+    int totalGoalsScored;
+    int totalPointsScored;
+    int totalAcesServed;
+  }
+
+  class Sport  {
+    String name;
+  }
+
+  composition Sport -> (has) Athlete;
+  composition Sport -> (has) Team;
+  composition Sport -> (has) Match;
+  composition Match -> (has) Performance;
+  composition Performance -> (has) Statistics;
+  composition Report -> (has) Athlete;
+  composition Report -> (has) Team;
+  composition Report -> (has) Statistics;
+}

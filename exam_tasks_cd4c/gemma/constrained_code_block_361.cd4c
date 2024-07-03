@@ -1,0 +1,79 @@
+
+
+classdiagram HomeImprovementPlatform {
+
+  class User {
+    String name;
+    String email;
+    String password;
+
+    profile(String name, String email, String password);
+  }
+
+  class Project {
+    String name;
+    String description;
+    int budget;
+
+    project(String name, String description, int budget);
+  }
+
+  class Contractor {
+    String name;
+    String contactInfo;
+    int ratings;
+
+    contractor(String name, String contactInfo, int ratings);
+  }
+
+  class Task {
+    String name;
+    String description;
+    Date dueDate;
+
+    task(String name, String description, Date dueDate);
+  }
+
+  class TaskAssignment {
+    User user;
+    Contractor contractor;
+    Task task;
+
+    taskAssignment(User user, Contractor contractor, Task task);
+  }
+
+  class ProjectBudget {
+    int totalBudget;
+    List<Expense> expenses;
+
+    projectBudget(int totalBudget, List<Expense> expenses);
+  }
+
+  class Expense {
+    String name;
+    int cost;
+
+    expense(String name, int cost);
+  }
+
+  class ProjectSharing {
+    User user;
+    Project project;
+
+    projectSharing(User user, Project project);
+  }
+
+  class ProjectRating {
+    User user;
+    Project project;
+    int rating;
+
+    projectRating(User user, Project project, int rating);
+  }
+
+  composition User -> Project;
+  composition Project -> TaskAssignment;
+  composition Project -> ProjectBudget;
+  composition Project -> ProjectSharing;
+  composition Project -> ProjectRating;
+}

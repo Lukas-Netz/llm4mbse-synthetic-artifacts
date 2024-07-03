@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram PredictivePolicingSystem  {
+
+  class CrimeDatabase  {
+    Crime[] crimes;
+    void storeCrime(Crime crime);
+    Crime[] retrieveCrimes();
+  }
+
+  class MLModel  {
+    void train(Crime[] crimes);
+    double predictLikelihood(Location location, Time time);
+  }
+
+  class GIS  {
+    City city;
+    void provideSpatialData(Location location);
+  }
+
+  class UI  {
+    void inputPatrolRoute(PatrolRoute route);
+    void displayPredictions(PatrolRoute route);
+  }
+
+  class Crime  {
+    Location location;
+    Time time;
+    CrimeType type;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Time  {
+    int hour;
+    int minute;
+  }
+
+  class CrimeType  {
+    String type;
+  }
+
+  class PatrolRoute  {
+    Location[] locations;
+  }
+
+  class City  {
+    Location[] streets;
+    Building[] buildings;
+  }
+
+  class Building  {
+    Location location;
+  }
+
+  composition CrimeDatabase -> Crime[*];
+  composition MLModel -> Crime[*];
+  composition GIS -> City;
+  composition UI -> PatrolRoute;
+  composition City -> Building[*];
+}

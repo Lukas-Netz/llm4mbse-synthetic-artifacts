@@ -1,0 +1,39 @@
+
+classdiagram CAP {
+
+  class Customer {
+    String uniqueIdentifier;
+    Set<Review> reviews;
+  }
+
+  class Review {
+    int rating;
+    String description;
+  }
+
+  class Segment {
+    String name;
+    Set<Rule> rules;
+  }
+
+  class Rule {
+    String criteria;
+    String operator;
+    String value;
+  }
+
+  class Analytics {
+    void sentimentAnalysis();
+    void trendAnalysis();
+    void customerClustering();
+  }
+
+  class Integration {
+    void integrateCRM();
+    void integrateMarketingAutomation();
+  }
+
+  composition CAP -> Customer [*];
+  composition CAP -> Segment [*];
+  association Customer -- Segment [*];
+}

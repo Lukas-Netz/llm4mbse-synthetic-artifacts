@@ -1,0 +1,81 @@
+
+classdiagram MachineLearningPlatform {
+
+    class MLP {
+      ProjectManager projectManager;
+      List<Project> projects;
+      List<Model> models;
+      UserManagement userManagement;
+      Dashboard dashboard;
+    }
+
+    class Project {
+      String name;
+      String description;
+      List<Model> models;
+    }
+
+    class Model {
+      String name;
+      String description;
+      ModelStatus status;
+      List<Version> versions;
+    }
+
+    class Version {
+      int versionNumber;
+      String description;
+      List<Metric> metrics;
+    }
+
+    class Metric {
+      String name;
+      enum MetricType
+       
+   ;}
+
+    class User {
+      String username;
+      UserType type;
+    }
+
+    class UserType {
+      enum Type
+       
+   ;}
+
+    class ProjectManager {
+      void manageProject(Project project);
+      void manageModel(Model model);
+      void manageUser(User user);
+    }
+
+    class DataPreprocessing {
+      void preprocessData(Data data);
+    }
+
+    class ModelTraining {
+      void trainModel(Model model);
+    }
+
+    class ModelDeployment {
+      void deployModel(Model model);
+    }
+
+    class Dashboard {
+      void monitorModelPerformance(Model model);
+      void monitorProjectPerformance(Project project);
+    }
+
+    enum ModelStatus {
+      Training, Testing, Deployed;
+    }
+
+    enum MetricType {
+      Accuracy, Precision, Recall;
+    }
+
+    enum UserType {
+      Administrator, DataScientist;
+    }
+}

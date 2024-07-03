@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram DesignTool  {
+
+  class DesignElement  {
+    String uniqueIdentifier;
+    ElementType type;
+  }
+
+  enum ElementType  {
+    Icon, Shape, Color;
+  }
+
+  class Design  {
+    String uniqueIdentifier;
+    DesignType type;
+    DesignElement  elements  ;
+  }
+
+  enum DesignType  {
+    Icon, Shape, Color;
+  }
+
+  class DesignTool  {
+    String uniqueIdentifier;
+    DesignElement  elements  ;
+    Design  designs  ;
+  }
+
+  class Version  {
+    String uniqueIdentifier;
+    Design design;
+    Date timestamp;
+  }
+
+  class Publication  {
+    String uniqueIdentifier;
+    Design design;
+    String format;
+  }
+
+  class Designer  {
+    String name;
+    DesignTool designTool;
+  }
+
+  composition DesignTool  ->  (has) DesignElement  ;
+  composition DesignTool  ->  (has) Design  ;
+  composition Design  ->  (has) DesignElement  ;
+  composition DesignTool  ->  (has) Version  [0..*];
+  composition Design  ->  (has) Version  [0..*];
+  composition Publication  ->  (has) Design  ;
+  composition Designer  ->  (has) DesignTool  ;
+}

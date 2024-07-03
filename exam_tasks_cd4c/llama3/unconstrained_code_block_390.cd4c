@@ -1,0 +1,71 @@
+
+
+
+
+classdiagram LivestockMonitoringSystem  {
+
+  class Livestock  {
+    String uniqueIdentifier;
+    String breed;
+    int age;
+    double weight;
+    Location location;
+  }
+
+  class Sensor  {
+    Livestock attachedTo;
+    TemperatureReading temperature;
+    HumidityReading humidity;
+    MovementReading movement;
+  }
+
+  class Alert  {
+    String message;
+    Farmer recipient;
+  }
+
+  class Farmer  {
+    String uniqueIdentifier;
+  }
+
+  class WeatherData  {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class TemperatureReading  {
+    double value;
+  }
+
+  class HumidityReading  {
+    double value;
+  }
+
+  class MovementReading  {
+    double value;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class WindSpeed  {
+    double value;
+  }
+
+  composition Livestock -> Sensor [1..*];
+  composition Sensor -> Livestock [1..1];
+  composition Livestock -> Location [1..1];
+  composition Farmer -> Alert [0..*];
+  composition WeatherData -> Livestock [0..*];
+}

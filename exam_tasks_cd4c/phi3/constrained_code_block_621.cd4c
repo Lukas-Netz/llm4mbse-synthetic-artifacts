@@ -1,0 +1,89 @@
+
+classdiagram AutomatedCropMonitoringSystem {
+
+    class AutomatedCropMonitoringSystem {
+      Sensor[] sensors;
+      Drone[] drones;
+      CentralHub hub;
+      CropData[] cropData;
+    WrittenData[] writtenData;
+      Alert[] alerts;
+      Recommendation[] recommendations;
+    }
+
+    class Sensor {
+      String location;
+      TemperatureData temperature;
+      HumidityData humidity;
+      SoilMoistureData soilMoisture;
+    }
+
+    class Drone {
+      String droneID;
+      ImageData[] images;
+      VideoData[] videos;
+    }
+
+    class CentralHub {
+      void receiveSensorData(Sensor sensor);
+      void receiveDroneData(Drone drone);
+      CropData analyzeData();
+      Alert generateAlerts();
+      Recommendation generateRecommendations();
+    }
+
+    class CropData {
+      String cropType;
+      Date plantingDate;
+      FertilizationSchedule fertilizationSchedule;
+    }
+
+    class WrittenData {
+      String data;
+      String dataType;
+    }
+
+    class Alert {
+      String alertMessage;
+      Date alertDate;
+    }
+
+    class Recommendation {
+      String recommendationMessage;
+      String recommendationType;
+    }
+
+    class TemperatureData {
+      int temperature;
+    }
+
+    class HumidityData {
+      int humidity;
+    }
+
+    class SoilMoistureData {
+      int moistureLevel;
+    }
+
+    class ImageData {
+      String imageID;
+      String imageData;
+    }
+
+    class VideoData {
+      String videoID;
+      String videoData;
+    }
+
+    class FertilizationSchedule {
+      String fertilizerType;
+      Date applicationDate;
+    }
+
+    association AutomatedCropMonitoringSystem -> Sensor [*];
+    association AutomatedCropMonitoringSystem -> Drone [*];
+    association AutomatedCropMonitoringSystem -> CropData [*];
+    association AutomatedCropMonitoringSystem -> WrittenData [*];
+    association AutomatedCropMonitoringSystem -> Alert [*];
+    association AutomatedCropMonitoringSystem -> Recommendation [*];
+}

@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram DigitalSignage  {
+
+  class ContentManagementSystem  {
+    Content  content;
+    Schedule  schedule;
+    Performance  performance;
+  }
+
+  class Player  {
+    Content  content;
+    boolean remoteControl;
+  }
+
+  class Screen  {
+    Content  content;
+    boolean remoteControl;
+  }
+
+  class Network  {
+    ContentManagementSystem  cms;
+    Player  player;
+    Screen  screen;
+  }
+
+  class Content  {
+    Type  type;
+    String  text;
+    Image  image;
+    Video  video;
+  }
+
+  class Schedule  {
+    Date  startDate;
+    Date  endDate;
+    Content  content;
+  }
+
+  class Performance  {
+    int  views;
+    int  engagement;
+  }
+
+  class Type  {
+    String  name;
+  }
+
+  class Image  {
+    String  url;
+  }
+
+  class Video  {
+    String  url;
+  }
+
+  composition Network  ->  (has) ContentManagementSystem;
+  composition Network  ->  (has) Player;
+  composition Network  ->  (has) Screen;
+  composition ContentManagementSystem  ->  (has) Content;
+  composition ContentManagementSystem  ->  (has) Schedule;
+  composition ContentManagementSystem  ->  (has) Performance;
+  composition Player  ->  (has) Content;
+  composition Screen  ->  (has) Content;
+  association Content  ->  (has) Type;
+  association Content  ->  (has) Image;
+  }

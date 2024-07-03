@@ -1,0 +1,53 @@
+
+
+classdiagram UrbanFarmDigitalTwin {
+
+  class Crop {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    GrowthStage stage;
+    int height;
+    int weight;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    Location location;
+    Temperature temperature;
+    Humidity humidity;
+    Light light;
+    SoilMoisture moisture;
+  }
+
+  class Farm {
+    String uniqueIdentifier;
+    String name;
+    List<Crop> crops;
+    List<Sensor> sensors;
+  }
+
+  class Recommendation {
+    String cropName;
+    String farmName;
+    String recommendation;
+  }
+
+  class Scenario {
+    String name;
+    Farm farm;
+    List<Crop> crops;
+    List<Sensor> sensors;
+    List<Recommendation> recommendations;
+  }
+
+  composition Farm -> Crop [*];
+  composition Farm -> Sensor [*];
+  composition UrbanFarmDigitalTwin -> (has) Farm;
+  association Recommendation withFarm [ManyToOne]
+  -- association  abstract  
+  
+
+  
+
+ ;}

@@ -1,0 +1,53 @@
+
+classdiagram BrainwaveControl {
+
+  class BCI {
+    int samplingRate;
+    int frequencyRange;
+    String signalProcessingAlgorithm;
+  }
+
+  class DeviceController {
+    BCI bci;
+    void filter();
+    void amplify();
+    void decode();
+  }
+
+  class ControlledDevice {
+    int movementRange;
+    int speed;
+    int precision;
+  }
+
+  class UserProfile {
+    String userID;
+    BCIUserPattern brainWavePattern;
+    ControlledDevicePreferences devicePreferences;
+  }
+
+  class BCIUserPattern {
+    int[] brainWaveData;
+  }
+
+  class ControlledDevicePreferences {
+    int movementRange;
+    int speed;
+    int precision;
+  }
+
+  class UserRepository {
+    UserProfile [ ] users;
+  }
+
+  class AdaptiveSystem {
+    UserRepository userRepository;
+    void storeUserProfile(UserProfile userProfile);
+    UserProfile retrieveUserProfile(String userID);
+    void adaptToUser(UserProfile userProfile);
+  }
+
+  composition BCI -> DeviceController;
+  association AdaptiveSystem -> UserRepository;
+  association AdaptiveSystem -> ControlledDevice;
+}

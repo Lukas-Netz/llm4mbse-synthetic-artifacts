@@ -1,0 +1,55 @@
+
+
+
+classdiagram BiodiversityPlatform  {
+
+  class Species  {
+    String uniqueIdentifier;
+    String name;
+    Classification classification;
+  }
+
+  class Habitat  {
+    String location;
+    int size;
+    String type;
+  }
+
+  class Ecosystem  {
+    String uniqueIdentifier;
+    String name;
+    -> Habitat[*];
+    -> Species[*];
+  }
+
+  class ConservationAction  {
+    String description;
+    -> Species;
+  }
+
+  class ConservationPlan  {
+    -> ConservationAction[*];
+    -> Species;
+  }
+
+  class User  {
+    -> Species[*];
+    -> Habitat[*];
+    -> Ecosystem[*];
+    -> ConservationAction[*];
+    -> ConservationPlan[*];
+  }
+
+  enum Classification  {
+    Mammal, Bird, Reptile, Amphibian, Fish, Insect, Plant;
+  }
+
+  composition Ecosystem -> (has) Habitat[*];
+  composition Ecosystem -> (has) Species[*];
+  composition ConservationPlan -> (has) ConservationAction[*];
+  composition User -> (has) Species[*];
+  composition User -> (has) Habitat[*];
+  composition User -> (has) Ecosystem[*];
+  composition User -> (has) ConservationAction[*];
+  composition User -> (has) ConservationPlan[*];
+}

@@ -1,0 +1,68 @@
+
+classdiagram EHR {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    MedicalCondition [ ] medicalConditions;
+    Medication [ ] medications;
+    TestResult [ ] testResults;
+    Appointment [ ] appointments;
+    MedicalProcedure [ ] medicalProcedures;
+  }
+
+  class MedicalCondition {
+    String name;
+    String description;
+  }
+
+  class Medication {
+    String name;
+    int dosage;
+    String frequency;
+  }
+
+  class TestResult {
+    String name;
+    double value;
+    LocalDate date;
+  }
+
+  class Appointment {
+    LocalDate date;
+    LocalTime time;
+    Doctor doctor;
+  }
+
+  class MedicalProcedure {
+    String name;
+    LocalDate date;
+    Doctor doctor;
+  }
+
+  class Doctor {
+    String name;
+    String specialty;
+    String hospitalAffiliation;
+  }
+
+  class LocalDate {
+    int year;
+    int month;
+    int day;
+  }
+
+  class LocalTime {
+    int hour;
+    int minute;
+    int second;
+  }
+
+  association Patient -- MedicalCondition;
+  association Patient -- Medication;
+  association Patient -- TestResult;
+  association Patient -- Appointment;
+  association Patient -- MedicalProcedure;
+  association Doctor -- Appointment;
+  association Doctor -- MedicalProcedure;
+}

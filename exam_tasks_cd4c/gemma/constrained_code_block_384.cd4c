@@ -1,0 +1,123 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- classdiagramComplete
+  
+  
+  
+  
+  
+  {class SmartHome
+    
+    
+ ;- Hub
+    
+    
+ <eos> BackupPower
+    
+  
+  
+;- Hub Operations
+  
+  
+  
+  ;- Device Operations
+  
+  
+  
+  ;- Device Composition
+  
+  
+  
+  ;- BackupPower Composition
+  
+  
+  
+  ;- Device Status
+  
+  
+  
+  ;- Device Types
+  
+  
+  
+  ;- Sensor Operations
+  
+  
+  
+  ;- Alarm Operations
+  
+  
+  
+  ;- System Admin
+  
+  
+  
+  ;- System AdminOperations
+  
+  
+  
+  ;- System AdminComposition
+  
+  
+  
+  ;- Reactor Control
+  
+  
+  
+  ;- Cooling System
+  
+  
+  
+  ;- Monitoring System
+  
+  
+  
+  ;- Alarm System
+  
+  
+  
+  ;- Alarm SystemOperations
+  
+  
+  
+  ;- Alarm SystemComposition
+  
+  
+  
+  ;- Sensor Composition
+  
+  
+  
+  ;}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  composition SmartHome -> Hub
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

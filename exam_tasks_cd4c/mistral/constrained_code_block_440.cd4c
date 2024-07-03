@@ -1,0 +1,56 @@
+
+classdiagram MusicProduction {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String genre;
+    Course(String title, String description, String uniqueIdentifier, String genre);
+  }
+
+  class Student {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    Course [ ] enrollments;
+    Student(String name, String email, String uniqueIdentifier);
+  }
+
+  class Instructor {
+    String name;
+    String uniqueIdentifier;
+    Course [ ] courses;
+    Instructor(String name, String uniqueIdentifier);
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String topic;
+    Lesson(String title, String description, String uniqueIdentifier, String topic);
+  }
+
+  class Enrollment {
+    String startDate;
+    String endDate;
+    Student student;
+    Course course;
+    Enrollment(String startDate, String endDate, Student student, Course course);
+  }
+
+  class Administrator {
+    String name;
+    String uniqueIdentifier;
+    Course [ ] courses;
+    Instructor [ ] instructors;
+    Student [ ] students;
+    Administrator(String name, String uniqueIdentifier);
+  }
+
+  composition Course [*] courses -> Administrator;
+  composition Course [*] instructors -> Instructor;
+  composition Course [*] lessons -> Lesson;
+  composition Student [*] enrollments -> Enrollment;
+}

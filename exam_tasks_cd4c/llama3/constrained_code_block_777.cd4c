@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram TelepresenceRoboticsSystem  {
+
+  class Robot  {
+    String name;
+    String uniqueIdentifier;
+    istringstream surroundings;
+    RobotState state;
+  }
+
+  class UI  {
+    UserState state;
+  }
+
+  class Network  {
+    NetworkState state;
+  }
+
+  class Database  {
+    Table robotMovements;
+    Table userInteractions;
+    Table systemPerformanceMetrics;
+  }
+
+  enum RobotState  {
+    Idle,
+    Moving,
+    Stopped
+  ;}
+
+  enum UserState  {
+    Connected,
+    Disconnected
+  ;}
+
+  enum NetworkState  {
+    Connected,
+    Disconnected
+  ;}
+
+  composition Robot -> (has) surroundings;
+  composition UI -> (has) state;
+  composition Network -> (has) state;
+  composition Database -> (has) robotMovements;
+  composition Database -> (has) userInteractions;
+  composition Database -> (has) systemPerformanceMetrics;
+  composition Robot -> (has) state;
+  composition UI -> (has) state;
+  composition Network -> (has) state;
+}

@@ -1,0 +1,48 @@
+
+classdiagram AuctionPlatform {
+
+  class User {
+    String username;
+    String password;
+    void createAuction(Auction auction);
+    void bidOnItem(Item item, double bidAmount);
+    void purchaseItem(Item item);
+  }
+
+  class Item {
+    String identifier;
+    String name;
+    String description;
+    double price;
+    String category;
+    Item(String identifier, String name, String description, double price, String category);
+  }
+
+  class Auction {
+    String identifier;
+    Item item;
+    Date startDate;
+    Date endDate;
+    User highestBidder;
+    List<Bid> bidHistory;
+    Auction(String identifier, Item item, Date startDate, Date endDate);
+  }
+
+  class Bid {
+    User bidder;
+    double bidAmount;
+    Bid(User bidder, double bidAmount);
+  }
+
+  class Admin {
+    void manageUsers();
+    void manageItems();
+    void manageAuctions();
+  }
+
+  association User - has -> Auction [1..*];
+  association User - has -> Item [1..*];
+  association Item - has -> Auction [1..*];
+  association Auction - has -> Bid [1..*];
+  composition Admin - has -> User;
+}

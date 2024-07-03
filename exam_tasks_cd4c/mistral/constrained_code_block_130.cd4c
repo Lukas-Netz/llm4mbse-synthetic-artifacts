@@ -1,0 +1,54 @@
+
+classdiagram VideoEditingSystem {
+
+  class VideoLibrary {
+    VideoClip [						] videoClips;
+  }
+
+  class ProjectManager {
+    String projectName;
+    Date startDate;
+    Date endDate;
+    VideoProject videoProject;
+  }
+
+  class ClipManager {
+    VideoClip videoClip;
+    VideoClipStatus status;
+  }
+
+  class VideoClip {
+    int duration;
+    String resolution;
+    String format;
+  }
+
+  class VideoProject {
+    String projectName;
+    Date startDate;
+    Date endDate;
+    VideoClip [						] videoClips;
+  }
+
+  class AIEngine {
+    String algorithmType;
+    int confidenceLevel;
+  }
+
+  class RenderingEngine {
+    String renderingQuality;
+    String outputFormat;
+  }
+
+  class VideoClipStatus {
+    boolean isInProject;
+  }
+
+  composition VideoEditingSystem -> VideoLibrary;
+  composition VideoEditingSystem -> ProjectManager;
+  composition ProjectManager -> VideoProject;
+  composition ProjectManager -> AIEngine;
+  composition ProjectManager -> RenderingEngine;
+  association ProjectManager -> ClipManager [*];
+  association VideoProject -> VideoClip [*];
+}

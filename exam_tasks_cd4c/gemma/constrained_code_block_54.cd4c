@@ -1,0 +1,81 @@
+
+
+classdiagram MLP {
+
+  class ProjectManager {
+    List<Project> projects;
+  }
+
+  class Project {
+    String name;
+    String description;
+    List<Model> models;
+  }
+
+  class Model {
+    String name;
+    String description;
+    Type type;
+    Status status;
+    List<Version> versions;
+  }
+
+  enum Type {
+    Classification, Regression, Clustering
+  
+
+  
+  
+ ;}
+
+  enum Status {
+    Training, Testing, Deployed
+  
+
+  
+  
+ ;}
+
+  class Version {
+    int versionNumber;
+    String description;
+    List<Metric> metrics;
+  }
+
+  class Metric {
+    String name;
+    double value;
+    Type type;
+  }
+
+  enum Type {
+    Accuracy, Precision, Recall
+  
+
+  
+  
+ ;}
+
+  class UserManagementSystem {
+    List<User> users;
+  }
+
+  class User {
+    String name;
+    Type type;
+  }
+
+  enum Type {
+    Administrator, DataScientist
+  
+
+  
+  
+ ;}
+
+  composition ProjectManager -> Project [*];
+  composition Project -> Model [*];
+  composition Model -> Version [*];
+  composition Model -> Metric [*];
+  composition UserManagementSystem -> User [*];
+}

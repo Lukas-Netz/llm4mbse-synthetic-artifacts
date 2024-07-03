@@ -1,0 +1,49 @@
+
+classdiagram VirtualDataRoom {
+
+    class VirtualDataRoom {
+      String uniqueIdentifier;
+      String name;
+      List<Document> documents;
+    }
+
+    class Document {
+      String title;
+      String description;
+      int versionNumber;
+      List<User> assignedUsers;
+    }
+
+    class User {
+      String username;
+      String password;
+      String employeeID;
+      String role;
+    }
+
+    class InternalUser extends User {
+      String employeeID;
+      String role;
+    }
+
+    class ExternalUser extends User {
+      String username;
+      String password;
+    }
+
+    class AccessLevel {
+      String level;
+    }
+
+    class DocumentAccess {
+      AccessLevel accessLevel;
+      User user;
+    }
+
+    association VirtualDataRoom -> [has] Document;
+    association VirtualDataRoom -> [has] User;
+    association Document -> [has] DocumentAccess;
+    association User -> [has] DocumentAccess;
+    association InternalUser -> [has] User;
+    association ExternalUser -> [has] User;
+}

@@ -1,0 +1,87 @@
+
+
+
+
+classdiagram TalentAcquisitionSystem  {
+
+  class JobPosting  {
+    String title;
+    String description;
+    List<JobRequirement> requirements;
+  }
+
+  class JobRequirement  {
+    String skill;
+    String level;
+  }
+
+  class Candidate  {
+    String name;
+    String email;
+    List<Skill> skills;
+  }
+
+  class Skill  {
+    String name;
+    String level;
+  }
+
+  class Interview  {
+    Candidate candidate;
+    JobPosting jobPosting;
+    List<Question> questions;
+    List<Answer> answers;
+    List<Rating> ratings;
+    List<Comment> comments;
+    List<Note> notes;
+    List<Attachment> attachments;
+  }
+
+  class Question  {
+    String text;
+  }
+
+  class Answer  {
+    String text;
+  }
+
+  class Rating  {
+    int score;
+  }
+
+  class Comment  {
+    String text;
+  }
+
+  class Note  {
+    String text;
+  }
+
+  class Attachment  {
+    String file;
+  }
+
+  class Interviewer  {
+    String name;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition JobPosting -> JobRequirement [*];
+  composition Candidate -> Skill [*];
+  composition Interview -> Candidate;
+  composition Interview -> JobPosting;
+  composition Interview -> Question [*];
+  composition Interview -> Answer [*];
+  composition Interview -> Rating [*];
+  composition Interview -> Comment [*];
+  composition Interview -> Note [*];
+  composition Interview -> Attachment [*];
+  composition Interview -> Interviewer [*];
+  composition Report -> JobPosting;
+  composition Report -> Candidate;
+  composition Report -> Interview;
+}

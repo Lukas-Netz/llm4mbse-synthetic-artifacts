@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram MultiCloudManagement  {
+
+  class CloudProvider  {
+    String name;
+    String apiEndpoint;
+  }
+
+  class CloudResource  {
+    String id;
+    String name;
+    CloudProvider provider;
+  }
+
+  class VirtualMachine extends CloudResource  {
+    int cpuCount;
+    int memoryGB;
+  }
+
+  class Storage extends CloudResource  {
+    int sizeGB;
+  }
+
+  class Network extends CloudResource  {
+    String subnet;
+  }
+
+  class CloudUsage  {
+    CloudResource resource;
+    int usageHours;
+  }
+
+  class CloudPerformance  {
+    CloudResource resource;
+    double latency;
+    double throughput;
+  }
+
+  class Alert  {
+    CloudResource resource;
+    String message;
+  }
+
+  class MultiCloudManagement  {
+    CloudProvider[] providers;
+    CloudResource[] resources;
+    CloudUsage[] usages;
+    CloudPerformance[] performances;
+    Alert[] alerts;
+
+    void createResource(CloudResource resource);
+    void updateResource(CloudResource resource);
+    void deleteResource(CloudResource resource);
+
+    void monitorUsage(CloudResource resource);
+    void monitorPerformance(CloudResource resource);
+
+    void sendAlert(Alert alert);
+  }
+
+  composition MultiCloudManagement  ->  (has) CloudProvider[*];
+  composition MultiCloudManagement  ->  (has) CloudResource[*];
+  composition CloudResource  ->  (has) CloudProvider;
+  composition CloudUsage  ->  (has) CloudResource;
+  composition CloudPerformance  ->  (has) CloudResource;
+  composition Alert  ->  (has) CloudResource;
+}

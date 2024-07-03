@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram FreelancePlatform  {
+
+  class Freelancer  {
+    String name;
+    String skills;
+    Profile profile;
+  }
+
+  class Client  {
+    String name;
+    int budget;
+  }
+
+  class Project  {
+    String title;
+    String description;
+    Date deadline;
+    Freelancer[] freelancers;
+    Client client;
+  }
+
+  class Profile  {
+    String bio;
+    String experience;
+  }
+
+  class Rating  {
+    int score;
+    String comment;
+  }
+
+  class Payment  {
+    PaymentMethod method;
+    int amount;
+  }
+
+  class Notification  {
+    String message;
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  composition Freelancer -> Profile;
+  composition Client -> Project;
+  composition Project -> Freelancer[*];
+  composition Project -> Client;
+  composition Freelancer -> Rating[*];
+  composition Client -> Rating[*];
+  composition Payment -> Freelancer;
+  composition Notification -> Freelancer;
+  composition Notification -> Client;
+}

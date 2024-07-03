@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram BlockchainCoursePlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Topic topic;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    boolean isInstructor;
+  }
+
+  class Section  {
+    String uniqueIdentifier;
+    Course course;
+    boolean isLive;
+  }
+
+  class Lesson  {
+    String title;
+    int score;
+    boolean isCompleted;
+  }
+
+  class Quiz  {
+    String question;
+    String answer;
+    QuizType type;
+  }
+
+  class Topic  {
+    String name;
+  }
+
+  class QuizType  {
+    String type;
+  }
+
+  class Analytics  {
+    int engagement;
+    int progress;
+  }
+
+  class PaymentGateway  {
+    String paymentMethod;
+  }
+
+  composition Course -> Topic;
+  composition User -> Course [0..*];
+  composition Section -> Course;
+  composition Lesson -> Section;
+  composition Quiz -> Lesson;
+  composition Analytics -> User;
+  composition PaymentGateway -> Course;
+}

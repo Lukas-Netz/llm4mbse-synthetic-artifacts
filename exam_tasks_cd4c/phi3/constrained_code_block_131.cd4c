@@ -1,0 +1,55 @@
+
+classdiagram IncidentResponseSystem {
+
+    class IncidentManager {
+      void assignPersonnel(Personnel personnel, System system);
+      void assignSystem(System system, Personnel personnel);
+      void trackIncident(Incident incident);
+      void analyzeIncident(Incident incident);
+      void sendNotification(Personnel personnel, Incident incident);
+      void logActivity(Activity activity);
+    }
+
+    class System {
+      String identifier;
+      String ipAddress;
+      String operatingSystem;
+      String software;
+      Personnel assignedPersonnel;
+      Incident currentIncident;
+    }
+
+    class Personnel {
+      String name;
+      String role;
+      String contactInformation;
+    }
+
+    class Incident {
+      String description;
+      Severity severity;
+      Impact impact;
+      boolean resolved;
+    }
+
+    enum Severity {
+      Low, Medium, High
+   
+   
+   ;}
+
+    enum Impact {
+      Low, Medium, High
+   
+   
+   ;}
+
+    association IncidentManager -> System [*];
+    association IncidentManager -> Personnel [*];
+    association System -> Personnel [*];
+    association System -> Incident [*];
+    association Personnel -> Incident [*];
+    association Personnel -> IncidentManager [*];
+    association Incident -> Activity [*];
+    association Incident -> Notification [*];
+}

@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram VirtualRealityFlightTrainingSystem  {
+
+  class Simulator  {
+    String name;
+    SimulatorType type;
+  }
+
+  class FlightPlan  {
+    String name;
+    Location startLocation;
+    Location endLocation;
+    List<Waypoint> waypoints;
+  }
+
+  class Pilot  {
+    String name;
+    LicenseType licenseType;
+    List<Skill> skills;
+  }
+
+  class ScoringMechanism  {
+    PilotPerformance pilotPerformance;
+  }
+
+  class PilotPerformance  {
+    double navigationScore;
+    double communicationScore;
+    double emergencyProcedureScore;
+  }
+
+  class Waypoint  {
+    Location location;
+  }
+
+  class Location  {
+    String name;
+    double latitude;
+    double longitude;
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class LicenseType  {
+    String name;
+  }
+
+  class SimulatorType  {
+    String name;
+  }
+
+  composition Pilot -> FlightPlan [0..1];
+  composition Simulator -> FlightPlan [0..1];
+  composition ScoringMechanism -> Pilot;
+  association Pilot -> Skill [*];
+  association Simulator -> SimulatorType;
+  association FlightPlan -> Waypoint [*];
+  association Location -> Waypoint;
+  association Skill -> LicenseType;
+  association LicenseType -> Pilot;
+  association SimulatorType -> Simulator;
+}

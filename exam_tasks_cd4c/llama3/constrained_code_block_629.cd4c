@@ -1,0 +1,103 @@
+
+
+
+
+classdiagram AerospaceDigitalTwin  {
+
+  class ProductionProcess  {
+    Design design;
+    Prototyping prototyping;
+    Testing testing;
+    Manufacturing manufacturing;
+  }
+
+  class Design  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Prototyping  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Testing  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Manufacturing  {
+    Material material;
+    Geometry geometry;
+  }
+
+  class Material  {
+    String name;
+    Properties properties;
+  }
+
+  class Geometry  {
+    String name;
+    Dimensions dimensions;
+  }
+
+  class Properties  {
+    Strength strength;
+    Weight weight;
+  }
+
+  class Dimensions  {
+    Length length;
+    Width width;
+    Height height;
+  }
+
+  class Strength  {
+    int value;
+  }
+
+  class Weight  {
+    int value;
+  }
+
+  class Length  {
+    int value;
+  }
+
+  class Width  {
+    int value;
+  }
+
+  class Height  {
+    int value;
+  }
+
+  class AerospaceCompany  {
+    ProductionProcess productionProcess;
+  }
+
+  class User  {
+    String name;
+    String role;
+  }
+
+  class Simulation  {
+    ProductionProcess productionProcess;
+    Material material;
+    Geometry geometry;
+  }
+
+  class Prediction  {
+    Simulation simulation;
+    String result;
+  }
+
+  class Analytics  {
+    Prediction prediction;
+    String result;
+  }
+
+  composition AerospaceCompany -> ProductionProcess;
+  
+
+}

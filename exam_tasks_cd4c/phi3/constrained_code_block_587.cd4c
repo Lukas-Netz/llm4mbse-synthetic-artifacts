@@ -1,0 +1,42 @@
+
+classdiagram BlockchainVotingSystem {
+
+    class Voter {
+      String uniqueIdentifier;
+      java.security.PublicKey publicKey;
+    }
+
+    class Candidate {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Election {
+      String uniqueIdentifier;
+      java.time.LocalDate startDate;
+      java.time.LocalDate endDate;
+    }
+
+    class Ballot {
+      Election election;
+      List<Vote> votes;
+    }
+
+    class Vote {
+      Ballot ballot;
+      Candidate candidate;
+    }
+
+    class Block {
+      List<Vote> votes;
+      String previousHash;
+      String hash;
+    }
+
+    association Voter to [many] -> Ballot;
+    association Candidate to [many] -> Vote;
+    association Election to [many] -> Ballot;
+    association Ballot to [many] -> Vote;
+    composition Block to [many] -> Vote;
+    association Election to [many] -> Block;
+}

@@ -1,0 +1,55 @@
+
+classdiagram AutonomousFlyingCar {
+
+    class FlyingCar {
+      String uniqueIdentifier;
+      Location currentLocation;
+      FlyingCarStatus status;
+      Sensor sensor;
+      Actuator actuator;
+    }
+
+    class ControlUnit {
+      -> FlyingCar [*];
+      void sendCommand(FlyingCar car, Command command);
+      void monitorStatus();
+      SensorData receiveSensorData(FlyingCar car);
+    }
+
+    class SatelliteNetwork {
+      -> ControlUnit [*];
+      void sendCommunication(ControlUnit controlUnit);
+      void receiveCommunication(ControlUnit controlUnit);
+    }
+
+    enum FlyingCarStatus {
+      Airborne, Grounded;
+    }
+
+    enum Command {
+      ChangeLocation, ChangeStatus;
+    }
+
+    class Sensor {
+      double altitude;
+      double speed;
+      double direction;
+    }
+
+    class Actuator {
+      Engine engine;
+      Rotor rotor;
+      LandingGear landingGear;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+  composition FlyingCar -> (has) Sensor;
+  composition FlyingCar -> (has) Actuator;
+  composition ControlUnit -> (has) FlyingCar [*];
+  composition ControlUnit -> (has) SatelliteNetwork [*];
+  composition SatelliteNetwork -> (has) ControlUnit [*];
+}

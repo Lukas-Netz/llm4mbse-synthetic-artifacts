@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram LogisticsSystem  {
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Truck extends Vehicle  {
+    int cargoCapacity;
+    TrailerType trailerType;
+  }
+
+  class Van extends Vehicle  {
+    int cargoCapacity;
+    CargoType cargoType;
+  }
+
+  class Car extends Vehicle  {
+    int cargoCapacity;
+    FuelEfficiencyRating fuelEfficiencyRating;
+  }
+
+  class MaintenanceTask  {
+    Date dueDate;
+    Vehicle vehicle;
+  }
+
+  class FuelConsumptionReport  {
+    Vehicle vehicle;
+    double totalFuelConsumed;
+  }
+
+  class DistanceTraveledReport  {
+    Vehicle vehicle;
+    double totalDistanceTraveled;
+  }
+
+  class CRMIntegration  {
+    CustomerOrder customerOrder;
+    Vehicle vehicle;
+  }
+
+  enum VehicleStatus  {
+    Available, Unavailable;
+  }
+
+  enum TrailerType  {
+    Open, Enclosed;
+  }
+
+  enum CargoType  {
+    General, Refrigerated;
+  }
+
+  enum FuelEfficiencyRating  {
+    Low, Medium, High;
+  }
+
+  composition Vehicle -> MaintenanceTask [0..*];
+  composition Vehicle -> FuelConsumptionReport [0..1];
+  composition Vehicle -> DistanceTraveledReport [0..1];
+  composition CRMIntegration -> CustomerOrder [1..1];
+  composition CRMIntegration -> Vehicle [1..1];
+}

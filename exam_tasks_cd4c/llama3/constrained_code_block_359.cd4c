@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram OnlineBillingSystem  {
+
+  class Customer  {
+    String customerID;
+    String name;
+    String address;
+    -> Order[*];
+  }
+
+  class Order  {
+    String orderID;
+    Date date;
+    double totalAmount;
+    -> Item[*];
+    -> Payment[*];
+    -> Customer;
+  }
+
+  class Item  {
+    String itemID;
+    String name;
+    double price;
+    -> Order;
+  }
+
+  class Payment  {
+    String paymentID;
+    Date date;
+    double amount;
+    -> Order;
+  }
+
+  composition Customer -> Order[*];
+  composition Order -> Item[*];
+  composition Order -> Payment[*];
+  composition Order -> Customer;
+  composition Payment -> Order;
+}

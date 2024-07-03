@@ -1,0 +1,54 @@
+
+classdiagram VRtourism {
+
+  class Destination {
+    String name;
+    String description;
+    Attraction [ ] attractions;
+  }
+
+  class Attraction {
+    String name;
+    String description;
+    AttractionType type;
+  }
+
+  enum AttractionType {
+    Museum, Landmark, Park, etc;
+  }
+
+  class User {
+    String username;
+    String password;
+    Wishlist wishlist;
+    Review [ ] reviews;
+  }
+
+  class Wishlist {
+    Destination [ ] destinations;
+    Attraction [ ] attractions;
+  }
+
+  class Review {
+    Attraction attraction;
+    String content;
+    int rating;
+  }
+
+  class Administrator extends User {
+    void manageDestinations();
+    void manageAttractions();
+    void manageReviews();
+  }
+
+  class SearchCriteria {
+    String location;
+    AttractionType type;
+    String keyword;
+  }
+
+  association User -- [  has ] Wishlist;
+  association User -- [  has ] Review;
+  association Administrator -- [  has ] User;
+  association Destination -- [  has ] Attraction;
+}

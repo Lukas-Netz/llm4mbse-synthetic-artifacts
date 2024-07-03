@@ -1,0 +1,68 @@
+
+classdiagram CloudNativeApp {
+
+    class CloudNativeApp {
+      Hub hub;
+      BackupPower backupPower;
+      Database database;
+      LoadBalancer loadBalancer;
+      MonitoringLoggingSystem monitoringLoggingSystem;
+      SecuritySystem securitySystem;
+      BackupRecoverySystem backupRecoverySystem;
+      DisasterRecoverySystem disasterRecoverySystem;
+      TestDeploymentSystem testDeploymentSystem;
+      CICDeploymentSystem CICDeploymentSystem;
+    }
+
+    class Hub {
+      -> Device [*];
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      String checkBackupPowerStatus();
+    }
+
+    abstract class Device {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    class Light extends Device {
+      int brightnessLevel;
+      String color;
+    }
+
+    class Thermostat extends Device {
+      int temperature;
+      ThermostatMode mode;
+    }
+
+    class SecurityCamera extends Device {
+      String resolution;
+      boolean isRecording;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+    enum DeviceStatus {
+      On, Off;
+    }
+
+    enum ThermostatMode {
+      Heating, Cooling;
+    }
+
+    association CloudNativeApp -> (has) Hub;
+    association CloudNativeApp -> (has) BackupPower [0..1];
+    association CloudNativeApp -> (has) Database;
+    association CloudNativeApp -> (has) LoadBalancer;
+    association CloudNativeApp -> (has) MonitoringLoggingSystem;
+    association CloudNativeApp -> (has) SecuritySystem;
+    association CloudNativeApp -> (has) BackupRecoverySystem;
+    association CloudNativeApp -> (has) DisasterRecoverySystem;
+    association CloudNativeApp -> (has) TestDeploymentSystem;
+    association CloudNativeApp -> (has) CICDeploymentSystem;
+
+    composition Hub -> Device [*];
+}

@@ -1,0 +1,61 @@
+
+classdiagram EcommercePlatform {
+
+    class Customer {
+      String uniqueID;
+      String name;
+      String email;
+      List<Order> orders;
+    }
+
+    class Order {
+      String uniqueID;
+      Date orderDate;
+      BigDecimal totalCost;
+      List<Item> items;
+      Customer customer;
+    }
+
+    class Item {
+      String uniqueID;
+      String name;
+      BigDecimal price;
+      List<Category> categories;
+    }
+
+    class Category {
+      String uniqueID;
+      String name;
+      String description;
+      List<Item> items;
+    }
+
+    class Sale {
+      String uniqueID;
+      Date saleDate;
+      int quantitySold;
+      Order order;
+    }
+
+    class MarketingCampaign {
+      String uniqueID;
+      String name;
+      String description;
+      List<Customer> customers;
+    }
+
+    class Inventory {
+      String uniqueID;
+      String name;
+      BigDecimal quantityInStock;
+      List<Item> items;
+    }
+
+    association Customer -> Order [1..*];
+    association Order -> Item [1..];
+    association Order -> Sale [1..];
+    association Customer -> MarketingCampaign [0..1];
+    association Item -> Category [1..];
+    association Sale -> Inventory [1..];
+    composition Customer -> Inventory [1..];
+}

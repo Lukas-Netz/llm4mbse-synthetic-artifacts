@@ -1,0 +1,57 @@
+
+classdiagram Telehealth {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      String contactInfo;
+      List<Appointment> appointments;
+      MedicalRecord medicalRecord;
+    }
+
+    class HealthcareProfessional {
+      String uniqueId;
+      String name;
+      String specialty;
+      List<Appointment> appointments;
+    }
+
+    class Appointment {
+      Date date;
+      Time time;
+      AppointmentStatus status;
+      Patient patient;
+      HealthcareProfessional healthcareProfessional;
+    }
+
+    class MedicalRecord {
+      TestResults testResults;
+      MedicationList medicationList;
+      AllergyList allergies;
+    }
+
+    class TestResults {
+      String testType;
+      String result;
+    }
+
+    class MedicationList {
+      String medicationName;
+      String dosage;
+    }
+
+    class AllergyList {
+      String allergen;
+      String reaction;
+    }
+
+    class AppointmentStatus {
+      String status;
+    }
+
+    association Patient -> List<<Appointment>>;
+    association HealthcareProfessional -> List<<Appointment>>;
+    association Appointment -> Patient;
+    association Appointment -> HealthcareProfessional;
+    composition Patient -> MedicalRecord;
+}

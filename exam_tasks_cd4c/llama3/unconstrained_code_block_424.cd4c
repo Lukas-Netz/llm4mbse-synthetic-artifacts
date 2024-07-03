@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram BCI  {
+
+  class User  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Session  {
+    String uniqueIdentifier;
+    Date startTime;
+    Date endTime;
+  }
+
+  class Headset  {
+    String name;
+    String uniqueIdentifier;
+    Sensor[] sensors;
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class ProcessingUnit  {
+    String name;
+    String uniqueIdentifier;
+    Headset headset;
+  }
+
+  class ControlDevice  {
+    String name;
+    String uniqueIdentifier;
+    ProcessingUnit processingUnit;
+  }
+
+  class System  {
+    User user;
+    Session[] sessions;
+    Headset headset;
+    ProcessingUnit processingUnit;
+    ControlDevice controlDevice;
+  }
+
+  composition System -> (has) User;
+  composition System -> (has) Headset;
+  composition System -> (has) ProcessingUnit;
+  composition System -> (has) ControlDevice;
+  composition ProcessingUnit -> (has) Headset;
+  composition ControlDevice -> (has) ProcessingUnit;
+}

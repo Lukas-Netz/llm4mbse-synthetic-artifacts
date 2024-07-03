@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram SimulationCenter  {
+
+  class Room  {
+    Equipment equipment;
+    Mannequin mannequin;
+  }
+
+  class Instructor  {
+    AreaOfExpertise expertise;
+    Room room;
+  }
+
+  class Mannequin  {
+    Condition condition;
+  }
+
+  class Equipment  {
+    String type;
+  }
+
+  class AreaOfExpertise  {
+    String name;
+  }
+
+  class Condition  {
+    String description;
+  }
+
+  class SchedulingSystem  {
+    Room[] rooms;
+    Instructor[] instructors;
+    Mannequin[] mannequins;
+    Equipment[] equipment;
+  }
+
+  composition SchedulingSystem -> (has) Room[*];
+  composition SchedulingSystem -> (has) Instructor[*];
+  composition SchedulingSystem -> (has) Mannequin[*];
+  composition SchedulingSystem -> (has) Equipment[*];
+  composition Room -> (has) Mannequin;
+  composition Room -> (has) Equipment;
+  composition Instructor -> (has) Room;
+  composition Mannequin -> (has) Condition;
+  composition Equipment -> (has) type;
+  composition AreaOfExpertise -> (has) name;
+  composition Condition -> (has) description;
+}

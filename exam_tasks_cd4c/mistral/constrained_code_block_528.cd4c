@@ -1,0 +1,43 @@
+
+classdiagram OTEC {
+
+  class HeatExchanger {
+    float surfaceArea;
+    float heatTransferCoefficient;
+  }
+
+  class ColdWaterIntake {
+    float depth;
+    float flowRate;
+  }
+
+  class Turbine {
+    float rotationalSpeed;
+    float powerOutput;
+  }
+
+  class Generator {
+    float voltage;
+    float currentOutput;
+  }
+
+  class ControlSystem {
+    HeatExchanger heatExchanger;
+    ColdWaterIntake coldWaterIntake;
+    Turbine turbine;
+    Generator generator;
+    Sensor temperatureSensor;
+    Sensor pressureSensor;
+    Sensor flowRateSensor;
+  }
+
+  class Sensor {
+    float value;
+  }
+
+  composition ControlSystem -> HeatExchanger;
+  composition ControlSystem -> ColdWaterIntake;
+  composition ControlSystem -> Turbine;
+  composition ControlSystem -> Generator;
+  association ControlSystem -> Sensor [*];
+}

@@ -1,0 +1,42 @@
+
+classdiagram CybersecuritySystem {
+
+    class Network {
+      Node[] nodes;
+      Edge[] edges;
+    }
+
+    class Sensor {
+      String id;
+      String attackType;
+      void detectAnomaly(Network network);
+    }
+
+    class Anomaly {
+      String id;
+      int severity;
+      String timestamp;
+    }
+
+    class Rule {
+      String attackType;
+      int severity;
+    }
+
+    class Response {
+      String action;
+      int severity;
+    }
+
+    class EventLog {
+      Anomaly anomaly;
+      Response response;
+      String timestamp;
+      void logEvent();
+    }
+
+    composition Network -> (has) Sensor [*];
+    composition Sensor -> (has) Anomaly [0..1];
+    composition Anomaly -> (has) EventLog [1..*];
+    composition EventLog -> (has) Response [1..*];
+}

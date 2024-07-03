@@ -1,0 +1,99 @@
+
+classdiagram FinancialPlanningSystem {
+
+    class UserProfile {
+      String userId;
+      String personalData;
+      FinancialGoals financialGoals;
+      RiskTolerance riskTolerance;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class AnalysisEngine {
+      void analyzeData(UserProfile profile, FinancialData data);
+    }
+
+    class RecommendationEngine {
+      void generateRecommendations(UserProfile profile, FinancialData data);
+    }
+
+    class TransactionManager {
+      void performTransaction(UserProfile profile, FinancialData data);
+    }
+
+    class Reporting {
+      void generateReport(UserProfile profile, FinancialData data);
+    }
+
+    class UserAuthentication {
+      void authenticateUser(String userId);
+      void authorizeUser(String userId);
+    }
+
+    class DataSecurity {
+      void encryptData(FinancialData data);
+      void decryptData(FinancialData data);
+    }
+
+    class ExternalIntegration {
+      void integrateWithInstitution(String institutionId);
+    }
+
+    class MultiCurrencySupport {
+      String convertCurrency(String amount, String currency);
+    }
+
+    class MultiLanguageSupport {
+      String translateText(String text, String language);
+    }
+
+    class FinancialGoals {
+      String goal;
+      int targetAmount;
+    }
+
+    class RiskTolerance {
+      String level;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+    class FinancialData {
+      String source;
+      String data;
+    }
+
+   
+}

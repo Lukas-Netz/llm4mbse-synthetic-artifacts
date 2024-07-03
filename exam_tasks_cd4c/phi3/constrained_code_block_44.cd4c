@@ -1,0 +1,68 @@
+
+classdiagram ElearningPlatform {
+
+    class User {
+      String username;
+      String password;
+      UserType type;
+    }
+
+    class Instructor extends User {
+      void createCourse(Course course);
+      void manageCourse(Course course);
+    }
+
+    class Student extends User {
+      void enrollInCourse(Course course);
+      void trackProgress(Enrollment enrollment);
+    }
+
+    class Course {
+      String title;
+      String description;
+      String category;
+      boolean isOnline;
+      List<Lesson> lessons;
+    }
+
+    class Lesson {
+      String title;
+      String description;
+      ContentType contentType;
+      Lesson content;
+    }
+
+    class ContentType {
+      String type;
+    }
+
+    class Content {
+      String content;
+    }
+
+    class ContentTypeText extends Content {
+      String content;
+    }
+
+    class ContentTypeVideo extends Content {
+      String videoUrl;
+    }
+
+    class Enrollment {
+      User user;
+      Course course;
+      Progress progress;
+    }
+
+    class Progress {
+      Enrollment enrollment;
+      boolean completed;
+    }
+
+    composition User -> (has) Instructor;
+    composition User -> (has) Student;
+    composition Course -> (has) Lesson [*];
+    composition Enrollment -> (has) User;
+    composition Enrollment -> (has) Course;
+    composition Enrollment -> (has) Progress;
+}

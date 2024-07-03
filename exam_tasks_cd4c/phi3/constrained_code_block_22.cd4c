@@ -1,0 +1,49 @@
+
+classdiagram CloudServiceProvider {
+
+    class Service {
+      String uniqueIdentifier;
+      String name;
+      String[] features;
+      PricePlan pricingPlan;
+    }
+
+    class StorageService extends Service {
+      String[] storageTypes;
+    }
+
+    class ProcessingService extends Service {
+      String[] processingTypes;
+    }
+
+    class NetworkingService extends Service {
+      String[] networkingTypes;
+    }
+
+    class PricePlan {
+      double basePrice;
+      double usageBasedPrice;
+    }
+
+    class LoyaltyProgram {
+      String[] rules;
+      String[] rewards;
+    }
+
+    class CustomerSupport {
+      String[] skills;
+      String[] knowledgeBases;
+    }
+
+    class ServiceProvider {
+      Service[] services;
+      LoyaltyProgram loyaltyProgram;
+      CustomerSupport customerSupport;
+      PolicyPolicy procedures;
+    }
+
+    association ServiceProvider -> Service [*];
+    composition ServiceProvider -> LoyaltyProgram [0..1];
+    composition ServiceProvider -> CustomerSupport [0..1];
+    composition ServiceProvider -> PolicyPolicy [0..1];
+}

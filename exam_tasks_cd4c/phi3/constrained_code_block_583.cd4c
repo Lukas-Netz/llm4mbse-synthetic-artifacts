@@ -1,0 +1,74 @@
+
+classdiagram MriSystem {
+
+    class MriSystem {
+      Scanner scanner;
+      Computer computer;
+      Console console;
+      SequenceManager sequenceManager;
+      PatientDatabase patientDatabase;
+    }
+
+    class Scanner {
+      String scannerType;
+      ScannerState state;
+      void startScanning();
+      void enterMaintenance();
+      void returnToIdle();
+    }
+
+    class Computer {
+      void controlScanner();
+      void storeImages(Image image, String format);
+    }
+
+    class Console {
+      void controlScanner();
+      void displayImages(Image image);
+    }
+
+    class Sequence {
+      String sequenceName;
+      SequenceSettings settings;
+      void acquireImages();
+    }
+
+    class SequenceSettings {
+      int echoTime;
+      int repetitionTime;
+    }
+
+    class Image {
+      String format;
+      String imageData;
+    }
+
+    class Patient {
+      String patientId;
+      String name;
+      Date birthDate;
+    }
+
+    class PatientDatabase {
+      Map<String, Patient> patients;
+      Map<String, Image> imageData;
+      void retrievePatientInfo(String patientId);
+      void retrieveImageData(String patientId);
+    }
+
+  composition MriSystem -> (has) Scanner;
+  composition MriSystem -> (has) Computer;
+  composition MriSystem -> (has) Console;
+  composition MriSystem -> (has) SequenceManager;
+  composition MriSystem -> (has) PatientDatabase;
+
+  association MriSystem.scanner -> Scanner;
+  association MriSystem.computer -> Computer;
+  association MriSystem.console -> Console;
+  association MriSystem.sequenceManager -> SequenceManager;
+  association MriSystem.patientDatabase -> PatientDatabase;
+
+  association SequenceManager.sequences -> Sequence;
+ 
+ 
+ }

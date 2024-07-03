@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram WebHostingService  {
+
+  class Website  {
+    String domainName;
+    User[] users;
+  }
+
+  class User  {
+    String username;
+    String password;
+    Website[] assignedWebsites;
+  }
+
+  class HostingPlan  {
+    String name;
+    int storageCapacity;
+    int bandwidth;
+    int emailAccounts;
+  }
+
+  class BillingSystem  {
+    Invoice[] invoices;
+  }
+
+  class Invoice  {
+    int invoiceNumber;
+    Date dueDate;
+  }
+
+  class DomainName  {
+    String name;
+  }
+
+  class StorageCapacity  {
+    int capacity;
+  }
+
+  class Bandwidth  {
+    int capacity;
+  }
+
+  class EmailAccounts  {
+    int accounts;
+  }
+
+  composition Website -> (has) User[*];
+  composition Website -> (has) HostingPlan [1];
+  composition HostingPlan -> (has) StorageCapacity;
+  composition HostingPlan -> (has) Bandwidth;
+  composition HostingPlan -> (has) EmailAccounts;
+  composition BillingSystem -> (has) Invoice[*];
+  composition Invoice -> (has) Website [1];
+}

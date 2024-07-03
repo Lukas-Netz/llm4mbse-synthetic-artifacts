@@ -1,0 +1,25 @@
+
+
+classdiagram HeatMappingTechnology {
+
+    class HeatMapGenerator {
+      -> Sensor [*];
+      void generateHeatMap();
+      void storeHeatMap(HeatMap heatMap);
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      int temperature;
+      int humidity;
+      int pressure;
+    }
+
+    class HeatMap {
+      String uniqueIdentifier;
+      int[][] data;
+    }
+
+    composition HeatMapGenerator -> Sensor [*];
+    composition HeatMapGenerator -> HeatMap [0..1];
+}

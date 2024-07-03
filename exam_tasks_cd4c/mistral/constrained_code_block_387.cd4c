@@ -1,0 +1,42 @@
+
+classdiagram DigitalPublishing {
+
+  class Content {
+    String uniqueIdentifier;
+    String title;
+    ContentStatus status;
+    Author [  ] authors;
+    Editor [ ] editors;
+    Publisher [ ] publishers;
+  }
+
+  class Author {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Editor {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Publisher {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  enum ContentStatus {
+    Draft, Submitted, Approved, Published, Rejected;
+  }
+
+  class Report {
+    String contentTitle;
+    ContentStatus status;
+    String publicationHistory;
+  }
+
+  composition Content -> Author [*];
+  composition Content -> Editor [*];
+  composition Content -> Publisher [*];
+  association Report -- Content;
+}

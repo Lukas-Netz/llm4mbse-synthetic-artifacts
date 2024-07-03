@@ -1,0 +1,64 @@
+
+classdiagram ChatbotSystem {
+
+  class Chatbot {
+    String uniqueIdentifier;
+    String personality;
+    KnowledgeBase knowledgeBase;
+    Set<Skill> skills;
+  }
+
+  class Department {
+    String name;
+    Chatbot chatbot;
+  }
+
+  class CentralHub {
+    -> Department [*];
+    -> Chatbot [*];
+    void routeRequest(UserRequest request);
+    void trackConversationHistory(UserRequest request);
+  }
+
+  class UserRequest {
+    String text;
+    String department;
+  }
+
+  class KnowledgeBase {
+    Map<String, Response> responses;
+  }
+
+  class Response {
+    String text;
+    String sentiment;
+  }
+
+  class Skill {
+    String name;
+    int level;
+  }
+
+  class LanguageUnderstanding {
+    int level;
+  }
+
+  class SentimentAnalysis {
+    int level;
+  }
+
+  class ResponseGeneration {
+    int level;
+  }
+
+  composition CentralHub -> Department [*];
+  composition CentralHub -> Chatbot [*];
+  association Department --o000o- 											;
+  association Chatbot --o000o- 											;
+  association CentralHub --o000o- 											;
+  association Department --o000o- 											;
+  association Chatbot --o000o- 											;
+  association UserRequest --o000o- 											;
+  association KnowledgeBase --o000o- 										;
+  association Response --o000o- 											;
+ 				}

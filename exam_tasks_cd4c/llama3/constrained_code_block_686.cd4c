@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram HomeBrewingSystem  {
+
+  class Controller  {
+    void startBrewing();
+    void stopBrewing();
+    void adjustBrewingSteps();
+  }
+
+  class WaterTank  {
+    int capacity;
+    void fill();
+    void empty();
+  }
+
+  class HeatingElement  {
+    boolean isOn;
+    void turnOn();
+    void turnOff();
+  }
+
+  class CoolingElement  {
+    boolean isOn;
+    void turnOn();
+    void turnOff();
+  }
+
+  class BrewingVessel  {
+    int volume;
+    void clean();
+  }
+
+  class BrewingStep  {
+    Temperature temperature;
+    Duration duration;
+  }
+
+  class Sensor  {
+    Temperature temperature;
+    Pressure pressure;
+    LiquidLevel liquidLevel;
+  }
+
+  class MobileApp  {
+    void startBrewing();
+    void stopBrewing();
+    void adjustBrewingSteps();
+  }
+
+  composition Controller -> (has) WaterTank;
+  composition Controller -> (has) HeatingElement;
+  composition Controller -> (has) CoolingElement;
+  composition Controller -> (has) BrewingVessel;
+  composition Controller -> (has) Sensor;
+  composition MobileApp -> (has) Controller;
+
+  enum Temperature;
+  enum Duration;
+  enum Pressure;
+  enum LiquidLevel;
+}

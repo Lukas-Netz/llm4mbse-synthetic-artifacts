@@ -1,0 +1,36 @@
+
+classdiagram VideoCallingPlatform {
+
+    class User {
+      String uniqueId;
+      UserProfile profile;
+    }
+
+    class UserProfile {
+      String name;
+      String email;
+      String password;
+    }
+
+    class Call {
+      User caller;
+      User callee;
+      CallSession callSession;
+      void initiateCall(User callee);
+      void answerCall(User caller);
+    }
+
+    class CallSession {
+      Date startTime;
+      Date endTime;
+      User caller;
+      User callee;
+      String status;
+      void sendMessage(String message);
+      void sendFile(File file);
+    }
+
+    association User -> Call [*];
+    association User -> CallSession [*];
+    composition Call -> CallSession;
+}

@@ -1,0 +1,34 @@
+
+
+classdiagram SmartEnergyMeterSystem {
+
+  class SmartMeter {
+    String uniqueIdentifier;
+    int energyConsumptionKwh;
+  }
+
+  class CentralServer {
+    List<SmartMeter> smartMeters;
+    void storeData(SmartMeter smartMeter, int energyConsumptionKwh);
+    void analyzeEnergyConsumptionPatterns();
+  }
+
+  class MobileApp {
+    void viewEnergyConsumptionData();
+    void setTargetsForReducingEnergyConsumption();
+    void receiveNotificationsWhenTargetsReached();
+  }
+
+  class SmartPlug {
+    String uniqueIdentifier;
+    boolean isOn;
+    void turnOn();
+    void turnOff();
+    void scheduleTurnOnOff();
+  }
+
+  composition SmartMeter -> CentralServer;
+  composition CentralServer -> SmartMeter [*];
+  association MobileApp -> CentralServer;
+  association SmartPlug -> CentralServer;
+}

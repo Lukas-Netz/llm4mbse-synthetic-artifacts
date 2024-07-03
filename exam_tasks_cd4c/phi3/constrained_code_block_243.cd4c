@@ -1,0 +1,43 @@
+
+classdiagram PredictiveEnergyManagement {
+
+    class Building {
+      Floor[] floors;
+    }
+
+    class Floor {
+      Room[] rooms;
+    }
+
+    class Room {
+      Device[] devices;
+    }
+
+    class Device {
+      String identifier;
+      DeviceType type;
+    }
+
+    enum DeviceType {
+      Light, Computer, Appliance
+   
+   
+   ;}
+
+    class WeatherStation {
+      String temperature;
+      String humidity;
+      String windSpeed;
+    }
+
+    class UI {
+      void displayDevices();
+      void controlDevice(String deviceId, String action);
+    }
+
+    association Building -> Floor [*];
+    association Floor -> Room [*];
+    association Room -> Device [*];
+    association WeatherStation -> Building [0..1];
+    association UI -> Building [0..1];
+}

@@ -1,0 +1,39 @@
+
+
+
+
+classdiagram SmartBuildingAnalytics  {
+
+  class Building  {
+    String name;
+    Device  device  ;  }
+  class Device  {
+    String uniqueId;
+    EnergyConsumption energyConsumption;
+  }
+  class EnergyConsumption  {
+    double totalEnergyConsumed;
+    double currentEnergyConsumption;
+  }
+  class BuildingManager  {
+    Building  building;
+    void analyzeEnergyConsumption();
+  }
+  class FacilityManager  {
+    Building  building;
+    void viewEnergyConsumption();
+  }
+  class BMS  {
+    Building  building;
+    void integrateWithSmartBuildingAnalytics();
+  }
+  class EMS  {
+    Building  building;
+    void integrateWithSmartBuildingAnalytics();
+  }
+  composition Building  ->  (has) Device  [*];
+  composition BuildingManager  ->  (has) Building;
+  composition FacilityManager  ->  (has) Building;
+  composition BMS  ->  (has) Building;
+  composition EMS  ->  (has) Building;
+}

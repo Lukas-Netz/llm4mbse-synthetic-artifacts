@@ -1,0 +1,33 @@
+
+classdiagram AutomatedDocumentReviewSystem {
+
+    class Document {
+      String uniqueIdentifier;
+      String title;
+      String content;
+    }
+
+    class DocumentRepository {
+      List<Document> documents;
+      void addDocument(Document document);
+      Document getDocumentById(String identifier);
+    }
+
+    class DocumentAnalyzer {
+      void analyzeDocument(Document document);
+    }
+
+    class Categorizer {
+      void categorizeDocument(Document document);
+    }
+
+    class UserInterface {
+      void searchDocuments(String query);
+      void displayCategorizedDocuments();
+    }
+
+    composition DocumentRepository -> (has) Document;
+    composition DocumentRepository -> (has) DocumentAnalyzer;
+    composition DocumentRepository -> (has) Categorizer;
+    composition DocumentRepository -> (has) UserInterface;
+}

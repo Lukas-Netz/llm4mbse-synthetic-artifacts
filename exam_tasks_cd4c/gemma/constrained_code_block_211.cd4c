@@ -1,0 +1,119 @@
+
+
+#  classdiagram PersonalFinanceManagementSystem
+
+  
+
+{classdiagram
+
+  
+
+  
+
+  
+
+  
+
+{class PersonalFinanceManagementSystem
+
+  
+
+  
+
+  ;
+
+  class User
+
+  
+
+  
+
+  ;
+
+  class Account
+
+  
+
+  
+
+  ;
+
+  class Transaction
+
+  
+
+  
+
+  ;
+
+  class Budget
+
+  
+
+  
+
+  ;
+
+  class Goal
+
+  
+
+  
+
+  ;
+
+  
+
+  
+
+  composition PersonalFinanceManagementSystem  (has  User)
+
+  
+
+  
+
+  ;
+
+  composition PersonalFinanceManagementSystem  (has  Account)
+
+  
+
+  
+
+  ;
+
+  composition User  (has  Account)
+
+  
+
+  
+
+  ;
+
+  association Account  (with  Transaction)
+
+  
+
+  
+
+  ;
+
+  association Budget  (with  Account)
+
+  
+
+  
+
+  ;
+
+  association Goal  (with  Account)
+
+  
+
+  
+
+  ;
+
+  }
+
+}

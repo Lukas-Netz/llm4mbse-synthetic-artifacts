@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram PredictiveEnergyManagement  {
+
+  class Building  {
+    Floor  [  ] floors;
+  }
+
+  class Floor  {
+    Room  [  ] rooms;
+  }
+
+  class Room  {
+    Device  [  ] devices;
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+  }
+
+  class Light extends Device  {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Computer extends Device  {
+    double cpuUsage;
+    double memoryUsage;
+  }
+
+  class Appliance extends Device  {
+    double powerConsumption;
+    String usagePattern;
+  }
+
+  class WeatherStation  {
+    double temperature;
+    double humidity;
+    double windSpeed;
+  }
+
+  class UserInterface  {
+    void monitorDevices();
+    void controlDevices();
+  }
+
+  composition Building  ->  (has) Floor  [ 1..* ];
+  composition Floor  ->  (has) Room  [ 1..* ];
+  composition Room  ->  (has) Device  [ 1..* ];
+  composition Building  ->  (has) WeatherStation  [ 0..1 ];
+  composition Building  ->  (has) UserInterface  [ 1 ];
+}

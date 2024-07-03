@@ -1,0 +1,31 @@
+
+classdiagram DigitalPaymentSystem {
+
+    class User {
+      String uniqueIdentifier;
+      String password;
+      Account account;
+    }
+
+    class Account {
+      String accountType;
+      double balance;
+      boolean isActive;
+      List<Transaction> transactionHistory;
+    }
+
+    class Transaction {
+      Date date;
+      double amount;
+      String description;
+      Account account;
+    }
+
+    class TransactionHistory {
+      List<Transaction> transactions;
+    }
+
+    association User -> Account [1];
+    association Account -> Transaction [*];
+    association Account -> TransactionHistory [1..*];
+}

@@ -1,0 +1,64 @@
+
+classdiagram PrecisionFarmingSystem {
+
+    class Farm {
+      PrecisionFarmingSystem system;
+    }
+
+    class Animal {
+      String uniqueIdentifier;
+      VitalSigns vitalSigns;
+      Location location;
+      MovementPatterns movementPatterns;
+    }
+
+    class VitalSigns {
+      double temperature;
+      double heartRate;
+      double respiratoryRate;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class MovementPatterns {
+      List<Location> movementData;
+    }
+
+    class Sensor {
+      String type;
+      String data;
+    }
+
+    class TemperatureSensor extends Sensor {
+      double temperatureData;
+    }
+
+    class Accelerometer extends Sensor {
+      double accelerationData;
+    }
+
+    class GPSDevice extends Sensor {
+      Location locationData;
+    }
+
+    class Alert {
+      String message;
+    }
+
+    class Insight {
+      String message;
+    }
+
+    composition Farm -> PrecisionFarmingSystem;
+    composition Animal -> VitalSigns;
+    composition Animal -> Location;
+    composition Animal -> MovementPatterns;
+    composition Animal -> Sensor;
+    composition Sensor -> String;
+    composition Sensor -> Animal;
+    composition PrecisionFarmingSystem -> Alert;
+    composition PrecisionFarmingSystem -> Insight;
+}

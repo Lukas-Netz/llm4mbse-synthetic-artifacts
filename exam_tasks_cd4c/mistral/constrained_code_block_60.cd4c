@@ -1,0 +1,98 @@
+
+classdiagram DigitalSignage {
+
+  class Content {
+    String contentType;
+  }
+
+  class TextContent extends Content {
+    String text;
+  }
+
+  class ImageContent extends Content {
+    String imageUrl;
+  }
+
+  class VideoContent extends Content {
+    String videoUrl;
+  }
+
+  class ContentManagementSystem {
+    -> Content [*];
+    -> Schedule [*];
+    void addContent(Content content);
+    void removeContent(Content content);
+    void scheduleContent(Content content, Screen screen, DateTime startTime, DateTime endTime);
+    PerformanceTracking trackContentPerformance(Content content);
+  }
+
+  class Player {
+    Screen screen;
+    void playContent(Content content);
+    void handleContentType(ContentType contentType);
+    void setRemoteControl(RemoteControl remoteControl);
+  }
+
+  class Screen {
+    Player player;
+    void displayContent(Content content);
+    void setRemoteControl(RemoteControl remoteControl);
+    void setContentType(ContentType contentType);
+  }
+
+  class Network {
+    ContentManagementSystem cms;
+    Player player;
+    Screen screen;
+    void prioritizeContentType(ContentType contentType);
+    void authenticate(Authentication auth);
+    void authorize(Authorization auth);
+  }
+
+  enum ContentType {
+    Text, Image, Video;
+  }
+
+  class Authentication {
+    String username;
+    String password;
+  }
+
+  class Authorization {
+    String role;
+  }
+
+  class RemoteControl {
+    Network network;
+    void controlPlayer(Player player, PlayerCommand command);
+  }
+
+  class PlayerCommand {
+    PlayerCommandType type;
+    Object data;
+  }
+
+  enum PlayerCommandType {
+    Play, Pause, Stop, Next, Previous;
+  }
+
+  class Schedule {
+    Content content;
+    Screen screen;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  class PerformanceTracking {
+    Content content;
+    int views;
+    int engagement;
+  }
+
+  composition ContentManagementSystem -> Content [*];
+  composition ContentManagementSystem -> Schedule [*];
+  composition Network -> ContentManagementSystem [1];
+  composition Network -> Player [1];
+ 
+ 
+}

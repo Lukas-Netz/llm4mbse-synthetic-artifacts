@@ -1,0 +1,42 @@
+
+
+classdiagram TextileManufacturingSystem {
+
+  class RawMaterials {
+    String type;
+    int quantity;
+  }
+
+  class Machines {
+    String name;
+    int capacity;
+  }
+
+  class QualityControl {
+    String inspectionType;
+    int result;
+  }
+
+  class ProductionTeam {
+    String role;
+    int experience;
+  }
+
+  class ProductionProcess {
+    RawMaterials rawMaterials;
+    Machines machines;
+    QualityControl qualityControl;
+    ProductionTeam productionTeam;
+  }
+
+  class Reports {
+    String reportType;
+    String content;
+  }
+
+  composition ProductionProcess -> (has) RawMaterials;
+  composition ProductionProcess -> (has) Machines;
+  composition ProductionProcess -> (has) QualityControl;
+  composition ProductionProcess -> (has) ProductionTeam;
+  composition Reports -> (has) ProductionProcess;
+}

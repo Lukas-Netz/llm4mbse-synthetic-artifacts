@@ -1,0 +1,57 @@
+
+classdiagram OnlineRoboticsCourses {
+
+    class Course {
+      String title;
+      String description;
+      List<String> topics;
+      List<Course> prerequisites;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Course> coursesTaught;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Assignment {
+      String title;
+      String content;
+      Instructor instructor;
+      String feedback;
+    }
+
+    class CourseMaterial {
+      String filePath;
+      String fileType;
+    }
+
+    class Search {
+      String searchBy;
+      String value;
+    }
+
+    class OnlineRoboticsCourses {
+      List<Course> courses;
+      List<Instructor> instructors;
+      List<Student> students;
+      List<Assignment> assignments;
+      List<CourseMaterial> courseMaterials;
+      Search searchFunction;
+    }
+
+    association OnlineRoboticsCourses -> Course [*];
+    association OnlineRoboticsCourses -> Instructor [*];
+    association OnlineRoboticsCourses -> Student [*];
+    association Course -> Assignment [*];
+    association Course -> CourseMaterial [*];
+    association Student -> Course [*];
+    association Instructor -> Course [*];
+    association Search -> OnlineRoboticsCourses [*];
+}

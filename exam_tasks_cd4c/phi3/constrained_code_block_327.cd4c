@@ -1,0 +1,73 @@
+
+classdiagram EventManagementSystem {
+
+    class Event {
+      String name;
+      Date startDate;
+      Date endDate;
+      String description;
+      List<Speaker> speakers;
+      List<Session> sessions;
+    }
+
+    class Speaker {
+      String name;
+      String email;
+      String bio;
+      List<Event> events;
+    }
+
+    class Session {
+      String title;
+      Date startTime;
+      Date endTime;
+      List<Speaker> speakers;
+      List<Attendee> attendees;
+    }
+
+    class Attendee {
+      String name;
+      String email;
+      boolean attended;
+    }
+
+    <<association>> class EventManagementSystem {
+      Event management;
+    }
+
+    <<association>> class EventManagementSystem {
+      Speaker management;
+    }
+
+    <<association>> class EventManagementSystem {
+      Session management;
+    }
+
+    <<association>> class EventManagementSystem {
+      Attendee management;
+    }
+
+    <<association>> class EventManagementSystem {
+      PaymentGateway integration;
+    }
+
+    <<association>> class PaymentGateway {
+      EventManagementSystem system;
+    }
+
+    <<association>> class PaymentGateway {
+      TicketSales integration;
+    }
+
+    <<association>> class PaymentGateway {
+      ReportGenerator integration;
+    }
+
+    <<association>> class ReportGenerator {
+      EventManagementSystem system;
+    }
+
+    <<association>> class ReportGenerator {
+      Attendee management;
+    }
+}

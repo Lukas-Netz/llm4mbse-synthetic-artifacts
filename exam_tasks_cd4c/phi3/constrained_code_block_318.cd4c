@@ -1,0 +1,47 @@
+
+classdiagram WorkflowManagementSystem {
+
+    class Workflow {
+      List<Task> tasks;
+      String workflowName;
+    }
+
+    class Task {
+      String name;
+      String description;
+      TaskStatus status;
+      int priority;
+      Date deadline;
+      List<User> assignedUsers;
+      Workflow workflow;
+    }
+
+    class User {
+      String username;
+      List<Task> assignedTasks;
+    }
+
+    class TaskStatus {
+      Pending pending;
+      InProgress inProgress;
+      Completed completed;
+    }
+
+    enum TaskPriority {
+      High, Medium, Low;
+    }
+
+    class Notification {
+      String message;
+      Date sendDate;
+    }
+
+    association Workflow -> Task [*];
+    association Task -> User [*];
+    association Task -> Workflow;
+    association User -> Task [*];
+    composition Workflow -> Task [*];
+    composition Task -> User [*];
+    composition Task -> Workflow;
+    composition User -> Task [*];
+}

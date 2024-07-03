@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram VoIPService  {
+
+  class User  {
+    String username;
+    String password;
+    -> PhoneNumber[*];
+  }
+
+  class PhoneNumber  {
+    String number;
+    -> Device[*];
+  }
+
+  class Device  {
+    DeviceType type;
+    -> User[*];
+  }
+
+  enum DeviceType  {
+    Softphone, Hardphone;
+  }
+
+  class Call  {
+    User caller;
+    User callee;
+    DateTime startTime;
+    DateTime endTime;
+  }
+
+  class Voicemail  {
+    User user;
+    Call call;
+    String message;
+  }
+
+  class Analytics  {
+    -> Call[*];
+  }
+
+  class Reporting  {
+    -> Analytics[*];
+  }
+
+  composition User -> (has) PhoneNumber[*];
+  composition PhoneNumber -> (has) Device[*];
+  composition Device -> (has) User[*];
+  composition Call -> (has) User[2];
+  composition Voicemail -> (has) User;
+  composition Analytics -> (has) Call[*];
+  composition Reporting -> (has) Analytics[*];
+}

@@ -1,0 +1,51 @@
+
+classdiagram DigitalFarmingMarketplace {
+
+    class Farmer {
+      String name;
+      String email;
+      String password;
+      List<Product> products;
+    Writes inventoryUpdate(int newInventoryLevel);
+    }
+
+    class Product {
+      String name;
+      String description;
+      double price;
+      int quantity;
+      Farmer farmer;
+    }
+
+    class Buyer {
+      String name;
+      String email;
+      String password;
+      List<Order> orders;
+    }
+
+    class Order {
+      Buyer buyer;
+      Product product;
+      int quantity;
+    }
+
+    association Farmer 
+      has
+      -> Product [*];
+
+    association Product 
+      with
+      -> Farmer;
+
+    association Buyer 
+      with
+      -> Order [*];
+
+    association Order 
+      with
+      -> Buyer;
+
+    composition Product -> Farmer;
+    composition Buyer -> Order;
+}

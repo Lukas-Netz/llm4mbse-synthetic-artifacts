@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram VirtualFashionShowroom  {
+
+  class FashionShowroom  {
+    String name;
+    FashionShow[] fashionShows;
+  }
+
+  class FashionShow  {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    FashionItem[] fashionItems;
+  }
+
+  class FashionItem  {
+    String name;
+    double price;
+    String brand;
+    String category;
+  }
+
+  class FashionDesigner  {
+    String name;
+    String bio;
+    FashionItem[] fashionItems;
+  }
+
+  class FashionItemsCollection  {
+    String name;
+    String description;
+    FashionItem[] fashionItems;
+  }
+
+  class FashionShowroomManager  {
+    FashionShowroom[] fashionShowrooms;
+  }
+
+  composition FashionShowroom -> FashionShow[*];
+  composition FashionShow -> FashionItem[*];
+  composition FashionDesigner -> FashionItem[*];
+  composition FashionItemsCollection -> FashionItem[*];
+  composition FashionShowroomManager -> FashionShowroom[*];
+}

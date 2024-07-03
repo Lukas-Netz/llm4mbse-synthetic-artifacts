@@ -1,0 +1,57 @@
+
+classdiagram WildlifeConservationSystem {
+
+    class Sensor {
+      String sensorId;
+      Location location;
+    }
+
+    class Animal {
+      String animalId;
+      Species species;
+      Location location;
+      MovementPattern movementPattern;
+      Behavior behavior;
+    }
+
+    class Species {
+      String speciesId;
+      String habitat;
+      String diet;
+      String conservationStatus;
+    }
+
+    class ConservationEffort {
+      String effortId;
+      String effortType;
+    }
+
+    class Recommendation {
+      String recommendationId;
+      String recommendationDetails;
+    }
+
+    class WildlifeConservationSystem {
+      List<Sensor> sensors;
+      List<Animal> animals;
+      List<ConservationEffort> conservationEfforts;
+      List<Recommendation> recommendations;
+
+      void addSensor(Sensor sensor);
+      void removeSensor(Sensor sensor);
+      void addAnimal(Animal animal);
+      void removeAnimal(Animal animal);
+      void addConservationEffort(ConservationEffort effort);
+      void removeConservationEffort(ConservationEffort effort);
+      void trackAnimal(Animal animal);
+      void detectPopulationChanges();
+      void provideRecommendations();
+      void storeData(Animal animal);
+      Animal retrieveData(String animalId);
+    }
+
+    composition WildlifeConservationSystem -> (has) Sensor;
+    composition WildlifeConservationSystem -> (has) Animal;
+    composition WildlifeConservationSystem -> (has) ConservationEffort;
+    composition WildlifeConservationSystem -> (has) Recommendation;
+}

@@ -1,0 +1,39 @@
+
+classdiagram JobSeekerPortfolio {
+
+  class Portfolio {
+    List<Project> projects;
+    List<Skill> skills;
+    List<Achievement> achievements;
+    String portfolioUrl;
+
+    void addProject(Project project);
+    void removeProject(Project project);
+    void addSkill(Skill skill);
+    void removeSkill(Skill skill);
+    void addAchievement(Achievement achievement);
+    void removeAchievement(Achievement achievement);
+    String generatePortfolioUrl();
+  }
+
+  class Project {
+    String title;
+    String description;
+    String githubLink;
+  }
+
+  class Skill {
+    String category;
+    String name;
+  }
+
+  class Achievement {
+    String type;
+    String details;
+  }
+
+  composition Portfolio -> (has) Projects;
+  composition Portfolio -> (has) Skills;
+  composition Portfolio -> (has) Achievements;
+  composition Portfolio -> (has) PortfolioUrl;
+}

@@ -1,0 +1,112 @@
+
+classdiagram VRBotany {
+
+  class User {
+    String username;
+  }
+
+  class PlantSpecies {
+    String name;
+    LeafShape leafShape;
+    FlowerColor flowerColor;
+    GrowthRate growthRate;
+  }
+
+  enum LeafShape {
+    ROUND, OVAL, LINEAR;
+  }
+
+  enum FlowerColor {
+    RED, YELLOW, BLUE;
+  }
+
+  enum GrowthRate {
+    SLOW, MEDIUM, FAST;
+  }
+
+  class VirtualEnvironment {
+    String name;
+    Temperature temperature;
+    Humidity humidity;
+    LightIntensity lightIntensity;
+  }
+
+  enum Temperature {
+    COLD, COOL, NORMAL, WARM, HOT;
+  }
+
+  enum Humidity {
+    DRY, NORMAL, HUMID;
+  }
+
+  enum LightIntensity {
+    LOW, NORMAL, HIGH;
+  }
+
+  class Plant {
+    PlantSpecies species;
+    VirtualEnvironment environment;
+    User user;
+    boolean isAlive;
+  }
+
+  class Interaction {
+    Plant plant;
+    String action;
+    Timestamp timestamp;
+  }
+
+  class Observation {
+    Plant plant;
+    Timestamp timestamp;
+  }
+
+  association User --create/
+    {
+      ordered
+     }
+    ;
+
+  association PlantSpecies --create/
+    {
+      ordered
+     }
+    ;
+
+  association VirtualEnvironment --create/
+    {
+      ordered
+     }
+    ;
+
+  association User --manage/
+    {
+      ordered
+     }
+    ;
+
+  association PlantSpecies --manage/
+    {
+      ordered
+     }
+    ;
+
+  association VirtualEnvironment --manage/
+    {
+      ordered
+     }
+    ;
+
+  association User --placePlant/
+    {
+      ordered
+     }
+    ;
+
+  association Plant --interact/
+    {
+      ordered
+     }
+    ;
+
+ 	 	}

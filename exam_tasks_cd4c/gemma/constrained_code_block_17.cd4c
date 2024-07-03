@@ -1,0 +1,58 @@
+
+
+classdiagram RealTimeDataAnalytics {
+
+  class DataSources {
+    Sensor sensor1;
+    Database database1;
+    API api1;
+  }
+
+  class DataProcessing {
+    Filter filter1;
+    Aggregation aggregation1;
+    Transformation transformation1;
+  }
+
+  class DataVisualization {
+    Chart chart1;
+    Table table1;
+    Map map1;
+  }
+
+  class UserInterface {
+    SourceSelection sourceSelection1;
+    RuleDefinition ruleDefinition1;
+    VisualizationDisplay visualizationDisplay1;
+  }
+
+  class DataStorage {
+    Database database2;
+  }
+
+  class Scalability {
+    HorizontalScaling horizontalScaling1;
+    VerticalScaling verticalScaling1;
+  }
+
+  class Security {
+    Authentication authentication1;
+    Authorization authorization1;
+  }
+
+  composition DataSources -> (has) Sensor;
+  composition DataSources -> (has) Database;
+  composition DataSources -> (has) API;
+  composition DataProcessing -> (has) Filter;
+  composition DataProcessing -> (has) Aggregation;
+  composition DataProcessing -> (has) Transformation;
+  composition DataVisualization -> (has) Chart;
+  composition DataVisualization -> (has) Table;
+  composition DataVisualization -> (has) Map;
+  composition UserInterface -> (has) SourceSelection;
+  composition UserInterface -> (has) RuleDefinition;
+  composition UserInterface -> (has) VisualizationDisplay;
+  composition DataStorage -> (has) Database;
+  
+
+}

@@ -1,0 +1,77 @@
+
+
+
+classdiagram AntiqueMarketplace  {
+
+  class Marketplace  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Category  {
+    String name;
+    String description;
+    -> Subcategory[*];
+  }
+
+  class Subcategory  {
+    String name;
+    -> Antique[*];
+  }
+
+  class Antique  {
+    String name;
+    String description;
+    double price;
+    -> Listing[*];
+  }
+
+  class Listing  {
+    Antique antique;
+    ListingStatus status;
+  }
+
+  class User  {
+    String name;
+    String email;
+    String password;
+    -> Profile[*];
+  }
+
+  class Profile  {
+    User user;
+    -> Listing[*];
+  }
+
+  class PaymentMethod  {
+    String name;
+  }
+
+  class Rating  {
+    Antique antique;
+    User user;
+    double rating;
+  }
+
+  class Administrator  {
+    -> Marketplace;
+    -> Category[*];
+    -> Subcategory[*];
+    -> Antique[*];
+    -> User[*];
+  }
+
+  enum ListingStatus  {
+    Active, Inactive;
+  }
+
+  composition Marketplace -> Category[*];
+  composition Category -> Subcategory[*];
+  composition Subcategory -> Antique[*];
+  composition Antique -> Listing[*];
+  composition User -> Profile[*];
+  composition Administrator -> Marketplace;
+  composition Administrator -> Category[*];
+  composition Administrator -> Subcategory[*];
+  composition Administrator -> Antique[*];
+  }

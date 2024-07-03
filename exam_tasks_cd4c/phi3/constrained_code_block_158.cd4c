@@ -1,0 +1,45 @@
+
+classdiagram ConsumerDataSystem {
+
+    class Consumer {
+      String uniqueId;
+      String name;
+      List<Preference> preferences;
+    WritableInteraction[] interactions;
+    }
+
+    class Preference {
+      String preferenceType;
+      String value;
+    }
+
+    class Interaction {
+      InteractionType type;
+      Date dateTime;
+      String details;
+    }
+
+    class InteractionType {
+      String type;
+    }
+
+    class Analytics {
+      analyzeConsumerBehavior(Consumer consumer);
+      identifySuspiciousBehavior(Consumer consumer);
+    }
+
+    class Report {
+      generateReport(Consumer consumer);
+    }
+
+    class DataProtection {
+      ensureCompliance();
+      ensureSecurity();
+    }
+
+    composition Consumer -> Preferences;
+    composition Consumer -> Interactions;
+    composition Consumer -> Analytics;
+    composition Consumer -> Report;
+    composition Consumer -> DataProtection;
+}

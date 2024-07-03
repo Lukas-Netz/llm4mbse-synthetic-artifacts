@@ -1,0 +1,79 @@
+
+
+
+classdiagram CognitivePlatform  {
+
+  class KnowledgeGraph  {
+    Entity[] entities;
+    Concept[] concepts;
+    void queryEntities(String query);
+    void updateEntities(Entity entity);
+  }
+
+  class ReasoningEngine  {
+    Rule[] rules;
+    void applyRules(KnowledgeGraph graph);
+  }
+
+  class DataIngestionModule  {
+    DataSource[] dataSources;
+    void collectData(DataSource dataSource);
+    void preprocessData(Data data);
+  }
+
+  class MachineLearningModule  {
+    Model[] models;
+    void trainModel(Model model, Data data);
+    void testModel(Model model, Data data);
+  }
+
+  class NaturalLanguageProcessingModule  {
+    LanguageModel[] languageModels;
+    void understandText(String text);
+    void generateText(String text);
+  }
+
+  class Entity  {
+    String id;
+    String name;
+  }
+
+  class Concept  {
+    String id;
+    String name;
+  }
+
+  class Rule  {
+    String condition;
+    String consequence;
+  }
+
+  class DataSource  {
+    String id;
+    String name;
+  }
+
+  class Data  {
+    String id;
+    String value;
+  }
+
+  class Model  {
+    String id;
+    String name;
+  }
+
+  class LanguageModel  {
+    String id;
+    String name;
+  }
+
+  composition CognitivePlatform -> (has) KnowledgeGraph;
+  composition CognitivePlatform -> (has) ReasoningEngine;
+  composition CognitivePlatform -> (has) DataIngestionModule;
+  composition CognitivePlatform -> (has) MachineLearningModule;
+  composition CognitivePlatform -> (has) NaturalLanguageProcessingModule;
+  composition KnowledgeGraph -> (has) Entity;
+  composition KnowledgeGraph -> (has) Concept;
+  composition ReasoningEngine -> (has) Rule;
+  }

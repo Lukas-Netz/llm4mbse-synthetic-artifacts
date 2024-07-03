@@ -1,0 +1,70 @@
+
+classdiagram KnowledgeManagementSystem {
+
+    class Author {
+      String name;
+      String email;
+    }
+
+    class Topic {
+      String name;
+      String description;
+    }
+
+    class Category {
+      Topic topic;
+    }
+
+    class KnowledgeArticle {
+      String title;
+      String content;
+      Category category;
+      Author author;
+      int views;
+      int rating;
+    }
+
+    class User {
+      String name;
+      String email;
+      List<Category> interests;
+    }
+
+    <<association>> class KnowledgeManagementSystem {
+      Author author;
+      Topic topic;
+      Category category;
+      KnowledgeArticle article;
+      User user;
+    }
+
+    <<association>> class Topic {
+      <<association>> Category category;
+    }
+
+    <<association>> class Category {
+      <<association>> Topic topic;
+    }
+
+    <<association>> class KnowledgeArticle {
+      <<association>> Author author;
+      <<association>> Category category;
+      User user;
+    }
+
+    <<association>> class User {
+      <<association>> Category interest;
+    }
+
+    <<aggregation>> class KnowledgeManagementSystem {
+      List<KnowledgeArticle> articles;
+    }
+
+    <<association>> class KnowledgeManagementSystem {
+      List<User> users;
+    }
+
+    <<association>> class User {
+      List<KnowledgeArticle> recommendedArticles;
+    }
+}

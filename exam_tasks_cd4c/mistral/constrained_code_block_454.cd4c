@@ -1,0 +1,50 @@
+
+classdiagram UniversityPlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    Course [ ] enrolledCourses;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    Course [ ] taughtCourses;
+  }
+
+  class Assignment {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Date dueDate;
+  }
+
+  class StudentAssignment {
+    Student student;
+    Assignment assignment;
+    Grade grade;
+  }
+
+  class Grade {
+    double value;
+  }
+
+  class Progress {
+    int completedAssignments;
+    double totalGrade;
+  }
+
+  class Administrator {
+    String uniqueIdentifier;
+  }
+
+  composition UniversityPlatform -> (has) Administrator;
+  composition Course -> (has) Assignment [*];
+  composition Student -> (has) StudentAssignment [*];
+  composition Instructor -> (has) Course [*];
+}

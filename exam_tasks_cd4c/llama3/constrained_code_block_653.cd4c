@@ -1,0 +1,70 @@
+
+
+
+classdiagram SupplyChainTracking  {
+
+  class Good  {
+    String id;
+    String name;
+    String description;
+    boolean isPerishable;
+  }
+
+  class Manufacturer  {
+    String id;
+    String name;
+    String address;
+  }
+
+  class Distributor  {
+    String id;
+    String name;
+    String address;
+  }
+
+  class Customer  {
+    String id;
+    String name;
+    String address;
+  }
+
+  class TransportationMethod  {
+    String id;
+    String name;
+  }
+
+  class Location  {
+    String id;
+    String name;
+  }
+
+  class SupplyChainEvent  {
+    Good good;
+    Location fromLocation;
+    Location toLocation;
+    TransportationMethod transportationMethod;
+    Date dateDeparture;
+    Date dateArrival;
+  }
+
+  class SupplyChain  {
+    Good good;
+    Manufacturer manufacturer;
+    Distributor distributor;
+    Customer customer;
+    SupplyChainEvent[] events;
+  }
+
+  composition SupplyChain  ->  (has) Good;
+  composition SupplyChain  ->  (has) Manufacturer;
+  composition SupplyChain  ->  (has) Distributor;
+  composition SupplyChain  ->  (has) Customer;
+  composition SupplyChain  ->  (has) SupplyChainEvent[*];
+  composition SupplyChainEvent  ->  (has) Good;
+  composition SupplyChainEvent  ->  (has) Location;
+  composition SupplyChainEvent  ->  (has) TransportationMethod;
+  composition SupplyChainEvent  ->  (has) Date;
+  composition SupplyChainEvent  ->  (has) Date;
+  association Good  ->  (has) Manufacturer;
+  association Good  ->  (has) Distributor;
+  }

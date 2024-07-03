@@ -1,0 +1,111 @@
+
+
+
+
+classdiagram NutritionCoachingSystem  {
+
+  class User  {
+    String name;
+    int age;
+    HealthGoal healthGoal;
+    DietPlan dietPlan;
+  }
+
+  class HealthGoal  {
+    String goal;
+  }
+
+  class DietPlan  {
+    String plan;
+  }
+
+  class FoodLog  {
+    Date date;
+    Food food;
+    int quantity;
+  }
+
+  class Food  {
+    String name;
+    Nutrient nutrient;
+  }
+
+  class Nutrient  {
+    String name;
+    int amount;
+  }
+
+  class PhysicalActivityLog  {
+    Date date;
+    Activity activity;
+    int duration;
+  }
+
+  class Activity  {
+    String name;
+  }
+
+  class WearableDevice  {
+    String name;
+    Data data;
+  }
+
+  class Data  {
+    String type;
+    String value;
+  }
+
+  class HealthApp  {
+    String name;
+    Data data;
+  }
+
+  class Dashboard  {
+    User user;
+    Progress progress;
+  }
+
+  class Progress  {
+    Date date;
+    int progress;
+  }
+
+  class Reminder  {
+    User user;
+    Date date;
+    String message;
+  }
+
+  class Recipe  {
+    Food food;
+    String instructions;
+  }
+
+  class Exercise  {
+    Activity activity;
+    String instructions;
+  }
+
+  class Supplement  {
+    Nutrient nutrient;
+    String instructions;
+  }
+
+  class HealthResource  {
+    String name;
+    String description;
+  }
+
+  composition User -> (has) HealthGoal;
+  composition User -> (has) DietPlan;
+  composition FoodLog -> (has) Food;
+  composition PhysicalActivityLog -> (has) Activity;
+  composition WearableDevice -> (has) Data;
+  composition HealthApp -> (has) Data;
+  composition Dashboard -> (has) Progress;
+  composition Reminder -> (has) User;
+  composition Recipe -> (has) Food;
+  composition Exercise -> (has) Activity;
+  composition Supplement -> (has) Nutrient;
+  composition HealthResource -> (has) String;
+}

@@ -1,0 +1,81 @@
+
+
+
+
+classdiagram RoboticSurgeryTrainingSimulator  {
+
+  class Simulator  {
+    String name;
+    String version;
+  }
+
+  class RoboticArm  {
+    String name;
+    ArmType type;
+  }
+
+  class Console  {
+    String name;
+    ConsoleType type;
+    User[] users;
+  }
+
+  class Scenario  {
+    String name;
+    String description;
+    Task[] tasks;
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Step[] steps;
+  }
+
+  class Step  {
+    String name;
+    String description;
+  }
+
+  class Action  {
+    String name;
+    String description;
+  }
+
+  class User  {
+    String name;
+    Role role;
+  }
+
+  class Database  {
+    Simulator simulator;
+    RoboticArm roboticArm;
+    Console console;
+    Scenario[] scenarios;
+    Task[] tasks;
+    Step[] steps;
+    Action[] actions;
+    User[] users;
+  }
+
+  enum ArmType  {
+    Laparoscopic, Endoscopic;
+  }
+
+  enum ConsoleType  {
+    Surgeon, Assistant;
+  }
+
+  enum Role  {
+    Surgeon, Assistant;
+  }
+
+  composition Simulator -> (has) RoboticArm;
+  composition Simulator -> (has) Console;
+  composition Console -> (has) User[*];
+  composition Scenario -> (has) Task[*];
+  composition Task -> (has) Step[*];
+  composition Database -> (has) Simulator;
+  composition Database -> (has) RoboticArm;
+  composition Database -> (has) Console;
+  }

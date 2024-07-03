@@ -1,0 +1,129 @@
+
+
+classdiagram CollaborativeLearningPlatform {
+
+  class User {
+    String id;
+    String name;
+    String email;
+  }
+
+  class Course {
+    String id;
+    String name;
+    String description;
+    boolean isPublic;
+  }
+
+  class Module {
+    String id;
+    String name;
+    String description;
+    List<Quiz> quizzes;
+    List<Assignment> assignments;
+    List<Discussion> discussions;
+  }
+
+  class Quiz {
+    String id;
+    String name;
+    String description;
+    List<Question> questions;
+  }
+
+  class Question {
+    String text;
+    List<Answer> answers;
+  }
+
+  class Answer {
+    String text;
+    boolean isCorrect;
+  }
+
+  class Assignment {
+    String id;
+    String name;
+    String description;
+    List<Submission> submissions;
+    Grade grade;
+  }
+
+  class Submission {
+    String text;
+    Grade grade;
+  }
+
+  class Discussion {
+    String id;
+    String name;
+    String description;
+    List<Post> posts;
+  }
+
+  class Post {
+    String id;
+    String name;
+    String description;
+    List<Reply> replies;
+  }
+
+  class Reply {
+    String id;
+    String name;
+    String description;
+  }
+
+  composition User -> Course [0..1]
+  abstract  {
+    
+  
+  
+ordered  }
+
+  
+
+;
+
+  composition Course -> Module [0..*]
+  
+
+  
+
+;
+
+  composition Module -> Quiz [0..*]
+
+  
+
+;
+
+  composition Module -> Assignment [0..*]
+
+  
+
+;
+
+  composition Module -> Discussion [0..*]
+
+  
+
+;
+
+  composition Discussion -> Post [0..*]
+
+  
+
+;
+
+  composition Post -> Reply [0..*]
+
+  
+
+;
+
+  class Grade {
+    int value;
+  }
+
+}

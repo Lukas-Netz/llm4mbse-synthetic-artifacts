@@ -1,0 +1,46 @@
+
+classdiagram PropertyManagement {
+
+  class Property {
+    String uniqueIdentifier;
+    String address;
+    Room [ ] rooms;
+  }
+
+  abstract class Room {
+    String uniqueIdentifier;
+    String name;
+    double size;
+  }
+
+  class Bedroom extends Room { }
+  class LivingRoom extends Room { }
+  class Kitchen extends Room { }
+  class Office extends Room { }
+
+  composition Property -> Room [*];
+
+  class Tenant {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  composition Property -> Tenant [*];
+
+  class Rent {
+    double amount;
+    Date dueDate;
+  }
+
+  class MaintenanceSchedule {
+    Date date;
+    String description;
+  }
+
+  class PropertyReport {
+    String properties;
+    String rooms;
+    String tenants;
+  }
+}

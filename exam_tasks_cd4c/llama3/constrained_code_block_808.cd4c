@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram SmartFarmWeatherStation  {
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    Location location;
+    TemperatureSensor temperatureSensor;
+    HumiditySensor humiditySensor;
+    WindSpeedSensor windSpeedSensor;
+    PrecipitationSensor precipitationSensor;
+    Sensor[] additionalSensors;
+  }
+
+  class CentralHub  {
+    WeatherStation[] weatherStations;
+    DataAggregator dataAggregator;
+  }
+
+  class DataAggregator  {
+    void aggregateData(WeatherStation weatherStation);
+  }
+
+  class Sensor  {
+    String type;
+  }
+
+  class TemperatureSensor extends Sensor  {
+  }
+
+  class HumiditySensor extends Sensor  {
+  }
+
+  class WindSpeedSensor extends Sensor  {
+  }
+
+  class PrecipitationSensor extends Sensor  {
+  }
+
+  class UVRadiationSensor extends Sensor  {
+  }
+
+  class AirQualitySensor extends Sensor  {
+  }
+
+  class SoilMoistureSensor extends Sensor  {
+  }
+
+  class Location  {
+    String latitude;
+    String longitude;
+  }
+
+  class WeatherStationType  {
+    String name;
+    int sensorCount;
+  }
+
+  class BasicWeatherStation extends WeatherStation  {
+    WeatherStationType type;
+  }
+
+  class AdvancedWeatherStation extends WeatherStation  {
+    WeatherStationType type;
+  }
+
+  class PremiumWeatherStation extends WeatherStation  {
+    WeatherStationType type;
+  }
+
+  composition CentralHub -> WeatherStation[*];
+  composition WeatherStation -> Sensor[*];
+  association WeatherStation -> WeatherStationType;
+}

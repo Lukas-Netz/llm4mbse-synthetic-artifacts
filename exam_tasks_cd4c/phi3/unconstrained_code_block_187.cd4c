@@ -1,0 +1,107 @@
+
+classdiagram CareerCoachingSystem {
+
+    class User {
+      String username;
+      String password;
+      Profile profile;
+      CareerGoals careerGoals;
+      JobOpenings jobOpenings;
+    }
+
+    class Profile {
+      String name;
+      String email;
+      List<Skill> skills;
+      List<Education> education;
+      List<WorkExperience> workExperience;
+    }
+
+    class Skill {
+      String skillName;
+    }
+
+    class Education {
+      String degree;
+      String institution;
+      String year;
+    }
+
+    class WorkExperience {
+      String companyName;
+      String jobTitle;
+      String startDate;
+      String endDate;
+    }
+
+    class CareerGoals {
+      String jobTitle;
+      String industry;
+      String location;
+    }
+
+    class JobOpenings {
+      String jobTitle;
+      String companyName;
+      String location;
+      List<RequiredSkill> requiredSkills;
+      List<RequiredEducation> requiredEducation;
+      List<RequiredExperience> requiredExperience;
+    }
+
+    class RequiredSkill {
+      String skillName;
+    }
+
+    class RequiredEducation {
+      String degree;
+      String institution;
+    }
+
+    class RequiredExperience {
+      String jobTitle;
+      String companyName;
+      String startDate;
+      String endDate;
+    }
+
+    class CareerAdvice {
+      String adviceText;
+    }
+
+    class JobApplication {
+      String jobTitle;
+      String companyName;
+      String applicationStatus;
+    }
+
+    class Dashboard {
+      List<JobApplication> applications;
+      List<CareerGoalAchievement> achievements;
+    }
+
+    class CareerGoalAchievement {
+      String achievementDescription;
+      String dateAchieved;
+    }
+
+    class System {
+      void registerUser(User user);
+      void loginUser(String username, String password);
+      void createProfile(User user);
+      void updateProfile(User user);
+      void setCareerGoals(User user);
+      CareerAdvice getCareerAdvice(User user);
+      JobOpenings getJobOpenings(User user);
+      JobApplication applyForJob(User user, String jobTitle);
+      void trackApplicationStatus(User user, String jobTitle);
+      Dashboard getDashboard(User user);
+    }
+
+  composition User -> Profile;
+  composition User -> CareerGoals;
+  composition User -> JobOpenings;
+  composition User -> CareerAdvice;
+  composition User -> JobApplication;
+  composition User -> Dashboard;
+}

@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram SentimentAnalysis  {
+
+  class FeedbackSource  {
+    String sourceType;  (socialMediaReviewWebsiteCustomerSupportTicket)
+  }
+
+  class Feedback  {
+    String text;  (customerFeedback)
+    FeedbackSource source;
+  }
+
+  class Sentiment  {
+    SentimentType type;  (positiveNegativeNeutral)
+  }
+
+  class Topic  {
+    String topicName;
+  }
+
+  class Summary  {
+    String summaryText;
+  }
+
+  class Recommendation  {
+    String recommendationText;
+  }
+
+  class Language  {
+    String languageCode;
+  }
+
+  class AIModel  {
+    Language language;
+    void train(Feedback[] feedbackData);
+    Sentiment analyze(Feedback feedback);
+    Topic identifyTopic(Feedback feedback);
+    Summary summarize(Feedback feedback);
+    Recommendation generateRecommendation(Feedback feedback);
+  }
+
+  class CRMIntegration  {
+    void sendFeedbackData(Feedback[] feedbackData);
+  }
+
+  class MarketingAutomationIntegration  {
+    void sendRecommendations(Recommendation[] recommendations);
+  }
+
+  class RealtimeInsights  {
+    void provideRealtimeInsights(Sentiment[] sentiments);
+  }
+
+  class DataProcessor  {
+    void processFeedbackData(Feedback[] feedbackData);
+  }
+
+  composition Feedback -> FeedbackSource;
+  composition Sentiment -> Feedback;
+  composition Topic -> Feedback;
+  composition Summary -> Feedback;
+  composition Recommendation -> Feedback;
+  composition AIModel -> Language;
+  composition CRMIntegration -> AIModel;
+  composition MarketingAutomationIntegration -> AIModel;
+  }

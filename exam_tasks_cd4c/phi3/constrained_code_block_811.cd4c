@@ -1,0 +1,233 @@
+
+classdiagram HydrogenFuelCellSystem {
+
+    class Vehicle {
+      String uniqueIdentifier;
+      String name;
+      VehicleType type;
+    }
+
+    class FuelCell {
+      String uniqueIdentifier;
+      int capacityKWh;
+      FuelCellState state;
+    }
+
+    class ChargingStation {
+      String uniqueIdentifier;
+      String location;
+      int capacityKWh;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+      UserRole role;
+    }
+
+    enum VehicleType {
+      PassengerCar, Truck, Bus
+   
+   
+   ()
+   
+
+;
+    association Vehicle 
+       
+
+;
+    association FuelCell 
+       
+
+;
+    association ChargingStation 
+       
+
+;
+    association User 
+       
+
+;
+    generalization Vehicle
+       
+
+;
+    generalization FuelCell
+       
+
+;
+    generalization ChargingStation
+       
+
+;
+    generalization User
+       
+
+;
+    composition VehicleFuelCellAssociation
+       
+
+;
+    composition VehicleChargingStationAssociation
+       
+
+;
+    composition VehicleFuelCellReport
+       
+
+;
+    composition ChargingStationFuelCellReport
+       
+
+;
+    operation addVehicle(Vehicle vehicle);
+    operation removeVehicle(Vehicle vehicle);
+    operation updateVehicle(Vehicle vehicle);
+
+    operation addFuelCell(FuelCell fuelCell);
+    operation removeFuelCell(FuelCell fuelCell);
+    operation updateFuelCell(FuelCell fuelCell);
+
+    operation addChargingStation(ChargingStation chargingStation);
+    operation removeChargingStation(ChargingStation chargingStation);
+   
+
+}
+
+enum FuelCellState {
+  Charging, Discharging, Idle
+
+;
+    operation assignFuelCellToVehicle(Vehicle vehicle, FuelCell fuelCell);
+    operation assignVehicleToChargingStation(Vehicle vehicle, ChargingStation chargingStation);
+
+    operation monitorFuelCellState(FuelCell fuelCell);
+    operation monitorChargingStationState(ChargingStation chargingStation);
+
+    operation generateVehicleUsageReport(Vehicle vehicle);
+    operation generateFuelCellPerformanceReport(FuelCell fuelCell);
+}
+
+enum UserRole {
+  Administrator, RegularUser
+
+;
+    operation assignRole(User user, UserRole role);
+}
+
+class VehicleFuelCellAssociation {
+  Vehicle vehicle;
+  FuelCell fuelCell;
+}
+
+class VehicleChargingStationAssociation {
+  Vehicle vehicle;
+  ChargingStation chargingStation;
+}
+
+class VehicleFuelCellReport {
+  Vehicle vehicle;
+  FuelCell fuelCell;
+  String reportContent;
+}
+
+class ChargingStationFuelCellReport {
+  ChargingStation chargingStation;
+  FuelCell fuelCell;
+  String reportContent;
+}
+
+enum VehicleType {
+  PassengerCar, Truck, Bus
+
+;
+    association VehicleType
+       
+
+;
+    generalization Vehicle
+       
+
+;
+    generalization FuelCell
+       
+
+;
+    generalization ChargingStation
+       
+
+;
+    generalization User
+       
+
+;
+    composition VehicleFuelCellAssociation
+       
+
+;
+    composition VehicleChargingStationAssociation
+       
+
+;
+    composition VehicleFuelCellReport
+       
+
+;
+    composition ChargingStationFuelCellReport
+       
+
+;
+    operation addVehicle(Vehicle vehicle);
+    operation removeVehicle(Vehicle vehicle);
+    operation updateVehicle(Vehicle vehicle);
+
+    operation addFuelCell(FuelCell fuelCell);
+    operation removeFuelCell(FuelCell fuelCell);
+    operation updateFuelCell(FuelCell fuelCell);
+
+    operation addChargingStation(ChargingStation chargingStation);
+    operation removeChargingStation(ChargingStation chargingStation);
+
+    operation assignFuelCellToVehicle(Vehicle vehicle, FuelCell fuelCell);
+    operation assignVehicleToChargingStation(Vehicle vehicle, ChargingStation chargingStation);
+
+    operation monitorFuelCellState(FuelCell fuelCell);
+   
+
+}
+
+enum FuelCellState {
+  Charging, Discharging, Idle
+
+;
+    operation assignFuelCellToVehicle(Vehicle vehicle, FuelCell fuelCell);
+    operation assignVehicleToChargingStation(Vehicle vehicle, ChargingStation chargingStation);
+
+    operation monitorFuelCellState(FuelCell fuelCell);
+    operation monitorChargingStationState(ChargingStation chargingStation);
+
+    operation generateVehicleUsageReport(Vehicle vehicle);
+    operation generateFuelCellPerformanceReport(FuelCell fuelCell);
+}
+
+enum UserRole {
+Administrator, RegularUser
+
+;
+    operation assignRole(User user, UserRole role);
+}
+
+enum VehicleType {
+
+    VehicleType
+    ;
+
+}
+
+enum FuelCellCapacity {
+
+    ;
+    }
+
+}

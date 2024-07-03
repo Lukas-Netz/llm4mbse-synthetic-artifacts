@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram SmartCityAirQuality  {
+
+  class Sensor  {
+    String location;
+    AirQualityData data;
+  }
+
+  class MonitoringStation  {
+    Sensor  sensors  ;
+    void collectData();
+  }
+
+  class CentralHub  {
+    MonitoringStation  monitoringStations  ;
+    void aggregateData();
+    void provideRealTimeInfo();
+  }
+
+  class AirQualityAlert  {
+    AirQualityData data;
+    String message;
+  }
+
+  class AirQualityData  {
+    double temperature;
+    double humidity;
+    double pollutantLevel;
+  }
+
+  class CustomAlert  {
+    AirQualityData data;
+    String message;
+  }
+
+  composition CentralHub  ->  (has) MonitoringStation  ;
+  composition MonitoringStation  ->  (has) Sensor  ;
+  composition CentralHub  ->  (has) AirQualityAlert  [0..*];
+  composition AirQualityAlert  ->  (has) AirQualityData  ;
+  composition CustomAlert  ->  (has) AirQualityData  ;
+}

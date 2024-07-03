@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram SelfDrivingTractorSystem  {
+
+  class Tractor  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    SensorData sensorData;
+    Attachment attachment;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class SensorData  {
+    Obstacle[] obstacles;
+    Vehicle[] vehicles;
+    Weather weather;
+  }
+
+  class Obstacle  {
+    String type;
+    double distance;
+  }
+
+  class Vehicle  {
+    String type;
+    double distance;
+  }
+
+  class Weather  {
+    String condition;
+    double temperature;
+  }
+
+  class Attachment  {
+    String type;
+  }
+
+  class Hub  {
+    Tractor[] tractors;
+    void sendCommand(Tractor tractor, Command command);
+    void receiveUpdate(Tractor tractor, Update update);
+  }
+
+  class Command  {
+    String action;
+  }
+
+  class Update  {
+    Tractor tractor;
+    Location location;
+  }
+
+  composition Hub -> Tractor[*];
+  composition Tractor -> Attachment [1..*];
+  composition Tractor -> SensorData [1..*];
+  composition SensorData -> Obstacle[*];
+  composition SensorData -> Vehicle[*];
+  composition SensorData -> Weather [1..1];
+}

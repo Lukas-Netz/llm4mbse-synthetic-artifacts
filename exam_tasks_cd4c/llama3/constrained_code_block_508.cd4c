@@ -1,0 +1,96 @@
+
+
+
+
+classdiagram UrbanPlanningPlatform  {
+
+  class District  {
+    String name;
+    Block  block  ; 
+  }
+
+  class Block  {
+    String uniqueIdentifier;
+    PopulationData populationData;
+    LandUseData landUseData;
+    ZoningData zoningData;
+    Building  building  ; 
+  }
+
+  class Building  {
+    String uniqueIdentifier;
+    String name;
+    FloorAreaData floorAreaData;
+    NumberOfFloorsData numberOfFloorsData;
+    ConstructionDateData constructionDateData;
+  }
+
+  class TransportationInfrastructure  {
+    Road  road  ; 
+    Highway  highway  ; 
+    PublicTransportationSystem  publicTransportationSystem  ; 
+  }
+
+  class Road  {
+    String name;
+    LengthData lengthData;
+  }
+
+  class Highway  {
+    String name;
+    LengthData lengthData;
+  }
+
+  class PublicTransportationSystem  {
+    String name;
+    RouteData routeData;
+  }
+
+  class SensorData  {
+    TrafficCameraData trafficCameraData;
+    AirQualityData airQualityData;
+    NoisePollutionData noisePollutionData;
+  }
+
+  class TrafficCameraData  {
+    String cameraId;
+    ImageData imageData;
+  }
+
+  class AirQualityData  {
+    String sensorId;
+    AirQualityIndexData airQualityIndexData;
+  }
+
+  class NoisePollutionData  {
+    String sensorId;
+    NoiseLevelData noiseLevelData;
+  }
+
+  class Analytics  {
+    PopulationGrowthData populationGrowthData;
+    TrafficPatternData trafficPatternData;
+    EnvironmentalImpactData environmentalImpactData;
+  }
+
+  class PopulationGrowthData  {
+    String districtName;
+    int population;
+  }
+
+  class TrafficPatternData  {
+    String roadName;
+    int trafficVolume;
+  }
+
+  class EnvironmentalImpactData  {
+    String districtName;
+    int carbonFootprint;
+  }
+
+  composition District  ->  (has) Block;
+  composition Block  ->  (has) Building;
+  composition TransportationInfrastructure  ->  (has) Road;
+  composition TransportationInfrastructure  ->  (has) Highway;
+  composition TransportationInfrastructure  ->  (has) PublicTransportationSystem;
+  }

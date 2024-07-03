@@ -1,0 +1,97 @@
+
+
+
+
+classdiagram DigitalFarmingPlatform  {
+
+  class Crop  {
+    String name;
+    CropType type;
+    GrowthStage growthStage;
+    IrrigationRequirements irrigationRequirements;
+    FertilizationRequirements fertilizationRequirements;
+  }
+
+  class FarmEquipment  {
+    String name;
+    EquipmentType type;
+    Condition condition;
+  }
+
+  class WeatherData  {
+    Temperature temperature;
+    Humidity humidity;
+    Precipitation precipitation;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class CropGrowthTracker  {
+    Crop crop;
+    GrowthStage growthStage;
+    WeatherData weatherData;
+    IrrigationRecommendation irrigationRecommendation;
+    FertilizationRecommendation fertilizationRecommendation;
+  }
+
+  class EquipmentUsageTracker  {
+    FarmEquipment equipment;
+    Usage usage;
+  }
+
+  class ReportGenerator  {
+    CropGrowthTracker cropGrowthTracker;
+    EquipmentUsageTracker equipmentUsageTracker;
+    WeatherData weatherData;
+  }
+
+  enum CropType  {
+    Wheat, Corn, Soybeans;
+  }
+
+  enum GrowthStage  {
+    Seedling, Mature;
+  }
+
+  enum IrrigationRequirements  {
+    Low, Medium, High;
+  }
+
+  enum FertilizationRequirements  {
+    Low, Medium, High;
+  }
+
+  enum EquipmentType  {
+    Tractor, Plow, Harvester;
+  }
+
+  enum Condition  {
+    New, Used, Broken;
+  }
+
+  enum Temperature  {
+    Low, Medium, High;
+  }
+
+  enum Humidity  {
+    Low, Medium, High;
+  }
+
+  enum Precipitation  {
+    Low, Medium, High;
+  }
+
+  enum Usage  {
+    Light, Medium, Heavy;
+  }
+
+  composition WeatherStation -> WeatherData;
+  composition CropGrowthTracker -> Crop;
+  composition CropGrowthTracker -> WeatherData;
+  composition EquipmentUsageTracker -> FarmEquipment;
+  composition ReportGenerator -> CropGrowthTracker;
+  composition ReportGenerator -> EquipmentUsageTracker;
+  composition ReportGenerator -> WeatherData;
+}

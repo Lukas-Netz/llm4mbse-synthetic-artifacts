@@ -1,0 +1,103 @@
+
+classdiagram OnlineDatingApp {
+
+    class User {
+      String username;
+      String email;
+      String password;
+      List<String> interests;
+      int age;
+      String location;
+      List<User> viewedProfiles;
+      List<User> potentialMatches;
+      List<User> messageRecipients;
+      List<User> matchRatings;
+    }
+
+    class Profile {
+      User user;
+      List<User> viewedBy;
+      List<User> potentialMatches;
+      List<User> messageRecipients;
+      List<User> matchRatings;
+    }
+
+    class Interest {
+      String name;
+    }
+
+    class AgeRange {
+      int minAge;
+      int maxAge;
+    }
+
+    class Location {
+      String name;
+    }
+
+    class Message {
+      User sender;
+      User recipient;
+      String content;
+    }
+
+    class Rating {
+      User rater;
+      User rated;
+      int score;
+    }
+
+    class Moderator {
+      void banUser(User user);
+    }
+
+    association User 
+      hasProfile [many]
+      -> Profile;
+
+    association Profile 
+      hasUser [one]
+      -> User;
+
+    association Profile 
+      hasViewedProfiles [many]
+      -> User;
+
+    association Profile 
+      hasPotentialMatches [many]
+      -> User;
+
+    association Profile 
+      hasMessageRecipients [many]
+      -> User;
+
+    association Profile 
+      hasMatchRatings [many]
+      -> Rating;
+
+    association User 
+      hasInterests [many]
+      -> Interest;
+
+    association User 
+      hasAgeRange [one]
+      -> AgeRange;
+
+    association User 
+      hasLocation [one]
+      -> Location;
+
+    association User 
+      hasMessages [many]
+      -> Message;
+
+    association User 
+      hasRatings [many]
+      -> Rating;
+
+    composition User 
+      viewedProfiles [many]
+      -> User;
+
+   
+}

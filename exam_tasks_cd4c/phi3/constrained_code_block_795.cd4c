@@ -1,0 +1,47 @@
+
+classdiagram ElderCareRobotSystem {
+
+    class Robot {
+      String name;
+      RobotType type;
+      List<Sensor> sensors;
+      RobotState state;
+      Location location;
+    }
+
+    class Sensor {
+      String name;
+      SensorType type;
+    }
+
+    class RobotState {
+      String state;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    enum RobotType {
+      Humanoid, Wheeled
+   
+   
+   ;}
+
+    enum SensorType {
+      Temperature, Pressure
+
+   
+   ;}
+
+    enum RobotState {
+      Idle, Active, Error
+
+   
+   ;}
+
+    association Robot -> List<<Sensor>>;
+    association Robot -> RobotState;
+    association Robot -> Location;
+}

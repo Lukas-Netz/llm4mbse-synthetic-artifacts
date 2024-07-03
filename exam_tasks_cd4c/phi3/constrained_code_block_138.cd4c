@@ -1,0 +1,45 @@
+
+classdiagram Telehealth {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+      List<MedicalRecord> medicalRecords;
+    }
+
+    class HealthcareProvider {
+      String uniqueIdentifier;
+      String name;
+      String specialty;
+      List<Patient> patients;
+    }
+
+    class MedicalRecord {
+      Patient patient;
+      String diagnosis;
+      String treatmentPlan;
+      List<String> testResults;
+    }
+
+    class TelehealthSystem {
+      Patient patient;
+      HealthcareProvider provider;
+      MedicalRecord record;
+
+      void createPatient(Patient patient);
+      void updatePatient(Patient patient);
+      void deletePatient(Patient patient);
+      void createProvider(HealthcareProvider provider);
+      void updateProvider(HealthcareProvider provider);
+      void deleteProvider(HealthcareProvider provider);
+      Patient getPatient(String uniqueIdentifier);
+      HealthcareProvider getProvider(String uniqueIdentifier);
+      MedicalRecord getRecord(String uniqueIdentifier);
+    }
+
+    association TelehealthSystem -> Patient [*];
+    association TelehealthSystem -> HealthcareProvider [*];
+    association Patient -> MedicalRecord [*];
+    association HealthcareProvider -> MedicalRecord [*];
+}

@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VRArtTherapy  {
+
+  class VRHeadset  {
+    Controller controller;
+  }
+
+  class Controller  {
+    VRHeadset headset;
+  }
+
+  class ArtTherapySession  {
+    String name;
+    String description;
+    Exercise[] exercises;
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+    ExerciseType type;
+  }
+
+  enum ExerciseType  {
+    Drawing, Painting, Sculpting;
+  }
+
+  class Patient  {
+    String name;
+    int age;
+    Diagnosis diagnosis;
+  }
+
+  class Diagnosis  {
+    String name;
+  }
+
+  class Report  {
+    Patient patient;
+    String progress;
+    String recommendations;
+  }
+
+  composition VRHeadset -> Controller;
+  composition Controller -> VRHeadset;
+  composition ArtTherapySession -> Exercise[*];
+  composition Patient -> Diagnosis;
+  composition Report -> Patient;
+}

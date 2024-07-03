@@ -1,0 +1,41 @@
+
+classdiagram DigitalHealthMonitoringSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      Set<HealthMetric> healthMetrics;
+    }
+
+    class HealthMetric {
+      String name;
+      String unit;
+      float value;
+    }
+
+    class Sensor {
+      Patient patient;
+      HealthMetric healthMetric;
+    }
+
+    class DataLogger {
+      Sensor sensor;
+      List<float> recordedData;
+      int maxStorageDays;
+    }
+
+    class AnalysisTool {
+      List<DataLogger> dataLoggers;
+      void analyzeData();
+      void generateReport();
+      void sendAlert();
+    }
+
+    association Patient 
+      -> Sensor [*];
+
+    association Sensor 
+      -> DataLogger [1..*];
+
+    composition Patient -> HealthMetric [*];
+    composition Sensor -> DataLogger [1..*];
+}

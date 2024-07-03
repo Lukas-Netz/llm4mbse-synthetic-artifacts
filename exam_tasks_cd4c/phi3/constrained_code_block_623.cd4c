@@ -1,0 +1,41 @@
+
+classdiagram BlockchainAssetTokenizationSystem {
+
+    class User {
+      String uniqueIdentifier;
+      void createToken(Asset asset, Token token);
+      void manageToken(Token token);
+      void tradeToken(Token token, Token newToken);
+    Writes toSmartContract(Token token);
+    }
+
+    class Asset {
+      String uniqueIdentifier;
+      List<Token> tokens;
+    }
+
+    class Token {
+      String uniqueIdentifier;
+      Asset asset;
+      User owner;
+      String metadata;
+    }
+
+    class SmartContract {
+      String contractCode;
+      void execute(Token token);
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      void verifyOwnership(Token token);
+    }
+
+    composition User -> (has) Blockchain;
+    composition User -> (has) SmartContract;
+    composition Asset -> (has) Token [*];
+    composition Token -> (has) User;
+    composition Token -> (has) Asset;
+    composition Token -> (has) SmartContract;
+    composition SmartContract -> (has) Blockchain;
+}

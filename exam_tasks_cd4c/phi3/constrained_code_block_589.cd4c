@@ -1,0 +1,40 @@
+
+classdiagram MarineRenewableEnergySystem {
+
+    class FloatingPlatform {
+      String name;
+      String uniqueIdentifier;
+      List<Turbine> turbines;
+      WeatherStation weatherStation;
+    }
+
+    class Turbine {
+      String uniqueIdentifier;
+      TurbineType type;
+      TurbineStatus status;
+    }
+
+    class WeatherStation {
+      float windSpeed;
+      String windDirection;
+    }
+
+    class ControlSystem {
+      FloatingPlatform platform;
+      void monitorTurbinePerformance();
+      void adjustTurbineSpeed();
+      void sendMaintenanceRequest();
+    }
+
+    enum TurbineType {
+      WindTurbine, TidalTurbine;
+    }
+
+    enum TurbineStatus {
+      Operational, NotOperational;
+    }
+
+    association FloatingPlatform -> ControlSystem;
+    association FloatingPlatform -> WeatherStation;
+    association ControlSystem -> FloatingPlatform;
+}

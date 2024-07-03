@@ -1,0 +1,54 @@
+
+classdiagram VotingSystem {
+
+  class Voter {
+    String id;
+    String password;
+    boolean isRegistered;
+  }
+
+  class Election {
+    String name;
+    String startDate;
+    String endDate;
+    Candidate [ ] candidates;
+  }
+
+  class Candidate {
+    String name;
+    String party;
+  }
+
+  class Blockchain {
+    Block [ ] blocks;
+  }
+
+  class Block {
+    String timestamp;
+    String data;
+    Block previous;
+  }
+
+  class Vote {
+    Voter voter;
+    Election election;
+    Candidate candidate;
+  }
+
+  class VotingSystem {
+    Blockchain blockchain;
+    Voter [ ] voters;
+    Election [ ] elections;
+    void registerVoter(Voter voter);
+    boolean login(String id, String password);
+    Election [ ] getElections();
+    void castVote(Voter voter, Election election, Candidate candidate);
+    boolean verifyVotingIntegrity();
+  }
+
+  composition VotingSystem -> Blockchain;
+  composition VotingSystem -> Voter [*];
+  composition VotingSystem -> Election [*];
+  association Voter --oVotes;
+  association Block --oBlock;
+}

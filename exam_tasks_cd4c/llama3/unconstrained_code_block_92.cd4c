@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram CognitiveSearchSolution  {
+
+  class KnowledgeGraph  {
+    Map<String, Object> data;
+  }
+
+  abstract class SearchEngine  {
+    KnowledgeGraph knowledgeGraph;
+    void query(String query);
+  }
+
+  class TextSearch extends SearchEngine  {
+    NLP nlp;
+    void analyzeText(String text);
+  }
+
+  class ImageSearch extends SearchEngine  {
+    ComputerVision cv;
+    void analyzeImage(String image);
+  }
+
+  class VideoSearch extends SearchEngine  {
+    VideoAnalysis va;
+    void analyzeVideo(String video);
+  }
+
+  class UserInterface  {
+    void displayResults(List<SearchResult> results);
+    void filterResults(List<SearchResult> results);
+    void sortResults(List<SearchResult> results);
+    void rankResults(List<SearchResult> results);
+  }
+
+  class SearchResult  {
+    String title;
+    String description;
+    String url;
+  }
+
+  composition KnowledgeGraph -> SearchEngine[*];
+  composition SearchEngine -> KnowledgeGraph;
+  composition UserInterface -> SearchEngine[*];
+}
+

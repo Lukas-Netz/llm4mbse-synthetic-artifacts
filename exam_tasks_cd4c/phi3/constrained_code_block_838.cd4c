@@ -1,0 +1,55 @@
+
+classdiagram SmartManufacturing {
+
+    class Machine {
+      String uniqueIdentifier;
+      MachineType type;
+      List<Sensor> sensors;
+      List<Actuator> actuators;
+    }
+
+    class CNCMachine extends Machine {
+      int cuttingSpeed;
+      int feedRate;
+    }
+
+    class nd3DPrinter extends Machine {
+      int printSpeed;
+      int printResolution;
+    }
+
+    class QualityControlStation {
+      String uniqueIdentifier;
+      List<Sensor> sensors;
+      List<Actuator> actuators;
+    }
+
+    class RawMaterialInventory {
+      String materialType;
+      int quantity;
+    }
+
+    class FinishedProductInventory {
+      String productType;
+      int quantity;
+    }
+
+    class SmartManufacturing {
+      List<Machine> machines;
+      List<QualityControlStation> qualityControlStations;
+      RawMaterialInventory rawMaterialInventory;
+      FinishedProductInventory finishedProductInventory;
+    }
+
+    composition SmartManufacturing -> (has) machines;
+    composition SmartManufacturing -> (has) qualityControlStations;
+    composition SmartManufacturing -> (has) rawMaterialInventory;
+    composition SmartManufacturing -> (has) finishedProductInventory;
+
+    association Machine -> List<<Sensor>>;
+    association Machine -> List<<Actuator>>;
+    association QualityControlStation -> List<<Sensor>>;
+    association QualityControlStation -> List<<Actuator>>;
+    association RawMaterialInventory -> SmartManufacturing;
+    association FinishedProductInventory -> SmartManufacturing;
+}

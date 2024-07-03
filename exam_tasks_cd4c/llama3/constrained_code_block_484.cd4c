@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram VirtualRealityLanguageImmersion  {
+
+  class User  {
+    String username;
+    String password;
+    Language language;
+    Progress progress;
+  }
+
+  class Language  {
+    String name;
+    String description;
+  }
+
+  class VirtualEnvironment  {
+    String name;
+    Object[] objects;
+  }
+
+  class Object  {
+    String name;
+    String description;
+  }
+
+  class Progress  {
+    int score;
+    Goal[] goals;
+  }
+
+  class Goal  {
+    String description;
+    int targetScore;
+  }
+
+  class Report  {
+    User user;
+    Progress progress;
+    String recommendation;
+  }
+
+  class System  {
+    User[] users;
+    Language[] languages;
+    VirtualEnvironment[] virtualEnvironments;
+    Object[] objects;
+    Progress[] progress;
+    Goal[] goals;
+    Report[] reports;
+  }
+
+  composition System -> User[*];
+  composition System -> Language[*];
+  composition System -> VirtualEnvironment[*];
+  composition System -> Object[*];
+  composition System -> Progress[*];
+  composition System -> Goal[*];
+  composition System -> Report[*];
+  association User -> Language;
+  association User -> VirtualEnvironment;
+  association User -> Progress;
+  association VirtualEnvironment -> Object[*];
+  association Progress -> Goal[*];
+  }

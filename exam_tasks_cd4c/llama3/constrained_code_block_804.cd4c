@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram BirdSongIdentification  {
+
+  class BirdSpecies  {
+    String name;
+    String scientificName;
+    List<Song> songs;
+  }
+
+  class Song  {
+    List<AudioFeature> features;
+  }
+
+  class AudioFeature  {
+    double frequency;
+    double amplitude;
+    double duration;
+  }
+
+  class FeatureExtractor  {
+    Song extractFeatures(Song song);
+  }
+
+  class Classifier  {
+    BirdSpecies classify(Song song);
+  }
+
+  class Database  {
+    List<BirdSpecies> species;
+    void addSpecies(BirdSpecies species);
+    void addSong(BirdSpecies species, Song song);
+  }
+
+  class User  {
+    String username;
+    List<BirdSpecies> favoriteSpecies;
+  }
+
+  class System  {
+    Database database;
+    List<User> users;
+    FeatureExtractor featureExtractor;
+    Classifier classifier;
+  }
+
+  composition System -> (has) Database;
+  composition System -> (has) FeatureExtractor;
+  composition System -> (has) Classifier;
+  composition System -> (has) List[0..*]  <<User>>;
+  composition Database -> (has) List[0..*]  <<BirdSpecies>>;
+  composition BirdSpecies -> (has) List[0..*]  <<Song>>;
+  composition Song -> (has) List[0..*]  <<AudioFeature>>;
+}

@@ -1,0 +1,39 @@
+
+classdiagram SmartFabricSystem {
+
+    class SmartFabricSystem {
+      Sensor[] sensors;
+      ProcessingUnit processingUnit;
+      CommunicationModule communicationModule;
+      PowerSource powerSource;
+    }
+
+    class Sensor {
+      String parameter;
+      float value;
+    }
+
+    class ProcessingUnit {
+      void analyzeData(Sensor[] sensorData);
+      void storeDataLocally();
+      void transmitData(CommunicationModule module);
+    }
+
+    class CommunicationModule {
+      void transmitDataToSmartphone(Sensor[] sensorData);
+      void transmitDataToCloud(Sensor[] sensorData);
+      void receiveCommands(String command);
+      void receiveUpdates(Sensor[] updates);
+    }
+
+    class PowerSource {
+      boolean isRechargeable;
+      int capacity;
+    }
+
+  composition SmartFabricSystem -> (has) ProcessingUnit;
+  composition SmartFabricSystem -> (has) CommunicationModule;
+  composition SmartFabricSystem -> (has) PowerSource;
+  association SmartFabricSystem.sensors <-> ProcessingUnit;
+  association SmartFabricSystem.processingUnit -> CommunicationModule;
+}

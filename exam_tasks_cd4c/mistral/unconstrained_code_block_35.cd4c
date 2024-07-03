@@ -1,0 +1,51 @@
+
+classdiagram QKD {
+
+  class Alice {
+    QKE aliceQKE;
+    CC aliceCC;
+  }
+
+  class Bob {
+    QKE bobQKE;
+    CC bobCC;
+  }
+
+  class QKE {
+    int keyLength;
+    String encodingMethod;
+  }
+
+  class QKD {
+    int keyLength;
+    String decodingMethod;
+  }
+
+  class QC {
+    int transmissionRate;
+    int transmissionDistance;
+  }
+
+  class CC {
+    int transmissionRate;
+    int transmissionDistance;
+  }
+
+  class Charlie {
+    CKM charlieCKM;
+    QC qc;
+    CC cc;
+  }
+
+  class CKM {
+    int keyStorageCapacity;
+    String keyVerificationMethod;
+  }
+
+  composition Alice -> QKE;
+  composition Bob -> QKE;
+  composition Charlie -> QC;
+  composition Charlie -> CC;
+  association Alice -> Charlie;
+  association Bob -> Charlie;
+}

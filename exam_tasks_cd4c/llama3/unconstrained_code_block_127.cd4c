@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram VotingSystem  {
+
+  class Voter  {
+    String username;
+    String password;
+  }
+
+  class Election  {
+    String name;
+    List<Candidate> candidates;
+  }
+
+  class Candidate  {
+    String name;
+    String description;
+  }
+
+  class Vote  {
+    Election election;
+    Candidate candidate;
+    Voter voter;
+  }
+
+  class Blockchain  {
+    List<Vote> votes;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class VotingSystem  {
+    List<Voter> voters;
+    List<Election> elections;
+    Blockchain blockchain;
+    Administrator administrator;
+  }
+
+  composition VotingSystem -> (has) Blockchain;
+  composition VotingSystem -> (has) Administrator;
+  composition VotingSystem -> (has) Voter[*];
+  composition VotingSystem -> (has) Election[*];
+  composition Election -> (has) Candidate[*];
+  composition Vote -> (has) Election;
+  composition Vote -> (has) Candidate;
+  composition Vote -> (has) Voter;
+}
+

@@ -1,0 +1,67 @@
+
+classdiagram AstronomyPlatform {
+
+  class Course {
+    String title;
+    String description;
+    Schedule schedule;
+  }
+
+  class Schedule {
+    Date startDate;
+    Date endDate;
+    int duration;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    OfficeHours officeHours;
+  }
+
+  class OfficeHours {
+    Time startTime;
+    Time endTime;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    Date submissionDeadline;
+  }
+
+  class Discussion {
+    String title;
+    String creator;
+  }
+
+  class CourseProgress {
+    AssignmentGrade [ ] assignmentGrades;
+    double overallCourseGrade;
+  }
+
+  class Administrator {
+    String name;
+    String email;
+    void addCourse(Course course);
+    void removeCourse(Course course);
+    void addInstructor(Instructor instructor);
+    void removeInstructor(Instructor instructor);
+    void addStudent(Student student);
+    void removeStudent(Student student);
+  }
+
+  composition Course -> Schedule;
+  association Course -> Instructor [1..1];
+  association Student -> Course [*];
+  association Student -> Assignment [*];
+  association Course -> Discussion [*];
+  association Course -> CourseProgress [1..1];
+}

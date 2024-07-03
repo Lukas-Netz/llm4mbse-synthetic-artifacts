@@ -1,0 +1,59 @@
+
+classdiagram VRJournalism {
+
+  class Newsroom {
+    Journalist [						]
+ 										Journalsim
+ 										;
+  }
+
+  class Library {
+    Model [						]
+    Video												;
+  }
+
+  class Studio {
+    String name;
+    String description;
+    Model [						] models;
+    Video [						] videos;
+    Journalist [						] journalists;
+    Newsroom newsroom;
+  }
+
+  class Player {
+    String name;
+    String description;
+    Studio studio;
+    Model [						] models;
+    Video [						] videos;
+  }
+
+  class Journalist {
+    String name;
+    String email;
+    String password;
+    Studio studio;
+    Player [						] players;
+  }
+
+  class Model {
+    String name;
+    String description;
+    String 											file;
+  }
+
+  class Video {
+    String name;
+    String description;
+    String file;
+  }
+
+  composition Newsroom -> Journalist [*];
+  composition Studio -> Journalist [*];
+  composition Studio -> Model [*];
+  composition Studio -> Video [*];
+  composition Player -> Studio;
+  composition Player -> Model [*];
+  composition Player -> Video [*];
+}

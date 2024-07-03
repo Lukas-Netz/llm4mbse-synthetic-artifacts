@@ -1,0 +1,63 @@
+
+
+classdiagram VirtualRealityLearningSystem {
+
+  class StudentProfile {
+    String name;
+    LearningStyle style;
+    Strength weaknesses;
+  }
+
+  class CourseCatalog {
+    List<CourseInstance> instances;
+  }
+
+  class CourseInstance {
+    String name;
+    CourseDescription description;
+    List<Student> students;
+    StartDate startDate;
+    EndDate endDate;
+  }
+
+  class Lesson {
+    String name;
+    LearningObjectives objectives;
+    Content content;
+    Assessment assessment;
+  }
+
+  class StudentProgress {
+    Student student;
+    List<LessonCompletion> completions;
+    OverallProgress overallProgress;
+  }
+
+  class LearningStyle {
+    String name;
+    List<LearningStrategy> strategies;
+  }
+
+  class LearningStrategy {
+    String name;
+    List<TeachingMethod> methods;
+  }
+
+  class Strength {
+    String name;
+    List<LearningObjective> objectives;
+  }
+
+  class Weakness {
+    String name;
+    List<LearningObjective> objectives;
+  }
+
+  composition StudentProfile -> CourseInstance [0..1];
+  composition CourseInstance -> Lesson [*];
+  composition StudentProgress -> StudentProfile;
+  association StudentProfile -> LearningStyle;
+  association LearningStyle -> LearningStrategy;
+  association Strength -> LearningObjective;
+  association Weakness -> LearningObjective;
+}

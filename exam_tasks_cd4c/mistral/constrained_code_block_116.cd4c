@@ -1,0 +1,44 @@
+
+classdiagram IoTSecurity {
+
+  class CentralHub {
+    -> Device [*];
+    -> CloudBackend;
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    String checkDeviceStatus(Device device);
+    void detectSecurityThreats();
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  enum DeviceType {
+    Light, Thermostat, SecurityCamera;
+  }
+
+  class Light extends Device {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Thermostat extends Device {
+    int temperature;
+    ThermostatMode mode;
+  }
+
+  class SecurityCamera extends Device {
+    String resolution;
+    boolean isRecording;
+  }
+
+  class CloudBackend {
+    void analyzeData();
+    void detectThreats();
+  }
+
+  composition CentralHub -> Device [*];
+  association CentralHub -> CloudBackend;
+}

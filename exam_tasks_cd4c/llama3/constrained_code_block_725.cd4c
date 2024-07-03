@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram RenewableEnergyForecastingSystem  {
+
+  class WeatherStation  {
+    Sensor temperatureSensor;
+    Sensor humiditySensor;
+    Sensor windSpeedSensor;
+    Sensor solarRadiationSensor;
+  }
+
+  class Sensor  {
+    String reading;
+    DateTime timestamp;
+  }
+
+  class MLModel  {
+    double learningRate;
+    int numHiddenLayers;
+    void train(WeatherData weatherData);
+    EnergyProduction predict(WeatherData weatherData);
+  }
+
+  class WeatherData  {
+    double temperature;
+    double humidity;
+    double windSpeed;
+    double solarRadiation;
+  }
+
+  class EnergyProduction  {
+    double solarEnergy;
+    double windEnergy;
+  }
+
+  class Database  {
+    Table weatherDataTable;
+    Table predictedEnergyProductionTable;
+    Table mlModelParametersTable;
+  }
+
+  class Table  {
+    List<Row> rows;
+  }
+
+  class Row  {
+    String[] columns;
+  }
+
+  class UI  {
+    Graph predictedEnergyProductionGraph;
+    Form mlModelParameterForm;
+  }
+
+  composition WeatherStation -> Sensor [4];
+  composition MLModel -> WeatherData;
+  composition Database -> Table [3];
+  composition UI -> Graph;
+  composition UI -> Form;
+}

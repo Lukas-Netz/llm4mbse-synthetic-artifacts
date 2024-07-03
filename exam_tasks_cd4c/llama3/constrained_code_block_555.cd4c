@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram GeneSequencingPlatform  {
+
+  class SequencingPlatform  {
+    String name;
+    List<Feature> features;
+  }
+
+  class Feature  {
+    String name;
+    String description;
+  }
+
+  class Data  {
+    String type;  (DNA_RNA_PROTEIN)
+    String sequence;
+  }
+
+  class VisualizationTool  {
+    String name;
+    String description;
+  }
+
+  class FilteringTool  {
+    String name;
+    String description;
+  }
+
+  class AnalysisTool  {
+    String name;
+    String description;
+  }
+
+  class BioinformaticsTool  {
+    String name;
+    String description;
+  }
+
+  class Database  {
+    String name;
+    String description;
+  }
+
+  class User  {
+    String username;
+    String password;
+    String role;  (admin_user)
+  }
+
+  class Session  {
+    User user;
+    Data data;
+  }
+
+  class PlatformSession  {
+    SequencingPlatform platform;
+    Session session;
+  }
+
+  composition SequencingPlatform -> Feature[*];
+  composition Data -> VisualizationTool[*];
+  composition Data -> FilteringTool[*];
+  composition Data -> AnalysisTool[*];
+  composition BioinformaticsTool -> Database[*];
+  composition User -> Session[*];
+  composition Session -> Data[*];
+  composition PlatformSession -> SequencingPlatform[*];
+  composition PlatformSession -> Session[*];
+}

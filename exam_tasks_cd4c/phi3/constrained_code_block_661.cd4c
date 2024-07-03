@@ -1,0 +1,51 @@
+
+classdiagram SnowRemovalSystem {
+
+    class SnowRemovalSystem {
+      CentralControlUnit centralControlUnit;
+      List<Snowplow> snowplows;
+      WeatherMonitoringSystem weatherMonitoringSystem;
+    }
+
+    class CentralControlUnit {
+      void assignSnowplow(Snowplow snowplow, Route route);
+      void monitorWeather();
+    }
+
+    abstract class Snowplow {
+      String uniqueIdentifier;
+      SnowplowStatus status;
+    }
+
+    class Truck extends Snowplow {
+      int speed;
+      int traction;
+    }
+
+    class Trailer extends Snowplow {
+      int capacityTons;
+    }
+
+    class Route {
+      String routeId;
+      List<Snowplow> assignedSnowplows;
+    }
+
+    class WeatherMonitoringSystem {
+      Weather currentWeather;
+      void updateWeather();
+    }
+
+    enum SnowplowStatus {
+      Operational, NotOperational;
+    }
+
+    enum Weather {
+      LowTemperature, HighTemperature, HeavySnowfall, LightSnowfall;
+    }
+
+  composition SnowRemovalSystem -> (has) CentralControlUnit;
+  composition SnowRemovalSystem -> (has) List<<Snowplow>>;
+  composition CentralControlUnit -> (has) Route;
+  composition CentralControlUnit -> (has) WeatherMonitoringSystem;
+}

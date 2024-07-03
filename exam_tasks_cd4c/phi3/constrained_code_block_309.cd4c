@@ -1,0 +1,60 @@
+
+classdiagram OnlineGrocery {
+
+    class Customer {
+      String uniqueId;
+      String name;
+      String email;
+    }
+
+    class Product {
+      String uniqueId;
+      String name;
+      String category;
+      double price;
+    }
+
+    class Order {
+      Customer customer;
+      List<Product> products;
+      String orderId;
+    }
+
+    class Category {
+      String name;
+    }
+
+    class Inventory {
+      Map<Product, int> stockLevels;
+    }
+
+    <<association>> class Customer {
+      Order[] orders;
+      void browseProducts(Category category);
+      void searchProducts(String productName);
+      void addToCart(Product product);
+      void placeOrder(Order order);
+      void viewOrderHistory();
+    }
+
+    <<association>> class Product {
+      Inventory inventory;
+      void updateStockLevel(Product product);
+    }
+
+    <<association>> class Order {
+      Customer customer;
+      Inventory inventory;
+      void confirmOrder();
+      void updateOrderStatus();
+    }
+
+    <<association>> class Category {
+      List<Product> products;
+    }
+
+    <<association>> class Inventory {
+      Map<Product, int> stockLevels;
+      void updateStockLevel(Product product, int quantity);
+    }
+}

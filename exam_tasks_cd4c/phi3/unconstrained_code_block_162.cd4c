@@ -1,0 +1,50 @@
+
+classdiagram VirtualFitnessPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Instructor extends User {
+      List<Class> classes;
+    }
+
+    class Participant extends User {
+      List<Class> joinedClasses;
+    }
+
+    class Class {
+      String name;
+      String description;
+      Schedule schedule;
+      ClassType type;
+      int durationMinutes;
+      DifficultyLevel difficultyLevel;
+      int maxCapacity;
+      List<Participant> participants;
+    }
+
+    class Schedule {
+      DateTime startTime;
+      DateTime endTime;
+    }
+
+    class ClassType {
+      String typeName;
+    }
+
+    class DifficultyLevel {
+      String levelName;
+    }
+
+    association Instructor -> Class [1..*];
+    association Participant -> Class [1..*];
+    association Class -> Participant [1..*];
+    association Class -> Instructor [1];
+
+    composition Class -> Schedule;
+    composition Class -> ClassType;
+    composition Class -> DifficultyLevel;
+    composition Class -> Participant [1..*];
+}

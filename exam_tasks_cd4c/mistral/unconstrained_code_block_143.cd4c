@@ -1,0 +1,37 @@
+
+classdiagram SnowRemoval {
+
+  class CentralControlUnit {
+    -> Snowplow [*];
+    -> WeatherMonitoringSystem;
+    void assignSnowplowToRoute(Snowplow snowplow, String route);
+    String checkWeatherMonitoringStatus();
+  }
+
+  abstract class Snowplow {
+    String uniqueIdentifier;
+    SnowplowStatus status;
+  }
+
+  class Truck extends Snowplow {
+    int speed;
+    int traction;
+  }
+
+  class Trailer extends Snowplow {
+    int capacityTons;
+  }
+
+  class WeatherMonitoringSystem {
+    int temperature;
+    int humidity;
+    int snowfall;
+  }
+
+  enum SnowplowStatus {
+    Operational, NotOperational;
+  }
+
+  composition CentralControlUnit -> Snowplow [*];
+  composition CentralControlUnit -> WeatherMonitoringSystem;
+}

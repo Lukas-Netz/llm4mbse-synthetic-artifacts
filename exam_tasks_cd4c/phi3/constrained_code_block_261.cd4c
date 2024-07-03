@@ -1,0 +1,59 @@
+
+classdiagram ElearningSystem {
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class Instructor extends User {
+      List<Course> courses;
+      List<Lesson> lessons;
+      List<Quiz> quizzes;
+    }
+
+    class Student extends User {
+      List<Course> courses;
+      List<Quiz> quizzes;
+      List<QuizResult> quizResults;
+    }
+
+    class Course {
+      String name;
+      String description;
+      List<Lesson> lessons;
+    }
+
+    class Lesson {
+      String name;
+      String description;
+      List<Quiz> quizzes;
+    }
+
+    class Quiz {
+      String name;
+      String description;
+      List<Question> questions;
+    }
+
+    class Question {
+      String text;
+      String correctAnswer;
+      List<String> possibleAnswers;
+    }
+
+    class QuizResult {
+      String quizName;
+      String studentName;
+      boolean isCorrect;
+      int score;
+    }
+
+    composition User -> (has) Instructor;
+    composition User -> (has) Student;
+    composition Course -> (has) Lesson [*];
+    composition Course -> (has) List<<Quiz>>;
+    composition Lesson -> (has) Quiz [*];
+    composition Quiz -> (has) Question [*];
+    composition Student -> (has) QuizResult [*];
+}

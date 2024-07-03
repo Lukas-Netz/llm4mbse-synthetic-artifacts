@@ -1,0 +1,72 @@
+
+classdiagram OnlineRentalPlatform {
+
+    class User {
+      String userID;
+      String name;
+      String email;
+      List<Property> propertiesListed;
+      List<Property> propertiesBooked;
+    }
+
+    class Property {
+      String uniqueID;
+      String name;
+      String description;
+      Location location;
+      double pricePerNight;
+      int minStay;
+      int maxGuests;
+      List<Amenity> amenities;
+      boolean isAvailable;
+      List<Photo> photos;
+      List<Review> reviews;
+    }
+
+    class Location {
+      String city;
+      String state;
+      String zipCode;
+    }
+
+    class Amenity {
+      String name;
+    }
+
+    class Photo {
+      String url;
+    }
+
+    class Review {
+      String rating;
+      String comment;
+    }
+
+    class RentalAgreement {
+      String startDate;
+      String endDate;
+      double rent;
+      double deposit;
+      List<AdditionalFee> additionalFees;
+    }
+
+    class AdditionalFee {
+      String feeType;
+      double amount;
+    }
+
+    class Filter {
+      Location location;
+      double price;
+      List<Amenity> amenities;
+    }
+
+    association User -> List<<Property>>;
+    association User -> List<<RentalAgreement>>;
+    association Property -> List<<Amenity>>;
+    association Property -> List<<Photo>>;
+    association Property -> List<<Review>>;
+    association Property -> Location;
+    association Property -> RentalAgreement;
+    composition User -> List<<Filter>>;
+}

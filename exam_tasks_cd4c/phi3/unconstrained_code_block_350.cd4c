@@ -1,0 +1,25 @@
+
+classdiagram AITranslationSystem {
+
+    class Dictionary {
+      Map<String, Map<String, String>> translations;
+      void addTranslation(String word, String sourceLanguage, String translation);
+      String getTranslation(String word, String sourceLanguage, String targetLanguage);
+    }
+
+    class Translator {
+      Dictionary dictionary;
+      String translate(String text, String sourceLanguage, String targetLanguage);
+    }
+
+    class UserInterface {
+      void displayTranslationProcess();
+      void inputText(String text, String sourceLanguage, String targetLanguage);
+      String getTranslationFeedback();
+    }
+
+    association UserInterface -> Translator [*];
+    association UserInterface -> Dictionary [*];
+    composition UserInterface -> Dictionary;
+    composition UserInterface -> Translator;
+}

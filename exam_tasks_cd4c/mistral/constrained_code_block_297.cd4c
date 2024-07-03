@@ -1,0 +1,39 @@
+
+classdiagram HomeSecuritySystem {
+
+  class CentralHub {
+    -> Sensor [*];
+    -> Camera [*];
+    -> BackupPower;
+    void receiveAlert(Alert alert);
+    void controlRemotely();
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String zone;
+    SensorType type;
+  }
+
+  class Camera {
+    String uniqueIdentifier;
+    String zone;
+  }
+
+  enum SensorType {
+    Intruder, Smoke, CarbonMonoxide;
+  }
+
+  class BackupPower {
+    int capacityWh;
+  }
+
+  class Alert {
+    String source;
+    String message;
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Camera [*];
+  composition CentralHub -> BackupPower;
+}

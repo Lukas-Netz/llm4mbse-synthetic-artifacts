@@ -1,0 +1,55 @@
+
+classdiagram DogTrainingApp {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class DogProfile {
+    String uniqueIdentifier;
+    String name;
+    String breed;
+    int age;
+    int weight;
+    DogProfile(String name, String breed, int age, int weight);
+  }
+
+  class TrainingPlan {
+    String uniqueIdentifier;
+    String goal;
+    TrainingPlan(String goal);
+  }
+
+  enum Goal {
+    Obedience, Agility, Hunting;
+  }
+
+  class Exercise {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    DifficultyLevel difficulty;
+    Exercise(String name, String description, DifficultyLevel difficulty);
+  }
+
+  enum DifficultyLevel {
+    Basic, Intermediate, Advanced;
+  }
+
+  class DogTrainingApp {
+    User user;
+    DogProfile dogProfile;
+    TrainingPlan [ ] trainingPlans;
+    void createDogProfile(DogProfile dogProfile);
+    void addTrainingPlan(TrainingPlan trainingPlan);
+    void completeExercise(Exercise exercise);
+    void rateExercise(Exercise exercise, int rating);
+    void reviewExercise(Exercise exercise, String review);
+    void generatePersonalizedTrainingPlan();
+    void updateLeaderboard();
+  }
+
+  composition User -> DogProfile [1..*];
+  composition DogProfile -> TrainingPlan [*];
+}

@@ -1,0 +1,70 @@
+
+
+classdiagram AgriculturalNanotechnology {
+
+    class Farm {
+      String name;
+      int id;
+      Manager manager;
+      Field[] fields;
+    }
+
+    class Field {
+      int id;
+      Farm farm;
+      Crop[] crops;
+    }
+
+    class Crop {
+      String name;
+      Type type;
+      GrowthStage stage;
+    }
+
+    enum Type {
+      Grains, Fruits, Vegetables
+    
+
+    
+;
+    }
+
+    enum GrowthStage {
+      Planting, Growth, Ripening, Harvesting
+    
+
+    
+;
+    }
+
+    class Grains extends Crop {
+      int yield;
+      int moistureContent;
+    }
+
+    class Fruits extends Crop {
+      int ripeness;
+      int quality;
+    }
+
+    class Vegetables extends Crop {
+      int ripeness;
+      int quality;
+    }
+
+    class Manager {
+      void manageFields();
+      void manageCrops();
+      void monitorCropGrowth();
+    }
+
+    class NanotechnologyComponent {
+      int particleSize;
+      int concentration;
+    }
+
+  composition Farm -> (has) Manager;
+  composition Farm -> (has) Fields [0..*];
+  composition Field -> (has) Crops [0..*];
+  association Crop -> NanotechnologyComponent;
+}

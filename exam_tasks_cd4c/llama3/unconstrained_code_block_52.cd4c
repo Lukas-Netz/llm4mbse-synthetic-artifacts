@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram ChatbotSystem  {
+
+  class Chatbot  {
+    String uniqueIdentifier;
+    Department department;
+    Set<Skill> skills;
+  }
+
+  class Hub  {
+    Chatbot[] chatbots;
+    Map<String, Chatbot> chatbotMap;
+    ConversationHistory conversationHistory;
+  }
+
+  class Department  {
+    String name;
+  }
+
+  class Skill  {
+    String name;
+  }
+
+  class ConversationHistory  {
+    Map<String, Conversation> conversations;
+  }
+
+  class Conversation  {
+    String chatbotId;
+    String userId;
+    String request;
+    String response;
+  }
+
+  composition Hub -> Chatbot[*];
+  composition Chatbot -> Skill[*];
+  association Department -> Chatbot[*];
+}
+

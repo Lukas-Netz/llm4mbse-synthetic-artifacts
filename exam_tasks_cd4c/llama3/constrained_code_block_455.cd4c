@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram DigitalScrapbooking  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Album  {
+    String name;
+    String description;
+    User owner;
+    int views;
+    int likes;
+  }
+
+  class Photo  {
+    String caption;
+    Date dateTaken;
+    int views;
+    int likes;
+    List<Tag> tags;
+  }
+
+  class Tag  {
+    String name;
+  }
+
+  class ScrapbookingPlatform  {
+    User user;
+    Album album;
+    Photo photo;
+  }
+
+  composition User -> Album [1..*];
+  composition Album -> Photo [1..*];
+  composition Photo -> Tag [1..*];
+  composition ScrapbookingPlatform -> User;
+  composition ScrapbookingPlatform -> Album;
+  composition ScrapbookingPlatform -> Photo;
+}

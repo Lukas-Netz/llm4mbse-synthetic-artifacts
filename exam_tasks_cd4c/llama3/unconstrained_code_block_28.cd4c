@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram EventManagementSystem  {
+
+  class Event  {
+    String uniqueIdentifier;
+    String name;
+    Date date;
+    -> Speaker[*];
+    -> Session[*];
+  }
+
+  class Speaker  {
+    String name;
+    String bio;
+    String contactInformation;
+  }
+
+  class Session  {
+    String title;
+    String description;
+    Date startTime;
+    Date endTime;
+    -> Attendee[*];
+  }
+
+  class Attendee  {
+    String name;
+    String email;
+    String phoneNumber;
+    -> Session[*];
+  }
+
+  class Report  {
+    String type;
+    String description;
+    -> Event[*];
+  }
+
+  composition Event -> Speaker[*];
+  composition Event -> Session[*];
+  composition Session -> Attendee[*];
+  composition Report -> Event[*];
+}
+

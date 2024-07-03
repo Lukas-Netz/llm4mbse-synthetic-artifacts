@@ -1,0 +1,32 @@
+
+
+classdiagram PatientMedicalRecordSystem {
+
+  class Patient {
+    String uniqueIdentifier;
+    List<MedicalRecord> medicalRecords;
+  }
+
+  class MedicalRecord {
+    String patientIdentifier;
+    String medicalEventDescription;
+    Date timestamp;
+  }
+
+  class HealthcareProvider {
+    String uniqueIdentifier;
+  }
+
+  class BlockchainNetwork {
+    List<MedicalRecord> medicalRecords;
+  }
+
+  class SmartContract {
+    MedicalRecord updateMedicalRecord(MedicalRecord record);
+  }
+
+  composition Patient -> (has) MedicalRecords;
+  composition MedicalRecord -> (has) Timestamp;
+  association HealthcareProvider -> BlockchainNetwork;
+  association SmartContract -> BlockchainNetwork;
+}

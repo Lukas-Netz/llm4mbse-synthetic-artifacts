@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram MusicPlatform  {
+
+  class Artist  {
+    String uniqueIdentifier;
+    Profile profile;
+    MusicTrack[] uploadedTracks;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+    MusicTrack[] listenedTracks;
+  }
+
+  class MusicTrack  {
+    String uniqueIdentifier;
+    String title;
+    Artist artist;
+    String genre;
+    int duration;
+    Rating rating;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Rating  {
+    double value;
+    User user;
+  }
+
+  class Blockchain  {
+    Transaction[] transactions;
+  }
+
+  class Transaction  {
+    MusicTrack musicTrack;
+    User user;
+    String action;  (streaming_or_purchasing)
+  }
+
+  composition Artist -> MusicTrack[*];
+  composition User -> MusicTrack[*];
+  composition MusicTrack -> Artist;
+  composition MusicTrack -> Rating;
+  composition Blockchain -> Transaction[*];
+  composition Transaction -> MusicTrack;
+  composition Transaction -> User;
+}

@@ -1,0 +1,29 @@
+
+classdiagram AutomatedUnderwritingSystem {
+
+    class Customer {
+        int age;
+        String healthStatus;
+        String occupation;
+        int income;
+        String familyHistory;
+        String medicalHistory;
+    }
+
+    class UnderwritingSystem {
+        evaluateCustomer(Customer customer);
+        quotePremium(Customer customer);
+    }
+
+    class RiskProfile {
+        String riskCategory;
+    }
+
+    class PremiumQuote {
+        int premium;
+    }
+
+    association UnderwritingSystem -> Customer [*];
+    association Customer -> RiskProfile [*];
+    association Customer -> PremiumQuote [*];
+}

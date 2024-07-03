@@ -1,0 +1,52 @@
+
+
+
+classdiagram ForensicLab  {
+
+  class Case  {
+    String caseNumber;
+    String description;
+    -> Analyst  [1..*];
+    -> Evidence  [*];
+  }
+
+  class Analyst  {
+    String analystID;
+    String name;
+  }
+
+  abstract class Evidence  {
+    String evidenceID;
+    String description;
+    EvidenceStatus status;
+  }
+
+  class BiologicalEvidence extends Evidence  {
+    DNA dnaSample;
+    Fingerprints fingerprints;
+    Bloodstains bloodstains;
+  }
+
+  class ChemicalEvidence extends Evidence  {
+    Substances substances;
+  }
+
+  class PhysicalEvidence extends Evidence  {
+    Objects objects;
+  }
+
+  enum EvidenceStatus  {
+    Pending,
+    Analyzed,
+    Discarded
+  ;}
+
+  class AnalysisResult  {
+    boolean matchesSuspect;
+  }
+
+  composition Case  ->  (has) Analyst;
+  composition Case  ->  (has) Evidence;
+  composition Analyst  ->  (worksOn) Case;
+  composition Evidence  ->  (has) AnalysisResult;
+}

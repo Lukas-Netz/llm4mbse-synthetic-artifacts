@@ -1,0 +1,47 @@
+
+
+classdiagram OrchardTwin {
+
+  class Orchard {
+    String id;
+    String location;
+  }
+
+  class Tree {
+    String type;
+    int age;
+    HealthStatus status;
+  }
+
+  class Sensor {
+    String treeId;
+    Temperature sensorTemperature;
+    Humidity sensorHumidity;
+    SoilMoisture sensorSoilMoisture;
+  }
+
+  class WeatherStation {
+    String location;
+    Temperature weatherTemperature;
+    Precipitation weatherPrecipitation;
+    Sunlight weatherSunlight;
+  }
+
+  class PestAndDisease {
+    String type;
+    Severity severity;
+    TreatmentStatus treatmentStatus;
+  }
+
+  class Farmer {
+    String name;
+    String contactInfo;
+    OrchardManagementTasks tasks;
+  }
+
+  composition Orchard -> (has) Tree [*];
+  composition Tree -> (has) Sensor [*];
+  association WeatherStation -> Orchard;
+  association PestAndDisease -> Tree;
+  association Farmer -> Orchard;
+}

@@ -1,0 +1,71 @@
+
+classdiagram Aquaponics {
+
+  class FishTank {
+    int capacity;
+    int waterLevel;
+    Fish [ ] fish;
+  }
+
+  class PlantBed {
+    String soilType;
+    int waterLevel;
+    Plant [ ] plants;
+  }
+
+  class Pump {
+    int flowRate;
+    int powerConsumption;
+  }
+
+  class Filter {
+    int removalEfficiency;
+    String maintenanceSchedule;
+  }
+
+  class Heater {
+    int temperatureRange;
+    int powerConsumption;
+  }
+
+  class Sensor {
+    int measurementRange;
+    int dataTransmissionRate;
+  }
+
+  class Fish {
+    String name;
+  }
+
+  class Plant {
+    String name;
+  }
+
+  class AquaponicsSystem {
+    FishTank fishTank;
+    PlantBed plantBed;
+    Pump pump;
+    Filter filter;
+    Heater heater;
+    Sensor sensor;
+  }
+
+  composition AquaponicsSystem -> FishTank;
+  composition AquaponicsSystem -> PlantBed;
+  association AquaponicsSystem -> Pump [0..1];
+  association AquaponicsSystem -> Filter [0..1];
+  association AquaponicsSystem -> Heater [0..1];
+  association AquaponicsSystem -> Sensor [0..1];
+
+  <<operation>>
+  interfacesystem {
+    void addFish(Fish fish);
+    void removeFish(Fish fish);
+    void addPlant(Plant plant);
+    void removePlant(Plant plant);
+    void adjustFlowRate(int newFlowRate);
+    void cleanFilter();
+    void adjustTemperature(int newTemperature);
+    void readSensorData();
+  }
+}

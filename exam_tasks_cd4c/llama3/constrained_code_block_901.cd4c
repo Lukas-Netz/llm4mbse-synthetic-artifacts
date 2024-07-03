@@ -1,0 +1,83 @@
+
+
+
+
+classdiagram VRDesignTool  {
+
+  class VRDesignTool  {
+    String name;
+    String version;
+  }
+
+  class Scene  {
+    String uniqueIdentifier;
+    Object  [ ] objects;
+  }
+
+  abstract class Object  {
+    String uniqueIdentifier;
+    ObjectType type;
+  }
+
+  class Model extends Object  {
+    Vector3D position;
+    Quaternion rotation;
+    Vector3D scale;
+  }
+
+  class Texture extends Object  {
+    int resolution;
+    String fileFormat;
+  }
+
+  class Light extends Object  {
+    float intensity;
+    Color color;
+    Vector3D position;
+  }
+
+  enum ObjectType  {
+    Model, Texture, Light;
+  }
+
+  class User  {
+    String username;
+    String password;
+    PermissionLevel permission;
+  }
+
+  enum PermissionLevel  {
+    Admin, User;
+  }
+
+  class FileFormat  {
+    String extension;
+  }
+
+  class Vector3D  {
+    float xCoord;
+    float yCoord;
+    float zCoord;
+  }
+
+  class Quaternion  {
+    float xComponent;
+    float yComponent;
+    float zComponent;
+    float wComponent;
+  }
+
+  class Color  {
+    float red;
+    float green;
+    float blue;
+  }
+
+  composition VRDesignTool  ->  (has) Scene  [1..*];
+  composition Scene  ->  (has) Object  [1..*];
+  composition Object  ->  (has) User  [0..1];
+  composition FileFormat  ->  (has) extension;
+  composition Vector3D  ->  (has) xCoord;
+  composition Quaternion  ->  (has) xComponent;
+  composition Color  ->  (has) red;
+}

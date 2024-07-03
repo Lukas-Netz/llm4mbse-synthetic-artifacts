@@ -1,0 +1,55 @@
+
+classdiagram DroneSwarm {
+
+    class DroneSwarm {
+      Swarm swarm;
+      Mission mission;
+    }
+
+    class Swarm {
+      Drone[] drones;
+      Swarm(Drone[] drones);
+      void assignDroneToMission(Drone drone, Mission mission);
+      void removeDroneFromMission(Drone drone, Mission mission);
+      Drone getDroneStatus(String droneId);
+      Mission getMissionStatus(String missionId);
+    }
+
+    class Drone {
+      String uniqueId;
+      DroneType type;
+      DroneStatus status;
+    }
+
+    class DroneType {
+      String typeName;
+    }
+
+    class DroneStatus {
+      String status;
+    }
+
+    class Mission {
+      String name;
+      String description;
+      Mission(String name, String description);
+      Mission[] getAssignedDrones();
+    }
+
+    enum DroneType {
+      Reconnaissance, Surveillance, Communication
+   
+   
+   ;}
+
+    enum DroneStatus {
+      Active, Inactive
+   
+   
+   ;}
+
+    association DroneSwarm -> Swarm [*];
+    association DroneSwarm -> Mission [*];
+    composition Swarm -> Drone [*];
+    composition Swarm -> Mission [*];
+}

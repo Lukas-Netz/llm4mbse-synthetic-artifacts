@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram AirborneWindEnergy  {
+
+  class System  {
+    TetheredWing tetheredWing;
+    GroundStation groundStation;
+    ControlCenter controlCenter;
+    WeatherStation weatherStation;
+  }
+
+  abstract class TetheredWing  {
+    String type;
+    LiftCoefficient liftCoefficient;
+    DragCoefficient dragCoefficient;
+    MaximumAltitude maximumAltitude;
+  }
+
+  class FixedWing extends TetheredWing  {
+    double liftCoefficient;
+    double dragCoefficient;
+    int maximumAltitude;
+  }
+
+  class RotorWing extends TetheredWing  {
+    double liftCoefficient;
+    double dragCoefficient;
+    int maximumAltitude;
+  }
+
+  class HybridWing extends TetheredWing  {
+    double liftCoefficient;
+    double dragCoefficient;
+    int maximumAltitude;
+  }
+
+  class GroundStation  {
+    ElectricityStorage electricityStorage;
+    Communication communication;
+  }
+
+  class ControlCenter  {
+    TetheredWingControl tetheredWingControl;
+    WeatherMonitoring weatherMonitoring;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class WeatherData  {
+    double windSpeed;
+    double windDirection;
+    double temperature;
+  }
+
+  class LiftCoefficient  {
+    double value;
+  }
+
+  class DragCoefficient  {
+    double value;
+  }
+
+  class MaximumAltitude  {
+    int value;
+  }
+
+  composition System -> (has) TetheredWing;
+  composition System -> (has) GroundStation;
+  composition System -> (has) ControlCenter;
+  composition System -> (has) WeatherStation;
+  composition GroundStation -> (has) ElectricityStorage;
+  composition ControlCenter -> (has) TetheredWingControl;
+  composition ControlCenter -> (has) WeatherMonitoring;
+  composition WeatherStation -> (has) WeatherData;
+}

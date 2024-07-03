@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram DigitalTransformationPlatform  {
+
+  class Project  {
+    String uniqueIdentifier;
+    String projectName;
+    -> Task[*];
+    -> User[*];
+  }
+
+  abstract class Task  {
+    String uniqueIdentifier;
+    String taskName;
+    TaskStatus status;
+  }
+
+  class DevelopmentTask extends Task  {
+    -> Requirement[*];
+  }
+
+  class TestingTask extends Task  {
+    -> TestCase[*];
+  }
+
+  class DeploymentTask extends Task  {
+    -> DeploymentTarget[*];
+  }
+
+  class Requirement  {
+    String uniqueIdentifier;
+    String requirementName;
+    String description;
+  }
+
+  class TestCase  {
+    String uniqueIdentifier;
+    String testCaseName;
+    String description;
+  }
+
+  class DeploymentTarget  {
+    String uniqueIdentifier;
+    String deploymentTargetName;
+    String description;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String userName;
+    -> Project[*];
+  }
+
+  enum TaskStatus  {
+    NotStarted, InProgress, Completed;
+  }
+}

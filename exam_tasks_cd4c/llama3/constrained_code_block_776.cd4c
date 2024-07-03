@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram GenealogyPlatform  {
+
+  class Profile  {
+    String name;
+    Date birthdate;
+    Date deathdate;
+  }
+
+  class Relationship  {
+    RelationshipType type;
+    Date date;
+    Profile parent;
+    Profile child;
+  }
+
+  enum RelationshipType  {
+    ParentChild,
+    Spouse,
+    Sibling,
+    Other
+  ;}
+
+  class Document  {
+    String name;
+    String content;
+  }
+
+  class Image  {
+    String name;
+    byte[] content;
+  }
+
+  class Repository  {
+    Document[] documents;
+    Image[] images;
+  }
+
+  class SearchCriteria  {
+    String name;
+    Date birthdate;
+    RelationshipType relationshipType;
+  }
+
+  class FamilyTree  {
+    Profile[] profiles;
+  }
+
+  class ProfileRepository  {
+    Profile[] profiles;
+  }
+
+  composition Profile -> Repository [0..*];
+  composition Profile -> Document [0..*];
+  composition Profile -> Image [0..*];
+  composition Relationship -> Profile [1..2];
+  composition FamilyTree -> Profile [1..*];
+  composition ProfileRepository -> Profile [1..*];
+  association SearchCriteria -> Profile [1..*];
+}

@@ -1,0 +1,36 @@
+
+classdiagram SpaceBasedSolarPower {
+
+  class SpaceStation {
+    -> SolarPanel [*];
+    -> PowerTransmissionSystem;
+    void monitorSolarPanels();
+    void adjustSolarPanelOrientation();
+    void controlPowerTransmissionSystem();
+  }
+
+  class SolarPanel {
+    String uniqueIdentifier;
+    SolarPanelStatus status;
+    double surfaceArea;
+    double efficiency;
+    double orientation;
+  }
+
+  class PowerTransmissionSystem {
+    double capacityMW;
+  }
+
+  enum SolarPanelStatus {
+    Operational, Malfunction;
+  }
+
+  class FaultDetection {
+    void detectMalfunction(SolarPanel solarPanel);
+    void detectMalfunction(PowerTransmissionSystem powerTransmissionSystem);
+  }
+
+  composition SpaceStation -> SolarPanel [*];
+  composition SpaceStation -> PowerTransmissionSystem;
+  association SpaceStation -> FaultDetection;
+}

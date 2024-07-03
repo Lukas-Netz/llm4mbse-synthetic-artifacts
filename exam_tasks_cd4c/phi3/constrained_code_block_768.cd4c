@@ -1,0 +1,43 @@
+
+classdiagram AstrophotographySoftware {
+
+    class CelestialObject {
+      String uniqueIdentifier;
+      String name;
+      String coordinates;
+    }
+
+    class Telescope {
+      String telescopeId;
+      String specifications;
+    }
+
+    class CameraInterface {
+      void controlTelescope(Telescope telescope);
+      void captureImage(Telescope telescope);
+    }
+
+    class ImageProcessing {
+      void applyFilter(String imagePath);
+      void analyzeImage(String imagePath);
+    }
+
+    class Reporting {
+      void generateReport(String reportType, String reportContent);
+    }
+
+    class AstrophotographySoftware {
+      Database celestialObjects;
+      CameraInterface cameraInterface;
+      ImageProcessing imageProcessing;
+      Reporting reporting;
+    }
+
+    composition AstrophotographySoftware -> (has) Database;
+    composition AstrophotographySoftware -> (has) CameraInterface;
+    composition AstrophotographySoftware -> (has) ImageProcessing;
+    composition AstrophotographySoftware -> (has) Reporting;
+
+    association CelestialObject -> (uses) AstrophotographySoftware;
+    association Telescope -> (uses) CameraInterface;
+}

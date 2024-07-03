@@ -1,0 +1,73 @@
+
+classdiagram MarketingAutomation {
+
+    class MarketingAutomationSystem {
+      Campaign[] campaigns;
+      User[] users;
+      DataSource[] dataSources;
+      ReportingSystem reportingSystem;
+    }
+
+    class Campaign {
+      String campaignId;
+      User targetAudience;
+      Channel[] channels;
+      Content[] content;
+      PerformanceMetrics performanceMetrics;
+    }
+
+    class User {
+      String userId;
+      Role role;
+    }
+
+    class Role {
+      String roleName;
+    }
+
+    class Channel {
+      String channelId;
+      ChannelType channelType;
+    }
+
+    class ChannelType {
+      String typeName;
+    }
+
+    class Content {
+      String contentId;
+      String contentType;
+    }
+
+    class PerformanceMetrics {
+      Integer impressions;
+      Integer clicks;
+      Integer conversions;
+    }
+
+    class DataSource {
+      String dataSourceId;
+      String dataSourceType;
+    }
+
+    class ReportingSystem {
+      void generateReport(Campaign campaign);
+      RealTimeAnalytics realTimeAnalytics;
+    }
+
+    class RealTimeAnalytics {
+      void trackCampaignPerformance(Campaign campaign);
+    }
+
+  composition MarketingAutomationSystem -> (has) Campaign[*];
+  composition MarketingAutomationSystem -> (has) User[*];
+  composition MarketingAutomationSystem -> (has) DataSource[*];
+  composition MarketingAutomationSystem -> (has) ReportingSystem;
+  association Campaign -> User [*];
+  association Campaign -> Channel[*];
+  association Campaign -> Content[*];
+  association Campaign -> PerformanceMetrics;
+  association User -> Role;
+ 
+ 
+ }

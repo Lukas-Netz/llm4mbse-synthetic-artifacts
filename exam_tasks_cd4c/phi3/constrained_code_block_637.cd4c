@@ -1,0 +1,58 @@
+
+classdiagram CrowdfundingPlatform {
+
+    class Project {
+      String name;
+      String description;
+      int fundingGoal;
+      String category;
+      ProjectCreator creator;
+      List<Donation> donations;
+      ProgressTracker progress;
+    }
+
+    class User {
+      String username;
+      Wallet wallet;
+      List<Project> projects;
+    }
+
+    class Wallet {
+      String address;
+      int balance;
+    }
+
+    class Donation {
+      Wallet donorWallet;
+      Wallet recipientWallet;
+      int amount;
+    }
+
+    class ProjectCreator {
+      User creatorUser;
+      Project project;
+    }
+
+    class ProgressTracker {
+      int fundsRaised;
+      int fundsGoal;
+      int progressPercentage;
+    }
+
+    class Administrator {
+      List<Project> projects;
+      void manageProjects();
+      void ensureFundsUsage();
+    }
+
+    composition User -> (has) Wallet;
+    composition User -> (has) Project;
+    composition User -> (has) ProjectCreator;
+    composition User -> (has) Administrator;
+    composition Project -> (has) Donation;
+    composition Project -> (has) ProgressTracker;
+    composition Project -> (has) ProjectCreator;
+    composition Project -> (has) Administrator;
+    composition Wallet -> (has) User;
+    composition Wallet -> (has) Donation;
+}

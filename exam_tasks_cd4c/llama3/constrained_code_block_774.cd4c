@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram BeehiveManagementSystem  {
+
+  class Beehive  {
+    String uniqueIdentifier;
+    Location location;
+    Sensor  sensor;
+    Bee  bee;
+  }
+
+  class Bee  {
+    Role role;
+  }
+
+  class Sensor  {
+    Temperature temperature;
+    Humidity humidity;
+    BeeActivity beeActivity;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class BeeActivity  {
+    boolean activity;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class BeehiveManagementSystem  {
+    Beehive  beehive;
+    void addBee(Bee bee);
+    void removeBee(Bee bee);
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void updateBeeRole(Bee bee, Role role);
+  }
+
+  composition BeehiveManagementSystem  ->  (has) Beehive;
+  composition Beehive  ->  (has) Sensor;
+  composition Beehive  ->  (has) Bee;
+  composition Sensor  ->  (has) Temperature;
+  composition Sensor  ->  (has) Humidity;
+  composition Sensor  ->  (has) BeeActivity;
+  composition Bee  ->  (has) Role;
+  composition Location  ->  (has) Beehive;
+  composition Role  ->  (has) Bee;
+}

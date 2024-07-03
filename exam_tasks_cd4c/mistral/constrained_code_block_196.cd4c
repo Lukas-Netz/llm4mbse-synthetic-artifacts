@@ -1,0 +1,66 @@
+
+classdiagram BlockchainMedicalRecords {
+
+  class Patient {
+    String uniqueIdentifier;
+    MedicalRecord [][] medicalRecords;
+  }
+
+  class MedicalRecord {
+    String medicalEvent;
+    String diagnosis;
+    String treatment;
+    String medication;
+    Timestamp timestamp;
+  }
+
+  class HealthcareProvider {
+    String uniqueIdentifier;
+    String name;
+    String specialization;
+  }
+
+  class BlockchainNetwork {
+    Block blockchain;
+  }
+
+  class Block {
+    MedicalRecord medicalRecord;
+    Timestamp timestamp;
+    Hash previousHash;
+    Hash hash;
+  }
+
+  class SmartContract {
+    Function[] functions;
+  }
+
+  class Function {
+    String name;
+    String inputParameters;
+    String outputParameters;
+  }
+
+  class Timestamp {
+    String year;
+    String month;
+    String day;
+    String hour;
+    String minute;
+    String second;
+  }
+
+  class Hash {
+    String value;
+  }
+
+  composition Patient [*] MedicalRecord [array]
+  -- Patient  <<  HealthcareProvider
+  >>  - 											;
+  composition BlockchainNetwork <- Block
+  - 											;
+  association HealthcareProvider -- MedicalRecord
+  - 											;
+  association SmartContract -- Block
+  - 											;
+}

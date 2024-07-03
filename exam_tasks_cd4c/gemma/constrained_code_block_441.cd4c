@@ -1,0 +1,81 @@
+
+
+classdiagram PersonalizedLearningPlatform {
+
+  class Student {
+    private String name;
+    private String email;
+    private LearningHistory history;
+    private List<Course> courses;
+
+    Student(String name, String email);
+    void addCourse(Course course);
+    void removeCourse(Course course);
+    LearningHistory getLearningHistory();
+  }
+
+  class Course {
+    private String name;
+    private Curriculum curriculum;
+    private List<Assessment> assessments;
+
+    Course(String name, Curriculum curriculum);
+    void addAssessment(Assessment assessment);
+    List<Assessment> getAssessments();
+  }
+
+  class LearningHistory {
+    private Map<Course, Integer> progress;
+
+    LearningHistory();
+    void recordProgress(Course course, int progress);
+    int getProgress(Course course);
+  }
+
+  class Instructor {
+    private String name;
+    private List<Course> courses;
+
+    Instructor(String name);
+    void createCourse(Course course);
+    void removeCourse(Course course);
+  }
+
+  class Assessment {
+    private String name;
+    private int marks;
+
+    Assessment(String name, int marks);
+    int getMarks();
+  }
+
+  class Curriculum {
+    private List<Module> modules;
+
+    Curriculum(List<Module> modules);
+    List<Module> getModules();
+  }
+
+  class Module {
+    private String name;
+    private List<Lesson> lessons;
+
+    Module(String name, List<Lesson> lessons);
+    List<Lesson> getLessons();
+  }
+
+  class Lesson {
+    private String name;
+    private String content;
+
+    Lesson(String name, String content);
+    String getName();
+    String getContent();
+  }
+
+  composition Student -> LearningHistory;
+  composition Student -> Courses;
+  composition Course -> Curriculum;
+  composition Course -> Assessments;
+  composition Instructor -> Courses;
+}

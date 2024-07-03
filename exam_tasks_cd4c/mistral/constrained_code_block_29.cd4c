@@ -1,0 +1,94 @@
+
+classdiagram TransportationManagementSystem {
+
+  class TransportationManagementSystem {
+    Bus [][] buses;
+    Tram [][] trams;
+    Train [][] trains;
+    Driver [][] drivers;
+    Maintenance [][] maintenance;
+    PassengerInfo [][] passengerInfo;
+    TransportationAuthority [][] transportationAuthorities;
+    TrafficManagementSystem trafficManagementSystem;
+    WeatherForecastingSystem weatherForecastingSystem;
+  }
+
+  class Bus {
+    Location location;
+    Schedule schedule;
+    Route route;
+  }
+
+  class Tram {
+    Location location;
+    Schedule schedule;
+    Route route;
+  }
+
+  class Train {
+    Location location;
+    Schedule schedule;
+    Route route;
+  }
+
+  class Driver {
+    String name;
+    Vehicle vehicle;
+  }
+
+  class Maintenance {
+    Vehicle vehicle;
+    Date date;
+    Time time;
+  }
+
+  class PassengerInfo {
+    Vehicle vehicle;
+    Location location;
+    Time arrivalTime;
+  }
+
+  class TransportationAuthority {
+    String name;
+    String role;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class Schedule {
+    Time departureTime;
+    Time arrivalTime;
+  }
+
+  class Route {
+    String routeId;
+    String routeName;
+    String stops;
+  }
+
+  class Vehicle {
+    String vehicleId;
+    String vehicleType;
+  }
+
+  class Time {
+    int hour;
+    int minute;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition TransportationManagementSystem -> Bus [*];
+  composition TransportationManagementSystem -> Tram [*];
+  composition TransportationManagementSystem -> Train [*];
+  composition TransportationManagementSystem -> Driver [*];
+  composition TransportationManagementSystem -> Maintenance [*];
+  composition TransportationManagementSystem -> PassengerInfo [*];
+  			}

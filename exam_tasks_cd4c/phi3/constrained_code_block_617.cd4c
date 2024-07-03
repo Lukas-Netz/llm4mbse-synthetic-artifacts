@@ -1,0 +1,49 @@
+
+classdiagram ClimateModelingSystem {
+
+    class DataRepository {
+      Collection<ClimateData> climateData;
+      void filterData(String location, String timePeriod, String dataType);
+    }
+
+    class DataProcessor {
+      void processData(Collection<ClimateData> data);
+      Prediction generatePrediction();
+    }
+
+    class MLModule {
+      void trainModel(Collection<ClimateData> data);
+      Prediction analyzeData(Collection<ClimateData> data);
+    }
+
+    class Visualization {
+      void displayPrediction(Prediction prediction);
+    }
+
+    class UI {
+      void selectData();
+      void runPrediction();
+      void viewResults();
+    }
+
+    class ClimateData {
+      String location;
+      String timePeriod;
+      String dataType;
+      double temperature;
+      double precipitation;
+      double atmosphericPressure;
+    }
+
+    class Prediction {
+      double temperature;
+      double precipitation;
+      double atmosphericPressure;
+    }
+
+    composition ClimateModelingSystem -> (has) UI;
+    composition ClimateModelingSystem -> (has) DataRepository;
+    composition ClimateModelingSystem -> (has) DataProcessor;
+    composition ClimateModelingSystem -> (has) MLModule;
+    composition ClimateModelingSystem -> (has) Visualization;
+}

@@ -1,0 +1,60 @@
+
+classdiagram VRSimulation {
+
+  class Simulator {
+    String name;
+    Procedure [ ] availableProcedures;
+  }
+
+  class Surgeon {
+    String name;
+    Role role;
+    ExperienceLevel experienceLevel;
+  }
+
+  enum Role {
+    Resident, Attending;
+  }
+
+  enum ExperienceLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Patient {
+    String name;
+    MedicalHistory medicalHistory;
+    VitalSigns vitalSigns;
+  }
+
+  class MedicalHistory {
+    String [ ] pastSurgeries;
+    String [ ] medicalConditions;
+  }
+
+  class VitalSigns {
+    int heartRate;
+    int bloodPressure;
+    int oxygenSaturation;
+  }
+
+  class Procedure {
+    String name;
+    String description;
+    Tool [ ] requiredTools;
+  }
+
+  class Tool {
+    String name;
+    String description;
+    ToolType type;
+  }
+
+  enum ToolType {
+    Scalpel, Forceps, Clamp, etc;
+  }
+
+  association Simulator --o_has_o_Procedure;
+  association Surgeon --o_interacts_with_o_Simulator;
+  association Patient --o_undergoes_o_Procedure;
+  association Procedure --o_requires_o_Tool [*];
+}

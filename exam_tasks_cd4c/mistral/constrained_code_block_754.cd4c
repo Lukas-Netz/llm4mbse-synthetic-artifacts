@@ -1,0 +1,62 @@
+
+classdiagram EmergencyResponseDrone {
+
+  class Drone {
+    String uniqueIdentifier;
+    String name;
+    DroneType type;
+    Sensor [  ] attachedSensors;
+    Camera [ ] attachedCameras;
+  }
+
+  enum DroneType {
+    Rescue, Surveillance, Medical;
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    String name;
+    DeviceType type;
+  }
+
+  abstract class Sensor extends Device {
+  }
+
+  abstract class Camera extends Device {
+  }
+
+  class Mission {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Drone [ ] assignedDrones;
+  }
+
+  class Pilot {
+    String uniqueIdentifier;
+    String name;
+    PilotLevel certificationLevel;
+    Drone [ ] operatedDrones;
+  }
+
+  enum PilotLevel {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Airport {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+  }
+
+  class WeatherStation {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+  }
+
+  class Location {
+    String latitude;
+    String longitude;
+  }
+}

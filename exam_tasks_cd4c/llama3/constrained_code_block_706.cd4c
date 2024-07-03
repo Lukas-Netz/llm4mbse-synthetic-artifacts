@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram QuantumSatellite  {
+
+  class Satellite  {
+    QuantumKeyGenerator keyGen;
+    QuantumKeyDistributor keyDist;
+    CommunicationModule commModule;
+  }
+
+  class GroundStation  {
+    QuantumKeyReceiver keyRec;
+    CommunicationModule commModule;
+  }
+
+  class ControlCenter  {
+    void generateNewKeys();
+    void distributeKeys(GroundStation[] stations);
+    void monitorCommunication();
+  }
+
+  class QuantumKeyGenerator  {
+    void generateKeys();
+  }
+
+  class QuantumKeyDistributor  {
+    void distributeKeys(GroundStation[] stations);
+  }
+
+  class CommunicationModule  {
+    void sendSecureMessage(GroundStation station, String message);
+    void receiveSecureMessage(GroundStation station, String message);
+  }
+
+  class QuantumKeyReceiver  {
+    void receiveKeys(QuantumKey[] keys);
+  }
+
+  class QuantumKey  {
+    String key;
+  }
+
+  composition Satellite -> (has) QuantumKeyGenerator;
+  composition Satellite -> (has) QuantumKeyDistributor;
+  composition Satellite -> (has) CommunicationModule;
+  composition GroundStation -> (has) QuantumKeyReceiver;
+  composition GroundStation -> (has) CommunicationModule;
+  composition ControlCenter -> (has) Satellite;
+  composition ControlCenter -> (has) GroundStation[*];
+  composition QuantumKeyGenerator -> (produces) QuantumKey[*];
+  composition QuantumKeyDistributor -> (distributes) QuantumKey[*];
+  composition CommunicationModule -> (uses) QuantumKey;
+  composition QuantumKeyReceiver -> (receives) QuantumKey;
+}

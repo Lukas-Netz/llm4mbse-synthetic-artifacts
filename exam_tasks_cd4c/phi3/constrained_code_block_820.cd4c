@@ -1,0 +1,50 @@
+
+classdiagram AIDrugDeliverySystem {
+
+    class AIDrugDeliverySystem {
+      Hub centralHub;
+      List<Robot> robots;
+      Database patientDatabase;
+    }
+
+    class Robot {
+      String uniqueIdentifier;
+      RobotType type;
+    }
+
+    enum RobotType {
+      Medicine, Vaccine, Diagnostic;
+    }
+
+    class Medicine extends Robot {
+      double dosage;
+      int frequency;
+    }
+
+    class Vaccine extends Robot {
+      int storageCapacity;
+    }
+
+    class Diagnostic extends Robot {
+      String resolution;
+      boolean isRecording;
+    }
+
+    class PatientRecord {
+      String patientId;
+      String medicalHistory;
+      String allergies;
+      List<Medicine> currentMedication;
+    }
+
+    class Database {
+      List<PatientRecord> patientRecords;
+      void scheduleDelivery(Robot robot, PatientRecord patientRecord);
+      void monitorHealth(PatientRecord patientRecord);
+      void updateRecord(PatientRecord patientRecord);
+    }
+
+    composition AIDrugDeliverySystem -> (has) Hub;
+    association AIDrugDeliverySystem -> (uses) Database;
+    association AIDrugDeliverySystem -> (uses) List<<Robot>>;
+}

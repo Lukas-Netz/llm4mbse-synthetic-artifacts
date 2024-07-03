@@ -1,0 +1,37 @@
+
+
+classdiagram VirtualRealityTherapyPlatform {
+
+  class PatientProfile {
+    String name;
+    int age;
+     phobia phobia;
+  }
+
+  class TherapistProfile {
+    String name;
+    Qualifications qualifications;
+    Availability availability;
+  }
+
+  class VRExperienceSystem {
+    List<VRExperience> experiences;
+  }
+
+  class SessionManagementSystem {
+    Schedule schedule;
+  }
+
+  class ProgressTrackingSystem {
+    PatientProgress progress;
+  }
+
+  composition PatientProfile -> (has) VRExperienceSystem [0..1];
+  composition PatientProfile -> (has) SessionManagementSystem [0..1];
+  composition PatientProfile -> (has) ProgressTrackingSystem [0..1];
+
+  composition TherapistProfile -> (has) SessionManagementSystem [0..1];
+
+  association VRExperienceSystem -> SessionManagementSystem;
+  association SessionManagementSystem -> ProgressTrackingSystem;
+}

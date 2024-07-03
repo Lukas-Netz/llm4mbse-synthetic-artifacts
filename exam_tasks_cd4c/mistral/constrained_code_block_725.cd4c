@@ -1,0 +1,55 @@
+
+classdiagram PermacultureCourse {
+
+  class User {
+    String uniqueIdentifier;
+    Role[] roles;
+  }
+
+  enum Role {
+    Student, Instructor, Administrator;
+  }
+
+  class Course {
+    String title;
+    String description;
+    Topic[] topics;
+    User[] instructors;
+  }
+
+  class Topic {
+    String title;
+    String description;
+    Lesson[] lessons;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    Video[] videos;
+  }
+
+  class Video {
+    String title;
+    String description;
+    String url;
+  }
+
+  association User --enrolls_in- 											{ 											ordered
+   		}						;
+
+  association User --has_role-												{												ordered
+   		}						;
+
+  association Course --has_instructor-										{												ordered
+   		}						;
+
+  association Course --contains_topic-										{												ordered
+   		}						;
+
+  association Topic --contains_lesson-										{												ordered
+   		}						;
+
+  association Lesson --contains_video-										{												ordered
+   		}						;
+}

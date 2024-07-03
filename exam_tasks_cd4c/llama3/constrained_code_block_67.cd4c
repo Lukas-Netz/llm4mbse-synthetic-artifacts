@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram VirtualEventPlatform  {
+
+  class Event  {
+    String uniqueIdentifier;
+    String name;
+    Date startDate;
+    Date endDate;
+    int maxAttendees;
+    -> Speaker[*];
+    -> Session[*];
+  }
+
+  class Speaker  {
+    String name;
+    String bio;
+    -> Event[*];
+  }
+
+  class Session  {
+    String title;
+    Date startTime;
+    Date endTime;
+    Speaker speaker;
+    -> Attendee[*];
+  }
+
+  class Attendee  {
+    String uniqueIdentifier;
+    String name;
+    -> Event[*];
+    -> Session[*];
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    -> EventRegistration[*];
+    -> SessionRegistration[*];
+  }
+
+  class EventRegistration  {
+    Event event;
+    User user;
+  }
+
+  class SessionRegistration  {
+    Session session;
+    User user;
+  }
+
+  composition Event -> Speaker[*];
+  composition Event -> Session[*];
+  composition Session -> Attendee[*];
+  composition User -> EventRegistration[*];
+  composition User -> SessionRegistration[*];
+}

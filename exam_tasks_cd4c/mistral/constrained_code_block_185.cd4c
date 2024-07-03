@@ -1,0 +1,37 @@
+
+classdiagram CognitiveSearch {
+
+  class KnowledgeGraph {
+    void index();
+    void query(String query);
+  }
+
+  abstract class SearchEngine {
+    KnowledgeGraph knowledgeGraph;
+    void query(String query);
+  }
+
+  class TextSearch extends SearchEngine {
+    void analyzeNLP(String query);
+  }
+
+  class ImageSearch extends SearchEngine {
+    void analyzeImage(String query);
+  }
+
+  class VideoSearch extends SearchEngine {
+    void analyzeVideo(String query);
+  }
+
+  class UserInterface {
+    SearchEngine [ ] searchEngines;
+    void inputQuery(String query);
+    void displayResults(List results);
+    void filterResults(String filter);
+    void sortResults(String sortBy);
+    void rankResults(List results);
+  }
+
+  composition KnowledgeGraph -> KnowledgeGraph;
+  composition UserInterface -> SearchEngine [*];
+}

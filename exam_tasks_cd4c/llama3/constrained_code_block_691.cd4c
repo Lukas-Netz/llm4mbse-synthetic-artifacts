@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram AutonomousMarineExploration  {
+
+  class Submarine  {
+    String name;
+    SubmarineType type;
+    boolean isOperating;
+  }
+
+  class ResearchVessel  {
+    String name;
+    ResearchVesselType type;
+    boolean isOnMission;
+  }
+
+  class CommunicationSystem  {
+    void send(String message);
+    void receive(String message);
+  }
+
+  class Data  {
+    double waterTemperature;
+    double salinity;
+    String marineLife;
+  }
+
+  class MissionControlCenter  {
+    void assignTask(Submarine submarine, Task task);
+    void monitorProgress(Submarine submarine);
+    void assignTask(ResearchVessel researchVessel, Task task);
+    void monitorProgress(ResearchVessel researchVessel);
+  }
+
+  class Task  {
+    String description;
+  }
+
+  class SafetySystem  {
+    void monitorSafety(Submarine submarine);
+    void monitorSafety(ResearchVessel researchVessel);
+  }
+
+  enum SubmarineType  {
+    RemotelyOperatedVehicle, AutonomousUnderwaterVehicle
+  ;}
+
+  enum ResearchVesselType  {
+    ResearchShip, SupportVessel
+  ;}
+
+  composition Submarine -> CommunicationSystem;
+  composition ResearchVessel -> CommunicationSystem;
+  composition MissionControlCenter -> Submarine;
+  composition MissionControlCenter -> ResearchVessel;
+  composition SafetySystem -> Submarine;
+  composition SafetySystem -> ResearchVessel;
+}

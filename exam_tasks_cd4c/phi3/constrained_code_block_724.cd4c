@@ -1,0 +1,40 @@
+
+classdiagram PollinatorSystem {
+
+    class PollinatorSystem {
+      Hub hub;
+      WeatherStation weatherStation;
+      List<RoboticBee> roboticBees;
+    }
+
+    abstract class RoboticBee {
+      String uniqueIdentifier;
+      RoboticBeeType type;
+    }
+
+    class Honeybee extends RoboticBee {
+      int pollenCapacity;
+    }
+
+    class Bumblebee extends RoboticBee {
+      int pollenCapacity;
+    }
+
+    class Butterfly extends RoboticBee {
+      String flowerType;
+    }
+
+    class WeatherStation {
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    enum RoboticBeeType {
+      Honeybee, Bumblebee, Butterfly;
+    }
+
+    association PollinatorSystem -> (has) WeatherStation;
+    association PollinatorSystem -> (has) List<<RoboticBee>>;
+    association Hub -> (has) PollinatorSystem;
+}

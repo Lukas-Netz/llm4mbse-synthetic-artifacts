@@ -1,0 +1,60 @@
+
+classdiagram BlockchainVotingSystem {
+
+    class Voter {
+      String username;
+      String password;
+      boolean isRegistered;
+      boolean isLoggedIn;
+      List<Vote> castVotes;
+      void register();
+      void login(String username, String password);
+      void logout();
+      List<Election> viewElections();
+      Vote castVote(Election election, Candidate candidate);
+    }
+
+    class Election {
+      String electionId;
+      List<Candidate> candidates;
+      List<Vote> votes;
+      void addCandidate(Candidate candidate);
+      void removeCandidate(Candidate candidate);
+      void addVote(Vote vote);
+      void removeVote(Vote vote);
+    }
+
+    class Candidate {
+      String candidateId;
+      String name;
+    }
+
+    class Vote {
+      String voteId;
+      Election election;
+      Candidate candidate;
+      boolean isValid;
+      void verifyVote();
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      void addBlock(Block block);
+      Block getLatestBlock();
+      void verifyBlockchainIntegrity();
+    }
+
+    class Block {
+      String blockId;
+      List<Vote> votes;
+      Block previousBlock;
+      void validate();
+    }
+
+    composition Voter -> (has) Blockchain;
+    composition Voter -> (has) Election;
+    composition Voter -> (has) Vote;
+    composition Election -> (has) Blockchain;
+    composition Election -> (has) Vote;
+    composition Blockchain -> (has) Block;
+}

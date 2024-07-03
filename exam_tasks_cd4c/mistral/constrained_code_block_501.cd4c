@@ -1,0 +1,43 @@
+
+classdiagram RenewableEnergyGrid {
+
+  class RenewableEnergySource {
+    String uniqueIdentifier;
+    String location;
+    int capacity;
+    int currentProduction;
+  }
+
+  enum LocationType {
+    City, State, Country;
+  }
+
+  class SolarPower extends RenewableEnergySource {
+  }
+
+  class WindPower extends RenewableEnergySource {
+  }
+
+  class HydroelectricPower extends RenewableEnergySource {
+  }
+
+  class Grid {
+    RenewableEnergySource [ ] renewableEnergySources;
+    int totalProduction;
+  }
+
+  class EnergyDemandPredictor {
+    int predictDemand();
+  }
+
+  class EnergyProductionController {
+    void adjustProduction(int demand);
+  }
+
+  class EnergyStorageSystem {
+    int capacity;
+    int stateOfCharge;
+  }
+
+  composition Grid -> RenewableEnergySource [*];
+}

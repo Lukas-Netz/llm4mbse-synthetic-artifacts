@@ -1,0 +1,73 @@
+
+classdiagram MiningSystem {
+
+  class Mine {
+    String name;
+    String uniqueIdentifier;
+    Shaft [  ] shafts;
+  }
+
+  class Shaft {
+    String name;
+    String uniqueIdentifier;
+    Level [ ] levels;
+  }
+
+  class Level {
+    String name;
+    String uniqueIdentifier;
+    Equipment [ ] equipment;
+  }
+
+  class Equipment {
+    String uniqueIdentifier;
+    EquipmentType type;
+    EquipmentStatus status;
+    Level level;
+  }
+
+  enum EquipmentType {
+    Drill, Loader, Excavator, Conveyor, etc;
+  }
+
+  enum EquipmentStatus {
+    Operational, Maintenance, Malfunctioning;
+  }
+
+  class Personnel {
+    String name;
+    String uniqueIdentifier;
+    Role role;
+    Shaft shaft;
+    Location location;
+  }
+
+  enum Role {
+    Miner, Engineer, etc;
+  }
+
+  class SafetyDevice {
+    String uniqueIdentifier;
+    SafetyDeviceType type;
+    SafetyDeviceStatus status;
+  }
+
+  enum SafetyDeviceType {
+    GasDetector, FireAlarm, etc;
+  }
+
+  enum SafetyDeviceStatus {
+    Operational, Malfunctioning;
+  }
+
+  class Location {
+    Shaft shaft;
+    Level level;
+  }
+
+  composition Mine -> Shaft [*];
+  composition Shaft -> Level [*];
+  composition Level -> Equipment [*];
+  composition Mine -> Personnel [*];
+  composition Mine -> SafetyDevice [*];
+}

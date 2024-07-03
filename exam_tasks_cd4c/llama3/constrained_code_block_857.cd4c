@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Site  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+    Building  [] buildings;
+  }
+
+  class Building  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+    Room  [] rooms;
+  }
+
+  class Room  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+    Artifact  [] artifacts;
+  }
+
+  class Artifact  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Visitor  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    Site  [] visitedSites;
+  }
+
+  class Guide  {
+    String uniqueIdentifier;
+    String name;
+    Expertise expertise;
+    Site  [] guidedSites;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phoneNumber;
+  }
+
+  class Expertise  {
+    String areaOfExpertise;
+  }
+
+  composition Site  ->  (has) Building  [*];
+  composition Building  ->  (has) Room  [*];
+  composition Room  ->  (has) Artifact  [*];
+  composition Visitor  ->  (visited) Site  [*];
+  composition Guide  ->  (guided) Site  [*];
+}

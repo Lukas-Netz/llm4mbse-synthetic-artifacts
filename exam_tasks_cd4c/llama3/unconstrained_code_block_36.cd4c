@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram IAM  {
+
+  class User  {
+    String username;
+    String password;
+    List<Role> roles;
+    List<Session> sessions;
+  }
+
+  class Role  {
+    String name;
+    List<Permission> permissions;
+  }
+
+  class Permission  {
+    String name;
+  }
+
+  class Session  {
+    User user;
+    Date startTime;
+    Date endTime;
+  }
+
+  class SessionTracker  {
+    List<Session> recentSessions;
+    List<Session> inactiveSessions;
+    List<Session> activeSessions;
+  }
+
+  class SessionLog  {
+    List<Session> loginLog;
+    List<Session> logoutLog;
+  }
+
+  class SessionTimer  {
+    int inactiveTimeThreshold;
+    int activeTimeThreshold;
+  }
+
+  class SessionTrackerFactory  {
+    SessionTracker createSessionTracker();
+  }
+
+  class SessionLogFactory  {
+    SessionLog createSessionLog();
+  }
+
+  class SessionTimerFactory  {
+    SessionTimer createSessionTimer();
+  }
+
+  composition User -> (has) roles;
+  composition User -> (has) sessions;
+  composition Role -> (has) permissions;
+  composition Session -> (has) user;
+  composition SessionTracker -> (has) recentSessions;
+  composition SessionTracker -> (has) inactiveSessions;
+  composition SessionTracker -> (has) activeSessions;
+  composition SessionLog -> (has) loginLog;
+  composition SessionLog -> (has) logoutLog;
+  composition SessionTimer -> (has) inactiveTimeThreshold;
+  composition SessionTimer -> (has) activeTimeThreshold;
+}
+

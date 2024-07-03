@@ -1,0 +1,39 @@
+
+
+classdiagram ParentClassPlatform {
+
+  class ParentClassPlatform {
+    User user;
+    Class class;
+  }
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Class {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    Instructor instructor;
+    List<Topic> topics;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String uniqueIdentifier;
+  }
+
+  class Topic {
+    String name;
+    String description;
+  }
+
+  composition ParentClassPlatform -> (has) User;
+  composition ParentClassPlatform -> (has) Class;
+  association Instructor -> Class;
+  association Class -> Topic;
+}

@@ -1,0 +1,52 @@
+
+classdiagram OnlineCourseSystem {
+
+    class Course {
+      String title;
+      String description;
+      int duration;
+      List<Topic> topics;
+      Instructor instructor;
+      List<Student> enrolledStudents;
+      int overallScore;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String expertiseArea;
+    }
+
+    class Topic {
+      String title;
+      String description;
+      List<Subtopic> subtopics;
+    }
+
+    class Subtopic {
+      String title;
+      String description;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> completedCourses;
+      int progressScore;
+    }
+
+    class CourseCategory {
+      String name;
+      List<Course> courses;
+    }
+
+    association Course -> CourseCategory [*];
+    association Course -> Topic [*];
+    association Course -> Subtopic [*];
+    association Course -> Instructor [*];
+    association Course -> Student [*];
+    association Student -> Course [*];
+    association Student -> CourseCategory [*];
+    association Instructor -> Course [*];
+    association CourseCategory -> Course [*];
+}

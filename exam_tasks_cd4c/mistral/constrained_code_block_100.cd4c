@@ -1,0 +1,65 @@
+
+classdiagram SelfServiceBI {
+
+  class User {
+    String username;
+    String password;
+    String email;
+    Role role;
+  }
+
+  enum Role {
+    ADMIN, USER;
+  }
+
+  class DataSource {
+    String name;
+    String type;
+    String connectionString;
+  }
+
+  class Report {
+    String name;
+    DataSource dataSource;
+    String query;
+  }
+
+  class Dashboard {
+    String name;
+    Report [ ] reports;
+    DataVisualization [ ] visualizations;
+  }
+
+  abstract class DataVisualization {
+    String name;
+    String type;
+    User creator;
+  }
+
+  class Chart extends DataVisualization {
+    int xAxis;
+    int yAxis;
+  }
+
+  class Table extends DataVisualization {
+    int columns;
+    int rows;
+  }
+
+  class System {
+    User [ ] users;
+    DataSource [ ] dataSources;
+    Report [ ] reports;
+    Dashboard [ ] dashboards;
+    DataVisualization [ ] dataVisualizations;
+    User authenticate(String username, String password);
+    void authorize(User user, Role role);
+    void ensureDataGovernance();
+  }
+
+  composition System -> User [*];
+  composition System -> DataSource [*];
+  composition System -> Report [*];
+  composition System -> Dashboard [*];
+  composition Dashboard -> DataVisualization [*];
+}

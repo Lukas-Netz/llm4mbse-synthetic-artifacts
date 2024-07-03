@@ -1,0 +1,50 @@
+
+classdiagram EcommerceFulfillment {
+
+  class Warehouse {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Product {
+    String name;
+    String description;
+    String uniqueIdentifier;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    String customerName;
+    Product [ ] products;
+  }
+
+  class Shipment {
+    String uniqueIdentifier;
+    Product [ ] products;
+    ShipmentStatus status;
+  }
+
+  class Customer {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  enum ShipmentStatus {
+    Pending, InTransit, Delivered, Failed;
+  }
+
+  composition Warehouse [1] has -- Products [*];
+  composition Warehouse [1] has -- Orders [*];
+  composition Order [1] has -- Products [*];
+  composition Shipment [1] has -- Products [*];
+
+  class WarehouseManager {
+    void receiveProduct(Product product);
+    void storeProduct(Product product);
+    void shipProduct(Order order);
+    void updateShipmentStatus(Shipment shipment);
+    Order getOrder(String uniqueIdentifier);
+    Product getProduct(String uniqueIdentifier);
+    Shipment getShipment(String uniqueIdentifier);
+  }
+}

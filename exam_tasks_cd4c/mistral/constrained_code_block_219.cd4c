@@ -1,0 +1,52 @@
+
+classdiagram FraudPrevention {
+
+  class Transaction {
+    String uniqueIdentifier;
+    DateTime timestamp;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String IPAddress;
+    String browserType;
+    String deviceType;
+  }
+
+  class Merchant {
+    String uniqueIdentifier;
+    String businessName;
+    String address;
+    String industry;
+  }
+
+  class AIModel {
+    void analyze(Transaction transaction);
+  }
+
+  class RulesEngine {
+    boolean isFraud(Transaction transaction, User user, Merchant merchant);
+  }
+
+  class NotificationSystem {
+    void sendAlert(Transaction transaction, User user, Merchant merchant);
+  }
+
+  class Database {
+    void storeTransaction(Transaction transaction);
+    Transaction getTransaction(String uniqueIdentifier);
+    User getUser(String uniqueIdentifier);
+    Merchant getMerchant(String uniqueIdentifier);
+  }
+
+  composition Database -> Transaction [*];
+  composition Database -> User [*];
+  composition Database -> Merchant [*];
+  association AIModel -> Transaction;
+  association RulesEngine -> Transaction;
+  association RulesEngine -> User;
+  association RulesEngine -> Merchant;
+  association NotificationSystem -> Transaction;
+  association NotificationSystem -> User;
+  association NotificationSystem -> Merchant;
+}

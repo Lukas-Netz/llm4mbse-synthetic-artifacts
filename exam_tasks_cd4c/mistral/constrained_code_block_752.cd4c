@@ -1,0 +1,59 @@
+
+classdiagram VRFeedback {
+
+  class VRFeedbackSystem {
+    -> Device [*];
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    void updateDeviceState(Device device);
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    Position position;
+    Orientation orientation;
+    VibrationLevel vibrationLevel;
+  }
+
+  class HapticFeedback extends Device {
+    Resistance resistance;
+  }
+
+  class VibrationFeedback extends Device {
+    Frequency frequency;
+  }
+
+  class TactileFeedback extends Device {
+    Texture texture;
+  }
+
+  class Position {
+    float xPos;
+    float yPos;
+    float zPos;
+  }
+
+  class Orientation {
+    float xRot;
+    float yRot;
+    float zRot;
+  }
+
+  class VibrationLevel {
+    float intensity;
+  }
+
+  class Frequency {
+    float hz;
+  }
+
+  class Resistance {
+    float force;
+  }
+
+  class Texture {
+    String description;
+  }
+
+  composition VRFeedbackSystem -> Device [*];
+}

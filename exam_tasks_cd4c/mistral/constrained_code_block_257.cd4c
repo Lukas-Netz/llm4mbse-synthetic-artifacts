@@ -1,0 +1,56 @@
+
+classdiagram E_Learning {
+
+  class Course {
+    String name;
+    String description;
+    Lesson [ ] lessons;
+  }
+
+  class Lesson {
+    String name;
+    String description;
+    Quiz [ ] quizzes;
+  }
+
+  class Quiz {
+    String name;
+    String description;
+    Question [ ] questions;
+  }
+
+  class Question {
+    String text;
+    String correctAnswer;
+    String [ ] possibleAnswers;
+  }
+
+  class User {
+    String username;
+    String password;
+    String role;
+  }
+
+  class Instructor extends User {
+    Course [ ] courses;
+  }
+
+  class Student extends User {
+    Course [ ] enrolledCourses;
+    CourseProgress [ ] courseProgress;
+  }
+
+  class CourseProgress {
+    Course course;
+    int progressPercentage;
+  }
+
+  composition Course -> Lesson [*];
+  composition Lesson -> Quiz [*];
+  composition Quiz -> Question [*];
+  association User <- Instructor;
+  association User <- Student;
+  association Instructor -> Course [*];
+  association Student -> Course [*];
+  association Course -> CourseProgress [*];
+}

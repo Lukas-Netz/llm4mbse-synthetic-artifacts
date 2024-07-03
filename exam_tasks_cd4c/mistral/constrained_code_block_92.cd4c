@@ -1,0 +1,40 @@
+
+classdiagram CloudOrchestration {
+
+  class CloudProvider {
+    CloudService [ ] cloudServices;
+  }
+
+  class Customer {
+    CloudService [ ] cloudServices;
+  }
+
+  abstract class CloudService {
+    String name;
+    String description;
+    Region [ ] regions;
+  }
+
+  class VirtualMachine extends CloudService {
+    int cpu;
+    int memory;
+    int storage;
+  }
+
+  class Storage extends CloudService {
+    int capacity;
+    String type;
+  }
+
+  class Database extends CloudService {
+    int size;
+    String type;
+  }
+
+  enum Region {
+    US_EAST, US_WEST, EU_CENTRAL, AP_SOUTHEAST, AP_NORTHEAST;
+  }
+
+  composition CloudProvider -> CloudService [*];
+  composition Customer <- CloudService [*];
+}

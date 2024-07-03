@@ -1,0 +1,79 @@
+
+classdiagram VoiceAssistant {
+
+    class VoiceAssistant {
+      String uniqueIdentifier;
+      Set<Skill> skills;
+      Set<Intent> intents;
+      Set<Entity> entities;
+      Set<Slot> slots;
+    }
+
+    class Skill {
+      String name;
+      boolean enabled;
+      Set<Parameter> parameters;
+    }
+
+    class Intent {
+      String name;
+    }
+
+    class Entity {
+      String name;
+    }
+
+    class Slot {
+      String name;
+    }
+
+    class ReminderSkill extends Skill {
+      int reminderTime;
+    }
+
+    class MessageSkill extends Skill {
+      String message;
+    }
+
+    class SmartHomeControlSkill extends Skill {
+      String deviceName;
+      String action;
+    }
+
+    class SetReminderIntent extends Intent {
+      int reminderTime;
+    }
+
+    class SendMessageIntent extends Intent {
+      String message;
+    }
+
+    class ControlSmartHomeDeviceIntent extends Intent {
+      String deviceName;
+      String action;
+    }
+
+    class DateEntity extends Entity {
+      int year;
+      int month;
+      int day;
+    }
+
+    class LocationSlot extends Slot {
+      String location;
+    }
+
+    class PhoneNumberSlot extends Slot {
+      String phoneNumber;
+    }
+
+    association VoiceAssistant -> Skill [*];
+    association VoiceAssistant -> Intent [*];
+    association VoiceAssistant -> Entity [*];
+    association VoiceAssistant -> Slot [*];
+
+    composition VoiceAssistant -> ReminderSkill [0..1];
+    composition VoiceAssistant -> MessageSkill [0..1];
+   
+
+}

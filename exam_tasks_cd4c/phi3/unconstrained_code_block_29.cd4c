@@ -1,0 +1,63 @@
+
+classdiagram PersonalizedMedicinePlatform {
+
+    class Patient {
+      String patientId;
+      GeneticData geneticData;
+      MedicalHistory medicalHistory;
+      TreatmentPlan treatmentPlan;
+    }
+
+    class GeneticData {
+      String dnaSequence;
+      List<GeneticVariation> geneticVariations;
+    }
+
+    class MedicalHistory {
+      List<Allergy> allergies;
+      List<Medication> medications;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class TreatmentPlan {
+      List<MedicationRegimen> medicationRegimens;
+      List<Dosage> dosages;
+    }
+
+    class MedicationRegimen {
+      String medicationName;
+      String dosage;
+    }
+
+    class Dosage {
+      String dosageAmount;
+      String frequency;
+    }
+
+    class Allergy {
+      String allergen;
+    }
+
+    class MedicalCondition {
+      String conditionName;
+    }
+
+    class HealthcareProvider {
+      void createTreatmentPlan(Patient patient);
+      void updateTreatmentPlan(Patient patient, TreatmentPlan newPlan);
+      TreatmentPlan getPatientTreatmentPlan(String patientId);
+      void integrateWithEHR(String patientId);
+      Analytics getTreatmentInsights(String patientId);
+    }
+
+    class EHRSystem {
+      void retrievePatientData(String patientId);
+    }
+
+    association Patient -> HealthcareProvider;
+    association Patient -> EHRSystem;
+    association Patient -> TreatmentPlan;
+    composition Patient -> GeneticData;
+    composition Patient -> MedicalHistory;
+    composition Patient -> TreatmentPlan;
+}

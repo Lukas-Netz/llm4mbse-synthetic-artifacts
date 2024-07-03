@@ -1,0 +1,55 @@
+
+classdiagram SatelliteImaging {
+
+  class Satellite {
+    String name;
+    String identifier;
+    SatelliteState state;
+  }
+
+  enum SatelliteState {
+    Idle, CapturingImages, TransmittingImages;
+  }
+
+  class GroundStation {
+    String name;
+    String identifier;
+  }
+
+  class ProcessingCenter {
+    String name;
+    String identifier;
+  }
+
+  class Image {
+    String name;
+    String timestamp;
+    int resolution;
+  }
+
+  abstract class Sensor {
+    String name;
+    String identifier;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Camera, Spectrometer, Radar;
+  }
+
+  abstract class ProcessingAlgorithm {
+    String name;
+    String identifier;
+    AlgorithmType type;
+  }
+
+  enum AlgorithmType {
+    ImageEnhancement, ObjectDetection, ChangeDetection;
+  }
+
+  composition SatelliteImaging -> Satellite;
+  composition SatelliteImaging -> GroundStation;
+  composition SatelliteImaging -> ProcessingCenter;
+  association Satellite -> Sensor [*];
+  association Satellite -> ProcessingAlgorithm [*];
+}

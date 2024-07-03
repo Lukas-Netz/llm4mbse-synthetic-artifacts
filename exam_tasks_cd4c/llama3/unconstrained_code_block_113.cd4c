@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram SmartHomeHealthcare  {
+
+  class CentralHub  {
+    -> Sensor[*];
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void updateSensorData(Sensor sensor);
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier;
+    SensorData data;
+  }
+
+  class BloodGlucoseSensor extends Sensor  {
+    float glucoseLevel;
+  }
+
+  class BloodPressureSensor extends Sensor  {
+    int systolicPressure;
+    int diastolicPressure;
+  }
+
+  class PulseOximeterSensor extends Sensor  {
+    float oxygenSaturation;
+  }
+
+  class MedicalProfessionalsDashboard  {
+    -> CentralHub;
+    void displaySensorData(Sensor sensor);
+    void sendAlert(Sensor sensor);
+  }
+
+  class Patient  {
+    -> Sensor[*];
+    String patientName;
+  }
+
+  class MedicalProfessional  {
+    -> Patient[*];
+    void setReminder(Patient patient);
+    void scheduleAppointment(Patient patient);
+  }
+
+  class SensorData  {
+    String timestamp;
+    float value;
+  }
+
+  composition CentralHub -> Sensor[*];
+  composition MedicalProfessionalsDashboard -> CentralHub;
+  composition Patient -> Sensor[*];
+  composition MedicalProfessional -> Patient[*];
+}

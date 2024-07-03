@@ -1,0 +1,39 @@
+
+classdiagram GeneTherapy {
+
+  class Device {
+    Carrier carrier;
+    Target target;
+  }
+
+  class Carrier {
+    String geneticMaterial;
+  }
+
+  class Target {
+    void receiveGeneticMaterial();
+  }
+
+  class Control {
+    Sensor[] sensors;
+    Device[] devices;
+    Database database;
+  }
+
+  class Sensor {
+    String sensorType;
+    String measurement;
+  }
+
+  class Database {
+    String geneticMaterialInfo;
+    String carrierInfo;
+    String targetInfo;
+  }
+
+  composition Device -> Carrier;
+  composition Device -> Target;
+  association Control -> Sensor [*];
+  association Control -> Device [*];
+  association Control -> Database;
+}

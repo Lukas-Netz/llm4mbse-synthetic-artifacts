@@ -1,0 +1,46 @@
+
+classdiagram HealthcareDigitalTwin {
+
+    class Patient {
+      String patientId;
+      String name;
+      String medicalHistory;
+      TreatmentPlan treatmentPlan;
+    }
+
+    class MedicalDevice {
+      String deviceId;
+      String deviceType;
+      String deviceStatus;
+    }
+
+    class TreatmentPlan {
+      String planId;
+      String planDetails;
+      List<TreatmentOption> treatmentOptions;
+    }
+
+    class TreatmentOption {
+      String optionId;
+      String optionDetails;
+    }
+
+    class HealthcareDigitalTwin {
+      Patient patient;
+      List<MedicalDevice> medicalDevices;
+      TreatmentPlan treatmentPlan;
+      String patientOutcome;
+      String analyticsInsights;
+
+      void simulateOutcome(TreatmentPlan plan);
+      void provideTreatmentRecommendation();
+      void integrateWithDevice(MedicalDevice device);
+      String getRealTimeAnalytics();
+    }
+
+    composition Patient -> HealthcareDigitalTwin;
+    composition HealthcareDigitalTwin -> MedicalDevice [0..*];
+    composition HealthcareDigitalTwin -> TreatmentPlan;
+    composition HealthcareDigitalTwin -> PatientOutcome;
+    composition HealthcareDigitalTwin -> AnalyticsInsights;
+}

@@ -1,0 +1,29 @@
+
+classdiagram ConversationalPlatform {
+
+    class Conversation {
+      String uniqueId;
+      Agent agent;
+      String topic;
+      int priority;
+      ConversationStatus status;
+      String history;
+      String analytics;
+    }
+
+    class Agent {
+      String uniqueId;
+      String name;
+      List<Conversation> assignedConversations;
+    }
+
+    class ConversationStatus {
+      OnOff active;
+      OffOff inactive;
+    }
+
+    association Conversation <-> Agent [0..*];
+    association Conversation <-> ConversationStatus [0..1];
+    association Conversation <-> String [0..*];
+    association Conversation <-> String [0..*];
+}

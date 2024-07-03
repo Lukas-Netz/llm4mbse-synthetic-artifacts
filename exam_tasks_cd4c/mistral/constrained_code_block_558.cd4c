@@ -1,0 +1,27 @@
+
+classdiagram QCA {
+
+  class QuantumComputingApplication {
+    QuantumAlgorithm [
+     ] quantumAlgorithms;
+  }
+
+  abstract class QuantumAlgorithm {
+    QuantumGate [
+     ] quantumGates;
+  }
+
+  class QuantumGate {
+    String name;
+    Map<String, Object> parameters;
+  }
+
+  class QuantumProcessor {
+    String name;
+    Map<String, Object> parameters;
+  }
+
+  composition QuantumComputingApplication -> QuantumAlgorithm [*];
+  composition QuantumAlgorithm -> QuantumGate [*];
+  association QuantumProcessor <-> QuantumComputingApplication;
+}

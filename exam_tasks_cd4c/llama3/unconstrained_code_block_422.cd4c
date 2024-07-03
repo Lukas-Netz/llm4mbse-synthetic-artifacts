@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram ArtificialWombTechnology  {
+
+  class WombChamber  {
+    Embryo embryo;
+  }
+
+  class ControlUnit  {
+    Temperature temperature;
+    Humidity humidity;
+    GasComposition gasComposition;
+  }
+
+  class MonitoringSystem  {
+    Health health;
+    Development development;
+  }
+
+  class Sensor  {
+    Anomaly anomaly;
+  }
+
+  class Embryo  {
+    String uniqueIdentifier;
+    DevelopmentStatus developmentStatus;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class GasComposition  {
+    String composition;
+  }
+
+  class Health  {
+    String status;
+  }
+
+  class Development  {
+    String status;
+  }
+
+  class Anomaly  {
+    String type;
+  }
+
+  class DevelopmentStatus  {
+    String status;
+  }
+
+  composition WombChamber -> (contains) Embryo;
+  composition ControlUnit -> (controls) WombChamber;
+  composition MonitoringSystem -> (monitors) Embryo;
+  composition Sensor -> (detects) Anomaly;
+}

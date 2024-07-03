@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram  istringstream  { 
+
+  class Software  {
+    Window mainWindow;
+    Scene  istringstream            ;
+  }
+
+  class Window  {
+    void displayScene(Scene scene);
+  }
+
+  class Scene  {
+    Object  istringstream            ;
+  }
+
+  abstract class Object  {
+    String uniqueIdentifier;
+    String type;
+  }
+
+  class GeometricShape extends Object  {
+    Point position;
+    Size size;
+    Color color;
+  }
+
+  class ThreeDModel extends Object  {
+    Texture texture;
+    Material material;
+    Lighting lighting;
+  }
+
+  class Animation extends Object  {
+    Duration duration;
+    Speed speed;
+    AnimationType animationType;
+  }
+
+  class FileFormat  {
+    String name;
+    String extension;
+  }
+
+  class ImportExport  {
+    void importFile(FileFormat fileFormat, String filePath);
+    void exportFile(FileFormat fileFormat, String filePath);
+  }
+
+  class Renderer  {
+    void renderScene(Scene scene);
+  }
+
+  class Manipulator  {
+    void moveObject(Object object);
+    void scaleObject(Object object);
+    void rotateObject(Object object);
+  }
+
+  composition Software  ->  (has) Window;
+  composition Software  ->  (has) Scene;
+  composition Scene  ->  (has) Object;
+  composition Object  ->  (has) GeometricShape  [0..1];
+  composition Object  ->  (has) ThreeDModel  [0..1];
+  composition Object  ->  (has) Animation  [0..1];
+  composition Software  ->  (has) ImportExport;
+  composition Software  ->  (has) Renderer;
+  composition Software  ->  (has) Manipulator;
+}

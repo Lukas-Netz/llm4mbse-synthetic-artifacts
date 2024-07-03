@@ -1,0 +1,86 @@
+
+classdiagram LanguageLearningApp {
+
+  class User {
+    String username;
+    String password;
+    String chosenLanguage;
+    LearningGoal goal;
+  }
+
+  enum LearningGoal {
+    Beginner, Intermediate, Advanced;
+  }
+
+  class Lesson {
+    String title;
+    String description;
+    List<Exercise> exercises;
+  }
+
+  class Exercise {
+    String exerciseType;
+    boolean completed;
+  }
+
+  class Conversation {
+    NativeSpeaker nativeSpeaker;
+    String topic;
+  }
+
+  class NativeSpeaker {
+    String name;
+    String nativeLanguage;
+  }
+
+  class Dictionary {
+    List<Word> words;
+  }
+
+  class Thesaurus {
+    List<Synonym> synonyms;
+  }
+
+  class Word {
+    String word;
+    String definition;
+  }
+
+  class Synonym {
+    String synonym;
+    String definition;
+  }
+
+  class Leaderboard {
+    List<User> users;
+    User topUser;
+  }
+
+  association User [*] has  -- One-{ordered}
+   		;
+
+  association User -- One
+   		 																													;
+
+  association Lesson -- One
+   		 																													;
+
+  association Exercise -- One
+   		 																													;
+
+  association Conversation -- One
+   		 																													;
+
+  association NativeSpeaker -- One
+   		 																													;
+
+  association Dictionary -- One
+   		 																													;
+
+  association Thesaurus -- One
+   		 																													;
+
+  association Leaderboard -- One
+   		 																													;
+
+  }

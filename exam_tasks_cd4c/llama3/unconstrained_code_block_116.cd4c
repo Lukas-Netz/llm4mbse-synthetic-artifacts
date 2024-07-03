@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram InsuranceSystem  {
+
+  class Policy  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    double premium;
+    Insurer insurer;
+    Insured insured;
+  }
+
+  class Insurer  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Insured  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Claim  {
+    String uniqueIdentifier;
+    String description;
+    ClaimStatus status;
+    Policy policy;
+  }
+
+  class Settlement  {
+    String uniqueIdentifier;
+    double amount;
+    SettlementStatus status;
+    Claim claim;
+  }
+
+  enum ClaimStatus  {
+    PENDING, APPROVED, REJECTED;
+  }
+
+  enum SettlementStatus  {
+    PENDING, APPROVED, REJECTED;
+  }
+
+  composition Policy -> (has) Insurer;
+  composition Policy -> (has) Insured;
+  composition Claim -> (has) Policy;
+  composition Settlement -> (has) Claim;
+}

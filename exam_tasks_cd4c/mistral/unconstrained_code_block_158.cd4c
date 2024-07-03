@@ -1,0 +1,41 @@
+
+classdiagram BirdIdentification {
+
+  class BirdSpecies {
+    String name;
+    String scientificName;
+    List<Song> songs;
+  }
+
+  class Song {
+    List<AudioFeature> features;
+  }
+
+  class AudioFeature {
+    double frequency;
+    double amplitude;
+    double duration;
+  }
+
+  class FeatureExtraction {
+    Song inputSong;
+    List<AudioFeature> extractedFeatures;
+  }
+
+  class Classification {
+    List<AudioFeature> inputFeatures;
+    String identifiedSpecies;
+  }
+
+  class User {
+    String username;
+  }
+
+  class Database {
+    List<BirdSpecies> birdSpecies;
+    User currentUser;
+  }
+
+  composition Database -> BirdSpecies [*];
+  composition Database -> User [1..*];
+}

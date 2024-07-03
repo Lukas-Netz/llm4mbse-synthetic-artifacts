@@ -1,0 +1,37 @@
+
+classdiagram VideoStreaming {
+
+  class VideoServer {
+    -> VideoClient [*];
+    Network network;
+    void addVideoClient(VideoClient client);
+    void removeVideoClient(VideoClient client);
+    String checkNetworkStatus();
+  }
+
+  abstract class VideoClient {
+    String uniqueIdentifier;
+    VideoClientStatus status;
+  }
+
+  class LiveVideoClient extends VideoClient {
+    void streamLiveVideo();
+  }
+
+  class OnDemandVideoClient extends VideoClient {
+    void requestVideo();
+  }
+
+  class Network {
+    int bandwidth;
+    VideoServer [  ] connectedServers;
+  }
+
+  enum VideoClientStatus {
+    Connected, Disconnected;
+  }
+
+  composition VideoServer -> Network;
+  composition VideoServer -> VideoClient [*];
+  composition Network -> VideoServer [*];
+}

@@ -1,0 +1,90 @@
+
+classdiagram DigitalExperienceAnalytics {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Device [ ] devices;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+    DeviceType deviceType;
+    BrowserType browserType;
+  }
+
+  enum DeviceType {
+    Desktop, Mobile, Tablet;
+  }
+
+  enum BrowserType {
+    Chrome, Firefox, Safari, Edge, Other;
+  }
+
+  class Session {
+    String uniqueIdentifier;
+    DateTime startTime;
+    DateTime endTime;
+    SessionType sessionType;
+    User user;
+    Product product;
+  }
+
+  enum SessionType {
+    New, Returning;
+  }
+
+  class Event {
+    String uniqueIdentifier;
+    DateTime timestamp;
+    Session session;
+    EventType eventType;
+    Feature feature;
+    boolean success;
+  }
+
+  enum EventType {
+    Click, FormFill, Purchase, Other;
+  }
+
+  class Feedback {
+    String uniqueIdentifier;
+    DateTime timestamp;
+    User user;
+    Rating rating;
+    String comment;
+    String suggestion;
+  }
+
+  enum Rating {
+    One, Two, Three, Four, Five;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ProductType productType;
+    Feature [ ] features;
+  }
+
+  enum ProductType {
+    Website, MobileApp, Game;
+  }
+
+  class Feature {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  association User --o000o- 											;
+  association Device --o000o- 											;
+  association Session --o000o- 											;
+  association Event --o000o- 											;
+  association Feedback --o000o- 											;
+  association Product --o000o- 											;
+  association Feature --o000o- 											;
+
+}

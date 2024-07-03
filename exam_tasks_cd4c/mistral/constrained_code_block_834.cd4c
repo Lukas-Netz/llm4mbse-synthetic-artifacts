@@ -1,0 +1,59 @@
+
+classdiagram UrbanPlanning {
+
+  class City {
+    String name;
+    String location;
+    District [  ] districts;
+  }
+
+  class District {
+    String uniqueIdentifier;
+    String type;
+    Block [  ] blocks;
+  }
+
+  class Block {
+    String uniqueIdentifier;
+    String type;
+    Building [  ] buildings;
+    Road [  ] roads;
+    PublicSpace [  ] publicSpaces;
+  }
+
+  class Building {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    FloorPlan floorPlan;
+  }
+
+  class FloorPlan {
+    int width;
+    int height;
+    Room [  ] rooms;
+  }
+
+  class Room {
+    String name;
+    int area;
+  }
+
+  class Road {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  class PublicSpace {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  composition City -> District [*];
+  composition District -> Block [*];
+  composition Block -> Building [*];
+  composition Block -> Road [*];
+  composition Block -> PublicSpace [*];
+}

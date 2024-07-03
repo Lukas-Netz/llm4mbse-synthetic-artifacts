@@ -1,0 +1,52 @@
+
+classdiagram DigitalHealth {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+    MedicalCondition [ ] medicalConditions;
+  }
+
+  class MedicalCondition {
+    String name;
+    String description;
+    String type;
+    List<String> symptoms;
+  }
+
+  enum Type {
+    Physical, Mental, Environmental;
+  }
+
+  class Doctor {
+    String uniqueIdentifier;
+    String name;
+    String specialty;
+    Patient [ ] patients;
+  }
+
+  class Medication {
+    String name;
+    String description;
+    List<String> sideEffects;
+    Patient patient;
+  }
+
+  class Appointment {
+    Date date;
+    Time time;
+    Attendee [ ] attendees;
+  }
+
+  class Attendee {
+    String uniqueIdentifier;
+    String name;
+    boolean isPatient;
+    Appointment appointment;
+  }
+
+  composition Doctor -> Patient [*];
+  composition Medication -> Patient { 											ordered};
+  composition Appointment -> Attendee [*];
+}

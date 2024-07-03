@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram POS  {
+
+  class Store  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class CashRegister  {
+    String uniqueIdentifier;
+    Store assignedStore;
+    boolean status;
+  }
+
+  class Database  {
+    Product[] products;
+    Customer[] customers;
+    Transaction[] transactions;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    double price;
+    int quantity;
+  }
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class Transaction  {
+    Date date;
+    Time time;
+    double totalAmount;
+  }
+
+  composition Store -> CashRegister[*];
+  composition CashRegister -> Store;
+  composition Database -> Product[*];
+  composition Database -> Customer[*];
+  composition Database -> Transaction[*];
+}
+

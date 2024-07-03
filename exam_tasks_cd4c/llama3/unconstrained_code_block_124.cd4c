@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram BusinessIntelligence  {
+
+  class Product  {
+    String name;
+    String category;
+  }
+
+  class Store  {
+    String name;
+    String location;
+  }
+
+  class SalesData  {
+    Date timestamp;
+    Product product;
+    Store store;
+    int quantity;
+  }
+
+  class Report  {
+    String title;
+    String description;
+    List<SalesData> data;
+  }
+
+  class Alert  {
+    Product product;
+    int threshold;
+    Date timestamp;
+  }
+
+  class TrendAnalysis  {
+    List<SalesData> data;
+    String trendType;
+  }
+
+  class Integration  {
+    String system;
+    String connectionType;
+  }
+
+  class BusinessIntelligenceSystem  {
+    List<Product> products;
+    List<Store> stores;
+    List<SalesData> salesData;
+    List<Report> reports;
+    List<Alert> alerts;
+    List<TrendAnalysis> trendAnalyses;
+    List<Integration> integrations;
+  }
+
+  composition BusinessIntelligenceSystem -> (has) Product[*];
+  composition BusinessIntelligenceSystem -> (has) Store[*];
+  composition BusinessIntelligenceSystem -> (has) SalesData[*];
+  composition BusinessIntelligenceSystem -> (has) Report[*];
+  composition BusinessIntelligenceSystem -> (has) Alert[*];
+  composition BusinessIntelligenceSystem -> (has) TrendAnalysis[*];
+  composition BusinessIntelligenceSystem -> (has) Integration[*];
+}

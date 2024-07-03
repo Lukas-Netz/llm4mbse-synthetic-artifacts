@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram SocialMediaManagementSystem  {
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Post  {
+    String content;
+    PostType type;
+    List<String> tags;
+    int likes;
+    int comments;
+    int shares;
+  }
+
+  enum PostType  {
+    ProductPromotion,
+    CompanyNews,
+    CustomerTestimonial
+  ;}
+
+  class Analytics  {
+    int totalLikes;
+    int totalComments;
+    int totalShares;
+  }
+
+  class ECommerceIntegration  {
+    String eCommercePlatform;
+    int salesGenerated;
+  }
+
+  class Notification  {
+    String recipient;
+    String message;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class PostPerformance  {
+    Post post;
+    Analytics analytics;
+  }
+
+  composition User -> Post[*];
+  composition Post -> Tag[*];
+  composition Post -> Analytics;
+  composition Analytics -> PostPerformance[*];
+  composition ECommerceIntegration -> PostPerformance[*];
+  composition Notification -> Post;
+  composition Administrator -> User[*];
+}

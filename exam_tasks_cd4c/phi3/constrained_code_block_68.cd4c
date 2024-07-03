@@ -1,0 +1,57 @@
+
+classdiagram EnterpriseSearch {
+
+  class SearchEngine {
+    void indexContent(Content content);
+    String search(String query, SearchCriteria criteria);
+    void suggestSearchQueries(String partialQuery);
+    void saveSearchResults(SearchResult result);
+    void shareSearchResults(SearchResult result, User user);
+  }
+
+  class Content {
+    String type;
+    String content;
+  }
+
+  class TextContent extends Content {
+    String text;
+  }
+
+  class ImageContent extends Content {
+    String imagePath;
+  }
+
+  class VideoContent extends Content {
+    String videoPath;
+  }
+
+  class Document extends Content {
+    String documentPath;
+  }
+
+  class Email extends Content {
+    String emailBody;
+  }
+
+  class SearchCriteria {
+    boolean relevance;
+    boolean dateRange;
+    boolean author;
+  }
+
+  class SearchResult {
+    Content content;
+    String resultSummary;
+  }
+
+  class User {
+    String username;
+    String email;
+  }
+
+  association SearchEngine -> Content [*];
+  association SearchEngine -> SearchCriteria [*];
+  association SearchEngine -> SearchResult [*];
+  association SearchEngine -> User [*];
+}

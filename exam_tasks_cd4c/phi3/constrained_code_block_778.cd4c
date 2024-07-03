@@ -1,0 +1,39 @@
+
+classdiagram CarbonNanotubeProductionSystem {
+
+    class Reactor {
+      String reactorId;
+      int productionCapacity;
+      CarbonNanotubeType producedType;
+    }
+
+    class CarbonNanotubeType {
+      String typeName;
+    }
+
+    class ControlUnit {
+      Map<String, Reactor> reactors;
+      Map<String, Integer> inventory;
+      void monitorProduction();
+      void adjustProductionRate(String reactorId, int newRate);
+    }
+
+    class QualityControl {
+      Map<String, CarbonNanotubeType> batches;
+      void testBatch(String batchId);
+      boolean meetsStandards(String batchId);
+    }
+
+    class ShippingDepartment {
+      Map<String, CarbonNanotubeType> inventory;
+      void packageBatch(String batchId);
+      void shipBatch(String batchId, String customerId);
+    }
+
+    composition CarbonNanotubeProductionSystem -> (has) ControlUnit;
+    composition CarbonNanotubeProductionSystem -> (has) QualityControl;
+    composition CarbonNanotubeProductionSystem -> (has) ShippingDepartment;
+    association ControlUnit -> Reactor [*];
+    association QualityControl -> CarbonNanotubeType [*];
+    association ShippingDepartment -> CarbonNanotubeType [*];
+}

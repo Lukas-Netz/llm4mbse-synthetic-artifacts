@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram SocialMediaManagementSystem  {
+
+  class SocialMediaPlatform  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Post  {
+    String uniqueIdentifier;
+    String title;
+    String content;
+    Date datePublished;
+  }
+
+  class Advertisement  {
+    String uniqueIdentifier;
+    String title;
+    String content;
+    double budget;
+  }
+
+  class Comment  {
+    String uniqueIdentifier;
+    String content;
+    Date datePosted;
+  }
+
+  class Message  {
+    String uniqueIdentifier;
+    String content;
+    Date dateSent;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Company  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class SocialMediaManager  {
+    -> SocialMediaPlatform[*];
+    -> Post[*];
+    -> Advertisement[*];
+    -> Comment[*];
+    -> Message[*];
+    -> User[*];
+    -> Company;
+    void schedulePost(Post post);
+    void publishPost(Post post);
+    void respondToComment(Comment comment);
+    void respondToMessage(Message message);
+    void integrateWithCRM();
+    void integrateWithMarketingAutomation();
+    void provideInsights();
+  }
+
+  composition SocialMediaManager -> SocialMediaPlatform[*];
+  composition SocialMediaManager -> Post[*];
+  composition SocialMediaManager -> Advertisement[*];
+  composition SocialMediaManager -> Comment[*];
+  composition SocialMediaManager -> Message[*];
+  composition SocialMediaManager -> User[*];
+  composition SocialMediaManager -> Company;
+}

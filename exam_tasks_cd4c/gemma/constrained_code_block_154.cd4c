@@ -1,0 +1,24 @@
+
+
+#  classdiagram SmartHospital
+
+  
+
+{class SmartHospital
+
+  	  	  	  	  	
+{class Department
+
+  	  	  	 ;}
+
+  	  	  	  	  	
+<<eos>>  	  	  	  	  	
+  	  	  	  	  compositionsDepartment -> Room [0..*]
+
+{
+
+  	  	  	 ordered
+
+  	 }
+
+  	 ;}

@@ -1,0 +1,56 @@
+
+classdiagram BlockchainGaming {
+
+  class BlockchainNetwork {
+    -> Game [*];
+    -> User [*];
+  }
+
+  abstract class Game {
+    String uniqueIdentifier;
+    GameStatus status;
+  }
+
+  class Puzzle extends Game {
+    int difficultyLevel;
+    String puzzleType;
+  }
+
+  class Strategy extends Game {
+    String gameMode;
+    int playerCount;
+  }
+
+  class RolePlaying extends Game {
+    CharacterCreation characterCreation;
+    String storyline;
+  }
+
+  class CharacterCreation {
+    String characterName;
+    String characterRace;
+    String characterClass;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile {
+    String username;
+    String email;
+    String password;
+  }
+
+  enum GameStatus {
+    Active, Inactive;
+  }
+
+  enum GameType {
+    Puzzle, Strategy, RolePlaying;
+  }
+
+  composition BlockchainNetwork -> Game [*];
+  composition BlockchainNetwork -> User [*];
+}

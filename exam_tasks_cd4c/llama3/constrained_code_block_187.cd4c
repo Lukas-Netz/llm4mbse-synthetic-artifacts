@@ -1,0 +1,86 @@
+
+
+
+
+classdiagram BehavioralAnalyticsPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    UserPreferences preferences;
+  }
+
+  class UserPreferences  {
+    String[] preferredLanguages;
+    String[] preferredTimeZones;
+  }
+
+  class Project  {
+    String uniqueName;
+    ProjectAttributes attributes;
+    User owner;
+  }
+
+  class ProjectAttributes  {
+    String[] tags;
+    String description;
+  }
+
+  class Goal  {
+    String uniqueName;
+    GoalMetrics metrics;
+    Project project;
+  }
+
+  class GoalMetrics  {
+    Metric[] metrics;
+  }
+
+  class Metric  {
+    String uniqueName;
+    DataType dataType;
+  }
+
+  class DataType  {
+    String name;
+  }
+
+  class Dashboard  {
+    String uniqueName;
+    DashboardWidgets widgets;
+    User owner;
+  }
+
+  class DashboardWidgets  {
+    Widget[] widgets;
+  }
+
+  class Widget  {
+    String uniqueName;
+    DataSource dataSource;
+  }
+
+  class DataSource  {
+    String name;
+  }
+
+  class Report  {
+    String uniqueName;
+    ReportFilters filters;
+    User owner;
+  }
+
+  class ReportFilters  {
+    Filter[] filters;
+  }
+
+  class Filter  {
+    String uniqueName;
+    DataType dataType;
+  }
+
+  composition User -> (has) UserPreferences;
+  composition Project -> (has) ProjectAttributes;
+  composition Goal -> (has) GoalMetrics;
+  composition Dashboard -> (has) DashboardWidgets;
+  composition Report -> (has) ReportFilters;
+  }

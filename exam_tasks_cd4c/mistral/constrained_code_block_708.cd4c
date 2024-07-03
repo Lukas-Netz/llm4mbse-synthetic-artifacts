@@ -1,0 +1,36 @@
+
+classdiagram VRTP {
+
+  class VRTP {
+    Zone [ ] zones;
+  }
+
+  class Zone {
+    String name;
+    String description;
+    Attraction [ ] attractions;
+    int capacity;
+  }
+
+  abstract class Attraction {
+    String name;
+    String description;
+    int rating;
+  }
+
+  class RollerCoaster extends Attraction {
+    int speed;
+    int height;
+  }
+
+  class DarkRide extends Attraction {
+    int interactivity;
+  }
+
+  class InteractiveExhibit extends Attraction {
+    int interactivity;
+  }
+
+  composition VRTP -> Zone [*];
+  composition Zone -> Attraction [*];
+}

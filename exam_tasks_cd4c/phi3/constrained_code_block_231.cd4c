@@ -1,0 +1,97 @@
+
+classdiagram TalentAcquisitionSystem {
+
+    class JobPosting {
+      String title;
+      String description;
+      List<Skill> requiredSkills;
+      List<Candidate> candidates;
+      List<Interview> interviews;
+    Written by
+    (courtesy of)
+    throws
+    TalentAcquisitionSystem
+    ;
+
+    class CandidateSkillSet
+    (
+      List<Skill> skills
+    )
+    ;
+
+    class Interview
+    (
+      List<InterviewQuestion> questions
+    )
+    ;
+
+    class InterviewQuestion
+    (
+      String text
+    )
+    ;
+
+    class InterviewRating
+    (
+      int score
+    )
+    ;
+
+    class InterviewComment
+    (
+      String text
+    )
+    ;
+
+    class InterviewAttachment
+    (
+      String filePath
+    )
+    ;
+
+    class InterviewNotes
+    (
+      String text
+    )
+    ;
+
+    abstract class JobRequirement
+    (
+      String name
+    )
+    ;
+
+    class Interviewer
+    (
+      String name
+    )
+    ;
+
+    class TalentAcquisitionSystem
+    (
+      List<JobPosting> jobPostings
+    )
+    ;
+}
+
+composition JobPosting -> Candidate [*];
+composition JobPosting -> Interview [*];
+composition JobPosting -> InterviewRating [*];
+composition JobPosting -> InterviewComment [*];
+composition JobPosting -> InterviewAttachment [*];
+composition JobPosting -> InterviewNotes [*];
+composition JobPosting -> Interview [*];
+composition JobPosting -> Interviewer [*];
+composition JobPosting -> Skill [*];
+composition Candidate -> Skill [*];
+composition Candidate -> Interview [*];
+composition Interview -> InterviewQuestion [*];
+composition Interview -> InterviewRating [*];
+composition Interview -> InterviewComment [*];
+composition Interview -> InterviewAttachment [*];
+composition Interview -> InterviewNotes [*];
+composition JobRequirement -> JobPosting [*];
+composition Interviewer -> Interview [*];
+composition Interviewer -> Interview [*];
+
+  }

@@ -1,0 +1,56 @@
+
+
+classdiagram EmergencyResponseDroneSystem {
+
+    class EmergencyResponseDroneSystem {
+      Hub hub;
+      Database database;
+    }
+
+    class Hub {
+      -> Drone [*];
+      void assignDroneToEmergencySituation(Drone drone, EmergencySituation situation);
+      void trackDroneLocation(Drone drone);
+      void updateDroneStatus(Drone drone, DroneStatus status);
+    }
+
+    abstract class Drone {
+      String uniqueIdentifier;
+      DroneStatus status;
+    }
+
+    class SearchDrone extends Drone {
+      SearchArea area;
+      SearchCriteria criteria;
+    }
+
+    class RescueDrone extends Drone {
+      RescueEquipment equipment;
+      RescueStatus status;
+    }
+
+    class SurveillanceDrone extends Drone {
+      SurveillanceArea area;
+      SurveillanceType type;
+    }
+
+    class Database {
+      Drone information;
+    }
+
+    enum DroneStatus {
+      Available, NotAvailable;
+    }
+
+    enum SearchCriteria {
+      Smoke, Fire, MedicalEmergency;
+    }
+
+    enum SurveillanceType {
+      Airborne, Ground;
+    }
+
+  composition EmergencyResponseDroneSystem -> (has) Hub;
+  composition Hub -> Drone [*];
+  association Database -> Drone;
+}

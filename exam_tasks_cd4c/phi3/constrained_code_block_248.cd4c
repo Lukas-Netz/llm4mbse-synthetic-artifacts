@@ -1,0 +1,293 @@
+
+classdiagram ContentPersonalizationSystem {
+
+    class User {
+      String uniqueIdentifier;
+      Set<String> preferences;
+    Writes userPreferences();
+      void readsUserPreferences();
+    }
+
+    class Content {
+      String title;
+      String author;
+      String genre;
+      String topic;
+      ContentMetadata metadata;
+    }
+
+    class ContentMetadata {
+      String title;
+      String author;
+      String genre;
+      String topic;
+    }
+
+    class Recommendation {
+      String content;
+      String recommendationScore;
+    }
+
+    class AIModel {
+      void analyzeUserBehavior(User user);
+      void analyzeContentMetadata(Content content);
+      Recommendation generateRecommendation(User user, Content content);
+    }
+
+    association User - Recommendation [hasRecommendations]
+   
+    -> Recommendation [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Content - Recommendation [hasRecommendations]
+   
+    -> Recommendation [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association User - Content [hasInteractions]
+   
+    -> Content [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association Content - AIModel [hasAnalyzedContent]
+   
+    -> AIModel [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association AIModel - User [hasGeneratedRecommendations]
+   
+    -> User [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association AIModel - Content [hasAnalyzedContent]
+   
+    -> Content [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association User - UserPreferences [hasPreferences]
+   
+    -> UserPreferences [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - Content [hasInteractions]
+   
+    -> Content [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - User [hasPreferences]
+   
+    -> User [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - AIModel [hasAnalyzedPreferences]
+   
+    -> AIModel [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - Recommendation [hasRecommendations]
+   
+    -> Recommendation [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - User [hasPreferences]
+   
+    -> User [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - Content [hasInteractions]
+   
+    -> Content [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - AIModel [hasAnalyzedPreferences]
+   
+    -> AIModel [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+    association UserPreferences - User [hasPreferences]
+   
+    -> User [*]
+   
+    <<association>>
+   
+    {
+     
+   
+
+ordered
+
+    }
+
+   
+;
+
+   
+}

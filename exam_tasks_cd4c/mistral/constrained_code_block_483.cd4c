@@ -1,0 +1,51 @@
+
+classdiagram EcologyPlatform {
+
+  class Course {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Instructor instructor;
+  }
+
+  class Instructor {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [  ] courses;
+  }
+
+  class Student {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [  ] enrolledCourses;
+    Assignment [  ] submittedAssignments;
+  }
+
+  class Assignment {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Course course;
+    Student [  ] students;
+    int grade;
+  }
+
+  class Administrator {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Course [  ] courses;
+    Instructor [  ] instructors;
+    Student [  ] students;
+  }
+
+  composition Course [ 1..* ] courses -> Instructor;
+  composition Instructor [ 1..* ] courses <- Course;
+  composition Student [ 0..* ] enrolledCourses <- Course;
+  composition Assignment [ 0..* ] students [  many ] <- Student;
+  composition Administrator [ 1..* ] courses <- Course;
+  composition Administrator [ 1..* ] instructors <- Instructor;
+  composition Administrator [ 1..* ] students <- Student;
+}

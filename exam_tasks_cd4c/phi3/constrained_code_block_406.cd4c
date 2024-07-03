@@ -1,0 +1,55 @@
+
+classdiagram VirtualRealityConcert {
+
+    class ConcertHall {
+      String name;
+      int capacity;
+      List<Concert> upcomingConcerts;
+      void setupConcert(Concert concert);
+      void teardownConcert(Concert concert);
+    }
+
+    class Artist {
+      String name;
+      String genre;
+      List<Concert> pastConcerts;
+    }
+
+    class Concert {
+      Date date;
+      Time time;
+      List<Artist> performingArtists;
+    }
+
+    class AudioEffect {
+      String type;
+      int volume;
+      int frequency;
+    }
+
+    class VisualEffect {
+      String type;
+      int brightness;
+      String color;
+      String pattern;
+    }
+
+    class LightingSystem extends AudioEffect {
+      String type = "Lighting";
+    }
+
+    class SoundSystem extends AudioEffect {
+      String type = "Sound";
+    }
+
+    class Pyrotechnics extends VisualEffect;
+    class FogMachine extends VisualEffect;
+    class LaserBeams extends VisualEffect;
+
+    composition ConcertHall -> (has) Concert;
+    composition ConcertHall -> (has) AudioEffect;
+    composition ConcertHall -> (has) VisualEffect;
+    composition Concert -> (has) Artist;
+    composition Artist -> (has) Concert;
+    composition Concert -> (has) ConcertHall;
+}

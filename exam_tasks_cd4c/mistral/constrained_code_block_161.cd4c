@@ -1,0 +1,46 @@
+
+classdiagram ComplianceSolution {
+
+  class ComplianceRequirement {
+    String uniqueIdentifier;
+    String description;
+    Criteria [ ] criteria;
+  }
+
+  class Criteria {
+    String name;
+    String value;
+  }
+
+  class FinancialInstitution {
+    String uniqueIdentifier;
+    String name;
+    ComplianceRequirement [ ] requirements;
+    ComplianceStatus status;
+  }
+
+  enum ComplianceStatus {
+    Compliant, NonCompliant, PartiallyCompliant;
+  }
+
+  class AlertsAndNotifications {
+    void sendAlert(String message);
+    void sendNotification(String message);
+  }
+
+  class Integration {
+    void retrieveData();
+    void updateComplianceStatus();
+  }
+
+  class UserInterface {
+    void viewRequirements();
+    void trackStatus();
+    void receiveAlerts();
+  }
+
+  composition ComplianceSolution -> FinancialInstitution [*];
+  composition ComplianceSolution -> AlertsAndNotifications;
+  composition ComplianceSolution -> Integration;
+  composition ComplianceSolution -> UserInterface;
+}

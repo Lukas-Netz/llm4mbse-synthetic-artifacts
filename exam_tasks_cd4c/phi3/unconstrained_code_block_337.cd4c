@@ -1,0 +1,49 @@
+
+classdiagram BlockchainLandRegistry {
+
+    class Blockchain {
+      PropertyRecord[] propertyRecords;
+      void addPropertyRecord(PropertyRecord record);
+      void updatePropertyRecord(PropertyRecord record);
+      void removePropertyRecord(PropertyRecord record);
+      PropertyRecord verifyPropertyRecord(String propertyId);
+    }
+
+    class LandRegistryOffice {
+      Blockchain blockchain;
+      void addProperty(Property property);
+      void updateOwner(String propertyId, Owner owner);
+      void removeProperty(String propertyId);
+      Transaction recordTransaction(String propertyId, Owner newOwner);
+      Owner verifyOwner(String propertyId);
+    }
+
+    class Property {
+      String propertyId;
+      String location;
+      Owner owner;
+    }
+
+    class Owner {
+      String name;
+      String address;
+      String identificationNumber;
+    }
+
+    class Transaction {
+      String propertyId;
+      Owner previousOwner;
+      Owner newOwner;
+    }
+
+    class PropertyRecord {
+      Property property;
+      Owner owner;
+    }
+
+  composition LandRegistryOffice -> (has) Blockchain;
+  association LandRegistryOffice -> Property [*];
+  association LandRegistryOffice -> Owner [*];
+  association LandRegistryOffice -> Transaction [*];
+  association Blockchain -> PropertyRecord [*];
+}

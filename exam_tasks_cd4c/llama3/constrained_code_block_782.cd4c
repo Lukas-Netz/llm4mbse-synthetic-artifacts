@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram QuantumDotSolarCell  {
+
+  class QuantumDot  {
+    String uniqueIdentifier;
+    int size;
+    MaterialType materialType;
+  }
+
+  class SolarCell  {
+    Set<QuantumDot> quantumDots;
+    double powerOutput;
+  }
+
+  class Light  {
+    double intensity;
+    double wavelength;
+  }
+
+  class EnergyHarvesting  {
+    double energyHarvested;
+  }
+
+  class Efficiency  {
+    double efficiency;
+  }
+
+  class MaterialType  {
+    String name;
+  }
+
+  class SolarCellSystem  {
+    Set<SolarCell> solarCells;
+    Set<Light> lightSources;
+  }
+
+  composition SolarCellSystem -> (has) Set<<SolarCell>>; 
+  composition SolarCellSystem -> (has) Set<<Light>>; 
+
+  association SolarCell -> (contains) Set<<QuantumDot>>; 
+
+  class SolarCellSystemOperations  {
+    void addSolarCell(SolarCell solarCell);
+    void removeSolarCell(SolarCell solarCell);
+    void addLightSource(Light lightSource);
+    void removeLightSource(Light lightSource);
+    double calculateEnergyOutput();
+    double calculateEfficiency();
+  }
+}

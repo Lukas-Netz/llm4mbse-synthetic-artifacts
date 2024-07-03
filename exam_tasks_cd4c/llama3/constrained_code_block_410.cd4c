@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram VirtualTradeShow  {
+
+  class Exhibitor  {
+    String uniqueIdentifier;
+    String name;
+    boolean isSponsor;
+    SponsorshipType sponsorshipType;
+    double sponsorshipAmount;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    Exhibitor assignedExhibitor;
+  }
+
+  class Attendee  {
+    String name;
+    String email;
+    String company;
+  }
+
+  class SponsorshipType  {
+    String type;
+  }
+
+  class Interaction  {
+    Attendee attendee;
+    Exhibitor exhibitor;
+    Product product;
+    InteractionType type;
+  }
+
+  enum InteractionType  {
+    ProductInquiry,
+    DemoRequest;
+  }
+
+  composition Exhibitor  ->  (has) SponsorshipType;
+  composition Product  ->  (has) Exhibitor;
+  composition Attendee  ->  (has) Interaction[*];
+  composition Interaction  ->  (has) Attendee;
+  composition Interaction  ->  (has) Exhibitor;
+  composition Interaction  ->  (has) Product;
+}

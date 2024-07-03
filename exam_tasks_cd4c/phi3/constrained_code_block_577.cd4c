@@ -1,0 +1,46 @@
+
+classdiagram RoboticFishFarmingSystem {
+
+    class Tank {
+      String name;
+      int capacity;
+      Fish fish;
+      WaterQualitySensor waterQualitySensor;
+      TemperatureSensor temperatureSensor;
+    }
+
+    class Fish {
+      String species;
+      int health;
+      int growth;
+      boolean isBeingFed;
+    }
+
+    class FishFeeder {
+      String name;
+      int capacity;
+      void dispenseFood(Tank tank);
+    }
+
+    class WaterQualitySensor {
+      float pH;
+      float oxygenLevel;
+      float nitrateLevel;
+    }
+
+    class TemperatureSensor {
+      float temperature;
+    }
+
+    class RoboticFishFarmingSystem {
+      Tank[] tanks;
+      FishFeeder[] feeders;
+    }
+
+    composition RoboticFishFarmingSystem -> (has) Tank[*];
+    composition RoboticFishFarmingSystem -> (has) FishFeeder[*];
+    composition Tank -> Fish;
+    composition Tank -> WaterQualitySensor;
+    composition Tank -> TemperatureSensor;
+    composition FishFeeder -> Tank;
+}

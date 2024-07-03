@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram RemotePatientDiagnostics  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    VitalSigns vitalSigns;
+  }
+
+  class Sensor  {
+    String type;
+    VitalSigns vitalSign;
+  }
+
+  class Device  {
+    String type;
+    VitalSigns vitalSign;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    Diagnosis[] diagnoses;
+  }
+
+  class Diagnosis  {
+    Patient patient;
+    Doctor doctor;
+    String description;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class VitalSigns  {
+    BloodPressure bloodPressure;
+    HeartRate heartRate;
+    Temperature temperature;
+  }
+
+  class BloodPressure  {
+    int systolic;
+    int diastolic;
+  }
+
+  class HeartRate  {
+    int rate;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class TreatmentPlan  {
+    String medication;
+    String instructions;
+  }
+
+  composition Patient -> (has) VitalSigns;
+  composition Sensor -> (measures) VitalSign;
+  composition Device -> (measures) VitalSign;
+  composition Doctor -> (diagnoses) Diagnosis;
+  composition Diagnosis -> (patient) Patient;
+  composition Diagnosis -> (doctor) Doctor;
+}

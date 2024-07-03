@@ -1,0 +1,57 @@
+
+classdiagram ConversationalAI {
+
+  class UserInterface {
+    void receiveInput();
+  }
+
+  class NaturalLanguageProcessing {
+    String analyzeInput(String input);
+  }
+
+  class KnowledgeBase {
+    Product[] products;
+    Promotion[] promotions;
+    StorePolicy[] storePolicies;
+  }
+
+  class ResponseGenerator {
+    String generateResponse(String input, KnowledgeBase knowledgeBase);
+  }
+
+  class DialogueManager {
+    void controlConversation(String input, KnowledgeBase knowledgeBase, ResponseGenerator responseGenerator);
+  }
+
+  class Product {
+    String name;
+    String description;
+    double price;
+    int availability;
+    Review[] reviews;
+  }
+
+  class Promotion {
+    String name;
+    String description;
+    double discount;
+    Product[] applicableProducts;
+  }
+
+  class StorePolicy {
+    String name;
+    String description;
+  }
+
+  class Review {
+    String reviewer;
+    double rating;
+    String comment;
+  }
+
+  composition UserInterface -> NaturalLanguageProcessing;
+  composition NaturalLanguageProcessing -> KnowledgeBase;
+  composition KnowledgeBase -> ResponseGenerator;
+  composition DialogueManager -> KnowledgeBase;
+  composition DialogueManager -> ResponseGenerator;
+}

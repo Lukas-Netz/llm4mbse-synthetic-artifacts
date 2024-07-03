@@ -1,0 +1,70 @@
+
+classdiagram Neurostimulation {
+
+  class Device {
+    String uniqueIdentifier;
+    String name;
+    DeviceType type;
+  }
+
+  enum DeviceType {
+    TMS, tDCS, VNS, etc;
+  }
+
+  class Session {
+    Device device;
+    String startTime;
+    String endTime;
+    int duration;
+    SessionStatus status;
+  }
+
+  enum SessionStatus {
+    Active, Completed;
+  }
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    MedicalCondition medicalCondition;
+  }
+
+  enum MedicalCondition {
+    Depression, Anxiety, etc;
+  }
+
+  class Parameter {
+    String parameterName;
+    String parameterValue;
+  }
+
+  class Outcome {
+    String outcomeType;
+    String outcomeDescription;
+  }
+
+  class NeurostimulationSystem {
+    Device [ ] devices;
+    Patient [ ] patients;
+    Session [ ] sessions;
+  }
+
+  composition NeurostimulationSystem -> Device [*];
+  composition NeurostimulationSystem -> Patient [*];
+  composition Session -> Device [1];
+  association Patient -> Session [*];
+  association Session -> Parameter [*];
+  association Session -> Outcome [*];
+
+  class Operations {
+    void addDevice(Device device);
+    void removeDevice(Device device);
+    void addPatient(Patient patient);
+    void removePatient(Patient patient);
+    void addSession(Session session);
+    void removeSession(Session session);
+    void adjustParameters(Session session, Parameter parameter);
+    void recordOutcome(Session session, Outcome outcome);
+    void generateReport();
+  }
+}

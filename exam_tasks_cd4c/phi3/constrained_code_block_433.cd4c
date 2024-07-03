@@ -1,0 +1,37 @@
+
+classdiagram OnlineDesignServices {
+
+    class Designer {
+      int designerID;
+      String name;
+      Set<String> skills;
+      Set<String> designAreas;
+    Writes a_designConcept(DesignRequest request);
+      void submitDesignConcept(DesignRequest request);
+      void reviseDesignConcept(DesignRequest request);
+      Design finalizeDesign(DesignRequest request);
+    }
+
+    class DesignRequest {
+      int requestID;
+      String designType;
+      Date deadline;
+      Designer assignedDesigner;
+      boolean isAccepted;
+      boolean isConceptApproved;
+      Design finalDesign;
+    }
+
+    class Client {
+      int clientID;
+      String name;
+      Set<DesignRequest> pendingRequests;
+      Set<DesignRequest> completedRequests;
+      int designerRating;
+    }
+
+    composition Client -> DesignRequest [*];
+    composition Designer -> DesignRequest [*];
+    composition Designer -> Design [*];
+    composition DesignRequest -> Client [*];
+}

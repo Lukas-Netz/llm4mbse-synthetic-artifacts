@@ -1,0 +1,40 @@
+
+classdiagram ResumePortfolio {
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class Portfolio {
+    User user;
+    String uniqueURL;
+    Project [ ] projects;
+    Skill [ ] skills;
+    Achievement [ ] achievements;
+  }
+
+  abstract class Content {
+    String title;
+    String description;
+  }
+
+  class Project extends Content {
+    String githubLink;
+  }
+
+  class Skill {
+    String category;
+    String name;
+  }
+
+  class Achievement {
+    String type;
+    String details;
+  }
+
+  composition User -> Portfolio;
+  composition Portfolio -> Project [*];
+  composition Portfolio -> Skill [*];
+  composition Portfolio -> Achievement [*];
+}

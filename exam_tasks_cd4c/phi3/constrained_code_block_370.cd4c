@@ -1,0 +1,67 @@
+
+classdiagram CloudVideoEditingSystem {
+
+    class User {
+      String username;
+      String password;
+      List<Video> uploadedVideos;
+      List<Project> createdProjects;
+      void uploadVideo(Video video);
+      void editVideo(Video video);
+      void shareVideo(Video video);
+    cvv
+    void
+   
+   
+   ;}
+
+    class Video {
+      String id;
+      String title;
+      String description;
+      User uploader;
+      List<Clip> clips;
+      void addClip(Clip clip);
+      void editClip(Clip clip);
+    }
+
+    class Clip {
+      String id;
+      String startTime;
+      String endTime;
+      Video video;
+      List<Effect> effects;
+      void addEffect(Effect effect);
+      void removeEffect(Effect effect);
+    }
+
+    class Effect {
+      String name;
+      String description;
+    }
+
+    class Transition {
+      String name;
+      String description;
+    }
+
+    class Project {
+      String id;
+      String title;
+      String description;
+      List<Clip> clips;
+      List<Effect> effects;
+      void addClip(Clip clip);
+      void addEffect(Effect effect);
+      void editClip(Clip clip);
+      void editEffect(Effect effect);
+      void shareProject(String user);
+    }
+
+    association User - has -> Video;
+    association User - has -> Project;
+    association Video - has -> Clip;
+    association Clip - has -> Effect;
+    association Project - has -> Clip;
+    association Project - has -> Effect;
+}

@@ -1,0 +1,84 @@
+
+
+#  
+
+classdiagram SecurePatientRecords {
+
+  class PatientRecord {
+    private String uniqueIdentifier;
+    private String patientName;
+    private Date dateOfBirth;
+    private MedicalHistory medicalHistory;
+
+    public String getUniqueIdentifier() throws Exception;
+    public void setUniqueIdentifier(String uniqueIdentifier) throws Exception;
+    public String getPatientName() throws Exception;
+    public void setPatientName(String patientName) throws Exception;
+    public Date getDateOfBirth() throws Exception;
+    public void setDateOfBirth(Date dateOfBirth) throws Exception;
+    public MedicalHistory getMedicalHistory() throws Exception;
+    public void setMedicalHistory(MedicalHistory medicalHistory) throws Exception;
+  }
+
+  class MedicalHistory {
+    private List<Diagnosis> diagnoses;
+    private List<Treatment> treatments;
+    private List<Medication> medications;
+
+    public List<Diagnosis> getDiagnoses() throws Exception;
+    public void addDiagnosis(Diagnosis diagnosis) throws Exception;
+    public void removeDiagnosis(Diagnosis diagnosis) throws Exception;
+    public List<Treatment> getTreatments() throws Exception;
+    public void addTreatment(Treatment treatment) throws Exception;
+    public void removeTreatment(Treatment treatment) throws Exception;
+    public List<Medication> getMedications() throws Exception;
+    public void addMedication(Medication medication) throws Exception;
+    public void removeMedication(Medication medication) throws Exception;
+  }
+
+  class Diagnosis {
+    private String name;
+    private String description;
+
+    public String getName() throws Exception;
+    public void setName(String name) throws Exception;
+    public String getDescription() throws Exception;
+    public void setDescription(String description) throws Exception;
+  }
+
+  class Treatment {
+    private String name;
+    private String description;
+
+    public String getName() throws Exception;
+    public void setName(String name) throws Exception;
+    public String getDescription() throws Exception;
+    public void setDescription(String description) throws Exception;
+  }
+
+  class Medication {
+    private String name;
+    private String dosage;
+
+    public String getName() throws Exception;
+    public void setName(String name) throws Exception;
+    public String getDosage() throws Exception;
+    public void setDosage(String dosage) throws Exception;
+  }
+
+  class SecurePatientRecordsSystem {
+    private Database database;
+
+    public void addPatientRecord(PatientRecord patientRecord) throws Exception;
+    public void updatePatientRecord(PatientRecord patientRecord) throws Exception;
+    public void deletePatientRecord(PatientRecord patientRecord) throws Exception;
+    public PatientRecord getPatientRecord(String uniqueIdentifier) throws Exception;
+    public List<PatientRecord> getPatientRecords() throws Exception;
+  }
+
+  composition SecurePatientRecordsSystem -> (has) Database;
+  association PatientRecord -> MedicalHistory;
+  association MedicalHistory -> Diagnosis;
+  association MedicalHistory -> Treatment;
+  association MedicalHistory -> Medication;
+}

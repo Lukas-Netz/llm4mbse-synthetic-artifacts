@@ -1,0 +1,74 @@
+
+classdiagram HealthcareSystem {
+
+  class PatientRecord {
+    String uniqueIdentifier;
+    String patientName;
+    String dateOfBirth;
+    MedicalHistory medicalHistory;
+  }
+
+  class MedicalHistory {
+    List<Diagnosis> diagnoses;
+    List<Treatment> treatments;
+    List<Medication> medications;
+  }
+
+  class Diagnosis {
+    String diagnosisName;
+    String diagnosisDate;
+  }
+
+  class Treatment {
+    String treatmentName;
+    String treatmentDate;
+  }
+
+  class Medication {
+    String medicationName;
+    String prescriptionDate;
+  }
+
+  class QuantumResistantEncryption {
+    String encrypt(String data);
+    String decrypt(String encryptedData);
+  }
+
+  class AuditLog {
+    String user;
+    String action;
+    String timestamp;
+  }
+
+  class HealthcareProvider {
+    String providerId;
+    String providerName;
+  }
+
+  class Patient {
+    String patientId;
+    String patientName;
+  }
+
+  class SecureDatabase {
+    void addPatientRecord(PatientRecord patientRecord);
+    void updatePatientRecord(PatientRecord patientRecord);
+    void deletePatientRecord(PatientRecord patientRecord);
+  }
+
+  class UserInterface {
+    HealthcareProvider addProvider(HealthcareProvider provider);
+    Patient viewMedicalHistory(Patient patient);
+  }
+
+  composition HealthcareSystem -> SecureDatabase;
+  association HealthcareSystem -> HealthcareProvider [*];
+  association HealthcareSystem -> Patient [*];
+  association SecureDatabase -> PatientRecord [*];
+  association PatientRecord -> MedicalHistory;
+  association MedicalHistory -> Diagnosis [*];
+  association MedicalHistory -> Treatment [*];
+  association MedicalHistory -> Medication [*];
+  association QuantumResistantEncryption -- SecureDatabase;
+ 
+}

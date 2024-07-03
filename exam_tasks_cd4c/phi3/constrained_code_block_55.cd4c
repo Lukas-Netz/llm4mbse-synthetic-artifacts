@@ -1,0 +1,51 @@
+
+classdiagram FleetTelematics {
+
+    class Vehicle {
+      String vehicleType;
+      Location location;
+      double speed;
+      double direction;
+      double fuelLevel;
+      double engineTemperature;
+      FleetTelematics telematicsSystem;
+    }
+
+    class FleetTelematics {
+      List<Vehicle> vehicles;
+      void trackVehicle(Vehicle vehicle);
+      void sendAlert(Vehicle vehicle);
+      void integrateWithGPS();
+      void integrateWithFuelPump();
+      void integrateWithMaintenanceScheduling();
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class Alert {
+      String message;
+      Vehicle affectedVehicle;
+    }
+
+    class GPS {
+      Location getLocation();
+    }
+
+    class FuelPump {
+      double getFuelLevel();
+      void refillFuel();
+    }
+
+    class MaintenanceScheduling {
+      void scheduleMaintenance(Vehicle vehicle);
+    }
+
+    composition FleetTelematics -> (has) List<<Vehicle>>;
+    composition FleetTelematics -> (has) GPS;
+    composition FleetTelematics -> (has) FuelPump;
+    composition FleetTelematics -> (has) MaintenanceScheduling;
+    association FleetTelematics -ve-> Vehicle [*];
+}

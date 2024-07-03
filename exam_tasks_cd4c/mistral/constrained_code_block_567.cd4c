@@ -1,0 +1,39 @@
+
+classdiagram AirborneWindEnergy {
+
+  class TetheredWing {
+    String type;
+    double liftCoefficient;
+    double dragCoefficient;
+    double maxAltitude;
+  }
+
+  class GroundStation {
+    double electricityStorage;
+    String communication;
+  }
+
+  class ControlCenter {
+    void monitorSystem();
+    void controlAltitude(TetheredWing wing);
+    void controlOrientation(TetheredWing wing);
+  }
+
+  class WeatherStation {
+    double windSpeed;
+    String windDirection;
+    double temperature;
+  }
+
+  class Sensor {
+    double windSpeed;
+    String windDirection;
+    double turbulence;
+  }
+
+  composition AirborneWindEnergy -> TetheredWing;
+  composition AirborneWindEnergy -> GroundStation;
+  composition AirborneWindEnergy -> ControlCenter;
+  composition AirborneWindEnergy -> WeatherStation;
+  association TetheredWing -- Sensor;
+}

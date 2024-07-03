@@ -1,0 +1,74 @@
+
+classdiagram WildlifeMonitoringSystem {
+
+    class Sensor {
+      String species;
+      String habitat;
+      String dataType;
+      void collectData();
+    }
+
+    class Camera {
+      String species;
+      String habitat;
+      String dataType;
+      void captureImage();
+    }
+
+    class Drone {
+      String species;
+      String habitat;
+      String dataType;
+      void flyOverArea();
+    }
+
+    class DataStorage {
+      void storeData(Sensor sensorData);
+      void storeData(Camera cameraData);
+      void storeData(Drone droneData);
+    }
+
+    class DataAnalysis {
+      void analyzeData(Sensor sensorData);
+      void analyzeData(Camera cameraData);
+      void analyzeData(Drone droneData);
+    }
+
+    class AlertSystem {
+      void sendAlert(Sensor sensorData);
+      void sendAlert(Camera cameraData);
+      void sendAlert(Drone droneData);
+    }
+
+    class ParkRanger {
+      void receiveAlert(Sensor sensorData);
+      void receiveAlert(Camera cameraData);
+      void receiveAlert(Drone droneData);
+    }
+
+    class Conservationist {
+      void receiveAlert(Sensor sensorData);
+      void receiveAlert(Camera cameraData);
+      void receiveAlert(Drone droneData);
+    }
+
+    class WildlifeMonitoringSystem {
+      Sensor[] sensors;
+      Camera[] cameras;
+      Drone[] drones;
+      DataStorage dataStorage;
+      DataAnalysis dataAnalysis;
+      AlertSystem alertSystem;
+      ParkRanger[] parkRangers;
+      Conservationist[] conservationists;
+    }
+
+    composition WildlifeMonitoringSystem -> (has) Sensor[*];
+    composition WildlifeMonitoringSystem -> (has) Camera[*];
+    composition WildlifeMonitoringSystem -> (has) Drone[*];
+    composition WildlifeMonitoringSystem -> (has) DataStorage;
+    composition WildlifeMonitoringSystem -> (has) DataAnalysis;
+    composition WildlifeMonitoringSystem -> (has) AlertSystem;
+    composition WildlifeMonitoringSystem -> (has) ParkRanger[*];
+    composition WildlifeMonitoringSystem -> (has) Conservationist[*];
+}

@@ -1,0 +1,52 @@
+
+classdiagram TimeTracking {
+
+  class Employee {
+    String name;
+    int employeeID;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Project [ ] tasks;
+  }
+
+  class Task {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    Employee [ ] employees;
+  }
+
+  class TimeEntry {
+    Employee employee;
+    Task task;
+    Date startTime;
+    Date endTime;
+  }
+
+  class TimeTrackingSystem {
+    Employee [ ] employees;
+    Project [ ] projects;
+    TimeEntry [ ] timeEntries;
+
+    void addEmployee(Employee employee);
+    void addProject(Project project);
+    void addTimeEntry(TimeEntry timeEntry);
+
+    void calculateTaskTime(Task task);
+    void calculateEmployeeTime(Employee employee);
+    void calculateProjectTime(Project project);
+
+    void generateTaskReport(Task task);
+    void generateEmployeeReport(Employee employee);
+    void generateProjectReport(Project project);
+  }
+
+  composition TimeTrackingSystem -> Employee [*];
+  composition TimeTrackingSystem -> Project [*];
+  composition Project -> Task [*];
+  composition Task -> TimeEntry [*];
+}

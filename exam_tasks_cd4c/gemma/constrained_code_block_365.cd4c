@@ -1,0 +1,49 @@
+
+
+classdiagram OnlineGeographyCourseManagementSystem {
+
+    class Course {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      Set<Instructor> instructors;
+      Set<Student> students;
+      Set<CourseMaterial> courseMaterials;
+    }
+
+    class Instructor {
+      String name;
+      Set<Course> courses;
+    }
+
+    class Student {
+      String name;
+      Set<Course> courses;
+      Map<Course, List<Integer>> grades;
+    }
+
+    class CourseMaterial {
+      String name;
+      String description;
+      Set<Course> courses;
+    }
+
+    class CourseProgressReport {
+      String courseName;
+      List<Student> students;
+      Map<Student, List<Integer>> grades;
+    }
+
+    class InstructorWorkloadReport {
+      String instructorName;
+      List<Course> courses;
+      Map<Course, List<Student>> students;
+    }
+
+  composition Course -> (has) Instructor [0..*];
+  composition Course -> (has) Student [0..*];
+  composition Course -> (has) CourseMaterial [0..*];
+  association Instructor -> Course [0..*];
+  association Student -> Course [0..*];
+  association CourseMaterial -> Course [0..*];
+}

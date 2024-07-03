@@ -1,0 +1,35 @@
+
+classdiagram SmartEnergyMeterSystem {
+
+    class SmartMeter {
+      String uniqueIdentifier;
+      double energyConsumptionKWh;
+      void sendDataToServer();
+    }
+
+    class Server {
+      List<SmartMeter> smartMeters;
+      void collectData();
+      void provideAnalytics();
+    }
+
+    class App {
+      void viewEnergyData(String meterId);
+      void setEnergyTarget(double targetKWh);
+      void receiveNotifications();
+      void controlSmartPlug(String plugId, boolean onOff, DateTime scheduledTime);
+    }
+
+    class SmartPlug {
+      String plugId;
+      boolean isOn;
+      DateTime scheduledTime;
+      void turnOn();
+      void turnOff();
+      void scheduleOperation(DateTime time);
+    }
+
+  composition SmartMeter -> Server [*];
+  composition Server -> App [*];
+  composition App -> SmartPlug [*];
+}

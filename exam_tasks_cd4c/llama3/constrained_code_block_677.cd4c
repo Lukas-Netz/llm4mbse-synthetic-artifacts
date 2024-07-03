@@ -1,0 +1,35 @@
+
+
+
+
+classdiagram CropMonitoringSystem  {
+
+  class Sensor  {
+    String type;  # eeprom
+    floattemperature;
+    float humidity;
+    float soilMoisture;
+  }
+
+  class Drone  {
+    String type;  # quadcopter
+    String  ;  # camera
+  class  ;  # hub
+  class  ;  # farm
+  class  ;  # crop
+  class  ;  # recommendation
+  class  ;  # alert
+  class  ;  # data
+  class  ;  # analysis
+  class  ;  # insight
+  class  ;  # cropType
+  class  ;  # plantingDate
+  class  ;  # fertilizationSchedule
+  class  ;  # irrigation
+  class  ;  # fertilization
+  class  ;  # pestControl
+  class  ;  # stress
+  class  ;  # attention
+  class  ;  # recommendation
+  class  ;  }  #  class
+  class  ;  }

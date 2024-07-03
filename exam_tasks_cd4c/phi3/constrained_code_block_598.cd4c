@@ -1,0 +1,55 @@
+
+classdiagram PrecisionAgriculture {
+
+    class Drone {
+      String droneId;
+      Location location;
+      Crop crop;
+      DroneStatus status;
+    }
+
+    class Crop {
+      String cropId;
+      CropType type;
+      CropRequirements requirements;
+    }
+
+    class CropType {
+      String name;
+    }
+
+    class CropRequirements {
+      String nutrientLevel;
+      String waterLevel;
+      String temperatureRange;
+    }
+
+    class DroneStatus {
+      String status;
+    }
+
+    class Field {
+      String fieldId;
+      List<Crop> crops;
+    }
+
+    class Scheduler {
+      void scheduleDrone(Drone drone, Field field);
+      void dispatchDrone(Drone drone);
+    }
+
+    class WeatherForecast {
+      String forecast;
+    }
+
+    class SoilTest {
+      String testResult;
+    }
+
+    composition PrecisionAgriculture -> (has) Drone;
+    composition PrecisionAgriculture -> (has) Crop;
+    composition PrecisionAgriculture -> (has) Field;
+    composition PrecisionAgriculture -> (has) Scheduler;
+    composition PrecisionAgriculture -> (has) WeatherForecast;
+    composition PrecisionAgriculture -> (has) SoilTest;
+}

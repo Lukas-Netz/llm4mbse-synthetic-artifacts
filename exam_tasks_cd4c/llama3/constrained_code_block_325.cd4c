@@ -1,0 +1,62 @@
+
+
+
+classdiagram HomeSecuritySystem  {
+
+  class CentralHub  {
+    Sensor[] sensors;
+    Camera[] cameras;
+    String[] zones;
+    void receiveAlert(Sensor sensor, Alert alert);
+    void receiveAlert(Camera camera, Alert alert);
+    void controlRemote();
+  }
+
+  abstract class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  abstract class Camera  {
+    String uniqueIdentifier;
+    CameraType type;
+  }
+
+  class SmokeSensor extends Sensor  {
+    boolean isSmokeDetected;
+  }
+
+  class CarbonMonoxideSensor extends Sensor  {
+    boolean isCarbonMonoxideDetected;
+  }
+
+  class MotionSensor extends Sensor  {
+    boolean isMotionDetected;
+  }
+
+  class Camera extends Camera  {
+    boolean isRecording;
+  }
+
+  class BackupPower  {
+    int capacityWh;
+  }
+
+  enum SensorType  {
+    Smoke, CarbonMonoxide, Motion;
+  }
+
+  enum CameraType  {
+    Surveillance;
+  }
+
+  enum AlertType  {
+    Intruder, Smoke, CarbonMonoxide;
+  }
+
+  composition CentralHub -> (has) Sensor[*];
+  composition CentralHub -> (has) Camera[*];
+  composition CentralHub -> (has) BackupPower [0..1];
+  composition Sensor -> (has) Alert [0..*];
+  composition Camera -> (has) Alert [0..*];
+}

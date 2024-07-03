@@ -1,0 +1,54 @@
+
+classdiagram RealTimeSpeechTranslationSystem {
+
+    class Microphone {
+      int samplingRate;
+      int bitDepth;
+    }
+
+    class SpeechRecognitionModule {
+      float recognitionAccuracy;
+      float processingTime;
+      void translateSpeech(Microphone input);
+    }
+
+    class NaturalLanguageProcessingModule {
+      float languageDetectionAccuracy;
+      float syntaxAnalysisTime;
+      String analyzeText(String text);
+    }
+
+    class MachineTranslationModule {
+      float translationAccuracy;
+      float processingTime;
+      String translateText(String text);
+    }
+
+    class TextToSpeechModule {
+      float speechQuality;
+      float processingTime;
+      String convertTextToSpeech(String text);
+    }
+
+    class Speaker {
+      float volume;
+      float playbackSpeed;
+      void playSpeech(String speech);
+    }
+
+    class RealTimeSpeechTranslationSystem {
+      Microphone microphone;
+      SpeechRecognitionModule speechRecognition;
+      NaturalLanguageProcessingModule nlp;
+      MachineTranslationModule translation;
+      TextToSpeechModule textToSpeech;
+      Speaker speaker;
+    }
+
+    composition RealTimeSpeechTranslationSystem -> (has) Microphone;
+    composition RealTimeSpeechTranslationSystem -> (has) SpeechRecognitionModule;
+    composition RealTimeSpeechTranslationSystem -> (has) NaturalLanguageProcessingModule;
+    composition RealTimeSpeechTranslationSystem -> (has) MachineTranslationModule;
+    composition RealTimeSpeechTranslationSystem -> (has) TextToSpeechModule;
+    composition RealTimeSpeechTranslationSystem -> (has) Speaker;
+}

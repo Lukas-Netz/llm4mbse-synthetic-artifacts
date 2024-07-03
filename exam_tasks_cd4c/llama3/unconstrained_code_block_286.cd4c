@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram WildlifeConservationMonitoring  {
+
+  class Species  {
+    String uniqueIdentifier;
+    String name;
+    Classification classification;
+  }
+
+  class Population  {
+    String uniqueIdentifier;
+    Species species;
+    int numberOfIndividuals;
+    AgeDistribution ageDistribution;
+    Habitat habitat;
+  }
+
+  class Habitat  {
+    String uniqueIdentifier;
+    Population population;
+    Location location;
+    Size size;
+    HabitatType type;
+  }
+
+  class Observation  {
+    String uniqueIdentifier;
+    Population population;
+    Date date;
+    Time time;
+    Location location;
+    int numberOfIndividualsSeen;
+  }
+
+  class Researcher  {
+    String uniqueIdentifier;
+    Species species;
+    String name;
+    Expertise expertise;
+    ResearchInterests researchInterests;
+  }
+
+  enum Classification  {
+    Mammal, Bird, Reptile, Amphibian;
+  }
+
+  enum AgeDistribution  {
+    Juvenile, Adult, Senior;
+  }
+
+  enum HabitatType  {
+    Forest, Grassland, Desert, Ocean;
+  }
+
+  enum Location  {
+    Latitude, Longitude;
+  }
+
+  enum Size  {
+    Small, Medium, Large;
+  }
+
+  composition Species -> (has) Researcher;
+  composition Population -> (has) Habitat;
+  composition Observation -> (has) Population;
+  composition Researcher -> (has) Species;
+}

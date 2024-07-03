@@ -1,0 +1,34 @@
+
+
+
+
+classdiagram OnlinePaymentGateway  {
+
+  class PaymentGateway  {
+    String uniqueIdentifier;
+    String name;
+    -> Transaction[*];
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Date createdAt;
+    TransactionStatus status;
+    -> PaymentMethod;
+  }
+
+  class PaymentMethod  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  enum TransactionStatus  {
+    Pending,
+    Successful,
+    Failed;
+  }
+
+  composition PaymentGateway -> Transaction[*];
+  composition Transaction -> PaymentMethod;
+}

@@ -1,0 +1,49 @@
+
+classdiagram PersonalizedAdvertisingSystem {
+
+    class UserProfile {
+      String uniqueIdentifier;
+      int age;
+      String gender;
+      String[] interests;
+      String[] purchaseHistory;
+    }
+
+    class Advertiser {
+      String advertiserId;
+      List<Ad> ads;
+    }
+
+    class Ad {
+      String adId;
+      String title;
+      String description;
+      UserProfile targetAudience;
+    }
+
+    class Campaign {
+      List<Ad> ads;
+      String campaignId;
+    }
+
+    class UserAdInteraction {
+      String userId;
+      String adId;
+      String interactionType;
+      Date interactionDate;
+    }
+
+    class AIEngine {
+      void analyzeData();
+      void optimizeTargeting();
+    }
+
+    association UserProfile -> Campaign [*];
+    association Advertiser -> Campaign [*];
+    association Ad -> Campaign [*];
+    association UserAdInteraction -> Ad [*];
+    composition UserProfile -> UserAdInteraction [0..*];
+    composition Ad -> UserAdInteraction [0..*];
+    composition Campaign -> Ad [*];
+    composition Campaign -> UserAdInteraction [*];
+}

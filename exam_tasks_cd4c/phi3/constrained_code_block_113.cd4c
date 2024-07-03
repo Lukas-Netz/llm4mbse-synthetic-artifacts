@@ -1,0 +1,71 @@
+
+classdiagram MobileHealthMonitoringSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      List<VitalSign> vitalSigns;
+      List<MedicalCondition> medicalConditions;
+    }
+
+    class VitalSign {
+      String name;
+      String unit;
+      double currentReading;
+    }
+
+    class MedicalCondition {
+      String name;
+      List<String> symptoms;
+    }
+
+    class Medication {
+      String name;
+      double dosage;
+      String frequency;
+    }
+
+    class TreatmentPlan {
+      String name;
+      String description;
+      List<Medication> medications;
+      List<VitalSign> vitalSigns;
+    }
+
+    class Alert {
+      String type;
+      String severity;
+      String message;
+    }
+
+    class HealthcareProfessional {
+      String name;
+      String contactInformation;
+      List<Patient> patients;
+    }
+
+    class MobileHealthMonitoringSystem {
+      List<Patient> patients;
+      List<Alert> alerts;
+      List<HealthcareProfessional> healthcareProfessionals;
+
+      void storePatientData(Patient patient);
+      void monitorVitalSigns(Patient patient);
+      void trackMedicationAndTreatmentPlans(Patient patient);
+      void sendAlertsToHealthcareProfessionals(Alert alert);
+    }
+
+    composition Patient -> MobileHealthMonitoringSystem;
+    composition Patient -> VitalSign;
+    composition Patient -> MedicalCondition;
+    composition Patient -> Medication;
+    composition Patient -> TreatmentPlan;
+
+    composition MobileHealthMonitoringSystem -> Alert;
+    composition MobileHealthMonitoringSystem -> HealthcareProfessional;
+
+    association MobileHealthMonitoringSystem -> Patient [*];
+    association MobileHealthMonitoringSystem -> Alert [*];
+    association MobileHealthMonitoringSystem -> HealthcareProfessional [*];
+}

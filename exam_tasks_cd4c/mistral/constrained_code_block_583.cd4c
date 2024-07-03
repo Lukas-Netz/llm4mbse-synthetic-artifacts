@@ -1,0 +1,125 @@
+
+classdiagram VR_Therapy {
+
+  class PatientProfile {
+    String name;
+    int age;
+    String phobia;
+  }
+
+  class TherapistProfile {
+    String name;
+    String qualifications;
+    boolean available;
+  }
+
+  class VRExperience {
+    String name;
+    String description;
+    String difficulty;
+  }
+
+  class Session {
+    PatientProfile patient;
+    TherapistProfile therapist;
+    VRExperience experience;
+    Date date;
+    Time startTime;
+    Time endTime;
+  }
+
+  class ProgressTracking {
+    PatientProfile patient;
+    Date startDate;
+    Date endDate;
+    String progress;
+  }
+
+  composition PatientProfile [*] PatientProfileSystem (hasMany)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ -- TherapistProfileSystem
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ;
+
+  composition VRExperience [*] VRExperienceSystem (hasMany)
+
+  -- SessionManagementSystem
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ ;
+
+  composition ProgressTracking [*] ProgressTrackingSystem (hasMany)
+
+  -- Integration
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ ;
+}

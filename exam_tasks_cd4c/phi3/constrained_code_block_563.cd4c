@@ -1,0 +1,94 @@
+
+classdiagram LunarMining {
+
+    class MiningOperation {
+      DrillingModule drillingModule;
+      ProcessingModule processingModule;
+      StorageModule storageModule;
+      PersonnelAssignment personnelAssignment;
+      ResourceTracking resourceTracking;
+      ReportingReport reportingReport;
+    }
+
+    class DrillingModule {
+      String location;
+      DrillingEquipment drillingEquipment;
+      Personnel personnel;
+      DrillingStatus status;
+    }
+
+    class ProcessingModule {
+      String location;
+      ProcessingEquipment processingEquipment;
+      Personnel personnel;
+      ProcessingStatus status;
+    }
+
+    class StorageModule {
+      String location;
+      StorageEquipment storageEquipment;
+      Personnel personnel;
+      StorageStatus status;
+    }
+
+    class PersonnelAssignment {
+      Personnel personnel;
+      Module module;
+    }
+
+    class ResourceTracking {
+      Resource resource;
+      ResourceLocation location;
+      ResourceStatus status;
+    }
+
+    class ReportingReport {
+      MiningOperation miningOperation;
+      Report report;
+    }
+
+    class DrillingEquipment {
+      String equipmentType;
+      String equipmentStatus;
+    }
+
+    class ProcessingEquipment {
+      String equipmentType;
+      String equipmentStatus;
+    }
+
+    class StorageEquipment {
+      String equipmentType;
+      String equipmentStatus;
+    }
+
+    class Personnel {
+      String name;
+      String role;
+    }
+
+    class Resource {
+      String resourceType;
+      String quantity;
+    }
+
+    class Module {
+      String moduleType;
+    }
+
+    class ResourceLocation {
+      String location;
+    }
+
+    class ResourceStatus {
+      String status;
+    }
+
+    association MiningOperation -> DrillingModule;
+    association MiningOperation -> ProcessingModule;
+    association MiningOperation -> StorageModule;
+    association PersonnelAssignment -> Personnel;
+    association PersonnelAssignment -> Module;
+   
+
+}

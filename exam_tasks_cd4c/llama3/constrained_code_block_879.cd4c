@@ -1,0 +1,84 @@
+
+
+
+
+classdiagram SmartCity  {
+
+  class WeatherStation  {
+    float temperature;
+    float humidity;
+    float windSpeed;
+    float precipitation;
+  }
+
+  class TrafficManagementSystem  {
+    TrafficLight  trafficLight;
+    SpeedCamera  speedCamera;
+    TrafficSensor  trafficSensor;
+  }
+
+  class PublicSafetySystem  {
+    FireAlarm  fireAlarm;
+    PoliceDispatch  policeDispatch;
+    AmbulanceService  ambulanceService;
+  }
+
+  class EnergyManagementSystem  {
+    EnergyUsage  energyUsage;
+    EnergyStorage  energyStorage;
+    RenewableEnergySource  renewableEnergySource;
+  }
+
+  class WasteManagementSystem  {
+    WasteSorting  wasteSorting;
+    Recycling  recycling;
+    LandfillManagement  landfillManagement;
+  }
+
+  class TransportationSystem  {
+    Bus  bus;
+    Train  train;
+    BikeSharing  bikeSharing;
+  }
+
+  class ParkingManagementSystem  {
+    ParkingSensor  parkingSensor;
+    ParkingMeter  parkingMeter;
+    ParkingGarage  parkingGarage;
+  }
+
+  class BuildingManagementSystem  {
+    Building  building;
+  }
+
+  class WaterManagementSystem  {
+    WaterSupply  waterSupply;
+  }
+
+  class PublicHealthSystem  {
+    PublicHealth  publicHealth;
+  }
+
+  class SmartCity  {
+    WeatherStation  weatherStation;
+    TrafficManagementSystem  trafficManagementSystem;
+    PublicSafetySystem  publicSafetySystem;
+    EnergyManagementSystem  energyManagementSystem;
+    WasteManagementSystem  wasteManagementSystem;
+    TransportationSystem  transportationSystem;
+    ParkingManagementSystem  parkingManagementSystem;
+    BuildingManagementSystem  buildingManagementSystem;
+    WaterManagementSystem  waterManagementSystem;
+    PublicHealthSystem  publicHealthSystem;
+  }
+
+  composition SmartCity  ->  (has) WeatherStation;
+  composition SmartCity  ->  (has) TrafficManagementSystem;
+  composition SmartCity  ->  (has) PublicSafetySystem;
+  composition SmartCity  ->  (has) EnergyManagementSystem;
+  composition SmartCity  ->  (has) WasteManagementSystem;
+  composition SmartCity  ->  (has) TransportationSystem;
+  composition SmartCity  ->  (has) ParkingManagementSystem;
+  composition SmartCity  ->  (has) BuildingManagementSystem;
+  composition SmartCity  ->  (has) WaterManagementSystem;
+  }

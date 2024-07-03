@@ -1,0 +1,68 @@
+
+classdiagram PsychotherapyPlatform {
+
+    class Therapist {
+      String uniqueIdentifier;
+      String name;
+      String specialization;
+      List<Session> sessions;
+    }
+
+    class Client {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      List<Session> sessions;
+    }
+
+    class Session {
+      String uniqueIdentifier;
+      Date date;
+      Time time;
+      int duration;
+      Therapist therapist;
+      Client client;
+    }
+
+    class Rating {
+      String therapistIdentifier;
+      String clientIdentifier;
+      int ratingValue;
+    }
+
+    class Review {
+      String therapistIdentifier;
+      String clientIdentifier;
+      String reviewText;
+    }
+
+    class PsychotherapyPlatform {
+      List<Therapist> therapists;
+      List<Client> clients;
+      List<Session> sessions;
+      List<Rating> ratings;
+      List<Review> reviews;
+
+      void addTherapist(Therapist therapist);
+      void addClient(Client client);
+      void addSession(Session session);
+      void addRating(Rating rating);
+      void addReview(Review review);
+      List<Therapist> getAvailableTherapists(Date date);
+      List<Client> getAvailableClients(Date date);
+      List<Session> getAvailableSessions(Therapist therapist);
+      List<Session> getAvailableSessionsForClient(Client client);
+      List<Therapist> getAllTherapists();
+      List<Client> getAllClients();
+      List<Session> getAllSessions();
+      List<Rating> getAllRatings();
+      List<Review> getAllReviews();
+      List<Rating> getRatingsForTherapist(Therapist therapist);
+     }
+
+  composition PsychotherapyPlatform -> (has) Therapist;
+  composition PsychotherapyPlatform -> (has) Client;
+  composition PsychotherapyPlatform -> (has) Session;
+  composition PsychotherapyPlatform -> (has) Rating;
+  composition PsychotherapyPlatform -> (has) Review;
+}

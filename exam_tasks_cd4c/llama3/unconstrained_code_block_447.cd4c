@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VirtualRealitySportsTrainingSystem  {
+
+  class VirtualEnvironment  {
+    int size;
+    Shape shape;
+    TerrainType terrainType;
+  }
+
+  class PlayerAvatar  {
+    Position position;
+    Velocity velocity;
+    Orientation orientation;
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+    DifficultyLevel difficultyLevel;
+  }
+
+  class ScoringSystem  {
+    int score;
+  }
+
+  class Coach  {
+    ExpertiseLevel expertiseLevel;
+    CoachingStyle coachingStyle;
+  }
+
+  class VirtualRealitySystem  {
+    VirtualEnvironment ve;
+    PlayerAvatar playerAvatar;
+    Exercise currentExercise;
+    ScoringSystem scoringSystem;
+    Coach coach;
+  }
+
+  composition VirtualRealitySystem -> (has) VirtualEnvironment;
+  composition VirtualRealitySystem -> (has) PlayerAvatar;
+  composition VirtualRealitySystem -> (has) Exercise;
+  composition VirtualRealitySystem -> (has) ScoringSystem;
+  composition VirtualRealitySystem -> (has) Coach;
+
+  association VirtualRealitySystem -> (uses) Exercise;
+  association Coach -> (manages) Exercise;
+  association VirtualRealitySystem -> (tracks) ScoringSystem;
+}
+

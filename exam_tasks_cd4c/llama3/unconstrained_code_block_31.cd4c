@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram NLPSystem  {
+
+  class TextPreprocessing  {
+    void preprocessText(String text);
+  }
+
+  class Tokenization  {
+    List<Token> tokenizeText(String text);
+  }
+
+  class POS  {
+    List<POS> tagTokens(List<Token> tokens);
+  }
+
+  class NER  {
+    List<NamedEntity> recognizeNamedEntities(List<Token> tokens);
+  }
+
+  class SentimentAnalysis  {
+    Sentiment analyzeSentiment(List<Token> tokens);
+  }
+
+  class Database  {
+    void storeTextData(String text);
+    void storePOSTags(List<POS> posTags);
+    void storeNamedEntities(List<NamedEntity> namedEntities);
+    void storeSentimentAnalysis(Sentiment sentiment);
+  }
+
+  class UserInterface  {
+    void inputText(String text);
+    void viewAnalysisResults();
+  }
+
+  class Token  {
+    String text;
+  }
+
+  class POS  {
+    Token token;
+    String posTag;
+  }
+
+  class NamedEntity  {
+    Token token;
+    String entityName;
+  }
+
+  class Sentiment  {
+    String sentimentType;
+  }
+
+  composition NLPSystem -> (has) TextPreprocessing;
+  composition NLPSystem -> (has) Tokenization;
+  composition NLPSystem -> (has) POS;
+  composition NLPSystem -> (has) NER;
+  composition NLPSystem -> (has) SentimentAnalysis;
+  composition NLPSystem -> (has) Database;
+  composition NLPSystem -> (has) UserInterface;
+}

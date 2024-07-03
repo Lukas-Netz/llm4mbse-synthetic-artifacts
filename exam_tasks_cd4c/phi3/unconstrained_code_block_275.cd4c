@@ -1,0 +1,47 @@
+
+classdiagram CarbonCreditsTradingSystem {
+
+    class CarbonCreditRegistry {
+      List<CarbonCredit> credits;
+      void addCredit(CarbonCredit credit);
+      void transferCredit(CarbonCredit fromCredit, CarbonCredit toCredit);
+      CarbonCredit verifyOwnership(String holderId);
+    WritableList<CarbonCreditTransaction> transactions;
+    void updateRegistry();
+    }
+
+    class CarbonCreditHolder {
+      String name;
+      String address;
+      String contactInfo;
+      List<CarbonCredit> ownedCredits;
+      void transferCredits(CarbonCreditRegistry registry, CarbonCredit fromCredit, CarbonCredit toCredit);
+    }
+
+    class CarbonCredit {
+      String type;
+      int quantity;
+      Date expirationDate;
+      String serialNumber;
+      boolean isIssued;
+    }
+
+    class CarbonCreditTransaction {
+      Date date;
+      Time time;
+      int amount;
+      CarbonCredit fromCredit;
+      CarbonCredit toCredit;
+    }
+
+    class CarbonCreditCertificate {
+      String serialNumber;
+      CarbonCredit credit;
+      Date expirationDate;
+    }
+
+    association CarbonCreditRegistry -> CarbonCreditCredit [*];
+    association CarbonCreditRegistry -> CarbonCreditTransaction [*];
+    association CarbonCreditHolder -> CarbonCredit [*];
+    association CarbonCreditHolder -> CarbonCreditCertificate [*];
+}

@@ -1,0 +1,193 @@
+
+
+#  classdiagram AutomatedGolfCourseMaintenance
+
+  
+
+{classdiagram
+
+  
+
+  
+
+  
+
+  
+
+{class SmartHome
+
+  
+
+  
+
+  ;
+
+  
+
+  Hub hub;
+
+  BackupPower backupPower;
+
+}
+
+class Hub
+
+  
+
+  
+
+  
+
+  
+
+{composition SmartHome  (has  Hub)
+
+  
+
+  
+
+  ;
+
+  
+
+  void addDevice(Device device);
+
+  void removeDevice(Device device);
+
+  String checkBackupPowerStatus();
+
+}
+
+abstract class Device
+
+  
+
+  
+
+  
+
+  
+
+{composition Hub  (has  Device)
+
+  
+
+  
+
+  ;
+
+  
+
+  String uniqueIdentifier;
+
+  DeviceStatus status;
+
+}
+
+class Light extends Device
+
+  
+
+  
+
+  
+
+  
+
+{
+
+  int brightnessLevel;
+
+  String color;
+
+}
+
+class Thermostat extends Device
+
+  
+
+  
+
+  
+
+  
+
+{
+
+  int temperature;
+
+  ThermostatMode mode;
+
+}
+
+class SecurityCamera extends Device
+
+  
+
+  
+
+  
+
+  
+
+{
+
+  String resolution;
+
+  boolean isRecording;
+
+}
+
+class BackupPower
+
+  
+
+  
+
+  
+
+  
+
+{
+
+  int capacityWh;
+
+}
+
+enum DeviceStatus
+
+  
+
+  
+
+  {
+
+  On, Off
+
+  
+
+  
+
+  ;
+
+}
+
+enum ThermostatMode
+
+  
+
+  
+
+  {
+
+  Heating, Cooling
+
+  
+
+  
+
+  ;
+
+}
+
+}

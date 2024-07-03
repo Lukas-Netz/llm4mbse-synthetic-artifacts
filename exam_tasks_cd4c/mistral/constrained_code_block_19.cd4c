@@ -1,0 +1,54 @@
+
+classdiagram GIS {
+
+  class City {
+    String name;
+    String country;
+    String boundary;
+  }
+
+  class Country {
+    String name;
+    String continent;
+  }
+
+  class PointOfInterest {
+    String name;
+    String type;
+  }
+
+  class Road {
+    String name;
+    int length;
+    String type;
+    RoadCondition condition;
+  }
+
+  enum RoadCondition {
+    Good, Poor, Closed;
+  }
+
+  class WeatherStation {
+    String location;
+    double temperature;
+    double precipitation;
+  }
+
+  class GIS {
+    City [ ] cities;
+    Country [ ] countries;
+    PointOfInterest [ ] pointsOfInterest;
+    Road [ ] roads;
+    WeatherStation [ ] weatherStations;
+
+    City findNearestCity(double latitude, double longitude);
+    City findCityWithinDistance(double latitude, double longitude, double distance);
+    WeatherStation findWeatherStationsWithTemperatureRange(double minTemp, double maxTemp, LocalDate date);
+}
+
+  composition GIS -> City [*];
+  composition GIS -> Country [*];
+  composition GIS -> PointOfInterest [*];
+  composition GIS -> Road [*];
+  composition GIS -> WeatherStation [*];
+}

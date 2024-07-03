@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram MobileBankingApp  {
+
+  class User  {
+    String username;
+    String password;
+    -> Account[*];
+  }
+
+  class Account  {
+    String accountNumber;
+    AccountType type;
+    double balance;
+  }
+
+  enum AccountType  {
+    CHECKING,
+    SAVINGS,
+    CREDIT;
+  }
+
+  class Transaction  {
+    String transactionId;
+    Date date;
+    double amount;
+    -> Account;
+  }
+
+  class Bill  {
+    String billId;
+    Date dueDate;
+    double amount;
+  }
+
+  class Notification  {
+    String message;
+    -> User;
+  }
+
+  composition User -> Account[*];
+  composition Account -> Transaction[*];
+  composition Bill -> Notification[*];
+  association Transaction -> Account;
+  association Bill -> User;
+  association Notification -> User;
+}

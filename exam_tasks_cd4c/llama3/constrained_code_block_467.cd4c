@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram VRTrainingSimulation  {
+
+  class Scenario  {
+    String uniqueIdentifier;
+    int difficultyLevel;
+    int duration;
+    int numberOfObjectives;
+  }
+
+  class User  {
+    String username;
+    UserProfile profile;
+  }
+
+  class UserProfile  {
+    Set<Scenario> completedScenarios;
+    Set<Objective> achievedObjectives;
+    Set<Reward> earnedRewards;
+  }
+
+  class VirtualObject  {
+    String type;  (elevator)
+  }
+
+  class Building extends VirtualObject  {
+  }
+
+  class Vehicle extends VirtualObject  {
+  }
+
+  class Character extends VirtualObject  {
+  }
+
+  class Objective  {
+    String description;
+    Reward reward;
+  }
+
+  class Reward  {
+    String description;
+  }
+
+  class ScenarioEditor  {
+    TerrainEditor terrainEditor;
+    ObjectEditor objectEditor;
+    ObjectiveEditor objectiveEditor;
+  }
+
+  class TerrainEditor  {
+  }
+
+  class ObjectEditor  {
+  }
+
+  class ObjectiveEditor  {
+  }
+
+  composition User -> UserProfile;
+  composition UserProfile -> Set<<Scenario, Objective, Reward>>;
+  composition Scenario -> Set<<VirtualObject, Objective>>;
+  composition ScenarioEditor -> TerrainEditor;
+  composition ScenarioEditor -> ObjectEditor;
+  composition ScenarioEditor -> ObjectiveEditor;
+}

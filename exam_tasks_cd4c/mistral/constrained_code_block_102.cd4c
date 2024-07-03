@@ -1,0 +1,38 @@
+
+classdiagram RetailInventory {
+
+  class Store {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Product {
+    String name;
+    String uniqueIdentifier;
+    String category;
+    Supplier supplier;
+    int quantityInStock;
+  }
+
+  class Supplier {
+    String name;
+    String uniqueIdentifier;
+    String contactInformation;
+  }
+
+  class InventoryLevel {
+    Product product;
+    int quantity;
+  }
+
+  class Notification {
+    Product product;
+    int quantityThreshold;
+    boolean isSent;
+  }
+
+  composition Store [*] has (has) -> Product [*];
+  composition Store [*] has (has) -> Supplier [*];
+  association Product [*] has (has) -> InventoryLevel [1..*];
+  association Notification [*] has (has) -> Product [1..*];
+}

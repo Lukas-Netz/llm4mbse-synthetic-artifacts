@@ -1,0 +1,37 @@
+
+classdiagram SmartContactLens {
+
+  class ContactLens {
+    String uniqueIdentifier;
+    String type;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    ContactLens [ ] connectedContactLenses;
+  }
+
+  class MobileApp {
+    String uniqueIdentifier;
+    String userIdentifier;
+  }
+
+  class Database {
+    String uniqueIdentifier;
+  }
+
+  class UserData {
+    String userIdentifier;
+    String vitalSigns;
+  }
+
+  class Analytics {
+    String userIdentifier;
+    String healthRecommendations;
+  }
+
+  composition ContactLens -> Sensor;
+  composition Sensor -> Database [1..*];
+  association MobileApp -> UserData;
+  association MobileApp -> Analytics;
+}

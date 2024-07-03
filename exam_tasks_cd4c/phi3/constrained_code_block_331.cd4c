@@ -1,0 +1,93 @@
+
+classdiagram SocialMediaManagementSystem {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void createAccount();
+      void editPost(Post post);
+      void deletePost(Post post);
+    }
+
+    class Post {
+      String content;
+      String category;
+      List<String> tags;
+      User author;
+      List<Like> likes;
+      List<Comment> comments;
+      List<Share> shares;
+      void like();
+      void comment();
+      void share();
+      void edit();
+      void delete();
+    }
+
+    class Like {
+      User liker;
+      Post likedPost;
+    }
+
+    class Comment {
+      String commenter;
+      String content;
+      Post post;
+    }
+
+    class Share {
+      User sharer;
+      String content;
+      Post sharedPost;
+    }
+
+    class Analytics {
+      Map<Post, PerformanceMetrics> postPerformance;
+      Map<User, EngagementMetrics> userEngagement;
+      void generateReport();
+    }
+
+    class PerformanceMetrics {
+      int likes;
+      int comments;
+      int shares;
+    }
+
+    class EngagementMetrics {
+      int totalLikes;
+      int totalComments;
+      int totalShares;
+    }
+
+    class ECommerceIntegration {
+      Map<Post, SalesData> salesData;
+      void trackSales();
+    }
+
+    class SalesData {
+      int salesAmount;
+      String productID;
+    }
+
+    class Notification {
+      User recipient;
+      String message;
+      void send();
+    }
+
+    class Admin {
+      String username;
+      String password;
+      void manageAccounts();
+      void managePosts();
+      void manageAnalytics();
+    }
+
+    composition User -> (has) SocialMediaManagementSystem;
+    composition SocialMediaManagementSystem -> (has) Post [*];
+    composition SocialMediaManagementSystem -> (has) Analytics;
+    composition SocialMediaManagementSystem -> (has) ECommerceIntegration;
+    composition SocialMediaManagementSystem -> (has) Notification [*];
+    composition SocialMediaManagementSystem -> (has) Admin [*];
+}

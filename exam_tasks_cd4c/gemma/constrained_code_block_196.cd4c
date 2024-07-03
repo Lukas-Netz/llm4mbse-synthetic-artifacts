@@ -1,0 +1,65 @@
+
+
+classdiagram FitnessApp {
+
+  class User {
+    private String name;
+    private String email;
+    private String password;
+    private List<Workout> workoutHistory;
+    private List<FitnessGoal> fitnessGoals;
+  }
+
+  class Workout {
+    private String date;
+    private String time;
+    private List<Exercise> exercises;
+  }
+
+  class Exercise {
+    private String name;
+    private int sets;
+    private int reps;
+  }
+
+  class FitnessGoal {
+    private String name;
+    private int targetValue;
+    private Date startDate;
+    private Date endDate;
+  }
+
+  class Friend {
+    private String name;
+    private List<Workout> sharedWorkouts;
+  }
+
+  class Leaderboard {
+    private List<User> users;
+    private List<Workout> workouts;
+  }
+
+  class NotificationSystem {
+    private List<User> recipients;
+    private List<Message> messages;
+  }
+
+  class WearableIntegration {
+    private User user;
+    private List<Workout> trackedWorkouts;
+  }
+
+  composition User -> (has) WorkoutHistory
+  abstract  
+  
+  
+
+  {
+    
+  
+  
+ordered
+  }
+
+  
+ ;}

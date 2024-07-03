@@ -1,0 +1,65 @@
+
+classdiagram OnlinePlatform {
+
+    class Course {
+      String title;
+      String description;
+      String courseId;
+      List<Section> sections;
+    }
+
+    class Section {
+      String sectionId;
+      Date startDate;
+      Date endDate;
+      List<Student> students;
+    }
+
+    class Student {
+      String studentId;
+      String name;
+      String email;
+      String password;
+      List<Section> enrolledSections;
+      List<Assignment> submittedAssignments;
+      List<Discussion> participatedDiscussions;
+    }
+
+    class Assignment {
+      String assignmentId;
+      String courseId;
+      String dueDate;
+      String submissionStatus;
+    }
+
+    class Discussion {
+      String discussionId;
+      String courseId;
+      String topic;
+      String lastPostDate;
+    }
+
+    class Instructor {
+      String instructorId;
+      String name;
+      String email;
+      List<Course> managedCourses;
+      List<Section> managedSections;
+      List<Assignment> managedAssignments;
+      List<Discussion> managedDiscussions;
+      List<Student> trackedStudents;
+      List<Course> collaboratingCourses;
+    }
+
+    association Course -> Section [*];
+    association Section -> Student [*];
+    association Student -> Assignment [*];
+    association Student -> Discussion [*];
+    association Instructor -> Course [*];
+    association Instructor -> Section [*];
+    association Instructor -> Assignment [*];
+    association Instructor -> Discussion [*];
+    association Instructor -> Student [*];
+    association Instructor -> Course [*];
+    association Instructor -> Course [*];
+}

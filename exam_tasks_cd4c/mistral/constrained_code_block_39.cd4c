@@ -1,0 +1,45 @@
+
+classdiagram InsuranceClaim {
+
+  class Claim {
+    String uniqueIdentifier;
+    ClaimStatus status;
+  }
+
+  class Claimant {
+    String name;
+    String address;
+    String contactInfo;
+  }
+
+  class ClaimInfo {
+    String insuranceType;
+    Date dateOfIncident;
+    double claimAmount;
+  }
+
+  class Adjuster {
+    String name;
+    String contactInfo;
+  }
+
+  enum ClaimStatus {
+    Pending, Approved, Denied;
+  }
+
+  class CarClaim extends Claim {
+    ClaimInfo carClaimInfo;
+  }
+
+  class HomeClaim extends Claim {
+    ClaimInfo homeClaimInfo;
+  }
+
+  class LifeClaim extends Claim {
+    ClaimInfo lifeClaimInfo;
+  }
+
+  association Claim --o000o_  [*]  -  { 											ordered} 					;
+  association Claimant --o000o_  [*]  -  { 											ordered} 					;
+  association Adjuster --o000o_  [*]  -  { 											ordered} 					;
+}

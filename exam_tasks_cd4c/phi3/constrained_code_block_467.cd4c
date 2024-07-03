@@ -1,0 +1,95 @@
+
+classdiagram OnlinePhotographyCourse {
+
+    class Course {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      Genre genre;
+      List<Instructor> instructors;
+      List<Lesson> lessons;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+      List<Course> enrolledCourses;
+    }
+
+    class Instructor extends User {
+      void createCourse(Course course);
+      void manageCourse(Course course);
+      void assignLesson(Lesson lesson, Assignment assignment);
+    }
+
+    class Student extends User {
+      void enrollInCourse(Course course);
+      void submitAssignment(Course course, Assignment assignment);
+      void viewCourseProgress(Course course);
+    }
+
+    class Lesson {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      List<Assignment> assignments;
+    }
+
+    class Assignment {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      AssignmentType type;
+    }
+
+    enum Genre {
+      Landscape, Portrait, Wildlife;
+    }
+
+    enum AssignmentType {
+      Quiz, Project, Discussion;
+    }
+
+    association Course 
+      hasInstructors [many]
+      -> List<<User>>;
+
+    association Course 
+      hasLessons [many]
+      -> List<<Lesson>>;
+
+    association Course 
+      hasAssignments [many]
+      -> List<<Assignment>>;
+
+    association User 
+      hasEnrolledCourses [many]
+      -> List<<Course>>;
+
+    association User 
+      hasRole [many]
+      -> Role;
+
+    composition User -> Instructor [0..1];
+    composition User -> Student [0..1];
+
+    association Instructor 
+      hasCourses [many]
+      -> List<<Course>>;
+
+    association Instructor 
+      hasLessons [many]
+      -> List<<Lesson>>;
+
+    association Student 
+      hasCourses [many]
+      -> List<<Course>>;
+
+    association Student 
+      hasAssignments [many]
+      -> List<<Assignment>>;
+
+    association User 
+      hasProgress [many]
+      -> List<<Course>>;
+}

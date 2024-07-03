@@ -1,0 +1,55 @@
+
+classdiagram RealEstate {
+
+  class Property {
+    String uniqueIdentifier;
+    String location;
+    PropertyType type;
+  }
+
+  enum PropertyType {
+    Residential, Commercial, Industrial;
+  }
+
+  class Owner {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Date date;
+    double price;
+    Property property;
+    Owner buyer;
+    Owner seller;
+  }
+
+  class Individual {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class Organization {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  class BlockchainNetwork {
+    void storePropertyOwnershipRecord(Property property, Owner owner);
+    void storeTransaction(Transaction transaction);
+    void verifyPropertyOwnershipRecord(Property property, Owner owner);
+  }
+
+  composition Property -> Owner [*];
+  composition Transaction -> Owner [1..2];
+  association Individual -- Realizes  <<Individual>>;
+  association Organization -- Realizes <<Organization>>;
+  association Property -- Realizes <<Property>>;
+  association Owner -- Realizes <<Owner>>;
+  association Transaction -- Realizes <<Transaction>>;
+  association BlockchainNetwork -- Realizes <<BlockchainNetwork>>;
+}

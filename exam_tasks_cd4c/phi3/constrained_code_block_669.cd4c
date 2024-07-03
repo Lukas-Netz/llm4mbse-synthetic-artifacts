@@ -1,0 +1,48 @@
+
+classdiagram AutonomousVehicleSystem {
+
+    class Vehicle {
+      String vehicleId;
+      VehicleState state;
+    }
+
+    class Navigation {
+      String route;
+      void updateRoute(Vehicle vehicle);
+    }
+
+    class Control {
+      void receiveSensorData(Sensor sensor);
+      void sendCommand(Vehicle vehicle, Actuator actuator);
+    }
+
+    class Sensor {
+      String sensorId;
+      SensorData data;
+    }
+
+    class Actuator {
+      void applyCommand(Vehicle vehicle, Actuator command);
+    }
+
+    enum VehicleState {
+      Idle, Moving, Stopped;
+    }
+
+    enum SensorType {
+      Camera, Lidar, Radar;
+    }
+
+    enum ActuatorType {
+      Brakes, Steering;
+    }
+
+    composition Vehicle -> (has) Navigation;
+    composition Vehicle -> (has) Control;
+    composition Navigation -> (has) Vehicle;
+    composition Control -> (has) Vehicle;
+    composition Control -> (has) Sensor;
+    composition Control -> (has) Actuator;
+    composition Sensor -> (has) Control;
+    composition Actuator -> (has) Vehicle;
+}

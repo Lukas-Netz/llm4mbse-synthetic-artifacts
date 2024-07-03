@@ -1,0 +1,48 @@
+
+classdiagram ProjectManagement {
+
+  class Project {
+    String uniqueIdentifier;
+    String name;
+    Date startDate;
+    Team assignedTeam;
+  }
+
+  class Team {
+    String uniqueIdentifier;
+    String name;
+    List<TeamMember> members;
+  }
+
+  class TeamMember {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    Project assignedProject;
+  }
+
+  class Task {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Date deadline;
+    Project assignedProject;
+    TeamMember assignedTeamMember;
+    List<Task> subtasks;
+    int percentageCompletion;
+    int remainingTasks;
+  }
+
+  class Report {
+    String type;
+    String content;
+  }
+
+  composition ProjectManagement -> Project [*];
+  composition Project -> Team [1..*];
+  composition Team -> TeamMember [*];
+  composition Project -> Task [*];
+  composition Task -> Task [0..*];
+  association Report -- Project;
+  association Report -- Task;
+}

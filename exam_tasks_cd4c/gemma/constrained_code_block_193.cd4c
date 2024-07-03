@@ -1,0 +1,48 @@
+
+
+classdiagram EBookPublishingPlatform {
+
+  class Author {
+    String uniqueIdentifier;
+    String name;
+    String contactInfo;
+  }
+
+  class Book {
+    String title;
+    Author author;
+    String publicationDate;
+    String genre;
+  }
+
+  class Reader {
+    String uniqueIdentifier;
+    String name;
+    String contactInfo;
+    Account account;
+  }
+
+  class Account {
+    String username;
+    String password;
+  }
+
+  class PaymentSystem {
+    Transaction transaction;
+  }
+
+  class RatingSystem {
+    BookRating bookRating;
+  }
+
+  class NotificationSystem {
+    Notification notification;
+  }
+
+  composition Author -> Book [*];
+  composition Book -> Author [*];
+  composition Reader -> Account;
+  composition EBookPublishingPlatform -> (has) PaymentSystem;
+  composition EBookPublishingPlatform -> (has) RatingSystem;
+  composition EBookPublishingPlatform -> (has) NotificationSystem;
+}

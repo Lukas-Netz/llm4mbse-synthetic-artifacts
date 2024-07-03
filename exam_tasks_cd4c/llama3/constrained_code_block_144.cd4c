@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram CustomerServiceSystem  {
+
+  class Customer  {
+    String username;
+    String password;
+    Issue[] issues;
+  }
+
+  class Issue  {
+    String description;
+    Severity severity;
+    Urgency urgency;
+    Status status;
+    Customer customer;
+    Representative representative;
+  }
+
+  enum Severity  {
+    Low, Medium, High;
+  }
+
+  enum Urgency  {
+    Low, Medium, High;
+  }
+
+  enum Status  {
+    Open, InProgress, Resolved, Closed;
+  }
+
+  class Representative  {
+    String name;
+    Issue[] issues;
+  }
+
+  class Channel  {
+    String type;  (phoneEmailChat)
+  }
+
+  class CustomerServiceSystem  {
+    Channel[] channels;
+    Issue[] issues;
+    Representative[] representatives;
+  }
+
+  composition CustomerServiceSystem -> (has) channels;
+  composition CustomerServiceSystem -> (has) issues;
+  composition CustomerServiceSystem -> (has) representatives;
+  composition Customer -> (has) issues;
+  composition Issue -> (has) customer;
+  composition Issue -> (has) representative;
+  composition Representative -> (has) issues;
+  composition Channel -> (has) issues;
+}

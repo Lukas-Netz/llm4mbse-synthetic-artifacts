@@ -1,0 +1,39 @@
+
+classdiagram IndoorAirQualityMonitoring {
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+    }
+
+    class Hub {
+      -> Sensor [*];
+      void connectSensor(Sensor sensor);
+      void disconnectSensor(Sensor sensor);
+      void displayData();
+      Database database;
+    }
+
+    class Database {
+      void storeHistoricalData(Sensor sensor, double temperature, double humidity, double pollutantConcentration);
+      void retrieveAirQualityTrends();
+    }
+
+    class MobileApp {
+      void sendCommand(Hub hub, String command);
+      void viewRealTimeData(Hub hub);
+    }
+
+    enum SensorType {
+      Temperature, Humidity, AirQuality;
+    }
+
+    enum Command {
+      TurnOnSensor, TurnOffSensor, AdjustSamplingRate, ViewData;
+    }
+
+  composition IndoorAirQualityMonitoring -> (has) Hub;
+  composition IndoorAirQualityMonitoring -> (has) Database;
+  composition Hub -> Sensor [*];
+  association Hub -> MobileApp [*];
+}

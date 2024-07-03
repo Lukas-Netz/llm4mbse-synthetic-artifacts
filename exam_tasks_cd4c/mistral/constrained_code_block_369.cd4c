@@ -1,0 +1,56 @@
+
+classdiagram VoIP {
+
+  class User {
+    String username;
+    String password;
+    PhoneNumber [ ] phoneNumbers;
+  }
+
+  class PhoneNumber {
+    String number;
+    Device device;
+  }
+
+  abstract class Device {
+    String deviceId;
+  }
+
+  class Softphone extends Device {
+  }
+
+  class Hardphone extends Device {
+  }
+
+  class Call {
+    User caller;
+    User callee;
+    boolean isActive;
+  }
+
+  class CallForwarding {
+    User user;
+    PhoneNumber forwardTo;
+  }
+
+  class CallTransfer {
+    User user;
+    PhoneNumber transferTo;
+  }
+
+  class Voicemail {
+    User user;
+    String message;
+  }
+
+  class Analytics {
+    User user;
+    int callCount;
+    int callDuration;
+  }
+
+  composition User -> PhoneNumber [*];
+  composition User -> Device [*];
+  composition Call -> User [2];
+  composition Call -> User [2];
+}

@@ -1,0 +1,53 @@
+
+classdiagram Ecommerce {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    float price;
+    Category [ ] categories;
+  }
+
+  abstract class Category {
+    String name;
+    Category parent;
+    Category [ ] children;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    OrderStatus status;
+    Product [ ] products;
+  }
+
+  enum OrderStatus {
+    Pending, Shipped, Delivered, Cancelled;
+  }
+
+  class Administrator {
+    void createProduct(Product product);
+    void updateProduct(Product product);
+    void deleteProduct(Product product);
+    void createCategory(Category category);
+    void updateCategory(Category category);
+    void deleteCategory(Category category);
+    void createOrder(Order order);
+  }
+
+  class Customer {
+    void placeOrder(Order order);
+    void viewOrderHistory();
+  }
+
+  class Report {
+    void generateProductSalesReport();
+    void generateOrderStatusReport();
+    void generateCustomerBehaviorReport();
+  }
+
+  composition Ecommerce -> (has) Administrator;
+  composition Ecommerce -> (has) Customer;
+  composition Order -> Product [*];
+  association Product -> Category;
+}

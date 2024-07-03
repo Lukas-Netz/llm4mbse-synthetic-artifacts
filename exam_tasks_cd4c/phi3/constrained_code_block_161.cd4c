@@ -1,0 +1,47 @@
+
+classdiagram CognitiveComputingPlatform {
+
+    class KnowledgeGraph {
+      Entity entity;
+      Concept concept;
+      void query(String query);
+      void update(Entity entity, Concept concept);
+    }
+
+    class ReasoningEngine {
+      Rule rule;
+      void applyRule(KnowledgeGraph knowledgeGraph);
+    }
+
+    class DataIngestionModule {
+      DataSource dataSource;
+      void collectData();
+      void preprocessData();
+    }
+
+    class MachineLearningModule {
+      MachineLearningModel model;
+      void trainModel(DataIngestionModule dataIngestionModule);
+      void testModel(DataIngestionModule dataIngestionModule);
+    }
+
+    class NaturalLanguageProcessingModule {
+      LanguageModel languageModel;
+      void understandLanguage(String input);
+      String generateLanguage(String input);
+    }
+
+    class CognitiveComputingPlatform {
+      KnowledgeGraph knowledgeGraph;
+      ReasoningEngine reasoningEngine;
+      DataIngestionModule dataIngestionModule;
+      MachineLearningModule machineLearningModule;
+      NaturalLanguageProcessingModule naturalLanguageProcessingModule;
+    }
+
+  composition CognitiveComputingPlatform -> (has) KnowledgeGraph;
+  composition CognitiveComputingPlatform -> (has) ReasoningEngine;
+  composition CognitiveComputingPlatform -> (has) DataIngestionModule;
+  composition CognitiveComputingPlatform -> (has) MachineLearningModule;
+  composition CognitiveComputingPlatform -> (has) NaturalLanguageProcessingModule;
+}

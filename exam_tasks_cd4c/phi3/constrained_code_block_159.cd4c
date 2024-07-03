@@ -1,0 +1,58 @@
+
+classdiagram SupplyChainManagement {
+
+    class Supplier {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Manufacturer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Distributor {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Retailer {
+      String uniqueIdentifier;
+      String name;
+      List<Product> products;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      double price;
+      double weight;
+      double dimensions;
+    }
+
+    class Order {
+      Supplier supplier;
+      Manufacturer manufacturer;
+      Distributor distributor;
+      Retailer retailer;
+      Product product;
+      int quantity;
+      double totalPrice;
+    }
+
+    class SupplyChainManagement {
+      List<Order> orders;
+      void trackProductMovement(Order order);
+      void generateReport();
+    }
+
+    composition Supplier -> Order [*];
+    composition Manufacturer -> Order [*];
+    composition Distributor -> Order [*];
+    composition Retailer -> Order [*];
+    composition Order -> Product [*];
+}

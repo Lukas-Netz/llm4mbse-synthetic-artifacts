@@ -1,0 +1,77 @@
+
+classdiagram CancerTherapy {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    MedicalHistory medicalHistory;
+    Diagnosis [ ] diagnoses;
+  }
+
+  class MedicalHistory {
+    String [ ] medicalRecords;
+  }
+
+  class Diagnosis {
+    String uniqueIdentifier;
+    String cancerType;
+    Stage [ ] stages;
+  }
+
+  class Stage {
+    String symptoms;
+  }
+
+  class Treatment {
+    String uniqueIdentifier;
+    Diagnosis diagnosis;
+    Regimen [ ] regimens;
+  }
+
+  class Regimen {
+    String uniqueIdentifier;
+    Treatment treatment;
+    Medication [ ] medications;
+  }
+
+  class Medication {
+    String uniqueIdentifier;
+    Regimen regimen;
+    String dosage;
+    String frequency;
+    SideEffect [ ] sideEffects;
+  }
+
+  class SideEffect {
+    String severity;
+  }
+
+  composition Patient [*] has_Diagnosis [many]
+  -- composition/ 											;
+  composition Diagnosis [*] has_Stage [many]
+  -- composition/ 											;
+  composition Treatment [*] has_Regimen [many]
+  -- composition/ 											;
+  composition Regimen [*] has_Medication [many]
+  -- composition/ 											;
+  composition Medication [*] has_SideEffect [many]
+
+  -- association/ 											;
+  association Patient [*] has_MedicalHistory [one]
+  -- association/ 											;
+  association Diagnosis [*] has_CancerType [one]
+  -- association/ 											;
+  association Treatment [*] has_Diagnosis [one]
+  -- association/ 											;
+  association Regimen [*] has_Treatment [one]
+  -- association/ 											;
+  association Medication [*] has_Regimen [one]
+  -- association/ 											;
+  association SideEffect [*] has_Medication [one]
+
+  -- stereotype/ 											;
+  <<stereotype>> class Patient {
+    personalizedTreatmentPlan(MedicalHistory medicalHistory, Diagnosis [ ] diagnoses);
+    updateTreatmentPlan(Patient patient, Treatment [ ] treatments);
+  }
+}

@@ -1,0 +1,42 @@
+
+classdiagram CustomerSupport {
+
+  class Customer {
+    String customerId;
+    String name;
+  }
+
+  class Product {
+    String productId;
+    String productName;
+  }
+
+  class CustomerRequest {
+    Customer customer;
+    Product product;
+    RequestStatus status;
+    CustomerSupportAgent agent;
+    long timeSpent;
+  }
+
+  enum RequestStatus {
+    Open, InProgress, Resolved;
+  }
+
+  class CustomerSupportAgent {
+    String agentId;
+    String name;
+    Skill[] skills;
+  }
+
+  class Skill {
+    String skillName;
+    int expertiseLevel;
+  }
+
+  composition CustomerSupportSystem -> CustomerRequest [*];
+  composition CustomerSupportSystem -> CustomerSupportAgent [*];
+  association Customer -> CustomerRequest [1..*];
+  association Product -> CustomerRequest [1..1];
+  association CustomerSupportAgent -> CustomerRequest [1..*];
+}

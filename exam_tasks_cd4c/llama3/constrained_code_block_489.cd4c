@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram DIYCraftPlatform  {
+
+  class Project  {
+    String uniqueIdentifier;
+    String name;
+    ProjectType type;
+    String description;
+    Material[] requiredMaterials;
+    Step[] steps;
+  }
+
+  class User  {
+    String username;
+    Project[] createdProjects;
+    Project[] favoriteProjects;
+  }
+
+  class ProjectCollection  {
+    String name;
+    Project[] projects;
+  }
+
+  class Material  {
+    String name;
+    String description;
+  }
+
+  class Step  {
+    String description;
+  }
+
+  enum ProjectType  {
+    Sewing, Woodworking, Painting;
+  }
+
+  composition User -> Project [0..*];
+  composition Project -> Material [0..*];
+  composition Project -> Step [0..*];
+  composition User -> ProjectCollection [0..*];
+  composition ProjectCollection -> Project [0..*];
+  association User -> ProjectCollection [0..*];
+  association Project -> User [0..*];
+  association Project -> Rating [0..*];
+  association Project -> Comment [0..*];
+  association Material -> Project [0..*];
+  association Step -> Project [0..*];
+  association ProjectType -> Project [0..*];
+  association Project -> Purchase [0..*];
+}

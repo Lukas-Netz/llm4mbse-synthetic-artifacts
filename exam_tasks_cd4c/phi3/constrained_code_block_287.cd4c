@@ -1,0 +1,59 @@
+
+classdiagram DocumentCollaborationTool {
+
+    class Document {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      DocumentType type;
+      List<DocumentVersion> versions;
+      List<Comment> comments;
+      List<Task> tasks;
+    }
+
+    class DocumentType {
+      String type;
+    }
+
+    class DocumentVersion {
+      String versionId;
+      String content;
+      String author;
+      Date createdAt;
+    }
+
+    class Comment {
+      String commentId;
+      String text;
+      String author;
+      Date createdAt;
+    }
+
+    class Task {
+      String taskId;
+      String description;
+      String assignee;
+      Date dueDate;
+    }
+
+    class User {
+      String userId;
+      String name;
+      List<Document> ownedDocuments;
+    }
+
+    class Collaboration {
+      User user;
+      Document document;
+      void inviteUser(User user);
+      void assignTask(Task task);
+      void revertToVersion(Document document, String versionId);
+    }
+
+    association Document -> DocumentVersion [*];
+    association Document -> Comment [*];
+    association Document -> Task [*];
+    composition Document -> DocumentType;
+    composition Document -> Collaboration;
+    composition User -> Document [*];
+}

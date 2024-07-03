@@ -1,0 +1,298 @@
+
+classdiagram BuildingManagementSystem {
+
+    class Building {
+      String uniqueIdentifier;
+      String name;
+      List<Floor> floors;
+    }
+
+    class Floor {
+      String floorNumber;
+      List<Room> rooms;
+    }
+
+    class Room {
+      String roomIdentifier;
+      String roomType;
+      List<Device> devices;
+    }
+
+    class Device {
+      String deviceIdentifier;
+      DeviceStatus status;
+    }
+
+    enum DeviceStatus {
+      On, Off
+   
+   
+   ()
+   
+
+;
+    association Building 
+       
+
+;
+    association Floor 
+       
+
+;
+    association Room 
+       
+
+;
+    association Device 
+       
+
+ ;
+    operation monitorDevices()
+       
+
+  ;
+    operation controlLighting()
+       
+
+  ;
+    operation controlTemperature()
+       
+
+  ;
+    operation sendNotifications()
+       
+
+  ;
+    association Building 
+       
+
+ ;
+    association Floor 
+       
+
+ ;
+    association Room 
+       
+
+ ;
+    association Device 
+       
+
+ ;
+    composition Building 
+       
+
+ ;
+    composition Floor 
+       
+
+ ;
+    composition Room 
+       
+
+ ;
+    composition Device 
+       
+
+ ;
+    association Building 
+       
+
+ ;
+    association Floor 
+       
+
+ ;
+    association Room 
+       
+
+ ;
+    association Device 
+       
+
+ ;
+   
+}
+
+enum DeviceStatus {
+  On, Off
+
+ 
+
+ 
+ 
+
+ 
+;
+   
+}
+
+enum RoomType {
+  Office, MeetingRoom, StorageRoom
+
+ 
+
+ 
+ 
+
+ 
+;
+   
+}
+
+enum DeviceType {
+  Light, TemperatureSensor, SecurityCamera
+
+ 
+
+ 
+ 
+
+ 
+;
+   
+}
+
+class BuildingManagementSystem {
+
+  void monitorDevices();
+
+  void controlLighting();
+
+  void controlTemperature();
+
+  void sendNotifications();
+
+}
+
+class Building {
+
+  String uniqueIdentifier;
+
+  String name;
+
+  List<Floor> floors;
+
+}
+
+class Floor {
+
+  String floorNumber;
+
+  List<Room> rooms;
+
+}
+
+class Room {
+
+  String roomIdentifier;
+
+  String roomType;
+
+  List<Device> devices;
+
+}
+
+class Device {
+
+  String deviceIdentifier;
+
+  DeviceStatus status;
+
+}
+
+enum DeviceStatus {
+
+  On, Off
+
+
+ 
+
+ 
+
+ 
+
+;
+   
+}
+
+enum RoomType {
+
+  Office, MeetingRoom, StorageRoom
+
+
+ 
+
+ 
+
+ 
+
+;
+   
+}
+
+enum DeviceType {
+
+  Light, TemperatureSensor, SecurityCamera
+
+
+ 
+
+ 
+
+ 
+
+;
+   
+}
+
+class BuildingManagementSystem {
+
+  void monitorDevices();
+
+  void controlLighting();
+
+  void controlTemperature();
+
+  void sendNotifications();
+
+}
+
+class Building {
+
+  String uniqueIdentifier;
+
+  String name;
+
+  List<Floor> floors;
+
+}
+
+class Floor {
+
+  String floorNumber;
+
+  List<Room> rooms;
+
+}
+
+class Room {
+ran
+
+  String
+
+ 
+
+ 
+
+ 
+
+ ;
+   
+}
+
+
+
+
+
+}

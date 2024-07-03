@@ -1,0 +1,110 @@
+
+classdiagram RemoteDesktop {
+
+  class User {
+    String username;
+    String password;
+    String authenticationType;
+  }
+
+  class Computer {
+    String os;
+    String connectionType;
+    String dataTransferType;
+  }
+
+  abstract class Connection {
+    String protocol;
+    String networkTopology;
+    String networkDevice;
+    String networkService;
+  }
+
+  class VPNConnection extends Connection {
+  }
+
+  class SSHConnection extends Connection {
+  }
+
+  abstract class DataTransfer {
+    String type;
+  }
+
+  class FileTransfer extends DataTransfer {
+  }
+
+  class ScreenSharing extends DataTransfer {
+  }
+
+  abstract class Encryption {
+    String type;
+  }
+
+  class AES extends Encryption {
+  }
+
+  class RSA extends Encryption {
+  }
+
+  abstract class NetworkProtocol {
+    String protocol;
+  }
+
+  class TCP extends NetworkProtocol {
+  }
+
+  class UDP extends NetworkProtocol {
+  }
+
+  abstract class NetworkTopology {
+    String topology;
+  }
+
+  class LAN extends NetworkTopology {
+  }
+
+  class WAN extends NetworkTopology {
+  }
+
+  abstract class NetworkDevice {
+    String device;
+  }
+
+  class Router extends NetworkDevice {
+  }
+
+  class Switch extends NetworkDevice {
+  }
+
+  abstract class NetworkService {
+    String service;
+  }
+
+  class DNS extends NetworkService {
+  }
+
+  class DHCP extends NetworkService {
+  }
+
+  class RemoteDesktopSystem {
+    User[] users;
+    Computer[] computers;
+    Connection[] connections;
+    DataTransfer[] dataTransfers;
+    Encryption[] encryptions;
+    NetworkProtocol[] networkProtocols;
+    NetworkTopology[] networkTopologies;
+    NetworkDevice[] networkDevices;
+    NetworkService[] networkServices;
+  }
+
+  composition RemoteDesktopSystem -> User [*];
+  composition RemoteDesktopSystem -> Computer [*];
+  composition RemoteDesktopSystem -> Connection [*];
+  composition RemoteDesktopSystem -> DataTransfer [*];
+  composition RemoteDesktopSystem -> Encryption [*];
+  composition RemoteDesktopSystem -> NetworkProtocol [*];
+  composition RemoteDesktopSystem -> NetworkTopology [*];
+  composition RemoteDesktopSystem -> NetworkDevice [*];
+  composition RemoteDesktopSystem -> NetworkService [*];
+}

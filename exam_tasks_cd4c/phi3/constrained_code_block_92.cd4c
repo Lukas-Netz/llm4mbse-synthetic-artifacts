@@ -1,0 +1,56 @@
+
+classdiagram WarehouseManagementSystem {
+
+    class WarehouseManagementSystem {
+      RobotManager robotManager;
+      Inventory inventory;
+    }
+
+    class RobotManager {
+      Robot robots;
+      void addRobot(Robot robot);
+      void removeRobot(Robot robot);
+      Robot getRobotById(String id);
+      void updateRobotStatus(Robot robot, RobotStatus status);
+      void moveRobot(Robot robot, Location location);
+      void pickUpItem(Robot robot, Item item);
+      void dropOffItem(Robot robot, Location location);
+      Report generateRobotPerformanceReport();
+      Report generateInventoryReport();
+    }
+
+    class Robot {
+      String id;
+      RobotStatus status;
+      Location currentLocation;
+      List<Item> itemsCarried;
+    }
+
+    class Item {
+      String id;
+      Location location;
+      int quantity;
+    }
+
+    class Inventory {
+      Map<String, Item> items;
+      void addItem(Item item);
+      void removeItem(Item item);
+      Item getItemById(String id);
+      void updateItemQuantity(Item item);
+    }
+
+    enum RobotStatus {
+      Idle, Busy, Malfunctioning;
+    }
+
+    enum Location {
+      Aisle1, Aisle2, Aisle3;
+    }
+
+    association WarehouseManagementSystem -> RobotManager;
+    association WarehouseManagementSystem -> Inventory;
+    composition RobotManager -> Robot [*];
+    composition RobotManager -> Item [*];
+    composition Inventory -> Item [*];
+}

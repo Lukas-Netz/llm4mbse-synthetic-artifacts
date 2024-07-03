@@ -1,0 +1,79 @@
+
+
+
+
+classdiagram EmergencyResponseDroneSystem  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    String name;
+    DroneType type;
+    Sensor  sensor;
+    Camera  camera;
+    Pilot  pilot;
+    Mission  mission;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    String name;
+    SensorType type;
+  }
+
+  class Camera  {
+    String uniqueIdentifier;
+    String name;
+    CameraType type;
+  }
+
+  class Mission  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Drone  drone;
+  }
+
+  class Pilot  {
+    String uniqueIdentifier;
+    String name;
+    PilotCertification certification;
+    Drone  drone;
+  }
+
+  class Airport  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+  }
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    String name;
+    Location location;
+  }
+
+  enum DroneType  {
+    Rescue, Surveillance, Medical;
+  }
+
+  enum SensorType  {
+    Temperature, Humidity, GasDetection;
+  }
+
+  enum CameraType  {
+    Thermal, Visible, Infrared;
+  }
+
+  enum PilotCertification  {
+    Beginner, Intermediate, Advanced;
+  }
+
+  composition Drone -> (has) Sensor [0..*];
+  composition Drone -> (has) Camera [0..*];
+  composition Drone -> (has) Pilot;
+  composition Drone -> (has) Mission;
+  composition Mission -> (has) Drone;
+  composition Pilot -> (has) Drone [0..*];
+  composition Airport -> (has) Location;
+  composition WeatherStation -> (has) Location;
+}

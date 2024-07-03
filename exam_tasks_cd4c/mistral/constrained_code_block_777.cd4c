@@ -1,0 +1,50 @@
+
+classdiagram InternetAppliances {
+
+  class Appliance {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    Appliance appliance;
+    String type;
+  }
+
+  class Controller {
+    String uniqueIdentifier;
+    Appliance appliance;
+    String type;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String password;
+  }
+
+  class CentralHub {
+    -> Appliance [*];
+    -> Sensor [*];
+    -> Controller [*];
+    -> User [*];
+  }
+
+  class Refrigerator extends Appliance {
+    int temperature;
+  }
+
+  class WashingMachine extends Appliance {
+    int spinCycle;
+  }
+
+  class AirConditioner extends Appliance {
+    int temperature;
+    int fanSpeed;
+  }
+
+  composition CentralHub -> Appliance [*];
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Controller [*];
+  association CentralHub -- User;
+}

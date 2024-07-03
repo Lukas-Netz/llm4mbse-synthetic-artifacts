@@ -1,0 +1,65 @@
+
+classdiagram SpaceExplorationSystem {
+
+    class Spacecraft {
+      PropulsionSystem propulsionSystem;
+      LifeSupportSystem lifeSupportSystem;
+      PowerSupply powerSupply;
+      List<Robot> robots;
+      void navigate();
+      void managePower();
+    }
+
+    class Robot {
+      String uniqueIdentifier;
+      RobotType type;
+    }
+
+    enum RobotType {
+      Exploration, Mainteninas, Communication;
+    }
+
+    class ExplorationRobot extends Robot {
+      NavigationSystem navigationSystem;
+      Sensors sensors;
+      SamplingEquipment samplingEquipment;
+      void collectData();
+    }
+
+    class MaintenanceRobot extends Robot {
+      RepairTools repairTools;
+      SpareParts spareParts;
+      void performMaintenance();
+    }
+
+    class CommunicationRobot extends Robot {
+      CommunicationEquipment communicationEquipment;
+      DataTransmissionProtocols dataTransmissionProtocols;
+      void communicateWithEarth();
+    }
+
+    class PropulsionSystem {
+      void propel();
+    }
+
+    class LifeSupportSystem {
+      void supportLife();
+    }
+
+    class PowerSupply {
+      void providePower();
+    }
+
+    association Spacecraft -> List<<Robot>>;
+    association Robot -> RobotType;
+    association ExplorationRobot -> NavigationSystem;
+    association ExplorationRobot -> Sensors;
+    association ExplorationRobot -> SamplingEquipment;
+    association MaintenanceRobot -> RepairTools;
+    association MaintenanceRobot -> SpareParts;
+    association CommunicationRobot -> CommunicationEquipment;
+    association CommunicationRobot -> DataTransmissionProtocols;
+    association Spacecraft -> PropulsionSystem;
+    association Spacecraft -> LifeSupportSystem;
+   
+ }

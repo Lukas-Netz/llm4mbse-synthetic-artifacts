@@ -1,0 +1,44 @@
+
+classdiagram SolarVehicles {
+
+  class VehicleModel {
+    String name;
+    String identifier;
+    SolarPanelType solarPanel;
+    int batteryCapacity;
+    int maxSpeed;
+  }
+
+  enum SolarPanelType {
+    Monocrystalline, Polycrystalline, ThinFilm;
+  }
+
+  class SolarPanel {
+    SolarPanelType type;
+    int efficiency;
+  }
+
+  class Battery {
+    int capacity;
+  }
+
+  class Vehicle {
+    String identifier;
+    Location currentLocation;
+    VehicleModel model;
+    VehicleStatus status;
+  }
+
+  enum VehicleStatus {
+    Available, Unavailable;
+  }
+
+  class Fleet {
+    Vehicle [
+    ] vehicles;
+  }
+
+  composition VehicleModel -> SolarPanel [*];
+  composition VehicleModel -> Battery [*];
+  composition Fleet -> Vehicle [*];
+}

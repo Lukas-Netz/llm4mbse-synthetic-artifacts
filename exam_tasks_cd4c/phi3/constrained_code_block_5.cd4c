@@ -1,0 +1,49 @@
+
+classdiagram VehicleManagementSystem {
+
+    class Vehicle {
+      String make;
+      String model;
+      int year;
+      String VIN;
+      int currentMileage;
+      MaintenayerHistory maintenanceHistory;
+      RepairHistory repairHistory;
+      VehicleStatus status;
+    }
+
+    class MaintenayerHistory {
+      String maintenanceType;
+      Date maintenanceDate;
+      int maintenanceMileage;
+    }
+
+    class RepairHistory {
+      String repairType;
+      Date repairDate;
+      int repairCost;
+    }
+
+    class VehicleStatus {
+      String status;
+    }
+
+    class MaintenayerReport {
+      Vehicle vehicle;
+      MaintenayerHistory[] maintenanceHistory;
+      void generateReport();
+    }
+
+    class RepairReport {
+      Vehicle vehicle;
+      RepairHistory[] repairHistory;
+      void generateReport();
+    }
+
+    composition Vehicle -> MaintenayerHistory;
+    composition Vehicle -> RepairHistory;
+    composition Vehicle -> VehicleStatus;
+    association VehicleManagementSystem -> Vehicle [*];
+    association VehicleManagementSystem -> MaintenayerReport;
+    association VehicleManagementSystem -> RepairReport;
+}

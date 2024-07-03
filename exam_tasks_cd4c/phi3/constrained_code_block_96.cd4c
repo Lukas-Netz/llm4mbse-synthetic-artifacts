@@ -1,0 +1,70 @@
+
+classdiagram InventoryOptimizationSystem {
+
+    class Product {
+      int uniqueId;
+      String name;
+      String category;
+    }
+
+    class Warehouse {
+      int uniqueId;
+      String name;
+      String location;
+      List<Product> inventory;
+    }
+
+    class Inventory {
+      Product product;
+      int quantity;
+      int reorderPoint;
+    }
+
+    class Order {
+      int uniqueId;
+      Date date;
+      OrderStatus status;
+      List<OrderItem> items;
+    }
+
+    class OrderItem {
+      Product product;
+      int quantity;
+    }
+
+    class Supplier {
+      int uniqueId;
+      String name;
+      String contactInfo;
+    }
+
+    class InventorySystem {
+      List<Warehouse> warehouses;
+      List<Product> products;
+      List<Order> orders;
+      List<Supplier> suppliers;
+
+      void addProduct(Product product);
+      void removeProduct(Product product);
+      void updateProduct(Product product);
+      void addWarehouse(Warehouse warehouse);
+      void removeWarehouse(Warehouse warehouse);
+      void updateWarehouse(Warehouse warehouse);
+      void addOrder(Order order);
+      void removeOrder(Order order);
+      void updateOrder(Order order);
+      void addSupplier(Supplier supplier);
+      void removeSupplier(Supplier supplier);
+      void updateSupplier(Supplier supplier);
+      void checkInventory(Product product);
+      void generateReport();
+    }
+
+    composition InventorySystem -> (has) Warehouse;
+    composition InventorySystem -> (has) Product;
+    composition InventorySystem -> (has) Order;
+    composition InventorySystem -> (has) Supplier;
+
+    association InventorySystem -> (uses) Inventory;
+    association InventorySystem -> (uses) OrderItem;
+}

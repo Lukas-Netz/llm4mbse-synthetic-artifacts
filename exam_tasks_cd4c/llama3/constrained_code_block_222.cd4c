@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram SmartLighting  {
+
+  class CentralControlUnit  {
+    Zone  [] zones;
+    void setLightingLevel(Zone zone, int level);
+    void adjustLightingLevel(Zone zone, int level);
+  }
+
+  class Zone  {
+    String uniqueIdentifier;
+    String name;
+    Device  [] devices;
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+  }
+
+  class Lamp extends Device  {
+    int brightnessLevel;
+    boolean isOn;
+  }
+
+  class Sensor extends Device  {
+    int ambientLightLevel;
+  }
+
+  class HistoricalData  {
+    Date timestamp;
+    int lightingLevel;
+  }
+
+  composition CentralControlUnit  ->  (has) Zone  [*];
+  composition Zone  ->  (has) Device  [*];
+  composition Device  ->  (has) HistoricalData  [*];
+  association CentralControlUnit  ->  (receives) Sensor  [*];
+  association Zone  ->  (has) HistoricalData  [*];
+}

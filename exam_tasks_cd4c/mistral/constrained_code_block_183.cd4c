@@ -1,0 +1,74 @@
+
+classdiagram EmailMarketing {
+
+  class Customer {
+    String name;
+    String email;
+    List<Purchase> purchaseHistory;
+  }
+
+  class Purchase {
+    LocalDateTime date;
+    String product;
+    double amount;
+  }
+
+  class EmailTemplate {
+    String name;
+    String subject;
+    String body;
+  }
+
+  class Campaign {
+    EmailTemplate template;
+    CustomerSegment targetAudience;
+    LocalDateTime schedule;
+    boolean isSent;
+  }
+
+  class CustomerSegment {
+    String name;
+    List<Customer> customers;
+  }
+
+  class CustomerSegmentation {
+    CustomerSegment createSegment(String name, List<Customer> customers);
+  }
+
+  class CampaignManager {
+    void createCampaign(EmailTemplate template, CustomerSegment targetAudience);
+    void sendCampaign(Campaign campaign);
+  }
+
+  class Reporting {
+    double openRate(Campaign campaign);
+    double clickThroughRate(Campaign campaign);
+    double conversionRate(Campaign campaign);
+  }
+
+  association CustomerDatabase {
+    ordered
+    }
+
+  associationEmailTemplateLibrary
+  (
+    ordered
+  )
+
+  -- CampaignManager
+  - 
+  {
+    ordered
+    }
+  ;
+
+  association CustomerSegmentation
+  (
+    ordered
+  )
+  -- Reporting
+  {
+    ordered
+  }
+  ;
+}

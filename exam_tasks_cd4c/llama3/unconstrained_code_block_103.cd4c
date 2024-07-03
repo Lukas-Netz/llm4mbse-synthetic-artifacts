@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram SmartHospital  {
+
+  class Department  {
+    String name;
+    String uniqueIdentifier;
+    -> Room[*];
+  }
+
+  class Room  {
+    String name;
+    String uniqueIdentifier;
+    -> Device[*];
+    -> Patient[*];
+  }
+
+  abstract class Device  {
+    String name;
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class MedicalDevice extends Device  {
+    String medicalSpecialty;
+  }
+
+  class Patient  {
+    String name;
+    int age;
+    MedicalRecord medicalRecord;
+    -> VitalSign[*];
+    -> MedicalTestResult[*];
+  }
+
+  class MedicalStaff  {
+    String name;
+    String role;
+    String qualifications;
+    -> Department[*];
+  }
+
+  class PatientScheduling  {
+    -> Patient[*];
+    -> Appointment[*];
+  }
+
+  class Billing  {
+    -> Patient[*];
+    -> Charge[*];
+    -> Payment[*];
+  }
+
+  class Reporting  {
+    -> Report[*];
+  }
+
+  enum DeviceStatus  {
+    Functional, NonFunctional;
+  }
+
+  enum PatientStatus  {
+    Admitted, Discharged;
+  }
+
+  composition Department -> Room[*];
+  composition Room -> Device[*];
+  composition Room -> Patient[*];
+  composition MedicalStaff -> Department[*];
+  composition PatientScheduling -> Patient[*];
+  composition Billing -> Patient[*];
+  composition Reporting -> Report[*];
+}

@@ -1,0 +1,45 @@
+
+classdiagram EmailCampaign {
+
+  class Campaign {
+    String name;
+    Date startDate;
+    Date endDate;
+    CampaignType type;
+    Email [ ] emails;
+  }
+
+  class Recipient {
+    String emailAddress;
+    Campaign [ ] campaigns;
+  }
+
+  class Email {
+    String subject;
+    String body;
+    String sender;
+    Recipient recipient;
+    Campaign campaign;
+    EmailPerformance performance;
+  }
+
+  class EmailPerformance {
+    double openRate;
+    double clickThroughRate;
+    double conversionRate;
+  }
+
+  enum CampaignType {
+    Promotional, Transactional;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Campaign -> Email [*];
+  composition Email -> Recipient;
+  association Campaign <-> Email;
+}

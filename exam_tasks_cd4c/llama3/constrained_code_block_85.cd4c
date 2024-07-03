@@ -1,0 +1,89 @@
+
+
+
+
+classdiagram HealthInformationExchange  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+    String address;
+    MedicalHistory medicalHistory;
+    TestResults testResults;
+    MedicationList medicationList;
+  }
+
+  class MedicalHistory  {
+    List<Diagnosis> diagnoses;
+    List<Allergy> allergies;
+    List<Medication> medications;
+  }
+
+  class TestResults  {
+    List<LabResult> labResults;
+    List<ImagingResult> imagingResults;
+    List<DiagnosticTest> diagnosticTests;
+  }
+
+  class MedicationList  {
+    List<Prescription> prescriptions;
+  }
+
+  class HealthcareProvider  {
+    String uniqueIdentifier;
+    String name;
+    String address;
+  }
+
+  class Request  {
+    Patient patient;
+    HealthcareProvider provider;
+    DataRequest dataRequest;
+  }
+
+  class DataRequest  {
+    String dataType;
+  }
+
+  class Diagnosis  {
+    String name;
+  }
+
+  class Allergy  {
+    String name;
+  }
+
+  class Medication  {
+    String name;
+    String dosage;
+  }
+
+  class LabResult  {
+    String result;
+  }
+
+  class ImagingResult  {
+    String result;
+  }
+
+  class DiagnosticTest  {
+    String result;
+  }
+
+  class Prescription  {
+    Medication medication;
+    Dosage dosage;
+  }
+
+  class Dosage  {
+    String amount;
+    String frequency;
+  }
+
+  composition Patient -> (has) MedicalHistory;
+  composition Patient -> (has) TestResults;
+  composition Patient -> (has) MedicationList;
+  composition HealthcareProvider -> (requests) Patient;
+  composition Request -> (has) DataRequest;
+  }

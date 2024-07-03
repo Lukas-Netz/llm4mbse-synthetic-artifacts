@@ -1,0 +1,66 @@
+
+classdiagram CustomerFeedbackAnalysis {
+
+  class Customer {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+  }
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String category;
+  }
+
+  class Rating {
+    Customer customer;
+    Product product;
+    int score;
+    String comment;
+    RatingType ratingType;
+  }
+
+  enum RatingType {
+    Positive, Neutral, Negative;
+  }
+
+  class ContactInfo {
+    String email;
+    String phone;
+    String address;
+  }
+
+  class Analysis {
+    AverageRating averageRating;
+    TopRatedProducts topRatedProducts;
+    CustomerSentimentAnalysis customerSentimentAnalysis;
+    ProductCategoryWiseAnalysis productCategoryWiseAnalysis;
+  }
+
+  class AverageRating {
+    Map<Product, Double> ratings;
+  }
+
+  class TopRatedProducts {
+    List<Product> products;
+  }
+
+  class CustomerSentimentAnalysis {
+    Map<Product, Sentiment> sentiments;
+  }
+
+  class Sentiment {
+    String sentiment;
+    Double score;
+  }
+
+  class ProductCategoryWiseAnalysis {
+    Map<String, Map<Product, Double>> ratings;
+  }
+
+  association Customer --o00o- 											{ 											ordered						}						;
+  association Product --o00o- 											{ 											ordered						}						;
+  association Rating --o00o- 											{ 											ordered						}						;
+  association Analysis --o00o- 											{ 											ordered						}						;
+}

@@ -1,0 +1,77 @@
+
+classdiagram CollaborativeDesignTool {
+
+  class User {
+    String username;
+    String password;
+    String email;
+    Role role;
+  }
+
+  enum Role {
+    Designer, Reviewer, Administrator;
+  }
+
+  class DesignProject {
+    String uniqueIdentifier;
+    String title;
+    User[] assignedUsers;
+    DesignElement[] designElements;
+    Version[] versions;
+  }
+
+  abstract class DesignElement {
+    String uniqueIdentifier;
+    DesignProject designProject;
+  }
+
+  class Shape extends DesignElement {
+    String type;
+    int xPosition;
+    int yPosition;
+    int width;
+    int height;
+  }
+
+  class Text extends DesignElement {
+    String textContent;
+    int fontSize;
+    String fontFamily;
+    int xPosition;
+    int yPosition;
+  }
+
+  class Image extends DesignElement {
+    String filePath;
+    int xPosition;
+    int yPosition;
+    int width;
+    int height;
+  }
+
+  class Version {
+    int versionNumber;
+    String timestamp;
+    DesignProject designProject;
+  }
+
+  class Notification {
+    User recipient;
+    DesignProject designProject;
+    String message;
+    boolean isRead;
+  }
+
+  composition User [*] DesignProject [has] (assignedUsers)
+  -- DesignProject [*] -{  ordered } 
+ 			;
+  composition DesignProject [*] DesignElement [has] (designElements)
+  -- DesignElement [*] -{  ordered } 
+ 			;
+  composition DesignProject [*] Version [has] (versions)
+  -- Version [*] -{  ordered } 
+ 			;
+  association Notification [*] User [has] (recipient)
+  -- User [*] -{  ordered } 
+ 			;
+}

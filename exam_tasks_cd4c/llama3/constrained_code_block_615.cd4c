@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram SpaceStation  {
+
+  class Section  {
+    String uniqueIdentifier;
+    SectionType type;
+  }
+
+  enum SectionType  {
+    Residential,
+    Commercial
+  ;}
+
+  class ResidentialSection extends Section  {
+    int numberOfInhabitants;
+    LivingQuarters livingQuarters;
+  }
+
+  enum LivingQuarters  {
+    Single, Double, Shared
+  ;}
+
+  class CommercialSection extends Section  {
+    String businessType;
+    int numberOfEmployees;
+  }
+
+  class Hub  {
+    Section  [] sections;
+    BackupPower backupPower;
+  }
+
+  class BackupPower  {
+    int capacityWh;
+  }
+
+  class SpaceStation  {
+    Hub hub;
+  }
+
+  composition SpaceStation  ->  (has) Hub;
+  composition Hub  ->  (has) Section  [*];
+  composition Hub  ->  (has) BackupPower  [0..1];
+  composition Section  ->  (has) LivingQuarters  [0..1];
+  composition Section  ->  (has) numberOfInhabitants  [0..1];
+  composition Section  ->  (has) numberOfEmployees  [0..1];
+  composition CommercialSection  ->  (has) businessType  [0..1];
+  composition ResidentialSection  ->  (has) livingQuarters  [0..1];
+}

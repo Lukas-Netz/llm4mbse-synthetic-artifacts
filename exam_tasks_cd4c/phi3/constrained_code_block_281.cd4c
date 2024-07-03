@@ -1,0 +1,35 @@
+
+classdiagram ContentDistributionNetwork {
+
+    class Node {
+      String uniqueIdentifier;
+      String ipAddress;
+    }
+
+    class Origin extends Node {
+      String content;
+    }
+
+    class Edge extends Node {
+      String content;
+    }
+
+    class Router extends Node {
+      String routingAlgorithm;
+    }
+
+    class ContentDistributionNetwork {
+      Node origin;
+      Node[] edgeNodes;
+      Node router;
+
+      void addNode(Node node);
+      void removeNode(Node node);
+      void updateContent(Node node, String content);
+      void checkNodeStatus(Node node);
+    }
+
+    association ContentDistributionNetwork -> Node [*];
+    association ContentDistributionNetwork -> Node [*];
+    association ContentDistributionNetwork -> Node [*];
+}

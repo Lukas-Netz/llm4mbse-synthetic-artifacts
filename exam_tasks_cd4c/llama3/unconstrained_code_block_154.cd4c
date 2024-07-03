@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram OnlineCommunity  {
+
+  class User  {
+    String username;
+    String password;
+    Set<Post> posts;
+    Set<Topic> topics;
+    Set<Topic> moderatedTopics;
+  }
+
+  class Topic  {
+    String title;
+    String description;
+    Set<Post> posts;
+    int views;
+    int likes;
+  }
+
+  class Post  {
+    String content;
+    Date timestamp;
+    int views;
+    int likes;
+    User author;
+  }
+
+  class Moderator  {
+    User user;
+    Topic topic;
+  }
+
+  composition User -> Post [1..*];
+  composition User -> Topic [1..*];
+  composition Topic -> Post [1..*];
+  composition Moderator -> Topic [1..1];
+  composition Topic -> Moderator [0..1];
+}

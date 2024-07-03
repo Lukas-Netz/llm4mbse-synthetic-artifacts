@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram SmartFactory  {
+
+  class ProductionLine  {
+    String uniqueIdentifier;
+    String name;
+    -> Machine[*];
+  }
+
+  abstract class Machine  {
+    String uniqueIdentifier;
+    String name;
+    MachineStatus status;
+  }
+
+  class Assembly extends Machine  {
+    int productionRate;
+    double qualityMetrics;
+  }
+
+  class QualityControl extends Machine  {
+    int defectDetectionRate;
+    int rejectionRate;
+  }
+
+  class Packaging extends Machine  {
+    double packagingEfficiency;
+    double materialUsage;
+  }
+
+  class Sensor  {
+    String type;
+    double value;
+  }
+
+  class Actuator  {
+    String type;
+    double value;
+  }
+
+  class SmartFactory  {
+    -> ProductionLine[*];
+    -> Sensor[*];
+    -> Actuator[*];
+    void analyzeProductionData();
+    void predictMaintenanceNeeds();
+    void optimizeProductionProcesses();
+  }
+
+  enum MachineStatus  {
+    Operational, NotOperational;
+  }
+
+  composition ProductionLine -> Machine[*];
+  composition SmartFactory -> ProductionLine[*];
+  composition SmartFactory -> Sensor[*];
+  composition SmartFactory -> Actuator[*];
+}

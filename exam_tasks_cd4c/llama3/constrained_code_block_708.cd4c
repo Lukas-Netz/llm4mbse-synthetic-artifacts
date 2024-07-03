@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram CarbonOffsettingSystem  {
+
+  class User  {
+    String uniqueIdentifier;
+    CarbonOffsetProject[] projects;
+  }
+
+  class CarbonOffsetProject  {
+    String name;
+    String description;
+    String uniqueIdentifier;
+    CarbonOffsetType type;
+    Transaction[] transactions;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    CarbonOffsetProject project;
+    int carbonCredits;
+    Validator validator;
+  }
+
+  class Validator  {
+    String uniqueIdentifier;
+  }
+
+  class CarbonOffsetType  {
+    String name;
+  }
+
+  class Blockchain  {
+    Transaction[] transactions;
+  }
+
+  composition User -> CarbonOffsetProject[*];
+  composition CarbonOffsetProject -> Transaction[*];
+  composition Transaction -> Validator;
+  composition Blockchain -> Transaction[*];
+}

@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram SmartHomeForElderly  {
+
+  class Robot  {
+    String name;
+    String uniqueIdentifier;
+    Task[] tasks;
+    BatteryLevel batteryLevel;
+    ChargingStation chargingStation;
+  }
+
+  class Caregiver  {
+    String name;
+    Robot[] robots;
+  }
+
+  class ChargingStation  {
+    int capacityWh;
+  }
+
+  class BatteryLevel  {
+    int level;
+  }
+
+  class Task  {
+    String name;
+    boolean isAutonomous;
+  }
+
+  class Light  {
+    boolean isOn;
+  }
+
+  class Thermostat  {
+    int temperature;
+  }
+
+  class SecurityCamera  {
+    boolean isRecording;
+  }
+
+  composition Robot -> (has) ChargingStation;
+  composition Robot -> (has) BatteryLevel;
+  composition Caregiver -> Robot[*];
+  composition Robot -> Task[*];
+  composition Robot -> (uses) Light;
+  composition Robot -> (uses) Thermostat;
+  composition Robot -> (uses) SecurityCamera;
+}
+

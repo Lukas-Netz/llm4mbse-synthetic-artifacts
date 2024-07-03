@@ -1,0 +1,51 @@
+
+classdiagram DatingApp {
+
+  class User {
+    String username;
+    String email;
+    String password;
+    String interests;
+    int age;
+    String location;
+  }
+
+  class Profile {
+    User user;
+    int rating;
+  }
+
+  class Match {
+    User user1;
+    User user2;
+    int rating;
+  }
+
+  class Message {
+    User sender;
+    User receiver;
+    String content;
+    boolean read;
+  }
+
+  class View {
+    User viewer;
+    User viewed;
+  }
+
+  class PremiumUser extends User {
+    boolean canSeeViewers;
+  }
+
+  class Moderator extends User {
+    void banUser(User user);
+  }
+
+  composition App -> User [*];
+  composition User -> Profile;
+  composition Match -> User [2];
+  composition Message -> User [2];
+  composition View -> User [2];
+  composition PremiumUser -> User [1];
+  composition Moderator -> User [*];
+}

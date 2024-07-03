@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram UnderwaterMission  {
+
+  class Mission  {
+    String name;
+    Date startDate;
+    Date endDate;
+    TeamLeader teamLeader;
+  }
+
+  class Drone  {
+    String uniqueIdentifier;
+    String name;
+    DroneStatus status;
+    Mission mission;
+  }
+
+  class Artifact  {
+    String name;
+    String description;
+    Location location;
+    Drone foundBy;
+  }
+
+  class TeamLeader  {
+    void assignDroneToMission(Drone drone, Mission mission);
+    void monitorDroneStatus(Drone drone);
+  }
+
+  enum DroneStatus  {
+    Active, Inactive;
+  }
+
+  enum Location  {
+    OceanFloor, Shipwreck, Cave;
+  }
+
+  composition Mission -> (has) TeamLeader;
+  composition Drone -> (has) Mission;
+  composition Artifact -> (has) Drone;
+  composition TeamLeader -> (has) Mission [0..*];
+  composition Drone -> (has) Artifact [0..*];
+}

@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram VideoSurveillanceSystem  {
+
+  class Camera  {
+    String uniqueIdentifier;
+    Location location;
+    Resolution[] resolutions;
+  }
+
+  class Server  {
+    ServerType type;
+  }
+
+  class RecordingServer extends Server  {
+    void storeVideoFootage(Camera camera, Video video);
+  }
+
+  class ProcessingServer extends Server  {
+    void analyzeVideoFootage(Camera camera, Video video);
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String username;
+    String password;
+    UserPrivilege privilege;
+  }
+
+  enum UserPrivilege  {
+    Administrator, RegularUser
+  ;}
+
+  class Notification  {
+    String message;
+    User recipient;
+  }
+
+  class Video  {
+    Camera camera;
+    Timestamp timestamp;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class Resolution  {
+    int width;
+    int height;
+  }
+
+  composition Server  ->  (has) Video [1..*];
+  composition Camera  ->  (has) Video [1..*];
+  composition User  ->  (has) Notification [0..*];
+  composition Server  ->  (has) Camera [1..*];
+  composition User  ->  (has) Server [0..*];
+  composition Camera  ->  (has) Location;
+  composition Server  ->  (has) User [0..*];
+  composition Video  ->  (has) Camera;
+  composition Notification  ->  (has) User;
+  composition Location  ->  (has) Camera;
+  }

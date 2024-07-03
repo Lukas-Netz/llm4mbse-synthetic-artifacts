@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram BlockchainGamingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Game  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class GameVersion  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Game game;
+  }
+
+  class Player  {
+    String uniqueIdentifier;
+    GameVersion gameVersion;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    String description;
+  }
+
+  class SmartContract  {
+    String uniqueIdentifier;
+    GameVersion gameVersion;
+  }
+
+  class Blockchain  {
+    User[] users;
+    Game[] games;
+    GameVersion[] gameVersions;
+    Transaction[] transactions;
+    SmartContract[] smartContracts;
+  }
+
+  composition Blockchain  ->  (has) User[*];
+  composition Blockchain  ->  (has) Game[*];
+  composition Blockchain  ->  (has) GameVersion[*];
+  composition Blockchain  ->  (has) Transaction[*];
+  composition Blockchain  ->  (has) SmartContract[*];
+  composition Game  ->  (has) GameVersion[*];
+  composition GameVersion  ->  (has) Player[*];
+  composition SmartContract  ->  (has) GameVersion[*];
+}

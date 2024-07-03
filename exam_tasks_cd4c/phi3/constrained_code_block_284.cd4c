@@ -1,0 +1,97 @@
+
+classdiagram PersonalFinanceManagementSystem {
+
+    class User {
+      String username;
+      String password;
+      List<Account> accounts;
+    }
+
+    class Account {
+      String name;
+      String type;
+      double balance;
+    }
+
+    class Transaction {
+      Date date;
+      String description;
+      double amount;
+      String transactionType;
+    }
+
+    class Budget {
+      String category;
+      double limit;
+    }
+
+    class Goal {
+      double targetAmount;
+      String goalDescription;
+    }
+
+    class FinancialReport {
+      Date startDate;
+      Date endDate;
+      double totalIncome;
+      double totalExpenses;
+      double totalSavings;
+    }
+
+    <<association>> class User {
+      List<Account> accounts;
+      List<Transaction> transactions;
+      List<Budget> budgets;
+      List<Goal> goals;
+    }
+
+    <<association>> class Account {
+      User user;
+    }
+
+    <<association>> class Transaction {
+      Account account;
+    }
+
+    <<association>> class Budget {
+      User user;
+    }
+
+    <<association>> class Goal {
+      User user;
+    }
+
+    <<aggregation>> class FinancialReport {
+      List<Transaction> transactions;
+    }
+
+    <<operation>> class User {
+      void addAccount(Account account);
+      void editAccount(Account account);
+      void deleteAccount(Account account);
+      double calculateTotalBalance();
+    }
+
+    <<operation>> class Account {
+      void addTransaction(Transaction transaction);
+      void editTransaction(Transaction transaction);
+      void deleteTransaction(Transaction transaction);
+    }
+
+    <<operation>> class Transaction {
+      void categorize();
+    }
+
+    <<operation>> class Budget {
+      void setLimit(String category, double limit);
+    }
+
+    <<operation>> class Goal {
+      void setTargetAmount(double targetAmount);
+      void checkGoalStatus();
+    }
+
+    <<operation>> class FinancialReport {
+      FinancialReport generateReport(Date startDate, Date endDate);
+    }
+}

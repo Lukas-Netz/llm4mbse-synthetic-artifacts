@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram AgriculturalTechnology  {
+
+  class Farm  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Equipment  {
+    String uniqueIdentifier;
+    EquipmentType type;
+    EquipmentStatus status;
+  }
+
+  enum EquipmentType  {
+    Tractor,
+    Plow,
+    Harvester,
+    Other
+  ;}
+
+  enum EquipmentStatus  {
+    Available,
+    InUse,
+    Broken
+  ;}
+
+  class Crop  {
+    String uniqueIdentifier;
+    CropType type;
+    Date plantingDate;
+    Date harvestDate;
+  }
+
+  enum CropType  {
+    Wheat,
+    Corn,
+    Soybeans,
+    Other
+  ;}
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+    int readingFrequency;
+  }
+
+  enum SensorType  {
+    Temperature,
+    Humidity,
+    Moisture,
+    Other
+  ;}
+
+  class WeatherStation  {
+    String uniqueIdentifier;
+    String location;
+  }
+
+  class FarmOperator  {
+    String name;
+    String contactInformation;
+  }
+
+  composition Farm  ->  (has) Equipment  [*];
+  composition Farm  ->  (has) Crop  [*];
+  composition Farm  ->  (has) Sensor  [*];
+  composition Farm  ->  (has) WeatherStation  [0..1];
+  composition Farm  ->  (has) FarmOperator  [0..1];
+
+  association FarmOperator  ->  (manages) Farm  [0..*];
+  association Equipment  ->  (maintainedBy) FarmOperator  [0..*];
+  association Sensor  ->  (monitors) Crop  [*];
+  association WeatherStation  ->  (providesDataFor) Farm  [*];
+}

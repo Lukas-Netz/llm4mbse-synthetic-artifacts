@@ -1,0 +1,58 @@
+
+classdiagram IPManagementSystem {
+
+    class IPAsset {
+      String uniqueIdentifier;
+      String description;
+      Date creationDate;
+      Date expirationDate;
+      List<String> owners;
+      List<String> authors;
+      List<String> inventors;
+      List<String> categories;
+    }
+
+    class Patent extends IPAsset {
+      Date filingDate;
+    }
+
+    class Trademark extends IPAsset {
+      Date registrationDate;
+    }
+
+    class Copyright extends IPAsset {
+    }
+
+    class Category {
+      String name;
+      List<IPAsset> assets;
+    }
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class IPManagementSystem {
+      List<IPAsset> allAssets;
+      List<Category> categories;
+      List<User> users;
+      void addAsset(IPAsset asset);
+      void removeAsset(IPAsset asset);
+      void updateAsset(IPAsset asset);
+      void assignAssetToCategory(IPAsset asset, Category category);
+      void assignAssetToUser(IPAsset asset, User user);
+      void generateReport(String reportType);
+      void searchAssets(String keyword);
+      void searchAssetsByCategory(String categoryName);
+      void searchAssetsByType(String typeName);
+      void authenticateUser(User user);
+      void authorizeAccess(User user, IPAsset asset);
+    }
+
+    composition IPManagementSystem -> (has) allAssets;
+    composition IPManagementSystem -> (has) categories;
+    composition IPManagementSystem -> (has) users;
+    association IPAsset -> Category [*];
+    association IPAsset -> User [*];
+}

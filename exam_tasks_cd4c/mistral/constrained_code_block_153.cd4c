@@ -1,0 +1,48 @@
+
+classdiagram Marketplace {
+
+  class Marketplace {
+    String name;
+    String uniqueIdentifier;
+    Category [ ] categories;
+  }
+
+  class Category {
+    String name;
+    String description;
+    Product [ ] products;
+  }
+
+  abstract class Product {
+    String name;
+    String description;
+    float price;
+    float rating;
+  }
+
+  class PhysicalProduct extends Product {
+    float weight;
+    String dimensions;
+    String material;
+  }
+
+  class DigitalProduct extends Product {
+    float fileSize;
+    String format;
+  }
+
+  class Service extends Product {
+    float duration;
+    String expertise;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    float rating;
+    String reviews;
+  }
+
+  association Marketplace -- User [*];
+  composition Marketplace -- Category [*];
+  composition Category -- Product [*];
+}

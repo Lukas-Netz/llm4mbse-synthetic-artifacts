@@ -1,0 +1,50 @@
+
+classdiagram QuantumResistantNetwork {
+
+    class Node {
+      String uniqueIdentifier;
+      String ipAddress;
+      PublicKey publicKey;
+    }
+
+    class Edge {
+      String uniqueIdentifier;
+      double bandwidth;
+      double latency;
+    }
+
+    class CentralAuthority {
+      List<Node> nodes;
+      List<Edge> edges;
+      void addNode(Node node);
+      void removeNode(Node node);
+      void addEdge(Edge edge);
+      void removeEdge(Edge edge);
+      void manageNetwork();
+    }
+
+    association CentralAuthority 
+      has 
+        -> List<<Node, Edge>>
+
+    private 
+      {
+       
+   ordered
+     }
+
+   
+;
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   compositionsCentralAuthority -> (has) List<<Node, Edge>>;
+}

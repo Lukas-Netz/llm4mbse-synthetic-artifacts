@@ -1,0 +1,51 @@
+
+classdiagram VirtualYogaStudio {
+
+    class YogaClass {
+      String name;
+      String description;
+      Instructor instructor;
+      List<Student> students;
+      List<Session> sessions;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String phoneNumber;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<YogaClass> attendedClasses;
+    }
+
+    class Session {
+      String id;
+      Date date;
+      Time time;
+      String type;
+      String link;
+    }
+
+    class Payment {
+      String studentEmail;
+      YogaClass class;
+      double amount;
+      boolean paid;
+    }
+
+    association YogaClass -> Instructor;
+    association YogaClass -> Student;
+    association YogaClass -> Session;
+    composition YogaClass -> Student;
+    composition YogaClass -> Session;
+
+    association Instructor -> YogaClass;
+    association Student -> YogaClass;
+    association Student -> Session;
+
+    association Session -> YogaClass;
+    association Session -> Payment;
+}

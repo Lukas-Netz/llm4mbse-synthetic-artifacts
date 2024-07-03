@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram IndigenousArtMarketplace  {
+
+  class Artist  {
+    String uniqueIdentifier;
+    String name;
+    String bio;
+  }
+
+  class Artwork  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    double price;
+    Artist artist;
+  }
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class SalesHistory  {
+    Artwork artwork;
+    Customer customer;
+    Date date;
+  }
+
+  class RatingAndReview  {
+    Artwork artwork;
+    Customer customer;
+    int rating;
+    String review;
+  }
+
+  class Marketplace  {
+    Artist[] artists;
+    Artwork[] artworks;
+    Customer[] customers;
+    SalesHistory[] salesHistory;
+    RatingAndReview[] ratingAndReviews;
+  }
+
+  composition Artist -> Artwork [1..*];
+  composition Artwork -> Artist [1];
+  composition Customer -> SalesHistory [0..*];
+  composition Artwork -> SalesHistory [0..*];
+  composition Artwork -> RatingAndReview [0..*];
+  composition Customer -> RatingAndReview [0..*];
+  composition Marketplace -> Artist [0..*];
+  composition Marketplace -> Artwork [0..*];
+  composition Marketplace -> Customer [0..*];
+}

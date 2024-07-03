@@ -1,0 +1,60 @@
+
+
+
+classdiagram SupplyChain  {
+
+  class Supplier  {
+    String uniqueIdentifier;
+    String name;
+    Product[] products;
+  }
+
+  class Manufacturer  {
+    String uniqueIdentifier;
+    String name;
+    Product[] products;
+  }
+
+  class Distributor  {
+    String uniqueIdentifier;
+    String name;
+    Product[] products;
+  }
+
+  class Retailer  {
+    String uniqueIdentifier;
+    String name;
+    Product[] products;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    double price;
+    double weight;
+    double dimensions;
+  }
+
+  class SupplyChain  {
+    Supplier[] suppliers;
+    Manufacturer[] manufacturers;
+    Distributor[] distributors;
+    Retailer[] retailers;
+  }
+
+  composition SupplyChain -> (has) Supplier[*];
+  composition SupplyChain -> (has) Manufacturer[*];
+  composition SupplyChain -> (has) Distributor[*];
+  composition SupplyChain -> (has) Retailer[*];
+  composition Supplier -> (has) Product[*];
+  composition Manufacturer -> (has) Product[*];
+  composition Distributor -> (has) Product[*];
+  composition Retailer -> (has) Product[*];
+  association Supplier -> Manufacturer;
+  association Manufacturer -> Distributor;
+  association Distributor -> Retailer;
+  association Retailer -> Customer;
+  association Product -> Supplier;
+  association Product -> Manufacturer;
+  }

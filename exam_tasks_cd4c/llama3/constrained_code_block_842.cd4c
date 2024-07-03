@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram RoboticBartender  {
+
+  class CentralHub  {
+    Robot  robot  ; 
+    Database database; 
+    void addRobot(Robot robot); 
+    void removeRobot(Robot robot); 
+  }
+
+  abstract class Robot  {
+    String uniqueIdentifier; 
+    void mixDrink(Drink drink); 
+    void serveDrink(Drink drink); 
+    void cleanBar(); 
+  }
+
+  class Drink  {
+    String name; 
+    String ingredients; 
+    String preparationInstructions; 
+    double price; 
+  }
+
+  class Database  {
+    Drink  drink  ; 
+    void addDrink(Drink drink); 
+    void removeDrink(Drink drink); 
+  }
+
+  class Sensor  {
+    boolean detectCustomer(); 
+  }
+
+  composition CentralHub  ->  (has) Robot; 
+  composition CentralHub  ->  (has) Database; 
+  composition Robot  ->  (has) Sensor; 
+  composition Database  ->  (has) Drink; 
+}

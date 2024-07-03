@@ -1,0 +1,27 @@
+
+classdiagram RoboticsSystem {
+
+    class Robot {
+      String name;
+      String uniqueIdentifier;
+      List<Sensor> sensors;
+      void performTask(String task);
+      void updateLocation();
+    }
+
+    class Sensor {
+      String sensorType;
+      String data;
+    }
+
+    class UI {
+      String name;
+      String uniqueIdentifier;
+      void monitorRobot();
+      void controlRobot();
+    }
+
+    association Robot -> UI [*];
+    association UI -> Sensor [*];
+    composition Robot -> Sensor [*];
+}

@@ -1,0 +1,46 @@
+
+classdiagram AutonomousDelivery {
+
+  class AV {
+    String uniqueIdentifier;
+    int maxPackages;
+    Location currentLocation;
+  }
+
+  class DeliveryStation {
+    String name;
+    Location location;
+  }
+
+  class CentralManagementSystem {
+    void assignPackageToAV(AV av, Package package);
+    void assignPackageToStation(DeliveryStation station, Package package);
+    void monitorDeliveryStatus();
+  }
+
+  class Package {
+    String uniqueIdentifier;
+    Location currentLocation;
+    EstimatedDeliveryTime estimatedDeliveryTime;
+  }
+
+  class CustomerInterface {
+    void trackPackage(String packageIdentifier);
+  }
+
+  class Location {
+    String address;
+    double latitude;
+    double longitude;
+  }
+
+  class EstimatedDeliveryTime {
+    int hours;
+    int minutes;
+  }
+
+  composition CentralManagementSystem -> AV [*];
+  composition CentralManagementSystem -> DeliveryStation [*];
+  composition AV -> Package [0..10];
+  association DeliveryStation <-> Package;
+}

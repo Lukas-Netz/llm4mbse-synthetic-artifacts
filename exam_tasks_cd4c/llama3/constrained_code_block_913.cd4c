@@ -1,0 +1,82 @@
+
+
+
+
+classdiagram QuantumCrypt  {
+
+  class User  {
+    String uniqueIdentifier;
+    PublicKey publicKey;
+    PrivateKey privateKey;
+  }
+
+  class Wallet  {
+    User user;
+    List<Transaction> transactions;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    Hash cryptographicHash;
+    User sender;
+    User recipient;
+    int amount;
+  }
+
+  class Validator  {
+    User user;
+    int stakingPower;
+  }
+
+  class Blockchain  {
+    List<Block> blocks;
+  }
+
+  class Block  {
+    String uniqueIdentifier;
+    Timestamp timestamp;
+    Hash cryptographicHash;
+    List<Transaction> transactions;
+  }
+
+  class ProofOfStake  {
+    Validator validator;
+    int stakingPower;
+  }
+
+  class Puzzle  {
+    int difficulty;
+    String solution;
+  }
+
+  class Hash  {
+    String value;
+  }
+
+  class Timestamp  {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second;
+  }
+
+  class PublicKey  {
+    String value;
+  }
+
+  class PrivateKey  {
+    String value;
+  }
+
+  composition User -> Wallet;
+  composition Wallet -> Transaction;
+  composition Blockchain -> Block;
+  composition Block -> Transaction;
+  composition ProofOfStake -> Validator;
+  composition Puzzle -> Blockchain;
+  composition Hash -> Block;
+  composition Timestamp -> Transaction;
+  }

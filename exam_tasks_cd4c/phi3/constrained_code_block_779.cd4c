@@ -1,0 +1,60 @@
+
+classdiagram WirelessBCISystem {
+
+    class User {
+      String name;
+      String userId;
+      Session[] sessions;
+    }
+
+    class Session {
+      String sessionId;
+      DateTime startTime;
+      DateTime endTime;
+      BrainSignal[] brainSignals;
+      ProcessedInformation[] processedInformation;
+    }
+
+    class BrainSignal {
+      String signalId;
+      DateTime timestamp;
+      String signalData;
+    }
+
+    class ProcessedInformation {
+      String infoId;
+      DateTime timestamp;
+      String processedData;
+    }
+
+    class Headset {
+      String name;
+      String id;
+      BrainSignal[] captureSignals;
+      Association HeadsetToProcessingUnit;
+    }
+
+    class ProcessingUnit {
+      String name;
+      String id;
+      Association ProcessingUnitToControlDevice;
+      Association ProcessingUnitToUser;
+      Association ProcessingUnitToSession;
+    }
+
+    class ControlDevice {
+      String name;
+      String id;
+      Association ControlDeviceToUser;
+      Association ControlDeviceToSession;
+    }
+
+    composition User -> Session[*];
+    composition Session -> BrainSignal[*];
+    composition Session -> ProcessedInformation[*];
+    composition Headset -> ProcessingUnit;
+    composition ProcessingUnit -> ControlDevice;
+    composition ProcessingUnit -> User;
+    composition ProcessingUnit -> Session;
+    composition ProcessingUnit -> ControlDevice;
+}

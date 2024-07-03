@@ -1,0 +1,255 @@
+
+classdiagram RenewableEnergyTraining {
+
+    class Course {
+      String uniqueId;
+      String title;
+      String description;
+      List<Module> modules;
+      CourseLevel level;
+    }
+
+    class Module {
+      String uniqueId;
+      String title;
+      String description;
+      List<Quiz> quizzes;
+      ModuleTopic topic;
+    }
+
+    class Quiz {
+      String uniqueId;
+      String title;
+      String description;
+      QuizType type;
+    }
+
+    enum QuizType {
+      MultipleChoice, TrueFalse, ShortAnswer
+   
+   
+   ()
+   
+
+;
+    association Course 
+   
+   
+
+;
+    association Module 
+   
+   
+
+;
+    association Quiz 
+   
+   
+
+;
+    association CourseLevel
+   
+   
+
+;
+    association ModuleTopic
+   
+   
+
+;
+    association User
+   
+   
+
+;
+    association Role
+   
+   
+
+;
+    association Admin
+   
+   
+
+;
+    association Instructor
+   
+   
+
+;
+    association Student
+   
+   
+
+;
+    association ProgressTracker
+   
+   
+
+ 
+;
+    composition CourseLevel
+   
+   
+
+;
+    composition ModuleTopic
+   
+   
+
+ 
+;
+    composition QuizType
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+    composition UserRole
+   
+   
+
+ 
+;
+   
+
+}
+
+enum Role {
+  Admin, Instructor, Student
+
+ 
+;
+   
+
+}
+
+enum CourseLevel {
+  Beginner, Intermediate, Advanced
+
+ 
+;
+   
+
+}
+
+enum ModuleTopic {
+  Solar, Wind, Hydro
+
+ 
+;
+   
+
+}
+
+enum QuizType {
+  MultipleChoice, TrueFalse, ShortAnswer
+
+ 
+;
+   
+
+}
+
+class User {
+  String userId;
+  Role role;
+  ProgressTracker progress;
+}
+
+class Admin extends User {
+  void createCourse(Course course);
+  void createModule(Module module);
+  void createQuiz(Quiz quiz);
+}
+
+class Instructor extends User {
+  void createQuiz(Quiz quiz);
+}
+
+class Student extends User {
+  void takeQuiz(Quiz quiz);
+  void trackProgress(ProgressTracker progress);
+}
+
+class ProgressTracker {
+  int quizScore;
+  int moduleScore;
+}
+
+class CourseLevel {
+  String level;
+}
+
+class ModuleTopic {
+  String topic;
+}
+
+class QuizType {
+  String type;
+}
+
+class Quiz {
+  String quizId;
+  String quizTitle;
+  String quizDescription;
+  QuizType quizType;
+}
+
+class Course {
+  String courseId;
+  String courseTitle;
+  String courseDescription;
+  CourseLevel courseLevel;
+  List<Module> modules;
+}
+
+class Module {
+  String moduleId;
+  String moduleTitle;
+  String moduleDescription;
+  ModuleTopic moduleTopic;
+  List<Quiz> quizzes;
+}
+
+class User {
+  String userId;
+  Role role;
+  ProgressTracker progress;
+}
+
+
+
+
+
+}

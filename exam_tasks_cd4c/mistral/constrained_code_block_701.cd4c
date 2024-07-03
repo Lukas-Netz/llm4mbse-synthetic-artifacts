@@ -1,0 +1,49 @@
+
+classdiagram SmartBeehive {
+
+  class Beehive {
+    String uniqueIdentifier;
+    String location;
+    Sensor [ ] attachedSensors;
+  }
+
+  class Bee {
+    String uniqueIdentifier;
+    Beehive assignedBeehive;
+    BeeRole role;
+  }
+
+  enum BeeRole {
+    Worker, Queen, Drone;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String sensorType;
+    Beehive attachedBeehive;
+  }
+
+  enum SensorType {
+    Temperature, Humidity, BeeActivity;
+  }
+
+  class SmartBeehiveSystem {
+    Beehive [ ] beehives;
+    Bee [ ] bees;
+
+    void addBeehive(Beehive beehive);
+    void removeBeehive(Beehive beehive);
+    void addBee(Bee bee);
+    void removeBee(Bee bee);
+    void updateBeeRole(Bee bee, BeeRole newRole);
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void monitorHealthAndWellbeing();
+    void monitorEnvironment();
+    void provideAlerts();
+  }
+
+  composition SmartBeehiveSystem -> Beehive [*];
+  composition SmartBeehiveSystem -> Bee [*];
+  composition Beehive -> Sensor [*];
+}

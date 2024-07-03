@@ -1,0 +1,33 @@
+
+
+classdiagram SpaceWeatherPredictionSystem {
+
+  class SpaceWeatherPredictionSystem {
+    DataIngestionModule dataIngestionModule;
+    DataProcessingModule dataProcessingModule;
+    VisualizationModule visualizationModule;
+    NotificationModule notificationModule;
+  }
+
+  class DataIngestionModule {
+    void collectData();
+  }
+
+  class DataProcessingModule {
+    MachineLearningAlgorithm mlAlgorithm;
+    void predictSolarFlaresAndCMEs();
+  }
+
+  class VisualizationModule {
+    void displayData();
+  }
+
+  class NotificationModule {
+    void sendAlerts();
+  }
+
+  composition SpaceWeatherPredictionSystem -> (has) DataIngestionModule;
+  composition SpaceWeatherPredictionSystem -> (has) DataProcessingModule;
+  composition SpaceWeatherPredictionSystem -> (has) VisualizationModule;
+  composition SpaceWeatherPredictionSystem -> (has) NotificationModule;
+}

@@ -1,0 +1,36 @@
+
+classdiagram TravelBookingSystem {
+
+    class TravelAgency {
+      List<TravelPackage> travelPackages;
+      void offerDiscount(Customer customer, TravelPackage package);
+      void manageCustomer(Customer customer);
+    }
+
+    class TravelPackage {
+      String name;
+      String description;
+      double price;
+      List<BookingOption> bookingOptions;
+      BookingStatus status;
+    }
+
+    class BookingOption {
+      String name;
+      String description;
+      double price;
+    }
+
+    class Customer {
+      String name;
+      String email;
+      String phoneNumber;
+      List<TravelPackage> bookedPackages;
+    }
+
+    association TravelAgency -> TravelPackage [1..*];
+    association TravelAgency -> Customer [1..*];
+    association TravelPackage -> BookingOption [1..*];
+    association Customer -> TravelPackage [1..*];
+    composition TravelPackage -> BookingStatus;
+}

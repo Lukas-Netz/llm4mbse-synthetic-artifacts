@@ -1,0 +1,44 @@
+
+classdiagram WasteRecyclingSystem {
+
+    class WCV {
+      String uniqueIdentifier;
+      String location;
+      int capacity;
+    }
+
+    class WasteContainer {
+      String uniqueIdentifier;
+      String location;
+      int capacity;
+      WasteType wasteType;
+      int quantityCollected;
+    }
+
+    class WasteType {
+      String type;
+    }
+
+    class RecyclingFacility {
+      String uniqueIdentifier;
+      String location;
+      int capacity;
+    }
+
+    class WasteCollectionSchedule {
+      String schedule;
+      WasteContainer wasteContainer;
+    }
+
+    association WCV -> WasteContainer [1..*];
+    association WasteContainer -> WasteType;
+    association WasteContainer -> RecyclingFacility;
+    association WasteCollectionSchedule -> WasteContainer;
+    association RecyclingFacility -> WasteCollectionSchedule;
+
+    class WasteManagementSystem {
+      void trackWasteContainerLocationAndStatus();
+      void trackWasteCollectionAndProcessing();
+      void generateReports();
+    }
+}

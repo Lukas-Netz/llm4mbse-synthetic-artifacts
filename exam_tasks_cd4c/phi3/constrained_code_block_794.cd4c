@@ -1,0 +1,53 @@
+
+classdiagram DigitalTwin {
+
+    class Site {
+      String uniqueIdentifier;
+      String name;
+      String location;
+      List<Building> buildings;
+      List<Monument> monuments;
+      List<Artifact> artifacts;
+    }
+
+    class Building {
+      String uniqueIdentifier;
+      String name;
+      String location;
+      List<Room> rooms;
+    }
+
+    class Room {
+      String uniqueIdentifier;
+      String name;
+      String location;
+      List<Artifact> artifacts;
+    }
+
+    class Artifact {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      List<Room> rooms;
+    }
+
+    class Visitor {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      List<Site> visitedSites;
+    }
+
+    class Guide {
+      String uniqueIdentifier;
+      String name;
+      String expertise;
+      List<Site> guidedSites;
+    }
+
+    association Site <-> List<<Building, Room, Artifact>>;
+    association Building <-> List<<Room, Artifact>>;
+    association Room <-> List<<Artifact>>;
+    association Visitor <-> List<<Site>>;
+    association Guide <-> List<<Site>>;
+}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram SpaceExploration  {
+
+  class Spacecraft  {
+    String uniqueIdentifier;
+    SpacecraftStatus status;
+    -> Component[*];
+    -> Astronaut[*];
+  }
+
+  class Component  {
+    String uniqueIdentifier;
+    ComponentStatus status;
+  }
+
+  class Astronaut  {
+    String uniqueIdentifier;
+    AstronautStatus status;
+  }
+
+  class CargoSpacecraft extends Spacecraft  {}
+
+  class PassengerSpacecraft extends Spacecraft  {}
+
+  class ResearchSpacecraft extends Spacecraft  {}
+
+  enum SpacecraftStatus  {
+    Operational, NotOperational;
+  }
+
+  enum ComponentStatus  {
+    Functioning, NotFunctioning;
+  }
+
+  enum AstronautStatus  {
+    Alive, Dead;
+  }
+
+  class TrajectorySimulator  {
+    void simulateTrajectory(Spacecraft spacecraft);
+    String predictArrivalTime(Spacecraft spacecraft);
+  }
+
+  composition Spacecraft -> Component[*];
+  composition Spacecraft -> Astronaut[*];
+  composition TrajectorySimulator -> Spacecraft;
+}
+

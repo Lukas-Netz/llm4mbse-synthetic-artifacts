@@ -1,0 +1,74 @@
+
+classdiagram OnlineScheduling {
+
+    class User {
+      String username;
+      String password;
+      Calendar calendars;
+      List<Attendee> attendees;
+      void login();
+      void logout();
+      void createAccount();
+      void createAppointment(Appointment appointment);
+      void editAppointment(Appointment appointment);
+      void deleteAppointment(Appointment appointment);
+      void createMeeting(Meeting meeting);
+      void editMeeting(Meeting meeting);
+      void deleteMeeting(Meeting meeting);
+      void createEvent(Event event);
+      void editEvent(Event event);
+      void deleteEvent(Event event);
+      void setReminder(Appointment appointment);
+      void setNotification(Appointment appointment);
+      void shareCalendar(Calendar calendar);
+      void integrateWithCalendar(CalendarSystem calendarSystem);
+    }
+
+    class Attendee {
+      String name;
+      String role;
+    }
+
+    class Appointment extends Event {
+      String recurrencePattern;
+      List<Attendee> attendees;
+      void setRecurrencePattern(String pattern);
+    }
+
+    class Meeting extends Appointment {
+      void setRecurrencePattern(String pattern);
+    }
+
+    class Event extends Appointment {
+      void setRecurrencePattern(String pattern);
+    }
+
+    class CalendarSystem {
+      String name;
+      List<Calendar> calendars;
+      void integrateWith(OnlineScheduling software);
+    }
+
+    class Calendar {
+      String name;
+      List<Event> events;
+      List<Appointment> appointments;
+      List<Meeting> meetings;
+      void addEvent(Event event);
+      void addAppointment(Appointment appointment);
+      void addMeeting(Meeting meeting);
+      void removeEvent(Event event);
+      void removeAppointment(Appointment appointment);
+      void removeMeeting(Meeting meeting);
+    }
+
+    composition User -> CalendarSystem;
+    composition User -> Calendar;
+    composition User -> Attendee;
+    composition User -> Appointment;
+    composition User -> Meeting;
+    composition User -> Event;
+    composition User -> OnlineScheduling;
+    composition OnlineScheduling -> CalendarSystem;
+    composition OnlineScheduling -> Calendar;
+}

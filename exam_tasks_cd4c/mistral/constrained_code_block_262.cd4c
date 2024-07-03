@@ -1,0 +1,39 @@
+
+classdiagram RemoteDesktop {
+
+  class RemoteDesktopClient {
+    String host;
+    int port;
+    void connect();
+    void disconnect();
+    void sendCommand(String command);
+    String receiveOutput();
+    void transferFile(String filePath);
+    void shareScreen();
+    void chat(String message);
+    void saveSession();
+    void recordSession();
+  }
+
+  class RemoteDesktopServer {
+    void executeCommand(String command);
+    void sendOutput(String output);
+    void transferFile(String filePath);
+    void shareScreen();
+    void chat(String message);
+  }
+
+  class OperatingSystem {
+    String name;
+    boolean isCompatible(OperatingSystem other);
+  }
+
+  class Command {
+    String name;
+    String arguments;
+  }
+
+  composition RemoteDesktopClient <-> RemoteDesktopServer;
+  association OperatingSystem <-> RemoteDesktopClient;
+  association OperatingSystem <-> RemoteDesktopServer;
+}

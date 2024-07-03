@@ -1,0 +1,61 @@
+
+classdiagram TaxSolutions {
+
+    class TaxReturnSystem {
+      PersonalTaxReturn personalTaxReturn;
+      CorporateTaxReturn corporateTaxReturn;
+      EstateTaxReturn estateTaxReturn;
+      ReportGenerator reportGenerator;
+      NotificationService notificationService;
+      AccountingIntegration accountingIntegration;
+      PaymentGateway paymentGateway;
+      TaxLawComplianceChecker taxLawComplianceChecker;
+    }
+
+    class PersonalTaxReturn {
+      String taxpayerId;
+      double income;
+      double deductions;
+      double credits;
+    }
+
+    class CorporateTaxReturn {
+      String companyId;
+      double income;
+      double deductions;
+      double credits;
+    }
+
+    class EstateTaxReturn {
+      String estateId;
+      double income;
+      double deductions;
+      double credits;
+    }
+
+    class ReportGenerator {
+      void generateReport(TaxReturnSystem system);
+    }
+
+    class NotificationService {
+      void sendNotification(TaxReturnSystem system);
+    }
+
+    class AccountingIntegration {
+      void syncAccountingData(TaxReturnSystem system);
+    }
+
+    class PaymentGateway {
+      void processPayment(TaxReturnSystem system);
+    }
+
+    class TaxLawComplianceChecker {
+      void checkCompliance(TaxReturnSystem system);
+    }
+
+  composition TaxReturnSystem -> (has) ReportGenerator;
+  composition TaxReturnSystem -> (has) NotificationService;
+  composition TaxReturnSystem -> (has) AccountingIntegration;
+  composition TaxReturnSystem -> (has) PaymentGateway;
+  composition TaxReturnSystem -> (has) TaxLawComplianceChecker;
+}

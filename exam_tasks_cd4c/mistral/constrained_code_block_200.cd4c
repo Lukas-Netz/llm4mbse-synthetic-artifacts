@@ -1,0 +1,57 @@
+
+classdiagram StockTrading {
+
+  class TradingPlatform {
+    -> User [*];
+    -> StockMarketData [*];
+    void placeOrder(Order order);
+    Order checkOrderStatus(Order order);
+    StockMarketData getStockMarketData();
+  }
+
+  abstract class User {
+    String uniqueIdentifier;
+    double balance;
+  }
+
+  class Individual extends User {
+    Portfolio personalPortfolio;
+  }
+
+  class Institutional extends User {
+    Portfolio [ ] clientPortfolios;
+  }
+
+  class Portfolio {
+    Stock [ ] stocks;
+  }
+
+  class StockMarketData {
+    Stock [ ] stocks;
+  }
+
+  class Stock {
+    String tickerSymbol;
+    double currentPrice;
+    int tradingVolume;
+  }
+
+  class Order {
+    Stock stock;
+    int quantity;
+    double price;
+  }
+
+  class Trade {
+    Stock stock;
+    int quantity;
+    double price;
+  }
+
+  composition TradingPlatform -> User [*];
+  composition TradingPlatform -> StockMarketData [*];
+  composition Individual -> Portfolio;
+  composition Institutional -> Portfolio [*];
+  composition Portfolio -> Stock [*];
+  composition StockMarketData -> Stock [*];
+}

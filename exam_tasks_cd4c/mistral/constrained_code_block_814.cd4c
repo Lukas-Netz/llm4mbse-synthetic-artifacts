@@ -1,0 +1,24 @@
+
+classdiagram TranslationSystem {
+
+  class Dictionary {
+    Map<String, Map<String, String>> words;
+  }
+
+  class Translator {
+    Dictionary dictionary;
+    String translate(String text, String sourceLanguage, String targetLanguage);
+  }
+
+  class UserInterface {
+    Translator translator;
+    void inputText(String text);
+    void selectSourceLanguage(String language);
+    void selectTargetLanguage(String language);
+    String getTranslation();
+  }
+
+  composition TranslationSystem -> Dictionary;
+  composition TranslationSystem -> Translator;
+  composition TranslationSystem -> UserInterface;
+}

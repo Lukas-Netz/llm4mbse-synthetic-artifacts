@@ -1,0 +1,57 @@
+
+classdiagram CMS {
+
+  class Article {
+    String title;
+    String content;
+    Date publicationDate;
+    Topic topic;
+    Image [  ] images;
+    Video [ ] videos;
+  }
+
+  class Image {
+    String name;
+    String description;
+    String filePath;
+    Article article;
+  }
+
+  class Video {
+    String title;
+    String description;
+    String filePath;
+    Article article;
+  }
+
+  class User {
+    String username;
+    String password;
+    Role role;
+    Permission [ ] permissions;
+  }
+
+  enum Role {
+    ADMIN, EDITOR, VIEWER;
+  }
+
+  enum Permission {
+    CREATE, EDIT, VIEW;
+  }
+
+  class Topic {
+    String name;
+    Article [ ] articles;
+  }
+
+  composition CMS -> Article [*];
+  composition CMS -> Image [*];
+  composition CMS -> Video [*];
+  composition User -> Permission [*];
+  association User <-> Article;
+  association User <-> Image;
+  association User <-> Video;
+  association Article <-> Topic [*];
+  association Image <-> Article [*];
+  association Video <-> Article [*];
+}

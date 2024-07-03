@@ -1,0 +1,405 @@
+
+classdiagram CloudCRM {
+
+    class User {
+      String username;
+      String password;
+      UserType type;
+    }
+
+    class Customer {
+      String customerID;
+      String name;
+      ContactInfo contactInfo;
+      List<Interaction> interactions;
+    }
+
+    class Interaction {
+      Customer customer;
+      InteractionType type;
+    }
+
+    class Meeting {
+      Interaction interaction;
+      Date date;
+      Time time;
+      Location location;
+    }
+
+    class Sale {
+      Customer customer;
+      Date date;
+      Product product;
+      double price;
+    }
+
+    class Product {
+      String productID;
+      String name;
+      String description;
+    }
+
+    enum UserType {
+      Administrator, SalesRepresentative, Customer
+   
+   
+   ()
+   
+
+;
+    association Customer 
+       
+
+;
+    association Interaction 
+       
+
+;
+    association Meeting 
+       
+
+;
+    association Sale 
+       
+
+;
+    association Product 
+       
+
+ ;
+    generalization User
+       
+
+  ;
+    generalization Customer
+       
+
+  ;
+    generalization Interaction
+       
+
+  ;
+    generalization Meeting
+       
+
+  ;
+    generalization Sale
+       
+
+  ;
+    generalization Product
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    composition UserType
+       
+
+  ;
+    composition CustomerType
+       
+
+  ;
+    composition InteractionType
+       
+
+  ;
+   
+
+}
+
+enum UserType {
+  Administrator, SalesRepresentative, Customer
+
+
+;
+    association InteractionType
+       
+
+;
+    association MeetingType
+       
+
+;
+    association SaleType
+       
+
+;
+    association ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+   
+
+}
+
+enum InteractionType {
+  PhoneCall, Email, Meeting
+
+
+;
+    association MeetingType
+       
+
+;
+    association SaleType
+       
+
+;
+    association ProductType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+   
+
+}
+
+enum MeetingType {
+  Scheduled
+
+
+;
+    association MeetingType
+       
+
+;
+    association SaleType
+       
+
+;
+    association ProductType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+   
+
+}
+
+enum SaleType {
+  Purchase
+
+
+;
+    association SaleType
+       
+
+;
+    association ProductType
+       
+
+  ;
+    generalization SaleType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+
+  ;
+    generalization MeetingType
+       
+
+  ;
+    generalization ProductType
+       
+
+  ;
+    generalization UserType
+       
+
+  ;
+    generalization CustomerType
+       
+
+  ;
+    generalization InteractionType
+       
+  ;
+    generalization ProductType
+       
+ 
+ ;}
+  }

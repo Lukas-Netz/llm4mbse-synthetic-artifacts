@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram ConversationalAI  {
+
+  class UI  {
+    void displayResponse(String response);
+  }
+
+  class NLP  {
+    Map<String, String> extractInformation(String input);
+  }
+
+  class KnowledgeBase  {
+    Map<String, Product> products;
+    Map<String, Promotion> promotions;
+    Map<String, StorePolicy> storePolicies;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    double price;
+    int availability;
+  }
+
+  class Promotion  {
+    String name;
+    String description;
+    double discount;
+  }
+
+  class StorePolicy  {
+    String name;
+    String description;
+  }
+
+  class ResponseGenerator  {
+    String generateResponse(Map<String, String> information);
+  }
+
+  class DialogueManager  {
+    void manageConversation(NLP nlp, KnowledgeBase knowledgeBase, ResponseGenerator responseGenerator);
+  }
+
+  composition UI -> NLP;
+  composition NLP -> KnowledgeBase;
+  composition KnowledgeBase -> Product[*];
+  composition KnowledgeBase -> Promotion[*];
+  composition KnowledgeBase -> StorePolicy[*];
+  composition ResponseGenerator -> KnowledgeBase;
+  composition DialogueManager -> NLP;
+  composition DialogueManager -> ResponseGenerator;
+}

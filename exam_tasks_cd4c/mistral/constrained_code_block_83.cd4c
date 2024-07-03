@@ -1,0 +1,125 @@
+
+classdiagram HIE {
+
+  class Patient {
+    String uniqueIdentifier;
+    DemographicInfo demographicInfo;
+    MedicalHistory medicalHistory;
+    TestResults testResults;
+    MedicationList medicationList;
+  }
+
+  class DemographicInfo {
+    String name;
+    Date dateOfBirth;
+    Address address;
+  }
+
+  class MedicalHistory {
+    List<Diagnosis> diagnoses;
+    List<Allergy> allergies;
+    List<Medication> medications;
+  }
+
+  class Diagnosis {
+    String diagnosisCode;
+    String diagnosisDescription;
+  }
+
+  class Allergy {
+    String allergyName;
+    String allergyDescription;
+  }
+
+  class Medication {
+    String medicationName;
+    String dosage;
+  }
+
+  class TestResults {
+    List<LabResult> labResults;
+    List<ImagingResult> imagingResults;
+    List<DiagnosticTest> diagnosticTests;
+  }
+
+  class LabResult {
+    String testName;
+    String testResult;
+  }
+
+  class ImagingResult {
+    String testName;
+    String testResult;
+  }
+
+  class DiagnosticTest {
+    String testName;
+    String testResult;
+  }
+
+  class HealthcareProvider {
+    String providerId;
+    String providerName;
+  }
+
+  class Request {
+    HealthcareProvider provider;
+    Patient patient;
+    RequestType requestType;
+  }
+
+  enum RequestType {
+    MedicalHistory, TestResults, MedicationList
+ 
+  (
+    composition
+    - Patient [1] --o_ * MedicalHistory, TestResults, MedicationList
+    - HealthcareProvider [1] --o_ * Request
+  )
+
+ 
+
+ ;
+}
+
+class Authentication {
+  String username;
+  String password;
+  boolean isAuthorized;
+}
+
+class Authorization {
+  HealthcareProvider provider;
+  Patient patient;
+  boolean isAuthorized;
+}
+
+class Storage {
+  Patient[] patientData;
+}
+
+class Reporting {
+  List<Patient> patientData;
+  List<String> trends;
+  List<String> patterns;
+}
+
+class Analytics {
+  List<Reporting> reports;
+}
+
+class HIE {
+  Storage storage;
+  Reporting reporting;
+  Analytics analytics;
+}
+
+class AuthenticationService {
+  Authentication authenticate(String username, String password);
+}
+
+
+
+
+
+}

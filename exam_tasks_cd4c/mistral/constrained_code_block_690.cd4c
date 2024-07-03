@@ -1,0 +1,84 @@
+
+classdiagram MaritimeDisasterSimulation {
+
+  class Vessel {
+    String uniqueIdentifier;
+    String name;
+    int grossTons;
+    VesselType type;
+    Cargo cargo;
+    Position position;
+    Speed speed;
+    Direction direction;
+  }
+
+  enum VesselType {
+    CargoShip, Tanker, PassengerShip;
+  }
+
+  class Cargo {
+    String type;
+    int quantity;
+  }
+
+  class Position {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed {
+    double value;
+    SpeedUnit unit;
+  }
+
+  enum SpeedUnit {
+    Knots, MilesPerHour;
+  }
+
+  class Direction {
+    double heading;
+    DirectionUnit unit;
+  }
+
+  enum DirectionUnit {
+    Degrees, Radians;
+  }
+
+  class Disaster {
+    DisasterType type;
+    Impact impact;
+  }
+
+  enum DisasterType {
+    Fire, Collision;
+  }
+
+  class Impact {
+    int severity;
+    ImpactType type;
+  }
+
+  enum ImpactType {
+    Structural, Cargo, Crew;
+  }
+
+  class RescueTeam {
+    String teamName;
+    Lifeboat lifeboat;
+    MedicalAid medicalAid;
+  }
+
+  class Lifeboat {
+    int capacity;
+  }
+
+  class MedicalAid {
+    int supplies;
+  }
+
+  composition Vessel [*] VesselType [n_vessels_per_type]
+  -- VesselType.cargo
+  - 											;
+  association Vessel -- RescueTeam;
+  association Vessel -- Disaster;
+}

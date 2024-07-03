@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram SmartContactLensSystem  {
+
+  class ContactLens  {
+    String uniqueIdentifier;
+    ContactLensType type;
+  }
+
+  enum ContactLensType  {
+    BloodGlucose, BloodPressure, HeartRate;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    ContactLens  [  ]
+  ContactLens  (ContactLens contactLens);
+  }
+
+  class MobileApp  {
+    String uniqueIdentifier;
+    User  [  ]
+  User  (User user);
+  }
+
+  class User  {
+    String username;
+  }
+
+  class Database  {
+    String uniqueIdentifier;
+  }
+
+  composition Sensor  ->  (has) ContactLens  [  1..*];
+  composition MobileApp  ->  (has) User  [  1..*];
+  composition Database  ->  (has) MobileApp  [  1..*];
+  association Sensor  ->  (connects) ContactLens  [  1..*];
+  association MobileApp  ->  (uses) Database  [  1..*];
+}

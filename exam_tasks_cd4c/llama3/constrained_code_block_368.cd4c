@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram PhotoEditingPlatform  {
+
+  class UserAccount  {
+    String username;
+    String password;
+    -> Photo[*];
+  }
+
+  class Photo  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    String format;
+    -> Tag[*];
+  }
+
+  class Tag  {
+    String keyword;
+  }
+
+  class Filter  {
+    String name;
+    double brightness;
+    double contrast;
+    double saturation;
+  }
+
+  class Effect  {
+    String name;
+    String texture;
+  }
+
+  class SocialMediaPlatform  {
+    String name;
+  }
+
+  composition UserAccount -> Photo[*];
+  composition Photo -> Tag[*];
+  composition Photo -> Filter[*];
+  composition Photo -> Effect[*];
+  composition Photo -> SocialMediaPlatform[*];
+}

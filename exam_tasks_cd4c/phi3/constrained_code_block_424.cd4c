@@ -1,0 +1,51 @@
+
+classdiagram OnlineCodingBootcamp {
+
+    class Course {
+      String name;
+      String description;
+      int duration;
+      Instructor instructor;
+      List<Section> sections;
+    }
+
+    class Instructor {
+      String name;
+      String email;
+      String bio;
+    }
+
+    class Section {
+      String name;
+      Date startDate;
+      Course course;
+    }
+
+    class Student {
+      String name;
+      List<CourseEnrollment> courseEnrollments;
+    }
+
+    class CourseEnrollment {
+      Course course;
+      Date startDate;
+      Date endDate;
+    }
+
+    class Admin {
+      void createCourse(Course course);
+      void enrollStudent(Student student, Course course);
+      void managePlatform();
+    }
+
+    class Payment {
+      String method;
+      double amount;
+    }
+
+    association Course -> Instructor [1..*];
+    association Course -> Section [1..*];
+    association Student -> CourseEnrollment [1..*];
+    association Admin -> OnlineCodingBootcamp [1];
+    composition Course -> Payment [0..1];
+}

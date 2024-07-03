@@ -1,0 +1,77 @@
+
+classdiagram WindFarmOptimization {
+
+  class WindFarm {
+    Turbine [
+     ] turbines;
+    ControlCenter controlCenter;
+  }
+
+  abstract class Turbine {
+    String uniqueIdentifier;
+    Location location;
+    TurbineStatus status;
+  }
+
+  class FixedSpeedTurbine extends Turbine {
+    int powerOutput;
+    int efficiency;
+    int noiseLevel;
+  }
+
+  class VariableSpeedTurbine extends Turbine {
+    int powerOutput;
+    int efficiency;
+    int noiseLevel;
+  }
+
+  class PitchControlledTurbine extends Turbine {
+    int powerOutput;
+    int efficiency;
+    int noiseLevel;
+  }
+
+  class ControlCenter {
+    WindFarm windFarm;
+    WeatherStation [
+     ] weatherStations;
+    WindDirectionSensor [
+     ] windDirectionSensors;
+    Database database;
+
+    void monitorTurbinePerformance();
+    void adjustTurbineSettings();
+    void scheduleMaintenance();
+  }
+
+  class WeatherStation {
+    String location;
+    int windSpeed;
+    int temperature;
+  }
+
+  class WindDirectionSensor {
+    String location;
+    int windDirection;
+  }
+
+  class Database {
+    void storeTurbinePerformanceData();
+    void storeWeatherData();
+    void storeMaintenanceSchedules();
+  }
+
+  class Location {
+    String latitude;
+    String longitude;
+  }
+
+  enum TurbineStatus {
+    Operational, NonOperational;
+  }
+
+  composition WindFarm -> Turbine [*];
+  composition ControlCenter -> WeatherStation [*];
+  composition ControlCenter -> WindDirectionSensor [*];
+  composition WindFarm -> ControlCenter;
+}

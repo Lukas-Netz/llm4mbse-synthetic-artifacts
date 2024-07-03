@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram EGovernmentPlatform  {
+
+  class UserAccount  {
+    String username;
+    String password;
+    UserAccountStatus status;
+  }
+
+  class Service  {
+    String id;
+    String description;
+    ServiceRequirements requirements;
+  }
+
+  class ServiceRequirements  {
+    List<Document> documents;
+    List<Information> information;
+  }
+
+  class Document  {
+    String name;
+    String content;
+  }
+
+  class Information  {
+    String name;
+    String value;
+  }
+
+  class PaymentGateway  {
+    void makePayment(Service service, double amount);
+  }
+
+  class NotificationSystem  {
+    void sendNotification(UserAccount user, Service service, String message);
+  }
+
+  class FeedbackMechanism  {
+    void provideFeedback(UserAccount user, Service service, String feedback);
+  }
+
+  class Administrator  {
+    void createService(Service service);
+    void updateService(Service service);
+    void deleteService(Service service);
+    void viewUserAccount(UserAccount user);
+    void managePaymentTransaction(PaymentTransaction transaction);
+  }
+
+  class PaymentTransaction  {
+    double amount;
+    Service service;
+  }
+
+  class ServiceCatalog  {
+    List<Service> services;
+  }
+
+  composition EGovernmentPlatform -> (has) UserAccount;
+  composition EGovernmentPlatform -> (has) ServiceCatalog;
+  composition EGovernmentPlatform -> (has) PaymentGateway;
+  composition EGovernmentPlatform -> (has) NotificationSystem;
+  composition EGovernmentPlatform -> (has) FeedbackMechanism;
+  composition EGovernmentPlatform -> (has) Administrator;
+  composition Administrator -> (has) PaymentTransaction;
+  composition Service -> (has) ServiceRequirements;
+  composition Service -> (has) PaymentTransaction;
+  composition UserAccount -> (has) PaymentTransaction;
+}

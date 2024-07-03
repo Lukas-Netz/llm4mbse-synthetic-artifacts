@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram ProstheticLimbSystem  {
+
+  class ProstheticLimbType  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class ProstheticLimbComponent  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Patient  {
+    String name;
+    -> ProstheticLimb[*];
+  }
+
+  class ProstheticLimb  {
+    -> ProstheticLimbType;
+    -> ProstheticLimbComponent[*];
+    -> ManufacturingProcess;
+    -> QualityControl;
+    -> Patient;
+  }
+
+  class ManufacturingProcess  {
+    -> Stage[*];
+  }
+
+  class Stage  {
+    String name;
+  }
+
+  class QualityControl  {
+    -> Test[*];
+  }
+
+  class Test  {
+    String name;
+  }
+
+  composition ProstheticLimbType -> ProstheticLimb[*];
+  composition ProstheticLimbComponent -> ProstheticLimb[*];
+  composition Patient -> ProstheticLimb[*];
+  composition ProstheticLimb -> ManufacturingProcess;
+  composition ProstheticLimb -> QualityControl;
+  composition ManufacturingProcess -> Stage[*];
+  composition QualityControl -> Test[*];
+}

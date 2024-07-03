@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram OnlineGroceryDelivery  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    Address address;
+  }
+
+  class Order  {
+    Customer customer;
+    List<Product> products;
+    OrderStatus status;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    double price;
+    int quantity;
+    UnitPrice unitPrice;
+  }
+
+  enum UnitPrice  {
+    PER_KG, PER_LITER, PER_UNIT;
+  }
+
+  class Category  {
+    String name;
+    List<Product> products;
+  }
+
+  class Address  {
+    String street;
+    String city;
+    String state;
+    String zip;
+  }
+
+  enum OrderStatus  {
+    PENDING, IN_TRANSIT, DELIVERED, CANCELED;
+  }
+
+  composition Customer -> Order [0..*];
+  composition Order -> Product [*];
+  composition Product -> Category [0..1];
+  composition Category -> Product [*];
+}
+

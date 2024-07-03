@@ -1,0 +1,81 @@
+
+classdiagram OnlineCoursePlatform {
+
+    class Course {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      List<String> topics;
+      List<Section> sections;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+      List<Section> enrolledSections;
+    }
+
+    class Instructor extends User {
+      void createCourse(Course course);
+      void uploadMaterial(Course course, String materialType, String materialContent);
+    }
+
+    class Student extends User {
+      void enrollInCourse(Course course);
+      void completeLesson(Section section);
+      void viewProgress(Section section);
+    }
+
+    class Section {
+      String uniqueIdentifier;
+      String type;
+      List<Lesson> lessons;
+      User enrolledUser;
+    }
+
+    class Lesson {
+      String lessonIdentifier;
+      String lessonContent;
+      boolean isCompleted;
+      int score;
+    }
+
+    class Quiz {
+      String quizIdentifier;
+      QuizType type;
+      List<Question> questions;
+    }
+
+    class Question {
+      String questionIdentifier;
+      String questionContent;
+      QuizAnswer expectedAnswer;
+    }
+
+    class QuizAnswer {
+      String answer;
+    }
+
+    enum QuizType {
+      MultipleChoice, TrueFalse, OpenEnded;
+    }
+
+    class Analytics {
+      void trackStudentEngagement(User user);
+      void trackStudentProgress(User user, Section section);
+    }
+
+    class PaymentGateway {
+      void processPayment(User user, Course course);
+    }
+
+    association Course -> Section [*];
+    association Course -> Lesson [*];
+    association Course -> Quiz [*];
+    composition User -> Section [*];
+    composition User -> Lesson [*];
+    composition User -> Quiz [*];
+    composition User -> Analytics [*];
+    composition User -> PaymentGateway [*];
+   
+ }

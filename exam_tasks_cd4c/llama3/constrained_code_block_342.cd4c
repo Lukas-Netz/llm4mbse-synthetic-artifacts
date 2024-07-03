@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram SmartThermostat  {
+
+  class Thermostat  {
+    String uniqueIdentifier;
+    String name;
+    TemperatureRange temperatureRange;
+    Temperature currentTemperature;
+    Room room;
+  }
+
+  class Hub  {
+    String name;
+    void setTemperatureRange(Thermostat thermostat, TemperatureRange temperatureRange);
+    TemperatureRange getTemperatureRange(Thermostat thermostat);
+    void turnHeatingOn(Thermostat thermostat);
+    void turnCoolingOn(Thermostat thermostat);
+  }
+
+  class Room  {
+    String name;
+    int size;
+  }
+
+  class WeatherService  {
+    Temperature currentTemperature;
+    double currentHumidity;
+    void adjustTemperatureRange(Thermostat thermostat);
+  }
+
+  class TemperatureRange  {
+    double minTemperature;
+    double maxTemperature;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  composition Hub  ->  (has) Thermostat[*];
+  composition Thermostat  ->  (has) Room;
+  composition WeatherService  ->  (has) Temperature;
+  composition WeatherService  ->  (has) double;
+  association Thermostat  ->  (uses) WeatherService;
+  association Room  ->  (has) Thermostat;
+}

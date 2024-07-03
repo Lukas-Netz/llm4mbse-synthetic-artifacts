@@ -1,0 +1,44 @@
+
+classdiagram IndustrialIoT {
+
+    class Equipment {
+      String type;
+      String id;
+      String pressure;
+      String temperature;
+      String flowRate;
+    }
+
+    class Sensor {
+      String id;
+      Equipment equipment;
+      String data;
+      void sendData(CentralControlUnit centralControlUnit);
+    }
+
+    class Actuator {
+      String id;
+      Equipment equipment;
+      void executeCommand(CentralControlUnit centralControlUnit);
+    }
+
+    class CentralControlUnit {
+      List<Sensor> sensors;
+      List<Actuator> actuators;
+      void collectData();
+      void analyzeData();
+      void sendCommand(Actuator actuator);
+      void displayUI();
+    }
+
+    class UserInterface {
+      void displayEquipmentStatus();
+      void sendCommand(Actuator actuator);
+    }
+
+    composition Equipment -> (has) Sensor;
+    composition Equipment -> (has) Actuator;
+    composition CentralControlUnit -> (has) Sensor [*];
+    composition CentralControlUnit -> (has) Actuator [*];
+    composition CentralControlUnit -> (has) UserInterface [0..1];
+}

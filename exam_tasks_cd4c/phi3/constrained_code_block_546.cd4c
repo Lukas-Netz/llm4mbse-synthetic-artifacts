@@ -1,0 +1,49 @@
+
+classdiagram AstronomicalInstrumentation {
+
+    class Instrument {
+      String name;
+      String uniqueIdentifier;
+      List<Sensor> sensors;
+      void addSensor(Sensor sensor);
+      void removeSensor(Sensor sensor);
+      void addData(Data data);
+      void runAnalysis(Analysis analysis);
+      Result getResult(String resultName);
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      String name;
+      List<Data> collectedData;
+    }
+
+    class Data {
+      String timestamp;
+      double value;
+      String unit;
+    }
+
+    class Analysis {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      void performAnalysis(List<Data> data);
+      Result getResult(String resultName);
+    }
+
+    class Result {
+      String uniqueIdentifier;
+      String name;
+      double value;
+    }
+
+    association Instrument 
+      hasSensors [Sensor]
+
+    -> Data [*];
+    association Analysis 
+      performsAnalysis [Data]
+
+    -> Result [*];
+}

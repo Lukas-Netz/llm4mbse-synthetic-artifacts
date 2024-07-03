@@ -1,0 +1,53 @@
+
+classdiagram VirtualWineTastingPlatform {
+
+    class WineTasting {
+      String uniqueID;
+      String name;
+      String description;
+      Date date;
+      List<Wine> wines;
+    }
+
+    class Wine {
+      String name;
+      int vintage;
+      int rating;
+    }
+
+    class User {
+      String uniqueID;
+      String name;
+      String email;
+      List<WineTasting> attendedWineTastings;
+      List<Wine> ratedWines;
+    }
+
+    class WineTastingRating {
+      User user;
+      Wine wine;
+      int rating;
+    }
+
+    class WineTastingPlatform {
+      List<WineTasting> wineTastings;
+      Map<String, Wine> winesRatings;
+      Map<String, Integer> usersJoined;
+      Map<String, Integer> winesRated;
+
+      void createWineTasting(WineTasting wineTasting);
+      void joinWineTasting(User user, String wineTastingID);
+      void leaveWineTasting(User user, String wineTastingID);
+      void rateWine(User user, Wine wine, int rating);
+      double getAverageRating(String wineName);
+    }
+
+  composition User -> WineTasting;
+  composition User -> WineTastingRating;
+  composition User -> WineTastingPlatform;
+  composition WineTasting -> Wine;
+  composition WineTasting -> WineTastingRating;
+  composition WineTasting -> User;
+  composition WineTasting -> WineTastingPlatform;
+  composition WineTastingPlatform -> WineTasting;
+}

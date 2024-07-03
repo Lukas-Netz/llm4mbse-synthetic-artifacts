@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram CropSprayingSystem  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    DroneType type;
+  }
+
+  enum DroneType  {
+    SprayingDrone,
+    MonitoringDrone
+  ;}
+
+  class SprayingDrone extends Drone  {
+    int sprayCapacity;
+    void sprayField(Field field);
+  }
+
+  class MonitoringDrone extends Drone  {
+    Camera camera;
+    void takePicture(Field field);
+  }
+
+  class Field  {
+    String name;
+    int size;
+  }
+
+  class WeatherStation  {
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class WindSpeed  {
+    double value;
+  }
+
+  class Camera  {
+    void takePicture();
+  }
+
+  composition CropSprayingSystem -> (has) Drone[*];
+  composition CropSprayingSystem -> (has) Field[*];
+  composition CropSprayingSystem -> (has) WeatherStation[*];
+  composition Drone -> (has) Camera [0..1];
+  composition SprayingDrone -> (has) sprayCapacity;
+  composition MonitoringDrone -> (has) camera;
+  composition Field -> (has) size;
+  composition WeatherStation -> (has) temperature;
+  composition WeatherStation -> (has) humidity;
+  composition WeatherStation -> (has) windSpeed;
+}

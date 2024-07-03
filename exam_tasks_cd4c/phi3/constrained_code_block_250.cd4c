@@ -1,0 +1,79 @@
+
+classdiagram SmartInfrastructureManagement {
+
+    class Infrastructure {
+      String uniqueIdentifier;
+      InfrastructureType type;
+      InfrastructureStatus condition;
+      Location location;
+    }
+
+    class Road extends Infrastructure {
+      int trafficVolume;
+      int speedLimit;
+      RoadSurfaceType surfaceType;
+    }
+
+    class Bridge extends Infrastructure {
+      String bridgeType;
+      int length;
+      Material material;
+    }
+
+    class Building extends Infrastructure {
+      String buildingType;
+      int floorCount;
+      float occupancyRate;
+    }
+
+    class Sensor {
+      String sensorType;
+      String location;
+      float temperature;
+      float humidity;
+      float vibration;
+    }
+
+    class Camera {
+      String cameraType;
+      String location;
+      String image;
+      String video;
+    }
+
+    class SystemAdministrator {
+      void addInfrastructure(Infrastructure infrastructure);
+      void removeInfrastructure(Infrastructure infrastructure);
+      void updateInfrastructure(Infrastructure infrastructure);
+      void configureSensor(Sensor sensor);
+      void configureCamera(Camera camera);
+    }
+
+    enum InfrastructureType {
+      Highway, LocalRoad, Bridge, Building
+   
+   
+   ;}
+
+    enum InfrastructureStatus {
+      Damaged, UnderMaintenence, Good
+   
+   
+   ;}
+
+    enum RoadSurfaceType {
+      Asphalt, Concrete, Gravel
+   
+   
+   ;}
+
+    enum Material {
+      Steel, Concrete, Wood
+   
+   
+   ;}
+
+    association SystemAdministrator -> (has) Infrastructure;
+    association Infrastructure -> (has) Sensor;
+    association Infrastructure -> (has) Camera;
+}

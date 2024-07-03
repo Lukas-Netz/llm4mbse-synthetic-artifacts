@@ -1,0 +1,55 @@
+
+classdiagram NuclearReactorControlSystem {
+
+  class Reactor {
+    String uniqueIdentifier;
+    ReactorStatus status;
+  }
+
+  enum ReactorStatus {
+    Operational, NonOperational;
+  }
+
+  class CoolingSystem {
+    String type;
+    double capacity;
+  }
+
+  class MonitoringSystem {
+    Sensor [][] sensors;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    double reading;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, Pressure, Radiation;
+  }
+
+  class AlarmSystem {
+    Condition [][] conditions;
+  }
+
+  class Condition {
+    String description;
+    boolean isTriggered;
+  }
+
+  class SystemAdmin {
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void modifySensor(Sensor sensor);
+    void addAlarm(Alarm alarm);
+    void removeAlarm(Alarm alarm);
+    void modifyAlarm(Alarm alarm);
+    void setReactorStatus(Reactor reactor, ReactorStatus status);
+  }
+
+  composition NuclearReactorControlSystem -> Reactor;
+  composition NuclearReactorControlSystem -> CoolingSystem;
+  composition NuclearReactorControlSystem -> MonitoringSystem;
+  composition NuclearReactorControlSystem -> AlarmSystem;
+}

@@ -1,0 +1,73 @@
+
+classdiagram RefugeeCamp {
+
+  class Camp {
+    String name;
+    String location;
+    Camp(String name, String location);
+    void addTent(Tent tent);
+    void removeTent(Tent tent);
+    void updateCampInfo(String newName, String newLocation);
+    Tent getTent(String tentName);
+  }
+
+  class Tent {
+    String name;
+    int capacity;
+    Tent(String name, int capacity);
+    void addRefugee(Refugee refugee);
+    void removeRefugee(Refugee refugee);
+    void updateTentInfo(String newName, int newCapacity);
+    Refugee getRefugee(String refugeeID);
+    List<Refugee> getRefugees();
+    void addActivity(Activity activity);
+    void removeActivity(Activity activity);
+    Activity getActivity(String activityName);
+    List<Activity> getActivities();
+  }
+
+  class Refugee {
+    String ID;
+    String name;
+    String dateOfBirth;
+    Refugee(String ID, String name, String dateOfBirth);
+    void assignToTent(Tent tent);
+    Tent getAssignedTent();
+    void updateRefugeeInfo(String newName, String newDateOfBirth);
+  }
+
+  class Activity {
+    String name;
+    String description;
+    Activity(String name, String description);
+    void assignToTent(Tent tent);
+    Tent getAssignedTent();
+    void updateActivityInfo(String newName, String newDescription);
+  }
+
+  class Volunteer {
+    String ID;
+    String name;
+    String role;
+    Volunteer(String ID, String name, String role);
+    void assignToCamp(Camp camp);
+    Camp getAssignedCamp();
+    void updateVolunteerInfo(String newName, String newRole);
+  }
+
+  class Donation {
+    String ID;
+    String description;
+    int quantity;
+    Donation(String ID, String description, int quantity);
+    void assignToCamp(Camp camp);
+    Camp getAssignedCamp();
+    void updateDonationInfo(String newDescription, int newQuantity);
+  }
+
+  composition Camp -> Tent [*];
+  composition Tent -> Refugee [*];
+  composition Tent -> Activity [*];
+  composition Camp -> Volunteer [*];
+  composition Camp -> Donation [*];
+}

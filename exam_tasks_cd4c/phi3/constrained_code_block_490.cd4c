@@ -1,0 +1,36 @@
+
+classdiagram UniversityOnlineLiterature {
+
+    class Course {
+      String title;
+      String description;
+      Date startDate;
+      Date endDate;
+      Instructor instructor;
+      List<Section> sections;
+    }
+
+    class Instructor {
+      String name;
+      String department;
+      List<Course> coursesTaught;
+    }
+
+    class Student {
+      String name;
+      String studentID;
+      List<Course> enrolledCourses;
+    }
+
+    class Section {
+      Date startDate;
+      Date endDate;
+      int capacity;
+      List<Student> enrolledStudents;
+    }
+
+    association Course -> Instructor;
+    association Course -> Section;
+    association Student -> Course;
+    association Student -> Section;
+}

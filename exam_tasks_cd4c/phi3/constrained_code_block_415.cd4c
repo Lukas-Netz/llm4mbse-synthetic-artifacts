@@ -1,0 +1,84 @@
+
+classdiagram PoetryReadingPlatform {
+
+    class User {
+      String username;
+      String email;
+      List<Role> roles;
+    }
+
+    class Role {
+      String name;
+    }
+
+    class Poem {
+      String title;
+      String content;
+      PoemType type;
+      List<User> authors;
+    }
+
+    class Reading {
+      String title;
+      String description;
+      Date date;
+      List<Poem> poems;
+      User organizer;
+      List<User> participants;
+      AudioRecording audioRecording;
+      List<Review> reviews;
+    }
+
+    class AudioRecording {
+      String filePath;
+      String fileFormat;
+    }
+
+    class Review {
+      String content;
+      User reviewer;
+      int rating;
+    }
+
+    class Search {
+      String query;
+      List<Reading> results;
+      List<Poem> results;
+    }
+
+    association Poem 
+      Poem.authors 
+      -> User [1..*];
+
+    association Reading 
+      Reading.organizer 
+      -> User [1];
+
+    association Reading 
+      Reading.participants 
+      -> User [0..*];
+
+    association Reading 
+      Reading.reviews 
+      -> Review [0..*];
+
+    association Reading 
+      Reading.audioRecording 
+      -> AudioRecording [0..1];
+
+    association Reading 
+      Reading.searchResults 
+      -> Search [1];
+
+    association Poem 
+      Poem.authors 
+      -> User [1..*];
+
+    association Poem 
+      Poem.reading 
+      -> Reading [1];
+
+    association Poem 
+      Poem.searchResults 
+      -> Search [1];
+}

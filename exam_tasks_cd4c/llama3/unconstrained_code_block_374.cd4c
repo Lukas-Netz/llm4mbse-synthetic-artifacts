@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram MobileVeterinaryClinic  {
+
+  class MobileVeterinaryClinic  {
+    String name;
+    String uniqueIdentifier;
+    Team team;
+    Schedule schedule;
+    Inventory inventory;
+  }
+
+  class Team  {
+    Veterinarian[] veterinarians;
+    Technician[] technicians;
+  }
+
+  class Veterinarian  {
+    String name;
+    Role role;
+  }
+
+  class Technician  {
+    String name;
+    Role role;
+  }
+
+  class Schedule  {
+    Visit[] visits;
+  }
+
+  class Visit  {
+    Location location;
+    Animal[] animals;
+  }
+
+  class Location  {
+    String name;
+  }
+
+  class Animal  {
+    String name;
+    Species species;
+    Condition[] conditions;
+  }
+
+  class Species  {
+    String name;
+  }
+
+  class Condition  {
+    String name;
+  }
+
+  class Inventory  {
+    Item[] items;
+  }
+
+  class Item  {
+    String name;
+    int quantity;
+  }
+
+  composition MobileVeterinaryClinic -> (has) Team;
+  composition MobileVeterinaryClinic -> (has) Schedule;
+  composition MobileVeterinaryClinic -> (has) Inventory;
+  composition Team -> Veterinarian[*];
+  composition Team -> Technician[*];
+  composition Schedule -> Visit[*];
+  composition Visit -> Location;
+  composition Visit -> Animal[*];
+  composition Inventory -> Item[*];
+}

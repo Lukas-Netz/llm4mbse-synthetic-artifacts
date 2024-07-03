@@ -1,0 +1,66 @@
+
+classdiagram EGovernmentServices {
+
+    class UserAccount {
+      String username;
+      String password;
+      String email;
+      void login();
+      void logout();
+      void updateProfile();
+    }
+
+    class Service {
+      String serviceId;
+      String description;
+      List<Requirement> requirements;
+      void processRequest();
+    }
+
+    class Requirement {
+      String type;
+      String value;
+    }
+
+    class Payment {
+      String transactionId;
+      double amount;
+      String currency;
+      void processPayment();
+    }
+
+    class Notification {
+      String message;
+      String timestamp;
+      void sendNotification();
+    }
+
+    class Feedback {
+      String feedbackId;
+      String content;
+      String timestamp;
+      void submitFeedback();
+    }
+
+    class ServiceCatalog {
+      List<Service> services;
+      void displayServices();
+    }
+
+    class Administrator {
+      void createService(Service service);
+      void updateService(Service service);
+      void deleteService(String serviceId);
+      void manageUserAccounts();
+      void managePayments();
+    }
+
+    composition UserAccount -> (has) ServiceCatalog;
+    composition UserAccount -> (has) Payment;
+    composition UserAccount -> (has) Notification;
+    composition UserAccount -> (has) Feedback;
+    composition ServiceCatalog -> (has) Service [*];
+    composition Administrator -> (has) ServiceCatalog;
+    composition Administrator -> (has) UserAccount;
+    composition Administrator -> (has) Payment;
+}

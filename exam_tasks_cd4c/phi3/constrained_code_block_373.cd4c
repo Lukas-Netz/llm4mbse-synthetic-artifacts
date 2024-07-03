@@ -1,0 +1,103 @@
+
+classdiagram VoIPService {
+
+    class User {
+      String username;
+      String password;
+      List<PhoneNumber> phoneNumbers;
+      List<Device> devices;
+    }
+
+    class PhoneNumber {
+      String number;
+      Device device;
+    }
+
+    class Device {
+      String type;
+      User owner;
+    }
+
+    class Softphone extends Device {
+      String softwareVersion;
+    }
+
+    class Hardphone extends Device {
+      String hardwareModel;
+    }
+
+    class Voicemail {
+      String message;
+    }
+
+    class Call {
+      String callerNumber;
+      String receiverNumber;
+      Voicemail voicemail;
+      CallStatus status;
+    }
+
+    class CallStatus {
+      Ongoing Offline
+   
+   
+   ;}
+
+    <<association>> class User {
+      - List<PhoneNumber> phoneNumbers;
+      - List<Device> devices;
+    }
+
+    <<association>> class PhoneNumber {
+      - Device device;
+    }
+
+    <<association>> class Device {
+      - User owner;
+    }
+
+    <<association>> class Softphone {
+      - Device device;
+    }
+
+    <<association>> class Hardphone {
+      - Device device;
+    }
+
+    <<association>> class Voicemail {
+      - Call call;
+    }
+
+    <<association>> class Call {
+      - PhoneNumber callerNumber;
+      - PhoneNumber receiverNumber;
+      - Voicemail voicemail;
+      - CallStatus status;
+    }
+
+    <<association>> class CallStatus {
+      - Call call;
+    }
+
+    <<aggregation>> class VoIPService {
+      List<User> users;
+      List<Device> devices;
+      CallAnalytics analytics;
+
+      void addUser(User user);
+      void removeUser(User user);
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      void makeCall(String callerNumber, String receiverNumber);
+      void handleVoicemail(Call call);
+      void generateReport();
+    }
+
+    class CallAnalytics {
+      int totalCalls;
+      int successfulCalls;
+      int failedCalls;
+      float averageCallDuration;
+      float callQuality;
+    }
+}

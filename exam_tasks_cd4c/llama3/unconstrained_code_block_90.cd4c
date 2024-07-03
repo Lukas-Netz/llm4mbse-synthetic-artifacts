@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram IdentityManagement  {
+
+  class User  {
+    String uniqueIdentifier;
+    -> Identity[*];
+  }
+
+  class Organization  {
+    -> User[*];
+    -> Identity[*];
+  }
+
+  class Identity  {
+    String name;
+    String description;
+    IdentityStatus status;
+  }
+
+  class Blockchain  {
+    -> Node[*];
+  }
+
+  class Node  {
+    String uniqueIdentifier;
+  }
+
+  enum IdentityStatus  {
+    Active, Inactive;
+  }
+
+  composition User -> Identity[*];
+  composition Organization -> Identity[*];
+  composition Blockchain -> Node[*];
+}

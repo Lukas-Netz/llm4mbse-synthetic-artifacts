@@ -1,0 +1,116 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- classdiagramComplete
+  
+  
+  
+  
+  
+  {class SmartHome
+    
+    
+ ;- Hub
+    
+    
+ <eos> BackupPower
+    
+  
+  
+;- Composition SmartHome  (has Hub)
+;- Composition SmartHome  (has BackupPower)
+  
+  
+  
+  ;association Hub  (has Device)
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;class Light
+  
+  
+  ;class Thermostat
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;class BackupPower
+  
+  
+  
+  ;enum DeviceStatus
+  
+  
+  ;enum ThermostatMode
+  
+  
+  
+  ;- Composition Hub  (has Device)
+  
+  
+  
+  ;class Artist
+  
+  
+  ;class Artwork
+  
+  
+  
+  ;class Exhibition
+  
+  
+  
+  ;- Composition Exhibition  (has Artwork)
+  
+  
+  
+  ;association Artist  (has Exhibition)
+  
+  
+  
+  ;association Artwork  (has Exhibition)
+  
+  
+  
+  ;association Exhibition  (has Artwork)
+  
+  
+  
+  ;}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  composition SmartHome  (has)  <-> Hub
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

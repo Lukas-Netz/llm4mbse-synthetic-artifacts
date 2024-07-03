@@ -1,0 +1,51 @@
+
+classdiagram FraudPreventionSystem {
+
+    class Transaction {
+      String transactionId;
+      String timestamp;
+    }
+
+    class User {
+      String userId;
+      String ipAddress;
+      String browserType;
+      String deviceType;
+    }
+
+    class Merchant {
+      String merchantId;
+      String businessName;
+      String address;
+      String industry;
+    }
+
+    class FraudPreventionSystem {
+      Database database;
+      AIModel aiModel;
+      RulesEngine rulesEngine;
+      NotificationSystem notificationSystem;
+
+      void analyzeTransaction(Transaction transaction);
+      void applyRules(Transaction transaction);
+      void sendAlert(Transaction transaction);
+    }
+
+    class Database {
+      void storeTransaction(Transaction transaction);
+      void storeUser(User user);
+      void storeMerchant(Merchant merchant);
+    }
+
+    class AIModel {
+      void analyzeData(Transaction transaction);
+    }
+
+    class RulesEngine {
+      void applyRules(Transaction transaction);
+    }
+
+    class NotificationSystem {
+      void sendAlert(Transaction transaction);
+    }
+}

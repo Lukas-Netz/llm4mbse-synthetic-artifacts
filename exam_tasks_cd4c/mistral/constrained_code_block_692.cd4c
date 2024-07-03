@@ -1,0 +1,83 @@
+
+classdiagram FashionApp {
+
+  class Catalog {
+    -> ClothingItem [*];
+  }
+
+  class ClothingItem {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ClothingType type;
+    Color color;
+    Size size;
+    Material material;
+    Price price;
+  }
+
+  enum ClothingType {
+    Top, Bottom, Dress, Outerwear;
+  }
+
+  enum Color {
+    Red, Blue, Green, Yellow, Black, White;
+  }
+
+  enum Size {
+    XS, SXS, SML, MD, LG, XL, XXL;
+  }
+
+  enum Material {
+    Cotton, Polyester, Wool, Leather, Silk;
+  }
+
+  class Price {
+    double amount;
+    Currency currency;
+  }
+
+  enum Currency {
+    USD, EUR, GBP, CAD, AUD;
+  }
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Order {
+    String orderDate;
+    OrderStatus orderStatus;
+    -> ClothingItem [*];
+  }
+
+  enum OrderStatus {
+    Pending, Processing, Shipped, Delivered, Cancelled;
+  }
+
+  class ARModel {
+    ClothingItem clothingItem;
+    User user;
+    Point3D position;
+    Rotation rotation;
+  }
+
+  class Point3D {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Rotation {
+    double xAngle;
+    double yAngle;
+    double zAngle;
+  }
+
+  composition Catalog -> ClothingItem;
+  association User <- Order;
+  association Order -> ClothingItem;
+  association ARModel <- User;
+}

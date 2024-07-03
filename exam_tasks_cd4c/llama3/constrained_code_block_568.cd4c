@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram AutonomousAgriculture  {
+
+  class Farm  {
+    String name;
+    Location location;
+  }
+
+  class Field  {
+    String name;
+    int size;
+    CropType type;
+  }
+
+  class Tractor  {
+    String uniqueIdentifier;
+    String name;
+    TractorType type;
+    Location currentLocation;
+    Task currentTask;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class CropType  {
+    String name;
+  }
+
+  class TractorType  {
+    String name;
+  }
+
+  class Task  {
+    String name;
+  }
+
+  class Report  {
+    Tractor tractor;
+    Field field;
+    String performance;
+  }
+
+  composition Farm  ->  (has) Field[*];
+  composition Farm  ->  (has) Tractor[*];
+  composition Field  ->  (has) Crop;
+  composition Tractor  ->  (has) Task;
+  composition Report  ->  (has) Tractor;
+  composition Report  ->  (has) Field;
+}

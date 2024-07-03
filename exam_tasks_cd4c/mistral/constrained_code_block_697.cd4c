@@ -1,0 +1,52 @@
+
+classdiagram SmartHomeElderly {
+
+  class Robot {
+    String name;
+    String uniqueIdentifier;
+    int batteryLevel;
+    void recharge(ChargingStation chargingStation);
+  }
+
+  class Caregiver {
+    String uniqueIdentifier;
+    void controlRobot(Robot robot);
+    void monitorRobot();
+    void receiveNotifications();
+  }
+
+  class ChargingStation {
+    int capacityWh;
+  }
+
+  class Light {
+    String uniqueIdentifier;
+    boolean isOn;
+  }
+
+  class Thermostat {
+    String uniqueIdentifier;
+    int temperature;
+  }
+
+  class SecurityCamera {
+    String uniqueIdentifier;
+    boolean isRecording;
+  }
+
+  class SmartHome {
+    Robot robot;
+    Caregiver caregiver;
+    Light [ ] lights;
+    Thermostat thermostat;
+    SecurityCamera securityCamera;
+    ChargingStation chargingStation;
+  }
+
+  composition SmartHome -> Robot;
+  composition SmartHome -> Caregiver;
+  composition SmartHome -> ChargingStation [0..1];
+  association SmartHome -> Light [*];
+  association SmartHome -> Thermostat;
+  association SmartHome -> SecurityCamera;
+}

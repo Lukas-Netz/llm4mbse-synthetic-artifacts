@@ -1,0 +1,71 @@
+
+classdiagram VirtualEscapeRoom {
+
+    class VirtualEscapeRoom {
+      String name;
+      String uniqueIdentifier;
+      Theme theme;
+      List<Puzzle> puzzles;
+      Timer timer;
+      List<Player> players;
+    }
+
+    class Player {
+      String uniqueIdentifier;
+      int score;
+    }
+
+    class Puzzle {
+      int difficultyLevel;
+      String solution;
+      boolean isSolved;
+    }
+
+    class Theme {
+      String type;
+    }
+
+    class Timer {
+      int remainingTime;
+    }
+
+    association VirtualEscapeRoom 
+      has 
+        -> List<<Puzzle, Puzzle>>;
+
+    association VirtualEscapeRoom 
+      has 
+        -> List<<Player, Player>>;
+
+    association VirtualEscapeRoom 
+      has 
+        -> Timer;
+
+    association VirtualEscapeRoom 
+      has 
+        -> Theme;
+
+    association VirtualEscapeRoom 
+      has 
+        -> String;
+
+    association VirtualEscapeRoom 
+      has 
+        -> String;
+
+    association Player 
+      with 
+        -> VirtualEscapeRoom;
+
+    association Puzzle 
+      with 
+        -> VirtualEscapeRoom;
+
+    association Theme 
+      with 
+        -> VirtualEscapeRoom;
+
+    association Timer 
+      with 
+        -> VirtualEscapeRoom;
+}

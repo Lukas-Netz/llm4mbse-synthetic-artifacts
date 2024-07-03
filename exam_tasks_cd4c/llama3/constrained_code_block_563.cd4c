@@ -1,0 +1,64 @@
+
+
+
+classdiagram SatelliteImagingSystem  {
+
+  class Satellite  {
+    String name;
+    String identifier;
+    SatelliteState state;
+  }
+
+  class GroundStation  {
+    String name;
+    String identifier;
+  }
+
+  class ProcessingCenter  {
+    String name;
+    String identifier;
+  }
+
+  class Image  {
+    String name;
+    Date timestamp;
+    int resolution;
+  }
+
+  class Sensor  {
+    String name;
+    String identifier;
+    SensorType type;
+  }
+
+  class Algorithm  {
+    String name;
+    String identifier;
+    AlgorithmType type;
+  }
+
+  enum SatelliteState  {
+    Idle,
+    Capturing,
+    Transmitting
+  ;}
+
+  enum SensorType  {
+    Camera,
+    Spectrometer,
+    Radar
+  ;}
+
+  enum AlgorithmType  {
+    ImageEnhancement,
+    ObjectDetection,
+    ChangeDetection
+  ;}
+
+  composition Satellite -> Sensor [*];
+  composition Sensor -> Algorithm [*];
+  composition Algorithm -> Image [*];
+  composition Satellite -> GroundStation;
+  composition GroundStation -> ProcessingCenter;
+  composition ProcessingCenter -> Image [*];
+}

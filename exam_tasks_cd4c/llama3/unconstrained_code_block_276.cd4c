@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram UrbanFarming  {
+
+  class Farm  {
+    String uniqueIdentifier;
+    Location location;
+    -> Plot[*];
+  }
+
+  class Plot  {
+    String uniqueIdentifier;
+    int size;
+    CropType type;
+    -> Crop[*];
+  }
+
+  class Crop  {
+    String uniqueIdentifier;
+    CropType type;
+    GrowthStage growthStage;
+  }
+
+  class WeatherStation  {
+    -> WeatherData[*];
+  }
+
+  class WeatherData  {
+    double temperature;
+    double humidity;
+    double precipitation;
+  }
+
+  class Admin  {
+    -> Farm[*];
+    -> Plot[*];
+    -> Crop[*];
+  }
+
+  enum CropType  {
+    Vegetable, Fruit, Herb;
+  }
+
+  enum GrowthStage  {
+    Seedling, Mature;
+  }
+
+  composition Farm -> Plot[*];
+  composition Plot -> Crop[*];
+  composition Admin -> Farm[*];
+  composition Admin -> Plot[*];
+  composition Admin -> Crop[*];
+}

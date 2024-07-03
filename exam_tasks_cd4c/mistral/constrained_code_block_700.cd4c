@@ -1,0 +1,52 @@
+
+classdiagram CarbonFootprint {
+
+  class Node {
+    void storeData(CarbonFootprint carbonFootprint);
+    boolean verifyData(CarbonFootprint carbonFootprint);
+  }
+
+  class User {
+    void createCarbonFootprint(CarbonFootprint carbonFootprint);
+    void updateCarbonFootprint(CarbonFootprint carbonFootprint);
+    CarbonFootprint queryCarbonFootprint(String id);
+  }
+
+  class CarbonFootprint {
+    String id;
+    Date dateTime;
+    Location location;
+    double co2Emitted;
+    CarbonFootprintCategory category;
+    CarbonFootprintUnit unit;
+  }
+
+  class CarbonFootprintCategory {
+    String name;
+  }
+
+  class CarbonFootprintUnit {
+    String name;
+    double conversionFactor;
+  }
+
+  class Location {
+    String latitude;
+    String longitude;
+  }
+
+  class Block {
+    CarbonFootprint carbonFootprint;
+    String hash;
+    Block previousBlock;
+  }
+
+  class Blockchain {
+    Block head;
+    Block tail;
+  }
+
+  composition Node [*] has (participates) -> Blockchain;
+  association User [*] has (interacts) -> CarbonFootprint [*];
+  association CarbonFootprint [*] has (is_a_part_of) -> Block [*];
+}

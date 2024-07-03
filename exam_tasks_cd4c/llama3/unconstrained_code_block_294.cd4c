@@ -1,0 +1,36 @@
+
+
+
+classdiagram MassSpectrometryDataAnalysis  {
+
+  class Experiment  {
+    String uniqueIdentifier;
+    String description;
+    List<MassToChargeRatio> data;
+  }
+
+  class MassToChargeRatio  {
+    double massToChargeRatio;
+    double intensity;
+  }
+
+  class DataAnalysis  {
+    void filterByIntensity(double minIntensity, double maxIntensity);
+    void sortByMassToChargeRatio();
+    void plotData();
+  }
+
+  class ExperimentResult  {
+    Experiment experiment;
+    DataAnalysis result;
+  }
+
+  class ExperimentRepository  {
+    List<ExperimentResult> getExperimentResults();
+    void storeExperimentResult(ExperimentResult result);
+  }
+
+  composition Experiment -> DataAnalysis;
+  composition Experiment -> ExperimentRepository;
+  composition ExperimentRepository -> ExperimentResult[*];
+}

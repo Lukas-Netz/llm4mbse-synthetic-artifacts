@@ -1,0 +1,44 @@
+
+classdiagram StockTradingSystem {
+
+    class HistoricalData {
+      String stockSymbol;
+      List<Double> historicalPrices;
+      List<Double> tradingVolume;
+    }
+
+    class MachineLearningModel {
+      void train(List<HistoricalData> data);
+      double predict(String stockSymbol);
+    }
+
+    class TradingAlgorithm {
+      MachineLearningModel model;
+      double riskTolerance;
+      String investmentGoal;
+      void makeDecision(String stockSymbol);
+    }
+
+    class UserInterface {
+      TradingAlgorithm algorithm;
+      void displayPredictions(String stockSymbol);
+      void setRiskTolerance(double tolerance);
+      void setInvestmentGoal(String goal);
+    }
+
+    class Stock {
+      String symbol;
+      double currentPrice;
+    }
+
+    class User {
+      String username;
+      UserInterface ui;
+    }
+
+    composition StockTradingSystem -> (has) UserInterface;
+    composition StockTradingSystem -> (has) MachineLearningModel;
+    composition StockTradingSystem -> (has) TradingAlgorithm;
+    composition StockTradingSystem -> (has) User;
+    composition StockTradingSystem -> (has) Stock;
+}

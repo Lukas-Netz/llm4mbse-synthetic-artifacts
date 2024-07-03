@@ -1,0 +1,53 @@
+
+
+classdiagram RoofInspectionSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      int batteryLevel;
+      Camera camera;
+    }
+
+    class GroundStation {
+      String name;
+      Location location;
+      CommunicationInterface communicationInterface;
+    }
+
+    class Database {
+      List<Building> buildings;
+    }
+
+    class Building {
+      String address;
+      String type;
+      String roofType;
+    }
+
+    class Report {
+      String buildingAddress;
+      List<Photo> photos;
+    }
+
+    class Photo {
+      String filename;
+      int resolution;
+    }
+
+  composition Drone -> Database;
+  composition GroundStation -> Database;
+  association Building -> Report;
+  association Report -> Database
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

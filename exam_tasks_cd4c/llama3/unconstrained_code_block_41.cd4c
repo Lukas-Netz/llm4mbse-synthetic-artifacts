@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram KnowledgeManagementSystem  {
+
+  class Topic  {
+    String name;
+    String description;
+  }
+
+  class Author  {
+    String name;
+    String email;
+  }
+
+  class KnowledgeArticle  {
+    String title;
+    String content;
+    Author author;
+    Topic category;
+    int views;
+    int ratings;
+  }
+
+  class Recommendation  {
+    KnowledgeArticle article;
+    User user;
+  }
+
+  class User  {
+    String name;
+    String interests;
+  }
+
+  class View  {
+    KnowledgeArticle article;
+    User user;
+  }
+
+  class Rating  {
+    KnowledgeArticle article;
+    User user;
+    int rating;
+  }
+
+  composition Topic -> KnowledgeArticle [*];
+  composition Author -> KnowledgeArticle [*];
+  composition KnowledgeArticle -> View [*];
+  composition KnowledgeArticle -> Rating [*];
+  composition User -> View [*];
+  composition User -> Rating [*];
+  composition Recommendation -> KnowledgeArticle [*];
+  composition Recommendation -> User [*];
+}

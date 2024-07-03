@@ -1,0 +1,45 @@
+
+classdiagram VRAutoDesign {
+
+  class Car {
+    String uniqueIdentifier;
+    String name;
+    Component [ ] components;
+  }
+
+  abstract class Component {
+    String uniqueIdentifier;
+    String name;
+    String type;
+  }
+
+  class Wheel extends Component {
+  }
+
+  class Door extends Component {
+  }
+
+  class Engine extends Component {
+  }
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    Car [ ] designedCars;
+  }
+
+  class Design {
+    Car car;
+    User user;
+    Component [ ] components;
+    DesignStatus status;
+  }
+
+  enum DesignStatus {
+    InProgress, Completed;
+  }
+
+  composition User -> Car [*];
+  composition Design -> Car;
+  composition Design -> Component [*];
+}

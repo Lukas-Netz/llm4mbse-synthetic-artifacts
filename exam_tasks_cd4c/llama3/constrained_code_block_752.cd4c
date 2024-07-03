@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram VRMApp  {
+
+  class VRMApp  {
+    Library library;
+    ProgressTracker progressTracker;
+  }
+
+  class Library  {
+    MeditationSession[] sessions;
+  }
+
+  abstract class MeditationSession  {
+    String name;
+    String description;
+    Theme theme;
+  }
+
+  class Theme  {
+    String name;
+  }
+
+  abstract class MeditationTechnique  {
+    String name;
+    String description;
+    Effect effect;
+  }
+
+  class Effect  {
+    String name;
+  }
+
+  class ProgressTracker  {
+    int sessionsCompleted;
+    int timeSpentMeditating;
+  }
+
+  class MeditationSessionBuilder  {
+    Theme theme;
+    MeditationTechnique[] techniques;
+  }
+
+  composition VRMApp -> Library;
+  composition VRMApp -> ProgressTracker;
+  composition Library -> MeditationSession[*];
+  composition MeditationSession -> Theme;
+  composition MeditationSession -> MeditationTechnique[*];
+  composition MeditationTechnique -> Effect;
+  composition ProgressTracker -> VRMApp;
+  composition MeditationSessionBuilder -> MeditationSession;
+}

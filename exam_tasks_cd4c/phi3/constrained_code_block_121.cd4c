@@ -1,0 +1,47 @@
+
+classdiagram PropertyManagementSystem {
+
+    class Property {
+      String uniqueIdentifier;
+      String address;
+      List<Feature> features;
+    }
+
+    class Feature {
+      int bedrooms;
+      int bathrooms;
+      int squareFootage;
+    }
+
+    class Agent {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+    }
+
+    class Client {
+      String uniqueIdentifier;
+      String name;
+      String contactInfo;
+    }
+
+    class PropertyManagementSystem {
+      List<Property> properties;
+      List<Agent> agents;
+      List<Client> clients;
+
+      void addProperty(Property property);
+      void removeProperty(Property property);
+      void updateProperty(Property property);
+      void addAgent(Agent agent);
+      void removeAgent(Agent agent);
+      void addClient(Client client);
+      void removeClient(Client client);
+      int calculateTotalPropertyValue();
+      int calculatePropertiesManagedByAgent(Agent agent);
+    }
+
+    composition PropertyManagementSystem -> (has) properties;
+    composition PropertyManagementSystem -> (has) agents;
+    composition PropertyManagementSystem -> (has) clients;
+}

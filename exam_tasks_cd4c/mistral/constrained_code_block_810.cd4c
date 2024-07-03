@@ -1,0 +1,52 @@
+
+classdiagram DroneSwarms {
+
+  class Swarm {
+    String name;
+    String description;
+    Drone [][] drones;
+  }
+
+  abstract class Drone {
+    String uniqueIdentifier;
+    DroneStatus status;
+  }
+
+  class Reconnaissance extends Drone {
+    Camera camera;
+  }
+
+  class Surveillance extends Drone {
+    Sensor sensor;
+  }
+
+  class Communication extends Drone {
+    Transmitter transmitter;
+  }
+
+  class Camera {
+    void captureImage();
+  }
+
+  class Sensor {
+    void detectObject();
+  }
+
+  class Transmitter {
+    void sendMessage();
+  }
+
+  enum DroneStatus {
+    Active, Inactive;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  composition Swarm -> Drone [*];
+  association Swarm -> Mission [*];
+  association Drone -> Mission [*];
+  association Drone -> Location;
+}

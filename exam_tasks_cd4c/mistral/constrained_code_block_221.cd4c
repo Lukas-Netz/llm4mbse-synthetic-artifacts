@@ -1,0 +1,51 @@
+
+classdiagram CollaborationSoftware {
+
+  class Team {
+    String name;
+    String identifier;
+    -> Member [*];
+    -> File [*];
+  }
+
+  class Member {
+    String username;
+    String identifier;
+    Team [  ] teams;
+    -> File [*];
+  }
+
+  class File {
+    String name;
+    int size;
+    String identifier;
+    Member owner;
+    -> Member [*];
+    History history;
+  }
+
+  class History {
+    Member modifier;
+    Date timestamp;
+  }
+
+  class Task {
+    String name;
+    String description;
+    String identifier;
+    Member assignee;
+    TaskStatus status;
+    Team team;
+  }
+
+  enum TaskStatus {
+    InProgress, Completed, Pending;
+  }
+
+  composition Team -> Member [*];
+  composition Team -> File [*];
+  composition Member -> Team [*];
+  composition File -> History [1..*];
+  composition Task -> Member [1..*];
+  composition Task -> Team [1];
+}

@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram NetworkManagementSystem  {
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType type;
+  }
+
+  enum DeviceType  {
+    Router, Switch, Server;
+  }
+
+  class Network  {
+    String name;
+    String uniqueIdentifier;
+    -> Device[*];
+  }
+
+  class Issue  {
+    SeverityLevel severity;
+    String description;
+  }
+
+  enum SeverityLevel  {
+    Low, Medium, High;
+  }
+
+  class Alert  {
+    SeverityLevel severity;
+    String description;
+  }
+
+  class Response  {
+    String description;
+    ResponseStatus status;
+  }
+
+  enum ResponseStatus  {
+    Pending, Completed;
+  }
+
+  class NetworkManagementSystem  {
+    -> Network[*];
+    void addDeviceToDevice(Network network, Device device);
+    void removeDeviceFromNetwork(Network network, Device device);
+    void monitorDeviceStatus(Device device);
+    void detectAndRespondToIssue(Issue issue);
+    void sendAlertToAdmin(Alert alert);
+    void trackResponseStatus(Response response);
+  }
+}

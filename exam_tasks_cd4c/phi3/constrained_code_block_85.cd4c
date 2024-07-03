@@ -1,0 +1,121 @@
+
+classdiagram CustomerFeedbackAnalysisSystem {
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      String category;
+    }
+
+    class Rating {
+      Customer customer;
+      Product product;
+      int score;
+      String comment;
+    }
+
+    class Feedback {
+      Rating rating;
+      Feedback(Rating rating);
+    }
+
+    class Analysis {
+      void calculateAverageRating(Product product);
+      void findTopRatedProducts();
+      void performSentimentAnalysis(Feedback feedback);
+      void analyzeByCategory(Product category);
+    }
+
+    association Customer -> Feedback [1..*];
+    association Product -> Feedback [1..*];
+    association Rating -> Feedback [1..*];
+    composition Customer -> Customer {
+      ordered
+    }
+   
+
+;
+    association Product -> Product {
+      ordered
+    }
+
+   
+;
+    association Rating -> Rating {
+      ordered
+    }
+
+   
+;
+    composition Analysis -> Analysis {
+      ordered
+    }
+
+   
+;
+    composition Customer -> Customer {
+      ordered
+    }
+
+   
+;
+    composition Product -> Product {
+      ordered
+    }
+
+   
+;
+    composition Rating -> Rating {
+      ordered
+    }
+
+   
+;
+    association Feedback -> Analysis {
+      
+   
+ordered
+    }
+
+   
+;
+    association Customer -> Analysis {
+      
+   
+ordered
+    }
+
+   
+;
+    association Product -> Analysis {
+      
+   
+ordered
+    }
+
+   
+;
+    association Rating -> Analysis {
+      
+   
+ordered
+    }
+
+   
+;
+    association Feedback -> Customer {
+      
+   
+ordered
+    }
+
+   
+;
+   
+}

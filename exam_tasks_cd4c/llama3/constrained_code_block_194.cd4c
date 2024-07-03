@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram RealTimeSpeechTranslation  {
+
+  class Microphone  {
+    int samplingRate;
+    int bitDepth;
+  }
+
+  class SpeechRecognition  {
+    double recognitionAccuracy;
+    int processingTime;
+  }
+
+  class NaturalLanguageProcessing  {
+    double languageDetectionAccuracy;
+    int syntaxAnalysisTime;
+  }
+
+  class MachineTranslation  {
+    double translationAccuracy;
+    int processingTime;
+  }
+
+  class TextToSpeech  {
+    double speechQuality;
+    int processingTime;
+  }
+
+  class Speaker  {
+    int volume;
+    int playbackSpeed;
+  }
+
+  class RealTimeSpeechTranslation  {
+    Microphone microphone;
+    SpeechRecognition speechRecognition;
+    NaturalLanguageProcessing naturalLanguageProcessing;
+    MachineTranslation machineTranslation;
+    TextToSpeech textToSpeech;
+    Speaker speaker;
+  }
+
+  composition RealTimeSpeechTranslation -> (has) Microphone;
+  composition RealTimeSpeechTranslation -> (has) SpeechRecognition;
+  composition RealTimeSpeechTranslation -> (has) NaturalLanguageProcessing;
+  composition RealTimeSpeechTranslation -> (has) MachineTranslation;
+  composition RealTimeSpeechTranslation -> (has) TextToSpeech;
+  composition RealTimeSpeechTranslation -> (has) Speaker;
+}

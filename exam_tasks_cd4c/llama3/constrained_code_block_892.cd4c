@@ -1,0 +1,38 @@
+
+
+
+
+classdiagram DroneSwarms  {
+
+  class Swarm  {
+    String name;
+    Mission mission;
+    -> Drone[*];
+  }
+
+  class Drone  {
+    String uniqueIdentifier;
+    DroneType type;
+    Status status;
+    Location location;
+  }
+
+  enum DroneType  {
+    Reconnaissance, Surveillance, Communication;
+  }
+
+  enum Status  {
+    Active, Inactive;
+  }
+
+  class Mission  {
+    String name;
+    String description;
+    -> Drone[*];
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+}

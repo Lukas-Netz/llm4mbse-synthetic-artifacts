@@ -1,0 +1,73 @@
+
+classdiagram ContactCenterSystem {
+
+  class Agent {
+    String agentId;
+    String agentName;
+    List<Conversation> conversations;
+    void handleConversation(Conversation conversation);
+  }
+
+  class Customer {
+    String customerId;
+    String customerName;
+    List<Conversation> conversations;
+  }
+
+  class Conversation {
+    String conversationId;
+    Agent agent;
+    Customer customer;
+    ConversationState state;
+    String conversationType;
+    void updateState(ConversationState newState);
+  }
+
+  class ConversationState {
+    String state;
+  }
+
+  class ConversationType {
+    String type;
+  }
+
+  class ConversationMetrics {
+    float averageHandleTime;
+    float firstCallResolution;
+    float customerSatisfaction;
+  }
+
+  <<association>> class ContactCenterSystem {
+    List<Agent> agents;
+    List<Customer> customers;
+    List<Conversation> conversations;
+    ConversationMetrics metrics;
+  }
+
+  <<association>> class Agent {
+    List<Conversation> conversations;
+  }
+
+  <<association>> class Customer {
+    List<Conversation> conversations;
+  }
+
+  <<association>> class Conversation {
+    Agent agent;
+    Customer customer;
+    ConversationState state;
+    ConversationType type;
+  }
+
+  <<association>> class ConversationMetrics {
+    ContactCenterSystem system;
+  }
+
+  <<association>> class ConversationState {
+    Conversation conversation;
+  }
+
+  <<association>> class ConversationType {
+    Conversation conversation;
+  }
+}

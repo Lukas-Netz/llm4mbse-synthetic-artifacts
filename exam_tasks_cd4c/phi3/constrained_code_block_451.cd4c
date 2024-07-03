@@ -1,0 +1,65 @@
+
+classdiagram DIYCraftPlatform {
+
+    class Project {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      String description;
+      List<String> materials;
+      List<String> steps;
+      int difficultyLevel;
+      int rating;
+      String reviews;
+      String comments;
+    }
+
+    class User {
+      String username;
+      List<Project> projects;
+      List<ProjectCollection> projectCollections;
+    }
+
+    class ProjectCollection {
+      String name;
+      List<Project> projects;
+    }
+
+    class Material {
+      String name;
+      String price;
+    }
+
+    class MaterialSupplier {
+      List<Material> availableMaterials;
+      void addMaterial(Material material);
+      Material getMaterial(String name);
+    }
+
+    class SearchFilter {
+      String type;
+      String material;
+      int difficultyLevel;
+    }
+
+    class ProjectSearchResult {
+      Project project;
+    }
+
+    class ProjectSearch {
+      SearchFilter filter;
+      List<ProjectSearchResult> results;
+    }
+
+    composition User -> Project;
+    composition User -> ProjectCollection;
+    composition User -> MaterialSupplier;
+    composition Project -> MaterialSupplier;
+    composition Project -> User;
+    composition ProjectCollection -> User;
+    composition Project -> ProjectCollection;
+    composition Material -> MaterialSupplier;
+    composition MaterialSupplier -> Material;
+    composition SearchFilter -> ProjectSearch;
+    composition ProjectSearch -> ProjectSearchResult;
+}

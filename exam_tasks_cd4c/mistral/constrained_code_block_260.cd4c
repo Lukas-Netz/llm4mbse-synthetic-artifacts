@@ -1,0 +1,49 @@
+
+classdiagram DigitalPrinting {
+
+  class Branch {
+    String name;
+    String address;
+    -> Device [*];
+  }
+
+  abstract class Device {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class LaserPrinter extends Device {}
+  class InkjetPrinter extends Device {}
+  class MultifunctionDevice extends Device {}
+
+  enum DeviceStatus {
+    Available, NotAvailable;
+  }
+
+  class Customer {
+    String name;
+    String address;
+    String contactInfo;
+  }
+
+  class Service {
+    String uniqueIdentifier;
+    String description;
+    int price;
+  }
+
+  class PaymentSystem {
+    String uniqueIdentifier;
+    String description;
+    PaymentMethod paymentMethod;
+  }
+
+  enum PaymentMethod {
+    Cash, CreditCard, OnlinePayment;
+  }
+
+  composition Branch -> Device [*];
+  association Customer --o00o- 											;
+  association Service --o00o- 											;
+  association PaymentSystem --o00o- 										;
+}

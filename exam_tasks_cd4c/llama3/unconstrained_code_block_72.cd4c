@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram OmnichannelRetailPlatform  {
+
+  class CentralHub  {
+    -> SalesChannel[*];
+  }
+
+  abstract class SalesChannel  {
+    String uniqueIdentifier;
+    boolean isOnline;
+  }
+
+  class ECommerce extends SalesChannel  {
+  }
+
+  class PhysicalStore extends SalesChannel  {
+  }
+
+  class MobileApp extends SalesChannel  {
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    ProductType type;
+  }
+
+  enum ProductType  {
+    Clothing, Electronics, HomeGoods;
+  }
+
+  class Customer  {
+    String uniqueIdentifier;
+    boolean isIndividual;
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    -> Customer;
+    -> Product[*];
+  }
+
+  class Inventory  {
+    -> Product[*];
+  }
+
+  composition CentralHub -> SalesChannel[*];
+  composition SalesChannel -> Product[*];
+  composition Order -> Customer;
+  composition Order -> Product[*];
+  composition Inventory -> Product[*];
+}

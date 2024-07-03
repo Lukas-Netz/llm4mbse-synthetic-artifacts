@@ -1,0 +1,54 @@
+
+classdiagram GeneticCounseling {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    Date dateOfBirth;
+  }
+
+  class GeneticTest {
+    String uniqueIdentifier;
+    String name;
+    GeneticTestResult result;
+  }
+
+  enum GeneticTestResult {
+    Positive, Negative;
+  }
+
+  class CounselingSession {
+    String uniqueIdentifier;
+    Date date;
+    Time time;
+    Patient patient;
+    GeneticTest geneticTest;
+  }
+
+  class Report {
+    String uniqueIdentifier;
+    Date date;
+    String content;
+    Patient patient;
+    CounselingSession counselingSession;
+  }
+
+  class Recommendation {
+    String uniqueIdentifier;
+    String content;
+    RecommendationStatus status;
+    Patient patient;
+    GeneticTest geneticTest;
+  }
+
+  enum RecommendationStatus {
+    Active, Inactive;
+  }
+
+  association Patient [*] has [many] (has) -> GeneticTest [*];
+  association Patient [*] has [many] (has) -> CounselingSession [*];
+  association Patient [*] has [many] (has) -> Report [*];
+  association Patient [*] has [many] (has) -> Recommendation [*];
+  association GeneticTest [*] has [many] (has) -> CounselingSession [*];
+  association GeneticTest [*] has [many] (has) -> Recommendation [*];
+}

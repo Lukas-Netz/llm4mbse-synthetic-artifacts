@@ -1,0 +1,47 @@
+
+classdiagram PredictiveDemandForecasting {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Warehouse {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Stock {
+    Product product;
+    Warehouse warehouse;
+    int quantity;
+  }
+
+  class Exception {
+    String type;
+    String message;
+  }
+
+  class Stockout extends Exception {
+  }
+
+  class Overstocking extends Exception {
+  }
+
+  class Backorder extends Exception {
+  }
+
+  class PredictiveDemandForecastingSystem {
+    -> Product [*];
+    -> Warehouse [*];
+    -> Stock [*];
+    void inputHistoricalSalesData();
+    void configureForecastingModel();
+    void predictDemand(Product product, Warehouse warehouse);
+    Exception handleExceptions();
+  }
+
+  composition PredictiveDemandForecastingSystem -> Product [*];
+  composition PredictiveDemandForecastingSystem -> Warehouse [*];
+  composition Warehouse -> Stock [*];
+}

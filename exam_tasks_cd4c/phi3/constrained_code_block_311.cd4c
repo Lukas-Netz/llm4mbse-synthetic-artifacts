@@ -1,0 +1,38 @@
+
+classdiagram CloudCommunicationTools {
+
+    class User {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class Group {
+      String name;
+      List<User> users;
+      void addUser(User user);
+      void removeUser(User user);
+      void sendMessage(User sender, User recipient, String content);
+      void receiveMessage(User sender, String content);
+    }
+
+    class Message {
+      User sender;
+      User recipient;
+      String content;
+    }
+
+    class CommunicationTools {
+      void sendMessage(User sender, User recipient, String content);
+      void receiveMessage(User sender, String content);
+      void createGroup(String name);
+      void joinGroup(User user, String groupName);
+    }
+
+    composition User -> (has) Group;
+    composition Group -> (has) List<<User>>;
+    composition Group -> (has) Message;
+    composition Message -> (has) User;
+    composition Message -> (has) User;
+    composition CommunicationTools -> (has) Group;
+    composition CommunicationTools -> (has) User;
+}

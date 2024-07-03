@@ -1,0 +1,44 @@
+
+classdiagram UrbanTrafficManagement {
+
+  class Intersection {
+    String uniqueIdentifier;
+    Road [ ] connectedRoads;
+  }
+
+  class Road {
+    String uniqueIdentifier;
+    String name;
+    int length;
+  }
+
+  class TrafficLight {
+    State state;
+  }
+
+  enum State {
+    Red, Yellow, Green;
+  }
+
+  class TrafficController {
+    void changeTrafficLightState(TrafficLight trafficLight, State newState, Time time);
+  }
+
+  class Time {
+    int hour;
+    int minute;
+  }
+
+  class Vehicle {
+    String uniqueIdentifier;
+    Type type;
+    Road currentLocation;
+  }
+
+  enum Type {
+    Car, Bus, Bike;
+  }
+
+  composition Intersection -> Road [*];
+  composition Road -> Intersection [*];
+}

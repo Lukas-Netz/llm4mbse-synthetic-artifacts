@@ -1,0 +1,37 @@
+
+classdiagram RenewableEnergySystem {
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    class SolarFarm {
+      int capacityKW;
+      void generateElectricity(WeatherStation weatherStation);
+    }
+
+    class Battery {
+      int capacityKWh;
+      void storeEnergy(SolarFarm solarFarm);
+      void releaseEnergy(SmartGrid smartGrid);
+    }
+
+    class SmartGrid {
+      int capacityMW;
+      void distributeElectricity(Battery battery);
+    }
+
+    class AIController {
+      void optimizeEnergyGeneration(WeatherStation weatherStation);
+      void optimizeEnergyDistribution(SmartGrid smartGrid);
+    }
+
+    composition WeatherStation -> (has) AIController;
+    composition SolarFarm -> (has) AIController;
+    composition SolarFarm -> (has) Battery;
+    composition Battery -> (has) SmartGrid;
+    composition AIController -> (has) SmartGrid;
+}

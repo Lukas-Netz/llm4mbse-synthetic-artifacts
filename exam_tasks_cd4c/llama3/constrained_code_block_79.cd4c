@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram IPManagement  {
+
+  class IPAsset  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+  }
+
+  class Patent extends IPAsset  {
+    Date expirationDate;
+  }
+
+  class Trademark extends IPAsset  {
+    Date registrationDate;
+  }
+
+  class Copyright extends IPAsset  {
+    Date creationDate;
+  }
+
+  class Owner  {
+    String name;
+    String email;
+  }
+
+  class Organization extends Owner  {
+    String taxIDNumber;
+  }
+
+  class Industry  {
+    String name;
+    String description;
+  }
+
+  class IPAssetStatus  {
+    String status;  (pending)
+  }
+
+  class SearchCriteria  {
+    String keyword;
+    String title;
+    Owner owner;
+  }
+
+  composition IPAsset -> (has) Owner [0..*];
+  composition IPAsset -> (has) Industry;
+  composition IPAsset -> (has) IPAssetStatus;
+
+  association IPAsset -> (searchedBy) SearchCriteria;
+
+  class PatentSearch extends SearchCriteria  {
+    Date expirationDate;
+  }
+
+  class TrademarkSearch extends SearchCriteria  {
+    Date registrationDate;
+  }
+
+  class CopyrightSearch extends SearchCriteria  {
+    Date creationDate;
+  }
+}

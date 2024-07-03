@@ -1,0 +1,45 @@
+
+classdiagram CloudDatabase {
+
+    class Database {
+      List<Table> tables;
+      List<Client> clients;
+      void backupData();
+      void recoverData();
+    }
+
+    class Client {
+      String clientId;
+      Project project;
+      Database database;
+      void performCRUD(Table table, Column column, String operation);
+    }
+
+    class Project {
+      String projectId;
+      List<Client> clients;
+      Database database;
+    }
+
+    class Table {
+      String tableName;
+      List<Column> columns;
+      void insertData(String tableName, Map<String, Object> data);
+      void retrieveData(String tableName, String columnName);
+      void updateData(String tableName, String columnName, Object newValue);
+      void deleteData(String tableName, String columnName);
+    }
+
+    class Column {
+      String columnName;
+      String dataType;
+    }
+
+    association Database -> List<<Table>>;
+    association Database -> List<<Client>>;
+    association Client -> Project;
+    association Project -> Database;
+    composition Client -> Database;
+    composition Project -> Database;
+    composition Table -> Database;
+}

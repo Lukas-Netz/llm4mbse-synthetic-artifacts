@@ -1,0 +1,67 @@
+
+classdiagram LivestockFarming {
+
+  class Farm {
+    String farmName;
+    int farmSize;
+    String farmType;
+  }
+
+  class Animal {
+    String animalId;
+    String animalType;
+    Location location;
+    VitalSigns vitalSigns;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class VitalSigns {
+    double temperature;
+    int heartRate;
+    int respiratoryRate;
+  }
+
+  class Sensor {
+    String sensorType;
+    String sensorId;
+  }
+
+  class TemperatureSensor extends Sensor {
+    double temperature;
+  }
+
+  class Accelerometer extends Sensor {
+    double acceleration;
+  }
+
+  class GPS extends Sensor {
+    Location location;
+  }
+
+  class Analytics {
+    HeatMap heatMap;
+    Alert alerts;
+  }
+
+  class HeatMap {
+    Location location;
+    double temperature;
+  }
+
+  class Alert {
+    String alertType;
+    String animalId;
+  }
+
+  composition Farm -> Animal [*];
+  association Animal --oversimple_aggregation_link_name_here- 											;
+  association Animal --oversimple_aggregation_link_name_here- 											;
+  association Animal --oversimple_aggregation_link_name_here- 											;
+  association Animal --oversimple_aggregation_link_name_here- 											;
+  association Sensor --oversimple_aggregation_link_name_here- 											;
+  association Analytics --oversimple_aggregation_link_name_here- 											;
+}

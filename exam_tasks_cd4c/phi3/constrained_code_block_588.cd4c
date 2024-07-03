@@ -1,0 +1,59 @@
+
+classdiagram AutonomousFarmingSystem {
+
+    class Farm {
+      String name;
+      String location;
+      List<Crop> crops;
+    }
+
+    class Crop {
+      String name;
+      String type;
+      GrowthStage stage;
+    }
+
+    class GrowthStage {
+      enum StageEnums
+        ;
+    }
+
+    class ControlCenter {
+      Farm farm;
+      List<Sensor> sensors;
+      List<IrrigationSystem> irrigationSystems;
+      void adjustEnvironment();
+      void monitorEnergyUsage();
+      void monitorWaterUsage();
+    }
+
+    class Sensor {
+      String location;
+      TemperatureReading temperature;
+      HumidityReading humidity;
+      LightReading light;
+    }
+
+    class TemperatureReading {
+      int value;
+    }
+
+    class HumidityReading {
+      int value;
+    }
+
+    class LightReading {
+      int value;
+    }
+
+    class IrrigationSystem {
+      String location;
+      void waterCrops();
+    }
+
+    composition Farm -> (has) ControlCenter;
+    composition Farm -> (has) IrrigationSystem [*];
+    composition ControlCenter -> (has) Farm;
+    composition ControlCenter -> (has) Sensor [*];
+    composition ControlCenter -> (has) IrrigationSystem [*];
+}

@@ -1,0 +1,61 @@
+
+
+
+classdiagram AstrophotographySoftware  {
+
+  class CelestialObject  {
+    String uniqueIdentifier;
+    String name;
+    Coordinates coordinates;
+  }
+
+  class Camera  {
+    String uniqueIdentifier;
+    TelescopeSpecifications specifications;
+  }
+
+  class TelescopeSpecifications  {
+    String type;
+    int aperture;
+    int focalLength;
+  }
+
+  class ImageProcessingModule  {
+    void applyFilter(Filter filter);
+    void applyAlgorithm(Algorithm algorithm);
+  }
+
+  class Filter  {
+    String name;
+    String description;
+  }
+
+  class Algorithm  {
+    String name;
+    String description;
+  }
+
+  class ReportingModule  {
+    void generateReport(Report report);
+  }
+
+  class Report  {
+    String format;
+    String content;
+  }
+
+  class Database  {
+    CelestialObject[] celestialObjects;
+  }
+
+  class CameraInterface  {
+    void controlCamera(Camera camera);
+    void captureImage(Camera camera);
+  }
+
+  composition Database -> CelestialObject[*];
+  composition CameraInterface -> Camera[*];
+  composition ImageProcessingModule -> Filter[*];
+  composition ImageProcessingModule -> Algorithm[*];
+  composition ReportingModule -> Report[*];
+}

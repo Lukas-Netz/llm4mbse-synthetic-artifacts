@@ -1,0 +1,75 @@
+
+
+classdiagram EGovernmentServicesPlatform {
+
+  class UserAccountSystem {
+    User user;
+  }
+
+  class ServiceCatalog {
+    Service service;
+  }
+
+  class PaymentGateway {
+    Payment payment;
+  }
+
+  class NotificationSystem {
+    Notification notification;
+  }
+
+  class FeedbackMechanism {
+    Feedback feedback;
+  }
+
+  class Service {
+    String id;
+    String description;
+    List<Requirement> requirements;
+  }
+
+  class Requirement {
+    String name;
+    String description;
+  }
+
+  class User {
+    String name;
+    String address;
+    String password;
+  }
+
+  class Payment {
+    String id;
+    String userId;
+    String serviceId;
+    double amount;
+  }
+
+  class Notification {
+    String id;
+    String userId;
+    String serviceId;
+    String message;
+  }
+
+  class Feedback {
+    String id;
+    String userId;
+    String serviceId;
+    String feedbackContent;
+  }
+
+  composition UserAccountSystem -> (has) User;
+  composition ServiceCatalog -> (has) Service;
+  composition PaymentGateway -> (has) Payment;
+  composition NotificationSystem -> (has) Notification;
+  composition FeedbackMechanism -> (has) Feedback;
+  association Service -> Requirement;
+  association User -> Payment;
+  association Payment -> Service;
+  association Notification -> Service;
+  
+
+
+}

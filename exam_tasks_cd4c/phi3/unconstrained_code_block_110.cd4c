@@ -1,0 +1,57 @@
+
+classdiagram BusinessIntelligenceSystem {
+
+    class SalesData {
+      String productId;
+      String storeId;
+      int quantitySold;
+      DateTime saleTime;
+    }
+
+    class Product {
+      String productId;
+      String name;
+      int price;
+    }
+
+    class Store {
+      String storeId;
+      String location;
+    }
+
+    class SalesTracker {
+      Map<String, List<SalesData>> salesDataByProduct;
+      Map<String, List<SalesData>> salesDataByStore;
+
+      void addSale(SalesData sale);
+      List<SalesData> getSalesData(String productId);
+      List<SalesData> getSalesData(String storeId);
+      void generateTopSellingProductsReport();
+      void generateTopSellingStoresReport();
+      void identifyTrends();
+      void sendAlert(String productId);
+    }
+
+    class ReportGenerator {
+      SalesTracker salesTracker;
+
+      String generateProductReport();
+      String generateStoreReport();
+    }
+
+    class AlertSystem {
+      SalesTracker salesTracker;
+
+      void setThreshold(String productId, int threshold);
+      void checkThreshold(String productId);
+    }
+
+    class SystemIntegrator {
+      SalesTracker salesTracker;
+      InventoryManagement inventoryManagement;
+      CustomerRelationshipManagement customerRelationshipManagement;
+
+      void integrateInventoryManagement();
+      void integrateCustomerRelationshipManagement();
+    }
+}

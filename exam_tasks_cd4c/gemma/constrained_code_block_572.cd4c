@@ -1,0 +1,44 @@
+
+
+classdiagram UnderwaterDronePhotographySystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      int batteryLevel;
+      boolean isFlying;
+    }
+
+    class Camera {
+      int resolution;
+      String type;
+      boolean isRecording;
+    }
+
+    class ControlCenter {
+      Drone drone;
+      Camera camera;
+
+      void sendCommandToDrone(String command);
+      void sendCommandToCamera(String command);
+    }
+
+    class MemoryCard {
+      int capacity;
+      List<File> files;
+    }
+
+    class File {
+      String format;
+      byte[] data;
+    }
+
+    class BackupPower {
+      int capacityWh;
+    }
+
+  composition ControlCenter -> Drone;
+  composition ControlCenter -> Camera;
+  association Drone -> MemoryCard;
+  association Camera -> MemoryCard;
+  association ControlCenter -> BackupPower;
+}

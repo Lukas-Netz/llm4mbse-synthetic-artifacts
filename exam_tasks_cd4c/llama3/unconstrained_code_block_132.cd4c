@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram CarRental  {
+
+  class Vehicle  {
+    VehicleType type;
+    VehicleFeatures features;
+    boolean isAvailable;
+  }
+
+  class Customer  {
+    String name;
+    String email;
+    RentalHistory rentalHistory;
+  }
+
+  class Rental  {
+    Vehicle vehicle;
+    Customer customer;
+    Date startDate;
+    Date endDate;
+    double totalCost;
+  }
+
+  class RentalHistory  {
+    List<Rental> rentals;
+  }
+
+  class VehicleType  {
+    String name;
+  }
+
+  class VehicleFeatures  {
+    List<String> features;
+  }
+
+  class Branch  {
+    List<Vehicle> vehicles;
+    List<Customer> customers;
+  }
+
+  class Report  {
+    List<Vehicle> mostPopularVehicles;
+    List<Customer> mostFrequentCustomers;
+    double totalRevenue;
+  }
+
+  composition Branch -> (has) Vehicle[*];
+  composition Branch -> (has) Customer[*];
+  composition Vehicle -> (has) VehicleFeatures;
+  composition Customer -> (has) RentalHistory;
+  composition Rental -> (has) Vehicle;
+  composition Rental -> (has) Customer;
+  composition Report -> (has) Branch;
+}

@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram MarketingAutomation  {
+
+  class Campaign  {
+    String name;
+    TargetAudience targetAudience;
+    Channel channel;
+    Content content;
+    Performance performance;
+  }
+
+  class TargetAudience  {
+    String description;
+  }
+
+  class Channel  {
+    String name;
+  }
+
+  class Content  {
+    String description;
+  }
+
+  class Performance  {
+    double conversionRate;
+    double clickThroughRate;
+  }
+
+  class User  {
+    String username;
+    UserRole role;
+  }
+
+  enum UserRole  {
+    Administrator, Marketer, Analyst
+  ;}
+
+  class DataSource  {
+    String name;
+  }
+
+  class CRMSystem extends DataSource  {
+  }
+
+  class SocialMediaPlatform extends DataSource  {
+  }
+
+  class EmailMarketingPlatform extends DataSource  {
+  }
+
+  class AutomationRule  {
+    User user;
+    Campaign campaign;
+    Trigger trigger;
+    Action action;
+  }
+
+  class Trigger  {
+    String description;
+  }
+
+  class Action  {
+    String description;
+  }
+
+  composition Campaign -> (has) TargetAudience;
+  composition Campaign -> (has) Channel;
+  composition Campaign -> (has) Content;
+  composition Campaign -> (has) Performance;
+  composition User -> (has) UserRole;
+  composition AutomationRule -> (has) User;
+  }

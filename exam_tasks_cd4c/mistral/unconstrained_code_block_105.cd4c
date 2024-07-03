@@ -1,0 +1,46 @@
+
+classdiagram OilSpillDetection {
+
+  class Sensor {
+    String id;
+    Location location;
+    OilType oilType;
+    Severity severity;
+  }
+
+  class Drone {
+    String id;
+    Location location;
+    DroneStatus status;
+  }
+
+  class CommandCenter {
+    -> Sensor [*];
+    -> Drone [*];
+    void deploySensor(Sensor sensor);
+    void deployDrone(Drone drone);
+    void retrieveSensor(Sensor sensor);
+    void retrieveDrone(Drone drone);
+    void generateReport();
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  enum OilType {
+    Crude, Diesel, Gasoline;
+  }
+
+  enum Severity {
+    Minor, Moderate, Major;
+  }
+
+  enum DroneStatus {
+    Idle, Deployed, Retrieved;
+  }
+
+  composition CommandCenter -> Sensor [*];
+  composition CommandCenter -> Drone [*];
+}

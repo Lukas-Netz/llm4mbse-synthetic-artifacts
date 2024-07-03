@@ -1,0 +1,83 @@
+
+
+
+
+classdiagram OnlineScheduling  {
+
+  class User  {
+    String username;
+    String password;
+    Calendar[] calendars;
+  }
+
+  class Calendar  {
+    String name;
+    Appointment[] appointments;
+    Meeting[] meetings;
+    Event[] events;
+  }
+
+  abstract class Appointment  {
+    Date start;
+    Date end;
+    String description;
+    User[] attendees;
+    Role[] roles;
+    Recurrence recurrence;
+    Reminder reminder;
+  }
+
+  class Meeting extends Appointment  {
+    MeetingType type;
+  }
+
+  class Event extends Appointment  {
+    EventCategory category;
+  }
+
+  class Recurrence  {
+    Frequency frequency;
+    Date start;
+    Date end;
+  }
+
+  enum Role  {
+    Organizer,
+    Participant,
+    Observer
+  ;}
+
+  enum MeetingType  {
+    OneOnOne,
+    Group
+  ;}
+
+  enum EventCategory  {
+    Birthday,
+    Anniversary,
+    Holiday
+  ;}
+
+  class Reminder  {
+    Date date;
+    String message;
+  }
+
+  class Integration  {
+    CalendarSystem[] systems;
+  }
+
+  enum CalendarSystem  {
+    GoogleCalendar,
+    MicrosoftOutlook
+  ;}
+
+  composition User -> Calendar[*];
+  composition Calendar -> Appointment[*];
+  composition Calendar -> Meeting[*];
+  composition Calendar -> Event[*];
+  composition Appointment -> Recurrence [0..1];
+  composition Appointment -> Reminder [0..1];
+  composition Meeting -> MeetingType [1];
+  composition Event -> EventCategory [1];
+  }

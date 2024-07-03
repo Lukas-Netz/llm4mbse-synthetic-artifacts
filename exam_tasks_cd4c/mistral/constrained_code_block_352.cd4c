@@ -1,0 +1,42 @@
+
+classdiagram MedicalConsultation {
+
+  class Patient {
+    String name;
+    String email;
+    String phoneNumber;
+    Consultation [ ] consultations;
+  }
+
+  class Doctor {
+    String name;
+    String email;
+    String phoneNumber;
+    Patient [ ] patients;
+  }
+
+  class Consultation {
+    String date;
+    String time;
+    String description;
+    Patient patient;
+    Doctor doctor;
+    Diagnosis [ ] diagnoses;
+    Treatment [ ] treatments;
+  }
+
+  class Diagnosis {
+    String name;
+    String description;
+  }
+
+  class Treatment {
+    String name;
+    String description;
+  }
+
+  association Consultation -- Patient;
+  association Consultation -- Doctor;
+  composition Consultation -- Diagnosis [*];
+  composition Consultation -- Treatment [*];
+}

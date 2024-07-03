@@ -1,0 +1,164 @@
+
+
+#  classdiagram Smarthome
+
+  
+ {- classdiagramComplete
+  
+  
+  
+  
+  
+  {class SmartHome
+    
+    
+ ;- Hub
+    
+    
+ <eos> BackupPower
+    
+  
+  
+;- Composition SmartHome  (has Hub)
+;- Composition SmartHome  (has BackupPower)
+  
+  
+  
+  ;class Hub
+  
+  
+  
+  ;- Operations
+  
+  addDevice(Device device)
+  
+  
+  
+  ;- Operations
+  
+  removeDevice(Device device)
+  
+  
+  
+  ;- Operations
+  
+  checkBackupPowerStatus()
+  
+  
+  
+  ;class Device
+  
+  
+  
+  ;- Attributes
+  
+  uniqueIdentifier
+  
+  
+  ;- Attributes
+  
+  status
+  
+  
+  
+  ;class Light
+  
+  
+  
+  ;- Attributes
+  
+  brightnessLevel
+  
+  
+  ;- Attributes
+  
+  color
+  
+  
+  
+  ;class Thermostat
+  
+  
+  
+  ;- Attributes
+  
+  temperature
+  
+  
+  ;- Attributes
+  
+  mode
+  
+  
+  
+  ;class SecurityCamera
+  
+  
+  
+  ;- Attributes
+  
+  resolution
+  
+  
+  ;- Attributes
+  
+  isRecording
+  
+  
+  
+  ;
+
+  
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  composition Hub  -> Device [*];
+  composition SmartHome  -> Hub;
+  composition SmartHome  -> BackupPower [0..1];
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Hub  -> BackupPower;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  association Device  -> Hub;
+
+}

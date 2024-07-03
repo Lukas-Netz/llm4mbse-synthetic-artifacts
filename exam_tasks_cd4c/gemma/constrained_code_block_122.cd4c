@@ -1,0 +1,99 @@
+
+
+classdiagram MedicalDiagnosticSystem {
+
+  class Patient {
+    private String name;
+    private MedicalHistory history;
+    private List<Symptom> symptoms;
+    private List<TestResult> testResults;
+
+    public String getName()
+    
+    
+ ;}
+
+  class MedicalHistory {
+    private List<Event> events;
+
+    public void addEvent(Event event)
+
+  
+
+  
+
+  ;}
+
+  class Symptom {
+    private String name;
+    private String description;
+    private int severity;
+
+    public String getName()
+
+    
+  
+
+ ;}
+
+  class TestResult {
+    private String type;
+    private String result;
+    private Date date;
+
+    public String getType()
+
+    
+  
+
+ ;}
+
+  class Treatment {
+    private String name;
+    private String description;
+    private int effectiveness;
+
+    public String getName()
+
+    
+  
+
+ ;}
+
+  class DiagnosisEngine {
+    private Patient patient;
+
+    public Diagnosis diagnose()
+
+  
+
+  
+
+ ;}
+
+  class TreatmentDatabase {
+    private List<Treatment> treatments;
+
+    public void addTreatment(Treatment treatment)
+
+  
+
+  
+
+ ;}
+
+  class Composition {
+    Patient patient;
+    DiagnosisEngine diagnosisEngine;
+  }
+
+  class Association {
+    Patient patient;
+    TestResult testResult;
+  }
+
+  class Association2 {
+    Patient patient;
+    Symptom symptom;
+  }
+}

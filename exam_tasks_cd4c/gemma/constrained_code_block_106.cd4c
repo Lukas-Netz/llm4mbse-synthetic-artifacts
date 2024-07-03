@@ -1,0 +1,64 @@
+
+
+classdiagram PersonalizationSystem {
+
+  class Customer {
+    String name;
+    String email;
+    List<Purchase> purchaseHistory;
+  }
+
+  class Product {
+    String name;
+    String description;
+    double price;
+  }
+
+  class AIEngine {
+    List<Customer> customers;
+    List<Product> products;
+    Map<Customer, List<Product>> customerToProducts;
+    Map<Product, List<Customer>> productToCustomers;
+
+    void analyzeCustomerData();
+    void analyzeProductData();
+  }
+
+  class RecommendationEngine {
+    AIEngine aiEngine;
+    List<Recommendation> recommendations;
+
+    void generateRecommendations();
+  }
+
+  class UserInterface {
+    RecommendationEngine recommendationEngine;
+
+    void displayRecommendations();
+  }
+
+  class Purchase {
+    Customer customer;
+    Product product;
+    int quantity;
+  }
+
+  class Recommendation {
+    Product product;
+    double score;
+  }
+
+  composition Customer -> (has) PurchaseHistory
+  abstract  
+  
+  
+
+  {
+    
+  
+  
+ordered
+  }
+
+  
+ ;}

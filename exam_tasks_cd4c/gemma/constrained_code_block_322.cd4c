@@ -1,0 +1,50 @@
+
+
+classdiagram DigitalArchaeologyPlatform {
+
+  class ExcavationSite {
+    String uniqueIdentifier;
+    String name;
+    String location;
+    String type;
+  }
+
+  class Artifact {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    List<ExcavationSite> excavationSites;
+  }
+
+  class ExcavationTeam {
+    String uniqueIdentifier;
+    String name;
+    List<TeamMember> teamMembers;
+    ExcavationSite excavationSite;
+  }
+
+  class TeamMember {
+    String uniqueIdentifier;
+    String name;
+    String role;
+  }
+
+  class Photograph {
+    String uniqueIdentifier;
+    String description;
+    List<Artifact> artifacts;
+  }
+
+  class Report {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    List<Artifact> artifacts;
+  }
+
+  composition ExcavationSite -> Artifact [*];
+  composition ExcavationTeam -> ExcavationSite;
+  association TeamMember -> ExcavationTeam;
+  association Photograph -> Artifact [*];
+  association Report -> Artifact [*];
+}

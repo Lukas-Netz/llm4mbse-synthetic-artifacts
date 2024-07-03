@@ -1,0 +1,64 @@
+
+classdiagram MineAutomationSystem {
+
+    class Mine {
+      String name;
+      String uniqueId;
+      List<Shaft> shafts;
+      List<Personnel> personnel;
+      List<SafetyDevice> safetyDevices;
+    }
+
+    class Shaft {
+      String shaftName;
+      String shaftId;
+      List<Level> levels;
+    }
+
+    class Level {
+      String levelName;
+      String levelId;
+      List<Equipment> equipment;
+    }
+
+    class Equipment {
+      String equipmentId;
+      String equipmentType;
+      String levelId;
+      EquipmentStatus status;
+    }
+
+    class Personnel {
+      String personnelId;
+      String name;
+      String role;
+      Shaft shaft;
+    }
+
+    class SafetyDevice {
+      String deviceId;
+      String deviceType;
+      SafetyDeviceStatus status;
+    }
+
+    enum EquipmentStatus {
+      Operational, Maintenance, Malfunctioning;
+    }
+
+    enum SafetyDeviceStatus {
+      Operational, Malfunctioning;
+    }
+
+    association Mine -> Shaft [*];
+    association Shaft -> Level [*];
+    association Level -> Equipment [*];
+    association Personnel -> Shaft [*];
+    association Mine -> Personnel [*];
+    association Mine -> SafetyDevice [*];
+
+    association Personnel -> Mine [*];
+    association Personnel -> Shaft [*];
+    association Personnel -> SafetyDevice [*];
+
+    association SafetyDevice -> Mine [*];
+}

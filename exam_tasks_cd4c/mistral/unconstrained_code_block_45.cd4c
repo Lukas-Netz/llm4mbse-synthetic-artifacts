@@ -1,0 +1,42 @@
+
+classdiagram RealTimeTranslationDevice {
+
+  class Microphone {
+    void recordAudio();
+  }
+
+  class Speaker {
+    void playAudio(String audio);
+  }
+
+  class TranslationModule {
+    Language[] supportedLanguages;
+    void translate(String input, Language sourceLanguage, Language targetLanguage);
+    void storeTranslation(String input, Language sourceLanguage, Language targetLanguage, String translation);
+    String recallTranslation(String input, Language sourceLanguage, Language targetLanguage);
+  }
+
+  class RealTimeTranslationDevice {
+    Microphone microphone;
+    Speaker speaker;
+    TranslationModule translationModule;
+    RemoteControl remoteControl;
+    int batteryLife;
+    int batteryLevel;
+    boolean isCompact;
+    boolean isUserFriendly;
+  }
+
+  class RemoteControl {
+    void controlDevice(String command);
+  }
+
+  enum Language {
+    English, Spanish, French, German, Chinese, Japanese, Korean, Arabic;
+  }
+
+  composition RealTimeTranslationDevice -> Microphone;
+  composition RealTimeTranslationDevice -> Speaker;
+  composition RealTimeTranslationDevice -> TranslationModule;
+  association RealTimeTranslationDevice -- RemoteControl;
+}

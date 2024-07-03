@@ -1,0 +1,48 @@
+
+classdiagram ContactCenter {
+
+  class Agent {
+    String id;
+    String skillSet;
+    boolean availability;
+  }
+
+  class Customer {
+    String id;
+    String contactInfo;
+  }
+
+  abstract class Conversation {
+    String conversationId;
+    ConversationStatus status;
+    Agent assignedAgent;
+    Customer customer;
+  }
+
+  class VoiceConversation extends Conversation {
+  }
+
+  class VideoConversation extends Conversation {
+  }
+
+  class TextConversation extends Conversation {
+  }
+
+  enum ConversationStatus {
+    InProgress, Completed, Abandoned;
+  }
+
+  class ContactCenter {
+    -> Agent [*];
+    -> Customer [*];
+    -> Conversation [*];
+    void routeConversation(Conversation conversation);
+    void trackConversation(Conversation conversation);
+    void provideAnalytics();
+    void integrateWithSystems();
+  }
+
+  composition ContactCenter -> Agent [*];
+  composition ContactCenter -> Customer [*];
+  composition ContactCenter -> Conversation [*];
+}

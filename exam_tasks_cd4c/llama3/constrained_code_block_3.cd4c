@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram FinancialTradingSystem  {
+
+  class Broker  {
+    String uniqueIdentifier;
+    Trade[] availableTrades;
+  }
+
+  class Trade  {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+  }
+
+  class Buyer  {
+    String uniqueIdentifier;
+    String name;
+    Order[] placedOrders;
+  }
+
+  class Seller  {
+    String uniqueIdentifier;
+    String name;
+    Order[] placedOrders;
+  }
+
+  class Order  {
+    String uniqueIdentifier;
+    Trade trade;
+    int quantity;
+    double price;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Trade trade;
+    Buyer buyer;
+    Seller seller;
+    int quantity;
+    double price;
+  }
+
+  composition Broker -> Trade[*];
+  composition Buyer -> Order[*];
+  composition Seller -> Order[*];
+  composition Order -> Transaction[*];
+  composition Transaction -> Trade[*];
+  composition Transaction -> Buyer[*];
+  composition Transaction -> Seller[*];
+}

@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram AQMN  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+  }
+
+  enum SensorType  {
+    Temperature,
+    Humidity,
+    Pollutant
+  ;}
+
+  class Station  {
+    String uniqueIdentifier;
+    Sensor  [ ] sensors;
+  }
+
+  class DataCenter  {
+    String uniqueIdentifier;
+    Station  [ ] stations;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    Role role;
+  }
+
+  enum Role  {
+    Administrator,
+    Analyst,
+    Viewer
+  ;}
+
+  class AQMN  {
+    DataCenter  [ ] dataCenters;
+    User  [ ] users;
+  }
+
+  composition AQMN  ->  (has) DataCenter  [ * ];
+  composition AQMN  ->  (has) User  [ * ];
+  composition DataCenter  ->  (has) Station  [ * ];
+  composition Station  ->  (has) Sensor  [ * ];
+  composition User  ->  (has) Role  [ 1 ];
+
+  association AQMN  ->  DataCenter  [ 1 ];
+  association DataCenter  ->  Station  [ * ];
+  association Station  ->  Sensor  [ * ];
+  association User  ->  Role  [ 1 ];
+
+}

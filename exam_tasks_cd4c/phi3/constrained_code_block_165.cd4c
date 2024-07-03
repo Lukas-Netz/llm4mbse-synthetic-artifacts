@@ -1,0 +1,46 @@
+
+classdiagram MedicalDiagnosticSystem {
+
+    class Patient {
+      String patientId;
+      MedicalHistory medicalHistory;
+      List<Symptom> symptoms;
+      List<TestResult> testResults;
+    }
+
+    class MedicalHistory {
+      String patientId;
+      List<Symptom> symptoms;
+      List<TestResult> testResults;
+    }
+
+    class Symptom {
+      String name;
+      String description;
+      int severity;
+    }
+
+    class TestResult {
+      String testType;
+      String result;
+      Date testDate;
+    }
+
+    class Treatment {
+      String name;
+      String description;
+      double effectiveness;
+    }
+
+    class DiagnosisEngine {
+      void analyzeData(Patient patient);
+      Diagnosis predictDiagnosis(Patient patient);
+    }
+
+    association Patient -> MedicalHistory;
+    association Patient -> Symptom;
+    association Patient -> TestResult;
+    association Patient -> Treatment;
+
+    composition DiagnosisEngine -> Patient;
+}

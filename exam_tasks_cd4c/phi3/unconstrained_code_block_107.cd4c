@@ -1,0 +1,27 @@
+
+classdiagram WaterQualityMonitoringSystem {
+
+    class Sensor {
+      String location;
+      String sensorType;
+      float pHLevel;
+      float temperature;
+      float turbidity;
+    }
+
+    class MonitoringStation {
+      String location;
+      List<Sensor> sensors;
+    }
+
+    class CentralDatabase {
+      Map<String, List<Sensor>> data;
+      void updateRealTimeData(MonitoringStation station);
+      void alertAuthorities(Sensor sensor);
+      List<Sensor> getHistoricalData(String location);
+    }
+
+    composition WaterQualityMonitoringSystem -> (has) CentralDatabase;
+    composition WaterQualityMonitoringSystem -> (has) MonitoringStation;
+    composition WaterQualityMonitoringSystem -> (has) Sensor [*];
+}

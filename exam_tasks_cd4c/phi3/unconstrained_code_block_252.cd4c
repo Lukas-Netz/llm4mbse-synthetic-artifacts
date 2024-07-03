@@ -1,0 +1,98 @@
+
+classdiagram AutonomousSubseaVehicleSystem {
+
+    class AutonomousSubseaVehicle {
+      String uniqueIdentifier;
+      VehicleStatus status;
+      SensorSet sensors;
+      TaskList tasks;
+      PropulsionSystem propulsionSystem;
+      PowerSource powerSource;
+      CommunicationSystem communicationSystem;
+    }
+
+    class Sensor {
+      String sensorType;
+      String data;
+    }
+
+    class SonarSensor extends Sensor {
+      int range;
+    }
+
+    class CameraSensor extends Sensor {
+      String imageData;
+    }
+
+    class WaterQualitySensor extends Sensor {
+      int temperature;
+      float salinity;
+      boolean marineLifeDetected;
+    }
+
+    class Task {
+      String taskName;
+      String taskStatus;
+    }
+
+    class MappingTask extends Task {
+      String mapData;
+    }
+
+    class InspectionTask extends Task {
+      String inspectionReport;
+    }
+
+    class WaterSampleCollectionTask extends Task {
+      String sampleData;
+    }
+
+    class PropulsionSystem {
+      String systemType;
+    }
+
+    class ElectricPropulsion extends PropulsionSystem {
+      int batteryLife;
+    }
+
+    class HydraulicPropulsion extends PropulsionSystem {
+      int hydraulicPressure;
+    }
+
+    class PowerSource {
+      String powerType;
+    }
+
+    class BatteryPowerSource extends PowerSource {
+      int batteryCapacity;
+    }
+
+    class FuelCellPowerSource extends PowerSource {
+      int fuelCellCapacity;
+    }
+
+    class CommunicationSystem {
+      String communicationType;
+    }
+
+    class RadioCommunication extends CommunicationSystem {
+      String radioSignal;
+    }
+
+    class SatelliteCommunication extends CommunicationSystem {
+      String satelliteSignal;
+    }
+
+    class MissionControlCenter {
+      void planMission(AutonomousSubseaVehicle asv);
+      void monitorStatus(AutonomousSubseaVehicle asv);
+      void receiveSensorData(AutonomousSubseaVehicle asv);
+    }
+
+    composition AutonomousSubseaVehicle -> (has) SensorSet;
+    composition AutonomousSubseaVehicle -> (has) TaskList;
+    composition AutonomousSubseaVehicle -> (has) PropulsionSystem;
+    composition AutonomousSubseaVehicle -> (has) PowerSource;
+    composition AutonomousSubseaVehicle -> (has) CommunicationSystem;
+    composition MissionControlCenter -> (has) AutonomousSubseaVehicle;
+}

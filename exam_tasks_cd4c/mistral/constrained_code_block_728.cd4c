@@ -1,0 +1,38 @@
+
+classdiagram QuantumCommunication {
+
+  class Satellite {
+    void encryptMessage(Message message);
+    void decryptMessage(Message message);
+  }
+
+  class GroundStation {
+    Satellite satellite;
+    User [ ] users;
+    void sendMessage(User user, Message message);
+    void receiveMessage(Message message);
+  }
+
+  class User {
+    String uniqueIdentifier;
+    void sendMessage(Message message);
+    void receiveMessage(Message message);
+  }
+
+  class KeyManagement {
+    void generateKey();
+    void distributeKey(User user);
+  }
+
+  class Message {
+    String content;
+    EncryptionKey encryptionKey;
+  }
+
+  class EncryptionKey {
+    String key;
+  }
+
+  composition Satellite <- GroundStation;
+  composition GroundStation -> User [*];
+}

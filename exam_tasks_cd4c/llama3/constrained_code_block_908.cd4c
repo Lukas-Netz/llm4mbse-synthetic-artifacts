@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram SmartManufacturingSystem  {
+
+  class Machine  {
+    String uniqueIdentifier;
+    MachineType type;
+    SensorSet sensors;
+    ActuatorSet actuators;
+  }
+
+  class QualityControlStation  {
+    SensorSet sensors;
+    ActuatorSet actuators;
+  }
+
+  class InventoryManagementSystem  {
+    RawMaterialSet rawMaterials;
+    FinishedProductSet finishedProducts;
+  }
+
+  class SensorSet  {
+    Sensor  sensor  ;
+  }
+
+  class ActuatorSet  {
+    Actuator  actuator  ;
+  }
+
+  class Sensor  {
+    String name;
+    String type;
+  }
+
+  class Actuator  {
+    String name;
+    String type;
+  }
+
+  class RawMaterialSet  {
+    RawMaterial  rawMaterial  ;
+  }
+
+  class FinishedProductSet  {
+    FinishedProduct  finishedProduct  ;
+  }
+
+  class RawMaterial  {
+    String name;
+    String type;
+  }
+
+  class FinishedProduct  {
+    String name;
+    String type;
+  }
+
+  class MachineType  {
+    String name;
+  }
+
+  composition Machine  ->  (has) SensorSet;
+  composition Machine  ->  (has) ActuatorSet;
+  composition QualityControlStation  ->  (has) SensorSet;
+  composition QualityControlStation  ->  (has) ActuatorSet;
+  composition InventoryManagementSystem  ->  (has) RawMaterialSet;
+  composition InventoryManagementSystem  ->  (has) FinishedProductSet;
+  association Machine  ->  (produces) FinishedProduct;
+  association QualityControlStation  ->  (inspects) FinishedProduct;
+  }

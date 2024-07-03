@@ -1,0 +1,45 @@
+
+classdiagram DigitalPublishingPlatform {
+
+    class Content {
+      String uniqueIdentifier;
+      String title;
+      List<Author> authors;
+      List<Editor> editors;
+      List<Publisher> publishers;
+      String publicationStatus;
+      List<String> publicationHistory;
+    }
+
+    class Author {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Editor {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class Publisher {
+      String name;
+      String uniqueIdentifier;
+    }
+
+    class ContentManagement {
+      void addAuthor(Author author);
+      void removeAuthor(Author author);
+      void addEditor(Editor editor);
+      void removeEditor(Editor editor);
+      void addPublisher(Publisher publisher);
+      void removePublisher(Publisher publisher);
+      void updateContentStatus(String uniqueIdentifier, String status);
+      List<String> getPublicationHistory(String uniqueIdentifier);
+      List<Content> getContentByStatus(String status);
+    }
+
+    composition Content -> (has) ContentManagement;
+    composition Content -> (has) Author;
+    composition Content -> (has) Editor;
+    composition Content -> (has) Publisher;
+}

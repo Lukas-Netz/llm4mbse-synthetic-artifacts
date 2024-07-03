@@ -1,0 +1,35 @@
+
+
+
+
+classdiagram JobPortal  {
+
+  class JobSeeker  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class JobOpening  {
+    String title;
+    String description;
+    String requirements;
+  }
+
+  class Company  {
+    String name;
+    -> JobOpening [*];
+  }
+
+  class JobApplication  {
+    -> JobOpening;
+    -> JobSeeker;
+  }
+
+  composition JobPortal -> (has) JobSeeker [*];
+  composition JobPortal -> (has) JobOpening [*];
+  composition JobPortal -> (has) Company [*];
+  composition JobOpening -> (has) JobApplication [*];
+  composition JobApplication -> (has) JobSeeker;
+  composition JobApplication -> (has) JobOpening;
+}

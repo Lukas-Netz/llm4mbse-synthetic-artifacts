@@ -1,0 +1,44 @@
+
+classdiagram GlobalClimateMonitoring {
+
+    class Station {
+      String stationId;
+      String stationType;
+    }
+
+    class WeatherStation extends Station {
+      float temperature;
+      float humidity;
+      float atmosphericPressure;
+    }
+
+    class ResearchStation extends Station {
+      float windSpeed;
+      float windDirection;
+      float temperature;
+      float humidity;
+      float atmosphericPressure;
+    }
+
+    class Database {
+      Map<String, StationData> stationDataMap;
+      void addStationData(String stationId, StationData data);
+      StationData getStationData(String stationId);
+    }
+
+    class StationData {
+      WeatherStation weatherData;
+      ResearchStation researchData;
+    }
+
+    class Scientist {
+      String name;
+      String expertise;
+      List<String> publications;
+    }
+
+    association GlobalClimateMonitoring -> (has) Database;
+    association GlobalClimateMonitoring -> (has) Scientist;
+    association Station -> (has) Database;
+    association Station -> (has) Scientist;
+}

@@ -1,0 +1,80 @@
+
+classdiagram SmartCityWasteManagement {
+
+    class WasteManagementSystem {
+      WCVCollectionService collectionService;
+      WCPService wcpService;
+      WasteStreamService wasteStreamService;
+      WasteContainerService containerService;
+      UserService userService;
+    }
+
+    class WCV {
+      String uniqueId;
+      String type;
+      int capacity;
+      WasteContainerCollection wasteContainerCollection;
+    }
+
+    class WCP {
+      String uniqueId;
+      String location;
+      String type;
+      WasteStreamService wasteStreamService;
+    }
+
+    class WasteStream {
+      String uniqueId;
+      String type;
+      int volume;
+      WasteContainerCollection wasteContainerCollection;
+    }
+
+    class WasteContainer {
+      String uniqueId;
+      String type;
+      int capacity;
+    }
+
+    class User {
+      String uniqueId;
+      String role;
+      String password;
+    }
+
+    class WCVCollectionService {
+      void collectWaste(WCV vehicle, WasteStream stream);
+      void dispatchVehicle(WCV vehicle);
+    }
+
+    class WCPService {
+      void addWasteStream(WCP point, WasteStream stream);
+      void removeWasteStream(WCP point, WasteStream stream);
+    }
+
+    class WasteStreamService {
+      void addWasteContainer(WasteStream stream, WasteContainer container);
+      void removeWasteContainer(WasteStream stream, WasteContainer container);
+      int getVolume(WasteStream stream);
+      void checkOverflow(WasteStream stream);
+    }
+
+    class WasteContainerService {
+      void addWasteContainer(WasteContainer container);
+      void removeWasteContainer(WasteContainer container);
+      int getCapacity(WasteContainer container);
+      boolean isLowOnCapacity(WasteContainer container);
+    }
+
+    class UserService {
+      void addUser(User user);
+      void removeUser(User user);
+      boolean checkAccess(User user, WasteManagementSystem system);
+    }
+
+  composition WasteManagementSystem -> (has) WCVCollectionService;
+  composition WasteManagementSystem -> (has) WCPService;
+  composition WasteManagementSystem -> (has) WasteStreamService;
+  composition WasteManagementSystem -> (has) WasteContainerService;
+  composition WasteManagementSystem -> (has) UserService;
+}

@@ -1,0 +1,56 @@
+
+classdiagram VolunteerPlatform {
+
+  class Volunteer {
+    String uniqueIdentifier;
+    String name;
+    ContactInfo contactInfo;
+    Project [ ] assignedProjects;
+  }
+
+  class ContactInfo {
+    String email;
+    String phone;
+  }
+
+  class Project {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Volunteer [ ] volunteers;
+    Organization [ ] organizations;
+    int hoursVolunteered;
+  }
+
+  class Organization {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Project [ ] projects;
+  }
+
+  abstract class Notification {
+    String message;
+  }
+
+  class Reminder extends Notification {
+    DateTime deadline;
+  }
+
+  class HoursReport extends Notification {
+    Volunteer volunteer;
+    Project project;
+    int hours;
+  }
+
+  class OrganizationHoursReport extends Notification {
+    Organization organization;
+    int totalHours;
+  }
+
+  composition VolunteerPlatform -> Volunteer [*];
+  composition VolunteerPlatform -> Project [*];
+  composition VolunteerPlatform -> Organization [*];
+  composition Project -> Volunteer [*];
+  composition Project -> Organization [*];
+}

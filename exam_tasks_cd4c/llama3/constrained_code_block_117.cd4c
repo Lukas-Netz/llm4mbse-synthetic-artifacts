@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram OnlineLearningSystem  {
+
+  class Course  {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    -> Section[*];
+  }
+
+  class Student  {
+    String name;
+    String studentID;
+    -> Enrollment[*];
+  }
+
+  class Instructor  {
+    String name;
+    String facultyID;
+    -> Teaching[*];
+  }
+
+  class Section  {
+    String sectionID;
+    Date startDate;
+    Date endDate;
+    int maxCapacity;
+    -> Enrollment[*];
+  }
+
+  class Enrollment  {
+    Student student;
+    Section section;
+    Grade grade;
+  }
+
+  class Teaching  {
+    Instructor instructor;
+    Course course;
+  }
+
+  class Grade  {
+    double score;
+  }
+
+  class Notification  {
+    String message;
+    Date dueDate;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  composition Course -> Section[*];
+  composition Student -> Enrollment[*];
+  composition Instructor -> Teaching[*];
+  composition Section -> Enrollment[*];
+  composition Enrollment -> Grade;
+  composition Teaching -> Course;
+  composition Grade -> Notification;
+  composition Report -> Grade;
+}

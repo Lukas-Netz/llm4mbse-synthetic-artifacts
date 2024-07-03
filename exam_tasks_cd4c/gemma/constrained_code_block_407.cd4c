@@ -1,0 +1,55 @@
+
+
+classdiagram AirQualityMonitoringNetwork {
+
+    class Sensor {
+      String uniqueIdentifier;
+      SensorType type;
+    }
+
+    enum SensorType {
+      TemperatureSensor, HumiditySensor, PollutantSensor
+    
+    
+	;
+    }
+
+    class Station {
+      String uniqueIdentifier;
+      List<Sensor> sensors;
+    }
+
+    class DataCenter {
+      String uniqueIdentifier;
+      List<Station> stations;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      Role role;
+    }
+
+    enum Role {
+      Administrator, Analyst, Viewer
+    
+    
+	;
+    }
+
+  composition Sensor -> Station [0..1];
+  composition Station -> DataCenter [0..1];
+  composition DataCenter -> User [0..*];
+  association User -> Role
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

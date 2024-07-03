@@ -1,0 +1,54 @@
+
+classdiagram VRSystem {
+
+    class VRDevice {
+      String uniqueIdentifier;
+      DeviceState state;
+    }
+
+    class HapticFeedbackDevice extends VRDevice {
+      float resistanceLevel;
+    }
+
+    class VibrationFeedbackDevice extends VRDevice {
+      float vibrationIntensity;
+    }
+
+    class TactileFeedbackDevice extends VRDevice {
+      String surfaceTexture;
+    }
+
+    class VRHeadset {
+      List<VRDevice> connectedDevices;
+      void updateDeviceState(VRDevice device);
+      void provideFeedback(VRDevice device);
+    }
+
+    class VRController {
+      List<VRDevice> connectedDevices;
+      void updateDeviceState(VRDevice device);
+      void provideFeedback(VRDevice device);
+    }
+
+    class DeviceState {
+      Position position;
+      Orientation orientation;
+      float vibrationLevel;
+    }
+
+    class Position {
+      float xCoordinate;
+      float yCoordinate;
+      float zCoordinate;
+    }
+
+    class Orientation {
+      float pitch;
+      float yaw;
+      float roll;
+    }
+
+    composition VRDevice -> (has) VRHeadset;
+    composition VRDevice -> (has) VRController;
+    association VRDevice -> DeviceState [*];
+}

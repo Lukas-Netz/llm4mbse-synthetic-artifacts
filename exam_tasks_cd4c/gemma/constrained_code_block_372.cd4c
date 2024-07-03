@@ -1,0 +1,40 @@
+
+
+classdiagram UniversityLiteratureManagement {
+
+  class Course {
+    String title;
+    String description;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Instructor {
+    String name;
+    String department;
+    List<Course> courses;
+  }
+
+  class Student {
+    String name;
+    String studentId;
+    List<Course> enrolledCourses;
+  }
+
+  class Section {
+    Date startDate;
+    Date endDate;
+    int capacity;
+    List<Student> enrolledStudents;
+  }
+
+  class CourseSection {
+    Course course;
+    Section section;
+  }
+
+  composition Course -> (has) Instructor;
+  composition Course -> (has) Section [0..*];
+  association Student -> CourseSection;
+  association CourseSection -> Student;
+}

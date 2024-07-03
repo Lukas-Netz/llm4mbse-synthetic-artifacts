@@ -1,0 +1,68 @@
+
+
+classdiagram RefugeeResettlementSystem {
+
+    class Refugee {
+      String uniqueIdentifier;
+      String name;
+      Date dateOfBirth;
+      String countryOfOrigin;
+      String preferredDestinationCountry;
+    }
+
+    class Application {
+      String uniqueIdentifier;
+      Refugee refugee;
+      List<String> preferredDestinations;
+    }
+
+    class DestinationCountry {
+      String uniqueIdentifier;
+      String name;
+      List<HousingOption> housingOptions;
+    }
+
+    class HousingOption {
+      String uniqueIdentifier;
+      String name;
+      List<Room> rooms;
+    }
+
+    class Room {
+      String uniqueIdentifier;
+      String name;
+      List<Furniture> furniture;
+    }
+
+    class Furniture {
+      String uniqueIdentifier;
+      String name;
+      List<Size> sizes;
+    }
+
+    class Size {
+      String uniqueIdentifier;
+      String name;
+      List<Material> materials;
+    }
+
+    class Material {
+      String uniqueIdentifier;
+      String name;
+      List<Color> colors;
+    }
+
+    class Color {
+      String uniqueIdentifier;
+      String name;
+      List<Shade> shades;
+    }
+
+  composition Refugee -> Application;
+  composition DestinationCountry -> HousingOption;
+  composition HousingOption -> Room;
+  composition Room -> Furniture;
+  composition Furniture -> Size;
+  composition Size -> Material;
+  composition Material -> Color;
+}

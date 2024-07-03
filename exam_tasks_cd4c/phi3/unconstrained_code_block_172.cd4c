@@ -1,0 +1,44 @@
+
+classdiagram OnlineMathTutoringSystem {
+
+    class Student {
+      String uniqueId;
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Teacher {
+      String uniqueId;
+      String name;
+      String email;
+      List<Course> taughtCourses;
+    }
+
+    class Course {
+      String uniqueId;
+      String name;
+      String description;
+      List<Teacher> teachers;
+      List<Student> students;
+      float studentProgress;
+    }
+
+    class ProgressReport {
+      String studentId;
+      String courseId;
+      float score;
+    }
+
+    class Recommendation {
+      String studentId;
+      String recommendation;
+    }
+
+    association Student -> Course [*];
+    association Teacher -> Course [*];
+    association Course -> Student [*];
+    association Course -> Teacher [*];
+    composition ProgressReport -> Course;
+    composition Recommendation -> Student;
+}

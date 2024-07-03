@@ -1,0 +1,58 @@
+
+classdiagram HydroponicFarming {
+
+  class Module {
+    String name;
+    String uniqueIdentifier;
+    Crop crop;
+  }
+
+  class Crop {
+    String name;
+    String uniqueIdentifier;
+    GrowthStage growthStage;
+    NutrientRequirements nutrientRequirements;
+    HarvestDate harvestDate;
+  }
+
+  enum GrowthStage {
+    Seedling,
+    Vegetative,
+    Flowering,
+    Harvest;
+  }
+
+  class NutrientRequirements {
+    float nitrogen;
+    float phosphorus;
+    float potassium;
+    float calcium;
+    float magnesium;
+  }
+
+  class HarvestDate {
+    String date;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    float temperature;
+    float humidity;
+    float lightLevel;
+  }
+
+  class WaterManagement {
+    float waterLevel;
+    float pHLevel;
+    boolean isManualControl;
+  }
+
+  class Database {
+    String remoteAccessUrl;
+  }
+
+  composition HydroponicFarming -> Module [*];
+  association Module -- Sensor [*];
+  association Module -- WaterManagement [1];
+  association Module -- Database [1];
+}

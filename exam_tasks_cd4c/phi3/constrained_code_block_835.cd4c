@@ -1,0 +1,62 @@
+
+classdiagram HealthcareBlockchain {
+
+    class Patient {
+      String uniqueId;
+      Set<MedicalRecord> medicalRecords;
+    }
+
+    class Doctor {
+      String uniqueId;
+      Set<Credential> credentials;
+    }
+
+    class Hospital {
+      String uniqueId;
+      Set<Facility> facilities;
+    }
+
+    class Medication {
+      String uniqueId;
+      Set<Property> properties;
+    }
+
+    class Transaction {
+      String type;
+      String sender;
+      String receiver;
+      String data;
+    }
+
+    class MedicalRecord {
+      String recordId;
+      String diagnosis;
+      String treatmentPlan;
+      Set<Medication> medications;
+    }
+
+    class Credential {
+      String credentialId;
+      String specialty;
+      String qualifications;
+    }
+
+    class Facility {
+      String facilityId;
+      String type;
+    }
+
+    class Property {
+      String propertyId;
+      String name;
+      String value;
+    }
+
+    association Patient -> MedicalRecord [1..*];
+    association Doctor -> Credential [1..*];
+    association Hospital -> Facility [1..*];
+    association Medication -> Property [1..*];
+    association Transaction -> MedicalRecord [1..*];
+    association Transaction -> Credential [1..*];
+    association Transaction -> Facility [1..*];
+}

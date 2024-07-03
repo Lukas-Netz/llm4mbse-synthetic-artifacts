@@ -1,0 +1,74 @@
+
+classdiagram OnlineIndigenousArtMarketplace {
+
+    class Artist {
+      String uniqueIdentifier;
+      String name;
+      String bio;
+      List<Artwork> artworks;
+      void updateProfile();
+    }
+
+    class Artwork {
+      String uniqueIdentifier;
+      String title;
+      String description;
+      double price;
+      Artist artist;
+      List<Sale> salesHistory;
+      List<Rating> ratings;
+      List<Review> reviews;
+      void updateArtwork();
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String email;
+      List<Artwork> purchasedArtworks;
+      void filterArtworks(double price, String category, String artistName);
+    }
+
+    class Sale {
+      Artwork artwork;
+      Customer customer;
+      DateTime purchaseDate;
+    }
+
+    class Rating {
+      Artwork artwork;
+      int ratingValue;
+      DateTime ratingDate;
+    }
+
+    class Review {
+      Artwork artwork;
+      String reviewText;
+      DateTime reviewDate;
+    }
+
+    class Admin {
+      void manageMarketplace();
+    }
+
+    association Artist 
+      to [Roles] -> Artwork;
+
+    association Customer 
+      to [Roles] -> Artwork;
+
+    association Artwork 
+      to [Roles] -> Sale;
+
+    association Artwork 
+      to [Roles] -> Rating;
+
+    association Artwork 
+      to [Roles] -> Review;
+
+    composition Artist -> Artwork;
+    composition Customer -> Artwork;
+    composition Artwork -> Sale;
+    composition Artwork -> Rating;
+    composition Artwork -> Review;
+}

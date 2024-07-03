@@ -1,0 +1,48 @@
+
+
+classdiagram CustomerAdvocacyPlatform {
+
+    class Customer {
+      String uniqueIdentifier;
+      List<Review> reviews;
+    }
+
+    class Review {
+      int rating;
+      String textDescription;
+    }
+
+    class Segment {
+      String name;
+      List<Rule> rules;
+    }
+
+    class Rule {
+      String condition;
+      String value;
+    }
+
+    class CustomerSegmentManager {
+      void createSegment(Segment segment);
+      void addCustomerToSegment(Customer customer, Segment segment);
+      List<Customer> getCustomersBySegment(Segment segment);
+    }
+
+    class Analytics {
+      SentimentAnalysis sentimentAnalysis();
+      TrendAnalysis trendAnalysis();
+      CustomerClustering customerClustering();
+    }
+
+    class Integration {
+      void integrateWithCRM(CustomerAdvocacyPlatform platform);
+      void integrateWithMarketingAutomation(CustomerAdvocacyPlatform platform);
+    }
+
+  composition Customer -> (has) List<<Review>>
+  abstract  
+  
+  
+  
+;
+}

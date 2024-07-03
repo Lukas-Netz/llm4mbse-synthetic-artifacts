@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram NewsAggregator  {
+
+  class User  {
+    String uniqueIdentifier;
+    Set<String> interests;
+  }
+
+  class NewsSource  {
+    String name;
+    Set<NewsArticle> articles;
+  }
+
+  class NewsArticle  {
+    String title;
+    String content;
+    Set<Topic> topics;
+    Set<Rating> ratings;
+  }
+
+  class Topic  {
+    String name;
+    Set<NewsArticle> articles;
+  }
+
+  class Rating  {
+    User user;
+    NewsArticle article;
+    int rating;
+    String comment;
+  }
+
+  class Recommendation  {
+    User user;
+    NewsArticle article;
+  }
+
+  composition User -> (has) interests;
+  composition NewsSource -> (has) articles;
+  composition NewsArticle -> (has) topics;
+  composition Topic -> (has) articles;
+  composition Rating -> (has) user;
+  composition Rating -> (has) article;
+  composition Recommendation -> (has) user;
+  composition Recommendation -> (has) article;
+
+  association User -> NewsSource [0..*];
+  association NewsSource -> NewsArticle [0..*];
+  association NewsArticle -> Rating [0..*];
+  association Topic -> NewsArticle [0..*];
+  association User -> Recommendation [0..*];
+  association NewsArticle -> Recommendation [0..*];
+}

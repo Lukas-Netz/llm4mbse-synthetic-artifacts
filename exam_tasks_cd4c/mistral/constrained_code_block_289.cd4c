@@ -1,0 +1,50 @@
+
+classdiagram RecruitmentPlatform {
+
+  class JobSeeker {
+    String name;
+    String email;
+    Resume resume;
+  }
+
+  class Employer {
+    String name;
+    String email;
+    Company company;
+  }
+
+  class Company {
+    String name;
+    String industry;
+    String location;
+  }
+
+  class JobPosting {
+    String title;
+    String description;
+    JobCategory category;
+    Requirements requirements;
+  }
+
+  enum JobCategory {
+    SoftwareDevelopment, Marketing, Finance, Other;
+  }
+
+  class Requirements {
+    String skills;
+    String experience;
+    String education;
+  }
+
+  class Resume {
+    String file;
+  }
+
+  association JobPosting --o00o- 											;
+  association JobSeeker --o00o- 											;
+  association Employer --o00o- 											;
+  association JobPosting --o00o- 											;
+  association JobSeeker --o01o- 											;
+  association Employer --o01o- 											;
+  association JobPosting --o00o- 											;
+}

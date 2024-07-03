@@ -1,0 +1,67 @@
+
+classdiagram OnlineDating {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    Profile profile;
+    List<String> preferredMatches;
+    List<String> blockedUsers;
+  }
+
+  class Profile {
+    int age;
+    String location;
+    List<String> interests;
+    String description;
+  }
+
+  class Search {
+    List<User> searchResults;
+    void search(String criteria);
+  }
+
+  class Message {
+    User sender;
+    User receiver;
+    String content;
+    boolean isRead;
+  }
+
+  class Rating {
+    User rater;
+    User ratedUser;
+    int rating;
+  }
+
+  class Review {
+    User reviewer;
+    User reviewedUser;
+    String content;
+  }
+
+  class Payment {
+    User user;
+    String paymentMethod;
+    boolean premiumFeatures;
+  }
+
+  enum Gender {
+    Male, Female;
+  }
+
+  class User {
+    Gender gender;
+  }
+
+  composition OnlineDating -> User [*];
+  composition User -> Profile;
+  association User -> User [*];
+  association User -> PreferredMatch [*];
+  association User -> BlockedUser [*];
+  association Search -> User [*];
+  association Message -> User [2];
+  association Rating -> User [2];
+  association Review -> User [2];
+  association Payment -> User [1];
+}

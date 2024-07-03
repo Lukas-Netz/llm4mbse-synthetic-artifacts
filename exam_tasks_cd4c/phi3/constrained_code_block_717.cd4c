@@ -1,0 +1,43 @@
+
+classdiagram QuantumDotSolarCellSystem {
+
+    class QuantumDot {
+      int uniqueIdentifier;
+      double size;
+      String materialType;
+    }
+
+    class SolarCell {
+      Set<QuantumDot> quantumDots;
+      double powerOutput;
+      void addQuantumDot(QuantumDot dot);
+      void removeQuantumDot(QuantumDot dot);
+      double calculateEnergyHarvested();
+      double calculateEfficiency();
+    }
+
+    class Light {
+      double intensity;
+      void interactWithQuantumDots(SolarCell cell);
+    }
+
+    class EnergyHarvesting {
+      double calculateEnergy(SolarCell cell);
+    }
+
+    class EfficiencyCalculation {
+      double calculateEfficiency(SolarCell cell);
+    }
+
+    association SolarCell 
+      has -> QuantumDot [*];
+
+    association Light 
+      with -> QuantumDot [*];
+
+    association SolarCell 
+      with -> EnergyHarvesting;
+
+    association SolarCell 
+      with -> EfficiencyCalculation;
+}

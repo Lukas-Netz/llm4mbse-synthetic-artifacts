@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram CybersecuritySystem  {
+
+  class NetworkMonitor  {
+    String ipAddress;
+    int portNumber;
+    int packetSize;
+    -> ThreatDetectionEngine;
+  }
+
+  class ThreatDetectionEngine  {
+    int threatLevel;
+    String threatType;
+    Date detectionTime;
+    -> RecommendationEngine;
+  }
+
+  class RecommendationEngine  {
+    String recommendationType;
+    int recommendationLevel;
+    String implementationStatus;
+    -> ClientPortal;
+  }
+
+  class ClientPortal  {
+    String clientId;
+    NetworkSettings networkSettings;
+    List<SecurityAlert> securityAlerts;
+  }
+
+  class NetworkSettings  {
+    String networkName;
+    String networkDescription;
+  }
+
+  class SecurityAlert  {
+    String alertMessage;
+    Date alertTime;
+  }
+
+  composition CybersecuritySystem -> (has) NetworkMonitor;
+  composition CybersecuritySystem -> (has) ThreatDetectionEngine;
+  composition CybersecuritySystem -> (has) RecommendationEngine;
+  composition CybersecuritySystem -> (has) ClientPortal;
+}

@@ -1,0 +1,54 @@
+
+classdiagram OnlineTutoringPlatform {
+
+    class Student {
+      String username;
+      String password;
+      Profile profile;
+      List<Session> sessions;
+    }
+
+    class Tutor {
+      String username;
+      String password;
+      Profile profile;
+      List<Session> sessions;
+    }
+
+    class Session {
+      String sessionId;
+      DateTime startTime;
+      DateTime endTime;
+      String description;
+      Student student;
+      Tutor tutor;
+    }
+
+    class Course {
+      String courseId;
+      String name;
+      String description;
+      List<Session> sessions;
+    }
+
+    class Payment {
+      String paymentId;
+      double amount;
+      String paymentMethod;
+    }
+
+    class Profile {
+      String name;
+      String email;
+      String phoneNumber;
+    }
+
+    association Student -> Session [*];
+    association Tutor -> Session [*];
+    association Course -> Session [*];
+    association Payment -> Session [*];
+    composition Student -> Profile;
+    composition Tutor -> Profile;
+    composition Course -> Session;
+    composition Payment -> Session;
+}

@@ -1,0 +1,40 @@
+
+classdiagram SpaceStation {
+
+  class SpaceStation {
+    Hub hub;
+    -> RotatingSection [*];
+  }
+
+  abstract class RotatingSection {
+    String uniqueIdentifier;
+    RotatingSectionStatus status;
+  }
+
+  class ResidentialSection extends RotatingSection {
+    int numberOfInhabitants;
+    String livingQuartersType;
+  }
+
+  class CommercialSection extends RotatingSection {
+    String businessType;
+    int numberOfEmployees;
+  }
+
+  class Hub {
+    -> RotatingSection [*];
+    BackupPower backupPower;
+  }
+
+  class BackupPower {
+    boolean isOperational;
+  }
+
+  enum RotatingSectionStatus {
+    Operational, NonOperational;
+  }
+
+  composition SpaceStation -> Hub;
+  composition SpaceStation -> RotatingSection [*];
+  composition Hub -> BackupPower;
+}

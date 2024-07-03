@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram ContractManagementSystem  {
+
+  class Contract  {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    ContractType type;
+  }
+
+  enum ContractType  {
+    Employment, Service;
+  }
+
+  class EmploymentContract extends Contract  {
+    String jobTitle;
+    double salary;
+    int employmentDuration;
+  }
+
+  class ServiceContract extends Contract  {
+    String serviceDescription;
+    int serviceDuration;
+    PaymentTerms paymentTerms;
+  }
+
+  class Party  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class ChangeLog  {
+    Contract contract;
+    Date changeDate;
+    String changeDescription;
+  }
+
+  class Report  {
+    List<Contract> contracts;
+  }
+
+  composition Contract -> Party [2];
+  composition Contract -> ChangeLog [*];
+  composition Report -> Contract [*];
+  association Contract -> ContractType;
+  association EmploymentContract -> PaymentTerms;
+  association ServiceContract -> PaymentTerms;
+}

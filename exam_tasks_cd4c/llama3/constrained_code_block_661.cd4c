@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram AutonomousAerialTaxiSystem  {
+
+  class ControlSystem  {
+    Drone[] drones;
+    Task[] tasks;
+    void assignTask(Drone drone, Task task);
+    void updateDroneLocation(Drone drone, Location location);
+    void monitorDroneStatus(Drone drone);
+  }
+
+  class Drone  {
+    String uniqueIdentifier;
+    Location currentLocation;
+    DroneStatus status;
+    int maxCapacity;
+    Passenger[] passengers;
+  }
+
+  class Task  {
+    Location pickupLocation;
+    Location dropOffLocation;
+    int priority;
+  }
+
+  class Passenger  {
+    String name;
+    Location destination;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  enum DroneStatus  {
+    Available, Busy;
+  }
+
+  composition ControlSystem -> Drone[*];
+  composition Drone -> Task[0..1];
+  composition Drone -> Passenger[*];
+  composition Task -> Location;
+  composition Passenger -> Location;
+}

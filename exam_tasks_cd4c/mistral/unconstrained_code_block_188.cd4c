@@ -1,0 +1,48 @@
+
+classdiagram DigitalTwin {
+
+  class Infrastructure {
+    String uniqueIdentifier;
+    InfrastructureStatus status;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    Infrastructure attachedTo;
+    void collectData();
+  }
+
+  class Actuator {
+    String uniqueIdentifier;
+    Infrastructure controlledBy;
+    void control(Infrastructure infrastructure);
+  }
+
+  class Simulation {
+    String uniqueIdentifier;
+    Infrastructure[] infrastructures;
+    void runSimulation();
+  }
+
+  class Monitoring {
+    String uniqueIdentifier;
+    Infrastructure[] monitoredInfrastructures;
+    void monitor();
+  }
+
+  class Maintenance {
+    String uniqueIdentifier;
+    Infrastructure[] scheduledForMaintenance;
+    void performMaintenance();
+  }
+
+  enum InfrastructureStatus {
+    Operational, NonOperational;
+  }
+
+  composition Infrastructure -> Sensor [*];
+  composition Infrastructure -> Actuator [*];
+  association Simulation -> Infrastructure [*];
+  association Monitoring -> Infrastructure [*];
+  association Maintenance -> Infrastructure [*];
+}

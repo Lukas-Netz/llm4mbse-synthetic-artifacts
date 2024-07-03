@@ -1,0 +1,145 @@
+
+
+classdiagram EnterpriseSearch {
+
+  class User {
+    String name;
+    List<SearchResult> savedResults;
+  }
+
+  class SearchResult {
+    String title;
+    String content;
+    Date date;
+    Author author;
+  }
+
+  class Document {
+    String title;
+    String content;
+  }
+
+  class Image {
+    String title;
+    String url;
+  }
+
+  class Video {
+    String title;
+    String url;
+  }
+
+  class Indexer {
+    Index index;
+  }
+
+  class Index {
+    Map<String, Document> documents;
+    Map<String, Image> images;
+    Map<String, Video> videos;
+  }
+
+  class SearchEngine {
+    Index index;
+    List<SearchResult> search(String query);
+    List<SearchResult> filterResults(List<SearchResult> results, String filter);
+    Suggestions suggestQuery(String query);
+  }
+
+  class SearchService {
+    SearchEngine searchEngine;
+    User user;
+    void saveResults(List<SearchResult> results);
+    void shareResults(List<SearchResult> results, User recipient);
+  }
+
+  composition User -> (has) SavedResults
+
+  abstract  
+  
+  
+  
+;
+
+  composition SearchEngine -> (has) Index
+
+  abstract  
+
+  
+  
+;
+
+  composition SearchService -> (has) SearchEngine
+
+  abstract  
+
+  
+  
+;
+
+  association User -> SearchService
+
+  abstract  
+
+  
+  
+;
+
+  association SearchResult -> Document
+
+  abstract  
+
+  
+  
+;
+
+  association SearchResult -> Image
+
+  abstract  
+
+  
+  
+;
+
+  association SearchResult -> Video
+
+  abstract  
+
+  
+  
+;
+
+  association Indexer -> Index
+
+  abstract  
+
+  
+  
+;
+
+  association Indexer -> SearchEngine
+
+  abstract  
+
+  
+  
+;
+
+  association SearchService -> User
+
+  abstract  
+
+  
+  
+;
+
+  association SearchResults -> Document
+
+  abstract  
+
+  
+  
+;
+
+  
+}

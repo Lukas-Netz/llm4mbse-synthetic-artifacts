@@ -1,0 +1,86 @@
+
+classdiagram RetailLoyaltyProgram {
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      CustomerType type;
+      Account account;
+    }
+
+    class Account {
+      int points;
+      List<Purchase> purchaseHistory;
+    }
+
+    class Purchase {
+      String purchaseId;
+      double amount;
+      Customer customer;
+    }
+
+    class Reward {
+      String rewardName;
+      String description;
+      int pointsValue;
+    }
+
+    class RewardType {
+      String type;
+      List<Reward> rewards;
+    }
+
+    class IndividualCustomer extends Customer {
+      IndividualCustomer()
+    ;
+    }
+
+    class CorporateCustomer extends Customer {
+      CorporateCustomer()
+    ;
+    }
+
+    class RewardType {
+      String type;
+      List<Reward> rewards;
+    }
+
+    <<association>> class Customer {
+      Account account;
+      CustomerType type;
+    }
+
+    <<association>> class Account {
+      Customer customer;
+      int points;
+      List<Purchase> purchaseHistory;
+    }
+
+    <<association>> class Purchase {
+      Customer customer;
+    }
+
+    <<association>> class Reward {
+      RewardType type;
+    }
+
+    <<association>> class RewardType {
+      List<Reward> rewards;
+    }
+
+    <<composition>> class IndividualCustomer {
+      Account account;
+    }
+
+    <<composition>> class CorporateCustomer {
+      Account account;
+    }
+
+    <<association>> class SystemAdministrator {
+      List<Reward> rewards;
+      void addReward(Reward reward);
+      void removeReward(Reward reward);
+      void modifyReward(Reward reward);
+      void trackPerformance();
+    }
+}

@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram DigitalPublishingPlatform  {
+
+  class Content  {
+    String uniqueIdentifier;
+    String title;
+    PublicationStatus status;
+    -> Author [*];
+    -> Editor [*];
+    -> Publisher [*];
+  }
+
+  class Author  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Editor  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Publisher  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  enum PublicationStatus  {
+    Draft,
+    Submitted,
+    Approved,
+    Published,
+    Rejected
+  ;}
+
+  composition Content -> Author [*];
+  composition Content -> Editor [*];
+  composition Content -> Publisher [*];
+  composition Content -> PublicationStatus;
+}

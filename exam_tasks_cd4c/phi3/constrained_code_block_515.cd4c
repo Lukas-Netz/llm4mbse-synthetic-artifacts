@@ -1,0 +1,62 @@
+
+classdiagram AutonomousUnderwaterVehicles {
+
+    class AUVSystem {
+      List<AUV> AUVs;
+      SurfaceStation surfaceStation;
+    }
+
+    class AUV {
+      String uniqueIdentifier;
+      AUVType type;
+      Location location;
+      AUVStatus status;
+      int powerLevel;
+    }
+
+    class SurfaceStation {
+      void sendCommand(AUV aUV, String command);
+      String receiveData(AUV aUV);
+    }
+
+    enum AUVType {
+      Research, Exploration, Mainteninaside
+   
+   
+  
+(class, association, composition, aggregation, dependency, inheritance)
+
+   
+;
+
+    class ResearchAUV;
+    class ExplorationAUV;
+    class MaintenanceAUV;
+
+    class Location;
+
+    class AUVStatus;
+
+    class PowerLevelAlert;
+
+}
+
+classdiagram
+
+   
+;
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    class AUVStatus {
+      String status;
+    }
+
+    class PowerLevelAlert {
+      String message;
+    }
+
+}

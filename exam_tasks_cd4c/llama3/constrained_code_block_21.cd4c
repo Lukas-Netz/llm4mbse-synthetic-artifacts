@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram CRM  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Account  {
+    String uniqueIdentifier;
+    String accountName;
+    AccountType accountType;
+    -> Customer;
+  }
+
+  class Contact  {
+    String uniqueIdentifier;
+    String name;
+    String jobTitle;
+    RelationshipType relationship;
+    -> Account;
+  }
+
+  enum AccountType  {
+    Individual, Business
+  ;}
+
+  enum RelationshipType  {
+    Owner, Manager, Employee
+  ;}
+
+  class Communication  {
+    Date date;
+    String type;  (EmailPhoneCallMeeting)
+    -> Contact;
+    -> Account;
+  }
+
+  class SalesHistory  {
+    Date date;
+    Product product;
+    double salesAmount;
+    -> Account;
+  }
+
+  class Product  {
+    String name;
+    double price;
+  }
+
+  composition CRM  ->  (has) Customer;
+  composition CRM  ->  (has) Account;
+  composition CRM  ->  (has) Contact;
+  composition Account  ->  (has) Customer;
+  composition Contact  ->  (has) Account;
+  composition Communication  ->  (has) Contact;
+  composition Communication  ->  (has) Account;
+  composition SalesHistory  ->  (has) Account;
+  composition SalesHistory  ->  (has) Product;
+}

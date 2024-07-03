@@ -1,0 +1,81 @@
+
+classdiagram CareerCoachingSystem {
+
+    class User {
+      String username;
+      String password;
+      Profile profile;
+      CareerGoals careerGoals;
+      JobOpenings jobOpenings;
+    }
+
+    class Profile {
+      String name;
+      String email;
+      List<Skill> skills;
+      List<Education> education;
+      List<WorkExperience> workExperience;
+    }
+
+    class Skill {
+      String skillName;
+    }
+
+    class Education {
+      String degree;
+      String institution;
+      String year;
+    }
+
+    class WorkExperience {
+      String companyName;
+      String jobTitle;
+      String startDate;
+      String endDate;
+    }
+
+    class CareerGoals {
+      String jobTitle;
+      String industry;
+      String location;
+    }
+
+    class JobOpenings {
+      String jobTitle;
+      String companyName;
+      String location;
+      List<Skill> requiredSkills;
+      List<CareerGoals> matchedGoals;
+    }
+
+    class CareerAdvice {
+      String adviceText;
+    }
+
+    class Application {
+      String jobTitle;
+      String companyName;
+      String userId;
+      ApplicationStatus status;
+    }
+
+    class ApplicationStatus {
+      String status;
+    }
+
+    association User -> Profile;
+    association User -> CareerGoals;
+    association User -> JobOpenings;
+    association User -> CareerAdvice;
+    association User -> Application;
+
+    composition Profile -> Skill [*];
+    composition Profile -> Education [*];
+    composition Profile -> WorkExperience [*];
+
+    composition CareerGoals -> JobOpenings [*];
+
+    composition JobOpenings -> Skill [*];
+   
+
+}

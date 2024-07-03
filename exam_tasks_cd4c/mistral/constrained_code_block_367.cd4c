@@ -1,0 +1,45 @@
+
+classdiagram FoodDelivery {
+
+  class Customer {
+    String customerID;
+    String name;
+    String address;
+    Order [
+     ] orders;
+  }
+
+  class Restaurant {
+    String restaurantID;
+    String name;
+    String address;
+    Item [
+     ] items;
+    Order [
+     ] orders;
+  }
+
+  class Order {
+    String orderID;
+    Customer customer;
+    Item [
+     ] items;
+    OrderStatus status;
+    double totalCost;
+  }
+
+  class Item {
+    String itemID;
+    String name;
+    double price;
+    String description;
+  }
+
+  enum OrderStatus {
+    Pending, InProgress, Delivered;
+  }
+
+  composition Customer -> Order [*];
+  composition Restaurant -> Order [*];
+  composition Order -> Item [*];
+}

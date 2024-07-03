@@ -1,0 +1,36 @@
+
+classdiagram SmartHomeIoT {
+
+  class Device {
+    String uniqueIdentifier;
+    void control();
+  }
+
+  class Light extends Device {
+    int brightnessLevel;
+    String color;
+  }
+
+  class Thermostat extends Device {
+    int temperature;
+    String mode;
+  }
+
+  class SecurityCamera extends Device {
+    String resolution;
+    boolean isRecording;
+  }
+
+  class Hub {
+    -> Device [*];
+    void receiveCommand(String command);
+    String checkBackupPowerStatus();
+  }
+
+  class BackupPower {
+    int capacityWh;
+  }
+
+  composition SmartHomeIoT -> Hub;
+  composition Hub -> Device [*];
+}

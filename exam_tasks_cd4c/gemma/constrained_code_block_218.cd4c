@@ -1,0 +1,73 @@
+
+
+classdiagram EHR
+
+  
+
+{class Patient {
+  id
+  name
+  
+
+  
+
+  
+; }
+
+class MedicalCondition {
+  name
+  description
+
+  
+
+  
+; }
+
+class Medication {
+  name
+  dosage
+  
+  
+  
+; }
+
+class TestResult {
+  name
+  value
+  
+  
+  
+; }
+
+class Appointment {
+  date
+  time
+  
+  
+  
+; }
+
+class MedicalProcedure {
+  name
+  date
+  
+  
+  
+; }
+
+class Doctor {
+  name
+  specialty
+  
+  
+  
+; }
+
+composition Patient -> MedicalCondition [*];
+composition Patient -> Medication [*];
+composition Patient -> TestResult [*];
+composition Patient -> Appointment [*];
+composition Patient -> MedicalProcedure [*];
+composition Doctor -> Appointment [*];
+composition Doctor -> MedicalProcedure [*];
+}

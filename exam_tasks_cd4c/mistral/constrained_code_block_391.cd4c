@@ -1,0 +1,70 @@
+
+classdiagram HealthCoaching {
+
+  class User {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile {
+    String healthGoals;
+    String medicalHistory;
+    HealthStatus currentHealthStatus;
+  }
+
+  class HealthStatus {
+    String condition;
+    int vitalSigns;
+  }
+
+  class Coach {
+    String uniqueIdentifier;
+    HealthPlan [ ] assignedHealthPlans;
+  }
+
+  class HealthPlan {
+    String name;
+    String description;
+    Exercise [ ] exercises;
+    DietPlan [ ] dietPlans;
+    HealthTip [ ] healthTips;
+  }
+
+  class Exercise {
+    String name;
+    String description;
+    DifficultyLevel difficulty;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class DietPlan {
+    String name;
+    String description;
+    FoodItem [ ] foodItems;
+  }
+
+  class FoodItem {
+    String name;
+    String description;
+  }
+
+  class HealthTip {
+    String name;
+    String description;
+    RelevanceLevel relevance;
+  }
+
+  enum RelevanceLevel {
+    Low, Medium, High;
+  }
+
+  association User --o000o- 											{ 											ordered						}						;
+  association Coach --o000o-											{ 											ordered						}						;
+  association HealthPlan --o000o-										{ 											ordered						}						;
+  association Exercise --o000o-											{ 											ordered						}						;
+  association DietPlan --o000o-											{ 											ordered						}						;
+  association HealthTip --o000o-											{ 											ordered						}						;
+}

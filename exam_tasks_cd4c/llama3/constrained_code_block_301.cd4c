@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VideoConferencing  {
+
+  class Conference  {
+    String uniqueIdentifier;
+    String name;
+    DateTime startTime;
+    DateTime endTime;
+    Room  [  ] rooms;
+    Participant  [  ] participants;
+  }
+
+  abstract class Participant  {
+    String name;
+    String email;
+  }
+
+  class User extends Participant  {
+    String uniqueIdentifier;
+  }
+
+  class Guest extends Participant  {
+  }
+
+  class Room  {
+    String uniqueIdentifier;
+    int maxCapacity;
+  }
+
+  class SystemAdministrator  {
+    void manageConference(Conference conference);
+    void manageParticipant(Participant participant);
+    void manageRoom(Room room);
+  }
+
+  composition Conference -> (has) Room [ 0..* ];
+  composition Conference -> (has) Participant [ 0..* ];
+  composition Participant -> (is) User [ 0..1 ];
+  composition Participant -> (is) Guest [ 0..1 ];
+  composition Room -> (has) Participant [ 0..* ];
+
+  association Conference -> SystemAdministrator [ 1..1 ];
+  association Participant -> SystemAdministrator [ 0..1 ];
+  association Room -> SystemAdministrator [ 0..1 ];
+
+  enum DateTime  {
+    startTime, endTime;
+  }
+}

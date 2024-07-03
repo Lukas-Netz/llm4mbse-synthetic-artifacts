@@ -1,0 +1,42 @@
+
+
+classdiagram PointOfSale {
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      double price;
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+    }
+
+    class SalesTransaction {
+      String uniqueIdentifier;
+      Date date;
+      double totalCost;
+      Customer customer;
+      List<Product> products;
+    }
+
+    class Category {
+      String name;
+      List<Product> products;
+    }
+
+    class SalesTransactionService {
+      void addSalesTransaction(SalesTransaction salesTransaction);
+      void removeSalesTransaction(SalesTransaction salesTransaction);
+      double calculateTotalCost(SalesTransaction salesTransaction);
+    }
+
+  composition SalesTransactionService -> (has) SalesTransaction [0..*]
+  abstract  
+  
+  
+  
+;
+}

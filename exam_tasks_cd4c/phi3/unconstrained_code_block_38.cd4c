@@ -1,0 +1,44 @@
+
+classdiagram FraudDetectionSystem {
+
+    class Transaction {
+      String transactionID;
+      Date dateTime;
+      double amount;
+      String type;
+      String cardNumber;
+      String accountNumber;
+      String productOrService;
+    }
+
+    class FraudDatabase {
+      List<Transaction> knownFrauds;
+      List<Transaction> legitimateTransactions;
+    }
+
+    class MachineLearningModel {
+      void trainModel(FraudDatabase database);
+      boolean predictFraud(Transaction transaction);
+    }
+
+    class UserInterface {
+      void inputTransaction(Transaction transaction);
+      void displayResults(Transaction transaction);
+    }
+
+    class NotificationSystem {
+      void sendAlert(Transaction transaction);
+    }
+
+    class FraudDetectionSystem {
+      FraudDatabase database;
+      MachineLearningModel model;
+      UserInterface interface;
+      NotificationSystem notification;
+    }
+
+    association FraudDetectionSystem -> FraudDatabase;
+    association FraudDetectionSystem -> MachineLearningModel;
+    association FraudDetectionSystem -> UserInterface;
+    association FraudDetectionSystem -> NotificationSystem;
+}

@@ -1,0 +1,61 @@
+
+classdiagram SpaceExploration {
+
+  class Spacecraft {
+    PropulsionSystem propulsion;
+    LifeSupportSystem lifeSupport;
+    PowerSupply powerSupply;
+  }
+
+  abstract class Robot {
+    String uniqueIdentifier;
+  }
+
+  class ExplorationRobot extends Robot {
+    NavigationSystem navigation;
+    Sensors sensors;
+    SamplingEquipment sampling;
+  }
+
+  class MaintenanceRobot extends Robot {
+    RepairTools tools;
+    SpareParts parts;
+  }
+
+  class CommunicationRobot extends Robot {
+    CommunicationEquipment communication;
+    DataTransmissionProtocol protocol;
+  }
+
+  class PropulsionSystem {
+  }
+
+  class LifeSupportSystem {
+  }
+
+  class PowerSupply {
+  }
+
+  class NavigationSystem {
+  }
+
+  class Sensors {
+  }
+
+  class SamplingEquipment {
+  }
+
+  class RepairTools {
+  }
+
+  class SpareParts {
+  }
+
+  class CommunicationEquipment {
+  }
+
+  class DataTransmissionProtocol {
+  }
+
+  composition Spacecraft -> (has) Robot [*];
+}

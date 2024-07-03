@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram SurveyFeedbackSystem  {
+
+  class User  {
+    String uniqueId;
+    Role role;
+  }
+
+  enum Role  {
+    Admin, Moderator, Participant
+  ;}
+
+  class Survey  {
+    String uniqueId;
+    String title;
+    String description;
+    -> Question[*];
+  }
+
+  abstract class Question  {
+    QuestionType type;
+    -> AnswerOption[*];
+  }
+
+  enum QuestionType  {
+    MultipleChoice, RatingScale, OpenEnded
+  ;}
+
+  class QuestionMultipleChoice extends Question  {
+    -> AnswerOption[*];
+  }
+
+  class QuestionRatingScale extends Question  {
+    int minRating;
+    int maxRating;
+  }
+
+  class QuestionOpenEnded extends Question  {
+  }
+
+  class AnswerOption  {
+    String text;
+  }
+
+  class Answer  {
+    -> Question;
+    -> User;
+  }
+
+  class Feedback  {
+    -> Survey;
+    -> User;
+  }
+
+  class Analytics  {
+    -> Feedback[*];
+  }
+
+  class Dashboard  {
+    -> Analytics;
+  }
+
+  composition User  -> (has) Role;
+  composition Survey  -> (has) Question[*];
+  composition Question  -> (has) AnswerOption[*];
+  composition Answer  -> (has) Question;
+  composition Feedback  -> (has) Survey;
+  composition Analytics  -> (has) Feedback[*];
+  composition Dashboard  -> (has) Analytics;
+}

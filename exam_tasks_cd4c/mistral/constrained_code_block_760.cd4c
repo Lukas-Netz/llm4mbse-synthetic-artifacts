@@ -1,0 +1,35 @@
+
+classdiagram TranslationSystem {
+
+  class DictionaryDatabase {
+    void addWordTranslation(String word, String language, String translation);
+    String getTranslation(String word, String language);
+  }
+
+  class TextProcessingModule {
+    String[] breakTextIntoWords(String text);
+  }
+
+  class TranslationModule {
+    String translateText(String[] words, String targetLanguage);
+  }
+
+  class UserInterface {
+    String inputText;
+    void displayTranslatedText(String translatedText);
+  }
+
+  class TranslationSystem {
+    DictionaryDatabase dictionaryDatabase;
+    TextProcessingModule textProcessingModule;
+    TranslationModule translationModule;
+    UserInterface userInterface;
+
+    void translateText() throws Exception;
+  }
+
+  composition TranslationSystem -> DictionaryDatabase;
+  composition TranslationSystem -> TextProcessingModule;
+  composition TranslationSystem -> TranslationModule;
+  composition TranslationSystem -> UserInterface;
+}

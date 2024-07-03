@@ -1,0 +1,50 @@
+
+classdiagram PesticideManagementSystem {
+
+    class Farm {
+      String farmIdentifier;
+      String farmName;
+      Field[] fields;
+    }
+
+    class Field {
+      String fieldIdentifier;
+      String fieldName;
+      Farm farm;
+      Crop[] crops;
+    }
+
+    class Crop {
+      String cropIdentifier;
+      String cropName;
+      Field field;
+      PesticideApplication[] pesticideApplications;
+    }
+
+    class PesticideApplication {
+      String applicationId;
+      Date applicationDate;
+      Pesticide pesticide;
+      double amountUsed;
+      String method;
+    }
+
+    class Pesticide {
+      String pesticideId;
+      String pesticideName;
+      String regulationCompliance;
+    }
+
+    class Regulation {
+      String regulationId;
+      String description;
+      Pesticide[] pesticides;
+    }
+
+    association Farm -> Field [1..];
+    association Field -> Crop [1..];
+    association Crop -> PesticideApplication [1..];
+    composition Farm -> Regulation;
+    composition Field -> Regulation;
+    composition Crop -> Regulation;
+}

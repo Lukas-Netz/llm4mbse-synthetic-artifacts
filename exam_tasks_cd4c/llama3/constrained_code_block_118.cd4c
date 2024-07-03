@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram QuantumCryptography  {
+
+  class Sender  {
+    KeyGeneration keyGen;
+  }
+
+  class Receiver  {
+    KeyVerification keyVer;
+  }
+
+  class QuantumChannel  {
+    Qubit qubit;
+  }
+
+  class Qubit  {
+    Encoding encoding;
+  }
+
+  class Encoding  {
+    String scheme;
+  }
+
+  class KeyGeneration  {
+    Receiver receiver;
+    SecretKey key;
+  }
+
+  class KeyVerification  {
+    SecretKey key;
+  }
+
+  class SecretKey  {
+    String key;
+  }
+
+  class ClassicalChannel  {
+    Bit bit;
+  }
+
+  class Bit  {
+    String value;
+  }
+
+  composition Sender -> (has) QuantumChannel;
+  composition Receiver -> (has) QuantumChannel;
+  composition QuantumChannel -> (has) Qubit;
+  composition KeyGeneration -> (has) Receiver;
+  composition KeyVerification -> (has) SecretKey;
+  composition ClassicalChannel -> (has) Bit;
+}

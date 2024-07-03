@@ -1,0 +1,39 @@
+
+classdiagram IdentityManagement {
+
+  class User {
+    String uniqueIdentifier;
+    Identity [][] identities;
+  }
+
+  class Identity {
+    String name;
+    String description;
+    IdentityStatus status;
+    Organization organization;
+  }
+
+  class Organization {
+    String uniqueIdentifier;
+    User [][] users;
+    Identity [][] identities;
+  }
+
+  enum IdentityStatus {
+    Active, Inactive;
+  }
+
+  class Blockchain {
+    Identity [][][] identities;
+  }
+
+  class Node {
+    String uniqueIdentifier;
+    Blockchain blockchain;
+  }
+
+  composition User -> Identity [*];
+  composition Organization -> User [*];
+  composition Organization -> Identity [*];
+  composition Blockchain -> Node [*];
+}

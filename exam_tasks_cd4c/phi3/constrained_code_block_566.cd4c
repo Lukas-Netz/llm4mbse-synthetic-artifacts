@@ -1,0 +1,48 @@
+
+classdiagram VirtualRealitySurgicalSimulation {
+
+    class Simulator {
+      String name;
+      List<Procedure> availableProcedures;
+      void startSimulation(Surgeon surgeon, Procedure procedure);
+      void provideFeedback(Surgeon surgeon);
+      void storePerformanceData(Surgeon surgeon);
+    }
+
+    class Surgeon {
+      String name;
+      String role;
+      int experienceLevel;
+      void selectProcedure(Procedure procedure);
+      void useTool(Tool tool);
+    }
+
+    class Patient {
+      String name;
+      String medicalHistory;
+      List<VitalSign> vitalSigns;
+    }
+
+    class Procedure {
+      String name;
+      String description;
+      List<Tool> requiredTools;
+    }
+
+    class Tool {
+      String name;
+      String description;
+      String type;
+    }
+
+    class VitalSign {
+      String name;
+      int value;
+    }
+
+    composition Simulator -> (has) Surgeon;
+    composition Simulator -> (has) Patient;
+    composition Surgeon -> (has) Procedure;
+    composition Surgeon -> (has) Tool;
+    composition Patient -> (has) VitalSign;
+}

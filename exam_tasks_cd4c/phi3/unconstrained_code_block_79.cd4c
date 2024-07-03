@@ -1,0 +1,45 @@
+
+classdiagram IoTEdgeSystem {
+
+    class EdgeDevice {
+      String uniqueIdentifier;
+      DeviceStatus status;
+    }
+
+    class Sensor extends EdgeDevice {
+      String data;
+    }
+
+    class Actuator extends EdgeDevice {
+      String command;
+    }
+
+    class Gateway {
+      String name;
+      int capacity;
+      List<EdgeDevice> connectedDevices;
+      void connectDevice(EdgeDevice device);
+      void disconnectDevice(EdgeDevice device);
+    }
+
+    class CloudPlatform {
+      String name;
+      int storageCapacity;
+      void receiveData(EdgeDevice device);
+      void sendCommand(EdgeDevice device, String command);
+    }
+
+    class DataProcessingModule {
+      String moduleName;
+      List<EdgeDevice> devices;
+      List<Gateway> gateways;
+      void processData(EdgeDevice device);
+      void processDataFromGateway(Gateway gateway);
+    }
+
+    composition EdgeDevice -> (has) Gateway;
+    composition EdgeDevice -> (has) CloudPlatform;
+    composition Gateway -> (has) EdgeDevice [*];
+    composition Gateway -> (has) CloudPlatform;
+    composition CloudPlatform -> (has) DataProcessingModule;
+}

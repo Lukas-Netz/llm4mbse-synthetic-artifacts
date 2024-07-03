@@ -1,0 +1,63 @@
+
+
+classdiagram AI_SEO_Platform {
+
+  class Dashboard {
+    void viewReports()
+    
+    
+ ;}
+
+  class KeywordResearch {
+    List<Keyword> suggestKeywords()
+  
+  ;}
+
+  class ContentOptimization {
+    ContentAnalysis analyzeContent(String content)
+    
+    
+ ;}
+
+  class LinkBuilding {
+    void buildLinks()
+  
+  ;}
+
+  class CompetitorAnalysis {
+    CompetitorAnalysisReport analyzeCompetitor(String competitorUrl)
+  
+  ;}
+
+  class Reporting {
+    DetailedReport generateReport()
+  
+  ;}
+
+  class WorkflowEngine {
+    void createWorkflow(String name, List<Step> steps)
+  
+  ;}
+
+  class Step {
+    void execute()
+  
+  ;}
+
+  class CustomType {
+    String name;
+  
+  }
+
+  composition Dashboard -> (has) WorkflowEngine [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram OnlineGroceryShoppingSystem  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    Category category;
+    double price;
+  }
+
+  enum Category  {
+    Fruits, Vegetables, Dairy, etc;
+  }
+
+  class Order  {
+    Customer customer;
+    List<Product> products;
+  }
+
+  class OrderItem  {
+    Product product;
+    int quantity;
+  }
+
+  composition Customer -> Order [1..*];
+  composition Order -> OrderItem [*];
+  composition Product -> OrderItem [*];
+  composition Product -> Order [1..*];
+  composition Order -> Customer [1];
+
+  interface EmailService  {
+    void sendOrderConfirmation(Order order);
+    void sendOrderUpdate(Order order);
+  }
+
+  class Inventory  {
+    Map<Product, int> inventoryLevels;
+  }
+
+  composition Product -> Inventory [1];
+  composition Inventory -> Product [*];
+}

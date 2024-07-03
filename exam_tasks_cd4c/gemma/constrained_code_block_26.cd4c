@@ -1,0 +1,47 @@
+
+
+classdiagram RetailPointOfSale {
+
+    class Store {
+      String uniqueIdentifier;
+      String name;
+    }
+
+    class CashRegister {
+      String uniqueIdentifier;
+      Store store;
+      boolean isOpen;
+    }
+
+    class Database {
+      Products products;
+      Customers customers;
+      Transactions transactions;
+    }
+
+    class Product {
+      String uniqueIdentifier;
+      String name;
+      double price;
+      int quantity;
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+    }
+
+    class Transaction {
+      String date;
+      String time;
+      double totalAmount;
+      Customer customer;
+      List<Product> products;
+    }
+
+  composition Store -> (has) CashRegister [0..1];
+  composition Database -> (has) Products;
+  composition Database -> (has) Customers;
+  composition Database -> (has) Transactions;
+}

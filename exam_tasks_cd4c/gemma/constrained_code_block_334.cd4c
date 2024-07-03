@@ -1,0 +1,49 @@
+
+
+classdiagram OnlineIndustrialDesignCoursesPlatform {
+
+    class Course {
+      String title;
+      String description;
+      List<Topic> topics;
+    }
+
+    class Instructor {
+      String name;
+      String bio;
+      List<Course> courses;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    class Topic {
+      String name;
+      List<Course> courses;
+    }
+
+    class Assignment {
+      String title;
+      String description;
+      Student student;
+      Instructor instructor;
+    }
+
+    class CourseMaterial {
+      String name;
+      String type;
+      Instructor instructor;
+      Student student;
+    }
+
+    composition Course -> (has) Topic [*];
+    composition Instructor -> (has) Course [*];
+    composition Student -> (has) Course [*];
+    association Student - EnrolledCourse -> Course;
+    association Instructor - TeachesCourse -> Course;
+    association Assignment - BelongsTo -> Course;
+    association CourseMaterial - BelongsTo -> Course;
+}

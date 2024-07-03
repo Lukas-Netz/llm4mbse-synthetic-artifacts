@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram DroneSystem  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    DroneType type;
+    int altitude;
+    int speed;
+    int direction;
+    DroneState state;
+  }
+
+  class Controller  {
+    Drone drone;
+    boolean isConnected;
+  }
+
+  class CommunicationSystem  {
+    boolean isConnected;
+  }
+
+  class WeatherStation  {
+    String temperature;
+    String humidity;
+    String windSpeed;
+  }
+
+  enum DroneType  {
+    Reconnaissance,
+    Cargo,
+    Surveillance
+  ;}
+
+  enum DroneState  {
+    Idle,
+    Flying,
+    Landed
+  ;}
+
+  class ReconnaissanceDrone extends Drone  {
+    int cameraResolution;
+  }
+
+  class CargoDrone extends Drone  {
+    int cargoCapacity;
+  }
+
+  class SurveillanceDrone extends Drone  {
+    int surveillanceRange;
+  }
+
+  composition Drone -> Controller;
+  composition Drone -> CommunicationSystem;
+  composition WeatherStation -> DroneSystem [0..1];
+  composition Controller -> Drone;
+  composition CommunicationSystem -> Drone;
+  composition Drone -> WeatherStation [0..1];
+}

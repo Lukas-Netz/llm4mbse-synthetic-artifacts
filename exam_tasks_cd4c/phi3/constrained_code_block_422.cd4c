@@ -1,0 +1,36 @@
+
+classdiagram DigitalScrapbookingPlatform {
+
+  class User {
+    String username;
+    String password;
+    List<Album> albums;
+  }
+
+  class Album {
+    String name;
+    String description;
+    List<Photo> photos;
+    boolean isPublic;
+    List<User> sharedWith;
+  }
+
+  class Photo {
+    String caption;
+    Date dateTaken;
+    List<String> tags;
+    int views;
+    int likes;
+  }
+
+  association User -> Album [1..*];
+  association User -> Photo [1..*];
+  association Album -> Photo [1..*];
+  association Album -> User [0..1];
+  association Album -> Album [0..1];
+  association Photo -> User [0..1];
+  association Photo -> Album [0..1];
+  composition Album -> Photo [*];
+  composition User -> Album [*];
+  composition User -> Photo [*];
+}

@@ -1,0 +1,62 @@
+
+classdiagram UrbanAquaponics {
+
+  class Tank {
+    Fish [  ] fish;
+    Plant [ ] plants;
+  }
+
+  class Fish {
+    String species;
+    int weight;
+  }
+
+  class Plant {
+    String species;
+    int growthStage;
+  }
+
+  class Pipe {
+    Tank source;
+    Tank destination;
+  }
+
+  class ControlCenter {
+    Sensor [ ] sensors;
+    Pump [ ] pumps;
+    Valve [ ] valves;
+
+    void monitorWaterQuality();
+    void regulateTemperature();
+    void adjustPH();
+  }
+
+  class Sensor {
+    String type;
+    Tank tank;
+  }
+
+  class Pump {
+    Tank tank;
+  }
+
+  class Valve {
+    Tank tank;
+  }
+
+  class StorageTank {
+    int waterVolume;
+  }
+
+  class FiltrationSystem {
+    int impurityRemovalRate;
+  }
+
+  composition UrbanAquaponics -> Tank [*];
+  composition UrbanAquaponics -> Pipe [*];
+  composition ControlCenter -> Sensor [*];
+  composition ControlCenter -> Pump [*];
+  composition ControlCenter -> Valve [*];
+  association ControlCenter -- StorageTank;
+  association ControlCenter -- FiltrationSystem;
+}

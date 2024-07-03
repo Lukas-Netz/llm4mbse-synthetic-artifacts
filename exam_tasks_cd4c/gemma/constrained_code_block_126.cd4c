@@ -1,0 +1,46 @@
+
+
+classdiagram ConsumerInsightsPlatform {
+
+  class ConsumerInsightsPlatform {
+    DataWarehouse dataWarehouse;
+    DataProcessingModule dataProcessingModule;
+    VisualizationModule visualizationModule;
+    MachineLearningModule machineLearningModule;
+    UserInterface userInterface;
+  }
+
+  class DataWarehouse {
+    Store store;
+  }
+
+  class DataProcessingModule {
+    DataIngestion ingestion;
+    DataCleaning cleaning;
+    DataTransformation transformation;
+    DataAggregation aggregation;
+  }
+
+  class VisualizationModule {
+    Dashboard dashboard;
+    Report report;
+  }
+
+  class MachineLearningModule {
+    Clustering clustering;
+    Regression regression;
+    DecisionTree decisionTree;
+  }
+
+  class UserInterface {
+    DrillDown drillDown;
+    Filtering filtering;
+    Sorting sorting;
+  }
+
+  composition ConsumerInsightsPlatform -> (has) DataWarehouse;
+  composition ConsumerInsightsPlatform -> (has) DataProcessingModule;
+  composition ConsumerInsightsPlatform -> (has) VisualizationModule;
+  composition ConsumerInsightsPlatform -> (has) MachineLearningModule;
+  composition ConsumerInsightsPlatform -> (has) UserInterface;
+}

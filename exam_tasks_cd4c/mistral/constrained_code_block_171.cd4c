@@ -1,0 +1,35 @@
+
+classdiagram SelfHealingNetwork {
+
+  class Node {
+    String uniqueIdentifier;
+    NodeType type;
+  }
+
+  enum NodeType {
+    Router, Switch;
+  }
+
+  class Link {
+    Node node1;
+    Node node2;
+    int capacity;
+  }
+
+  class SubNetwork {
+    String name;
+    Node [ ] nodes;
+  }
+
+  class CentralManagementSystem {
+    void addNode(Node node);
+    void removeNode(Node node);
+    void addLink(Link link);
+    void removeLink(Link link);
+    String checkNetworkStatus();
+  }
+
+  composition SelfHealingNetwork -> CentralManagementSystem;
+  composition SubNetwork -> Node [*];
+  composition Link -> Node [2];
+}

@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram RealEstate  {
+
+  class Property  {
+    String uniqueIdentifier;
+    String address;
+    List<Feature> features;
+  }
+
+  class Agent  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class Client  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class Feature  {
+    String name;
+    int value;
+  }
+
+  class ContactInformation  {
+    String email;
+    String phone;
+  }
+
+  class RealEstateSystem  {
+    List<Property> properties;
+    List<Agent> agents;
+    List<Client> clients;
+  }
+
+  composition RealEstateSystem -> (has) properties;
+  composition RealEstateSystem -> (has) agents;
+  composition RealEstateSystem -> (has) clients;
+
+  association Property -> (has) features;
+  association Agent -> (manages) properties;
+  association Client -> (buys) properties;
+  association Agent -> (has) contactInfo;
+  association Client -> (has) contactInfo;
+}

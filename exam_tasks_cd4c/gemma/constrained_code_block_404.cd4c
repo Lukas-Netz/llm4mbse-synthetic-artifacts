@@ -1,0 +1,36 @@
+
+
+classdiagram OceanThermalEnergyConversion {
+
+  class HeatExchanger {
+    int surfaceArea;
+    double heatTransferCoefficient;
+  }
+
+  class ColdWaterIntake {
+    int depth;
+    double flowRate;
+  }
+
+  class Turbine {
+    int rotationalSpeed;
+    int powerOutput;
+  }
+
+  class Generator {
+    int voltage;
+    int current;
+  }
+
+  class ControlSystem {
+    Sensors sensors;
+    SystemParameters parameters;
+  }
+
+  composition HeatExchanger -> ColdWaterIntake [1..*];
+  composition HeatExchanger -> Turbine [1..*];
+  composition HeatExchanger -> Generator [1..*];
+  composition ControlSystem -> HeatExchanger [1..*];
+  association ControlSystem -> Sensors;
+  association ControlSystem -> SystemParameters;
+}

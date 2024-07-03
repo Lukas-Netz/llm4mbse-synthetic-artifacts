@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram RenewableEnergyCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    List<Topic> topics;
+    CourseType type;
+  }
+
+  class Instructor  {
+    String name;
+    String bio;
+    List<Course> courses;
+    InstructorRole role;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    List<Course> enrolledCourses;
+    StudentLevel level;
+  }
+
+  class Topic  {
+    String name;
+  }
+
+  class CourseType  {
+    String name;
+  }
+
+  class InstructorRole  {
+    String name;
+  }
+
+  class StudentLevel  {
+    String name;
+  }
+
+  class Administrator  {
+    void managePlatform();
+  }
+
+  composition Course -> Topic [1..*];
+  composition Instructor -> Course [1..*];
+  composition Student -> Course [1..*];
+  composition Administrator -> Instructor [0..*];
+  composition Administrator -> Student [0..*];
+  composition Administrator -> Course [0..*];
+}

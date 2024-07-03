@@ -1,0 +1,52 @@
+
+
+classdiagram SmartMobilitySolution {
+
+    class TrafficManagement {
+      TrafficLightTiming timing;
+      CameraLocations locations;
+      void adjustTrafficLightTiming(Timing timing);
+      TrafficFlow monitorTrafficFlow();
+    }
+
+    class PublicTransportation {
+      BusSchedule schedule;
+      TrainSchedule schedule;
+      PassengerFlow monitorPassengerFlow();
+      void updateSchedule(Schedule schedule);
+    }
+
+    class RideHailing {
+      DriverInformation drivers;
+      PassengerInformation passengers;
+      MatchingPassengersWithDrivers matchPassengersWithDrivers();
+      TrackingRideStatus trackRideStatus();
+    }
+
+    class ParkingManagement {
+      ParkingLotCapacity capacity;
+      ParkingLotAvailability availability;
+      ManagingParkingLotAccess manageParkingLotAccess();
+      MonitoringParkingLotUsage monitorParkingLotUsage();
+    }
+
+    enum TrafficLightTiming {
+      Red, Yellow, Green
+    
+
+    
+;
+  }
+
+  composition TrafficManagement -> ParkingManagement [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

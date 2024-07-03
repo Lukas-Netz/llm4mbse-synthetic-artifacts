@@ -1,0 +1,205 @@
+
+classdiagram VirtualRealityPaleontologyTours {
+
+    class Museum {
+      String name;
+      String location;
+      List<Exhibit> exhibits;
+    }
+
+    class Exhibit {
+      String name;
+      String description;
+      ExhibitType type;
+      List<Visitor> visitors;
+      String section;
+    }
+
+    class Visitor {
+      String name;
+      String email;
+      String password;
+      Account account;
+    }
+
+    class Account {
+      boolean isLoggedIn;
+      String username;
+      String password;
+    }
+
+    class AccountService {
+      void createAccount(Visitor visitor);
+      void login(Visitor visitor);
+      void logout(Visitor visitor);
+    }
+
+    class ExhibitType {
+      String type;
+    }
+
+    class VisitorVisit {
+      Visitor visitor;
+      Exhibit exhibit;
+      int rating;
+      String review;
+    }
+
+    association Museum 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+   
+ ;
+    association Exhibit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association Visitor 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+    association VisitorVisit 
+      has
+      [Roles]
+      -> AccountService
+
+    <<association>>
+    abstract
+    {
+      ordered
+     }
+
+  ;
+   
+ }

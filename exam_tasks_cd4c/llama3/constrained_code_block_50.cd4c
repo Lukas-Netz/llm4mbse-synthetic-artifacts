@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram ATMSystem  {
+
+  class ATM  {
+    String uniqueIdentifier;
+    BankAccount bankAccount;
+  }
+
+  class BankAccount  {
+    String accountNumber;
+    double balance;
+  }
+
+  class CashDispenser  {
+    double capacity;
+  }
+
+  class SecurityFeature  {
+    void trackTransaction(double amount);
+    void alertBank();
+  }
+
+  class Transaction  {
+    double amount;
+    ATM atm;
+  }
+
+  class ATMSystem  {
+    ATM[] atms;
+    CashDispenser[] cashDispensers;
+    SecurityFeature securityFeature;
+  }
+
+  composition ATMSystem -> ATM[*];
+  composition ATM -> BankAccount;
+  composition ATM -> CashDispenser;
+  composition ATM -> SecurityFeature;
+  composition ATMSystem -> CashDispenser[*];
+  composition ATMSystem -> SecurityFeature;
+  association ATM -> Transaction;
+  association BankAccount -> Transaction;
+  association CashDispenser -> Transaction;
+  association SecurityFeature -> Transaction;
+}

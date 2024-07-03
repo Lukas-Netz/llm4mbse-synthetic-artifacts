@@ -1,0 +1,60 @@
+
+classdiagram BuildingInformationModeling {
+
+    class BIMProject {
+      String projectName;
+      String projectIdentifier;
+      List<Building> buildings;
+      List<Architect> architects;
+    }
+
+    class Building {
+      String identifier;
+      String name;
+      List<Floor> floors;
+    }
+
+    class Floor {
+      List<Room> rooms;
+    }
+
+    class Room {
+      String identifier;
+      RoomStatus status;
+    }
+
+    class RoomStatus {
+      boolean occupied;
+    }
+
+    class OfficeRoom extends Room {
+      int deskCount;
+      int chairCount;
+    }
+
+    class MeetingRoom extends Room {
+      int capacity;
+      List<String> availableTimes;
+    }
+
+    class StorageRoom extends Room {
+      int capacity;
+      List<String> storedItems;
+    }
+
+    class Architect {
+      String identifier;
+      String name;
+      List<Building> buildingsAssigned;
+    }
+
+    association BIMProject -> Building [1..*];
+    association BIMProject -> Architect [0..*];
+    composition Building -> Floor [1..*];
+    composition Floor -> Room [1..*];
+    association Room -> RoomStatus [1];
+    association OfficeRoom -> Room [1];
+    association MeetingRoom -> Room [1];
+    association StorageRoom -> Room [1];
+    composition Architect -> Building [0..1];
+}

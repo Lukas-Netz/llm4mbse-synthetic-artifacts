@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram AutonomousFarmingSystem  {
+
+  class Sensor  {
+    TemperatureSensor temperatureSensor;
+    HumiditySensor humiditySensor;
+    LightSensor lightSensor;
+  }
+
+  class Actuator  {
+    TemperatureActuator temperatureActuator;
+    HumidityActuator humidityActuator;
+    LightActuator lightActuator;
+  }
+
+  class ControlUnit  {
+    Sensor sensor;
+    Actuator actuator;
+    void receiveData(SensorData data);
+    void sendCommand(ActuatorCommand command);
+  }
+
+  class SensorData  {
+    double temperature;
+    double humidity;
+    double light;
+  }
+
+  class ActuatorCommand  {
+    double temperature;
+    double humidity;
+    double light;
+  }
+
+  class Plant  {
+    String type;
+    GrowthStage growthStage;
+    NutrientRequirements nutrientRequirements;
+    Tray tray;
+  }
+
+  class Tray  {
+    String uniqueIdentifier;
+    Plant plant;
+  }
+
+  class Database  {
+    List<Plant> plants;
+    void addPlant(Plant plant);
+    void updatePlant(Plant plant);
+  }
+
+  composition ControlUnit -> (has) Sensor;
+  composition ControlUnit -> (has) Actuator;
+  composition Database -> (has) Plant[*];
+  composition Tray -> (has) Plant;
+  association Sensor -> (monitors) Temperature;
+  association Sensor -> (monitors) Humidity;
+  association Sensor -> (monitors) Light;
+  association Actuator -> (controls) Temperature;
+  association Actuator -> (controls) Humidity;
+  association Actuator -> (controls) Light;
+  association ControlUnit -> (receives) SensorData;
+  association ControlUnit -> (sends) ActuatorCommand;
+  }

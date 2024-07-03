@@ -1,0 +1,88 @@
+
+
+
+
+classdiagram AirborneWindEnergySystem  {
+
+  class TetheredWing  {
+    WingType type;
+    LiftCoefficient liftCoefficient;
+    DragCoefficient dragCoefficient;
+    MaximumAltitude maximumAltitude;
+  }
+
+  class GroundStation  {
+    ElectricityStorage electricityStorage;
+    Communication communication;
+  }
+
+  class ControlCenter  {
+    Monitoring monitoring;
+    Control control;
+  }
+
+  class WeatherStation  {
+    RealTimeWeatherData realTimeWeatherData;
+  }
+
+  class WingType  {
+    String name;
+  }
+
+  class LiftCoefficient  {
+    double value;
+  }
+
+  class DragCoefficient  {
+    double value;
+  }
+
+  class MaximumAltitude  {
+    int value;
+  }
+
+  class ElectricityStorage  {
+    int capacity;
+  }
+
+  class Communication  {
+    String protocol;
+  }
+
+  class Monitoring  {
+    TetheredWingStatus tetheredWingStatus;
+  }
+
+  class Control  {
+    TetheredWingAltitudeControl tetheredWingAltitudeControl;
+    TetheredWingOrientationControl tetheredWingOrientationControl;
+  }
+
+  class TetheredWingStatus  {
+    String status;
+  }
+
+  class TetheredWingAltitudeControl  {
+    int altitude;
+  }
+
+  class TetheredWingOrientationControl  {
+    String orientation;
+  }
+
+  class RealTimeWeatherData  {
+    double windSpeed;
+    double windDirection;
+    double temperature;
+  }
+
+  composition AirborneWindEnergySystem -> (has) TetheredWing;
+  composition AirborneWindEnergySystem -> (has) GroundStation;
+  composition AirborneWindEnergySystem -> (has) ControlCenter;
+  composition AirborneWindEnergySystem -> (has) WeatherStation;
+  composition TetheredWing -> (has) WingType;
+  composition GroundStation -> (has) ElectricityStorage;
+  composition ControlCenter -> (has) Monitoring;
+  composition ControlCenter -> (has) Control;
+  composition WeatherStation -> (has) RealTimeWeatherData;
+}

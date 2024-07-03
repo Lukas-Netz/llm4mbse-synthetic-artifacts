@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram PLM  {
+
+  class Farm  {
+    String name;
+    String identifier;
+  }
+
+  class Field  {
+    String name;
+    int sizeAcres;
+    -> Animal[*];
+  }
+
+  abstract class Animal  {
+    String uniqueIdentifier;
+    String name;
+    Date birthdate;
+  }
+
+  class Cow extends Animal  {
+    String breed;
+    int weight;
+  }
+
+  class Pig extends Animal  {
+    String breed;
+    int weight;
+  }
+
+  class Chicken extends Animal  {
+    String breed;
+    int eggProduction;
+  }
+
+  class Veterinarian  {
+    String name;
+    String identifier;
+    String specialization;
+    -> Task[*];
+  }
+
+  abstract class Task  {
+    String description;
+  }
+
+  class Vaccination extends Task  {
+    Date date;
+  }
+
+  class Treatment extends Task  {
+    Date date;
+  }
+
+  class HealthCheck extends Task  {
+    Date date;
+  }
+
+  composition Farm -> Field[*];
+  composition Field -> Animal[*];
+  composition Veterinarian -> Task[*];
+}

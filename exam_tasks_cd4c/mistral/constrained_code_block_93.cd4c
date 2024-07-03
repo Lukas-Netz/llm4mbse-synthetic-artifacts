@@ -1,0 +1,46 @@
+
+classdiagram InventoryOptimization {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String category;
+  }
+
+  class Warehouse {
+    String uniqueIdentifier;
+    String name;
+    String location;
+  }
+
+  class Inventory {
+    Product product;
+    int quantity;
+    int reorderPoint;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    Date date;
+    OrderStatus status;
+  }
+
+  enum OrderStatus {
+    Pending, Shipped, Delivered, Cancelled;
+  }
+
+  class OrderItem {
+    Order order;
+    Product product;
+    int quantity;
+  }
+
+  class Supplier {
+    String uniqueIdentifier;
+    String name;
+    String contactInformation;
+  }
+
+  composition Warehouse [*] has (has) -> Inventory [*];
+  composition Order [*] has (has) -> OrderItem [*];
+}

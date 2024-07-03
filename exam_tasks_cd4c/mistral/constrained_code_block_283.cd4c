@@ -1,0 +1,65 @@
+
+classdiagram FeedbackSystem {
+
+  class Customer {
+    String customerId;
+    String name;
+    String email;
+  }
+
+  class Product {
+    String productId;
+    String name;
+  }
+
+  class Service {
+    String serviceId;
+    String name;
+  }
+
+  class Feedback {
+    String feedbackId;
+    Customer customer;
+    Product product;
+    Service service;
+    String category;
+    String subcategory;
+    String feedbackText;
+    FeedbackStatus status;
+  }
+
+  enum FeedbackStatus {
+    Received,
+    Acknowledged,
+    UnderReview,
+    Resolved,
+    Closed;
+  }
+
+  class Category {
+    String categoryId;
+    String name;
+    String parentCategoryId;
+  }
+
+  class Subcategory {
+    String subcategoryId;
+    String name;
+    String parentCategoryId;
+  }
+
+  class FeedbackRepository {
+    -> Feedback [*];
+  }
+
+  class FeedbackService {
+    FeedbackRepository feedbackRepository;
+    void sendNotification(Feedback feedback);
+  }
+
+  composition Customer -> Feedback [*];
+  composition Product -> Feedback [*];
+  composition Service -> Feedback [*];
+  composition Feedback -> Category;
+  composition Feedback -> Subcategory;
+}

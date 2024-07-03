@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram DrugDiscoverySystem  {
+
+  class Compound  {
+    String name;
+    Properties properties;
+  }
+
+  class Properties  {
+    Solubility solubility;
+    Lipophilicity lipophilicity;
+    other properties;
+  }
+
+  class TargetProtein  {
+    String name;
+  }
+
+  class SimulationEnvironment  {
+    BiologicalSystem biologicalSystem;
+  }
+
+  class BiologicalSystem  {
+    String name;
+  }
+
+  class UserInterface  {
+    void searchCompounds(Properties properties);
+    void predictBinding(TargetProtein targetProtein, Compound compound);
+    void simulateBehavior(SimulationEnvironment simulationEnvironment, Compound compound);
+    void retrieveSimulationResults(String simulationId);
+  }
+
+  class MachineLearningModel  {
+    void predictBinding(TargetProtein targetProtein, Compound compound);
+  }
+
+  class Database  {
+    Compound[] compounds;
+  }
+
+  composition Database -> Compound[*];
+  composition SimulationEnvironment -> BiologicalSystem;
+  composition UserInterface -> MachineLearningModel;
+  composition MachineLearningModel -> Database;
+  composition SimulationEnvironment -> Compound;
+  composition UserInterface -> SimulationEnvironment;
+  composition UserInterface -> Compound;
+  composition UserInterface -> TargetProtein;
+  composition UserInterface -> BiologicalSystem;
+}

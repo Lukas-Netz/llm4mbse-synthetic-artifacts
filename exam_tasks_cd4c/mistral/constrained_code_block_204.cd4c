@@ -1,0 +1,63 @@
+
+classdiagram SmartContracts {
+
+  class Contract {
+    String contractId;
+    Party[] parties;
+    ContractStatus status;
+    ContractTerms terms;
+  }
+
+  class Party {
+    String partyName;
+    String partyAddress;
+  }
+
+  class ContractStatus {
+    enum Active;
+    enum Terminated;
+    enum Expired;
+  }
+
+  class ContractTerms {
+    PaymentTerms paymentTerms;
+    DeliveryTerms deliveryTerms;
+    TerminationTerms terminationTerms;
+  }
+
+  class PaymentTerms {
+    String paymentMethod;
+    Date paymentDueDate;
+  }
+
+  class DeliveryTerms {
+    Date deliveryDueDate;
+    String deliveryAddress;
+  }
+
+  class TerminationTerms {
+    Date terminationDate;
+    String terminationReason;
+  }
+
+  class Report {
+    int activeContracts;
+    int terminatedContracts;
+    int expiredContracts;
+  }
+
+  class Notification {
+    Party recipient;
+    String message;
+  }
+
+  composition Contract [*] ContractStatus [static ]-> (has) Active;
+  composition Contract [*] ContractStatus [static] -> (has) Terminated;
+  composition Contract [*] ContractStatus [static] -> (has) Expired;
+  composition Contract [*] ContractTerms [static] -> (has) PaymentTerms;
+  composition Contract [*] ContractTerms [static] -> (has) DeliveryTerms;
+  composition Contract [*] ContractTerms [static] -> (has) TerminationTerms;
+  association Contract [*] Party [static] -> (has) parties;
+  association Report [static] -> (has) Contract [*];
+  association Notification [static] -> (has) Party [*];
+}

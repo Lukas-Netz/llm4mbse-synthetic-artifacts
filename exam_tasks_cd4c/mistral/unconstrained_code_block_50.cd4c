@@ -1,0 +1,43 @@
+
+classdiagram WasteRecycling {
+
+  class WasteCollectionVehicle {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+  }
+
+  class WasteContainer {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+    WasteType wasteType;
+  }
+
+  enum WasteType {
+    Recyclable, NonRecyclable, Hazardous;
+  }
+
+  class RecyclingFacility {
+    String uniqueIdentifier;
+    Location location;
+    int capacity;
+    RecyclingStatus status;
+  }
+
+  enum RecyclingStatus {
+    Idle, Processing, Full;
+  }
+
+  class WasteCollectionSchedule {
+    WasteContainer container;
+    int frequency;
+    Time timing;
+  }
+
+  composition WasteCollectionVehicle -> WCV [1..*];
+  composition WasteContainer -> Container [1..*];
+  composition RecyclingFacility -> Facility [1..*];
+  association WasteContainer -> WasteType [1];
+  association WasteCollectionSchedule -> WasteContainer [1..*];
+}

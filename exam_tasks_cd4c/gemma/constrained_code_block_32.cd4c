@@ -1,0 +1,41 @@
+
+
+<<eos>>
+classdiagram EnvironmentalMonitoringSystem {
+
+  class Sensor {
+    String name;
+    SensorData data;
+  }
+
+  class DataLogger {
+    String name;
+    List<SensorData> data;
+  }
+
+  class CentralServer {
+    List<DataLogger> dataLoggers;
+    Database database;
+    ReportingModule reportingModule;
+  }
+
+  class Database {
+    void storeData(SensorData data);
+    SensorData getData(String sensorName);
+  }
+
+  class ReportingModule {
+    void generateReport(String reportType);
+  }
+
+  class SensorData {
+    String timestamp;
+    int temperature;
+    int humidity;
+    int airQuality;
+  }
+
+  composition CentralServer -> (has) DataLogger [*];
+  composition CentralServer -> (has) Database [0..1];
+  composition CentralServer -> (has) ReportingModule [0..1];
+}

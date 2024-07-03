@@ -1,0 +1,58 @@
+
+classdiagram ChargingSystem {
+
+  class ChargingPad {
+    String uniqueIdentifier;
+    Location location;
+    ChargingType type;
+    int capacity;
+    int usage;
+    double temperature;
+    ErrorStatus errorStatus;
+  }
+
+  enum ChargingType {
+    Fast, Slow, Universal;
+  }
+
+  class Location {
+    String building;
+    String floor;
+    String room;
+  }
+
+  class Device {
+    String uniqueIdentifier;
+    DeviceType type;
+    ChargingStatus chargingStatus;
+  }
+
+  enum DeviceType {
+    Phone, Watch, Earbuds;
+  }
+
+  enum ChargingStatus {
+    Charging, FullyCharged, NotCharging;
+  }
+
+  class User {
+    String uniqueIdentifier;
+    Device [][] devices;
+  }
+
+  class ErrorStatus {
+    String errorType;
+    String errorMessage;
+  }
+
+  class Notification {
+    String deviceUniqueIdentifier;
+    ChargingStatus chargingStatus;
+  }
+
+  composition ChargingSystem -> ChargingPad [*];
+  composition ChargingSystem -> User [*];
+  association ChargingPad -> Device [*];
+  association User -> Device [*];
+  association Notification <-> Device;
+}

@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram UnderwaterDrone  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    int batteryLevel;
+    DroneStatus status;
+  }
+
+  class Camera  {
+    int resolution;
+    CameraType type;
+    CameraStatus status;
+  }
+
+  class ControlCenter  {
+    Drone drone;
+    Camera camera;
+    void sendCommandToDrone(DroneCommand command);
+    void sendCommandToCamera(CameraCommand command);
+  }
+
+  class MemoryCard  {
+    int capacity;
+    File[] files;
+  }
+
+  class BackupPower  {
+    int capacityWh;
+  }
+
+  enum DroneStatus  {
+    Flying, NotFlying;
+  }
+
+  enum CameraStatus  {
+    Recording, NotRecording;
+  }
+
+  enum CameraType  {
+    Still, Video;
+  }
+
+  enum DroneCommand  {
+    TakeOff, Land, ChangeAltitude;
+  }
+
+  enum CameraCommand  {
+    StartRecording, StopRecording;
+  }
+
+  enum FileFormat  {
+    JPEG, MP4;
+  }
+
+  composition ControlCenter -> Drone;
+  composition ControlCenter -> Camera;
+  composition Drone -> Camera;
+  composition MemoryCard -> File[*];
+  composition ControlCenter -> BackupPower [0..1];
+}

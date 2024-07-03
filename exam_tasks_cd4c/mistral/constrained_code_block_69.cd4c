@@ -1,0 +1,59 @@
+
+classdiagram EnterpriseSearch {
+
+  class Indexer {
+    void indexContent(Content content);
+  }
+
+  abstract class Content {
+    String contentId;
+    String contentType;
+  }
+
+  class TextFile extends Content {
+    String text;
+  }
+
+  class Image extends Content {
+    String imageUrl;
+  }
+
+  class Video extends Content {
+    String videoUrl;
+  }
+
+  class SearchEngine {
+    SearchResult[] search(String query);
+    void saveSearchResult(SearchResult result);
+    void shareSearchResult(SearchResult result);
+  }
+
+  class SearchResult {
+    Content content;
+    float relevanceScore;
+    Date date;
+    String author;
+  }
+
+  class SuggestionEngine {
+    String[] suggest(String query);
+  }
+
+  class Filter {
+    void filterResults(SearchResult[] results, String filterType);
+  }
+
+  class Integration {
+    void integrateWithApplication(Application app);
+  }
+
+  class Application {
+    String appName;
+  }
+
+  composition Indexer -> Content [*];
+  association SearchEngine -> Content [*];
+  association SearchResult -> Content [1];
+  association Filter -> SearchResult [*];
+  association Integration -> Application [*];
+}

@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram PersonalFinanceApps  {
+
+  class User  {
+    String username;
+    String password;
+    -> Account[*];
+  }
+
+  class Account  {
+    String name;
+    AccountType type;
+    double balance;
+    -> Transaction[*];
+    -> Budget[*];
+  }
+
+  class Transaction  {
+    Date date;
+    double amount;
+    String description;
+    TransactionType type;
+    -> Account;
+  }
+
+  class Budget  {
+    String name;
+    Date startDate;
+    Date endDate;
+    -> Account;
+  }
+
+  enum AccountType  {
+    Checking, Savings, CreditCard;
+  }
+
+  enum TransactionType  {
+    Income, Expense;
+  }
+
+  composition User -> Account;
+  composition Account -> Transaction;
+  composition Account -> Budget;
+}

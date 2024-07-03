@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram VirtualRealityPaleontologyTours  {
+
+  class Museum  {
+    String name;
+    String location;
+  }
+
+  class Exhibit  {
+    String name;
+    String description;
+    ExhibitType type;
+    MuseumSection section;
+    int visitorCount;
+  }
+
+  enum ExhibitType  {
+    Dinosaur, Fossil, Artifact
+  ;}
+
+  enum MuseumSection  {
+    FossilHall, DinosaurDen, ArtifactGallery
+  ;}
+
+  class Visitor  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Account  {
+    Visitor visitor;
+    Exhibit[] visitedExhibits;
+  }
+
+  class ExhibitReview  {
+    Exhibit exhibit;
+    Visitor visitor;
+    int rating;
+    String review;
+  }
+
+  composition Museum  ->  (has) Exhibit[*];
+  composition Exhibit  ->  (has) Visitor[*];
+  composition Account  ->  (has) ExhibitReview[*];
+  association Exhibit  ->  (has) MuseumSection;
+  association Visitor  ->  (has) Account;
+  association Exhibit  ->  (has) ExhibitReview;
+}

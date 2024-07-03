@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram RemoteSensing  {
+
+  class Sensor  {
+    String uniqueIdentifier;
+    int resolution;
+  }
+
+  class Processor  {
+    Set<Filter> filters;
+    Set<Algorithm> algorithms;
+  }
+
+  class Storage  {
+    int capacity;
+    int size;
+  }
+
+  class Visualizer  {
+    Set<Format> formats;
+  }
+
+  class User  {
+    void requestImageProcessing(Sensor sensor, Processor processor);
+    void requestImageVisualization(Processor processor, Visualizer visualizer);
+  }
+
+  class Filter  {
+    String name;
+  }
+
+  class Algorithm  {
+    String name;
+  }
+
+  class Format  {
+    String name;
+  }
+
+  composition Sensor -> (has) Processor;
+  composition Processor -> (has) Storage;
+  composition Storage -> (has) Visualizer;
+  composition User -> (requests) Sensor;
+  composition User -> (requests) Processor;
+  composition User -> (requests) Visualizer;
+}

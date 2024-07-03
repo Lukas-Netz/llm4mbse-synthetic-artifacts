@@ -1,0 +1,52 @@
+
+
+
+
+classdiagram CustomerDataIntegration  {
+
+  class Customer  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class IndividualCustomer extends Customer  {
+    Date dateOfBirth;
+  }
+
+  class CorporateCustomer extends Customer  {
+    String companyName;
+  }
+
+  class GovernmentCustomer extends Customer  {
+    String governmentId;
+  }
+
+  class Communication  {
+    Date date;
+    CommunicationType type;
+    String description;
+  }
+
+  enum CommunicationType  {
+    PhoneCall, Email, Letter
+  ;}
+
+  class Preference  {
+    CommunicationChannel preferredChannel;
+    Language preferredLanguage;
+  }
+
+  enum CommunicationChannel  {
+    Phone, Email, Letter
+  ;}
+
+  enum Language  {
+    English, Spanish, French
+  ;}
+
+  composition Customer -> Preference [1..*];
+  composition Customer -> Communication [0..*];
+  composition IndividualCustomer -> none;
+  composition CorporateCustomer -> none;
+  composition GovernmentCustomer -> none;
+}

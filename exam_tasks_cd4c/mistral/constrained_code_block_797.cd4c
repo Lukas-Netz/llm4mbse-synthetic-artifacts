@@ -1,0 +1,82 @@
+
+classdiagram SmartCity {
+
+  class WeatherStation {
+    int temperature;
+    int humidity;
+    int windSpeed;
+    int precipitation;
+  }
+
+  class TrafficManagementSystem {
+    TrafficLight [][ ] trafficLights;
+    SpeedCamera [ ] speedCameras;
+    TrafficSensor [ ] trafficSensors;
+  }
+
+  class PublicSafetySystem {
+    FireAlarm [ ] fireAlarms;
+    PoliceDispatch [ ] policeDispatch;
+    AmbulanceService [ ] ambulanceServices;
+  }
+
+  class EnergyManagementSystem {
+    EnergyUsage [ ] energyUsage;
+    EnergyStorage [ ] energyStorage;
+    RenewableEnergySource [ ] renewableEnergySources;
+  }
+
+  class WasteManagementSystem {
+    WasteSorting [ ] wasteSorting;
+    Recycling [ ] recycling;
+    Landfill [ ] landfill;
+  }
+
+  class TransportationSystem {
+    Bus [ ] buses;
+    Train [ ] trains;
+    BikeSharingSystem [ ] bikeSharingSystems;
+  }
+
+  class ParkingManagementSystem {
+    ParkingSensor [ ] parkingSensors;
+    ParkingMeter [ ] parkingMeters;
+    ParkingGarage [ ] parkingGarages;
+  }
+
+  class BuildingManagementSystem {
+    Building [ ] buildings;
+  }
+
+  class WaterManagementSystem {
+    WaterSource [ ] waterSources;
+  }
+
+  class PublicHealthSystem {
+    HealthFacility [ ] healthFacilities;
+  }
+
+  class SmartCitySystem {
+    WeatherStation weatherStation;
+    TrafficManagementSystem trafficManagementSystem;
+    PublicSafetySystem publicSafetySystem;
+    EnergyManagementSystem energyManagementSystem;
+    WasteManagementSystem wasteManagementSystem;
+    TransportationSystem transportationSystem;
+    ParkingManagementSystem parkingManagementSystem;
+    BuildingManagementSystem buildingManagementSystem;
+    WaterManagementSystem waterManagementSystem;
+    PublicHealthSystem publicHealthSystem;
+  }
+
+  composition SmartCitySystem -> WeatherStation;
+  composition SmartCitySystem -> TrafficManagementSystem;
+  composition SmartCitySystem -> PublicSafetySystem;
+  composition SmartCitySystem -> EnergyManagementSystem;
+  composition SmartCitySystem -> WasteManagementSystem;
+  composition SmartCitySystem -> TransportationSystem;
+  composition SmartCitySystem -> ParkingManagementSystem;
+  association SmartCitySystem -> BuildingManagementSystem;
+  association SmartCitySystem -> WaterManagementSystem;
+ 
+}

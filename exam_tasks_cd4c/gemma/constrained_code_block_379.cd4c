@@ -1,0 +1,48 @@
+
+
+classdiagram VirtualReality {
+
+  class VRSystem {
+    Simulation simulation;
+  }
+
+  class Simulation {
+    RenewableEnergySource[] sources;
+    Grid grid;
+  }
+
+  class RenewableEnergySource {
+    String name;
+    EnergyOutput output;
+    Efficiency efficiency;
+    Cost cost;
+  }
+
+  class SolarPanel extends RenewableEnergySource {
+    int capacity;
+  }
+
+  class WindTurbine extends RenewableEnergySource {
+    int height;
+  }
+
+  class HydroDam extends RenewableEnergySource {
+    int height;
+  }
+
+  class Grid {
+    int capacity;
+    EnergyStorage storage;
+  }
+
+  class EnergyStorage {
+    int capacity;
+  }
+
+  composition VRSystem -> (has) Simulation;
+  composition Simulation -> (has) Sources;
+  composition Sources -> (has) SolarPanel [0..*];
+  composition Sources -> (has) WindTurbine [0..*];
+  composition Sources -> (has) HydroDam [0..*];
+  composition Simulation -> (has) Grid;
+}

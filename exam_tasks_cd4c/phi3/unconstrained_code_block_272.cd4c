@@ -1,0 +1,47 @@
+
+classdiagram SpaceWeatherPredictionSystem {
+
+    class DataIngestion {
+      void collectData(DataSource source);
+      DataSource[] getDataSources();
+    }
+
+    class DataProcessor {
+      void processData(Data[] data);
+      PredictionResult predictSolarFlare(Data data);
+      PredictionResult predictCME(Data data);
+    }
+
+    class Visualization {
+      void displayPrediction(PredictionResult result);
+    }
+
+    class Notification {
+      void sendAlert(PredictionResult result);
+    }
+
+    class PredictionResult {
+      String type;
+      double intensity;
+      int duration;
+      String direction;
+    }
+
+    class DataSource {
+      String sourceName;
+      Data[] getData();
+    }
+
+    class Data {
+      String flareType;
+      double intensity;
+      int duration;
+      String direction;
+    }
+
+    association DataIngestion -> Data[*];
+    association DataProcessor -> Data[*];
+    association DataProcessor -> PredictionResult[*];
+    association Visualization -> PredictionResult[*];
+    association Notification -> PredictionResult[*];
+}

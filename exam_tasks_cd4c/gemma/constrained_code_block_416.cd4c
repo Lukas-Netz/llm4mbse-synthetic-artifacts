@@ -1,0 +1,11 @@
+
+
+classdiagram LunarColonization
+
+  
+
+{class LunarBase extends Base {
+  String name;
+  Location location;
+  boolean operational;
+}}

@@ -1,0 +1,51 @@
+
+classdiagram VirtualEventPlatform {
+
+    class VirtualEvent {
+      String uniqueId;
+      String name;
+      Date startDate;
+      Date endDate;
+      int maxAttendees;
+      List<Speaker> speakers;
+      List<Session> sessions;
+    }
+
+    class Speaker {
+      String name;
+      String bio;
+      List<VirtualEvent> events;
+    }
+
+    class Session {
+      String title;
+      Date startTime;
+      Date endTime;
+      Speaker speaker;
+      List<Attendee> attendees;
+    }
+
+    class Attendee {
+      String uniqueId;
+      String name;
+      List<VirtualEvent> events;
+      List<Session> sessions;
+    }
+
+    class User {
+      String uniqueId;
+      String name;
+      List<VirtualEvent> events;
+      List<Session> sessions;
+    }
+
+    <<association>> class VirtualEventPlatform {
+      VirtualEvent events;
+      User organizers;
+      User attendees;
+    }
+
+    association VirtualEventPlatform -> (has) VirtualEvent;
+    association VirtualEventPlatform -> (has) User;
+    association VirtualEventPlatform -> (has) User;
+}

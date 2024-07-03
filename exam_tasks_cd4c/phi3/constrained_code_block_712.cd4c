@@ -1,0 +1,65 @@
+
+classdiagram AncestryPlatform {
+
+  class User {
+    String username;
+    String password;
+    List<Profile> profiles;
+  }
+
+  class Profile {
+    String name;
+    Date birthdate;
+    Date deathdate;
+    List<Relationship> relationships;
+    List<Document> documents;
+    List<Image> images;
+  }
+
+  class Relationship {
+    String type;
+    Date date;
+  }
+
+  class Document {
+    String filePath;
+    String content;
+  }
+
+  class Image {
+    String filePath;
+    String content;
+  }
+
+  <<association>> class User {
+    List<Profile> profiles;
+  }
+
+  <<association>> class Profile {
+    List<Relationship> relationships;
+    List<Document> documents;
+    List<Image> images;
+  }
+
+  <<association>> class Relationship {
+    Profile parent;
+    Profile child;
+  }
+
+  <<association>> class Document {
+    Profile profile;
+  }
+
+  <<association>> class Image {
+    Profile profile;
+  }
+
+  <<aggregation>> class FamilyTree {
+    List<Profile> profiles;
+  }
+
+  <<search>> class Search {
+    String criteria;
+    List<Profile> results;
+  }
+}

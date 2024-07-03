@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram DigitalTherapyPlatform  {
+
+  class Therapist  {
+    String name;
+    String email;
+    String password;
+    -> Patient[*];
+    int numPatients;
+    int numSessions;
+  }
+
+  class Patient  {
+    String name;
+    String email;
+    String password;
+    -> TherapySession[*];
+    int numTherapists;
+    int numSessions;
+  }
+
+  class TherapySession  {
+    Date date;
+    Time time;
+    int duration;
+    -> Therapist;
+    -> Patient;
+    -> Note[*];
+    -> Attachment[*];
+  }
+
+  class Note  {
+    String text;
+  }
+
+  class Attachment  {
+    String filename;
+    String filepath;
+  }
+
+  class Statistics  {
+    int totalSessions;
+    int totalPatients;
+    int totalNotes;
+    int totalAttachments;
+  }
+
+  composition Therapist -> Patient[*];
+  composition Patient -> TherapySession[*];
+  composition TherapySession -> Therapist;
+  composition TherapySession -> Patient;
+  composition TherapySession -> Note[*];
+  composition TherapySession -> Attachment[*];
+  composition Statistics -> (total) TherapySession;
+  composition Statistics -> (total) Patient;
+  composition Statistics -> (total) Note;
+  composition Statistics -> (total) Attachment;
+}

@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram QuantumEncryption  {
+
+  class CentralServer  {
+    User[] users;
+    Network network;
+    void distributeKey(User user, Key key);
+    void monitorNetwork();
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    PublicKey publicKey;
+    PrivateKey privateKey;
+    void requestNewKey();
+    void receiveNewKey(Key key);
+  }
+
+  class Network  {
+    void transmitData(User user, Data data);
+  }
+
+  class Key  {
+    String keyId;
+    String keyValue;
+  }
+
+  class PublicKey  {
+    String publicKeyId;
+    String publicKeyValue;
+  }
+
+  class PrivateKey  {
+    String privateKeyId;
+    String privateKeyValue;
+  }
+
+  class Data  {
+    String dataId;
+    String dataValue;
+  }
+
+  composition CentralServer -> (has) Network;
+  composition CentralServer -> (has) User[*];
+  composition User -> (has) PublicKey;
+  composition User -> (has) PrivateKey;
+  composition Network -> (transmits) Data;
+  composition CentralServer -> (distributes) Key;
+  composition User -> (requests) Key;
+  composition User -> (receives) Key;
+}

@@ -1,0 +1,62 @@
+
+classdiagram CollaborationTool {
+
+    class Team {
+      String name;
+      List<Member> members;
+      List<Project> projects;
+    }
+
+    class Project {
+      String name;
+      String description;
+      String status;
+      List<File> files;
+      Task[] tasks;
+      Team team;
+    }
+
+    class Member {
+      String uniqueIdentifier;
+      String role;
+      List<Project> assignedProjects;
+      List<Task> assignedTasks;
+    }
+
+    class File {
+      String name;
+      long size;
+      String type;
+      Project project;
+      List<User> sharedWith;
+    }
+
+    class Task {
+      String name;
+      String description;
+      Date dueDate;
+      Member assignedTo;
+      int completedTasks;
+      int remainingTasks;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      String role;
+      List<Project> assignedProjects;
+      List<File> assignedFiles;
+      List<Task> assignedTasks;
+    }
+
+    association Team -> Project [1..*];
+    association Team -> Member [1..*];
+    association Project -> File [0..*];
+    association Project -> Task [0..*];
+    association Member -> Project [1..*];
+    association Member -> Task [0..*];
+    association User -> Project [1..*];
+    association User -> Task [1..*];
+    composition File -> Project;
+    composition Task -> Member;
+    composition Task -> Project;
+}

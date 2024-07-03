@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram VirtualRealityArchaeologicalTours  {
+
+  class Site  {
+    String name;
+    String description;
+    Artifact  [ ] artifacts;
+  }
+
+  class Artifact  {
+    String name;
+    String description;
+    ArtifactType type;
+  }
+
+  enum ArtifactType  {
+    POTTERY, TOOL, OTHER;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Tour  {
+    String name;
+    String description;
+    Date startDate;
+    Date endDate;
+    User  user;
+  }
+
+  class Guide  {
+    String name;
+    Skill  [ ] skills;
+  }
+
+  class Skill  {
+    String name;
+    String description;
+  }
+
+  composition Site -> Artifact [1..*];
+  composition Tour -> User [1];
+  composition Guide -> Skill [1..*];
+  association Site -> Tour [0..*];
+  association Tour -> Guide [1];
+}

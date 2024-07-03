@@ -1,0 +1,70 @@
+
+classdiagram UrbanAquaponicsSystem {
+
+    class UrbanAquaponicsSystem {
+      Tank[] tanks;
+      Pump[] pumps;
+      Valve[] valves;
+      Sensor[] sensors;
+      StorageTank storageTank;
+      FiltrationSystem filtrationSystem;
+      ControlCenter controlCenter;
+    }
+
+    class Tank {
+      String tankIdentifier;
+      Fish fish;
+      Plant[] plants;
+      Pump pump;
+      Valve[] valves;
+    }
+
+    class Fish {
+      String species;
+      String tankIdentifier;
+    }
+
+    class Plant {
+      String species;
+      String tankIdentifier;
+    }
+
+    class Pump {
+      int powerRating;
+      void pumpWater(Tank source, Tank destination);
+    }
+
+    class Valve {
+      String valveIdentifier;
+      void openValve(Tank tank);
+      void closeValve(Tank tank);
+    }
+
+    class Sensor {
+      String sensorType;
+      String tankIdentifier;
+      void readSensorData();
+    }
+
+    class StorageTank {
+      int capacityWh;
+      void storeWater(Tank tank);
+    }
+
+    class FiltrationSystem {
+      void filterWater(Tank tank);
+    }
+
+    class ControlCenter {
+      void monitorSystem();
+      void regulateConditions();
+    }
+
+  composition UrbanAquaponicsSystem -> (has) Tank[*];
+  composition UrbanAquaponicsSystem -> (has) Pump[*];
+  composition UrbanAquaponicsSystem -> (has) Valve[*];
+  composition UrbanAquaponicsSystem -> (has) Sensor[*];
+  composition UrbanAquaponicsSystem -> (has) StorageTank;
+  composition UrbanAquaponicsSystem -> (has) FiltrationSystem;
+  composition UrbanAquaponicsSystem -> (has) ControlCenter;
+}

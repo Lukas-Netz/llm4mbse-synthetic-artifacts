@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram CommunityManagementSystem  {
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    UserType type;
+  }
+
+  enum UserType  {
+    Resident, Administrator, Guest;
+  }
+
+  class Event  {
+    String title;
+    String description;
+    Date date;
+    User organizer;
+  }
+
+  class Group  {
+    String name;
+    String description;
+  }
+
+  class Message  {
+    String content;
+    MessageType type;
+  }
+
+  enum MessageType  {
+    Text, Image, Video;
+  }
+
+  class Notification  {
+    String message;
+    User recipient;
+  }
+
+  class Administrator extends User  {
+    void manageUsers();
+    void manageEvents();
+    void manageGroups();
+  }
+
+  class Resident extends User  {
+    void participateInEvents();
+    void joinGroups();
+  }
+
+  class Guest extends User  {
+    void viewEvents();
+    void viewMessages();
+  }
+
+  composition User -> (has) UserType;
+  composition Event -> (has) User;
+  composition Group -> (has) User;
+  composition Message -> (has) User;
+  composition Notification -> (has) User;
+  composition Administrator -> (has) User;
+  composition Resident -> (has) User;
+  composition Guest -> (has) User;
+}

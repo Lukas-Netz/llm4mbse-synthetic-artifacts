@@ -1,0 +1,45 @@
+
+classdiagram IdentityAccessManagementSystem {
+
+    class User {
+      String username;
+      String password;
+      List<Role> roles;
+      List<Session> sessions;
+    }
+
+    class Role {
+      String roleName;
+      List<Permission> permissions;
+    }
+
+    class Permission {
+      String permissionName;
+    }
+
+    class Session {
+      String sessionId;
+      User user;
+      DateTime loginTime;
+      DateTime logoutTime;
+    }
+
+    class IAMSystem {
+      void login(String username, String password);
+      void logout(String sessionId);
+      User getCurrentUser();
+      List<User> getActiveUsers();
+      List<User> getInactiveUsers(DateTime inactiveTime);
+      List<User> getRecentlyLoggedInUsers();
+      List<User> getRecentlyLoggedOutUsers();
+      List<User> getUsersInactiveFor(DateTime inactiveTime);
+      List<User> getUsersActiveFor(DateTime activeTime);
+      List<User> getUsersLoggedInFor(DateTime loginTime);
+      List<User> getUsersLoggedOutFor(DateTime logoutTime);
+    }
+
+    composition IAMSystem -> (has) User;
+    composition IAMSystem -> (has) Role;
+    composition IAMSystem -> (has) Permission;
+    composition IAMSystem -> (has) Session;
+}

@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram RareBookTradingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+    boolean isBuyer;
+    boolean isSeller;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class RareBook  {
+    String title;
+    String author;
+    Date publicationDate;
+    String uniqueIdentifier;
+    User currentOwner;
+    RareBookState state;
+  }
+
+  enum RareBookState  {
+    Available,
+    Sold,
+    Reserved
+  ;}
+
+  class Platform  {
+    List<RareBook> availableRareBooks;
+    List<User> reservedUsers;
+    void updateAvailableRareBooks(RareBook rareBook);
+    void updateReservedUsers(User user);
+  }
+
+  class Transaction  {
+    User buyer;
+    User seller;
+    RareBook rareBook;
+    TransactionState state;
+  }
+
+  enum TransactionState  {
+    Pending,
+    Completed,
+    Failed
+  ;}
+
+  composition Platform  ->  (has) availableRareBooks;
+  composition Platform  ->  (has) reservedUsers;
+  composition User  ->  (has) profile;
+  composition RareBook  ->  (has) currentOwner;
+  composition Transaction  ->  (has) buyer;
+  composition Transaction  ->  (has) seller;
+  composition Transaction  ->  (has) rareBook;
+}

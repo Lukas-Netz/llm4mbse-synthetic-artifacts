@@ -1,0 +1,67 @@
+
+classdiagram TelepresenceRoboticsSystem {
+
+    class Robot {
+      String name;
+      String uniqueIdentifier;
+      RobotState state;
+      Location location;
+      SensorData sensorData;
+    }
+
+    class UI {
+      String userInterfaceName;
+      Robot robot;
+      UIState state;
+    }
+
+    class Network {
+      String networkName;
+      NetworkState state;
+    }
+
+    class Database {
+      Table robotMovements;
+      Table userInteractions;
+      Table systemPerformance;
+    }
+
+    enum RobotState {
+      Idle, Moving, Stopped;
+    }
+
+    enum UIState {
+      Connected, Disconnected;
+    }
+
+    enum NetworkState {
+      Connected, Disconnected;
+    }
+
+    class Location {
+      Vector3D position;
+      Vector3D orientation;
+    }
+
+    class SensorData {
+      float distance;
+      float angle;
+      float lightLevel;
+    }
+
+    association Robot 
+      has
+      -> UI [*];
+
+    association UI 
+      has
+      -> Network [*];
+
+    association Network 
+      has
+      -> Database [*];
+
+    association Database 
+      with
+      -> Robot [*];
+}

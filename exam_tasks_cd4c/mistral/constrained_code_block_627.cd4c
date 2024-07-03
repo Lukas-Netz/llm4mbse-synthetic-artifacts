@@ -1,0 +1,66 @@
+
+classdiagram IncidentResponse {
+
+  class Incident {
+    String uniqueIdentifier;
+    String description;
+    IncidentSeverity severity;
+  }
+
+  enum IncidentSeverity {
+    Low, Medium, High;
+  }
+
+  class IncidentType {
+    String name;
+    String description;
+  }
+
+  enum IncidentTypeName {
+    Network, Malware, Physical;
+  }
+
+  class Asset {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class AssetGroup {
+    String name;
+    String description;
+    Asset [][] assets;
+  }
+
+  class Response {
+    String uniqueIdentifier;
+    String description;
+    ResponseStatus status;
+  }
+
+  enum ResponseStatus {
+    Open, InProgress, Resolved;
+  }
+
+  class ResponseTask {
+    String uniqueIdentifier;
+    String description;
+    ResponseTaskStatus status;
+  }
+
+  enum ResponseTaskStatus {
+    Open, InProgress, Completed;
+  }
+
+  composition IncidentResponse -> Incident;
+  composition IncidentResponse -> IncidentType;
+  composition IncidentResponse -> Asset;
+  composition IncidentResponse -> AssetGroup;
+  composition IncidentResponse -> Response;
+  composition IncidentResponse -> ResponseTask;
+
+  association IncidentResponse -> IncidentTypeName;
+  association IncidentResponse -> AssetGroup;
+  association IncidentResponse -> Response;
+  association IncidentResponse -> ResponseTask;
+}

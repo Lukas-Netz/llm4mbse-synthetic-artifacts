@@ -1,0 +1,65 @@
+
+classdiagram HospitalEHR {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      List<MedicalCondition> medicalConditions;
+      List<Medication> medications;
+      List<TestResult> testResults;
+      List<Appointment> appointments;
+      List<MedicalProcedure> medicalProcedures;
+    }
+
+    class MedicalCondition {
+      String name;
+      String description;
+    }
+
+    class Medication {
+      String name;
+      String dosage;
+      String frequency;
+    }
+
+    class TestResult {
+      String name;
+      double value;
+      Date date;
+    }
+
+    class Appointment {
+      Date date;
+      Time time;
+      Doctor doctor;
+    }
+
+    class MedicalProcedure {
+      String name;
+      Date date;
+      Doctor doctor;
+    }
+
+    class Doctor {
+      String name;
+      String specialty;
+      String hospitalAffiliation;
+    }
+
+    class EHRSystem {
+      void generatePatientSummary(Patient patient);
+      void generateDoctorSchedule(Doctor doctor);
+    }
+
+    composition Patient -> MedicalCondition [*];
+    composition Patient -> Medication [*];
+    composition Patient -> TestResult [*];
+    composition Patient -> Appointment [*];
+    composition Patient -> MedicalProcedure [*];
+
+    composition Doctor -> Appointment [*];
+    composition Doctor -> MedicalProcedure [*];
+
+    association EHRSystem -> Patient [*];
+    association EHRSystem -> Doctor [*];
+}

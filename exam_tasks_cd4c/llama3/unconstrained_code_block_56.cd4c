@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram QuantumCryptographySystem  {
+
+  class Sender  {
+    KeyGenerationModule keyGenerationModule;
+  }
+
+  class Receiver  {
+    KeyVerificationModule keyVerificationModule;
+  }
+
+  class QuantumChannel  {
+    Qubit qubit;
+  }
+
+  class Qubit  {
+    EncodingScheme encodingScheme;
+  }
+
+  class EncodingScheme  {
+    String scheme;
+  }
+
+  class KeyGenerationModule  {
+    void generateSharedSecretKey(Receiver receiver);
+  }
+
+  class KeyVerificationModule  {
+    void verifySharedSecretKey();
+  }
+
+  class ClassicalChannel  {
+    Bit bit;
+  }
+
+  class Bit  {
+    String value;
+  }
+
+  composition Sender -> (has) QuantumChannel;
+  composition Receiver -> (has) QuantumChannel;
+  composition QuantumChannel -> (has) Qubit;
+  composition Qubit -> (has) EncodingScheme;
+  composition Sender -> (has) KeyGenerationModule;
+  composition Receiver -> (has) KeyVerificationModule;
+  composition ClassicalChannel -> (has) Bit;
+}
+

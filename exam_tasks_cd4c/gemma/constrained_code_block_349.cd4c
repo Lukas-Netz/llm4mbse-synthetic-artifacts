@@ -1,0 +1,52 @@
+
+
+classdiagram OnlineRoboticsCoursesPlatform {
+
+  class Course {
+    String title;
+    String description;
+    List<Topic> topics;
+  }
+
+  class Instructor {
+    String name;
+    String bio;
+    List<Course> courses;
+  }
+
+  class Student {
+    String name;
+    String email;
+    List<Course> enrolledCourses;
+  }
+
+  class CoursePrerequisite {
+    Course prerequisiteCourse;
+    Course currentCourse;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    Student student;
+    Instructor instructor;
+  }
+
+  class Feedback {
+    String feedback;
+    Student student;
+    Instructor instructor;
+  }
+
+  class SearchFunction {
+    String searchTerm;
+    List<Course> results;
+  }
+
+  composition Course -> (has) List<<Topic>>
+  abstract  
+  
+
+  
+
+ ;}

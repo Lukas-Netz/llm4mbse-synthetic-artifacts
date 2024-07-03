@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram Telehealth  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+  }
+
+  class HealthcareProvider  {
+    String uniqueIdentifier;
+    String name;
+    Specialty specialty;
+  }
+
+  class MedicalRecord  {
+    Patient patient;
+    HealthcareProvider healthcareProvider;
+    Diagnosis diagnosis;
+    TreatmentPlan treatmentPlan;
+    TestResults testResults;
+  }
+
+  class ContactInformation  {
+    String address;
+    String phone;
+    String email;
+  }
+
+  class Specialty  {
+    String name;
+  }
+
+  class Diagnosis  {
+    String description;
+  }
+
+  class TreatmentPlan  {
+    String description;
+  }
+
+  class TestResults  {
+    String description;
+  }
+
+  composition Patient -> MedicalRecord [*];
+  composition HealthcareProvider -> Patient [*];
+  composition MedicalRecord -> HealthcareProvider [1];
+}
+

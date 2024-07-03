@@ -1,0 +1,76 @@
+
+classdiagram TravelPlanning {
+
+  class User {
+    String username;
+    List<Preference> preferences;
+  }
+
+  class Preference {
+    String type;
+    String value;
+  }
+
+  class Destination {
+    String name;
+    Location location;
+    List<Activity> activities;
+  }
+
+  class Location {
+    String country;
+    String city;
+  }
+
+  class Activity {
+    String name;
+    String description;
+    int rating;
+  }
+
+  class Transportation {
+    String mode;
+    Location departureLocation;
+    Location arrivalLocation;
+    DateTime departureTime;
+    DateTime arrivalTime;
+    double price;
+  }
+
+  class Weather {
+    Location location;
+    String currentWeather;
+    String travelRestrictions;
+  }
+
+  composition User [*] TravelPlanningSystem
+  -- User
+  - 											{
+ 										ordered
+ 				}
+ 				;
+ 																																														composition Destination [*] TravelPlanningSystem
+  -- Destination
+  - 											{
+ 										ordered
+ 				}
+ 				;
+ 																																														composition Activity [*] Destination
+  -- Activity
+  - 											{
+ 										ordered
+ 				}
+ 				;
+ 																																														composition Transportation [*] TravelPlanningSystem
+  -- Transportation
+  - 											{
+ 										ordered
+ 				}
+ 				;
+ 																																														composition Weather [*] Destination
+  -- Weather
+  - 											{
+ 										ordered
+ 				}
+ 				;
+}

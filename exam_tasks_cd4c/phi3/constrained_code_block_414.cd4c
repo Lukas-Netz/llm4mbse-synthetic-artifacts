@@ -1,0 +1,257 @@
+
+classdiagram VirtualTeamBuilding {
+
+    class Team {
+      String name;
+      String description;
+      TeamMember leader;
+      List<TeamMember> members;
+      List<Activity> activities;
+      void createActivity(Activity activity);
+      void deleteActivity(Activity activity);
+      void modifyActivity(Activity activity);
+    }
+
+    class TeamMember {
+      String name;
+      String email;
+      TeamMemberRole role;
+      List<Activity> activities;
+      void joinActivity(Activity activity);
+      void leaveActivity(Activity activity);
+      void changeRole(TeamMemberRole newRole);
+    }
+
+    class Activity {
+      String name;
+      String description;
+      ActivityType type;
+      Team team;
+      void addTeamMember(TeamMember member);
+      void removeTeamMember(TeamMember member);
+      void trackAttendance(TeamMember member);
+    }
+
+    enum TeamMemberRole {
+      TeamLeader, TeamMember, Guest
+   
+   
+   ()
+   
+
+;
+    association Team 
+     
+   
+;
+    association TeamMember 
+     
+   
+;
+    association Activity 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+    composition TeamMemberList 
+     
+   
+;
+   
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+enum TeamMemberRole {
+  TeamLeader, TeamMember, Guest
+
+;
+   
+}
+
+class TeamMemberList {
+  List<TeamMember> members;
+  void addMember(TeamMember member);
+  void removeMember(TeamMember member);
+  void updateMemberRole(TeamMember member, TeamMemberRole newRole);
+}
+
+class Activity {
+  String name;
+  String description;
+  ActivityType type;
+  Team team;
+  TeamMemberList members;
+  void addTeamMember(TeamMember member);
+  void removeTeamMember(TeamMember member);
+  void trackAttendance(TeamMember member);
+}
+
+class Team {
+  String name;
+  String description;
+  TeamMember leader;
+  List<TeamMember> members;
+  List<Activity> activities;
+  void createActivity(Activity activity);
+  void deleteActivity(Activity activity);
+  void modifyActivity(Activity activity);
+}
+
+class TeamMember {
+  String name;
+  String email;
+  TeamMemberRole role;
+  List<Activity> activities;
+  void joinActivity(Activity activity);
+  void leaveActivity(Activity activity);
+  void changeRole(TeamMemberRole newRole);
+}
+
+class Activity {
+  String name;
+  String description;
+  ActivityType type;
+  Team team;
+  TeamMemberList members;
+  void addTeamMember(TeamMember member);
+  void removeTeamMember(TeamMember member);
+  void trackAttendance(TeamMember member);
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+enum TeamMemberRole {
+  TeamLeader, TeamMember, Guest
+
+;
+   
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+enum TeamMemberRole {
+  TeamLeader, TeamMember, Guest
+
+;
+   
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+enum TeamMemberRole {
+  TeamLeader, TeamMember, Guest
+
+;
+   
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+enum TeamMemberRole {
+  TeamLeader, TeamMember, Guest
+
+;
+   
+}
+
+enum ActivityType {
+  Meeting, Discussion, Game
+
+;
+   
+}
+
+
+
+
+
+}

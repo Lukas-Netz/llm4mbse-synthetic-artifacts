@@ -1,0 +1,57 @@
+
+classdiagram IDE {
+
+  class Project {
+    String name;
+    String description;
+    List<File> files;
+    String type;
+  }
+
+  enum ProjectType {
+    Java, Python, Cpp;
+  }
+
+  class File {
+    String name;
+    String path;
+    String content;
+    FileType type;
+  }
+
+  enum FileType {
+    Source, Header, Library;
+  }
+
+  class Editor {
+    void open(File file);
+    void save(File file);
+    void close(File file);
+  }
+
+  class Compiler {
+    void compile(Project project);
+    void run(Project project);
+  }
+
+  class Debugger {
+    void setBreakpoint(int lineNumber);
+    void stepThroughCode();
+    void inspectVariables();
+  }
+
+  class VersionControl {
+    void checkout(String version);
+    void checkin();
+    void revert();
+  }
+
+  class IDE {
+    List<Project> projects;
+    Project currentProject;
+    File currentFile;
+  }
+
+  composition IDE -> Project [*];
+  composition Project -> File [*];
+}

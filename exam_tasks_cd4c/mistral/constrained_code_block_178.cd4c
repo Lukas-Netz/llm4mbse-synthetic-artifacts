@@ -1,0 +1,78 @@
+
+classdiagram RemotePatientDiagnostics {
+
+  class Patient {
+    String uniqueIdentifier;
+    VitalSigns vitalSigns;
+  }
+
+  class VitalSigns {
+    BloodPressure bloodPressure;
+    HeartRate heartRate;
+    Temperature temperature;
+  }
+
+  class BloodPressure {
+    int systolic;
+    int diastolic;
+  }
+
+  class HeartRate {
+    int rate;
+  }
+
+  class Temperature {
+    double value;
+  }
+
+  abstract class Sensor {
+    Patient patient;
+    VitalSigns vitalSign;
+  }
+
+  class BloodPressureSensor extends Sensor {
+  }
+
+  class HeartRateSensor extends Sensor {
+  }
+
+  class TemperatureSensor extends Sensor {
+  }
+
+  abstract class Device {
+    Patient patient;
+  }
+
+  class Glucometer extends Device {
+  }
+
+  class PulseOximeter extends Device {
+  }
+
+  class Doctor {
+    String uniqueIdentifier;
+  }
+
+  class Diagnosis {
+    Patient patient;
+    Doctor doctor;
+    String description;
+    TreatmentPlan treatmentPlan;
+  }
+
+  class TreatmentPlan {
+    String medication;
+    int dosage;
+    String instructions;
+  }
+
+  composition Patient [*] VitalSigns [navigable]
+  -- Patient  <<  BloodPressureSensor
+ 																>> 																	;
+ 																																														composition Patient [*] HeartRateSensor [navigable]
+ 																												-- Patient  <<  TemperatureSensor
+ 																>> 																	;
+  composition Doctor [*] Diagnosis [navigable]
+  -- Doctor  <<  Patient
+ 																>> 																	;
+}

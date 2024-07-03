@@ -1,0 +1,48 @@
+
+classdiagram DigitalTwinCoralReef {
+
+  class CoralReef {
+    String uniqueIdentifier;
+    String location;
+    int size;
+    CoralHealthStatus healthStatus;
+  }
+
+  class CoralPolyp {
+    String uniqueIdentifier;
+    int growthRate;
+    String color;
+    CoralHealthStatus healthStatus;
+  }
+
+  class Fish {
+    String uniqueIdentifier;
+    String species;
+    int size;
+    FishBehavior behavior;
+  }
+
+  enum CoralHealthStatus {
+    Healthy, Sick, Dead;
+  }
+
+  enum FishBehavior {
+    Swimming, Hiding, Feeding;
+  }
+
+  class WaterQuality {
+    double temperature;
+    double pH;
+    double nutrientLevels;
+  }
+
+  class HumanActivity {
+    String activityType;
+    int intensity;
+  }
+
+  composition CoralReef [*] has (contains) -> CoralPolyp [*];
+  association CoralReef [*] has (inhabits) -> Fish [*];
+  association CoralReef [*] has (surroundedBy) -> WaterQuality;
+  association HumanActivity [*] affects -> CoralReef;
+}

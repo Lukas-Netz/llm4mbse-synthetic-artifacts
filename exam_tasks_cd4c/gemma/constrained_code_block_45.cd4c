@@ -1,0 +1,40 @@
+
+
+classdiagram PatientMonitoringSystem {
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      int medicalRecordNumber;
+      List<MedicalDevice> medicalDevices;
+    }
+
+    class MedicalDevice {
+      String uniqueIdentifier;
+      List<Patient> patients;
+    }
+
+    class MonitoringStation {
+      String uniqueIdentifier;
+      List<Patient> patients;
+      Database database;
+    }
+
+    class Database {
+      void storeData(Patient patient, MedicalDevice medicalDevice, Data data);
+      Data retrieveData(Patient patient, MedicalDevice medicalDevice);
+    }
+
+    enum Data {
+      VitalSigns, BloodPressure, OxygenSaturation
+    
+
+  
+
+ ;}
+
+composition Patient -> (has) MedicalDevices [*];
+composition Patient -> (has) MonitoringStations [0..1];
+composition MedicalDevice -> (has) Patients [*];
+composition MonitoringStation -> (has) Database;
+}

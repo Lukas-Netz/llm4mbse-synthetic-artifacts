@@ -1,0 +1,48 @@
+
+
+
+
+classdiagram WorkflowManagementSystem  {
+
+  class Workflow  {
+    Task  task  ; 
+    WorkflowStatus status; 
+  }
+
+  class Task  {
+    String name; 
+    String description; 
+    TaskStatus status; 
+    Date deadline; 
+    Priority priority; 
+    User  assignee; 
+  }
+
+  class User  {
+    String name; 
+    Task  task  ; 
+  }
+
+  class Notification  {
+    Task task; 
+    Date reminderDate; 
+  }
+
+  enum WorkflowStatus  {
+    Active, Completed, Canceled; 
+  }
+
+  enum TaskStatus  {
+    Pending, InProgress, Completed; 
+  }
+
+  enum Priority  {
+    High, Medium, Low; 
+  }
+
+  composition Workflow  ->  (has) Task; 
+  composition Task  ->  (has) User; 
+  composition Task  ->  (has) Notification; 
+  composition User  ->  (has) Task; 
+  composition Notification  ->  (has) Task; 
+}

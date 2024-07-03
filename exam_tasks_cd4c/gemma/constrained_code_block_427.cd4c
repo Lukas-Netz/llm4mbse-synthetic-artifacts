@@ -1,0 +1,48 @@
+
+
+classdiagram QuantumComputingApplication {
+
+  class QuantumComputingApplication {
+    QuantumAlgorithms algorithms;
+    QuantumGateSets gateSets;
+  }
+
+  class QuantumAlgorithms {
+    QuantumAlgorithm algorithm;
+  }
+
+  class QuantumAlgorithm {
+    String name;
+    List<QuantumGate> gates;
+  }
+
+  class QuantumGateSets {
+    QuantumGateSet gateSet;
+  }
+
+  class QuantumGateSet {
+    String name;
+    List<QuantumGate> gates;
+  }
+
+  class QuantumGate {
+    String name;
+    List<Parameter> parameters;
+  }
+
+  class Parameter {
+    String name;
+    Value value;
+  }
+
+  class QuantumProcessor {
+    String name;
+    List<Parameter> capabilities;
+  }
+
+  composition QuantumComputingApplication -> (has) QuantumAlgorithms;
+  composition QuantumAlgorithms -> (has) QuantumAlgorithm [*];
+  composition QuantumGateSets -> (has) QuantumGateSet [*];
+  composition QuantumGateSet -> (has) QuantumGate [*];
+  composition QuantumComputingApplication -> (has) QuantumProcessor [0..1];
+}

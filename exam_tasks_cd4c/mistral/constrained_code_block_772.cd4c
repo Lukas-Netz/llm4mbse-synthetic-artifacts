@@ -1,0 +1,43 @@
+
+classdiagram ProstheticEyes {
+
+  class Engineer {
+    String name;
+    int id;
+  }
+
+  class Project {
+    String name;
+    String description;
+    Engineer [ ] engineers;
+  }
+
+  class Patient {
+    String name;
+    int id;
+    ProstheticEye [ ] prostheticEyes;
+  }
+
+  class ProstheticEye {
+    String patientId;
+    String patientName;
+    int pupilSize;
+    String irisColor;
+    String eyeShape;
+  }
+
+  class QualityControlTester {
+    String name;
+    int id;
+  }
+
+  class QualityControl {
+    QualityControlTester [ ] testers;
+  }
+
+  composition Engineer [ * ] worksOn -> Project [ * ];
+  composition Project [ * ] hasEngineers -> Engineer [ * ];
+  composition Patient [ * ] hasProstheticEyes -> ProstheticEye [ * ];
+  composition ProstheticEye [ * ] belongsTo -> Patient [ * ];
+  association QualityControlTester [ * ] tests -> ProstheticEye [ * ];
+}

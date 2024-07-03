@@ -1,0 +1,87 @@
+
+classdiagram EnterpriseResourcePlanning {
+
+    class ERP {
+      HumanResourcesModule hrModule;
+      SupplyChainManagementModule scmModule;
+      FinancialManagementModule fmModule;
+      Database database;
+    }
+
+    class HumanResourcesModule {
+      EmployeeProfile employeeProfile;
+      JobPosting jobPosting;
+      PerformanceEvaluation performanceEvaluation;
+    }
+
+    class SupplyChainManagementModule {
+      InventoryInventory inventory;
+      OrderTracking orderTracking;
+      Logistics logistics;
+    }
+
+    class FinancialManagementModule {
+      Budget budget;
+      Accounting accounting;
+      Reporting reporting;
+    }
+
+    class Database {
+      StoreData data;
+      GenerateReports reports;
+    }
+
+    class EmployeeProfile {
+      String name;
+      String position;
+      String department;
+    }
+
+    class JobPosting {
+      String title;
+      String description;
+      Salary salary;
+    }
+
+    class PerformanceEvaluation {
+      String employeeId;
+      String evaluationDate;
+      String score;
+    }
+
+    class Inventory {
+      String itemName;
+      int quantity;
+    }
+
+    class OrderTracking {
+      String orderId;
+      String status;
+    }
+
+    class Logistics {
+      String deliveryMethod;
+      String deliveryDate;
+    }
+
+    class Budget {
+      String fiscalYear;
+      String budgetAmount;
+    }
+
+    class Accounting {
+      String transactionId;
+      String transactionType;
+      String amount;
+    }
+
+    class Reporting {
+      String reportType;
+      String reportData;
+    }
+
+    association ERP -> Database [*];
+    association ERP -> HumanResourcesModule [*];
+    association ERP -> SupplyChainManagementModule [*];
+    association ERP -> FinancialManagementModule [*];
+}

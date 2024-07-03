@@ -1,0 +1,95 @@
+
+classdiagram GolfMaintenance {
+
+  class GolfCourse {
+    String name;
+    -> Hole [*];
+  }
+
+  class Hole {
+    String name;
+    -> Fairway [*];
+    -> Rough [*];
+    -> Green;
+  }
+
+  class Fairway {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  class Rough {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  class Green {
+    String name;
+    int xCoord;
+    int yCoord;
+  }
+
+  abstract class MaintenanceEquipment {
+    String name;
+    String type;
+    int xCoord;
+    int yCoord;
+    EquipmentStatus status;
+  }
+
+  class Mower extends MaintenanceEquipment {
+  }
+
+  class Aerator extends MaintenanceEquipment {
+  }
+
+  class IrrigationSystem extends MaintenanceEquipment {
+  }
+
+  enum EquipmentStatus {
+    Available, Malfunctioning, NeedsReplacement;
+  }
+
+  class MaintenanceSchedule {
+    GolfCourse golfCourse;
+    -> MaintenanceTask [*];
+  }
+
+  class MaintenanceTask {
+    String name;
+    String description;
+    EquipmentType requiredEquipment;
+    int xCoord;
+    int yCoord;
+    TaskStatus status;
+    Date date;
+    Time time;
+  }
+
+  enum EquipmentType {
+    Mower, Aerator, IrrigationSystem;
+  }
+
+  enum TaskStatus {
+    Scheduled, InProgress, Completed;
+  }
+
+  class WeatherMonitor {
+    int temperature;
+    int humidity;
+    int windSpeed;
+    int precipitation;
+  }
+
+  class AlertSystem {
+    void sendAlert(MaintenanceTask task);
+    void sendAlert(MaintenanceEquipment equipment);
+  }
+
+  composition GolfCourse -> Hole [*];
+  composition Hole -> Fairway [*];
+  composition Hole -> Rough [*];
+  composition Hole -> Green;
+  }

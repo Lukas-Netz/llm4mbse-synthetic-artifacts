@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram EdgeComputing  {
+
+  class EdgeDevice  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  enum DeviceStatus  {
+    Online, Offline;
+  }
+
+  class Sensor extends EdgeDevice  {
+  }
+
+  class Actuator extends EdgeDevice  {
+  }
+
+  class Gateway  {
+    String name;
+    int capacity;
+    -> EdgeDevice[*];
+  }
+
+  class CloudPlatform  {
+    String name;
+    int storageCapacity;
+  }
+
+  class DataProcessingModule  {
+    String name;
+    -> EdgeDevice[*];
+    -> Gateway[*];
+  }
+
+  composition EdgeDevice -> Gateway [1];
+  composition Gateway -> CloudPlatform [1];
+  composition DataProcessingModule -> EdgeDevice[*];
+  composition DataProcessingModule -> Gateway[*];
+}

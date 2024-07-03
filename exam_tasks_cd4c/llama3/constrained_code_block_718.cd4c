@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram HarvestingSystem  {
+
+  class AutonomousVehicle  {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Tractor extends AutonomousVehicle  {
+    void plowAndPrepareSoil();
+  }
+
+  class Harvester extends AutonomousVehicle  {
+    String cropType;
+    int yield;
+    int quality;
+    void harvestCrops();
+  }
+
+  class Sprayer extends AutonomousVehicle  {
+    void sprayPesticidesAndFertilizers();
+  }
+
+  class CentralControlUnit  {
+    AutonomousVehicle[] autonomousVehicles;
+    void assignTask(AutonomousVehicle av, Task task);
+    void monitorStatus(AutonomousVehicle av);
+    void adjustHarvestingSchedule();
+  }
+
+  enum VehicleStatus  {
+    Operational, NotOperational;
+  }
+
+  enum Task  {
+    Plow, Harvest, Spray;
+  }
+}

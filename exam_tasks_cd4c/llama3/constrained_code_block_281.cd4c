@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram OnlineSurveyTool  {
+
+  class User  {
+    String username;
+    String password;
+    Survey[] surveysCreated;
+  }
+
+  class Survey  {
+    String title;
+    String description;
+    Date startDate;
+    Date endDate;
+    Question[] questions;
+  }
+
+  class Question  {
+    String text;
+    QuestionType type;
+    Option[] options;
+  }
+
+  class Option  {
+    String text;
+  }
+
+  class Response  {
+    User user;
+    Survey survey;
+    String answer;
+  }
+
+  class Administrator extends User  {
+    void manageUsers(User[] users);
+    void manageSurveys(Survey[] surveys);
+    void manageQuestions(Question[] questions);
+  }
+
+  enum QuestionType  {
+    MultipleChoice,
+    OpenEnded
+  ;}
+
+  composition User  ->  (has) Survey[*];
+  composition Survey  ->  (has) Question[*];
+  composition Question  ->  (has) Option[*];
+  composition Response  ->  (has) User;
+  composition Response  ->  (has) Survey;
+  composition Administrator  ->  (has) User[*];
+  composition Administrator  ->  (has) Survey[*];
+  composition Administrator  ->  (has) Question[*];
+}

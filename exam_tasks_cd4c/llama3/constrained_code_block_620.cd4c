@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram SolarSail  {
+
+  class Spacecraft  {
+    String name;
+    String uniqueIdentifier;
+    NavigationSystem navigationSystem;
+  }
+
+  class SolarSail  {
+    double area;
+    Shape shape;
+    Material material;
+  }
+
+  class ControlSystem  {
+    void adjustAngle(double angle);
+    void deploy();
+    void retract();
+  }
+
+  class NavigationSystem  {
+    double position;
+    double velocity;
+  }
+
+  class CommunicationSystem  {
+    void send(String message);
+  }
+
+  class PowerSource  {
+    double power;
+  }
+
+  enum Shape  {
+    Rectangular, Triangular;
+  }
+
+  enum Material  {
+    Aluminum, Mylar;
+  }
+
+  composition Spacecraft -> (has) NavigationSystem;
+  composition Spacecraft -> (has) ControlSystem;
+  composition Spacecraft -> (has) SolarSail;
+  composition ControlSystem -> (has) SolarSail;
+  composition SolarSail -> (has) Material;
+  composition SolarSail -> (has) Shape;
+  composition Spacecraft -> (has) CommunicationSystem [0..1];
+  composition Spacecraft -> (has) PowerSource [0..1];
+}

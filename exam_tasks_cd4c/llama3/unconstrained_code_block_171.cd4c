@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram EventManagement  {
+
+  class Event  {
+    String name;
+    Date startDate;
+    Date endDate;
+    String description;
+    -> Speaker[*];
+    -> Session[*];
+  }
+
+  class Speaker  {
+    String name;
+    String email;
+    String bio;
+    -> Event[*];
+  }
+
+  class Session  {
+    String title;
+    Date startTime;
+    Date endTime;
+    -> Speaker[*];
+    -> Attendee[*];
+  }
+
+  class Attendee  {
+    String name;
+    String email;
+  }
+
+  class Report  {
+    String event;
+    int attendance;
+    int popularity;
+  }
+
+  class PaymentGateway  {
+    void processPayment(Event event, Attendee attendee);
+  }
+
+  interface EventType  {
+    void sendReminders(Attendee attendee);
+  }
+
+  class LiveEvent extends Event  {
+    void startEvent();
+  }
+
+  class PreRecordedEvent extends Event  {
+    void uploadVideo();
+  }
+
+  class HybridEvent extends Event  {
+    void startLiveSession();
+  }
+
+  composition Event -> Speaker;
+  composition Event -> Session;
+  composition Session -> Attendee;
+  composition Event -> Report;
+  composition Event -> PaymentGateway;
+}

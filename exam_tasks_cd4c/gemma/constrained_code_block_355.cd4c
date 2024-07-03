@@ -1,0 +1,41 @@
+
+
+classdiagram WildlifeConservationSystem {
+
+  class Species {
+    String name;
+    String description;
+    ConservationStatus status;
+  }
+
+  class Habitat {
+    String location;
+    Climate climate;
+    Vegetation vegetation;
+  }
+
+  class Conservationist {
+    String name;
+    Expertise expertise;
+    Experience experience;
+  }
+
+  class Project {
+    String name;
+    String goal;
+    Budget budget;
+  }
+
+  class VRExperience {
+    Duration duration;
+    DifficultyLevel difficultyLevel;
+    EducationalContent educationalContent;
+  }
+
+  composition Project -> (has) Species [0..*]
+  abstract  
+  
+  
+  
+;
+}

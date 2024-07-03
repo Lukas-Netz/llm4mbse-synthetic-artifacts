@@ -1,0 +1,45 @@
+
+classdiagram HomeSecuritySystem {
+
+    class HomeSecuritySystem {
+      CentralUnit centralUnit;
+      Sensor[] sensors;
+      MonitoringService monitoringService;
+      UserInterface userInterface;
+    }
+
+    class CentralUnit {
+      Sensor[] sensors;
+      void processSensorData();
+      void connectBackupPower();
+    }
+
+    class Sensor {
+      String uniqueId;
+      boolean enabled;
+    }
+
+    class DoorSensor extends Sensor {
+    }
+
+    class MotionSensor extends Sensor {
+    }
+
+    class GlassBreakSensor extends Sensor {
+    }
+
+    class MonitoringService {
+      void sendAlert(Sensor sensor);
+    }
+
+    class UserInterface {
+      void configureSystem();
+      void viewSensorStatus();
+      void receiveAlerts();
+    }
+
+  composition HomeSecuritySystem -> (has) CentralUnit;
+  composition HomeSecuritySystem -> (has) MonitoringService;
+  composition HomeSecuritySystem -> (has) UserInterface;
+  association HomeSecuritySystem -> Sensor [*];
+}

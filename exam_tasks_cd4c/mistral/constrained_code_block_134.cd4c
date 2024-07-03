@@ -1,0 +1,54 @@
+
+classdiagram CollaborationPlatform {
+
+  class User {
+    String uniqueID;
+    String name;
+    String email;
+    Team [ ] teams;
+  }
+
+  class Team {
+    String uniqueID;
+    String name;
+    String description;
+    User [ ] members;
+  }
+
+  class File {
+    String uniqueID;
+    String name;
+    int version;
+    User owner;
+    Team [ ] sharedWith;
+  }
+
+  class Task {
+    String uniqueID;
+    String name;
+    String description;
+    Date dueDate;
+    TaskStatus status;
+    User assignee;
+    File [ ] attachments;
+    Comment [ ] comments;
+  }
+
+  class Comment {
+    String uniqueID;
+    String text;
+    Date timestamp;
+    Task [ ] tasks;
+    File [ ] files;
+  }
+
+  enum TaskStatus {
+    Open, InProgress, Completed;
+  }
+
+  composition User -> Team [*];
+  composition Team -> User [*];
+  composition User -> File [*];
+  composition Task -> Comment [*];
+  composition File -> Comment [*];
+}

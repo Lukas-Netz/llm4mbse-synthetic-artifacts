@@ -1,0 +1,57 @@
+
+classdiagram NeurostimulationSystem {
+
+    class Device {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      List<Session> sessions;
+      Map<Session, Parameter> parameters;
+    }
+
+    class Session {
+      Device device;
+      DateTime startTime;
+      DateTime endTime;
+      Duration duration;
+      boolean isActive;
+      List<Outcome> outcomes;
+    }
+
+    class Patient {
+      String uniqueIdentifier;
+      String name;
+      String medicalCondition;
+      List<Session> sessions;
+    }
+
+    class Parameter {
+      String key;
+      String value;
+    }
+
+    class Outcome {
+      String description;
+      String impact;
+    }
+
+    class NeurostimulationSystem {
+      List<Device> devices;
+      List<Patient> patients;
+      List<Session> sessions;
+
+      void addDevice(Device device);
+      void removeDevice(Device device);
+      void addPatient(Patient patient);
+      void removePatient(Patient patient);
+      void addSession(Session session);
+      void removeSession(Session session);
+      void setDeviceParameter(Device device, Session session, Parameter parameter);
+      void recordOutcome(Session session, Outcome outcome);
+      void generateReport(String type);
+    }
+
+    composition NeurostimulationSystem -> (has) Device;
+    composition NeurostimulationSystem -> (has) Patient;
+    composition NeurostimulationSystem -> (has) Session;
+}

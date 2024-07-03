@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram EAM  {
+
+  class Asset  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class AssetClass  {
+    String name;
+    String description;
+    attributeSet attributes;
+  }
+
+  class Department  {
+    String name;
+    String description;
+    Asset[] assets;
+  }
+
+  class Location  {
+    String name;
+    String description;
+    Asset[] assets;
+  }
+
+  class MaintenanceRecord  {
+    Date date;
+    String type;
+    String status;
+  }
+
+  class AssetMaintenance  {
+    Asset asset;
+    MaintenanceRecord[] maintenanceRecords;
+  }
+
+  class Report  {
+    String type;
+    String description;
+    String data;
+  }
+
+  composition Asset -> AssetClass;
+  composition Asset -> Department [0..*];
+  composition Asset -> Location [0..*];
+  composition AssetMaintenance -> Asset;
+  composition Report -> Asset [0..*];
+}

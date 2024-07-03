@@ -1,0 +1,83 @@
+
+classdiagram IntegratedRiskManagement {
+
+    class Risk {
+      String uniqueId;
+      String description;
+      int severityLevel;
+    }
+
+    class Industry {
+      String uniqueId;
+      String name;
+      List<Risk> risks;
+    }
+
+    class Organization {
+      String uniqueId;
+      String name;
+      List<Risk> riskProfile;
+    }
+
+    class RiskAssessment {
+      String uniqueId;
+      String description;
+      int riskScore;
+      Risk risk;
+    }
+
+    class Control {
+      String uniqueId;
+      String description;
+      int riskScore;
+      RiskAssessment riskAssessment;
+    }
+
+    class MitigationPlan {
+      String uniqueId;
+      String description;
+      int riskScore;
+      Risk risk;
+    }
+
+    class IRM {
+      Hub hub;
+      List<Industry> industries;
+      List<Organization> organizations;
+      List<RiskAssessment> riskAssessments;
+      List<Control> controls;
+      List<MitigationPlan> mitigationPlans;
+
+      void createRisk(Risk risk);
+      void readRisk(String uniqueId);
+      void updateRisk(Risk risk);
+      void deleteRisk(String uniqueId);
+
+      void createIndustry(Industry industry);
+      void readIndustry(String uniqueId);
+      void updateIndustry(Industry industry);
+      void deleteIndustry(String uniqueId);
+
+      void createOrganization(Organization organization);
+      void readOrganization(String uniqueId);
+      void updateOrganization(Organization organization);
+      void deleteOrganization(String uniqueId);
+
+      void createRiskAssessment(RiskAssessment riskAssessment);
+      void readRiskAssessment(String uniqueId);
+     }
+
+      interface RiskAssessment {
+        void assignToRisk(Risk risk);
+      AdministerRiskAssessment(RiskAssessment riskAssessment);
+      void assignToControl(Control control);
+      void assignToMitigationPlan(MitigationPlan mitigationPlan);
+      void generateReport();
+    }
+
+    association IRM -> RiskAssessment [*];
+    association IRM -> Control [*];
+    association IRM -> MitigationPlan [*];
+    composition IRM -> Industry [*];
+    composition IRM -> Organization [*];
+}

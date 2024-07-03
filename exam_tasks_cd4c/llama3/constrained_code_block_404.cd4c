@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram VideoCallingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Call  {
+    User caller;
+    User callee;
+  }
+
+  class CallSession  {
+    Call call;
+    DateTime startTime;
+    DateTime endTime;
+    CallStatus status;
+  }
+
+  enum CallStatus  {
+    Ringing,
+    Connected,
+    Disconnected
+  ;}
+
+  class Message  {
+    CallSession callSession;
+    String content;
+  }
+
+  class File  {
+    CallSession callSession;
+    String name;
+    byte[] data;
+  }
+
+  composition User -> Profile;
+  composition Call -> User [1];
+  composition Call -> User [1];
+  composition CallSession -> Call [1];
+  composition CallSession -> CallStatus [1];
+  composition Message -> CallSession [1];
+  composition File -> CallSession [1];
+}

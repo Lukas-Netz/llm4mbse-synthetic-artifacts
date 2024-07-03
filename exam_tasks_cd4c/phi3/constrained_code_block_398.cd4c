@@ -1,0 +1,344 @@
+
+classdiagram OnlineGamingTournament {
+
+    class TournamentOrganizer {
+      Game[] games;
+      Player[] players;
+      void createGame(Game game);
+      void addParticipant(Player player, Game game);
+      void removeParticipant(Player player, Game game);
+      void updateGameState(Game game, GameState state);
+      Player getRanking(Player player);
+    }
+
+    class Game {
+      String id;
+      String name;
+      Date startDate;
+      Date endDate;
+      int maxParticipants;
+      GameState state;
+      Player winner;
+    }
+
+    class Player {
+      String id;
+      String name;
+      int ranking;
+      List<Game> participatedGames;
+    }
+
+    enum GameState {
+      Ongoing, Finished
+   
+   
+  
+(composition)
+   
+ ;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+  association TournamentOrganizer 
+   
+   
+ 
+;
+
+ 
+ 
+}
+
+enum GameState {
+  Ongoiting, Finished
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum ThermostatMode {
+  Heating, Cooling
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum DeviceStatus {
+  On, Off
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum PlayerRanking {
+  Bronze, Silver, Gold, Platinum
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+enum GameType {
+  SinglePlayer, Multiplayer
+
+ 
+
+ 
+
+ 
+
+ ;}
+
+
+
+
+
+}

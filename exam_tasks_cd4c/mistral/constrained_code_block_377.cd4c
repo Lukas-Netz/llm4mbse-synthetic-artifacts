@@ -1,0 +1,50 @@
+
+classdiagram VirtualTradeShow {
+
+  class Exhibitor {
+    String uniqueIdentifier;
+    String name;
+    ExhibitorType type;
+    int sponsorshipAmount;
+    SponsorshipType sponsorshipType;
+  }
+
+  enum ExhibitorType {
+    Sponsor, NonSponsor;
+  }
+
+  enum SponsorshipType {
+    Gold, Silver, Bronze;
+  }
+
+  class Product {
+    String name;
+    String description;
+    float price;
+    Exhibitor exhibitor;
+  }
+
+  class Attendee {
+    String name;
+    String email;
+    String company;
+  }
+
+  class Interaction {
+    Attendee attendee;
+    Exhibitor exhibitor;
+    String type;
+  }
+
+  class Report {
+    String type;
+    String data;
+  }
+
+  composition VirtualTradeShow -> Attendee [*];
+  composition VirtualTradeShow -> Exhibitor [*];
+  composition Exhibitor -> Product [*];
+  association Attendee <-> Interaction;
+  association Exhibitor <-> Interaction;
+  association Report <-> VirtualTradeShow;
+}

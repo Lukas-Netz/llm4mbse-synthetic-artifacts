@@ -1,0 +1,61 @@
+
+classdiagram RenovationPlatform {
+
+    class Homeowner {
+      String name;
+      String email;
+      String password;
+      List<Contractor> contractors;
+      List<Quote> quotes;
+    }
+
+    class Contractor {
+      String name;
+      String email;
+      String password;
+      List<WorkShowcase> showcases;
+      List<QuoteRequest> quoteRequests;
+    }
+
+    class WorkShowcase {
+      String imageUrl;
+      String videoUrl;
+    }
+
+    class QuoteRequest {
+      Contractor contractor;
+      Homeowner homeowner;
+      Quote quote;
+    }
+
+    class Quote {
+      Contractor contractor;
+      Homeowner homeowner;
+      double price;
+      String date;
+    }
+
+    association Homeowner 
+      has 
+        (List) 
+        -> Contractor [1..*];
+
+    association Contractor 
+      has 
+        (List) 
+        -> WorkShowcase [1..*];
+
+    association Contractor 
+      has 
+        (List) 
+        -> QuoteRequest [1..*];
+
+    association Contractor 
+      has 
+        (List) 
+        -> Quote [1..*];
+
+    composition Homeowner -> QuoteRequest;
+    composition Contractor -> QuoteRequest;
+    composition Contractor -> Quote;
+}

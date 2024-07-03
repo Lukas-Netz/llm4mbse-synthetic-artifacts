@@ -1,0 +1,49 @@
+
+classdiagram RoboticsSystem {
+
+  class Robot {
+    String name;
+    String uniqueIdentifier;
+    -> Sensor [*];
+    void clean();
+    void cook();
+    void provideCompanionship();
+  }
+
+  abstract class Sensor {
+    String uniqueIdentifier;
+    String data;
+  }
+
+  class TemperatureSensor extends Sensor {
+    int temperature;
+  }
+
+  class HumiditySensor extends Sensor {
+    int humidity;
+  }
+
+  class MotionSensor extends Sensor {
+    boolean isMotionDetected;
+  }
+
+  class UI {
+    String name;
+    String uniqueIdentifier;
+    Robot robot;
+    void monitor();
+    void control();
+  }
+
+  class CommunicationProtocol {
+    void connect(Robot robot, UI ui);
+    void sendData(Sensor sensor);
+    void receiveData();
+  }
+
+  composition RoboticsSystem -> Robot;
+  composition RoboticsSystem -> UI;
+  composition Robot -> Sensor [*];
+  association CommunicationProtocol -- Robot;
+  association CommunicationProtocol -- UI;
+}

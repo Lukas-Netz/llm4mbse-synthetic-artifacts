@@ -1,0 +1,47 @@
+
+classdiagram GameDev {
+
+  class Game {
+    Level [  ] levels;
+    Player [  ] players;
+    int currentLevel;
+    DifficultyLevel difficulty;
+    boolean isMultiplayer;
+  }
+
+  class Level {
+    String name;
+    String features;
+    int points;
+  }
+
+  abstract class Character {
+    int health;
+    int strength;
+    int speed;
+  }
+
+  class Player extends Character {
+    int score;
+  }
+
+  class Enemy extends Character {
+  }
+
+  class PowerUp extends Character {
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class Leaderboard {
+    Player [ ] topPlayers;
+  }
+
+  composition Game -> Level [*];
+  composition Game -> Player [*];
+  composition Game -> Enemy [*];
+  composition Game -> PowerUp [*];
+  association Game -> Leaderboard;
+}

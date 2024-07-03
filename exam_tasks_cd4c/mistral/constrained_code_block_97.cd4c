@@ -1,0 +1,49 @@
+
+classdiagram FraudDetection {
+
+  class Transaction {
+    String transactionID;
+    DateTime dateTime;
+    double amount;
+    TransactionType transactionType;
+    String cardNumber;
+    String accountNumber;
+    String productOrService;
+  }
+
+  enum TransactionType {
+    CreditCard, BankTransfer, OnlinePurchase;
+  }
+
+  class FraudulentTransaction {
+    Transaction transaction;
+  }
+
+  class LegitimateTransaction {
+    Transaction transaction;
+  }
+
+  class MachineLearningModel {
+    void analyze(Transaction transaction);
+    boolean isFraudulent();
+  }
+
+  class UserInterface {
+    void inputTransaction(Transaction transaction);
+    void displayResults();
+  }
+
+  class NotificationSystem {
+    void sendAlert(Transaction transaction);
+  }
+
+  class Database {
+    FraudulentTransaction [ ] knownFraudulentTransactions;
+    LegitimateTransaction [ ] knownLegitimateTransactions;
+  }
+
+  composition FraudDetection -> Database;
+  association UserInterface -> Transaction;
+  association NotificationSystem -> Transaction;
+  association MachineLearningModel -> Transaction;
+}

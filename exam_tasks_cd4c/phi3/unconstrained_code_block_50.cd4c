@@ -1,0 +1,43 @@
+
+classdiagram VideoSurveillanceSystem {
+
+    class VideoSurveillanceSystem {
+      Hub centralControlUnit;
+      List<Camera> cameras;
+      List<Monitor> monitors;
+    }
+
+    class Camera {
+      String uniqueIdentifier;
+      Location location;
+      CameraType type;
+      int resolution;
+      boolean isIndoor;
+      Monitor monitor;
+      boolean motionDetected;
+    }
+
+    class Monitor {
+      String uniqueIdentifier;
+      int resolution;
+      Camera camera;
+    }
+
+    enum CameraType {
+      Indoor, Outdoor;
+    }
+
+    enum Location {
+      Indoor, Outdoor;
+    }
+
+    class Hub {
+      void addCamera(Camera camera);
+      void removeCamera(Camera camera);
+      void addMonitor(Monitor monitor);
+      void removeMonitor(Monitor monitor);
+      void setCameraResolution(String cameraId, int resolution);
+      void setMonitorDisplaySettings(String monitorId, int resolution);
+      void receiveMotionAlert(Camera camera);
+    }
+}

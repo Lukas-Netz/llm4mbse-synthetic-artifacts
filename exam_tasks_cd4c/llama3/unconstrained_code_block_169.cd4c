@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram ContentCurationTool  {
+
+  class Tool  {
+    String name;
+    String description;
+  }
+
+  class Source  {
+    String name;
+    String description;
+    -> Content[*];
+  }
+
+  abstract class Content  {
+    String title;
+    String description;
+    double relevanceScore;
+  }
+
+  class Article extends Content  {
+  }
+
+  class Video extends Content  {
+  }
+
+  class Image extends Content  {
+  }
+
+  class Category  {
+    String name;
+    String description;
+    -> Content[*];
+  }
+
+  class Tag  {
+    String name;
+    String description;
+    -> Content[*];
+  }
+
+  class User  {
+    String name;
+    String interests;
+  }
+
+  class Recommendation  {
+    User user;
+    Content content;
+  }
+
+  class Analytics  {
+    double engagementScore;
+    double relevanceScore;
+  }
+
+  composition Tool -> Source[*];
+  composition Source -> Content[*];
+  composition Category -> Content[*];
+  composition Tag -> Content[*];
+  composition User -> Recommendation[*];
+  composition Content -> Analytics[*];
+}

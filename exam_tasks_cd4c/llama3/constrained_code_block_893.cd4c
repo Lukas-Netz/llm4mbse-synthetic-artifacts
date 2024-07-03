@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram DigitalTwin  {
+
+  class Sensor  {
+    String type;  (temperatureSensor   )
+    double value;
+  }
+
+  class WeatherStation  {
+    String location;
+    double temperature;
+    double precipitation;
+    double windSpeed;
+  }
+
+  class CentralHub  {
+    Sensor[] sensors;
+    WeatherStation[] weatherStations;
+    CropDatabase cropDatabase;
+    void collectData();
+    void predictCropGrowth();
+    void provideRecommendations();
+  }
+
+  class CropDatabase  {
+    Crop[] crops;
+  }
+
+  class Crop  {
+    String name;
+    double temperatureRange;
+    double humidityRange;
+    double lightRange;
+    double waterRange;
+  }
+
+  class Farm  {
+    CentralHub centralHub;
+    Crop[] crops;
+  }
+
+  composition CentralHub  ->  (has) Sensor[*];
+  composition CentralHub  ->  (has) WeatherStation[*];
+  composition CentralHub  ->  (has) CropDatabase;
+  composition Farm  ->  (has) CentralHub;
+  composition CropDatabase  ->  (has) Crop[*];
+}

@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram BlockchainLandRegistry  {
+
+  class LandRegistryOffice  {
+    Blockchain blockchain;
+    void recordLandOwnership(LandOwner landOwner, LandTitle landTitle);
+  }
+
+  class LandOwner  {
+    String uniqueIdentifier;
+  }
+
+  class LandTitle  {
+    String landAddress;
+    LandOwner owner;
+  }
+
+  class Transaction  {
+    LandTitle landTitle;
+    LandOwner from;
+    LandOwner to;
+  }
+
+  class SmartContract  {
+    void execute(LandTitle landTitle, LandOwner from, LandOwner to);
+  }
+
+  class Blockchain  {
+    Transaction[] transactions;
+  }
+
+  composition LandRegistryOffice -> Blockchain;
+  composition LandRegistryOffice -> LandTitle[*];
+  composition LandTitle -> LandOwner;
+  composition Transaction -> LandTitle;
+  composition Transaction -> LandOwner[*];
+  composition SmartContract -> LandTitle;
+  composition SmartContract -> LandOwner[*];
+}

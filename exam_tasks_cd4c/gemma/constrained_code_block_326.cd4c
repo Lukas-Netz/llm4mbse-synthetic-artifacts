@@ -1,0 +1,39 @@
+
+
+classdiagram VirtualRealityHistoricalTours {
+
+  class Tour {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Stop {
+    String name;
+    String description;
+    List<Media> media;
+  }
+
+  class Media {
+    String name;
+    String description;
+    String url;
+  }
+
+  class User {
+    String username;
+    String password;
+    List<Tour> tours;
+  }
+
+  class Guide {
+    String username;
+    String password;
+    List<Tour> tours;
+  }
+
+  composition Tour -> (has) Stop [*];
+  composition Stop -> (has) Media [*];
+  association User -> Tour;
+  association Guide -> Tour;
+}

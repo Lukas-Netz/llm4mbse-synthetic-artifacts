@@ -1,0 +1,57 @@
+
+classdiagram EmergencyResponseTrainingSystem {
+
+    class EmergencyResponseTrainingSystem {
+      ScenarioManager scenarioManager;
+      List<Trainee> trainees;
+      PerformanceTracker performanceTracker;
+    }
+
+    class ScenarioManager {
+      List<Scenario> scenarios;
+      void createScenario(String name, String description, Set<Objective> objectives);
+      Scenario getScenario(String name);
+    }
+
+    class Trainee {
+      String uniqueIdentifier;
+      Set<Skill> skills;
+    }
+
+    class Skill {
+      String name;
+    }
+
+    class Objective {
+      String name;
+    }
+
+    class PerformanceTracker {
+      Map<String, Performance> performanceRecords;
+      void recordPerformance(String traineeId, Objective objective, int timeTaken, int mistakes);
+      Performance getPerformance(String traineeId, Objective objective);
+      Report generateReport();
+      Feedback provideFeedback(String traineeId);
+    }
+
+    class Performance {
+      int timeTaken;
+      int mistakes;
+      int score;
+    }
+
+    class Report {
+      String traineeId;
+      String scenarioName;
+      Performance performance;
+    }
+
+    class Feedback {
+      String traineeId;
+      String feedback;
+    }
+
+  composition EmergencyResponseTrainingSystem -> ScenarioManager;
+  composition EmergencyResponseTrainingSystem -> List<<Trainee>>;
+  composition EmergencyResponseTrainingSystem -> PerformanceTracker;
+}

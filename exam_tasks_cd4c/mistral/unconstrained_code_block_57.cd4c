@@ -1,0 +1,73 @@
+
+classdiagram DRM {
+
+  class ContentCreator {
+    String name;
+    void uploadContent(DigitalContent content);
+  }
+
+  class User {
+    String username;
+    String password;
+    void purchaseContent(DigitalContent content);
+    void rentContent(DigitalContent content);
+  }
+
+  abstract class DigitalContent {
+    String title;
+    String creator;
+    int copiesAllowed;
+    int plays;
+    int downloads;
+    void play();
+    void download();
+  }
+
+  class Music extends DigitalContent {
+    int length;
+  }
+
+  class Video extends DigitalContent {
+    int resolution;
+  }
+
+  class Ebook extends DigitalContent {
+    int pages;
+  }
+
+  class Transaction {
+    User user;
+    DigitalContent content;
+    TransactionType type;
+    DateTime transactionDate;
+  }
+
+  enum TransactionType {
+    Purchase, Rent;
+  }
+
+  interface PaymentGateway {
+    void processPayment(Transaction transaction);
+  }
+
+  interface CDN {
+    void distributeContent(DigitalContent content);
+  }
+
+  interface DRM {
+    void enforceCopyRestrictions(DigitalContent content);
+  }
+
+  class Report {
+    DateTime reportDate;
+    String usageReport;
+    String ownershipReport;
+  }
+
+  composition ContentCreator -> DigitalContent [*];
+  composition User -> Transaction [*];
+  association Transaction -> DigitalContent;
+  association Transaction -> PaymentGateway [0..1];
+  association Transaction -> CDN [0..1];
+  association Transaction -> DRM [0..1];
+}

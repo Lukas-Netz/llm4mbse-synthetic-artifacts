@@ -1,0 +1,61 @@
+
+classdiagram SmartGrid {
+
+    class CentralControlCenter {
+      String name;
+      String location;
+      void monitorGrid();
+      void controlGrid();
+    }
+
+    class Substation {
+      String name;
+      String location;
+      List<PowerLine> connectedPowerLines;
+      void addPowerLine(PowerLine powerLine);
+      void removePowerLine(PowerLine powerLine);
+    }
+
+    class PowerLine {
+      String name;
+      double length;
+      List<Substation> connectedSubstations;
+      void transmitElectricity(Substation fromSubstation, Substation toSubstation);
+    }
+
+    class Transformer {
+      String name;
+      int capacity;
+      List<PowerLine> connectedPowerLines;
+      void stepDownVoltage(PowerLine powerLine);
+    }
+
+    class Meter {
+      String name;
+      String location;
+      List<Household> connectedHouseholds;
+      double measureConsumption();
+    }
+
+    class SmartAppliance {
+      String name;
+      String type;
+      List<Household> connectedHouseholds;
+      void controlAppliance(Household household);
+    }
+
+    class Household {
+      String name;
+      String location;
+      List<Meter> connectedMeters;
+      List<SmartAppliance> connectedAppliances;
+    }
+
+  composition SmartGrid -> (has) CentralControlCenter;
+  composition SmartGrid -> (has) Substation [*];
+  composition SmartGrid -> (has) PowerLine [*];
+  composition SmartGrid -> (has) Transformer [*];
+  composition SmartGrid -> (has) Meter [*];
+  composition SmartGrid -> (has) SmartAppliance [*];
+  composition SmartGrid -> (has) Household [*];
+}

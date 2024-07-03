@@ -1,0 +1,102 @@
+
+classdiagram VirtualEventPlatform {
+
+    class Event {
+      String id;
+      String name;
+      String description;
+      List<Speaker> speakers;
+      List<Session> sessions;
+    }
+
+    class Speaker {
+      String name;
+      String bio;
+      String contactInfo;
+      List<Event> events;
+    }
+
+    class Attendee {
+      String name;
+      String contactInfo;
+      List<Event> events;
+    }
+
+    class Session {
+      String title;
+      String description;
+      int duration;
+      List<Speaker> speakers;
+    }
+
+    <<association>> class Event {
+      List<Speaker> speakers;
+      List<Session> sessions;
+    }
+
+    <<association>> class Speaker {
+      List<Event> events;
+    }
+
+    <<association>> class Attendee {
+      List<Event> events;
+    }
+
+    <<association>> class Session {
+      List<Speaker> speakers;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }
+
+    <<association>> class EventType {
+      String name;
+      String requirements;
+    }}

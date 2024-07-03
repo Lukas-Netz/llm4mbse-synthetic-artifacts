@@ -1,0 +1,50 @@
+
+classdiagram UrbanFarm {
+
+  class Crop {
+    String uniqueIdentifier;
+    String name;
+    String type;
+    CropGrowthStage growthStage;
+    double height;
+    double weight;
+  }
+
+  enum CropGrowthStage {
+    Seedling,
+    Vegetative,
+    Reproductive,
+    Mature;
+  }
+
+  class Sensor {
+    String uniqueIdentifier;
+    String location;
+    String sensorType;
+    double value;
+  }
+
+  class Farm {
+    String uniqueIdentifier;
+    String name;
+    Crop [ ] crops;
+    Sensor [ ] sensors;
+  }
+
+  class Recommendation {
+    String uniqueIdentifier;
+    String cropOrFarm;
+    String recommendation;
+  }
+
+  class Scenario {
+    String uniqueIdentifier;
+    String cropOrFarm;
+    String scenarioDescription;
+  }
+
+  composition Farm -> Crop [*];
+  composition Farm -> Sensor [*];
+  association Farm -> Recommendation [*];
+  association Farm -> Scenario [*];
+}

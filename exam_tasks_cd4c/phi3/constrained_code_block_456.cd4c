@@ -1,0 +1,54 @@
+
+classdiagram MusicProductionPlatform {
+
+    class Course {
+      String title;
+      String description;
+      String genre;
+      String uniqueIdentifier;
+      List<Instructor> instructors;
+      List<Lesson> lessons;
+    }
+
+    class Student {
+      String name;
+      String email;
+      String uniqueIdentifier;
+      List<Enrollment> enrollments;
+    }
+
+    class Instructor {
+      String name;
+      String uniqueIdentifier;
+      List<Course> taughtCourses;
+    }
+
+    class Lesson {
+      String title;
+      String description;
+      String uniqueIdentifier;
+      String topic;
+    }
+
+    class Enrollment {
+      String startDate;
+      String endDate;
+      Course course;
+      Student student;
+    }
+
+    class Admin {
+      void manageCourses();
+      void manageInstructors();
+      void manageStudents();
+      void trackProgress();
+      void trackRatings();
+    }
+
+    association Course -> Instructor [0..*];
+    association Course -> Lesson [0..*];
+    association Student -> Enrollment [0..*];
+    association Admin -> Course [0..*];
+    association Admin -> Instructor [0..*];
+    association Admin -> Student [0..*];
+}

@@ -1,0 +1,51 @@
+
+
+classdiagram PrecisionMedicine {
+
+  class Patient {
+    String uniqueIdentifier;
+    GenomicData genomicData;
+  }
+
+  class Gene {
+    String uniqueIdentifier;
+    List<Attribute> attributes;
+  }
+
+  class Disease {
+    String uniqueIdentifier;
+    List<Attribute> attributes;
+  }
+
+  class Treatment {
+    String uniqueIdentifier;
+    List<Attribute> attributes;
+  }
+
+  class Analysis {
+    GenomicData genomicData;
+    List<Mutation> identifyMutations();
+  }
+
+  class Recommendation {
+    List<Treatment> generateTreatmentPlan();
+  }
+
+  class PatientDoctor {
+    Patient patient;
+    Treatment treatment;
+  }
+
+  enum Attribute {
+    Function, Location, ExpressionLevel;
+  }
+
+  enum Mutation {
+    Missense, Frameshift, Splice;
+  }
+
+  composition Patient -> (has) GenomicData;
+  composition Analysis -> (uses) GenomicData;
+  composition PatientDoctor -> (has) Patient;
+  composition PatientDoctor -> (has) Treatment;
+}

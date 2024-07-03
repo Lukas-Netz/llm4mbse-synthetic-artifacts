@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram TranslationSystem  {
+
+  class Dictionary  {
+    String word; 
+    String translation; 
+  }
+
+  class GrammarModule  {
+    Sentence parseSentence(String inputText);
+  }
+
+  class TranslationModule  {
+    String translateSentence(Sentence sentence, Language targetLanguage);
+  }
+
+  class Sentence  {
+    Word[] words;
+  }
+
+  class Word  {
+    String text;
+  }
+
+  class Language  {
+    String code;
+  }
+
+  class UserInterface  {
+    String getInputText();
+    Language getTargetLanguage();
+  }
+
+  class TranslationSystem  {
+    Dictionary dictionary;
+    GrammarModule grammarModule;
+    TranslationModule translationModule;
+    UserInterface userInterface;
+
+    void translateText(String inputText, Language targetLanguage);
+  }
+
+  composition TranslationSystem -> (has) Dictionary;
+  composition TranslationSystem -> (has) GrammarModule;
+  composition TranslationSystem -> (has) TranslationModule;
+  composition TranslationSystem -> (has) UserInterface;
+  composition TranslationModule -> (uses) Dictionary;
+  composition GrammarModule -> (parses) Sentence;
+  composition Sentence -> (contains) Word;
+  composition UserInterface -> (gets) Language;
+}

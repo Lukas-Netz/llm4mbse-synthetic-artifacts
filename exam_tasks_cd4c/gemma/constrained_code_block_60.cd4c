@@ -1,0 +1,42 @@
+
+
+classdiagram DigitalTwin {
+
+  class PhysicalSystem {
+    int temperature;
+    int pressure;
+    int vibration;
+  }
+
+  class DigitalTwin {
+    int simulationTime;
+    int simulationSpeed;
+    int simulationAccuracy;
+  }
+
+  class Sensor {
+    Sensor(PhysicalSystem physicalSystem);
+    void collectData();
+  }
+
+  class AnalyticsEngine {
+    void analyzeData();
+    List<Recommendation> generateRecommendations();
+  }
+
+  class UserInterface {
+    void displayData();
+    void interactWithDigitalTwin();
+  }
+
+  composition PhysicalSystem -> Sensor [1..*];
+  composition DigitalTwin -> Sensor [1..*];
+  association PhysicalSystem - DigitalTwin
+  -- Composition
+  <<stereotype>>  
+  abstract  
+  
+  
+  
+;
+}

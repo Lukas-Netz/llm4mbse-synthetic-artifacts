@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram VirtualBookClub  {
+
+  class BookClub  {
+    String name;
+    String description;
+    -> Member[*];
+    -> Discussion[*];
+  }
+
+  class Member  {
+    String username;
+    String password;
+    -> BookClub[*];
+    -> Comment[*];
+    int unreadComments;
+  }
+
+  class Discussion  {
+    String title;
+    String description;
+    -> BookClub;
+    -> Comment[*];
+  }
+
+  class Comment  {
+    String text;
+    -> Discussion;
+    -> Member;
+  }
+
+  composition BookClub -> Member[*];
+  composition BookClub -> Discussion[*];
+  composition Member -> BookClub[*];
+  composition Discussion -> BookClub;
+  composition Comment -> Discussion;
+  composition Comment -> Member;
+}

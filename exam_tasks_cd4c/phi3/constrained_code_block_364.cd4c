@@ -1,0 +1,60 @@
+
+classdiagram OnlineArtGallery {
+
+  class Artwork {
+    String title;
+    String description;
+    double price;
+    boolean isAvailable;
+  }
+
+  class User {
+    String username;
+    String purchaseHistory;
+    List<Artwork> purchasedArtworks;
+    List<Review> reviews;
+  }
+
+  class Review {
+    String reviewText;
+    double rating;
+  }
+
+  class Gallery {
+    String name;
+    String description;
+    List<Artwork> artworks;
+    User admin;
+  }
+
+  class Admin {
+    String username;
+    List<Gallery> managedGalleries;
+    List<User> managedUsers;
+  }
+
+  <<association>> class Gallery {
+    Artwork artworks;
+    User admin;
+  }
+
+  <<association>> class User {
+    Gallery gallery;
+    List<Artwork> purchasedArtworks;
+    List<Review> reviews;
+  }
+
+  <<association>> class Review {
+    User user;
+  }
+
+  <<association>> class Artwork {
+    Gallery gallery;
+    boolean isAvailable;
+  }
+
+  <<association>> class Admin {
+    Gallery galleries;
+    User users;
+  }
+}

@@ -1,0 +1,36 @@
+
+
+classdiagram SmartEnergyManagementSystem {
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      int temperature;
+      int humidity;
+      int windSpeed;
+    }
+
+    class SolarFarm {
+      int capacityKW;
+      int generateElectricity(int weatherData);
+    }
+
+    class Battery {
+      int capacitykWh;
+      void storeExcessEnergy(int excessEnergy);
+      int releaseExcessEnergy(int requiredEnergy);
+    }
+
+    class SmartGrid {
+      int capacityMW;
+      void distributeElectricity(int energy);
+    }
+
+    class AIC {
+      void optimizeEnergyGenerationAndDistribution();
+    }
+
+  composition WeatherStation -> (has) Battery [0..1];
+  composition WeatherStation -> (has) SmartGrid [0..1];
+  composition SolarFarm -> (has) Battery [0..1];
+  composition SmartGrid -> (has) AIC [0..1];
+}

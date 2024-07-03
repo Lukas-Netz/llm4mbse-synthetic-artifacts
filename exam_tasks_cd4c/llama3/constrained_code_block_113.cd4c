@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram ProductLifecycleManagement  {
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class ProductVersion  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Product product;
+    DevelopmentStatus developmentStatus;
+  }
+
+  class ProductRelease  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ProductVersion productVersion;
+    DevelopmentStatus developmentStatus;
+  }
+
+  enum DevelopmentStatus  {
+    Planning,
+    Development,
+    Testing,
+    Released,
+    Retired
+  ;}
+
+  class ProductCategory  {
+    String name;
+  }
+
+  class Software extends ProductCategory  {}
+  class Hardware extends ProductCategory  {}
+  class Service extends ProductCategory  {}
+
+  composition Product -> ProductVersion [*];
+  composition ProductVersion -> ProductRelease [*];
+  composition ProductRelease -> DevelopmentStatus;
+  composition ProductCategory -> Product [*];
+}

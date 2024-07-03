@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram PersonalizedAdvertisingSystem  {
+
+  class UserProfile  {
+    String uniqueIdentifier;
+    int age;
+    Gender gender;
+    Set<String> interests;
+    Set<String> purchaseHistory;
+  }
+
+  class Advertiser  {
+    String name;
+    Set<Ad> ads;
+  }
+
+  class Ad  {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    TargetingCriteria targetingCriteria;
+  }
+
+  class Campaign  {
+    String name;
+    Set<Ad> ads;
+    TargetingCriteria targetingCriteria;
+  }
+
+  class TargetingCriteria  {
+    int ageRange;
+    Set<String> interests;
+    GeographicLocation location;
+  }
+
+  class UserAdInteraction  {
+    UserProfile user;
+    Ad ad;
+    InteractionType interactionType;
+  }
+
+  class InteractionType  {
+    enum values  =  VIEWED | CLICKED | CONVERTED;
+  }
+
+  class AIEngine  {
+    void analyzeUserProfile(UserProfile userProfile);
+    void analyzeAdPerformance(Ad ad);
+    void optimizeAdTargeting();
+  }
+
+  composition UserProfile  ->  (has) UserAdInteraction;
+  composition Advertiser  ->  (has) Ad;
+  composition Campaign  ->  (has) Ad;
+  composition Ad  ->  (has) TargetingCriteria;
+  composition AIEngine  ->  (uses) UserProfile;
+  composition AIEngine  ->  (uses) Ad;
+  composition AIEngine  ->  (uses) UserAdInteraction;
+}

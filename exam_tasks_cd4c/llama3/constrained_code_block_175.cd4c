@@ -1,0 +1,68 @@
+
+
+
+classdiagram ERM  {
+
+  class Risk  {
+    String name;
+    RiskType type;
+    RiskStatus status;
+    double likelihood;
+    double impact;
+    MitigationMeasure mitigation;
+  }
+
+  enum RiskType  {
+    Financial, Operational, Strategic;
+  }
+
+  enum RiskStatus  {
+    Open, InProgress, Closed;
+  }
+
+  class MitigationMeasure  {
+    String description;
+  }
+
+  class Department  {
+    String name;
+    Risk  [ ] risks;
+  }
+
+  class Team  {
+    String name;
+    Risk  [ ] risks;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class Report  {
+    String title;
+    String content;
+  }
+
+  class Dashboard  {
+    Report  [ ] reports;
+  }
+
+  class ERMSystem  {
+    Department  [ ] departments;
+    Team  [ ] teams;
+    User  [ ] users;
+    Risk  [ ] risks;
+    Dashboard dashboard;
+  }
+
+  composition ERMSystem -> (has) Department [0..*];
+  composition ERMSystem -> (has) Team [0..*];
+  composition ERMSystem -> (has) User [0..*];
+  composition ERMSystem -> (has) Risk [0..*];
+  composition ERMSystem -> (has) Dashboard;
+  composition Department -> (has) Risk [0..*];
+  composition Team -> (has) Risk [0..*];
+  composition Risk -> (has) MitigationMeasure [0..1];
+  composition Dashboard -> (has) Report [0..*];
+}

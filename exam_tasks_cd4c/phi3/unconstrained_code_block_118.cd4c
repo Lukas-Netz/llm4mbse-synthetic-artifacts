@@ -1,0 +1,79 @@
+
+classdiagram CommunityManagement {
+
+    class CommunityManagement {
+      WasteManagement wasteManagement;
+      EnergyConsumption energyConsumption;
+      TrafficFlow trafficFlow;
+      CommunityEvents communityEvents;
+    }
+
+    class WasteManagement {
+      Map<String, WasteCollectionSchedule> wasteCollectionSchedules;
+      void addWasteCollectionSchedule(String householdId, WasteCollectionSchedule schedule);
+      void removeWasteCollectionSchedule(String householdId);
+      void updateWasteCollectionStatus(String householdId, WasteCollectionStatus status);
+    }
+
+    class WasteCollectionSchedule {
+      String householdId;
+      String collectionTime;
+      String collectionFrequency;
+    }
+
+    class EnergyConsumption {
+      Map<String, EnergyConsumptionData> energyConsumptionData;
+      void addEnergyConsumptionData(String householdId, EnergyConsumptionData data);
+      void removeEnergyConsumptionData(String householdId);
+      void updateEnergyConsumptionStatus(String householdId, EnergyConsumptionStatus status);
+    }
+
+    class EnergyConsumptionData {
+      int kWh;
+    }
+
+    class EnergyConsumptionStatus {
+      boolean withinNormalRange;
+    }
+
+    class TrafficFlow {
+      Map<String, TrafficFlowData> trafficFlowData;
+      void addTrafficFlowData(String roadSegmentId, TrafficFlowData data);
+      void removeTrafficFlowData(String roadSegmentId);
+      void updateTrafficFlowStatus(String roadSegmentId, TrafficFlowStatus status);
+    }
+
+    class TrafficFlowData {
+      int vehicleCount;
+      int averageSpeed;
+      String direction;
+    }
+
+    class TrafficFlowStatus {
+      boolean normal;
+      boolean congested;
+    }
+
+    class CommunityEvents {
+      Map<String, CommunityEvent> communityEvents;
+      void addCommunityEvent(String eventId, CommunityEvent event);
+      void removeCommunityEvent(String eventId);
+    }
+
+    class CommunityEvent {
+      String eventId;
+      String startDate;
+      String endDate;
+      String location;
+    }
+
+    association CommunityManagement -> WasteManagement;
+    association CommunityManagement -> EnergyConsumption;
+    association CommunityManagement -> TrafficFlow;
+    association CommunityManagement -> CommunityEvents;
+
+    composition WasteManagement -> (has) WasteCollectionSchedule;
+    composition EnergyConsumption -> (has) EnergyConsumptionData;
+    composition TrafficFlow -> (has) TrafficFlowData;
+    composition CommunityManagement -> (has) CommunityEvent;
+}

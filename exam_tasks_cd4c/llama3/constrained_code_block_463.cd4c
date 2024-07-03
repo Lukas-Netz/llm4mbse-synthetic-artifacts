@@ -1,0 +1,67 @@
+
+
+
+
+classdiagram WellnessRetreat  {
+
+  class Retreat  {
+    String name;
+    Date startDate;
+    Date endDate;
+    String description;
+  }
+
+  class Participant  {
+    String name;
+    String email;
+    String password;
+    -> Retreat  [*];
+  }
+
+  class Session  {
+    String name;
+    Date startTime;
+    Date endTime;
+    String description;
+    -> Retreat;
+  }
+
+  class Speaker  {
+    String name;
+    String bio;
+    -> Topic  [*];
+    -> Session  [*];
+  }
+
+  class Topic  {
+    String name;
+    String description;
+  }
+
+  class Review  {
+    String content;
+    -> Participant;
+    -> Retreat  [*];
+    -> Session  [*];
+    -> Speaker;
+  }
+
+  class Administrator  {
+    -> Retreat  [*];
+    -> Participant  [*];
+    -> Session  [*];
+    -> Speaker  [*];
+    -> Topic  [*];
+  }
+
+  composition Retreat  ->  (has) Session  [*];
+  composition Participant  ->  (has) Retreat  [*];
+  composition Session  ->  (has) Retreat;
+  composition Speaker  ->  (has) Topic  [*];
+  composition Review  ->  (has) Participant;
+  composition Administrator  ->  (has) Retreat;
+  composition Administrator  ->  (has) Participant;
+  composition Administrator  ->  (has) Session;
+  composition Administrator  ->  (has) Speaker;
+  composition Administrator  ->  (has) Topic;
+}

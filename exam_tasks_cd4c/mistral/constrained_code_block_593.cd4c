@@ -1,0 +1,31 @@
+
+classdiagram PollutionMonitoring {
+
+  class Sensor {
+    String uniqueIdentifier;
+    String pollutant;
+    int concentration;
+  }
+
+  class MonitoringStation {
+    String uniqueIdentifier;
+    Sensor [
+     ] sensors;
+  }
+
+  class CentralDatabase {
+    void storeData(Sensor sensor);
+    void updateMonitoringStations();
+  }
+
+  class Dashboard {
+    AirQualityIndex getCurrentAirQualityIndex();
+  }
+
+  enum AirQualityIndex {
+    Good, Moderate, UnhealthyForSensitiveGroups, Unhealthy, VeryUnhealthy, Hazardous
+  ;}
+
+  composition CentralDatabase -> Sensor [*];
+  composition MonitoringStation -> Sensor [*];
+}

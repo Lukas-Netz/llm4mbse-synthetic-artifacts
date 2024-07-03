@@ -1,0 +1,49 @@
+
+classdiagram FinancialTrading {
+
+  class Broker {
+    String uniqueIdentifier;
+    Trade [ ] availableTrades;
+  }
+
+  class Trade {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+  }
+
+  class Buyer {
+    String uniqueIdentifier;
+    String name;
+    Order [ ] placedOrders;
+  }
+
+  class Seller {
+    String uniqueIdentifier;
+    String name;
+    Order [ ] placedOrders;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    String tradeUniqueIdentifier;
+    int quantity;
+    double price;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    String tradeUniqueIdentifier;
+    String buyerUniqueIdentifier;
+    String sellerUniqueIdentifier;
+    int quantity;
+    double price;
+  }
+
+  composition Broker -> Trade [*];
+  composition Buyer -> Order [*];
+  composition Seller -> Order [*];
+  composition Transaction -> Trade [1];
+  composition Transaction -> Buyer [1];
+  composition Transaction -> Seller [1];
+}

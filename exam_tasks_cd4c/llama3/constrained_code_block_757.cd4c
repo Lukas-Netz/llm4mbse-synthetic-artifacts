@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram PrecisionViticulture  {
+
+  class Sensor  {
+    String type;  (temperatureSensor   )
+    String location;  (vineyardLocation)
+  }
+
+  class Drone  {
+    String type;  (imageCaptureDrone)
+  }
+
+  class CentralHub  {
+    Sensor  sensors  ;
+    Drone  drones  ;
+    Database grapeVarieties;
+    RecommendationSystem recommendationSystem;
+  }
+
+  class Database  {
+    Map<String, GrapeVariety> grapeVarieties;
+  }
+
+  class RecommendationSystem  {
+    void provideRecommendations(CentralHub centralHub);
+  }
+
+  class GrapeVariety  {
+    String name;
+    OptimalGrowingConditions optimalGrowingConditions;
+  }
+
+  class OptimalGrowingConditions  {
+    TemperatureRange temperatureRange;
+    HumidityRange humidityRange;
+    SoilMoistureRange soilMoistureRange;
+  }
+
+  class TemperatureRange  {
+    double min;
+    double max;
+  }
+
+  class HumidityRange  {
+    double min;
+    double max;
+  }
+
+  class SoilMoistureRange  {
+    double min;
+    double max;
+  }
+
+  composition CentralHub  ->  (has) Sensor  [*];
+  composition CentralHub  ->  (has) Drone  [*];
+  composition CentralHub  ->  (has) Database;
+  composition CentralHub  ->  (has) RecommendationSystem;
+  composition Database  ->  (has) GrapeVariety  [*];
+  composition RecommendationSystem  ->  (uses) CentralHub;
+  association CentralHub  ->  (accessedBy) MobileApp;
+}

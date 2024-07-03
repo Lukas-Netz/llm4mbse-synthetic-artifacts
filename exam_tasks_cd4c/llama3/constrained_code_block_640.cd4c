@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram BioprintingSystem  {
+
+  class Printer  {
+    String name;
+    PrinterType type;
+    int printingSpeed;
+  }
+
+  enum PrinterType  {
+    FusedDepositionModeling, Stereolithography, SelectiveLaserSintering
+  ;}
+
+  class Biomaterial  {
+    String name;
+    String composition;
+  }
+
+  class PrintedTissue  {
+    String name;
+    Biomaterial composition;
+    TissueProperties properties;
+  }
+
+  class TissueProperties  {
+    double density;
+    double porosity;
+  }
+
+  class PrintingProcess  {
+    Printer printer;
+    Biomaterial biomaterial;
+    PrintedTissue printedTissue;
+    Date startTime;
+    Date endTime;
+  }
+
+  class ResearchAndDevelopment  {
+    void analyzePrintedTissue(PrintedTissue tissue);
+  }
+
+  class QualityControl  {
+    void inspectPrintedTissue(PrintedTissue tissue);
+  }
+
+  class CustomerService  {
+    void providePrintedTissue(PrintedTissue tissue);
+  }
+
+  composition BioprintingSystem -> Printer[*];
+  composition PrintingProcess -> Printer;
+  composition PrintingProcess -> Biomaterial;
+  composition PrintingProcess -> PrintedTissue;
+  composition ResearchAndDevelopment -> PrintingProcess[*];
+  composition QualityControl -> PrintingProcess[*];
+  composition CustomerService -> PrintingProcess[*];
+}

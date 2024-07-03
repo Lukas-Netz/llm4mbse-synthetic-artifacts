@@ -1,0 +1,62 @@
+
+classdiagram RiskManagementSystem {
+
+    class Risk {
+      String uniqueIdentifier;
+      String description;
+      int severityLevel;
+    }
+
+    class MitigationStrategy {
+      String uniqueIdentifier;
+      String description;
+      boolean isActive;
+    }
+
+    class Employee {
+      String uniqueIdentifier;
+      String name;
+      String role;
+    }
+
+    class Department {
+      String uniqueIdentifier;
+      String name;
+      List<Employee> employees;
+    }
+
+    class Policy {
+      String uniqueIdentifier;
+      String description;
+      boolean isActive;
+    }
+
+    class RiskManagementPlan {
+      String uniqueIdentifier;
+      String description;
+      boolean isActive;
+    }
+
+    class RiskRegister {
+      List<Risk> risks;
+      List<MitigationStrategy> mitigationStrategies;
+    }
+
+    class RiskManagementSystem {
+      List<Risk> risks;
+      List<MitigationStrategy> mitigationStrategies;
+      List<Employee> employees;
+      List<Department> departments;
+      List<Policy> policies;
+      List<RiskManagementPlan> riskManagementPlans;
+      RiskRegister riskRegister;
+    }
+
+    composition RiskManagementSystem -> (has) Risk;
+    composition RiskManagementSystem -> (has) MitigationStrategy;
+    composition RiskManagementSystem -> (has) Employee;
+    composition RiskManagementSystem -> (has) Department;
+    composition RiskManagementSystem -> (has) Policy;
+    composition RiskManagementSystem -> (has) RiskManagementPlan;
+    composition RiskManagementSystem -> (has) RiskRegister;
+}

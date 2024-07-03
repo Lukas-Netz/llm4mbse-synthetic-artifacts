@@ -1,0 +1,59 @@
+
+classdiagram SecureAccess {
+
+  class User {
+    String username;
+    String password;
+    UserType type;
+    Administrator administrator;
+    String[] managedUsers;
+  }
+
+  enum UserType {
+    Administrator, RegularUser;
+  }
+
+  abstract class Device {
+    String deviceType;
+    int batteryLife;
+    int screenSize;
+  }
+
+  class Laptop extends Device {
+  }
+
+  class Desktop extends Device {
+  }
+
+  class Session {
+    String startTime;
+    String endTime;
+    Device device;
+    User user;
+    UserRole userRole;
+  }
+
+  enum UserRole {
+    Administrator, RegularUser;
+  }
+
+  abstract class Resource {
+    String resourceType;
+    int size;
+    String resourceType;
+  }
+
+  class File extends Resource {
+  }
+
+  class Folder extends Resource {
+    Resource[] resources;
+  }
+
+  class AccessControl {
+    User user;
+    Resource resource;
+    boolean isAuthorized;
+    String accessHistory;
+  }
+}

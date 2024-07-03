@@ -1,0 +1,60 @@
+
+classdiagram FitnessCenter {
+
+  class FitnessCenter {
+    Program [ ] programs;
+    PersonalTrainer [ ] trainers;
+    Member [ ] members;
+  }
+
+  class Program {
+    String name;
+    String description;
+    int duration;
+    ProgramType type;
+    Exercise [ ] exercises;
+  }
+
+  enum ProgramType {
+    StrengthTraining, Cardio, Yoga;
+  }
+
+  class Exercise {
+    String name;
+    String description;
+    DifficultyLevel difficulty;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class Member {
+    String name;
+    double weight;
+    double height;
+    double bodyFatPercentage;
+    Program [ ] enrolledPrograms;
+    PersonalTrainer [ ] assignedTrainers;
+  }
+
+  class PersonalTrainer {
+    String name;
+    String certification;
+    Schedule schedule;
+  }
+
+  class Schedule {
+    String startTime;
+    String endTime;
+  }
+
+  composition FitnessCenter -> Program [*];
+  composition FitnessCenter -> PersonalTrainer [*];
+  composition FitnessCenter -> Member [*];
+  composition Program -> Exercise [*];
+  association Member -> Program [*];
+  association Program -> Member [*];
+  association PersonalTrainer -> Member [*];
+  association Member -> PersonalTrainer [*];
+}

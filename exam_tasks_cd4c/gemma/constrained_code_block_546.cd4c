@@ -1,0 +1,89 @@
+
+
+classdiagram BiomedicalResearchCollaboration {
+
+  class Researcher {
+    private String id;
+    private String name;
+    private String affiliation;
+
+    Researcher(String id, String name, String affiliation)
+  
+    
+  
+;
+  }
+
+  class ResearchProject {
+    private String id;
+    private String title;
+    private String description;
+    private Researcher leader;
+
+    ResearchProject(String id, String title, String description, Researcher leader)
+  
+  
+  
+;
+  }
+
+  class ResearchData {
+    private String id;
+    private String type;
+    private String content;
+    private ResearchProject project;
+
+    ResearchData(String id, String type, String content, ResearchProject project)
+  
+  
+  
+;
+  }
+
+  class Collaboration {
+    private String id;
+    private Researcher participant1;
+    private Researcher participant2;
+    private ResearchProject project;
+
+    Collaboration(String id, Researcher participant1, Researcher participant2, ResearchProject project)
+  
+  
+  
+;
+  }
+
+  class DataSharing {
+    private Researcher sender;
+    private Researcher recipient;
+    private ResearchData data;
+
+    DataSharing(Researcher sender, Researcher recipient, ResearchData data)
+  
+  
+  
+;
+  }
+
+  class DataIntegrity {
+    private ResearchData data;
+
+    DataIntegrity(ResearchData data)
+  
+  
+  
+;
+  }
+
+  composition Researcher -> ResearchProject [0..1]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

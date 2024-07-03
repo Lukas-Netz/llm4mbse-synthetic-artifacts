@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram CybersecurityTrainingPlatform  {
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    boolean isAdmin;
+  }
+
+  class Course  {
+    String uniqueId;
+    String name;
+    String description;
+    Level level;
+  }
+
+  enum Level  {
+    Beginner, Intermediate, Advanced
+  ;}
+
+  class Module  {
+    String uniqueId;
+    String name;
+    String description;
+    Course course;
+  }
+
+  class Quiz extends Module  {
+    String uniqueId;
+    String name;
+    String description;
+    List<Question> questions;
+  }
+
+  class Question  {
+    String uniqueId;
+    String name;
+    String description;
+    List<Answer> answers;
+  }
+
+  class Answer  {
+    String uniqueId;
+    String name;
+    String description;
+    boolean isCorrect;
+  }
+
+  class UserProgress  {
+    User user;
+    Course course;
+    int completionStatus;
+    int score;
+  }
+
+  composition User -> (has) UserProgress;
+  composition Course -> (has) Module[*];
+  composition Module -> (has) Quiz[*];
+  composition Quiz -> (has) Question[*];
+  composition Question -> (has) Answer[*];
+}

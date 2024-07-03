@@ -1,0 +1,90 @@
+
+classdiagram TaxFilingSystem {
+
+    class TaxReturn {
+      String type;
+      String taxpayerId;
+      double grossIncome;
+      double taxableIncome;
+      double taxOwed;
+      Map<String, Double> deductions;
+      Map<String, Double> credits;
+      TaxReturnSummary summary;
+    }
+
+    class TaxReturnSummary {
+      double totalTaxOwed;
+      Map<String, Double> deductionsTaken;
+      Map<String, Double> creditsTaken;
+    }
+
+    class PersonalIncomeTaxReturn extends TaxReturn {
+      double standardDeduction;
+      Map<String, Double> itemizedDeductions;
+    }
+
+    class BusinessIncomeTaxReturn extends TaxReturn {
+      double businessExpenses;
+      Map<String, Double> businessDeductions;
+    }
+
+    class EstateTaxReturn extends TaxReturn {
+      double estateValue;
+      Map<String, Double> estateDeductions;
+    }
+
+    class TaxCredit {
+      String name;
+      double amount;
+    }
+
+    class Deduction {
+      String name;
+      double amount;
+    }
+
+    class TaxCreditType {
+      String type;
+      List<TaxCredit> credits;
+    }
+
+    class TaxCreditTypePersonalIncome extends TaxCreditType {
+      String type = "Personal Income";
+      List<TaxCredit> credits = newArrayList();
+    }
+
+    class TaxCreditTypeBusinessIncome extends TaxCreditType {
+      String type = "Business Income";
+      List<TaxCredit> credits = newArrayList();
+    }
+
+    class TaxCreditTypeEstate extends TaxCreditType {
+      String type = "Estate";
+      List<TaxCredit> credits = newArrayList();
+    }
+
+    class TaxCreditPersonalIncome extends TaxCredit {
+      double amount;
+    }
+
+    class TaxCreditBusinessIncome extends TaxCredit {
+      double amount;
+    }
+
+    class TaxCreditEstate extends TaxCredit {
+      double amount;
+    }
+
+    class TaxFilingSystem {
+      Map<String, TaxReturn> taxReturns;
+      void addTaxReturn(TaxReturn taxReturn);
+      void removeTaxReturn(String taxpayerId);
+      TaxReturn getTaxReturn(String taxpayerId);
+      TaxReturnSummary generateSummary(String taxpayerId);
+      void addTaxCredit(TaxCreditType type, TaxCredit credit);
+      void removeTaxCredit(TaxCreditType type, TaxCredit credit);
+      List<TaxCredit> getTaxCredits(TaxCreditType type);
+      void saveTaxReturn(TaxReturn taxReturn);
+      void loadTaxReturn(String taxpayerId);
+    }
+}

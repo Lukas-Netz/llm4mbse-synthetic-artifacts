@@ -1,0 +1,57 @@
+
+classdiagram ProductLifecycleManagement {
+
+  class Product {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ProductCategory category;
+  }
+
+  enum ProductCategory {
+    Software, Hardware, Services;
+  }
+
+  class ProductVersion {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    DevelopmentStatus status;
+    Product product;
+  }
+
+  enum DevelopmentStatus {
+    Planning, Development, Testing, Released, Retired;
+  }
+
+  class ProductRelease {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    DevelopmentStatus status;
+    ProductReleaseType type;
+    ProductVersion productVersion;
+  }
+
+  enum ProductReleaseType {
+    Stable, Beta, Alpha;
+  }
+
+  class ProductLifecycleManagement {
+    Product [ ] products;
+    ProductVersion [ ] productVersions;
+    ProductRelease [ ] productReleases;
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void addProductVersion(ProductVersion productVersion);
+    void removeProductVersion(ProductVersion productVersion);
+    void addProductRelease(ProductRelease productRelease);
+    void removeProductRelease(ProductRelease productRelease);
+    void updateProductVersionStatus(ProductVersion productVersion, DevelopmentStatus status);
+    void updateProductReleaseStatus(ProductRelease productRelease, DevelopmentStatus status);
+  }
+
+  composition ProductLifecycleManagement -> Product [*];
+  composition ProductLifecycleManagement -> ProductVersion [*];
+  composition ProductLifecycleManagement -> ProductRelease [*];
+}

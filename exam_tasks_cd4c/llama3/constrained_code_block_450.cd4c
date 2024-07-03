@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram WineTasting  {
+
+  class WineTasting  {
+    String id;
+    String name;
+    String description;
+    Date date;
+    -> Wine  [*];
+  }
+
+  class Wine  {
+    String name;
+    String vintage;
+    int rating;
+    -> Rating  [*];
+  }
+
+  class User  {
+    String id;
+    String name;
+    String email;
+    -> WineTasting  [*];
+  }
+
+  class Rating  {
+    int value;
+    -> Wine  [*];
+  }
+
+  class Note  {
+    String text;
+    -> Wine  [*];
+  }
+
+  class Statistics  {
+    int totalUsers;
+    int totalWinesRated;
+  }
+
+  composition WineTasting  ->  (has) Wine  [*];
+  composition User  ->  (has) WineTasting  [*];
+  composition Wine  ->  (has) Rating  [*];
+  composition Wine  ->  (has) Note  [*];
+  composition Statistics  ->  (has) totalUsers;
+  composition Statistics  ->  (has) totalWinesRated;
+}

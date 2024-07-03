@@ -1,0 +1,10 @@
+
+
+classdiagram MobileAppAnalytics
+
+  
+
+{class App {
+  String uniqueIdentifier;
+  int versionNumber;
+}}

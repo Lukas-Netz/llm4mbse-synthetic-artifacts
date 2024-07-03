@@ -1,0 +1,54 @@
+
+classdiagram RobotSystem {
+
+  class RobotSystem {
+    -> Robot [*];
+  }
+
+  abstract class Robot {
+    String uniqueIdentifier;
+    RobotStatus status;
+  }
+
+  class CleaningRobot extends Robot {
+    int suctionPower;
+    String filterType;
+  }
+
+  class InspectionRobot extends Robot {
+    String cameraResolution;
+    String lightingSettings;
+  }
+
+  class MaintenanceRobot extends Robot {
+    int wrenchSize;
+    int torqueSettings;
+  }
+
+  enum RobotStatus {
+    Operational, NonOperational;
+  }
+
+  class Environment {
+    -> Robot [*];
+    void transmitSensorData(Robot robot);
+    void transmitControlSignals(Robot robot);
+  }
+
+  class Hazard {
+    Environment environment;
+    void detectGasLeak();
+    void detectRadiation();
+  }
+
+  class Response {
+    Hazard hazard;
+    void respondToGasLeak();
+    void respondToRadiation();
+  }
+
+  composition RobotSystem -> Environment;
+  composition Environment -> Robot [*];
+  association Hazard -> Environment;
+  association Response -> Hazard;
+}

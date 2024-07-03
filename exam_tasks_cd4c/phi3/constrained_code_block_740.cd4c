@@ -1,0 +1,91 @@
+
+classdiagram MushroomCoursePlatform {
+
+    class User {
+      String username;
+      String role;
+      List<String> courseEnrollments;
+      List<String> courseRoles;
+    }
+
+    class Course {
+      String title;
+      String description;
+      int duration;
+      List<Section> sections;
+      List<Instructor> instructors;
+      List<Assignment> assignments;
+    }
+
+    class Section {
+      String title;
+      String description;
+      List<User> enrolledUsers;
+    }
+
+    class Assignment {
+      String title;
+      String description;
+      Date dueDate;
+      User submitter;
+      int grade;
+    }
+
+    class Instructor {
+      String username;
+    }
+
+    class Admin {
+      Username username;
+      List<User> managedUsers;
+      List<Course> managedCourses;
+      List<Enrollment> managedEnrollments;
+    }
+
+    class Enrollment {
+      User user;
+      Course course;
+    }
+
+    association User 
+      has_many [enrollments]
+      -> Enrollment;
+
+    association Course 
+      has_many [sections]
+      -> Section;
+
+    association Course 
+      has_many [assignments]
+      -> Assignment;
+
+    association Course 
+      has_many [instructors]
+      -> Instructor;
+
+    association Course 
+      has_many [courseRoles]
+      -> User;
+
+    association Course 
+      has_many [courseEnrollments]
+      -> User;
+
+    association Admin 
+      has_many [managedUsers]
+      -> User;
+
+    association Admin 
+      has_many [managedCourses]
+      -> Course;
+
+    association Admin 
+      has_many [managedEnrollments]
+      -> Enrollment;
+
+    composition User -> Enrollment;
+    composition Course -> Section;
+    composition Course -> Assignment;
+    composition Course -> Instructor;
+   
+ }

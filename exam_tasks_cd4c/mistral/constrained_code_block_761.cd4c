@@ -1,0 +1,54 @@
+
+classdiagram SHM {
+
+  class Material {
+    String name;
+  }
+
+  class Crack {
+    int location;
+    int size;
+  }
+
+  class Sensor {
+    Material material;
+    Crack crack;
+  }
+
+  class ControlUnit {
+    void analyzeSignals(Signal[] signals);
+    void sendCommand(Actuator actuator, Command command);
+    void setMaterial(Material material);
+    void setRepairMethod(RepairMethod method);
+  }
+
+  class Signal {
+    int crackLocation;
+    int crackSize;
+  }
+
+  class Actuator {
+    String type;
+    void applyPressure();
+  }
+
+  class MechanicalActuator extends Actuator {
+  }
+
+  class ChemicalActuator extends Actuator {
+  }
+
+  class Command {
+    Actuator actuator;
+    int pressure;
+  }
+
+  class RepairMethod {
+    String type;
+  }
+
+  composition Material -> (has) Crack [*];
+  composition Sensor -> Material [*];
+  composition ControlUnit -> Sensor [*];
+  composition ControlUnit -> Actuator [*];
+}

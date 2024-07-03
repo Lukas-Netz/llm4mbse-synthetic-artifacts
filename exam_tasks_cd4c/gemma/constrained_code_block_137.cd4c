@@ -1,0 +1,58 @@
+
+
+<<h1>>  
+
+#  
+
+classdiagram BlockchainIdentityManagementSystem {
+
+  class User {
+    String uniqueIdentifier;
+    List<Identity> identities;
+  }
+
+  class Identity {
+    String name;
+    String description;
+    boolean isActive;
+    Organization organization;
+  }
+
+  class Organization {
+    String name;
+    List<User> users;
+    List<Identity> identities;
+  }
+
+  class Blockchain {
+    List<Identity> identities;
+    List<Node> nodes;
+  }
+
+  class Node {
+    String uniqueIdentifier;
+    SHA256 hash;
+    boolean isLeader;
+    void verifyBlockchainIntegrity() throws Exception;
+    void updateBlockchain(Identity identity, String action) throws Exception;
+  }
+
+  composition User -> (has) Identity [*];
+  composition Organization -> (has) Identity [*];
+  composition Blockchain -> (has) Node [*];
+
+  enumerationenumerationStatus { Active, Inactive  
+  
+
+  
+
+ ;}
+
+  enumerationenumerationOrganizationType { Public, Private  
+  
+
+  
+
+ ;}
+
+}

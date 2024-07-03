@@ -1,0 +1,165 @@
+
+classdiagram RemoteWorkSolution {
+
+    class Employee {
+      String uniqueID;
+      String name;
+      String email;
+      Workspace[] workspaces;
+    cvv Employee
+   
+     
+
+;
+    class Workspace;
+    class Task;
+    class File;
+    class TimeEntry;
+    class Analytics;
+
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+    composition Employee;
+   
+
+}
+
+class Workspace {
+  String uniqueID;
+  String name;
+  String description;
+  Employee[] employees;
+  File[] files;
+  Task[] tasks;
+  TimeEntry[] timeEntries;
+}
+
+class Task {
+  String uniqueID;
+  String name;
+  String description;
+  Date deadline;
+  Employee[] assignedEmployees;
+  TimeEntry[] timeEntries;
+}
+
+class File {
+  String uniqueID;
+  String name;
+  String description;
+  Employee[] sharedBy;
+}
+
+class TimeEntry {
+  String uniqueID;
+  Date date;
+  Task task;
+  int duration;
+}
+
+class Analytics {
+  int totalTimeSpent;
+  int tasksCompleted;
+  int filesShared;
+}
+
+enum EmployeeType {
+  Employee;
+}
+
+enum TaskType {
+  Task;
+}
+
+enum FileType {
+  File;
+}
+
+enum TimeEntryType {
+  TimeEntry;
+}
+
+enum AnalyticsType {
+  Analytics;
+}
+
+class EmployeeType {
+  String uniqueID;
+  String name;
+  String email;
+}
+
+class TaskType {
+  String uniqueID;
+  String name;
+  String description;
+  Date deadline;
+}
+
+class FileType {
+  String uniqueID;
+  String name;
+  String description;
+}
+
+class TimeEntryType {
+  String uniqueID;
+  Date date;
+  Task task;
+  int duration;
+}
+
+class AnalyticsType {
+  int totalTimeSpent;
+  int tasksCompleted;
+  int filesShared;
+}
+
+class Employee {
+  String uniqueID;
+  String name;
+  String email;
+  Workspace[] workspaces;
+}
+
+class Workspace {
+  String uniqueID;
+  String name;
+  String description;
+  Employee[] employees;
+  File[] files;
+  Task[] tasks;
+  TimeEntry[] timeEntries;
+}
+
+class Task {
+  String uniqueID;
+  String name;
+ Written by
+
+   
+
+;
+   
+
+}
+
+class File {
+  String uniqueID;
+  String name;
+  String description;
+  Employee[] sharedBy;
+}
+
+
+
+
+
+}

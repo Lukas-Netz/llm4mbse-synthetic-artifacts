@@ -1,0 +1,72 @@
+
+classdiagram FisheriesRegistry {
+
+    class FisheriesRegistry {
+      Map<String, Fishery> fisheries;
+      Map<String, Vessel> vessels;
+      Map<String, FishingTrip> fishingTrips;
+      Map<String, CatchRecord> catchRecords;
+      Map<String, Certification> certifications;
+      Map<String, Auditor> auditors;
+
+      void registerFishery(Fishery fishery);
+      void registerVessel(Vessel vessel);
+      void registerFishingTrip(FishingTrip fishingTrip);
+      void registerCatchRecord(CatchRecord catchRecord);
+      void registerCertification(Certification certification);
+      void registerAuditor(Auditor auditor);
+
+      Fishery getFishery(String identifier);
+      Vessel getVessel(String identifier);
+      FishingTrip getFishingTrip(String identifier);
+      CatchRecord getCatchRecord(String identifier);
+      Certification getCertification(String identifier);
+      Auditor getAuditor(String identifier);
+
+      void updateFishingTripStatus(String identifier, FishingTripStatus status);
+      boolean verifyCertification(String certificationIdentifier);
+     }
+
+    class Fishery {
+      String identifier;
+      List<Vessel> vessels;
+    }
+
+    class Vessel {
+      String identifier;
+      String name;
+      List<FishingTrip> fishingTrips;
+    }
+
+    class FishingTrip {
+      String identifier;
+      Date startDate;
+      Date endDate;
+      List<CatchRecord> catchRecords;
+      FishingTripStatus status;
+    }
+
+    class CatchRecord {
+      String identifier;
+      String fishType;
+      double weight;
+      Date timestamp;
+    }
+
+    class Certification {
+      String identifier;
+      String type;
+      List<Fishery> fisheries;
+      List<Vessel> vessels;
+    }
+
+    class Auditor {
+      String identifier;
+      String name;
+      List<String> certifications;
+    }
+
+    enum FishingTripStatus {
+      Planned, InProgress, Completed;
+    }
+}

@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram MobileBanking  {
+
+  class User  {
+    String uniqueIdentifier;
+    String password;
+    -> Account[*];
+  }
+
+  class Account  {
+    String uniqueIdentifier;
+    double balance;
+    AccountType type;
+    -> Transaction[*];
+    -> Card[*];
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    Date date;
+    double amount;
+    TransactionType type;
+  }
+
+  class Card  {
+    String uniqueIdentifier;
+    String cardNumber;
+    CardType type;
+    -> Account;
+  }
+
+  class Notification  {
+    String message;
+    -> User;
+  }
+
+  enum AccountType  {
+    Checking, Savings, Credit;
+  }
+
+  enum TransactionType  {
+    Deposit, Withdrawal, Transfer;
+  }
+
+  enum CardType  {
+    Credit, Debit;
+  }
+
+  composition User -> Account[*];
+  composition Account -> Transaction[*];
+  composition Account -> Card[*];
+  composition Notification -> User;
+}

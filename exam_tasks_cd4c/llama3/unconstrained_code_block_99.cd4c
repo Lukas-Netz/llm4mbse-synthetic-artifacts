@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram DigitalExperienceAnalytics  {
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    -> Device[*];
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    DeviceType deviceType;
+    BrowserType browserType;
+  }
+
+  class Session  {
+    Date startTime;
+    Date endTime;
+    SessionType type;
+    -> Event[*];
+  }
+
+  class Event  {
+    Date timestamp;
+    EventCategory category;
+    -> Feature[*];
+  }
+
+  class Feedback  {
+    Rating rating;
+    String comment;
+    String suggestion;
+  }
+
+  class Product  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Feature  {
+    String name;
+    -> Event[*];
+  }
+
+  enum DeviceType  {
+    Desktop, Mobile, Tablet;
+  }
+
+  enum BrowserType  {
+    Chrome, Firefox, Safari;
+  }
+
+  enum SessionType  {
+    New, Returning;
+  }
+
+  enum EventCategory  {
+    Successful, Failed;
+  }
+
+  enum Rating  {
+    Excellent, Good, Fair, Poor;
+  }
+
+  composition User -> (has) Device[*];
+  composition Session -> (has) Event[*];
+  composition Event -> (has) Feature[*];
+  composition Product -> (has) Feature[*];
+}

@@ -1,0 +1,63 @@
+
+classdiagram AntiquesMarketplace {
+
+  class Marketplace {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Category {
+    String name;
+    String description;
+    Category [ ] subcategories;
+  }
+
+  class Subcategory extends Category {
+    String description;
+  }
+
+  class Antique {
+    String name;
+    String description;
+    float price;
+    AntiqueStatus status;
+  }
+
+  class AntiqueListing extends Antique {
+    AntiqueListingStatus status;
+  }
+
+  enum AntiqueListingStatus {
+    Active, Inactive;
+  }
+
+  class User {
+    String name;
+    String email;
+    String password;
+  }
+
+  class PaymentSystem {
+    String paymentMethod;
+  }
+
+  class Rating {
+    float quality;
+    float reliability;
+  }
+
+  class MarketplaceAdmin extends User {
+    void manageCategories();
+    void manageSubcategories();
+    void manageAntiques();
+    void monitorUserActivity();
+    void monitorRatings();
+  }
+
+  composition Marketplace -> Category [*];
+  composition Category -> Subcategory [*];
+  composition Marketplace -> Antique [*];
+  composition Antique -> AntiqueListing [1..*];
+  association User -o_-- AntiqueListing;
+  association User -o_-- Rating;
+}

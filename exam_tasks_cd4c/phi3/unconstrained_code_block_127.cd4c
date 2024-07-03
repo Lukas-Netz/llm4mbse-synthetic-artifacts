@@ -1,0 +1,54 @@
+
+classdiagram DigitalRightsManagement {
+
+    class DigitalContent {
+      String contentType;
+      String contentID;
+      int copyrightLimit;
+      int usageCount;
+      boolean isOwned;
+    }
+
+    class ContentCreator {
+      String creatorID;
+      String name;
+      List<DigitalContent> createContent(String contentType, String contentID, int copyrightLimit);
+    }
+
+    class User {
+      String userID;
+      String name;
+      List<DigitalContent> purchasedContent;
+      List<DigitalContent> rentedContent;
+    }
+
+    class DigitalRightsManagementSystem {
+      Hub hub;
+      PaymentGateway paymentGateway;
+      ContentDeliveryNetwork cdn;
+      DRMSoftware drmSoftware;
+
+      void uploadContent(ContentCreator creator, DigitalContent content);
+      void purchaseContent(User user, DigitalContent content);
+      void rentContent(User user, DigitalContent content);
+      void playContent(User user, DigitalContent content);
+      void downloadContent(User user, DigitalContent content);
+      void generateReport(String reportType);
+    }
+
+    class Hub {
+      DigitalRightsManagementSystem system;
+      List<DigitalContent> contentLibrary;
+      void addContent(DigitalContent content);
+      void removeContent(DigitalContent content);
+      DigitalContent findContentByID(String contentID);
+    }
+
+    association DigitalRightsManagementSystem -> Hub [*];
+    association DigitalRightsManagementSystem -> PaymentGateway [*];
+    association DigitalRightsManagementSystem -> ContentDeliveryNetwork [*];
+    association DigitalRightsManagementSystem -> DRMSoftware [*];
+    association ContentCreator -> DigitalRightsManagementSystem [*];
+    association User -> DigitalRightsManagementSystem [*];
+    association DigitalContent -> Hub [*];
+}

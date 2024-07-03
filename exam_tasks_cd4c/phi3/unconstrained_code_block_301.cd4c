@@ -1,0 +1,70 @@
+
+classdiagram BlockchainGamingPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      List<NFT> ownedNFTs;
+      List<Collection> collections;
+    }
+
+    class NFT {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      String type;
+      User owner;
+    }
+
+    class Collection {
+      String name;
+      List<NFT> nfts;
+      User owner;
+      boolean isPrivate;
+    }
+
+    class Marketplace {
+      String name;
+      List<Transaction> transactions;
+      User admin;
+    }
+
+    class Transaction {
+      User buyer;
+      User seller;
+      Marketplace marketplace;
+      NFT nft;
+      BigDecimal price;
+      DateTime timestamp;
+    }
+
+    class SmartContract {
+      String contractAddress;
+      String code;
+      String owner;
+      List<Transaction> executedTransactions;
+    }
+
+    class GameWorld {
+      String name;
+      List<Region> regions;
+    }
+
+    class Region {
+      String name;
+      List<Challenge> challenges;
+    }
+
+    class Challenge {
+      String name;
+      String description;
+      boolean completed;
+    }
+
+  composition User -> (has) NFT;
+  composition User -> (has) Collection;
+  composition User -> (has) Marketplace;
+  composition Marketplace -> (has) Transaction;
+  composition Marketplace -> (has) SmartContract;
+  composition GameWorld -> (has) Region;
+  composition Region -> (has) Challenge;
+}

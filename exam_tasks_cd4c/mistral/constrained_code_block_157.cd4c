@@ -1,0 +1,72 @@
+
+classdiagram MedicalDiagnosticSystem {
+
+  class Patient {
+    String id;
+    String medicalHistory;
+    Symptom [ ] symptoms;
+    TestResult [ ] testResults;
+  }
+
+  class DiagnosisEngine {
+    void analyze(Patient patient);
+    Diagnosis provideDiagnosis(Patient patient);
+  }
+
+  class TestResult {
+    String id;
+    String testType;
+    String result;
+    Date date;
+  }
+
+  class Symptom {
+    String id;
+    String name;
+    String description;
+    int severity;
+  }
+
+  class Treatment {
+    String id;
+    String name;
+    String description;
+    int effectiveness;
+  }
+
+  class Diagnosis {
+    String diagnosis;
+    int likelihood;
+  }
+
+  composition PatientDatabase [*] Patient [ ounamedPatientDatabase ]
+  -- PatientDatabase
+  <<stereotype>> abstract  {
+    							ordered 					}
+
+ 			;
+  composition DiagnosisEngine [1] Diagnosis [ ounamedDiagnosisEngine ]
+  -- DiagnosisEngine
+  <<stereotype>> abstract  {
+    							ordered 					}
+
+ 			;
+  composition TestResultDatabase [*] TestResult [ ounamedTestResultDatabase ]
+  -- TestResultDatabase
+  <<stereotype>> abstract  {
+    							ordered 					}
+
+ 			;
+  composition SymptomDatabase [*] Symptom [ ounamedSymptomDatabase ]
+  -- SymptomDatabase
+  <<stereotype>> abstract  {
+    							ordered 					}
+
+ 			;
+  composition TreatmentDatabase [*] Treatment [ ounamedTreatmentDatabase ]
+  -- TreatmentDatabase
+  <<stereotype>> abstract  {
+    							ordered 					}
+
+ 			;
+}

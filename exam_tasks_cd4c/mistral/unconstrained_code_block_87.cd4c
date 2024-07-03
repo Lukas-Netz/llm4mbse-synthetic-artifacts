@@ -1,0 +1,38 @@
+
+classdiagram VRMarineBiology {
+
+  class SimulationEnvironment {
+    int simulationTime;
+    float waterTemperature;
+    float salinity;
+    void pause();
+    void resume();
+    void reset();
+  }
+
+  abstract class MarineLife {
+    String species;
+    float size;
+    String behavior;
+  }
+
+  class Fish extends MarineLife {}
+  class Coral extends MarineLife {}
+  class Seaweed extends MarineLife {}
+
+  class UserInteraction {
+    String action;
+    void swim();
+    void dive();
+    void observe();
+  }
+
+  class Database {
+    void storeSimulationData();
+    void storeUserInteraction();
+  }
+
+  composition SimulationEnvironment -> Database [1];
+  composition SimulationEnvironment -> MarineLife [*];
+  association SimulationEnvironment -> UserInteraction [*];
+}

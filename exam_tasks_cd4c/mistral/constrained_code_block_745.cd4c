@@ -1,0 +1,87 @@
+
+classdiagram WildlifeConservation {
+
+  class Sensor {
+    String uniqueIdentifier;
+  }
+
+  class Animal {
+    String uniqueIdentifier;
+    String location;
+    MovementPattern movementPattern;
+    Behavior behavior;
+  }
+
+  enum MovementPattern {
+    Wandering, Stationary;
+  }
+
+  enum Behavior {
+    Foraging, Resting, Socializing;
+  }
+
+  class Species {
+    String uniqueIdentifier;
+    String habitat;
+    String diet;
+    ConservationStatus conservationStatus;
+  }
+
+  enum ConservationStatus {
+    CriticallyEndangered, Endangered, Vulnerable, LeastConcern;
+  }
+
+  class ConservationEffort {
+    String uniqueIdentifier;
+    ConservationEffortType type;
+  }
+
+  enum ConservationEffortType {
+    HabitatRestoration, SpeciesReintroduction, PublicAwareness;
+  }
+
+  class Recommendation {
+    String uniqueIdentifier;
+    ConservationEffortType type;
+  }
+
+  composition Sensor [*] SensorSystem
+  --  SensorSystem
+  <<stereotype>>  abstract 											{
+   								ordered						}
+ 				;
+
+  composition Animal [*] SensorSystem
+  --  SensorSystem
+  <<stereotype>> 											{
+   								ordered						}
+ 				;
+
+  composition Species [*] Animal
+  --  Animal
+
+  <<stereotype>> 											{
+   								ordered						}
+ 				;
+
+  composition ConservationEffort [*] Recommendation
+  --  Recommendation
+
+  <<stereotype>> 											{
+   								ordered						}
+ 				;
+
+  class SensorSystem {
+    -> Sensor [*];
+    -> Animal [*];
+    void addSensor(Sensor sensor);
+    void removeSensor(Sensor sensor);
+    void addAnimal(Animal animal);
+    void removeAnimal(Animal animal);
+    void trackAnimalMovement();
+    void detectPopulationChanges();
+    void provideRecommendations();
+    void storeData();
+    void retrieveData();
+  }
+}

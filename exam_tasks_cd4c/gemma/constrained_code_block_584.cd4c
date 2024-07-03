@@ -1,0 +1,54 @@
+
+
+classdiagram CancerTherapySystem {
+
+  class Patient {
+    String uniqueIdentifier;
+    String name;
+    MedicalHistory medicalHistory;
+
+    List<Diagnosis> diagnoses;
+  }
+
+  class Diagnosis {
+    String uniqueIdentifier;
+    String typeOfCancer;
+    List<Stage> stages;
+  }
+
+  class Stage {
+    String name;
+    List<Symptom> symptoms;
+  }
+
+  class Treatment {
+    String uniqueIdentifier;
+    Diagnosis diagnosis;
+    List<Regimen> regimens;
+  }
+
+  class Regime {
+    String uniqueIdentifier;
+    Treatment treatment;
+    List<Medication> medications;
+  }
+
+  class Medication {
+    String uniqueIdentifier;
+    Regimen regimen;
+    String dosage;
+    String frequency;
+    List<SideEffect> sideEffects;
+  }
+
+  class SideEffect {
+    String name;
+    int severity;
+  }
+
+  composition Patient -> (has) MedicalHistory;
+  composition Diagnosis -> (has) List<<Stage>>;
+  composition Treatment -> (has) List<<Regimen>>;
+  composition Regime -> (has) List<<Medication>>;
+  composition Medication -> (has) List<<SideEffect>>;
+}

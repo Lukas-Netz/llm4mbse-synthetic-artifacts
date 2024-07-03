@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram SmartEnergyMeterSystem  {
+
+  class SmartMeter  {
+    String uniqueIdentifier;
+    double energyConsumptionKWh;
+  }
+
+  class Server  {
+    List<SmartMeter> smartMeters;
+    Map<String, EnergyConsumptionData> energyConsumptionData;
+  }
+
+  class App  {
+    List<User> users;
+    List<SmartPlug> smartPlugs;
+  }
+
+  class SmartPlug  {
+    String uniqueIdentifier;
+    boolean isOn;
+  }
+
+  class User  {
+    String username;
+    List<SmartPlug> controlledSmartPlugs;
+  }
+
+  class EnergyConsumptionData  {
+    double energyConsumptionKWh;
+    Date date;
+  }
+
+  composition Server -> SmartMeter [*];
+  composition App -> User [*];
+  composition App -> SmartPlug [*];
+  composition SmartPlug -> User [1];
+  association Server -> EnergyConsumptionData [*];
+  association User -> EnergyConsumptionData [*];
+}

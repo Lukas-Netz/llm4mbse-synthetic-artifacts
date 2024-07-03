@@ -1,0 +1,80 @@
+
+classdiagram IAP {
+
+  class AutomationModule {
+    String equipmentID;
+    EquipmentStatus status;
+    EquipmentType type;
+    void startEquipment();
+    void stopEquipment();
+  }
+
+  class DataAnalyticsModule {
+    String[] dataSources;
+    String[] dataTypes;
+    AnalysisResults results;
+    void visualizeData();
+    void generateReport();
+  }
+
+  class MachineLearningModule {
+    TrainingData trainingData;
+    double modelAccuracy;
+    LocalDateTime predictedFailureTime;
+    void trainModel();
+    void predictFailure();
+  }
+
+  class UserInterfaceModule {
+    User user;
+    UserPreferences preferences;
+    Feedback feedback;
+    void login();
+    void visualizeData();
+    void sendAlertNotification();
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class UserPreferences {
+    String language;
+    boolean showAlerts;
+  }
+
+  class Feedback {
+    String feedbackText;
+    LocalDateTime feedbackTime;
+  }
+
+  class Equipment {
+    String ID;
+    EquipmentStatus status;
+    EquipmentType type;
+  }
+
+  class EquipmentStatus {
+    enum Running;
+    enum Stopped;
+  }
+
+  class EquipmentType {
+    enum Machine;
+    enum Conveyor;
+    enum Pump;
+  }
+
+  class CentralController {
+    AutomationModule automationModule;
+    DataAnalyticsModule dataAnalyticsModule;
+    MachineLearningModule machineLearningModule;
+    UserInterfaceModule userInterfaceModule;
+  }
+
+  composition CentralController -> AutomationModule;
+  composition CentralController -> DataAnalyticsModule;
+  composition CentralController -> MachineLearningModule;
+  composition CentralController -> UserInterfaceModule;
+}

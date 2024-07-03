@@ -1,0 +1,42 @@
+
+classdiagram UrbanFarming {
+
+  class Sensor {
+    String uniqueIdentifier;
+    String type;
+    int value;
+  }
+
+  class Actuator {
+    String uniqueIdentifier;
+    String type;
+    void setValue(int value);
+  }
+
+  class Crop {
+    String uniqueIdentifier;
+    CropType type;
+    CropGrowthStage growthStage;
+    int waterRequirements;
+    int nutrientNeeds;
+  }
+
+  enum CropType {
+    LeafyGreens, Herbs, Microgreens;
+  }
+
+  enum CropGrowthStage {
+    Seedling, Growth, Maturity;
+  }
+
+  class Hub {
+    -> Sensor [*];
+    -> Actuator [*];
+    void collectData();
+    void sendCommand(Actuator actuator, int value);
+  }
+
+  composition UrbanFarming -> Hub;
+  composition Hub -> Sensor [*];
+  composition Hub -> Actuator [*];
+}

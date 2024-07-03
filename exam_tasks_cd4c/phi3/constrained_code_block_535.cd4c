@@ -1,0 +1,225 @@
+
+classdiagram VolcanoMonitoringSystem {
+
+    class Volcano {
+      String uniqueId;
+      String name;
+      String location;
+      boolean isActive;
+    }
+
+    class Eruption {
+      Volcano volcano;
+      Date startDate;
+      Date endDate;
+      double magnitude;
+      EruptionType type;
+    }
+
+    class MonitoringStation {
+      String uniqueId;
+      String name;
+      String location;
+      boolean isOnline;
+      List<Sensor> sensors;
+    }
+
+    class Sensor {
+      String uniqueId;
+      SensorType type;
+      double reading;
+    }
+
+    class Alert {
+      Volcano volcano;
+      AlertSeverity severity;
+      String message;
+      Date timestamp;
+    }
+
+    enum VolcanoType {
+      Shield, Composite, CinderCone
+   
+   
+   ()
+   
+
+;
+    association MonitoringStation 
+       
+
+;
+    association Eruption 
+       
+
+;
+    association Alert 
+       
+
+;
+    composition MonitoringStation 
+       
+
+;
+    composition Eruption 
+       
+
+;
+    composition Alert 
+       
+
+;
+    association Volcano 
+       
+
+;
+    association Sensor 
+       
+
+;
+    association Eruption 
+       
+
+;
+    association Alert 
+       
+
+;
+    association MonitoringStation 
+       
+
+;
+    association Volcano 
+       
+
+;
+    association Sensor 
+       
+
+;
+    association Alert 
+       
+
+;
+    association Eruption 
+       
+
+;
+    association Volcano 
+       
+
+;
+    association Alert 
+       
+
+;
+    association MonitoringStation 
+       
+
+;
+    association Eruption 
+       
+
+;
+    association Alert 
+       
+
+;
+   
+
+}
+
+enum SensorType {
+  Temperature, Gas, Seismic
+
+;
+   
+
+}
+
+enum EruptionType {
+  Explosive, Effusive
+
+;
+   
+
+}
+
+enum AlertSeverity {
+  Low, Medium, High
+
+;
+   
+
+}
+
+class VolcanoType {
+  String type;
+}
+
+class EruptionType {
+  String type;
+}
+
+class SensorType {
+  String type;
+}
+
+class AlertSeverity {
+  String severity;
+}
+
+class MonitoringStation {
+  String uniqueId;
+  String name;
+  String location;
+  boolean isOnline;
+  List<Sensor> sensors;
+}
+
+class Sensor {
+  String uniqueId;
+  SensorType type;
+  double reading;
+}
+
+class Eruption {
+  Volcano volcano;
+  Date startDate;
+  Date endDate;
+  double magnitude;
+  EruptionType type;
+}
+
+class Alert {
+  Volcano volcano;
+  AlertSeverity severity;
+  String message;
+  Date timestamp;
+}
+
+class Volcano {
+  String uniqueId;
+  String name;
+  String location;
+  boolean isActive;
+}
+
+enum SensorType {
+  Temperature, Gas, Seismic
+
+;
+   
+
+}
+
+enum EruptionType {
+  Explosive, Effusive
+
+;
+   
+
+}
+
+
+}

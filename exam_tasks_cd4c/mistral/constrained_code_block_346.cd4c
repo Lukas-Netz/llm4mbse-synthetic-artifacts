@@ -1,0 +1,58 @@
+
+classdiagram VideoGamePlatform {
+
+  class Platform {
+    String name;
+    Game [][] games;
+  }
+
+  class Game {
+    String title;
+    Date releaseDate;
+    Rating rating;
+    String genre;
+    Platform [][] platforms;
+  }
+
+  class Rating {
+    String esrb;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  class GameDeveloper {
+    String name;
+    Game [][] games;
+  }
+
+  class Review {
+    Rating rating;
+    String comment;
+  }
+
+  class User {
+    String username;
+    Review [][] reviews;
+  }
+
+  class Administrator extends User {
+    void addGame(Game game);
+    void removeGame(Game game);
+    void updateGame(Game game);
+    void addPlatform(Platform platform);
+    void removePlatform(Platform platform);
+    void addGameDeveloper(GameDeveloper developer);
+    void removeGameDeveloper(GameDeveloper developer);
+  }
+
+  association Platform --o000o [*]- 											;
+  association Game --o000o [*]- 											;
+  association GameDeveloper --o000o [*]- 										;
+  association Review --o000o [*]- 											;
+  association User --o000o [*]- 											;
+  association Administrator --o000o [1]- 										;
+}

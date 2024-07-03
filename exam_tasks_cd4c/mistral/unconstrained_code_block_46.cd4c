@@ -1,0 +1,52 @@
+
+classdiagram CodeReviewSystem {
+
+  class CodeAnalyzer {
+    String language;
+    int complexity;
+    boolean security;
+    boolean maintainability;
+  }
+
+  class VersionControlSystemIntegration {
+    String repository;
+    String branch;
+    String commit;
+  }
+
+  class Dashboard {
+    int codeQuality;
+    String trends;
+    String recommendations;
+  }
+
+  class AIModel {
+    String algorithm;
+    String trainingData;
+  }
+
+  class CodeReviewer {
+    String feedback;
+    String suggestions;
+  }
+
+  class CodeSnippet {
+    CodeAnalyzer analysis;
+    VersionControlSystemIntegration integration;
+    CodeReviewer review;
+  }
+
+  class CodeReviewSystem {
+    CodeAnalyzer analyzer;
+    VersionControlSystemIntegration integration;
+    Dashboard dashboard;
+    AIModel aiModel;
+    CodeReviewer reviewer;
+  }
+
+  composition CodeReviewSystem -> CodeAnalyzer;
+  composition CodeReviewSystem -> VersionControlSystemIntegration;
+  composition CodeReviewSystem -> Dashboard;
+  composition CodeReviewSystem -> AIModel;
+  composition CodeReviewSystem -> CodeReviewer;
+}

@@ -1,0 +1,54 @@
+
+classdiagram SocialMedia {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+  }
+
+  class Post {
+    String uniqueIdentifier;
+    String title;
+    String content;
+    String timestamp;
+    User author;
+    Post [ ][  ] comments;
+    boolean isLiked;
+  }
+
+  class Comment {
+    String uniqueIdentifier;
+    String content;
+    String timestamp;
+    User author;
+  }
+
+  class Like {
+    String uniqueIdentifier;
+    User liker;
+    Post post;
+  }
+
+  class Follow {
+    String uniqueIdentifier;
+    User follower;
+    User following;
+  }
+
+  class Block {
+    String uniqueIdentifier;
+    User blocker;
+    User blocked;
+  }
+
+  composition User [*] Post [  many ] (has) -> (writes) title;
+  composition User [*] Post [  many ] (has) -> (writes) content;
+  composition User [*] Post [  many ] (has) -> (writes) timestamp;
+  composition Post [*] Comment [  many ] (has) -> (writtenBy) content;
+  composition Post [*] Comment [  many ] (has) -> (writtenBy) timestamp;
+  composition User [*] Like [  many ] (likes) -> (likedBy) liker;
+  composition User [*] Follow [  many ] (follows) -> (followedBy) follower;
+  composition User [*] Block [  many ] (blocks) -> (blockedBy) blocker;
+}

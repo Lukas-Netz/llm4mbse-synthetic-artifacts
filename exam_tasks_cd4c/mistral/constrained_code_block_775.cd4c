@@ -1,0 +1,35 @@
+
+classdiagram SmartFabric {
+
+  class Sensor {
+    String sensorType;
+    String uniqueIdentifier;
+    String measuredParameter;
+  }
+
+  class ProcessingUnit {
+    void analyzeData(Sensor[] sensors);
+  }
+
+  class CommunicationModule {
+    void transmitData(String data);
+    void receiveData(String data);
+  }
+
+  class PowerSource {
+    String powerType;
+  }
+
+  class SmartFabric {
+    Sensor[] sensors;
+    ProcessingUnit processingUnit;
+    CommunicationModule communicationModule;
+    PowerSource powerSource;
+    void storeDataLocally();
+    void transmitDataToCloudOrSmartphone();
+    void receiveCommandsAndUpdates();
+  }
+
+  composition SmartFabric -> Sensor [*];
+  composition SmartFabric -> PowerSource;
+}

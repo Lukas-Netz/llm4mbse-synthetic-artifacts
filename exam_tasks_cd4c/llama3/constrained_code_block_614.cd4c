@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram SurgicalSimulation  {
+
+  class Simulator  {
+    String name;
+    Procedure[] availableProcedures;
+  }
+
+  class Surgeon  {
+    String name;
+    Role role;
+    int experienceLevel;
+  }
+
+  class Patient  {
+    String name;
+    MedicalHistory medicalHistory;
+    VitalSigns vitalSigns;
+  }
+
+  class Procedure  {
+    String name;
+    String description;
+    Tool[] requiredTools;
+  }
+
+  class Tool  {
+    String name;
+    String description;
+    ToolType type;
+  }
+
+  enum Role  {
+    Resident, Attending
+  ;}
+
+  enum ToolType  {
+    Scalpel, Forceps
+  ;}
+
+  class VitalSigns  {
+    int heartRate;
+    int bloodPressure;
+    int oxygenLevel;
+  }
+
+  class MedicalHistory  {
+    String[] conditions;
+  }
+
+  composition Simulator  ->  (has) Procedure[*];
+  composition Surgeon  ->  (has) Simulator;
+  composition Patient  ->  (has) VitalSigns;
+  composition Procedure  ->  (has) Tool[*];
+  composition Tool  ->  (has) ToolType;
+}

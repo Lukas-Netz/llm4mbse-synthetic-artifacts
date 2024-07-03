@@ -1,0 +1,41 @@
+
+classdiagram RemotePatientDiagnostics {
+
+    class Patient {
+      String uniqueIdentifier;
+      Set<VitalSign> vitalSigns;
+    }
+
+    class VitalSign {
+      String name;
+    }
+
+    class Sensor {
+      String type;
+      Patient patient;
+      VitalSign vitalSign;
+    }
+
+    class Device {
+      String type;
+      Patient patient;
+    }
+
+    class Doctor {
+      String uniqueIdentifier;
+      Set<Patient> patients;
+    }
+
+    class Diagnosis {
+      Patient patient;
+      Doctor doctor;
+      String description;
+      String treatmentPlan;
+    }
+
+    composition Patient -> Set<<VitalSign>>;
+    composition Patient -> Set<<Sensor>>;
+    composition Patient -> Set<<Device>>;
+    composition Doctor -> Set<<Patient>>;
+    composition Doctor -> Set<<Diagnosis>>;
+}

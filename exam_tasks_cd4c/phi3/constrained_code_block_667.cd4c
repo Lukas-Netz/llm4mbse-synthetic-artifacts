@@ -1,0 +1,43 @@
+
+classdiagram MedicalRecordsSystem {
+
+    class Patient {
+      String patientId;
+      List<MedicalRecord> medicalRecords;
+    }
+
+    class MedicalRecord {
+      String recordId;
+      String diagnosis;
+      String treatment;
+      String medication;
+    }
+
+    class HealthcareProvider {
+      String providerId;
+      String role;
+      List<MedicalRecord> accessedRecords;
+    }
+
+    class Doctor extends HealthcareProvider {
+      void prescribeMedication(MedicalRecord record);
+      void viewRecord(MedicalRecord record);
+    }
+
+    class Nurse extends HealthcareProvider {
+      void viewRecord(MedicalRecord record);
+      void administerMedication(MedicalRecord record);
+    }
+
+    class Administrator extends HealthcareProvider {
+      void manageProviders();
+      void manageRecords();
+    }
+
+    association MedicalRecord <-> HealthcareProvider [1..*];
+    composition Patient -> MedicalRecord [*];
+    composition HealthcareProvider -> MedicalRecord [*];
+    association Doctor -> HealthcareProvider [1..*];
+    association Nurse -> HealthcareProvider [1..*];
+    association Administrator -> HealthcareProvider [1..*];
+}

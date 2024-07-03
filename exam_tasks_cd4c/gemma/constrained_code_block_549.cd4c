@@ -1,0 +1,138 @@
+
+
+classdiagram FisheriesManagementSystem {
+
+  class FisheriesRegistry {
+    private Map<String, Fisheries> fisheries;
+
+    public void registerFisheries(Fisheries fisheries);
+    public Fisheries getFisheries(String identifier);
+  }
+
+  class VesselsRegistry {
+    private Map<String, Vessel> vessels;
+
+    public void registerVessels(Vessel vessel);
+    public Vessel getVessel(String identifier);
+  }
+
+  class FishingTripsRegistry {
+    private Map<String, FishingTrip> trips;
+
+    public void registerFishingTrips(FishingTrip trip);
+    public FishingTrip getFishingTrip(String identifier);
+  }
+
+  class CatchRecordsRegistry {
+    private Map<String, CatchRecord> records;
+
+    public void registerCatchRecords(CatchRecord record);
+    public CatchRecord getCatchRecord(String identifier);
+  }
+
+  class CertificationsRegistry {
+    private Map<String, Certification> certifications;
+
+    public void registerCertifications(Certification certification);
+    public Certification getCertification(String identifier);
+  }
+
+  class AuditorsRegistry {
+    private Map<String, Auditor> auditors;
+
+    public void registerAuditors(Auditor auditor);
+    public Auditor getAuditor(String identifier);
+  }
+
+  class Fisheries {
+    private String identifier;
+    private List<Vessel> vessels;
+
+    public String getIdentifier()
+    
+    
+ ;}
+
+  class Vessel {
+    private String identifier;
+    private String name;
+    private List<FishingTrip> trips;
+
+    public String getIdentifier()
+
+    
+  
+
+ ;}
+
+  class FishingTrip {
+    private String identifier;
+    private Date startDate;
+    private Date endDate;
+    private List<CatchRecord> records;
+
+    public String getIdentifier()
+
+    
+  
+
+ ;}
+
+  class CatchRecord {
+    private String identifier;
+    private FishType type;
+    private int weight;
+    private Timestamp timestamp;
+
+    public String getIdentifier()
+
+    
+  
+
+ ;}
+
+  class Certification {
+    private String identifier;
+    private String type;
+    private List<Fisheries> fisheries;
+    private List<Vessel> vessels;
+
+    public String getIdentifier()
+
+    
+  
+
+ ;}
+
+  class Auditor {
+    private String identifier;
+    private String name;
+    private List<Certification> certifications;
+
+    public String getIdentifier()
+
+    
+  
+
+ ;}
+
+  composition FisheriesRegistry -> (has) Fisheries
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+;
+}

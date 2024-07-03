@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram AdvancedProsthetics  {
+
+  class ProstheticLimb  {
+    ProstheticType type;
+    ProstheticStatus status;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    UserPreferences preferences;
+  }
+
+  class Sensor  {
+    SensorType type;
+  }
+
+  class Algorithm  {
+    AlgorithmType type;
+  }
+
+  class MaintenanceRecord  {
+    MaintenanceType type;
+    Date date;
+    ProstheticStatus status;
+  }
+
+  class ProstheticType  {
+    String name;
+  }
+
+  class ProstheticStatus  {
+    String name;
+  }
+
+  class SensorType  {
+    String name;
+  }
+
+  class AlgorithmType  {
+    String name;
+  }
+
+  class MaintenanceType  {
+    String name;
+  }
+
+  class UserPreferences  {
+    String[] preferences;
+  }
+
+  composition ProstheticLimb -> (has) Sensor[*];
+  composition ProstheticLimb -> (has) Algorithm[*];
+  composition ProstheticLimb -> (has) MaintenanceRecord[*];
+  composition User -> (has) ProstheticLimb[*];
+  composition ProstheticLimb -> (isControlledBy) User;
+  composition Algorithm -> (uses) Sensor[*];
+  composition MaintenanceRecord -> (isFor) ProstheticLimb;
+}

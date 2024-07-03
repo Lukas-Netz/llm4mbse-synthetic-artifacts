@@ -1,0 +1,70 @@
+
+
+
+
+classdiagram Telemedicine  {
+
+  class Patient  {
+    String uniqueIdentifier;
+    Appointment  [  ] appointments;
+    Rating rating;
+  }
+
+  class Doctor  {
+    String uniqueIdentifier;
+    Profile profile;
+    Appointment  [  ] appointments;
+  }
+
+  class Profile  {
+    String qualifications;
+    String specialties;
+  }
+
+  class Appointment  {
+    Date date;
+    Time time;
+    Status status;
+    VideoConference videoConference;
+    FileSharing fileSharing;
+  }
+
+  class VideoConference  {
+    boolean isAvailable;
+  }
+
+  class FileSharing  {
+    boolean isAvailable;
+  }
+
+  class Rating  {
+    int rating;
+    String feedback;
+  }
+
+  class Report  {
+    PatientDemographics patientDemographics;
+    DoctorAvailability doctorAvailability;
+    AppointmentStatistics appointmentStatistics;
+  }
+
+  class PatientDemographics  {
+    int count;
+  }
+
+  class DoctorAvailability  {
+    int count;
+  }
+
+  class AppointmentStatistics  {
+    int count;
+  }
+
+  composition Patient -> Appointment [0..*];
+  composition Doctor -> Appointment [0..*];
+  composition Appointment -> VideoConference;
+  composition Appointment -> FileSharing;
+  composition Report -> PatientDemographics;
+  composition Report -> DoctorAvailability;
+  composition Report -> AppointmentStatistics;
+}

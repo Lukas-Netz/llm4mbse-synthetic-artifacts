@@ -1,0 +1,53 @@
+
+classdiagram OnlineIndustrialDesignCourses {
+
+  class Course {
+    String title;
+    String description;
+    CourseTopic [ ] topics;
+  }
+
+  class CourseTopic {
+    String name;
+    String description;
+    Course [ ] courses;
+  }
+
+  class Instructor {
+    String name;
+    String bio;
+    Course [ ] courses;
+  }
+
+  class Student {
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    Student submitter;
+    Instructor feedbackProvider;
+  }
+
+  class CourseMaterial {
+    String type;
+    String url;
+  }
+
+  class Progress {
+    String grade;
+    boolean isCompleted;
+  }
+
+  composition Course -> CourseTopic [*];
+  composition Instructor -> Course [*];
+  composition Student -> Course [*];
+  association Assignment -- Student;
+  association Assignment -- Instructor;
+  association CourseMaterial -- Instructor;
+  association CourseMaterial -- Student;
+  association Progress -- Student;
+}

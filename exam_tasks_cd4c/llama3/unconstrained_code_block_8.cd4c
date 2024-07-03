@@ -1,0 +1,41 @@
+
+
+
+
+classdiagram BiometricAuthenticationSystem  {
+
+  class BiometricDevice  {
+    String uniqueIdentifier;
+    BiometricType type;
+  }
+
+  class AuthenticationServer  {
+    UserDatabase userDatabase;
+    void addUser(User user);
+    void updateUserBiometricTemplates(User user);
+    boolean verifyUserIdentity(User user);
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    BiometricTemplate[] biometricTemplates;
+  }
+
+  class BiometricTemplate  {
+    BiometricType type;
+    byte[] data;
+  }
+
+  class BiometricType  {
+    String name;
+  }
+
+  class UserDatabase  {
+    User[] users;
+  }
+
+  composition AuthenticationServer -> UserDatabase;
+  composition BiometricDevice -> AuthenticationServer;
+  composition User -> BiometricTemplate[*];
+  composition BiometricTemplate -> BiometricType;
+}

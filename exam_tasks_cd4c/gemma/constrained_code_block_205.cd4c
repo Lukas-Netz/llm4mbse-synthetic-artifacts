@@ -1,0 +1,52 @@
+
+
+classdiagram DocumentManagementSystem {
+
+    class DocumentRepository {
+      Document documentStore;
+    }
+
+    class DocumentType {
+      String name;
+      List<DocumentVersion> versions;
+    }
+
+    class DocumentVersion {
+      Document document;
+      String versionNumber;
+      String content;
+    }
+
+    class User {
+      String name;
+      Role role;
+    }
+
+    class Role {
+      String name;
+      List<DocumentPermission> permissions;
+    }
+
+    class DocumentPermission {
+      Document document;
+      User user;
+      boolean canRead;
+      boolean canWrite;
+      boolean canDelete;
+    }
+
+    class DocumentChange {
+      Document document;
+      String description;
+      List<String> changes;
+    }
+
+  composition DocumentRepository -> (has) DocumentDocumentStore;
+  composition DocumentType -> (has) List<<DocumentVersion>>;
+  composition DocumentVersion -> (has) Document;
+  association User -> Role;
+  association Role -> DocumentPermission;
+  association DocumentPermission -> Document;
+  association DocumentPermission -> User;
+  association DocumentChange -> Document;
+}

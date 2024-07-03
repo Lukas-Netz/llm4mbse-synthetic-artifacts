@@ -1,0 +1,80 @@
+
+classdiagram FashionPlatform {
+
+    class User {
+      String uniqueIdentifier;
+      List<Profile> profiles;
+    }
+
+    class Profile {
+      String userId;
+      BodyMeasurements bodyMeasurements;
+      FashionPreferences fashionPreferences;
+      List<WardrobeItem> wardrobeItems;
+    }
+
+    class BodyMeasurements {
+      float height;
+      float weight;
+      String bodyShape;
+    }
+
+    class FashionPreferences {
+      Style style;
+      ColorPalette colorPalette;
+      List<ClothingItem> preferredClothingItems;
+    }
+
+    class WardrobeItem {
+      String itemId;
+      String name;
+      String description;
+    }
+
+    class ClothingItem extends WardrobeItem {
+      boolean isWorn;
+    }
+
+    class Accessory extends WardrobeItem {
+      boolean isWorn;
+    }
+
+    class Shoe extends WardrobeItem {
+      boolean isWorn;
+    }
+
+    class ClothingItemDatabase {
+      List<ClothingItem> clothingItems;
+    }
+
+    class AccessoryDatabase {
+      List<Accessory> accessories;
+    }
+
+    class ShoeDatabase {
+      List<Shoe> shoes;
+    }
+
+    class OutfitRecommendation {
+      List<ClothingItem> recommendedItems;
+    }
+
+    class OutfitReview {
+      String userId;
+      OutfitRecommendation recommendation;
+      int rating;
+      String review;
+    }
+
+    composition User -> (has) Profile;
+    composition Profile -> (has) BodyMeasurements;
+    composition Profile -> (has) FashionPreferences;
+    composition Profile -> (has) WardrobeItem;
+
+    composition User -> (has) OutfitRecommendation;
+    composition User -> (has) OutfitReview;
+
+    association ClothingItemDatabase -> (uses) ClothingItem;
+   
+
+}

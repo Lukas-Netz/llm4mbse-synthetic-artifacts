@@ -1,0 +1,57 @@
+
+
+classdiagram PersonalizedMedicine {
+
+  class Patient {
+    private String name;
+    private String geneticData;
+    private MedicalHistory medicalHistory;
+    private TreatmentPlan treatmentPlan;
+  }
+
+  class MedicalHistory {
+    private List<Allergy> allergies;
+    private List<Medication> medications;
+    private List<MedicalCondition> medicalConditions;
+  }
+
+  class TreatmentPlan {
+    private List<MedicationRegimen> medicationRegimens;
+    private List<Dosage> dosages;
+  }
+
+  class MedicationRegimen {
+    private String name;
+    private Dosage dosage;
+  }
+
+  class Dosage {
+    private int quantity;
+    private Unit unit;
+  }
+
+  class Medication {
+    private String name;
+    private Dosage dosage;
+  }
+
+  class MedicalCondition {
+    private String name;
+    private String description;
+  }
+
+  class EHRInterface {
+    public String retrievePatientData(String patientId);
+  }
+
+  class TreatmentPlanManager {
+    private Patient patient;
+
+    public void createTreatmentPlan() throws Exception;
+    public void updateTreatmentPlan() throws Exception;
+  }
+
+  composition Patient -> (has) MedicalHistory;
+  composition Patient -> (has) TreatmentPlan;
+  association EHRInterface -> TreatmentPlanManager;
+}

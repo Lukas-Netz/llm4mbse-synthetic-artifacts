@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram ITAssetManagement  {
+
+  class Department  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  abstract class ITAsset  {
+    String uniqueIdentifier;
+    AssetStatus status;
+  }
+
+  class Hardware extends ITAsset  {
+    String serialNumber;
+    String manufacturer;
+    Date purchaseDate;
+  }
+
+  class Software extends ITAsset  {
+    String licenseKey;
+    String version;
+    Date installationDate;
+  }
+
+  class NetworkDevice extends ITAsset  {
+    String ipAddress;
+    String macAddress;
+    String networkTopology;
+  }
+
+  class AssetMovement  {
+    ITAsset asset;
+    Department fromDepartment;
+    Department toDepartment;
+    Date movementDate;
+  }
+
+  class MaintenanceTask  {
+    ITAsset asset;
+    Date taskDate;
+    String taskDescription;
+  }
+
+  class Report  {
+    String reportType;
+    Date reportDate;
+  }
+
+  composition Department -> ITAsset[*];
+  composition ITAsset -> AssetMovement[*];
+  composition ITAsset -> MaintenanceTask[*];
+  composition Report -> ITAsset[*];
+}

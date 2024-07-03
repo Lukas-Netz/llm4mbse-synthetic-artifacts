@@ -1,0 +1,117 @@
+
+classdiagram AutomatedThreatDetection {
+
+    class Sensor {
+      String uniqueIdentifier;
+      List<ThreatType> threatTypes;
+    }
+
+    class CPU {
+      List<Sensor> sensors;
+      ThreatDetectionAlgorithm algorithm;
+      void analyzeData();
+      void sendAlert(NotificationSystem notificationSystem, Threat threat);
+    }
+
+    class Database {
+      List<Threat> threats;
+      void storeThreat(Threat threat);
+      Threat getThreat(String threatId);
+    }
+
+    class NotificationSystem {
+      List<String> recipients;
+      void sendAlert(String alertMessage);
+    }
+
+    class LogDatabase {
+      List<Log> logs;
+      void storeLog(Log log);
+      Log getLog(String logId);
+    }
+
+    class Threat {
+      String id;
+      String description;
+      int severityLevel;
+    }
+
+    class Log {
+      String logId;
+      String message;
+      Date detectionTime;
+      int severityLevel;
+      String actionTaken;
+    }
+
+    association CPU 
+      multiplicity 
+         [ 
+           nf 
+          <> 
+
+   ](has) 
+      -> Sensor 
+      [*];
+
+    association Sensor 
+      multiplicity 
+         [ 
+           nf 
+          <> 
+
+   ](has) 
+      -> CPU 
+      [*];
+
+    association Database 
+      multiplicity 
+         [ 
+           nf 
+          <> 
+
+   ](has) 
+      -> Threat 
+      [*];
+
+    association NotificationSystem 
+      multiplicity 
+         [ 
+           nf 
+          <> 
+
+   ](has) 
+      -> CPU 
+      [*];
+
+    association LogDatabase 
+      multiplicity 
+         [ 
+           nf 
+          <> 
+
+   ](has) 
+      -> Log 
+      [*];
+
+    composition CPU 
+      -> NotificationSystem [0..1];
+
+    composition CPU 
+      -> LogDatabase [0..1];
+
+    composition Sensor 
+      -> CPU [*];
+
+    composition Database 
+      -> CPU [*];
+
+    composition Database 
+      -> LogDatabase [*];
+
+    composition NotificationSystem 
+      -> CPU [*];
+
+    composition LogDatabase 
+      -> CPU [*];
+}

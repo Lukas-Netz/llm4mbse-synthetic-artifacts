@@ -1,0 +1,46 @@
+
+classdiagram RealTimeDataAnalytic {
+  class Src {
+    enum SrcType;
+    enum SrcStatusEnum;
+    enum SrcStatusEnum;
+    enum SrcStatus;
+    enum SrcStatusEnum;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    enum SrcStatus;
+    
+}
+  enum suspicichas;
+  enum multicolor;
+  enum missp1;
+  enum depic;
+  enum missp1;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  enum depic;
+  
+  }

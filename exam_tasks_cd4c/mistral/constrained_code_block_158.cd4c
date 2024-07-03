@@ -1,0 +1,63 @@
+
+classdiagram ERM {
+
+  class Company {
+    String name;
+    Department [  ] departments;
+  }
+
+  class Department {
+    String name;
+    Team [  ] teams;
+  }
+
+  class Team {
+    String name;
+    User [  ] users;
+    Risk [  ] risks;
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  abstract class Risk {
+    String name;
+    RiskStatus status;
+    int likelihood;
+    int impact;
+    String mitigationMeasures;
+  }
+
+  class FinancialRisk extends Risk {
+  }
+
+  class OperationalRisk extends Risk {
+  }
+
+  class StrategicRisk extends Risk {
+  }
+
+  enum RiskStatus {
+    Identified, Assessed, Mitigated, Monitored, Closed;
+  }
+
+  class Dashboard {
+    Company company;
+    void generateReport();
+  }
+
+  class Integration {
+    FinancialSystem financialSystem;
+    ProjectManagementSystem projectManagementSystem;
+  }
+
+  composition Company -> Department [*];
+  composition Department -> Team [*];
+  composition Team -> User [*];
+  composition Team -> Risk [*];
+  association User <- Company;
+  association Integration <- Company;
+  association Dashboard -- Company;
+}

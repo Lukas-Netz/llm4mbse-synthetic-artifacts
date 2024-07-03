@@ -1,0 +1,43 @@
+
+
+
+
+classdiagram CarbonFootprintSystem  {
+
+  class Node  {
+    String publicAddress;
+    String privateAddress;
+  }
+
+  class User  {
+    String username;
+    String password;
+  }
+
+  class CarbonFootprint  {
+    int amountCO2;
+    Date dateAndTime;
+    Location location;
+    CarbonFootprintCategory category;
+    CarbonFootprintUnit unit;
+  }
+
+  class CarbonFootprintCategory  {
+    String name;
+  }
+
+  class CarbonFootprintUnit  {
+    String name;
+  }
+
+  class Transaction  {
+    CarbonFootprint carbonFootprint;
+    User user;
+  }
+
+  composition Node -> Transaction[*];
+  composition User -> Transaction[*];
+  composition Transaction -> CarbonFootprint;
+  composition CarbonFootprint -> CarbonFootprintCategory;
+  composition CarbonFootprint -> CarbonFootprintUnit;
+}

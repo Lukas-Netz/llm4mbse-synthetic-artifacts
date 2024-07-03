@@ -1,0 +1,15 @@
+
+
+
+
+classdiagram FieldServiceManagement  {
+
+  class Technician  {
+    String uniqueIdentifier;
+    String name;
+    ContactInformation contactInfo;
+    Region region;
+    ServiceRequest  [  ]
+  class
+
+  ;  class Customer  ;  class ServiceRequest  ;  class Region  ;  class ContactInformation  ;  class Availability  ;  class Priority  ;  class Status  ;  class Report  ;  class UtilizationReport  ;  class CustomerSatisfactionReport  ;  class ServiceRequestCompletionRateReport  ;  class TechnicianUtilizationReport  ;  class CustomerSatisfactionReport  ;  class ServiceRequestCompletionRateReport  ;  class TechnicianUtilizationReport  ;  }  }

@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram HydraulicPressControlSystem  {
+
+  class Press  {
+    String name;
+    PressType type;
+    boolean isOperational;
+  }
+
+  class ControlUnit  {
+    -> Press;
+    -> Sensor[*];
+    -> Actuator[*];
+    void setOperatingMode(OperatingMode mode);
+    void monitorSensors();
+    void sendCommandsToActuators();
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    SensorType type;
+    double reading;
+  }
+
+  class Actuator  {
+    String uniqueIdentifier;
+    ActuatorType type;
+  }
+
+  class OperatingMode  {
+    String name;
+  }
+
+  enum PressType  {
+    Hydraulic, Pneumatic;
+  }
+
+  enum SensorType  {
+    Pressure, Temperature, Position;
+  }
+
+  enum ActuatorType  {
+    Move, ApplyPressure, ReleasePressure;
+  }
+
+  composition ControlUnit -> (has) Press;
+  composition ControlUnit -> (has) Sensor[*];
+  composition ControlUnit -> (has) Actuator[*];
+  composition Press -> (has) ControlUnit;
+  composition Sensor -> (has) ControlUnit;
+  composition Actuator -> (has) ControlUnit;
+}

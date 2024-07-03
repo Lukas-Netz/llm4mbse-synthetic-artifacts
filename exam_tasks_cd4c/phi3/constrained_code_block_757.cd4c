@@ -1,0 +1,45 @@
+
+classdiagram EthicalFashionBlockchain {
+
+    class Garment {
+      String uniqueIdentifier;
+      String description;
+      List<Component> components;
+    }
+
+    class Component {
+      String uniqueIdentifier;
+      String description;
+      List<Supplier> suppliers;
+    }
+
+    class Supplier {
+      String uniqueIdentifier;
+      String name;
+      List<Component> componentsProvided;
+    }
+
+    class Factory {
+      String uniqueIdentifier;
+      String name;
+      List<Garment> garmentsProduced;
+    }
+
+    class Warehouse {
+      String uniqueIdentifier;
+      String name;
+      List<Garment> garmentsStored;
+    }
+
+    class Customer {
+      String uniqueIdentifier;
+      String name;
+      List<Garment> garmentsPurchased;
+    }
+
+    association Garment <-> Factory [*];
+    association Garment <-> Warehouse [*];
+    association Garment <-> Customer [*];
+    composition Garment -> List<<Component, Supplier>>;
+    composition Component -> List<<Supplier, Garment>>;
+}

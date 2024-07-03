@@ -1,0 +1,44 @@
+
+
+classdiagram WineTastingPlatform {
+
+  class WineTasting {
+    int id;
+    String name;
+    String description;
+    Date date;
+    List<Wine> wines;
+  }
+
+  class Wine {
+    String name;
+    int vintage;
+    int rating;
+    String notes;
+  }
+
+  class User {
+    int id;
+    String name;
+    String email;
+    List<WineTasting> tastings;
+    List<WineRating> ratings;
+  }
+
+  class WineRating {
+    int wineId;
+    int rating;
+    String notes;
+  }
+
+  class WineTastingManager {
+    List<WineTasting> tastings;
+    List<User> users;
+    Map<Wine, List<WineRating>> wineRatings;
+  }
+
+  composition WineTastingManager -> (has) WineTasting [*];
+  composition WineTastingManager -> (has) User [*];
+  association WineTastingManager -> WineTasting;
+  association WineTastingManager -> WineRating;
+}

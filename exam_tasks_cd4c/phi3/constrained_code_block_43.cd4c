@@ -1,0 +1,48 @@
+
+classdiagram MedicalImagingSoftware {
+
+    class Image {
+      String uniqueIdentifier;
+      String description;
+    }
+
+    class Xray extends Image {
+      void applyFilter(Filter filter);
+      void applyTransformation(Transformation transformation);
+    }
+
+    class CTScan extends Image {
+      void applyFilter(Filter filter);
+      void applyTransformation(Transformation transformation);
+    }
+
+    class MRI extends Image {
+      void applyFilter(Filter filter);
+      void applyTransformation(Transformation transformation);
+    }
+
+    class ImageProcessingAlgorithm {
+      String name;
+      String description;
+      void applyToImage(Image image);
+    }
+
+    class Filter extends ImageProcessingAlgorithm {
+      void applyToImage(Image image);
+    }
+
+    class Transformation extends ImageProcessingAlgorithm {
+      void applyToImage(Image image);
+    }
+
+    class Patient {
+      String name;
+      int age;
+      String medicalHistory;
+      List<Image> images;
+      List<ImageProcessingAlgorithm> algorithms;
+    }
+
+    association MedicalImagingSoftware 
+      has-> List<< Image, ImageProcessingAlgorithm, Patient>>;
+}

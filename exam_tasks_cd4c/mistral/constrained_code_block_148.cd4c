@@ -1,0 +1,46 @@
+
+classdiagram InteractiveWhiteboard {
+
+  class MainUnit {
+    String uniqueIdentifier;
+    Computer computer;
+    SoftwareComponent softwareComponent;
+    Mode mode;
+    void saveContent();
+    void loadContent();
+  }
+
+  class Stylus {
+    String uniqueIdentifier;
+    MainUnit mainUnit;
+  }
+
+  abstract class Mode {
+    void displaySlides();
+    void drawShapes();
+    void playGame();
+  }
+
+  class PresentationMode extends Mode {
+  }
+
+  class DrawingMode extends Mode {
+  }
+
+  class GameMode extends Mode {
+  }
+
+  class Computer {
+    MainUnit mainUnit;
+  }
+
+  class SoftwareComponent {
+    int versionNumber;
+    void update();
+    void trackUserInteractions();
+  }
+
+  composition MainUnit -> Computer;
+  composition MainUnit -> SoftwareComponent;
+  composition Stylus -> MainUnit [*];
+}

@@ -1,0 +1,74 @@
+
+
+
+
+classdiagram HealthCoachingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Coach  {
+    String uniqueIdentifier;
+  }
+
+  class HealthPlan  {
+    String name;
+    String description;
+    Set<Exercise> exercises;
+    Set<DietPlan> dietPlans;
+    Set<HealthTip> healthTips;
+  }
+
+  class Exercise  {
+    String name;
+    String description;
+    int difficultyLevel;
+  }
+
+  class DietPlan  {
+    String name;
+    String description;
+    Set<FoodItem> foodItems;
+  }
+
+  class HealthTip  {
+    String name;
+    String description;
+    int relevanceLevel;
+  }
+
+  class Profile  {
+    Set<HealthGoal> healthGoals;
+    MedicalHistory medicalHistory;
+    CurrentHealthStatus currentHealthStatus;
+  }
+
+  class HealthGoal  {
+    String goal;
+  }
+
+  class MedicalHistory  {
+    String medicalConditions;
+  }
+
+  class CurrentHealthStatus  {
+    String healthStatus;
+  }
+
+  class FoodItem  {
+    String name;
+    String description;
+  }
+
+  composition User -> (has) Profile;
+  composition Coach -> (has) User;
+  composition HealthPlan -> (has) Coach;
+  composition HealthPlan -> (has) Exercise [0..*];
+  composition HealthPlan -> (has) DietPlan [0..*];
+  composition HealthPlan -> (has) HealthTip [0..*];
+  composition Profile -> (has) HealthGoal [0..*];
+  composition Profile -> (has) MedicalHistory;
+  composition Profile -> (has) CurrentHealthStatus;
+  }

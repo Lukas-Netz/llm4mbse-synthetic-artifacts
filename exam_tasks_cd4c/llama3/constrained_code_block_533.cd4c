@@ -1,0 +1,72 @@
+
+
+
+
+classdiagram ClimateSimulation  {
+
+  class Simulation  {
+    String uniqueIdentifier;
+    Date startDate;
+  }
+
+  class Scenario  {
+    String name;
+    String description;
+  }
+
+  class Location  {
+    String name;
+    Coordinates coordinates;
+  }
+
+  class WeatherStation  {
+    Location location;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class SimulationRun  {
+    Simulation simulation;
+    Scenario scenario;
+  }
+
+  class DataPoint  {
+    SimulationRun simulationRun;
+    Location location;
+    WeatherStation weatherStation;
+    Temperature temperature;
+    Humidity humidity;
+    WindSpeed windSpeed;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Humidity  {
+    double value;
+  }
+
+  class WindSpeed  {
+    double value;
+  }
+
+  class Coordinates  {
+    double latitude;
+    double longitude;
+  }
+
+  composition Simulation  ->  (has) uniqueIdentifier;
+  composition Simulation  ->  (has) startDate;
+  composition Scenario  ->  (has) name;
+  composition Scenario  ->  (has) description;
+  composition Location  ->  (has) name;
+  composition Location  ->  (has) coordinates;
+  composition WeatherStation  ->  (has) location;
+  composition WeatherStation  ->  (has) temperature;
+  composition WeatherStation  ->  (has) humidity;
+  composition WeatherStation  ->  (has) windSpeed;
+  
+
+}

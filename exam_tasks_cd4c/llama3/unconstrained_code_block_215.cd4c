@@ -1,0 +1,56 @@
+
+
+
+
+classdiagram DigitalGardeningPlatform  {
+
+  class Garden  {
+    String name;
+    String description;
+    Location location;
+    -> Plant[*];
+  }
+
+  class Plant  {
+    String name;
+    PlantType type;
+    GrowthStage growthStage;
+  }
+
+  enum PlantType  {
+    FLOWER, VEGETABLE, HERB;
+  }
+
+  enum GrowthStage  {
+    SEEDLING, GROWING, FLOWERING, HARVEST;
+  }
+
+  class Location  {
+    String address;
+  }
+
+  class User  {
+    String name;
+    String email;
+    GardeningExperience experience;
+  }
+
+  enum GardeningExperience  {
+    BEGINNER, INTERMEDIATE, ADVANCED;
+  }
+
+  class Profile  {
+    -> User;
+  }
+
+  class GardenProfile  {
+    -> Garden;
+    -> User;
+  }
+
+  composition Garden -> Plant[*];
+  composition User -> Profile;
+  composition Garden -> User[*];
+  composition User -> Garden[*];
+}
+

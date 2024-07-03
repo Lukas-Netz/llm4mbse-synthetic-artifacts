@@ -1,0 +1,42 @@
+
+classdiagram SpaceDebrisRemoval {
+
+  class CentralControlUnit {
+    -> Satellite [*];
+    -> GroundStation [*];
+    void assignSatelliteToDebrisCollection(Satellite satellite);
+    void analyzeDebrisData();
+    void transmitDataToGroundStations();
+  }
+
+  abstract class Satellite {
+    String uniqueIdentifier;
+  }
+
+  class DebrisCollector extends Satellite {
+    int collectionCapacity;
+    int collectionRate;
+  }
+
+  class DebrisAnalyzer extends Satellite {
+    int analysisSpeed;
+    int accuracy;
+  }
+
+  abstract class GroundStation {
+    String uniqueIdentifier;
+  }
+
+  class CommunicationHub extends GroundStation {
+    int transmissionRate;
+    int range;
+  }
+
+  class DataCenter extends GroundStation {
+    int storageCapacity;
+    int processingSpeed;
+  }
+
+  composition CentralControlUnit -> Satellite [*];
+  composition CentralControlUnit -> GroundStation [*];
+}

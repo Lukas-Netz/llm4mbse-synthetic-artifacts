@@ -1,0 +1,45 @@
+
+classdiagram BlockchainCarbonOffsettingSystem {
+
+    class User {
+      String uniqueIdentifier;
+      List<Project> projects;
+      void createProject(Project project);
+      void editProject(Project project);
+      void deleteProject(Project project);
+    }
+
+    class Project {
+      String name;
+      String description;
+      String projectType;
+      int carbonCredits;
+      List<Transaction> transactions;
+      String projectIdentifier;
+    }
+
+    class Transaction {
+      String transactionIdentifier;
+      Project project;
+      int credits;
+      boolean isPurchase;
+    }
+
+    class Validator {
+      String validatorIdentifier;
+      List<Transaction> verifiedTransactions;
+      void verifyTransaction(Transaction transaction);
+    }
+
+    class Blockchain {
+      List<Block> blocks;
+      void addTransaction(Transaction transaction);
+      void validateBlock(Block block);
+    }
+
+    class Block {
+      List<Transaction> transactions;
+      String previousBlockHash;
+      String blockHash;
+    }
+}

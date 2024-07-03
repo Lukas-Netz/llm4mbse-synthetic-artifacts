@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram ContactCenter  {
+
+  class Agent  {
+    String name;
+    SkillSet skills;
+  }
+
+  class Customer  {
+    String name;
+  }
+
+  class Conversation  {
+    Customer customer;
+    Agent agent;
+    ConversationState state;
+    Feedback feedback;
+  }
+
+  class SkillSet  {
+    String skill;
+    Level level;
+  }
+
+  class Level  {
+    String name;
+  }
+
+  class ConversationState  {
+    String state;
+  }
+
+  class Feedback  {
+    String feedback;
+  }
+
+  class Analytics  {
+    AverageHandleTime averageHandleTime;
+    FirstCallResolution firstCallResolution;
+    CustomerSatisfaction customerSatisfaction;
+  }
+
+  class AverageHandleTime  {
+    double time;
+  }
+
+  class FirstCallResolution  {
+    boolean resolved;
+  }
+
+  class CustomerSatisfaction  {
+    double satisfaction;
+  }
+
+  class CRMIntegration  {
+    void integrate();
+  }
+
+  class ERPIIntegration  {
+    void integrate();
+  }
+
+  composition ContactCenter -> (has) Agent[*];
+  composition ContactCenter -> (has) Customer[*];
+  composition ContactCenter -> (has) Conversation[*];
+  composition Conversation -> (has) Customer;
+  composition Conversation -> (has) Agent;
+  composition Conversation -> (has) ConversationState;
+  composition Conversation -> (has) Feedback;
+  }

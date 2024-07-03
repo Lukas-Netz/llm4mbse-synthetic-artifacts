@@ -1,0 +1,65 @@
+
+classdiagram HydroponicMonitoring {
+
+  class Sensor {
+    String type;
+    float value;
+  }
+
+  class TemperatureSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class HumiditySensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class pHSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class NutrientSensor extends Sensor {
+    float lowerLimit;
+    float upperLimit;
+  }
+
+  class Actuator {
+    String type;
+    void setValue(float value);
+  }
+
+  class LightingActuator extends Actuator {
+    float brightness;
+  }
+
+  class TemperatureActuator extends Actuator {
+    float temperature;
+  }
+
+  class NutrientActuator extends Actuator {
+    float nutrientLevel;
+  }
+
+  class ControlUnit {
+    Sensor [ ] sensors;
+    Actuator [ ] actuators;
+    Database database;
+
+    void collectData();
+    void sendCommands();
+    void detectAnomalies();
+    void provideRecommendations();
+  }
+
+  class Database {
+    void storeData(Sensor data);
+    void analyzeData();
+  }
+
+  composition ControlUnit -> Sensor [*];
+  composition ControlUnit -> Actuator [*];
+  association ControlUnit -> Database;
+}

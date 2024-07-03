@@ -1,0 +1,63 @@
+
+classdiagram CloudAccounting {
+
+    class Company {
+      String name;
+      String uniqueIdentifier;
+      List<Account> accounts;
+    }
+
+    class Account {
+      String name;
+      AccountType type;
+      double balance;
+    }
+
+    class Invoice {
+      Date date;
+      String description;
+      double amount;
+      Account invoiceAccount;
+      Invoice invoiceNumber;
+    }
+
+    class Payment {
+      Date date;
+      String description;
+      double amount;
+      Invoice paymentInvoice;
+    }
+
+    class FinancialReport {
+      Company company;
+      BalanceSheet balanceSheet;
+      IncomeStatement incomeStatement;
+    }
+
+    class FinancialMetrics {
+      double profit;
+      double cashFlow;
+    }
+
+    class User {
+      String username;
+      PermissionLevel permissionLevel;
+    }
+
+    class PermissionLevel {
+      String level;
+    }
+
+    class Integration {
+      String platform;
+      String integrationStatus;
+    }
+
+    composition Company -> Account [*];
+    composition Company -> Invoice [*];
+    composition Company -> Payment [*];
+    composition Company -> FinancialReport;
+    composition Company -> FinancialMetrics;
+    composition Company -> User [*];
+    composition Company -> Integration [*];
+}

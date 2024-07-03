@@ -1,0 +1,43 @@
+
+
+classdiagram VotingSystem {
+
+  class Voter {
+    String uniqueIdentifier;
+    PublicKey publicKey;
+  }
+
+  class Candidate {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Election {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Ballot {
+    String electionId;
+    List<Vote> votes;
+  }
+
+  class Vote {
+    String ballotId;
+    Candidate candidate;
+  }
+
+  class Block {
+    List<Vote> votes;
+    Hash previousBlockHash;
+  }
+
+  composition Voter -> (has) PublicKey;
+  composition Election -> (has) Ballot;
+  composition Ballot -> (has) List<<Vote>>;
+  composition Block -> (has) List<<Vote>>;
+  association Election -> Ballot;
+  association Vote -> Ballot;
+  association Block -> PreviousBlock;
+}

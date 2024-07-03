@@ -1,0 +1,48 @@
+
+
+classdiagram SalesIntelligenceSystem {
+
+  class SalesData {
+    String productId;
+    String storeId;
+    int quantity;
+    DateTime timestamp;
+  }
+
+  class SalesRepository {
+    void storeSalesData(SalesData salesData);
+    SalesData getSalesData(String productId, String storeId);
+  }
+
+  class SalesReportGenerator {
+    List<SalesData> generateTopSellingProductsReport();
+    List<SalesData> generateTopSellingStoresReport();
+  }
+
+  class TrendAnalyzer {
+    List<SalesData> identifyTrendsAndPatterns();
+  }
+
+  class AlertManager {
+    void sendAlert(String productId, int quantityThreshold);
+  }
+
+  class IntegrationManager {
+    void integrateWithInventoryManagementSystem();
+    void integrateWithCustomerRelationshipManagementSystem();
+  }
+
+  class System {
+    SalesRepository salesRepository;
+    SalesReportGenerator salesReportGenerator;
+    TrendAnalyzer trendAnalyzer;
+    AlertManager alertManager;
+    IntegrationManager integrationManager;
+  }
+
+  composition System -> (has) SalesRepository;
+  composition System -> (has) SalesReportGenerator;
+  composition System -> (has) TrendAnalyzer;
+  composition System -> (has) AlertManager;
+  composition System -> (has) IntegrationManager;
+}

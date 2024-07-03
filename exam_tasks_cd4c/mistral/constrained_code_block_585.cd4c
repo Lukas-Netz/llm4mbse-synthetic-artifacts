@@ -1,0 +1,67 @@
+
+classdiagram ContractReviewSystem {
+
+  class Contract {
+    String uniqueIdentifier;
+    ContractStatus status;
+  }
+
+  enum ContractStatus {
+    Active, Inactive, Pending;
+  }
+
+  abstract class Clause {
+    String type;
+  }
+
+  class PaymentTerms extends Clause {
+    double amount;
+    Date dueDate;
+  }
+
+  class ConfidentialityAgreement extends Clause {
+    Date duration;
+  }
+
+  class NonCompeteAgreement extends Clause {
+    Date duration;
+    String scope;
+  }
+
+  abstract class Condition {
+    String type;
+  }
+
+  class DateCondition extends Condition {
+    Date date;
+  }
+
+  class AmountCondition extends Condition {
+    double amount;
+  }
+
+  class ContractType {
+    String type;
+  }
+
+  class EmploymentContract extends Contract {
+    ContractType contractType;
+    Clause [ ] clauses;
+  }
+
+  class SalesContract extends Contract {
+    ContractType contractType;
+    Clause [ ] clauses;
+  }
+
+  class LeaseAgreement extends Contract {
+    ContractType contractType;
+    Clause [ ] clauses;
+  }
+
+  class AnalysisResult {
+    String summary;
+    List potentialIssues;
+    List recommendations;
+  }
+}

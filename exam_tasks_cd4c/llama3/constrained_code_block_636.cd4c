@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram UrbanAquaponics  {
+
+  class System  {
+    ControlCenter controlCenter;
+    StorageTank storageTank;
+    FiltrationSystem filtrationSystem;
+  }
+
+  class ControlCenter  {
+    void monitorWaterQuality();
+    void regulateWaterQuality();
+    void monitorTemperature();
+    void regulateTemperature();
+    void monitorPHLevels();
+    void regulatePHLevels();
+  }
+
+  class Tank  {
+    Fish fish;
+    Plants plants;
+    Water water;
+  }
+
+  class Fish  {
+    String species;
+  }
+
+  class Plants  {
+    String type;
+  }
+
+  class Water  {
+    double temperature;
+    double pH;
+    double quality;
+  }
+
+  class Pipe  {
+    Tank sourceTank;
+    Tank destinationTank;
+  }
+
+  class Pump  {
+    void pumpWater();
+  }
+
+  class Valve  {
+    void open();
+    void close();
+  }
+
+  class StorageTank  {
+    Water water;
+  }
+
+  class FiltrationSystem  {
+    void filterWater();
+  }
+
+  composition System -> (has) ControlCenter;
+  composition System -> (has) StorageTank;
+  composition System -> (has) FiltrationSystem;
+  composition ControlCenter -> (monitors) Tank;
+  composition Tank -> (has) Fish;
+  composition Tank -> (has) Plants;
+  composition Tank -> (has) Water;
+  composition Pipe -> (connects) Tank;
+  composition Pump -> (serves) Tank;
+  }

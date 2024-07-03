@@ -1,0 +1,49 @@
+
+
+
+
+classdiagram CollaborationSystem  {
+
+  class Team  {
+    String name;
+    String identifier;
+    -> Member[*];
+  }
+
+  class Member  {
+    String username;
+    String identifier;
+    -> Team[*];
+  }
+
+  class File  {
+    String name;
+    int size;
+    String identifier;
+    -> ChangeHistory[*];
+  }
+
+  class ChangeHistory  {
+    File file;
+    Member member;
+    Date timestamp;
+  }
+
+  class Task  {
+    String name;
+    String description;
+    String identifier;
+    -> Member[*];
+    TaskStatus status;
+  }
+
+  enum TaskStatus  {
+    InProgress,
+    Completed,
+    Pending;
+  }
+
+  composition Team -> Member[*];
+  composition File -> ChangeHistory[*];
+  composition Task -> Member[*];
+}

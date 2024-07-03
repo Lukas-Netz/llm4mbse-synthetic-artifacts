@@ -1,0 +1,56 @@
+
+classdiagram CraftMarketplace {
+
+  class User {
+    String username;
+    String password;
+    List<Craft> favorites;
+    List<Rating> ratings;
+    List<Collection> collections;
+  }
+
+  class Craft {
+    String name;
+    String description;
+    float price;
+    List<String> materials;
+    CraftType type;
+  }
+
+  enum CraftType {
+    Jewelry, Textiles, HomeDecor;
+  }
+
+  class Rating {
+    User rater;
+    Craft ratedCraft;
+    float rating;
+  }
+
+  class Collection {
+    User owner;
+    List<Craft> crafts;
+  }
+
+  class SystemAdmin {
+    void addCraft(Craft craft);
+    void removeCraft(Craft craft);
+    void addUser(User user);
+    void removeUser(User user);
+    void addCollection(Collection collection);
+    void removeCollection(Collection collection);
+  }
+
+  class Report {
+    String userActivity;
+    String craftPopularity;
+    String sales;
+  }
+
+  composition User [*] has (has_a)  -> CraftMarketplace;
+  composition User [*] has (has_a)  -> Rating;
+  composition User [*] has (has_a)  -> Collection;
+  composition Craft [*] belongs_to (belongs_to)  -> CraftMarketplace;
+  composition Rating [1] belongs_to (belongs_to)  -> User;
+  composition Collection [*] belongs_to (belongs_to)  -> User;
+}

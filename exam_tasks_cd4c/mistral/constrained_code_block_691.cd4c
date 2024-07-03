@@ -1,0 +1,64 @@
+
+classdiagram DroneControl {
+
+  class Drone {
+    String uniqueIdentifier;
+    Location location;
+    int speed;
+    DroneType type;
+  }
+
+  abstract class DroneType {
+    String name;
+  }
+
+  class CargoDrone extends DroneType {
+    int cargoCapacity;
+  }
+
+  class PassengerDrone extends DroneType {
+    int passengerCapacity;
+  }
+
+  class SurveillanceDrone extends DroneType {
+    boolean surveillanceCapabilities;
+  }
+
+  class Location {
+    double latitude;
+    double longitude;
+  }
+
+  class AirTrafficControlCenter {
+    String name;
+    Location location;
+  }
+
+  class Airport {
+    String name;
+    Location location;
+  }
+
+  class System {
+    AirTrafficControlCenter [ ] airTrafficControlCenters;
+    Airport [ ] airports;
+    Drone [ ] drones;
+  }
+
+  association System --oAirTrafficControlCenter;
+  association System --oAirport;
+  association AirTrafficControlCenter --oDrone [*];
+  association Airport --oDrone [*];
+
+  class Emergency {
+    String type;
+    Drone drone;
+  }
+
+  class EmergencyResponse {
+    String protocol;
+  }
+
+  association System --oEmergency [*];
+  association Emergency --oEmergencyResponse;
+}

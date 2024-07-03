@@ -1,0 +1,52 @@
+
+classdiagram VRTraining {
+
+  class User {
+    String username;
+    UserProfile[] profiles;
+  }
+
+  class UserProfile {
+    String uniqueIdentifier;
+    int completedScenarios;
+    int objectivesAchieved;
+    int rewardsEarned;
+  }
+
+  class Scenario {
+    String uniqueIdentifier;
+    int difficultyLevel;
+    int duration;
+    int numberOfObjectives;
+    ScenarioParameters parameters;
+  }
+
+  class ScenarioParameters {
+    int difficulty;
+    int duration;
+    int numberOfObjectives;
+  }
+
+  abstract class VirtualObject {
+    String uniqueIdentifier;
+  }
+
+  class Building extends VirtualObject {
+  }
+
+  class Vehicle extends VirtualObject {
+  }
+
+  class Character extends VirtualObject {
+  }
+
+  class Simulation {
+    User user;
+    Scenario scenario;
+    VirtualObject[] objects;
+  }
+
+  composition User -> UserProfile [*];
+  composition Scenario -> ScenarioParameters;
+  composition Simulation -> VirtualObject [*];
+}

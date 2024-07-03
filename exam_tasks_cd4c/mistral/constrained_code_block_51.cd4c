@@ -1,0 +1,76 @@
+
+classdiagram ESystem {
+
+  class PatientDB {
+    -> Patient [*];
+  }
+
+  class DoctorDB {
+    -> Doctor [*];
+  }
+
+  class PrescriptionDB {
+    -> Prescription [*];
+  }
+
+  class PharmacyDB {
+    -> Pharmacy [*];
+  }
+
+  class Patient {
+    String name;
+    String address;
+    MedicalHistory medicalHistory;
+  }
+
+  class MedicalHistory {
+    String illnesses;
+    String allergies;
+  }
+
+  class Doctor {
+    String name;
+    String specialty;
+    String hospitalAffiliation;
+  }
+
+  class Prescription {
+    String medicationName;
+    int dosage;
+    Date expirationDate;
+    Patient patient;
+    Doctor doctor;
+  }
+
+  class Pharmacy {
+    String name;
+    String location;
+    Inventory inventory;
+  }
+
+  class Inventory {
+    Map<String, int> medicationStock;
+  }
+
+  class PrescriptionOrder {
+    Prescription prescription;
+    Patient patient;
+  }
+
+  class PrescriptionFulfillment {
+    Prescription prescription;
+    Pharmacy pharmacy;
+  }
+
+  class PatientMedicationList {
+    List<Prescription> prescriptions;
+  }
+
+  association PatientDB <-> Patient [* ];
+  association DoctorDB <-> Doctor [* ];
+  association PrescriptionDB <-> Prescription [* ];
+  association PharmacyDB <-> Pharmacy [* ];
+  association PrescriptionDB <-> Doctor [1..* ];
+  association PrescriptionDB <-> Patient [1..* ];
+  association PrescriptionDB <-> PharmacyDB [1..* ];
+ 				}

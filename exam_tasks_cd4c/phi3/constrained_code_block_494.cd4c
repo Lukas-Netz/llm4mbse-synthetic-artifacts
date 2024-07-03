@@ -1,0 +1,27 @@
+
+classdiagram UniversityOnlinePhilosophy {
+
+    class Instructor {
+      String name;
+      String email;
+      List<Course> coursesTaught;
+    }
+
+    class Course {
+      String name;
+      String description;
+      List<Instructor> instructors;
+      Date startDate;
+      Date endDate;
+    }
+
+    class Student {
+      String name;
+      String email;
+      List<Course> enrolledCourses;
+    }
+
+    association Instructor -> Course [*];
+    association Course -> Instructor [*];
+    association Student -> Course [*];
+}

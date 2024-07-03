@@ -1,0 +1,73 @@
+
+classdiagram SupplyChain {
+
+    class Goods {
+      String uniqueId;
+      String description;
+      String manufacturerId;
+      String distributorId;
+      String customerId;
+      Date arrivalDate;
+      Date departureDate;
+      String transportationMethod;
+      boolean isPerishable;
+      boolean isAuthenticated;
+    }
+
+    class Manufacturer {
+      String uniqueId;
+      String name;
+      List<Goods> goodsProduced;
+    }
+
+    class Distributor {
+      String uniqueId;
+      String name;
+      List<Goods> goodsReceived;
+    }
+
+    class Customer {
+      String uniqueId;
+      String name;
+      List<Goods> goodsReceived;
+    }
+
+    class Transportation {
+      String type;
+      String method;
+    }
+
+    <<association>> class Goods {
+      Manufacturer manufacturer;
+      Distributor distributor;
+      Customer customer;
+      Transportation transportation;
+    }
+
+    <<association>> class Manufacturer {
+      List<Goods> goodsProduced;
+    }
+
+    <<association>> class Distributor {
+      List<Goods> goodsReceived;
+    }
+
+    <<association>> class Customer {
+      List<Goods> goodsReceived;
+    }
+
+    <<association>> class Transportation {
+      String type;
+      String method;
+    }
+
+    <<association>> class GoodsAuthenticator {
+      Goods goods;
+      boolean isAuthenticated;
+    }
+
+    <<association>> class GoodsUpdater {
+      Goods goods;
+      String updatedInfo;
+    }
+}

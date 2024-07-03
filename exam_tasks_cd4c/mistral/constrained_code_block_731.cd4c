@@ -1,0 +1,52 @@
+
+classdiagram MushroomCultivationPlatform {
+
+  class User {
+    String username;
+    UserRole role;
+  }
+
+  enum UserRole {
+    ADMIN, REGULAR;
+  }
+
+  class Course {
+    String title;
+    String description;
+    int duration;
+    Section [][] sections;
+    Instructor [][] instructors;
+    Assignment [][] assignments;
+  }
+
+  class Section {
+    String title;
+    String description;
+  }
+
+  class Instructor extends User {
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    Date dueDate;
+  }
+
+  class Enrollment {
+    User user;
+    Course course;
+    Section section;
+    Role role;
+  }
+
+  enum Role {
+    INSTRUCTOR, ASSISTANT, STUDENT;
+  }
+
+  composition Course -> Instructor [*];
+  composition Course -> Assignment [*];
+  composition Enrollment -> User [1];
+  composition Enrollment -> Course [1];
+  composition Enrollment -> Section [1];
+}

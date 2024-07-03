@@ -1,0 +1,63 @@
+
+
+#  classdiagram Smarthome
+
+  
+
+{classdiagramComplete
+
+  
+
+  
+
+  
+
+  
+
+{class SmartHome
+
+  
+
+  
+
+  ;hub
+
+  backupPower
+
+  
+
+  
+
+  ;
+
+}
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  composition SmartHome -> (has) Hub;
+
+  composition SmartHome -> (has) BackupPower [0..1];
+
+  composition Hub -> Device [*];
+
+}

@@ -1,0 +1,56 @@
+
+classdiagram PredictiveInventorySystem {
+
+    class Warehouse {
+      String name;
+      String location;
+      Shelf[] shelves;
+      void addShelf(Shelf shelf);
+      void removeShelf(Shelf shelf);
+      int getInventoryLevel(Item item);
+      void orderStock(Item item);
+    }
+
+    class Shelf {
+      String name;
+      int capacity;
+      Item[] items;
+      void addItem(Item item);
+      void removeItem(Item item);
+      int getInventoryLevel(Item item);
+    }
+
+    class Item {
+      String name;
+      int quantity;
+      int reorderPoint;
+      int predictedDemand;
+      int reorderQuantity;
+    }
+
+    class PredictiveModel {
+      Item[] items;
+      void predictDemand(Item item);
+      void calculateReorderQuantity(Item item);
+    }
+
+    class OrderingSystem {
+      void orderItem(Item item);
+    }
+
+    association Warehouse 
+      has 
+        -> Shelf [1..*];
+
+    association Shelf 
+      has 
+        -> Item [*];
+
+    association Item 
+      has 
+        -> PredictiveModel;
+
+    association Item 
+      with 
+        -> OrderingSystem;
+}

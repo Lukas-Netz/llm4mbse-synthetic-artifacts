@@ -1,0 +1,49 @@
+
+classdiagram HRSystem {
+
+  class Company {
+    String name;
+    Department [  ] departments;
+  }
+
+  class Department {
+    String name;
+    JobLevel [  ] jobLevels;
+  }
+
+  class JobLevel {
+    String title;
+    String description;
+  }
+
+  class Employee {
+    String name;
+    String jobTitle;
+    String department;
+    JobLevel jobLevel;
+    boolean isActive;
+  }
+
+  class Attendance {
+    Employee employee;
+    Date date;
+    boolean isPresent;
+  }
+
+  class Policy {
+    String name;
+    String description;
+  }
+
+  class Report {
+    String type;
+    Date date;
+    String content;
+  }
+
+  composition Company -> Department [*];
+  composition Department -> JobLevel [*];
+  association Employee --oAttends;
+  association Attendance --oEmployee;
+  association Policy --oReport;
+}

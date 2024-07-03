@@ -1,0 +1,50 @@
+
+classdiagram VirtualMusicFestivalPlatform {
+
+    class Festival {
+      String name;
+      Date startDate;
+      Date endDate;
+      List<Stage> stages;
+    }
+
+    class Stage {
+      String name;
+      int capacity;
+      List<Performance> performances;
+    }
+
+    class Performance {
+      String name;
+      Date startTime;
+      Date endTime;
+      List<Artist> artists;
+    }
+
+    class Artist {
+      String name;
+      String bio;
+      List<Stage> stagesPerformedOn;
+    }
+
+    class User {
+      void createFestival(Festival festival);
+      void editFestival(Festival festival);
+      void deleteFestival(Festival festival);
+      void createStage(Stage stage);
+      void editStage(Stage stage);
+      void deleteStage(Stage stage);
+      void createPerformance(Performance performance);
+      void editPerformance(Performance performance);
+      void deletePerformance(Performance performance);
+      void createArtist(Artist artist);
+      void editArtist(Artist artist);
+      void deleteArtist(Artist artist);
+      void viewFestivalSchedule(Festival festival);
+    }
+
+    association Festival -> List<<Stage>>;
+    association Stage -> List<<Performance>>;
+    association Performance -> List<<Artist>>;
+    association Artist -> List<<Stage>>;
+}

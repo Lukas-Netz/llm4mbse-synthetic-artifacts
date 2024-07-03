@@ -1,0 +1,75 @@
+
+
+
+
+classdiagram DigitalPrintingServices  {
+
+  class Branch  {
+    String name;
+    String address;
+    -> Printer[*];
+    -> Copier[*];
+    -> Scanner[*];
+  }
+
+  abstract class Device  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+  }
+
+  class Printer extends Device  {
+    PrinterType type;
+  }
+
+  class Copier extends Device  {
+    CopierType type;
+  }
+
+  class Scanner extends Device  {
+    ScannerType type;
+  }
+
+  class Customer  {
+    String name;
+    String address;
+    String contactInformation;
+  }
+
+  class Service  {
+    String uniqueIdentifier;
+    String description;
+    double price;
+  }
+
+  class Payment  {
+    String uniqueIdentifier;
+    String description;
+    PaymentMethod paymentMethod;
+  }
+
+  enum DeviceStatus  {
+    Available, NotAvailable;
+  }
+
+  enum PrinterType  {
+    Laser, Inkjet, Multifunction;
+  }
+
+  enum CopierType  {
+    Monochrome, Color;
+  }
+
+  enum ScannerType  {
+    Flatbed, Sheetfed;
+  }
+
+  enum PaymentMethod  {
+    Cash, CreditCard, Online;
+  }
+
+  composition Branch -> (has) Printer[*];
+  composition Branch -> (has) Copier[*];
+  composition Branch -> (has) Scanner[*];
+  composition Branch -> (has) Customer[*];
+  composition Service -> (has) Payment[*];
+}

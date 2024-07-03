@@ -1,0 +1,38 @@
+
+classdiagram MedicalImaging {
+
+  class Patient {
+    String name;
+    int age;
+    String medicalHistory;
+  }
+
+  class Image {
+    String uniqueIdentifier;
+    String description;
+    ImageType type;
+  }
+
+  enum ImageType {
+    XRAY, CTSCAN, MRI;
+  }
+
+  abstract class Algorithm {
+    String name;
+    String description;
+  }
+
+  class Filter extends Algorithm {
+  }
+
+  class Transformation extends Algorithm {
+  }
+
+  class ImageProcessor {
+    Image image;
+    Algorithm algorithm;
+  }
+
+  composition Patient [*] has (has) -> Image [*];
+  composition ImageProcessor has (has) -> Algorithm;
+}

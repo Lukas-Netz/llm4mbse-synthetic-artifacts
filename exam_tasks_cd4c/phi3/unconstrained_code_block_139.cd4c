@@ -1,0 +1,45 @@
+
+classdiagram RealEstatePlatform {
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class Property {
+      String uniqueId;
+      String address;
+      String type;
+    }
+
+    class Listing {
+      Property property;
+      String price;
+      String description;
+      List<String> photos;
+      List<Offer> offers;
+    }
+
+    class Offer {
+      String offerId;
+      String price;
+      String terms;
+      String status;
+    }
+
+    class Agent extends User {
+      Listing createListing(Property property);
+      void manageListing(Listing listing);
+    }
+
+    class Client extends User {
+      List<Listing> searchListings(String criteria);
+      void viewListing(Listing listing);
+    }
+
+    composition User -> (has) Agent;
+    composition User -> (has) Client;
+    composition Agent -> (has) Listing;
+    composition Listing -> (has) Property;
+    composition Listing -> (has) Offer;
+}

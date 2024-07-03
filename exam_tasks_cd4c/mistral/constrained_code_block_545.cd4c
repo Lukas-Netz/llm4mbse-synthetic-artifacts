@@ -1,0 +1,36 @@
+
+classdiagram ForestFireDetection {
+
+  class Sensor {
+    String uniqueIdentifier;
+    int temperature;
+    int humidity;
+    int smokeLevel;
+  }
+
+  class Drone {
+    String uniqueIdentifier;
+    Camera camera;
+  }
+
+  class Camera {
+    int resolution;
+  }
+
+  class CentralHub {
+    -> Sensor [*];
+    -> Drone [*];
+    void analyzeData();
+    void sendAlert(String message);
+    void dispatchDrones(String droneIds);
+  }
+
+  class Database {
+    void storeForestInfo();
+    void analyzeData(Sensor sensorData, Drone droneData);
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> Drone [*];
+  association CentralHub -- Database;
+}

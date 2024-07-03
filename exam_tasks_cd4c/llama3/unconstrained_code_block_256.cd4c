@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram OnlinePlatform  {
+
+  class Course  {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Level level;
+  }
+
+  class Student  {
+    String uniqueIdentifier;
+    Role role;
+  }
+
+  class Assignment  {
+    String title;
+    String description;
+    Date dueDate;
+    Grade grade;
+  }
+
+  class DiscussionTopic  {
+    String title;
+    String description;
+  }
+
+  class Instructor extends Role  {
+    -> Course  [*];
+    -> Assignment  [*];
+    -> DiscussionTopic  [*];
+  }
+
+  class TeachingAssistant extends Role  {
+    -> Course  [*];
+    -> Assignment  [*];
+  }
+
+  class Level  {
+    String name;
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class Grade  {
+    double value;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition Course  ->  (has) Level;
+  composition Student  ->  (has) Role;
+  composition Assignment  ->  (has) Grade;
+  composition DiscussionTopic  ->  (has) none;
+  composition Instructor  ->  (has) Course;
+  composition TeachingAssistant  ->  (has) Course;
+}

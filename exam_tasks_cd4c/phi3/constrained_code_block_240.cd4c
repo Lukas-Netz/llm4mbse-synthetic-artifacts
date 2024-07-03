@@ -1,0 +1,50 @@
+
+classdiagram DigitalContentCuration {
+
+    class Library {
+      Map<String, Content> contentMap;
+      void addContent(Content content);
+      void removeContent(String identifier);
+      Content findContentByIdentifier(String identifier);
+    WritableContent getContent(String identifier);
+    }
+
+    class Content {
+      String identifier;
+      ContentType type;
+      String resolution;
+      String format;
+      String fileType;
+      int size;
+      List<Tag> tags;
+      int rating;
+    }
+
+    class ContentType {
+      String typeName;
+    }
+
+    class Tag {
+      String name;
+    }
+
+    class Curator {
+      void addContent(Content content);
+      void removeContent(String identifier);
+      void assignTag(String identifier, Tag tag);
+      void updateRating(String identifier, int rating);
+    }
+
+    class Search {
+      void searchByKeyword(String keyword);
+      void searchByTag(String tag);
+      void searchByRating(int minRating);
+    }
+
+    composition Library -> (has) Content;
+    composition Curator -> (has) Library;
+    composition Curator -> (has) Tag;
+    composition Curator -> (has) Content;
+    composition Curator -> (has) Search;
+    composition Library -> (has) Search;
+}

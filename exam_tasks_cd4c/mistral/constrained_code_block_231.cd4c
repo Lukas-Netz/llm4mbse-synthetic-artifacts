@@ -1,0 +1,46 @@
+
+classdiagram FinancialReporting {
+
+  class FinancialInstitution {
+    Account [ ] accounts;
+    User [ ] users;
+  }
+
+  class Account {
+    int accountNumber;
+    double balance;
+  }
+
+  class User {
+    String userId;
+    String password;
+  }
+
+  enum FinancialMetric {
+    Revenue, Expenses, Profit;
+  }
+
+  enum TimePeriod {
+    Daily, Weekly, Monthly, Yearly;
+  }
+
+  class Report {
+    FinancialMetric metric;
+    TimePeriod period;
+    Account account;
+    User user;
+    double value;
+  }
+
+  class OverallReport {
+    FinancialMetric metric;
+    TimePeriod period;
+    double value;
+  }
+
+  composition FinancialInstitution -> Account [*];
+  composition FinancialInstitution -> User [*];
+  association Report -- Account;
+  association Report -- User;
+  association OverallReport -- FinancialInstitution;
+}

@@ -1,0 +1,55 @@
+
+classdiagram ContentManagementSystem {
+
+    class Content {
+      String uniqueIdentifier;
+      String title;
+      String contentType;
+      String contentPath;
+      List<String> tags;
+    Writable content;
+    }
+
+    class Article extends Content {
+      String textBody;
+      List<String> topics;
+    }
+
+    class Video extends Content {
+      String filePath;
+      List<String> genres;
+    }
+
+    class Image extends Content {
+      String filePath;
+      List<String> themes;
+    }
+
+    class Admin {
+      void createContent(Content content);
+      void editContent(Content content);
+      void deleteContent(Content content);
+    }
+
+    class User {
+      void viewContent(Content content);
+      void searchContent(String keyword);
+    }
+
+    class Analytics {
+      void trackViews(Content content);
+      void trackEngagement(Content content);
+    }
+
+    class ContentDatabase {
+      List<Content> contents;
+      void addContent(Content content);
+      void removeContent(Content content);
+      Content findContentById(String identifier);
+    }
+
+    composition ContentDatabase -> Content;
+    composition Admin -> ContentDatabase;
+    composition User -> ContentDatabase;
+    composition Analytics -> ContentDatabase;
+}

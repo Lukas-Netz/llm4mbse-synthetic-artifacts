@@ -1,0 +1,83 @@
+
+classdiagram VerticalFarmingSystem {
+
+    class VerticalFarmingSystem {
+      Hub centralControlUnit;
+      List<Module> modules;
+      Database plantDatabase;
+    }
+
+    abstract class Module {
+      String uniqueIdentifier;
+      ModuleStatus status;
+      ClimateControl climateControl;
+      Irrigation irrigation;
+      Lighting lighting;
+    }
+
+    class HydroponicModule extends Module {
+      NutrientSolution nutrientSolution;
+    }
+
+    class AeroponicModule extends Module {
+      NutrientMist nutrientMist;
+    }
+
+    class SoilBasedModule extends Module {
+      Soil soil;
+    }
+
+    class Hub {
+      -> Module [*];
+      void addModule(Module module);
+      void removeModule(Module module);
+      void updateModuleStatus(String moduleIdentifier, ModuleStatus status);
+      void updateClimateControl(String moduleIdentifier, ClimateControl climateControl);
+      void updateIrrigation(String moduleIdentifier, Irrigation irrigation);
+      void updateLighting(String moduleIdentifier, Lighting lighting);
+      ClimateControl getClimateControl(String moduleIdentifier);
+      Irrigation getIrrigation(String moduleIdentifier);
+      Lighting getLighting(String moduleIdentifier);
+    }
+
+    class ClimateControl {
+      int temperature;
+      int humidity;
+    }
+
+    class Irrigation {
+      boolean isActive;
+    }
+
+    class Lighting {
+      int intensity;
+    }
+
+    enum ModuleStatus {
+      InUse, NotInUse;
+    }
+
+    enum ClimateControl {
+      Temperature, Humidity;
+    }
+
+    enum Irrigation {
+      Active, Inactive;
+    }
+
+    enum Lighting {
+      High, Medium, Low;
+    }
+
+    class Database {
+      Map<String, PlantInfo> plantInfoMap;
+      void addPlantInfo(String moduleIdentifier, PlantInfo plantInfo);
+      PlantInfo getPlantInfo(String moduleIdentifier);
+    }
+
+    class PlantInfo {
+      String plantType;
+      double growthRate;
+      List<String> maintenanceTasks;
+    }
+}

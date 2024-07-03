@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram AutonomousSubseaVehicle  {
+
+  class AutonomousSubseaVehicle  {
+    String uniqueIdentifier;
+    VehicleStatus status;
+  }
+
+  class Sensor  {
+    String type;
+    Data data;
+  }
+
+  class Data  {
+    double waterTemperature;
+    double salinity;
+    boolean marineLifePresent;
+  }
+
+  class PropulsionSystem  {
+    PropulsionType type;
+  }
+
+  enum PropulsionType  {
+    Electric,
+    Hydraulic
+  ;}
+
+  class PowerSource  {
+    PowerSourceType type;
+  }
+
+  enum PowerSourceType  {
+    Batteries,
+    FuelCell
+  ;}
+
+  class CommunicationLink  {
+    CommunicationType type;
+  }
+
+  enum CommunicationType  {
+    Radio,
+    Satellite
+  ;}
+
+  class MissionControlCenter  {
+    void planMission();
+    void sendCommand(AutonomousSubseaVehicle asv, Command command);
+    void receiveData(AutonomousSubseaVehicle asv, Data data);
+  }
+
+  class Command  {
+    CommandType type;
+  }
+
+  enum CommandType  {
+    StartMission,
+    StopMission,
+    ChangePropulsionMode
+  ;}
+
+  class VehicleStatus  {
+    boolean operational;
+  }
+
+  composition AutonomousSubseaVehicle  ->  (has) Sensor[*];
+  composition AutonomousSubseaVehicle  ->  (has) PropulsionSystem;
+  composition AutonomousSubseaVehicle  ->  (has) PowerSource;
+  composition AutonomousSubseaVehicle  ->  (has) CommunicationLink;
+  composition MissionControlCenter  -> AutonomousSubseaVehicle[*];
+  composition AutonomousSubseaVehicle  ->  (has) VehicleStatus;
+}

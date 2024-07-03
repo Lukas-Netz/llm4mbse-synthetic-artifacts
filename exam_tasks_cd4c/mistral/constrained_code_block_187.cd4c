@@ -1,0 +1,33 @@
+
+classdiagram AirQualityMonitoring {
+
+  class Sensor {
+    String uniqueIdentifier;
+    String location;
+    SensorType type;
+  }
+
+  enum SensorType {
+    Temperature, Humidity, ParticulateMatter;
+  }
+
+  class MonitoringStation {
+    String uniqueIdentifier;
+    String location;
+    -> Sensor [*];
+  }
+
+  class CentralHub {
+    -> MonitoringStation [*];
+  }
+
+  class User {
+    String uniqueIdentifier;
+    void register();
+    void setAlertThreshold(int threshold);
+    void receiveAlert();
+  }
+
+  composition MonitoringStation -> Sensor [*];
+  composition CentralHub -> MonitoringStation [*];
+}

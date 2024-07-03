@@ -1,0 +1,25 @@
+
+classdiagram MassSpectrometrySystem {
+
+    class Experiment {
+      String identifier;
+      String description;
+      List<MassToChargeRatio> data;
+    }
+
+    class MassToChargeRatio {
+      double mz;
+      double intensity;
+    }
+
+    class DataAnalysis {
+      void filterData(Experiment experiment, Predicate<MassToChargeRatio> filter);
+      void sortData(Experiment experiment, Comparator<MassToChargeRatio> comparator);
+      void plotData(Experiment experiment);
+      void storeResults(Experiment experiment);
+      Experiment retrieveResults(String identifier);
+    }
+
+    composition MassSpectrometrySystem -> (has) DataAnalysis;
+    composition Experiment -> (has) MassToChargeRatio [*];
+}

@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram FitnessCenter  {
+
+  class Program  {
+    String name;
+    String description;
+    int duration;
+    ProgramType type;
+    Exercise[] exercises;
+  }
+
+  enum ProgramType  {
+    StrengthTraining,
+    Cardio,
+    Yoga
+  ;}
+
+  class Exercise  {
+    String name;
+    String description;
+    int difficultyLevel;
+  }
+
+  class Member  {
+    String name;
+    String email;
+    Program[] enrolledPrograms;
+    PersonalTrainer[] assignedTrainers;
+    Progress progress;
+  }
+
+  class PersonalTrainer  {
+    String name;
+    String certification;
+    Schedule schedule;
+    Member[] assignedMembers;
+  }
+
+  class Progress  {
+    double weight;
+    double height;
+    double bodyFatPercentage;
+    Goal goal;
+  }
+
+  class Goal  {
+    double targetWeight;
+    double targetBodyFatPercentage;
+  }
+
+  class Schedule  {
+    String[] days;
+    String[] timeSlots;
+  }
+
+  composition FitnessCenter -> (has) Program[*];
+  composition Program -> (has) Exercise[*];
+  composition Member -> (has) Program[*];
+  composition Member -> (has) PersonalTrainer[*];
+  composition PersonalTrainer -> (has) Member[*];
+  composition Progress -> (has) Goal;
+}

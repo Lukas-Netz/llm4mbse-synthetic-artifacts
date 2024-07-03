@@ -1,0 +1,55 @@
+
+classdiagram IndustrialSensorSystem {
+
+  class Sensor {
+    String uniqueIdentifier;
+    SensorType type;
+    realTimeData data;
+  }
+
+  enum SensorType {
+    Temperature, Pressure, Vibration;
+  }
+
+  class Actuator {
+    String uniqueIdentifier;
+    ActuatorType type;
+  }
+
+  enum ActuatorType {
+    Valve, Pump, Motor;
+  }
+
+  class CentralControlUnit {
+    -> Sensor [*];
+    -> Actuator [*];
+    void receiveCommand(Command command);
+    void storeData(Data data);
+    void analyzeData();
+    void detectAnomalies();
+  }
+
+  class Data {
+    String timestamp;
+    String sensorData;
+  }
+
+  class Command {
+    String commandType;
+    String targetActuator;
+  }
+
+  class DataStorageUnit {
+    -> Data [*];
+  }
+
+  class DataAnalyticsModule {
+    -> Data [*];
+    void analyzeData();
+  }
+
+  composition CentralControlUnit -> Sensor [*];
+  composition CentralControlUnit -> Actuator [*];
+  association CentralControlUnit -- DataStorageUnit;
+  association CentralControlUnit -- DataAnalyticsModule;
+}

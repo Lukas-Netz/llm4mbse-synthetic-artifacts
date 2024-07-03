@@ -1,0 +1,53 @@
+
+classdiagram ElderCareRobotics {
+
+  class Robot {
+    String name;
+    String type;
+    RobotState state;
+    Sensor [ ] sensors;
+  }
+
+  abstract class Sensor {
+    String name;
+    String type;
+  }
+
+  class TemperatureSensor extends Sensor {
+    double reading;
+  }
+
+  class PressureSensor extends Sensor {
+    double reading;
+  }
+
+  enum RobotState {
+    Idle, Active, Error;
+  }
+
+  class ControlUnit {
+    Robot robot;
+    void processSensorData();
+    void executeTask();
+    void receiveCommand();
+  }
+
+  class Caregiver {
+    void sendCommand(Robot robot);
+  }
+
+  class Elder {
+    void sendCommand(Robot robot);
+  }
+
+  class LocationTracker {
+    Robot robot;
+    void trackLocation();
+  }
+
+  composition Robot -> Sensor [*];
+  association ControlUnit -- ControlsRobot;
+  association Caregiver -- ControlsRobot;
+  association Elder -- ControlsRobot;
+  association LocationTracker -- TracksRobot;
+}

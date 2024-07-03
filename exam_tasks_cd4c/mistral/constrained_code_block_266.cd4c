@@ -1,0 +1,56 @@
+
+classdiagram MobilePOS {
+
+  class Store {
+    String name;
+    String uniqueIdentifier;
+    CashRegister [ ] cashRegisters;
+  }
+
+  class CashRegister {
+    String name;
+    String uniqueIdentifier;
+    Store assignedStore;
+    Transaction [ ] transactions;
+  }
+
+  class Transaction {
+    String uniqueIdentifier;
+    Product product;
+    Customer customer;
+  }
+
+  abstract class Product {
+    String name;
+    String uniqueIdentifier;
+    double price;
+    ProductType type;
+  }
+
+  enum ProductType {
+    Food, Beverages, Merchandise;
+  }
+
+  class Customer {
+    String name;
+    String uniqueIdentifier;
+    LoyaltyProgram loyaltyProgram;
+  }
+
+  class LoyaltyProgram {
+    String name;
+    String uniqueIdentifier;
+    Reward [ ] rewards;
+    Rule [ ] rules;
+  }
+
+  class Reward {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Rule {
+    String name;
+    String uniqueIdentifier;
+  }
+}

@@ -1,0 +1,38 @@
+
+classdiagram LaserProjectionMapping {
+
+  class Projector {
+    String uniqueIdentifier;
+    ProjectorType type;
+    String connection;
+    void calibrate();
+  }
+
+  enum ProjectorType {
+    DLP, LCD, Laser;
+  }
+
+  class Content {
+    String format;
+    void load();
+  }
+
+  enum ContentFormat {
+    MP4, JPEG, OBJ;
+  }
+
+  class Screen {
+    String uniqueIdentifier;
+    void setUp();
+  }
+
+  class Software {
+    -> Projector [*];
+    -> Screen [*];
+    Content render(Content content);
+    void adjustProjectionSettings(Projector projector);
+  }
+
+  composition Software -> Projector [*];
+  composition Software -> Screen [*];
+}

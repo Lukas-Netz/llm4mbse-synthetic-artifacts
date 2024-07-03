@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram InvoiceProcessingSystem  {
+
+  class Supplier  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Invoice  {
+    String uniqueInvoiceNumber;
+    Supplier supplier;
+    Date date;
+    double totalAmount;
+    PaymentStatus paymentStatus;
+  }
+
+  enum PaymentStatus  {
+    Paid, Pending;
+  }
+
+  class Report  {
+    double totalPaidAmount;
+    double totalPendingAmount;
+  }
+
+  class Reminder  {
+    Supplier supplier;
+    Invoice invoice;
+  }
+
+  class InvoiceStorage  {
+    Invoice[] invoices;
+  }
+
+  composition InvoiceStorage -> Invoice[*];
+  composition Supplier -> Invoice[*];
+  association Invoice -> Supplier;
+  association Report -> InvoiceStorage;
+  association Reminder -> Invoice;
+  association Invoice -> PaymentStatus;
+}

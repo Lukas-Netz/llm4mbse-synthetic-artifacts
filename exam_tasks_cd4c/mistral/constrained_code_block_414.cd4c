@@ -1,0 +1,67 @@
+
+classdiagram CodingBootcamp {
+
+  class Course {
+    String name;
+    String description;
+    int duration;
+    Instructor instructor;
+    CourseSection [ ] sections;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String bio;
+  }
+
+  class CourseSection {
+    String name;
+    Date startDate;
+  }
+
+  class Student {
+    String name;
+    String email;
+    CourseEnrollment [ ] enrollments;
+  }
+
+  class CourseEnrollment {
+    Course course;
+    Date startDate;
+    Date endDate;
+  }
+
+  class Administrator {
+    String name;
+    String email;
+  }
+
+  class Platform {
+    Administrator admin;
+    Instructor [ ] instructors;
+    Student [ ] students;
+    Course [ ] courses;
+    CourseEnrollment [ ] enrollments;
+  }
+
+  class Exercise {
+    String name;
+    int timeSpent;
+    boolean isCompleted;
+  }
+
+  class PaymentSystem {
+    String paymentMethod;
+    double amount;
+  }
+
+  composition Platform -> Administrator;
+  composition Platform -> Instructor [*];
+  composition Platform -> Student [*];
+  composition Course -> CourseSection [*];
+  composition CourseEnrollment -> Course [1];
+  composition CourseEnrollment -> Student [1];
+  association CourseEnrollment -> Exercise [*];
+  association CourseEnrollment -> PaymentSystem [0..1];
+}

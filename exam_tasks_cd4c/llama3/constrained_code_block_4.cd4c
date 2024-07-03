@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram TelecommunicationNetwork  {
+
+  class Node  {
+    String name;
+    NodeType type;
+  }
+
+  enum NodeType  {
+    Router, Switch, Server
+  ;}
+
+  class Router extends Node  {
+    String ipAddress;
+    String subnetMask;
+    String gateway;
+  }
+
+  class Switch extends Node  {
+    int portNumber;
+    String macAddress;
+  }
+
+  class Server extends Node  {
+    String ipAddress;
+    int portNumber;
+    ServerType serverType;
+  }
+
+  enum ServerType  {
+    Web, Database, File
+  ;}
+
+  class Connection  {
+    Node from;
+    Node to;
+    int bandwidth;
+    int latency;
+    ConnectionType type;
+  }
+
+  enum ConnectionType  {
+    Ethernet, WiFii, Fiber
+  ;}
+
+  class Network  {
+    Node  nodes  =  new  *Node;
+    Connection  connections  =  new  *Connection;
+    void addNode(Node node);
+    void removeNode(Node node);
+    void addConnection(Connection connection);
+    void removeConnection(Connection connection);
+    void monitorNetworkTraffic();
+    void monitorNetworkPerformance();
+  }
+
+  composition Network  ->  (has) Node  [*];
+  composition Network  ->  (has) Connection  [*];
+  association Node  ->  (has) Connection  [*];
+  association Connection  ->  (has) Node  [2];
+}

@@ -1,0 +1,54 @@
+
+classdiagram DeFiSystem {
+
+    class User {
+      String uniqueIdentifier;
+      String walletAddress;
+      void registerUser();
+      void loginUser();
+      void createLoan();
+      void manageCollateral();
+    }
+
+    class Loan {
+      String loanId;
+      String lenderId;
+      String borrowerId;
+      BigDecimal loanAmount;
+      BigDecimal interestRate;
+      List<DateTime> repaymentSchedule;
+      void createLoan(User lender, User borrower);
+      void manageLoan(Loan loan);
+    }
+
+    class Collateral {
+      String collateralId;
+      String collateralType;
+      BigDecimal collateralValue;
+      void createCollateral(User owner);
+      void manageCollateral(Collateral collateral);
+    }
+
+    class SmartContract {
+      String contractId;
+      Loan loanAgreement;
+      Collateral collateralAgreement;
+      void executeContract(Loan loan);
+    }
+
+    class Oracles {
+      String oracleId;
+      String dataSource;
+      String dataType;
+      BigDecimal retrieveData();
+    }
+
+    composition User -> (has) Loan;
+    composition User -> (has) Collateral;
+    composition User -> (has) SmartContract;
+    composition User -> (has) Oracles;
+
+    composition Loan -> (has) SmartContract;
+    composition Collateral -> (has) SmartContract;
+    composition SmartContract -> (has) Oracles;
+}

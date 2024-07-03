@@ -1,0 +1,50 @@
+
+classdiagram DocumentReviewSystem {
+
+  class DocumentRepository {
+    -> Document [*];
+  }
+
+  class Document {
+    String uniqueIdentifier;
+    String title;
+    String content;
+  }
+
+  class DocumentAnalyzer {
+    NaturalLanguageProcessor nlp;
+    Document analyze(Document document);
+  }
+
+  class Categorizer {
+    MachineLearningAlgorithm ml;
+    String categorize(Document document);
+  }
+
+  class UserInterface {
+    -> User [*];
+    -> Document [*];
+    String search(String query);
+    void displayCategorizedDocuments();
+  }
+
+  class User {
+    String username;
+    String password;
+  }
+
+  class NaturalLanguageProcessor {
+    void analyzeText(String text);
+  }
+
+  class MachineLearningAlgorithm {
+    void trainModel();
+    void predictCategory(String text);
+  }
+
+  composition DocumentRepository -> Document [*];
+  association DocumentAnalyzer -> Document [1..*];
+  association Categorizer -> Document [1..*];
+  association UserInterface -> User [*];
+  association UserInterface -> Document [*];
+}

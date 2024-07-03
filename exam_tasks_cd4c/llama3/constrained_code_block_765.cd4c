@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram DroneTrafficControl  {
+
+  class Drone  {
+    String uniqueIdentifier;
+    Location location;
+    Speed speed;
+    DroneType type;
+  }
+
+  class AirTrafficControlCenter  {
+    String name;
+    Location location;
+  }
+
+  class Airport  {
+    String name;
+    Location location;
+  }
+
+  class DroneType  {
+    String name;
+    CargoCapacity cargoCapacity;
+    PassengerCapacity passengerCapacity;
+    SurveillanceCapabilities surveillanceCapabilities;
+  }
+
+  class Location  {
+    double latitude;
+    double longitude;
+  }
+
+  class Speed  {
+    double value;
+  }
+
+  class CargoCapacity  {
+    int value;
+  }
+
+  class PassengerCapacity  {
+    int value;
+  }
+
+  class SurveillanceCapabilities  {
+    String value;
+  }
+
+  composition Drone  ->  (has) AirTrafficControlCenter;
+  composition Drone  ->  (has) Airport;
+  composition AirTrafficControlCenter  ->  (has) Drone[*];
+  composition Airport  ->  (has) Drone[*];
+  composition DroneType  ->  (has) CargoCapacity;
+  composition DroneType  ->  (has) PassengerCapacity;
+  composition DroneType  ->  (has) SurveillanceCapabilities;
+}

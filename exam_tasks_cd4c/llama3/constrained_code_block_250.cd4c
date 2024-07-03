@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram SmartWaterQualityMonitoringSystem  {
+
+  class Sensor  {
+    String location;
+    SensorType type;
+    pHLevel pH;
+    Temperature temperature;
+    Turbidity turbidity;
+  }
+
+  class MonitoringStation  {
+    String location;
+    Sensor  sensors  ;
+    void collectData(Sensor sensor);
+    void transmitData();
+  }
+
+  class CentralDatabase  {
+    void storeData(Sensor sensor);
+    void provideRealTimeUpdates(MonitoringStation monitoringStation);
+    void alertAuthorities();
+  }
+
+  class Authority  {
+    void receiveAlert();
+  }
+
+  class SensorType  {
+    String name;
+  }
+
+  class pHLevel  {
+    double value;
+  }
+
+  class Temperature  {
+    double value;
+  }
+
+  class Turbidity  {
+    double value;
+  }
+
+  composition MonitoringStation  ->  (has) Sensor  [*];
+  composition CentralDatabase  ->  (has) MonitoringStation  [*];
+  composition Authority  ->  (has) CentralDatabase  [1];
+  association Sensor  ->  (located) location;
+  association MonitoringStation  ->  (located) location;
+  association CentralDatabase  ->  (located) location;
+  composition CentralDatabase  ->  (stores) Sensor  [*];
+  composition MonitoringStation  ->  (transmits) Sensor  [*];
+  composition Authority  ->  (receives) Alert  [*];
+}

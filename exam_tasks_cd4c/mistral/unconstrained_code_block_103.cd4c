@@ -1,0 +1,37 @@
+
+classdiagram LunarExploration {
+
+  class Spacecraft {
+    Rover rover;
+    CommunicationModule communicationModule;
+    int fuelLevel;
+    NavigationSystem navigationSystem;
+    void adjustCourse();
+    void communicateWithEarth();
+  }
+
+  class Rover {
+    int speed;
+    String direction;
+    int altitude;
+    void move();
+    void stop();
+    void collectSamples();
+  }
+
+  class CommunicationModule {
+    int transmissionPower;
+    int frequency;
+    void sendData();
+    void receiveData();
+  }
+
+  class LunarSurface {
+    String terrainType;
+    boolean hasHazards;
+  }
+
+  composition Spacecraft -> Rover;
+  composition Spacecraft -> CommunicationModule;
+  association Spacecraft -- LunarSurface;
+}

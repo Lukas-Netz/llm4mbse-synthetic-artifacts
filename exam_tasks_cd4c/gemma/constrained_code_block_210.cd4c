@@ -1,0 +1,38 @@
+
+
+classdiagram LearningPortal {
+
+  class Course {
+    String title;
+    String description;
+    String uniqueIdentifier;
+    Instructor instructor;
+    Section sections;
+  }
+
+  class Instructor {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    List<Course> courses;
+  }
+
+  class Student {
+    String name;
+    String email;
+    String uniqueIdentifier;
+    List<Course> courses;
+  }
+
+  class Section {
+    String uniqueIdentifier;
+    Date startDate;
+    Date endDate;
+    int maximumCapacity;
+  }
+
+  composition Course -> (has) Instructor;
+  composition Course -> (has) Sections;
+  association Student -> Course;
+  association Section -> Course;
+}

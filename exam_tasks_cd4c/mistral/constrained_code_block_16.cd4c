@@ -1,0 +1,74 @@
+
+classdiagram VRSystem {
+
+  class VRSystem {
+    Headset headset;
+    Controller [  ] controllers;
+    Computer computer;
+    Network [  ] network;
+    SoundSystem soundSystem;
+    Server server;
+  }
+
+  class Headset {
+    String displayResolution;
+    int refreshRate;
+  }
+
+  class Controller {
+    Button [  ] buttons;
+    Sensor [  ] sensors;
+  }
+
+  class Computer {
+    int processingPower;
+    int memory;
+  }
+
+  class VRSoftware {
+    String name;
+    int versionNumber;
+    String type;
+  }
+
+  class Game extends VRSoftware {
+    String title;
+    String genre;
+    DifficultyLevel difficultyLevel;
+  }
+
+  class Application extends VRSoftware {
+    String purpose;
+    Feature [  ] features;
+  }
+
+  enum DifficultyLevel {
+    Easy, Medium, Hard;
+  }
+
+  class Network {
+    int storageCapacity;
+  }
+
+  class Server {
+    int storageCapacity;
+  }
+
+  class SoundSystem {
+    Speaker [  ] speakers;
+    int volumeControl;
+  }
+
+  class Speaker {
+  }
+
+  class Feature {
+  }
+
+  composition VRSystem -> Headset;
+  composition VRSystem -> Controller [*];
+  composition VRSystem -> Computer;
+  composition VRSystem -> Network [0..1];
+  composition VRSystem -> SoundSystem;
+  composition VRSystem -> Server [0..1];
+}

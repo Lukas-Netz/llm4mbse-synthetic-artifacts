@@ -1,0 +1,38 @@
+
+classdiagram WearableAirQualityMonitor {
+
+    class WearableDevice {
+      int temperature;
+      int humidity;
+      int airQualityIndex;
+      void sendData(MobileApp app);
+    }
+
+    class MobileApp {
+      String userID;
+      String deviceID;
+      void displayData(WearableDevice device);
+      void setAlerts(WearableDevice device);
+    }
+
+    class CloudServer {
+      int storageCapacity;
+      void storeData(WearableDevice device);
+      void runAnalytics();
+    }
+
+    association WearableDevice 
+        to 
+        (has) 
+        -> MobileApp;
+
+    association MobileApp 
+        to 
+        (has) 
+        -> CloudServer;
+
+    association WearableDevice 
+        to 
+        (has) 
+        -> CloudServer;
+}

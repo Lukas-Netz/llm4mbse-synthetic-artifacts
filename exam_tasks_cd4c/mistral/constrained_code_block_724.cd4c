@@ -1,0 +1,48 @@
+
+classdiagram VirtualMarineBiology {
+
+  class Ocean {
+    String environmentalConditions;
+  }
+
+  abstract class MarineLife {
+    String speciesName;
+    String habitat;
+    String behavior;
+  }
+
+  abstract class UnderwaterStructure {
+    String type;
+    String location;
+  }
+
+  class Diver {
+    String name;
+    int experienceLevel;
+    Equipment equipment;
+  }
+
+  class ResearchVessel {
+    String name;
+    int crewSize;
+    Equipment equipment;
+  }
+
+  class Laboratory {
+    Equipment equipment;
+  }
+
+  class Equipment {
+    String name;
+  }
+
+  composition Ocean [*] Diver [many]
+  -- UnderwaterStructure [*]
+  - 											;
+  composition Ocean [*] ResearchVessel [many]
+  -- MarineLife [*]
+  - 											;
+  composition ResearchVessel [1] Laboratory
+  -- Sample [*]
+  - 											;
+}

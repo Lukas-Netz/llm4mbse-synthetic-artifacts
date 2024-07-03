@@ -1,0 +1,45 @@
+
+classdiagram AI_Predictive_Analytics_System {
+
+    class DataIngestion {
+      void collectData(Source source);
+      DataData[] getData();
+    }
+
+    class DataProcessing {
+      DataData[] cleanData(DataData[] rawData);
+      DataData[] preprocessData(DataData[] cleanedData);
+    }
+
+    class MachineLearning {
+      Model trainModel(DataData[] preprocessedData);
+      CustomerChurn predictChurn(DataData[] preprocessedData);
+    }
+
+    class Recommendation {
+      Recommendation[] generateRecommendations(CustomerChurn churnPrediction);
+    }
+
+    class CustomerChurn {
+      boolean isLikelyToChurn;
+      String reason;
+    }
+
+    class Model {
+      Model train(DataData[] preprocessedData);
+      CustomerChurn predict(DataData[] preprocessedData);
+    }
+
+    class Source {
+      String dataType;
+    }
+
+    class DataData {
+      String customerId;
+      String data;
+    }
+
+    association DataIngestion -> DataProcessing;
+    association DataProcessing -> MachineLearning;
+    association MachineLearning -> Recommendation;
+}

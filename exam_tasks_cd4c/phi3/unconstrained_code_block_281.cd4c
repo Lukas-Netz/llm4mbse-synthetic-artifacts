@@ -1,0 +1,59 @@
+
+classdiagram InteractiveAquariumDisplay {
+
+    class Aquarium {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Display {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Fish {
+      String uniqueIdentifier;
+      String name;
+      String species;
+    }
+
+    class AquaticPlant {
+      String uniqueIdentifier;
+      String name;
+      String species;
+    }
+
+    class InteractiveElement {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class UserProfile {
+      String uniqueIdentifier;
+      String name;
+      Set<String> preferences;
+    }
+
+    class AquariumDisplaySystem {
+      Aquarium aquarium;
+      Display display;
+      Fish fish;
+      AquaticPlant plant;
+      InteractiveElement element;
+      UserProfile user;
+
+      void displayAquariumInfo();
+      void interactWithAquarium();
+      void updateUserPreferences();
+    }
+
+    composition AquariumDisplaySystem -> (has) Aquarium;
+    composition AquariumDisplaySystem -> (has) Display;
+    composition AquariumDisplaySystem -> (has) Fish;
+    composition AquariumDisplaySystem -> (has) AquaticPlant;
+    composition AquariumDisplaySystem -> (has) InteractiveElement;
+    composition AquariumDisplaySystem -> (has) UserProfile;
+}

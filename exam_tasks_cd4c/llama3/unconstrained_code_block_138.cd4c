@@ -1,0 +1,65 @@
+
+
+
+
+classdiagram MobilePOS  {
+
+  class Store  {
+    String name;
+    String uniqueIdentifier;
+    -> CashRegister[*];
+  }
+
+  class CashRegister  {
+    String name;
+    String uniqueIdentifier;
+    -> Store;
+  }
+
+  class Transaction  {
+    String uniqueIdentifier;
+    -> Product;
+    -> Customer;
+  }
+
+  class Product  {
+    String name;
+    double price;
+    String uniqueIdentifier;
+    -> ProductType;
+  }
+
+  class Customer  {
+    String name;
+    String uniqueIdentifier;
+    -> LoyaltyProgram;
+  }
+
+  class LoyaltyProgram  {
+    String name;
+    String uniqueIdentifier;
+    -> Reward[*];
+    -> Rule[*];
+  }
+
+  class Reward  {
+    String name;
+    String uniqueIdentifier;
+    -> LoyaltyProgram;
+  }
+
+  class Rule  {
+    String name;
+    String uniqueIdentifier;
+    -> LoyaltyProgram;
+  }
+
+  composition Store -> CashRegister[*];
+  composition CashRegister -> Store;
+  composition Transaction -> Product;
+  composition Transaction -> Customer;
+  composition Product -> ProductType;
+  composition Customer -> LoyaltyProgram;
+  composition LoyaltyProgram -> Reward[*];
+  composition LoyaltyProgram -> Rule[*];
+}

@@ -1,0 +1,61 @@
+
+classdiagram MVC {
+
+  class MVC {
+    String name;
+    String uniqueIdentifier;
+    Team team;
+    Schedule schedule;
+    Inventory inventory;
+  }
+
+  class Team {
+    -> Veterinarian [*];
+    -> Technician [*];
+  }
+
+  class Veterinarian {
+    String name;
+    Role role;
+  }
+
+  class Technician {
+    String name;
+    Role role;
+  }
+
+  enum Role {
+    Veterinarian, Technician;
+  }
+
+  class Schedule {
+    -> Visit [*];
+  }
+
+  class Visit {
+    String location;
+    List<Animal> animals;
+  }
+
+  class Animal {
+    String name;
+    Species species;
+    List<MedicalCondition> medicalConditions;
+  }
+
+  enum Species {
+    Cow, Pig, Chicken;
+  }
+
+  class MedicalCondition {
+    String name;
+  }
+
+  class Inventory {
+    -> MedicalSupply [*];
+  }
+
+  class MedicalSupply {
+    String name;
+  }
+}

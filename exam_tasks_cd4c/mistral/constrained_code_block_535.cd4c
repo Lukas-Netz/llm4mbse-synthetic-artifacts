@@ -1,0 +1,56 @@
+
+classdiagram UnderwaterArchaeology {
+
+  class TeamMember {
+    String uniqueIdentifier;
+    String role;
+    Set<String> skills;
+  }
+
+  class Archaeologist extends TeamMember {
+  }
+
+  class Diver extends TeamMember {
+  }
+
+  class Engineer extends TeamMember {
+  }
+
+  class Submersible {
+    String name;
+  }
+
+  class ROV {
+    String name;
+  }
+
+  class Sensor {
+    String name;
+  }
+
+  class Database {
+    Set<Artifact> knownArtifacts;
+    Set<Artifact> discoveredArtifacts;
+  }
+
+  class Artifact {
+    String name;
+    String description;
+  }
+
+  class Catalog {
+    Database database;
+  }
+
+  class TeamLeader extends TeamMember {
+    Database database;
+    Set<Submersible> submersibles;
+    Set<ROV> rovs;
+    Set<Sensor> sensors;
+  }
+
+  composition TeamLeader -> Database;
+  composition TeamLeader -> Submersible [*];
+  composition TeamLeader -> ROV [*];
+  composition TeamLeader -> Sensor [*];
+}

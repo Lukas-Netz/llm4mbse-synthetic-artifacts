@@ -1,0 +1,76 @@
+
+
+
+
+classdiagram MachineLearningPlatform  {
+
+  class ProjectManager  {
+    String name;
+    String description;
+  }
+
+  class Project  {
+    String name;
+    String description;
+    -> Model[*];
+  }
+
+  abstract class Model  {
+    String name;
+    String description;
+    ModelStatus status;
+  }
+
+  class ClassificationModel extends Model  {
+    double accuracy;
+  }
+
+  class RegressionModel extends Model  {
+    double r2;
+  }
+
+  class ClusteringModel extends Model  {
+    int numClusters;
+  }
+
+  class ModelVersion  {
+    int versionNumber;
+    String description;
+    -> Metric[*];
+  }
+
+  class Metric  {
+    String name;
+    double value;
+  }
+
+  class User  {
+    String username;
+    String password;
+    UserPrivilege privilege;
+  }
+
+  enum UserPrivilege  {
+    Administrator, DataScientist
+  ;}
+
+  class Administrator extends User  {
+    -> Project[*];
+    -> Model[*];
+    -> User[*];
+  }
+
+  class DataScientist extends User  {
+    -> Project[*];
+    -> Model[*];
+  }
+
+  composition ProjectManager  ->  (has) Project[*];
+  composition Project  ->  (has) Model[*];
+  composition Model  ->  (has) ModelVersion[*];
+  composition ModelVersion  ->  (has) Metric[*];
+  composition User  ->  (has) UserPrivilege;
+  composition Administrator  ->  (has) Project[*];
+  composition Administrator  ->  (has) Model[*];
+  composition Administrator  ->  (has) User[*];
+  }

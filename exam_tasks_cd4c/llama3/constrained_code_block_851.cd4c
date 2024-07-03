@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram SmartFabricSystem  {
+
+  class Sensor  {
+    PhysiologicalParameter parameter;
+  }
+
+  class ProcessingUnit  {
+    Sensor[] sensors;
+    void analyzeData();
+  }
+
+  class CommunicationModule  {
+    void transmitData();
+    void receiveCommands();
+  }
+
+  class PowerSource  {
+    boolean isRechargeable;
+  }
+
+  class PhysiologicalParameter  {
+    String name;
+    double value;
+  }
+
+  class SmartFabricSystem  {
+    ProcessingUnit processingUnit;
+    CommunicationModule communicationModule;
+    PowerSource powerSource;
+  }
+
+  composition SmartFabricSystem -> (has) ProcessingUnit;
+  composition SmartFabricSystem -> (has) CommunicationModule;
+  composition SmartFabricSystem -> (has) PowerSource;
+  composition ProcessingUnit -> Sensor[*];
+  composition CommunicationModule -> SmartFabricSystem[*];
+  composition PowerSource -> SmartFabricSystem[*];
+}

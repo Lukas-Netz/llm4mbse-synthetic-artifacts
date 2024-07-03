@@ -1,0 +1,44 @@
+
+
+classdiagram AutonomousAgriculture {
+
+    class Farm {
+      String name;
+      String location;
+    }
+
+    class Field {
+      String name;
+      int size;
+      String type;
+    }
+
+    class Tractor {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      Field assignedField;
+      Task currentTask;
+    }
+
+    enum Task {
+      Seeding, Spraying, Harvesting
+    
+
+    
+;
+    }
+
+    class Report {
+      String generateReport(Tractor tractor);
+      String generateReport(Field field);
+    }
+
+  composition Farm -> (has) Field [*];
+  composition Farm -> (has) Tractor [*];
+  association Tractor -> Field;
+  association Tractor -> Task;
+  association Report -> Farm;
+  association Report -> Field;
+  association Report -> Tractor;
+}

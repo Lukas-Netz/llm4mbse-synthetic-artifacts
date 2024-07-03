@@ -1,0 +1,70 @@
+
+classdiagram TransparencyPlatform {
+
+  class CitizenPortal {
+    -> CitizenRequest [*];
+    -> Notification [*];
+  }
+
+  class GovernmentPortal {
+    -> CitizenRequest [*];
+    -> Response [*];
+  }
+
+  class CitizenRequest {
+    String requestId;
+    RequestType requestType;
+    String status;
+    GovernmentResponse response;
+    Rating rating;
+  }
+
+  class RequestType {
+    String type;
+  }
+
+  class GovernmentResponse {
+    String responseId;
+    String format;
+    String content;
+  }
+
+  class ResponseFormat {
+    String format;
+  }
+
+  class Rating {
+    int transparencyScore;
+    String feedback;
+  }
+
+  class Database {
+    -> CitizenRequest [*];
+    -> Response [*];
+    -> Rating [*];
+  }
+
+  class Notification {
+    String notificationId;
+    String recipient;
+    String message;
+  }
+
+  class Analytics {
+    -> CitizenRequest [*];
+    -> Response [*];
+    -> Rating [*];
+    void generateReports();
+  }
+
+  composition CitizenPortal -> Database;
+  composition GovernmentPortal -> Database;
+  composition Database -> CitizenRequest [*];
+  composition Database -> Response [*];
+  composition Database -> Rating [*];
+  association CitizenPortal -> CitizenRequest [*];
+  association GovernmentPortal -> CitizenRequest [*];
+  association CitizenRequest -> Response [1];
+  association CitizenRequest -> Rating [1];
+  association Analytics -> CitizenRequest [*];
+ 				}

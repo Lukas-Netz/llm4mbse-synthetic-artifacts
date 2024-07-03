@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram SpaceTourismManagement  {
+
+  class SpaceAgency  {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  class Spacecraft  {
+    String name;
+    SpacecraftType type;
+    int capacity;
+  }
+
+  enum SpacecraftType  {
+    Shuttle, Spaceship, etc;
+  }
+
+  class Package  {
+    String name;
+    double price;
+    Spacecraft spacecraft;
+    Service[] services;
+  }
+
+  class Service  {
+    String name;
+    String description;
+  }
+
+  class Tourist  {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Booking  {
+    Date date;
+    Package package;
+    Tourist tourist;
+  }
+
+  composition SpaceAgency -> Spacecraft[*];
+  composition Spacecraft -> Package[*];
+  composition Package -> Service[*];
+  composition Booking -> Package[*];
+  composition Booking -> Tourist[*];
+}

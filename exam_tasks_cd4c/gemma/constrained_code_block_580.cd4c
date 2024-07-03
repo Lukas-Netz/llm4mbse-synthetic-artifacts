@@ -1,0 +1,41 @@
+
+
+classdiagram SmartGridSystem {
+
+  class SmartGridSystem {
+    Server server;
+    DataAnalytics analytics;
+    Visualization visualization;
+  }
+
+  class Server {
+    -> SmartMeter [*];
+    void storeData(SmartMeterData data);
+  }
+
+  class SmartMeter {
+    String uniqueIdentifier;
+    int energyConsumptionkWh;
+  }
+
+  class DataAnalytics {
+    void calculateAverageConsumption();
+    void identifyPeakHours();
+    void detectAnomalies();
+  }
+
+  class Visualization {
+    void displayData(SmartMeterData data);
+    void configureAlerts();
+  }
+
+  class SmartMeterData {
+    String timestamp;
+    int energyConsumptionkWh;
+  }
+
+  composition SmartGridSystem -> (has) Server;
+  composition SmartGridSystem -> (has) DataAnalytics;
+  composition SmartGridSystem -> (has) Visualization;
+  association SmartMeter -> SmartGridSystem;
+}

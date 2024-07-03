@@ -1,0 +1,50 @@
+
+
+
+
+classdiagram VirtualHomeTour  {
+
+  class Property  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    PropertyType type;
+  }
+
+  enum PropertyType  {
+    Residential, Commercial, Industrial;
+  }
+
+  class VirtualTour  {
+    String uniqueIdentifier;
+    Property property;
+    List<Scene> scenes;
+  }
+
+  class Scene  {
+    String uniqueIdentifier;
+    VirtualTour virtualTour;
+    List<MediaElement> mediaElements;
+  }
+
+  class MediaElement  {
+    String uniqueIdentifier;
+    Scene scene;
+    MediaElementType type;
+  }
+
+  enum MediaElementType  {
+    Image, Video, ThreeDModel;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    List<VirtualTour> createdTours;
+    List<VirtualTour> ratedTours;
+  }
+
+  composition VirtualTour -> (has) Property;
+  composition VirtualTour -> (has) Scene[*];
+  composition Scene -> (has) MediaElement[*];
+  composition User -> VirtualTour[*];
+}

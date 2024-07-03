@@ -1,0 +1,32 @@
+
+
+classdiagram BrainwaveControlSystem {
+
+  class BrainwaveInterface {
+    int samplingRate;
+    int frequencyRange;
+    List<BrainwaveData> signalProcessingAlgorithms;
+  }
+
+  class DeviceController {
+    BrainwaveData processBrainWaveData(BrainwaveData data);
+    void interpretBrainWaveData(BrainwaveData data);
+  }
+
+  class ControlledDevice {
+    int movementRange;
+    int speed;
+    int precision;
+  }
+
+  class UserProfile {
+    String userId;
+    List<BrainwaveData> brainWavePatterns;
+    List<ControlledDevice> devicePreferences;
+  }
+
+  composition BrainwaveInterface -> DeviceController [1..*];
+  composition DeviceController -> ControlledDevice [1..*];
+  composition UserProfile -> DeviceController [0..*];
+  association UserProfile -> ControlledDevice [0..*];
+}

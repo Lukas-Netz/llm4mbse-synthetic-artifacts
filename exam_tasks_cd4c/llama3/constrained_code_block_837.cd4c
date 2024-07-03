@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram SelfHealingMaterials  {
+
+  class SHMSystem  {
+    ControlUnit controlUnit;
+    Sensor  sensor  ;
+    Actuator  actuator  ;
+  }
+
+  class ControlUnit  {
+    Material material;
+    RepairMethod repairMethod;
+    void analyzeSignal(Signal signal);
+    void sendCommand(Actuator actuator);
+  }
+
+  abstract class Sensor  {
+    Signal signal;
+  }
+
+  class MechanicalSensor extends Sensor  {
+    void detectCrack();
+  }
+
+  class ChemicalSensor extends Sensor  {
+    void detectCrack();
+  }
+
+  abstract class Actuator  {
+    void applyPressure();
+  }
+
+  class MechanicalActuator extends Actuator  {
+    void applyPressure();
+  }
+
+  class ChemicalActuator extends Actuator  {
+    void applyPressure();
+  }
+
+  class Material  {
+    String type;
+  }
+
+  enum RepairMethod  {
+    Mechanical, Chemical;
+  }
+
+  enum Signal  {
+    CrackDetected;
+  }
+
+  composition SHMSystem -> (has) ControlUnit;
+  composition ControlUnit -> (has) Sensor;
+  composition ControlUnit -> (has) Actuator;
+  composition Sensor -> (has) Signal;
+  composition Actuator -> (has) Material;
+}

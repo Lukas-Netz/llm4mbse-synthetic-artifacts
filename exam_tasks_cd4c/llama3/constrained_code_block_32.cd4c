@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram MediaStreamingService  {
+
+  class User  {
+    String username;
+    String password;
+    List<Playlist> playlists;
+    List<Rating> ratings;
+    List<PaymentMethod> paymentMethods;
+  }
+
+  class Playlist  {
+    String name;
+    List<MediaItem> mediaItems;
+  }
+
+  class MediaItem  {
+    String title;
+    String description;
+    String genre;
+    int rating;
+  }
+
+  class Rating  {
+    User user;
+    MediaItem mediaItem;
+    int ratingValue;
+  }
+
+  class PaymentMethod  {
+    User user;
+    String type;
+  }
+
+  class ContentProvider  {
+    List<MediaItem> catalog;
+  }
+
+  class PaymentSystem  {
+    List<PaymentMethod> paymentMethods;
+  }
+
+  composition User -> Playlist [1..*];
+  composition Playlist -> MediaItem [1..*];
+  composition User -> Rating [1..*];
+  composition User -> PaymentMethod [1..*];
+  composition ContentProvider -> MediaItem [1..*];
+  composition PaymentSystem -> PaymentMethod [1..*];
+  association User -> ContentProvider [1..1];
+  association User -> PaymentSystem [1..1];
+}

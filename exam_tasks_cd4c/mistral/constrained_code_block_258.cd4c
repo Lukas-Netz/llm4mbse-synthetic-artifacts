@@ -1,0 +1,60 @@
+
+classdiagram SurveyTool {
+
+  class User {
+    String username;
+    String password;
+    Survey [ ] createdSurveys;
+  }
+
+  class Admin extends User {
+    String adminPassword;
+  }
+
+  class Survey {
+    String title;
+    String description;
+    Date startDate;
+    Date endDate;
+    Question [ ] questions;
+    User [ ] respondents;
+  }
+
+  abstract class Question {
+    String questionText;
+    QuestionType questionType;
+  }
+
+  class MultipleChoiceQuestion extends Question {
+    String [ ] options;
+  }
+
+  class OpenEndedQuestion extends Question {
+  }
+
+  enum QuestionType {
+    MultipleChoice, OpenEnded;
+  }
+
+  class Response {
+    User responder;
+    Survey survey;
+    Question question;
+    String answer;
+  }
+
+  composition User [ * ] createsSurvey [  Survey [ ] ]
+  -- Survey [ * ] << contains >>  -  { 											ordered }						;
+  composition Survey [ * ] hasQuestion [  Question [ ] ]
+  -- Question [ * ] << containedBy >>  -  { 											ordered }						;
+  composition Response [ * ] belongsToSurvey [  Survey [ ] ]
+  -- Survey [ * ] << has >>  -  { 											ordered }						;
+  association User [ * ] respondsToSurvey [  Survey [ ] ]
+  -- Survey [ * ] << hasResponses >>  -  { 											ordered }						;
+  association Admin [ * ] managesUser [  User [ ] ]
+  -- User [ * ] << managedBy >>  -  { 											ordered }						;
+  association Admin [ * ] managesSurvey [  Survey [ ] ]
+  -- Survey [ * ] << managedBy >>  -  { 											ordered }						;
+  association Admin [ * ] managesQuestion [  Question [ ] ]
+  -- Question [ * ] << managedBy >>  -  { 											ordered }						;
+}

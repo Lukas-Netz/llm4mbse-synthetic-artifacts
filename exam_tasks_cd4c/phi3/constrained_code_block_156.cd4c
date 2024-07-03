@@ -1,0 +1,60 @@
+
+classdiagram AIHRSolutions {
+
+    class EmployeeProfile {
+      String uniqueIdentifier;
+      String name;
+      String jobTitle;
+      String department;
+      List<String> jobTitles;
+    }
+
+    class TrainingProgram {
+      String uniqueIdentifier;
+      String description;
+      List<String> jobTitles;
+    }
+
+    class PerformanceEvaluation {
+      String uniqueIdentifier;
+      EmployeeProfile employee;
+      TrainingProgram trainingProgram;
+      Attendance attendance;
+      Productivity productivity;
+      QualityWork qualityWork;
+    }
+
+    class Report {
+      String reportType;
+      EmployeeProfile employee;
+      TrainingProgram trainingProgram;
+      PerformanceEvaluation performanceEvaluation;
+    }
+
+    class Recommendation {
+      EmployeeProfile employee;
+      List<TrainingProgram> recommendedPrograms;
+    }
+
+    class AIHRSolutions {
+      EmployeeProfile employeeProfile;
+      List<TrainingProgram> trainingPrograms;
+      List<PerformanceEvaluation> performanceEvaluations;
+      List<Report> reports;
+      List<Recommendation> recommendations;
+
+      void addEmployeeProfile(EmployeeProfile profile);
+      void addTrainingProgram(TrainingProgram program);
+      void addPerformanceEvaluation(PerformanceEvaluation evaluation);
+      void addReport(Report report);
+      void addRecommendation(Recommendation recommendation);
+      void generateReport(EmployeeProfile employee);
+      void generateRecommendation(EmployeeProfile employee);
+    }
+
+    association AIHRSolutions -> EmployeeProfile [*];
+    association AIHRSolutions -> TrainingProgram [*];
+    association AIHRSolutions -> PerformanceEvaluation [*];
+    association AIHRSolutions -> Report [*];
+    association AIHRSolutions -> Recommendation [*];
+}

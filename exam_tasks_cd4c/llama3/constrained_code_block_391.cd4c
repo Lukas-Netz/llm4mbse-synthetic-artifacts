@@ -1,0 +1,45 @@
+
+
+
+
+classdiagram MuseumTour  {
+
+  class Museum  {
+    String name;
+    Room  room  ; 
+    Exhibit  exhibit  ; 
+  }
+
+  class Room  {
+    String name;
+    Exhibit  exhibit  ; 
+  }
+
+  class Exhibit  {
+    String name;
+    String description;
+    Artifact  artifact  ; 
+  }
+
+  class Artifact  {
+    String uniqueId;
+    String description;
+    Type  type  ; 
+  }
+
+  enum Type  {
+    Painting, Sculpture, Artifact;
+  }
+
+  composition Museum  ->  (has) Room;
+  composition Room  ->  (has) Exhibit;
+  composition Exhibit  ->  (has) Artifact;
+  association Artifact  ->  (is) of  [0..*]  ; 
+  association Exhibit  ->  (has)  [Artifact]  Artifact;
+  association Room  ->  (has)  [Exhibit]  Exhibit;
+  association Museum  ->  (has)  [Exhibit]  Exhibit;
+  association Artifact  ->  (has)  [Type]  Type;
+  association Exhibit  ->  (has)  [Type]  Type;
+  association Room  ->  (has)  [Type]  Type;
+  association Museum  ->  (has)  [Type]  Type;
+}

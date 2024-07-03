@@ -1,0 +1,59 @@
+
+
+
+
+classdiagram WirelessChargingSystem  {
+
+  class ChargingPad  {
+    String uniqueId;
+    Location location;
+    ChargingType type;
+    int capacity;
+    int usage;
+    double temperature;
+    boolean isHealthy;
+  }
+
+  class Device  {
+    String uniqueId;
+    DeviceType type;
+    ChargingStatus status;
+  }
+
+  class User  {
+    String uniqueId;
+    Device  [  ] devices;
+  }
+
+  class Notification  {
+    String message;
+    User recipient;
+  }
+
+  enum ChargingType  {
+    FastCharging,
+    SlowCharging,
+    UniversalCharging
+  ;}
+
+  enum DeviceType  {
+    Phone,
+    Watch,
+    Earbuds
+  ;}
+
+  enum ChargingStatus  {
+    Charging,
+    FullyCharged,
+    NotCharging
+  ;}
+
+  composition ChargingPad  ->  (has) Location;
+  composition ChargingPad  ->  (has) ChargingType;
+  composition Device  ->  (has) DeviceType;
+  composition User  ->  (has) Device  [  *  ];
+  composition Notification  ->  (has) User;
+  composition ChargingPad  ->  (has) Usage;
+  composition ChargingPad  ->  (has) Temperature;
+  composition ChargingPad  ->  (has) isHealthy;
+}

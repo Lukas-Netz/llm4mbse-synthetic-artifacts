@@ -1,0 +1,53 @@
+
+classdiagram GenomeEditingSoftware {
+
+  class Project {
+    String name;
+    String description;
+    Gene [ ] genes;
+  }
+
+  class Gene {
+    String name;
+    String sequence;
+    GeneStatus status;
+  }
+
+  enum GeneStatus {
+    Unedited, Edited;
+  }
+
+  class User {
+    String name;
+    String email;
+    Role role;
+    Project [ ] assignedProjects;
+  }
+
+  enum Role {
+    Administrator, Editor;
+  }
+
+  class History {
+    Gene gene;
+    String changeDescription;
+    Timestamp timestamp;
+  }
+
+  class Timestamp {
+    String date;
+    String time;
+  }
+
+  composition Project [*] Project [assignedProjects]
+  -- User;
+  composition User [*] Project [assignedProjects]
+  -- Gene;
+  association History [*] Gene [history]
+
+  -- Project << Administrator
+  >>-;
+  association User [*] Project [assignedProjects]
+  -- Project << Editor
+  >>-;
+}

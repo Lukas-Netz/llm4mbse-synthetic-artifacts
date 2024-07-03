@@ -1,0 +1,64 @@
+
+
+
+
+classdiagram VREngineeringSimulation  {
+
+  class SimulationEnvironment  {
+    Scenario scenario;
+    Device  device  ;
+    User user;
+    boolean isRunning;
+  }
+
+  class Device  {
+    String uniqueIdentifier;
+    double position;
+    double orientation;
+    double velocity;
+  }
+
+  class User  {
+    String uniqueIdentifier;
+    String name;
+    String role;
+  }
+
+  class Scenario  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Setup setup;
+  }
+
+  class Task  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Date deadline;
+  }
+
+  class Setup  {
+    Device  device  ;
+    Position position;
+  }
+
+  class Position  {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Setup  {
+    Scenario scenario;
+    Device  device  ;
+  }
+
+  composition SimulationEnvironment  ->  (has) Scenario;
+  composition SimulationEnvironment  ->  (has) Device;
+  composition SimulationEnvironment  ->  (has) User;
+  composition Scenario  ->  (has) Setup;
+  composition Task  ->  (has) Scenario;
+  composition Setup  ->  (has) Device;
+  composition Setup  ->  (has) Position;
+}

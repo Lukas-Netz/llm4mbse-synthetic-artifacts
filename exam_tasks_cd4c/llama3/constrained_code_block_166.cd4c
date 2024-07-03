@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram ARMaintenanceSystem  {
+
+  class ARDevice  {
+    String uniqueIdentifier;
+    DeviceStatus status;
+    Component  [ ] components;
+  }
+
+  class Component  {
+    String uniqueIdentifier;
+    ComponentStatus status;
+  }
+
+  class MaintenanceTask  {
+    String uniqueIdentifier;
+    String description;
+    TaskStatus status;
+  }
+
+  class DeviceStatus  {
+    Operational operational;
+  }
+
+  class ComponentStatus  {
+    Functional functional;
+  }
+
+  class TaskStatus  {
+    Completed completed;
+  }
+
+  enum Operational  {
+    Operational, NonOperational;
+  }
+
+  enum Functional  {
+    Functional, NonFunctional;
+  }
+
+  enum Completed  {
+    Completed, NotCompleted;
+  }
+
+  composition ARDevice -> Component [1..*];
+  composition ARDevice -> MaintenanceTask [0..*];
+  composition Component -> MaintenanceTask [0..*];
+  composition MaintenanceTask -> ARDevice [1];
+  composition MaintenanceTask -> Component [1];
+
+}

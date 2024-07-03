@@ -1,0 +1,43 @@
+
+classdiagram AutonomousAerialTaxiSystem {
+
+    class AATS {
+      ControlSystem controlSystem;
+      Drone[] drones;
+    }
+
+    class ControlSystem {
+      void assignTask(Task task, Drone drone);
+      void monitorDrones();
+      void updateDroneLocation(Drone drone, Location location);
+    }
+
+    class Drone {
+      String uniqueIdentifier;
+      Location currentLocation;
+      DroneStatus status;
+      int maxCapacity;
+      int currentPassengerCount;
+      Task currentTask;
+    }
+
+    class Task {
+      Location pickupLocation;
+      Location dropOffLocation;
+      int priority;
+    }
+
+    class Passenger {
+      String name;
+      Location destination;
+    }
+
+    enum DroneStatus {
+      Available, Busy;
+    }
+
+    composition AATS -> (has) ControlSystem;
+    association ControlSystem -> Drone [*];
+    association ControlSystem -> Task [*];
+    composition AATS -> (has) Drone [*];
+}

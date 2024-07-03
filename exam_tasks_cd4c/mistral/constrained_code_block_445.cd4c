@@ -1,0 +1,37 @@
+
+classdiagram VR_Astronomy_Tour {
+
+  class Tour {
+    String name;
+    String description;
+    Stop [ ] stops;
+  }
+
+  class Stop {
+    String name;
+    String description;
+    Object [ ] objects;
+  }
+
+  class Object {
+    String name;
+    String description;
+    Attribute [ ] attributes;
+  }
+
+  class Attribute {
+    String name;
+    String value;
+  }
+
+  class User {
+    String name;
+    Tour [ ] tours;
+  }
+
+  association User --takes_participates_in- 											;
+  association Tour --contains- 											;
+  association Stop --contains- 											;
+  association Object --contains- 											;
+  association Attribute --belongs- 											;
+}

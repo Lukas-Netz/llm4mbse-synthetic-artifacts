@@ -1,0 +1,55 @@
+
+classdiagram RoboticPet {
+
+  class RoboticPet {
+    String name;
+    String uniqueIdentifier;
+    PetType type;
+    Skill [][ ] skills;
+    PetMood mood;
+    int batteryLife;
+  }
+
+  enum PetType {
+    Dog, Cat, Other;
+  }
+
+  class PetMood {
+    String happy;
+    String sad;
+    String neutral;
+  }
+
+  abstract class Skill {
+    int proficiency;
+    void train();
+  }
+
+  class Fetch extends Skill { }
+  class Play extends Skill { }
+  class EmotionalSupport extends Skill { }
+
+  class RemoteControl {
+    void command(RoboticPet pet, String command);
+  }
+
+  class MobileApp {
+    void interact(RoboticPet pet);
+  }
+
+  class Maintenance {
+    void clean(RoboticPet pet);
+    void updateSoftware(RoboticPet pet);
+    void replaceParts(RoboticPet pet);
+  }
+
+  class HealthMonitor {
+    void checkHealth(RoboticPet pet);
+    void provideMedicalAttention(RoboticPet pet);
+  }
+
+  composition RoboticPet -> RemoteControl [0..1];
+  composition RoboticPet -> MobileApp [0..1];
+  composition RoboticPet -> Maintenance [0..1];
+  composition RoboticPet -> HealthMonitor [0..1];
+}

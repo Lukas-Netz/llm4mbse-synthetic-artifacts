@@ -1,0 +1,71 @@
+
+classdiagram EmergencyResponseDroneSystem {
+
+    class Drone {
+      String uniqueIdentifier;
+      String name;
+      String type;
+      List<Sensor> sensors;
+      List<Camera> cameras;
+      Mission mission;
+      Pilot pilot;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Camera {
+      String uniqueIdentifier;
+      String name;
+      String type;
+    }
+
+    class Mission {
+      String uniqueIdentifier;
+      String name;
+      String description;
+      List<Drone> assignedDrones;
+    }
+
+    class Pilot {
+      String uniqueIdentifier;
+      String name;
+      String certificationLevel;
+      List<Drone> operatedDrones;
+    }
+
+    class Airport {
+      String uniqueIdentifier;
+      String name;
+      String location;
+      Drone droneLaunchSite;
+      Drone droneLandingSite;
+    }
+
+    class WeatherStation {
+      String uniqueIdentifier;
+      String name;
+      String location;
+      WeatherData weatherData;
+    }
+
+    class WeatherData {
+      String temperature;
+      String humidity;
+      String windSpeed;
+      String windDirection;
+    }
+
+    association Drone -> Sensor [*];
+    association Drone -> Camera [*];
+    association Drone -> Mission [*];
+    association Pilot -> Drone [*];
+    association Airport -> Drone [*];
+    association Airport -> WeatherStation [*];
+    association WeatherStation -> Drone [*];
+    association Mission -> Drone [*];
+    association WeatherStation -> WeatherData;
+}

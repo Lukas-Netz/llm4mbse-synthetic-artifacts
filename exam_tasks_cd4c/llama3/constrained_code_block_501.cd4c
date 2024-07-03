@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram OnlineRoboticsCourses  {
+
+  class Course  {
+    String title;
+    String description;
+    Topic  topic  ;  }
+  class Instructor  {
+    String name;
+    String bio;
+    Course  course  ;  }
+  class Student  {
+    String name;
+    String email;
+    Course  course  ;  }
+  class Topic  {
+    String name;
+    Course  course  ;  }
+  class Assignment  {
+    String description;
+    Course  course  ;  }
+  class Feedback  {
+    String comment;
+    Assignment  assignment  ;  }
+  class SearchCriteria  {
+    String title;
+    String instructor;
+    Topic  topic  ;  }
+  class Search  {
+    SearchCriteria criteria;
+    List<Course> results;  }
+  class Prerequisite  {
+    Course  course  ;  }
+  class Enrollment  {
+    Student  student  ;  }
+  class CourseMaterial  {
+    String description;
+    Course  course  ;  }
+  class Upload  {
+    CourseMaterial material;
+    Instructor  instructor  ;  }
+  class Submission  {
+    Assignment assignment;
+    Student  student  ;  }
+  class SubmissionFeedback  {
+    Feedback feedback;
+    Submission submission;  }
+  composition Course -> (has) Topic;
+  composition Instructor -> (teaches) Course;
+  composition Student -> (enrolls) Course;
+  composition Topic -> (partOf) Course;
+  composition Assignment -> (partOf) Course;
+  composition Feedback -> (relatedTo) Assignment;
+  }

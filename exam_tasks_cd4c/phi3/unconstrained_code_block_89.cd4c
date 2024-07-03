@@ -1,0 +1,68 @@
+
+classdiagram SupplyChainAnalytics {
+
+    class Supplier {
+      String uniqueID;
+      String name;
+      String location;
+      List<Product> products;
+    }
+
+    class Product {
+      String uniqueID;
+      String name;
+      String category;
+      List<Supplier> suppliers;
+    }
+
+    class Warehouse {
+      String uniqueID;
+      String name;
+      String location;
+      List<Product> products;
+    }
+
+    class Order {
+      String uniqueID;
+      String customerName;
+      Date orderDate;
+      List<Product> products;
+    }
+
+    class InventoryItem {
+      String uniqueID;
+      Product product;
+      Warehouse warehouse;
+      int quantity;
+    }
+
+    class Transportation {
+      String uniqueID;
+      Order order;
+      Supplier supplier;
+      Warehouse warehouse;
+    }
+
+    class SupplyChainAnalytics {
+      List<Supplier> suppliers;
+      List<Product> products;
+      List<Warehouse> warehouses;
+      List<Order> orders;
+      List<InventoryItem> inventoryItems;
+      List<Transportation> transportations;
+
+      void predictBottlenecks();
+      void identifyDisruptions();
+      void analyzeImpact(Supplier supplier, Product product, Warehouse warehouse);
+      void updateInventory(InventoryItem item);
+      void updateTransportation(Transportation item);
+      void addData(Supplier supplier, Product product, Warehouse warehouse, Order order, InventoryItem inventoryItem, Transportation transportation);
+    }
+
+  composition SupplyChainAnalytics -> (has) Supplier;
+  composition SupplyChainAnalytics -> (has) Product;
+  composition SupplyChainAnalytics -> (has) Warehouse;
+  composition SupplyChainAnalytics -> (has) Order;
+  composition SupplyChainAnalytics -> (has) InventoryItem;
+  composition SupplyChainAnalytics -> (has) Transportation;
+}

@@ -1,0 +1,47 @@
+
+classdiagram NetworkManagementSystem {
+
+    class Device {
+      String uniqueIdentifier;
+      DeviceType type;
+    }
+
+    class Network {
+      String name;
+      String identifier;
+      List<Device> devices;
+      NetworkManagementSystem networkManagementSystem;
+    }
+
+    class Issue {
+      int severity;
+      String description;
+      Issue(int severity, String description);
+    }
+
+    class Alert {
+      int severity;
+      String description;
+      Alert(int severity, String description);
+    }
+
+    class Response {
+      String description;
+      String status;
+      Response(String description, String status);
+    }
+
+    class NetworkManagementSystem {
+      List<Network> networks;
+      void addDevice(Device device, Network network);
+      void removeDevice(Device device, Network network);
+      void monitorNetwork(Network network);
+      void detectIssues(Network network);
+      void sendAlert(Alert alert);
+      void trackResponse(Response response);
+    }
+
+    enum DeviceType {
+      Router, Switch, Server;
+    }
+}

@@ -1,0 +1,29 @@
+
+classdiagram BiometricSecurity {
+
+  class Sensor {
+    String type;
+    int resolution;
+    int accuracy;
+  }
+
+  class FaceRecognitionSensor extends Sensor {
+  }
+
+  class FingerprintSensor extends Sensor {
+  }
+
+  class CPU {
+    Sensor [ ] sensors;
+    void authenticate(String biometricData);
+    void identify(String biometricData);
+  }
+
+  class Database {
+    String biometricData;
+  }
+
+  composition BiometricSecurity -> CPU;
+  composition BiometricSecurity -> Database;
+  association CPU -> Sensor [*];
+}

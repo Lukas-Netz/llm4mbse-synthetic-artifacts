@@ -1,0 +1,59 @@
+
+classdiagram DATP {
+
+  class User {
+    String uniqueIdentifier;
+    Account [  ] accounts;
+  }
+
+  class Account {
+    String accountNumber;
+    double balance;
+    Asset [ ] assets;
+  }
+
+  abstract class Asset {
+    String uniqueIdentifier;
+    String name;
+    AssetType type;
+  }
+
+  enum AssetType {
+    Cryptocurrency, Token, Other;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    OrderType type;
+    int quantity;
+    double price;
+  }
+
+  enum OrderType {
+    Buy, Sell;
+  }
+
+  class Trade {
+    String uniqueIdentifier;
+    OrderType type;
+    int quantity;
+    double price;
+  }
+
+  class Fee {
+    double feeRate;
+    double feeAmount;
+  }
+
+  class Tax {
+    double taxRate;
+    double taxAmount;
+  }
+
+  composition User -> Account [*];
+  composition Account -> Asset [*];
+  association Order -- Trade;
+  association User -- Order [*];
+  association Order -- Asset [1];
+  association Trade -- Asset [1];
+}

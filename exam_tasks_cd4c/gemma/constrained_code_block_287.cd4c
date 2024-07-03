@@ -1,0 +1,16 @@
+
+
+classdiagram OnlineGamingTournament
+
+  
+
+{class TournamentOrganizer {
+  -> Game [*];
+  -> Player [*];
+
+  void createGame(String name, Date startDate, Date endDate, int maxParticipants);
+  void addPlayerToGame(Player player, Game game);
+  void removePlayerFromGame(Player player, Game game);
+  void updateGameState(Game game);
+  void updatePlayerRanking(Player player);
+}}

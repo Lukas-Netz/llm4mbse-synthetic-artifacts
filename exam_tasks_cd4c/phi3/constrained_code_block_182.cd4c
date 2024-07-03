@@ -1,0 +1,48 @@
+
+classdiagram MedicalImageProcessingSystem {
+
+    class MedicalImageProcessingSystem {
+      Hub hub;
+      ImageAnalyzer analyzer;
+      ReportGenerator reportGenerator;
+    }
+
+    class Hub {
+      -> MedicalImageDevice [*];
+      void addDevice(MedicalImageDevice device);
+      void removeDevice(MedicalImageDevice device);
+      ImageAnalyzer getAnalyzer();
+      ReportGenerator getReportGenerator();
+    }
+
+    abstract class MedicalImageDevice {
+      String deviceType;
+      Image image;
+    }
+
+    class Xray extends MedicalImageDevice {
+      String xrayType;
+    }
+
+    class CTScan extends MedicalImageDevice {
+      String ctScanType;
+    }
+
+    class MRI extends MedicalImageDevice {
+      String mriType;
+    }
+
+    class ImageAnalyzer {
+      void analyzeImage(MedicalImageDevice device);
+      void identifyFeatures(MedicalImageDevice device);
+    }
+
+    class ReportGenerator {
+      void generateReport(MedicalImageDevice device);
+      String getReport();
+    }
+
+    composition MedicalImageProcessingSystem -> (has) Hub;
+    composition MedicalImageProcessingSystem -> (has) ImageAnalyzer;
+    composition MedicalImageProcessingSystem -> (has) ReportGenerator;
+}

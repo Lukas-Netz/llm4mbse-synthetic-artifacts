@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram GenomicDataPrivacy  {
+
+  class GenomicDataRecord  {
+    String uniqueIdentifier;
+    String individualName;
+    int individualAge;
+    HealthStatus individualHealthStatus;
+    GenomicData genomicData;
+  }
+
+  class GenomicData  {
+    String type;  (e_g_  )
+    String data;
+  }
+
+  class DataAnonymization  {
+    void anonymize(GenomicDataRecord record);
+  }
+
+  class DataAccessControl  {
+    void grantAccess(Role role, GenomicDataRecord record);
+    void revokeAccess(Role role, GenomicDataRecord record);
+  }
+
+  class Role  {
+    String name;
+  }
+
+  class DataSharing  {
+    void share(GenomicDataRecord record, Institution institution);
+  }
+
+  class Institution  {
+    String name;
+  }
+
+  class DataAuditing  {
+    void logAccess(GenomicDataRecord record, Role role);
+    void detectDataBreaches();
+  }
+
+  class HealthStatus  {
+    String status;
+  }
+
+  composition GenomicDataRepository -> (has) DataAnonymization;
+  composition DataAnonymization -> (uses) DataAccessControl;
+  composition DataAccessControl -> (uses) DataSharing;
+  composition DataSharing -> (uses) DataAuditing;
+  composition DataAuditing -> (uses) GenomicDataRepository;
+
+  association GenomicDataRepository -> GenomicDataRecord [1..*];
+  association DataAnonymization -> GenomicDataRecord [1..*];
+  association DataAccessControl -> Role [1..*];
+  association DataSharing -> Institution [1..*];
+  association DataAuditing -> GenomicDataRecord [1..*];
+}

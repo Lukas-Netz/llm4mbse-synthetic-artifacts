@@ -1,0 +1,43 @@
+
+classdiagram RareBookTrading {
+
+  class User {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String password;
+    UserType userType;
+  }
+
+  enum UserType {
+    Buyer, Seller, Both;
+  }
+
+  class RareBook {
+    String uniqueIdentifier;
+    String title;
+    String author;
+    String publicationDate;
+    User owner;
+    RareBookState state;
+  }
+
+  enum RareBookState {
+    Available, Sold, Reserved;
+  }
+
+  class Platform {
+    List<RareBook> availableRareBooks;
+    List<User> usersWithReservedBooks;
+    Mechanism integrityMechanism;
+    Mechanism disputeResolutionMechanism;
+  }
+
+  interface Mechanism {
+    void ensureIntegrity();
+    void handleDispute();
+  }
+
+  composition Platform -> RareBook [*];
+  composition Platform -> User [*];
+}

@@ -1,0 +1,57 @@
+
+classdiagram UndergroundTransportation {
+
+  class City {
+    UndergroundTransportation undergroundTransportation;
+  }
+
+  class UndergroundTransportation {
+    Line [ ] lines;
+    ControlCenter controlCenter;
+  }
+
+  class Line {
+    String name;
+    Direction direction;
+    Station [ ] stations;
+  }
+
+  enum Direction {
+    NorthSouth, EastWest;
+  }
+
+  class Station {
+    String name;
+    String uniqueIdentifier;
+    Platform [ ] platforms;
+  }
+
+  class Platform {
+    String name;
+    Track [ ] tracks;
+  }
+
+  class Track {
+    String uniqueIdentifier;
+    Train [ ] trains;
+  }
+
+  class Train {
+    String uniqueIdentifier;
+    Car [ ] cars;
+  }
+
+  class Car {
+    int capacity;
+    int currentPassengers;
+  }
+
+  class ControlCenter {
+    Sensor [ ] sensors;
+  }
+
+  class Sensor {
+    String type;
+    String uniqueIdentifier;
+  }
+}

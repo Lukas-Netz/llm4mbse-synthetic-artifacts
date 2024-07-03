@@ -1,0 +1,47 @@
+
+classdiagram AutonomousAgriculture {
+
+  class Farm {
+    String name;
+    String location;
+  }
+
+  class Field {
+    String name;
+    int size;
+    FieldType type;
+  }
+
+  enum FieldType {
+    Wheat, Corn, Soybeans;
+  }
+
+  class Tractor {
+    String uniqueIdentifier;
+    String name;
+    TractorType type;
+  }
+
+  enum TractorType {
+    Seeding, Spraying, Harvesting;
+  }
+
+  class Task {
+    String taskName;
+    String fieldName;
+    String tractorName;
+    String status;
+  }
+
+  class Report {
+    String tractorName;
+    String fieldName;
+    String performanceData;
+  }
+
+  composition Farm -> Field [*];
+  composition Farm -> Tractor [*];
+  association Tractor -- Field;
+  association Tractor -- Task;
+  association Field -- Task;
+}

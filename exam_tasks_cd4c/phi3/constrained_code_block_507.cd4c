@@ -1,0 +1,40 @@
+
+classdiagram ForensicLaboratory {
+
+    class Case {
+      String caseNumber;
+      String description;
+      List<Evidence> evidenceList;
+      Analyst assignedAnalyst;
+    }
+
+    class Evidence {
+      String evidenceID;
+      String description;
+      EvidenceCategory category;
+      EvidenceStatus status;
+      Analyst analyst;
+    }
+
+    class Analyst {
+      String analystID;
+      String name;
+    }
+
+    class EvidenceCategory {
+      String categoryName;
+    }
+
+    enum EvidenceStatus {
+      Analyzed, Pending, Discarded;
+    }
+
+    enum EvidenceCategory {
+      Biological, Chemical, Physical;
+    }
+
+    association Case -> Evidence [*];
+    association Case -> Analyst;
+    composition Case -> List<<Evidence>>;
+    composition Analyst -> List<<Evidence>>;
+}

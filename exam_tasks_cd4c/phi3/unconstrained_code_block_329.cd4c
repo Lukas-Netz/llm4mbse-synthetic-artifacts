@@ -1,0 +1,42 @@
+
+classdiagram VirtualRealityArtTherapy {
+
+    class VRHeadset {
+      void displaySession(ArtTherapySession session);
+      void interactWithSession(ArtTherapySession session);
+    }
+
+    class Controller {
+      void navigateSession(ArtTherapySession session);
+    }
+
+    class ArtTherapySession {
+      String name;
+      String description;
+      List<Exercise> exercises;
+    }
+
+    class Exercise {
+      String name;
+      String description;
+      ExerciseType type;
+    }
+
+    class ExerciseType {
+      String typeName;
+    }
+
+    class Patient {
+      String name;
+      int age;
+      String diagnosis;
+      List<ArtTherapySession> completedSessions;
+      void generateReport();
+      void provideRecommendations();
+    }
+
+    association VRHeadset -> ArtTherapySession [*];
+    association Controller -> ArtTherapySession [*];
+    association Patient -> ArtTherapySession [*];
+    composition Patient -> (has) completedSessions;
+}

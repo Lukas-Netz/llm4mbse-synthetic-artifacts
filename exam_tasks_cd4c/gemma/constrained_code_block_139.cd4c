@@ -1,0 +1,41 @@
+
+
+classdiagram AutomatedThreatDetection {
+
+  class Sensor {
+    String uniqueIdentifier;
+    List<ThreatType> typesOfThreat;
+  }
+
+  class CPU {
+    ThreatDetectionAlgorithm algorithm;
+  }
+
+  class ThreatDetectionAlgorithm {
+    boolean identifyThreat(Sensor sensor);
+  }
+
+  class Database {
+    Threat threatDatabase;
+  }
+
+  class Threat {
+    String uniqueIdentifier;
+    String description;
+    int severityLevel;
+  }
+
+  class NotificationSystem {
+    void sendAlert(Threat threat);
+  }
+
+  class LogDatabase {
+    void storeLog(Threat threat);
+  }
+
+  composition Sensor -> CPU [0..1];
+  composition CPU -> Database;
+  composition Database -> Threat;
+  association Threat -> NotificationSystem;
+  association Threat -> LogDatabase;
+}

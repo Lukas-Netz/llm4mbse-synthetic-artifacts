@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram YogaStudio  {
+
+  class Class  {
+    String name;
+    String description;
+    Instructor instructor;
+    -> Student[*];
+    -> Session[*];
+  }
+
+  class Instructor  {
+    String name;
+    String email;
+    String phoneNumber;
+  }
+
+  class Student  {
+    String name;
+    String email;
+    -> Class[*];
+  }
+
+  class Session  {
+    int id;
+    Date date;
+    Time time;
+    SessionType type;
+    -> Recording [0..1];
+  }
+
+  class Recording  {
+    -> Session;
+    -> Download [0..*];
+  }
+
+  class Download  {
+    -> Recording;
+  }
+
+  class Payment  {
+    -> Student;
+    -> Class;
+    -> Session;
+  }
+
+  enum SessionType  {
+    Live, Recorded;
+  }
+
+  composition Class -> Instructor;
+  composition Class -> Student;
+  composition Class -> Session;
+  composition Session -> Recording;
+  composition Recording -> Download;
+  composition Payment -> Student;
+  composition Payment -> Class;
+  composition Payment -> Session;
+}

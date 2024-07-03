@@ -1,0 +1,45 @@
+
+classdiagram MobileBanking {
+
+  class User {
+    String username;
+    String password;
+    Account [][] accounts;
+  }
+
+  class Account {
+    String accountNumber;
+    AccountType accountType;
+    double balance;
+  }
+
+  enum AccountType {
+    Checking, Savings, Credit;
+  }
+
+  class Transaction {
+    String transactionID;
+    Date date;
+    double amount;
+    Account fromAccount;
+    Account toAccount;
+  }
+
+  class Bill {
+    String billID;
+    Date dueDate;
+    double amount;
+  }
+
+  class Notification {
+    String notificationID;
+    User recipient;
+    String content;
+  }
+
+  composition User -> Account [*];
+  association Transaction -> Account [1..*];
+  association Transaction -> Account [1..*];
+  association Bill -> User [1..*];
+  association Notification -> User [1..*];
+}

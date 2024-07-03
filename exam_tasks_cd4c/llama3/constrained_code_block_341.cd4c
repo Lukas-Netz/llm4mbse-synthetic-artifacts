@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram DigitalMarketingAnalytics  {
+
+  class Campaign  {
+    String name;
+    Date startDate;
+    Date endDate;
+    double budget;
+  }
+
+  class PerformanceMetrics  {
+    int clicks;
+    int conversions;
+    double revenue;
+  }
+
+  class CampaignPerformance extends Campaign  {
+    PerformanceMetrics metrics;
+  }
+
+  class CampaignAnalysis  {
+    CampaignPerformance bestPerformingCampaign;
+    CampaignPerformance worstPerformingCampaign;
+  }
+
+  class Recommendation  {
+    Campaign bestCampaign;
+    String suggestion;
+  }
+
+  class CampaignTracker  {
+    -> Campaign[*];
+    void trackPerformance(Campaign campaign, int clicks, int conversions, double revenue);
+    CampaignAnalysis analyzeCampaigns();
+    Recommendation getRecommendation();
+  }
+
+  composition CampaignTracker -> (has) Campaign[*];
+  composition CampaignTracker -> (has) CampaignAnalysis;
+  composition CampaignTracker -> (has) Recommendation;
+}

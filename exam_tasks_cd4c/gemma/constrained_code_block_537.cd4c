@@ -1,0 +1,115 @@
+
+
+#  classdiagram PermacultureCoursePlatform
+
+  
+
+{classdiagram
+
+  
+
+  
+
+  
+
+  
+
+{class SmartHome
+
+  
+
+  
+
+  ;
+
+  class SmartHome
+
+  
+
+  
+
+  ;
+
+  class Hub
+
+  
+
+  
+
+  ;
+
+  class Device
+
+  
+
+  
+
+  ;
+
+  class Light
+
+  
+
+  
+
+  ;
+
+  class Thermostat
+
+  
+
+  
+
+  ;
+
+  class SecurityCamera
+
+  
+
+  
+
+  ;
+
+  class BackupPower
+
+  
+
+  
+
+  ;
+
+  enum DeviceStatus
+
+  
+
+  
+
+  ;
+
+  enum ThermostatMode
+
+  
+
+  
+
+  ;
+
+  composition SmartHome  (has  Hub)
+
+  
+
+  
+
+  ;
+
+  composition SmartHome  (has  BackupPower)  
+
+  
+
+  
+
+;
+
+}
+
+}

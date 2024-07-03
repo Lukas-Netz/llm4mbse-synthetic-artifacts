@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram EnvironmentalPlatform  {
+
+  class Campaign  {
+    String uniqueId;
+    String name;
+    String description;
+    CampaignType type;
+  }
+
+  class Organization  {
+    String uniqueId;
+    String name;
+    String description;
+    OrganizationType type;
+  }
+
+  class User  {
+    String uniqueId;
+    String name;
+    String email;
+    Organization  organization;
+  }
+
+  class Action  {
+    String uniqueId;
+    String name;
+    String description;
+    ActionType type;
+  }
+
+  class CampaignActionRelationship  {
+    String uniqueId;
+    Campaign campaign;
+    Action action;
+  }
+
+  class OrganizationCampaignRelationship  {
+    String uniqueId;
+    Organization organization;
+    Campaign campaign;
+  }
+
+  enum CampaignType  {
+    ClimateChange, Conservation, Sustainability;
+  }
+
+  enum OrganizationType  {
+    NonProfit, Government, CommunityBased;
+  }
+
+  enum ActionType  {
+    Petition, Donation, Volunteering;
+  }
+
+  composition Campaign -> (has) CampaignActionRelationship[*];
+  composition Organization -> (has) OrganizationCampaignRelationship[*];
+  composition User -> (has) Organization;
+  composition Action -> (has) CampaignActionRelationship[*];
+}

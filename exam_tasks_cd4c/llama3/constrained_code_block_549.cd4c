@@ -1,0 +1,62 @@
+
+
+
+classdiagram DisasterResponseCoordination  {
+
+  class Agency  {
+    String uniqueIdentifier;
+    String name;
+    AgencyType type;
+    Resource  resource;
+  }
+
+  class Resource  {
+    Personnel personnel;
+    Equipment equipment;
+    Vehicle vehicle;
+  }
+
+  class DisasterScenario  {
+    String location;
+    int severity;
+    DisasterType type;
+  }
+
+  class DisasterResponse  {
+    Agency agency;
+    DisasterScenario scenario;
+    Resource resource;
+  }
+
+  class Personnel  {
+    String name;
+    String role;
+  }
+
+  class Equipment  {
+    String name;
+    String type;
+  }
+
+  class Vehicle  {
+    String name;
+    String type;
+  }
+
+  enum AgencyType  {
+    EmergencyManagementAgency,
+    FireDepartment,
+    RescueTeam
+  ;}
+
+  enum DisasterType  {
+    Hurricane,
+    Earthquake,
+    Flood
+  ;}
+
+  composition Agency  ->  (has) Resource;
+  composition DisasterResponse  ->  (has) Agency;
+  composition DisasterResponse  ->  (has) DisasterScenario;
+  composition DisasterResponse  ->  (has) Resource;
+}

@@ -1,0 +1,83 @@
+
+
+
+
+classdiagram CloudNativeApp  {
+
+  class Microservice  {
+    String businessCapability;
+  }
+
+  class Database  {
+    NoSQLDataStore dataStore;
+  }
+
+  class LoadBalancer  {
+    CloudBasedLoadBalancingService service;
+  }
+
+  class MonitoringAndLoggingSystem  {
+    CloudBasedMonitoringAndLoggingService service;
+  }
+
+  class SecuritySystem  {
+    CloudBasedSecurityService service;
+  }
+
+  class BackupAndRecoverySystem  {
+    CloudBasedBackupAndRecoveryService service;
+  }
+
+  class DisasterRecoverySystem  {
+    CloudBasedDisasterRecoveryService service;
+  }
+
+  class TestingAndDeploymentSystem  {
+    CloudBasedTestingAndDeploymentService service;
+  }
+
+  class ContinuousIntegrationAndDeploymentSystem  {
+    CloudBasedContinuousIntegrationAndDeploymentService service;
+  }
+
+  class CloudBasedService  {
+    String serviceName;
+  }
+
+  class NoSQLDataStore  {
+    String dataStoreType;
+  }
+
+  class CloudBasedLoadBalancingService  {
+    String loadBalancingAlgorithm;
+  }
+
+  class CloudBasedMonitoringAndLoggingService  {
+    String monitoringAndLoggingType;
+  }
+
+  class CloudBasedSecurityService  {
+    String securityType;
+  }
+
+  class CloudBasedBackupAndRecoveryService  {
+    String backupAndRecoveryType;
+  }
+
+  class CloudBasedDisasterRecoveryService  {
+    String disasterRecoveryType;
+  }
+
+  class CloudBasedTestingAndDeploymentService  {
+    String testingAndDeploymentType;
+  }
+
+  class CloudBasedContinuousIntegrationAndDeploymentService  {
+    String continuousIntegrationAndDeploymentType;
+  }
+
+  composition CloudNativeApp -> Microservice[*];
+  composition CloudNativeApp -> Database;
+  
+
+}

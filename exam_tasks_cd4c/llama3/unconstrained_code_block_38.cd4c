@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram VotingSystem  {
+
+  class VotingStation  {
+    Voter[] voters;
+  }
+
+  class Voter  {
+    String uniqueIdentifier;
+    Vote vote;
+  }
+
+  class Vote  {
+    Candidate candidate;
+  }
+
+  class Candidate  {
+    String name;
+    String identifier;
+  }
+
+  class Election  {
+    VotingStation[] stations;
+    Candidate[] candidates;
+    Vote[] votes;
+    Candidate winner;
+  }
+
+  class ElectionResult  {
+    int totalVotes;
+    Candidate winner;
+    Map<Candidate, int> voteCount;
+  }
+
+  composition VotingStation -> Voter[*];
+  composition Voter -> Vote[1];
+  composition Election -> VotingStation[*];
+  composition Election -> Candidate[*];
+  composition Election -> Vote[*];
+  composition Election -> ElectionResult[1];
+}

@@ -1,0 +1,275 @@
+
+classdiagram AugmentedRealityPlatform {
+
+    class AREngine {
+      int resolution;
+      int frameRate;
+      RenderingMode renderingMode;
+      void renderContent(ARContent content);
+    }
+
+    class ARContent {
+      ContentType type;
+      Position position;
+      float scale;
+      float rotation;
+      void displayOnDevice(ARDevice device);
+    }
+
+    class ARDevice {
+      int cameraResolution;
+      int screenResolution;
+      float processingPower;
+      void displayContent(ARContent content);
+      void interactWithUser(ARUser user);
+    }
+
+    class ARUser {
+      String name;
+      String email;
+      String password;
+      void interactWithContent(ARContent content);
+    }
+
+    enum ContentType {
+      ThreeDModel,
+      Text,
+      Image
+   
+   
+   ()
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    association AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    association AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+    composition AugmentedRealityPlatform 
+   
+   
+
+;
+   
+
+}
+
+enum RenderingMode {
+  RealTime,
+  Preview
+
+;
+   
+
+}
+
+enum ContentType {
+  ThreeDModel,
+  Text,
+  Image
+
+;
+   
+
+}
+
+enum DeviceType {
+  ARDevice
+
+;
+   
+
+}
+
+enum UserType {
+  ARUser
+
+;
+   
+
+}
+
+enum Mode {
+  On, Off
+
+;
+   
+
+}
+
+enum Mode {
+  Heating, Cooling
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+enum Mode {
+  High, Low
+
+;
+   
+
+}
+
+
+
+
+
+}

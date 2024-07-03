@@ -1,0 +1,68 @@
+
+
+
+
+classdiagram StockTradingSystem  {
+
+  class Database  {
+    StockPriceData stockPriceData;
+  }
+
+  class MachineLearningModel  {
+    StockPricePrediction predict(StockPriceData data);
+  }
+
+  class TradingAlgorithm  {
+    TradingDecision makeDecision(StockPricePrediction prediction, User user);
+  }
+
+  class User  {
+    RiskTolerance riskTolerance;
+    InvestmentGoal investmentGoal;
+  }
+
+  class UserInterface  {
+    void displayPredictions(StockPricePrediction prediction);
+    void displayTradingDecisions(TradingDecision decision);
+    void setRiskTolerance(RiskTolerance riskTolerance);
+    void setInvestmentGoal(InvestmentGoal investmentGoal);
+  }
+
+  class StockPriceData  {
+    StockPrice[] stockPrices;
+  }
+
+  class StockPrice  {
+    Date date;
+    double price;
+  }
+
+  class StockPricePrediction  {
+    double predictedPrice;
+  }
+
+  class TradingDecision  {
+    BuySellAction action;
+  }
+
+  enum BuySellAction  {
+    BUY, SELL;
+  }
+
+  enum RiskTolerance  {
+    CONSERVATIVE, MODERATE, AGGRESSIVE;
+  }
+
+  enum InvestmentGoal  {
+    LONG_TERM, SHORT_TERM;
+  }
+
+  composition User -> (has) UserInterface;
+  composition TradingAlgorithm -> (uses) MachineLearningModel;
+  composition MachineLearningModel -> (uses) Database;
+  composition TradingAlgorithm -> (uses) User;
+  composition UserInterface -> (displays) StockPricePrediction;
+  composition UserInterface -> (displays) TradingDecision;
+  composition Database -> (contains) StockPriceData;
+  composition StockPriceData -> (contains) StockPrice;
+  }

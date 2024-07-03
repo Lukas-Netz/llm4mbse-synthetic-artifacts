@@ -1,0 +1,51 @@
+
+
+
+
+classdiagram FinancialReportingSystem  {
+
+  class FinancialReport  {
+    FinancialMetric metric;
+    TimePeriod period;
+  }
+
+  class FinancialMetric  {
+    String name;
+  }
+
+  class TimePeriod  {
+    String name;
+  }
+
+  class Account  {
+    String accountNumber;
+    double balance;
+  }
+
+  class User  {
+    String userId;
+    String password;
+  }
+
+  class Institution  {
+    List<Account> accounts;
+    List<User> users;
+  }
+
+  class ReportGenerator  {
+    Institution institution;
+    void generateReport(Account account, TimePeriod period);
+    void generateReport(User user, TimePeriod period);
+    void generateOverallReport(TimePeriod period);
+  }
+
+  composition Institution -> (has) accounts;
+  composition Institution -> (has) users;
+  composition ReportGenerator -> (has) institution;
+  composition ReportGenerator -> (uses) FinancialReport;
+  composition FinancialReport -> (has) FinancialMetric;
+  composition FinancialReport -> (has) TimePeriod;
+  composition Account -> (has) balance;
+  composition User -> (has) userId;
+  composition User -> (has) password;
+}

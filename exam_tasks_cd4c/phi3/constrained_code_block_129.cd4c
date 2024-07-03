@@ -1,0 +1,217 @@
+
+classdiagram HealthRecordSystem {
+
+    class Patient {
+      String uniqueId;
+      String name;
+      Date dob;
+      String contactInfo;
+    }
+
+    class Doctor {
+      String uniqueId;
+      String name;
+      String specialty;
+    }
+
+    class Nurse {
+      String uniqueId;
+      String name;
+      String role;
+    }
+
+    class Medication {
+      String uniqueId;
+      String name;
+      String dosageInstructions;
+    }
+
+    class Test {
+      String uniqueId;
+      String name;
+      String result;
+    }
+
+    class Appointment {
+      String uniqueId;
+      Date date;
+      Time time;
+    }
+
+    class Report {
+      String uniqueId;
+      Date date;
+      String content;
+    }
+
+    class HealthRecordSystem {
+      Patient[] patients;
+      Doctor[] doctors;
+      Nurse[] nurses;
+      Medication[] medications;
+      Test[] tests;
+      Appointment[] appointments;
+      Report[] reports;
+
+      void createPatient(Patient patient);
+      Patient readPatient(String uniqueId);
+      void updatePatient(Patient patient);
+      void deletePatient(String uniqueId);
+
+      void createDoctor(Doctor doctor);
+      Doctor readDoctor(String uniqueId);
+      void updateDoctor(Doctor doctor);
+      void deleteDoctor(String uniqueId);
+
+      void createNurse(Nurse nurse);
+      Nurse readNurse(String uniqueId);
+      void updateNurse(Nurse nurse);
+      void deleteNurse(String uniqueId);
+
+      void createMedication(Medication medication);
+     }
+
+      public class Medication {
+        String uniqueId;
+        String name;
+        String dosageInstructions;
+     
+        public Medication(String uniqueId, String name, String dosageInstructions)
+       
+
+
+
+throws
+    void
+   
+   
+   ;
+
+    void createTest(Test test);
+    Test readTest(String uniqueId);
+    void updateTest(Test test);
+    void deleteTest(String uniqueId);
+
+    void createAppointment(Appointment appointment);
+    Appointment readAppointment(String uniqueId);
+    void updateAppointment(Appointment appointment);
+    void deleteAppointment(String uniqueId);
+
+    void generateReport(Report report);
+    void alertAbnormalTestResult(Test test);
+
+    void integrateWithOtherSystems();
+}
+
+composition HealthRecordSystem -> (has) Patient[*];
+composition HealthRecordSystem -> (has) Doctor[*];
+composition HealthRecordSystem -> (has) Nurse[*];
+composition HealthRecordSystem -> (has) Medication[*];
+composition HealthRecordSystem -> (has) Test[*];
+composition HealthRecordSystem -> (has) Appointment[*];
+composition HealthRecordSystem -> (has) Report[*];
+
+association HealthRecordSystem -> Doctor[*]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+
+   
+
+   
+
+ordered
+
+
+
+
+
+}
+
+
+
+
+
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+composition HealthRecordSystem -> (has) Appointment[*];
+
+association HealthRecordSystem -> Report[*];
+
+association HealthRecordSystem -> Test[*];
+
+
+}

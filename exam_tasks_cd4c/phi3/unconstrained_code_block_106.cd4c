@@ -1,0 +1,67 @@
+
+classdiagram TeamCollaborationSystem {
+
+    class Team {
+      String name;
+      String teamId;
+      List<Member> members;
+      List<File> sharedFiles;
+      List<Task> tasks;
+      void addMember(Member member);
+      void removeMember(Member member);
+      void assignMemberToTask(Task task, Member member);
+      void shareFile(File file, Member member);
+      void trackFileChange(File file, Member member, String changeDetails);
+    WritableFileHistory fileHistory;
+    }
+
+    class Member {
+      String username;
+      String memberId;
+      List<Team> teams;
+      void joinTeam(Team team);
+      void leaveTeam(Team team);
+      void assignTask(Task task);
+    }
+
+    class File {
+      String name;
+      long size;
+      String fileId;
+      void uploadFile(Team team);
+      void downloadFile(Team team);
+      void deleteFile(Team team);
+      void trackFileChange(Team team, Member member, String changeDetails);
+      WritableFileHistory fileHistory;
+    }
+
+    class Task {
+      String name;
+      String description;
+      String taskId;
+      List<Member> assignedMembers;
+      void createTask(Team team);
+      void assignTask(Member member);
+      void markTaskStatus(String status);
+      WritableTaskHistory taskHistory;
+    }
+
+    class WritableFileHistory {
+      String changeDetails;
+      String timestamp;
+    }
+
+    class WritableTaskHistory {
+      String changeDetails;
+      String timestamp;
+    }
+
+  composition Team -> Member [*];
+  composition Team -> File [*];
+  composition Team -> Task [*];
+  composition Member -> Team [*];
+  composition Member -> File [*];
+  composition Member -> Task [*];
+  composition File -> Team [*];
+  composition File -> Task [*];
+}

@@ -1,0 +1,80 @@
+
+classdiagram OnlineGeographyCourse {
+
+    class Course {
+      String title;
+      String description;
+      String courseId;
+      List<Instructor> instructors;
+      List<Student> students;
+      List<CourseMaterial> courseMaterials;
+      Map<String, Double> studentGrades;
+    }
+
+    class Instructor {
+      String instructorId;
+      List<Course> taughtCourses;
+    }
+
+    class Student {
+      String studentId;
+      List<Course> enrolledCourses;
+    }
+
+    class CourseMaterial {
+      String materialId;
+      String materialType;
+      Course course;
+    }
+
+    class Enrollment {
+      Student student;
+      Course course;
+    }
+
+    class Report {
+      String reportType;
+      Map<String, Object> data;
+    }
+
+    association Course 
+        has-> List<< Instructor, taughtCourses, 
+                has>> 
+        {
+          ordered
+     };
+
+    association Course 
+        has-> List<< Student, enrolledCourses, 
+                has>> 
+        {
+          ordered
+     };
+
+    association Course 
+        has-> List<< CourseMaterial, courseMaterials, 
+                has>> 
+        {
+          ordered
+     };
+
+    association Student 
+        has-> List<< Enrollment, enrolledCourses, 
+                has>> 
+        {
+          ordered
+     };
+
+    association Course 
+        has-> Map<< String, Double, studentGrades, 
+                has>> 
+        {
+          ordered
+     };
+
+    association Course 
+        has-> Report 
+        {
+          ordered
+     };
+}

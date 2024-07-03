@@ -1,0 +1,90 @@
+
+classdiagram VirtualOceanMarineBiologySystem {
+
+    class Ocean {
+      UnderwaterStructure[] underwaterStructures;
+      MarineLife[] marineLife;
+      EnvironmentalConditions[] environmentalConditions;
+      Diver diver;
+      ResearchVessel researchVessel;
+      Laboratory laboratory;
+    }
+
+    class MarineLife {
+      String speciesName;
+      String habitat;
+      String behavior;
+    }
+
+    class UnderwaterStructure {
+      String type;
+      String location;
+    }
+
+    class Diver {
+      String name;
+      int experienceLevel;
+      Equipment[] equipment;
+      void interactWithMarineLife();
+      void interactWithUnderwaterStructure();
+      void collectSample();
+    }
+
+    class ResearchVessel {
+      String name;
+      int crewSize;
+      Equipment[] equipment;
+      void collectSample();
+    }
+
+    class Laboratory {
+      Equipment[] equipment;
+      void analyzeSample();
+      ResearchResult analyzeSampleResults();
+    }
+
+    class EnvironmentalConditions {
+      String conditionType;
+      int value;
+    }
+
+    abstract class Equipment {
+      void useEquipment();
+    }
+
+    class ScubaGear extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class UnderwaterCamera extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class Sonar extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class WaterSamplingEquipment extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class Microscopes extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class Centrifuges extends Equipment {
+      void useEquipment() throws EquipmentException;
+    }
+
+    class ResearchResult {
+      String resultSummary;
+      String detailedResults;
+    }
+
+    association Ocean -> Diver [*];
+    association Ocean -> ResearchVessel [*];
+    association Ocean -> Laboratory [*];
+    association Ocean -> UnderwaterStructure [*];
+    association Ocean -> MarineLife [*];
+   
+ }

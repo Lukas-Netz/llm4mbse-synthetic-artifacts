@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram VirtualRealityJournalism  {
+
+  class Newsroom {
+    Journalist[] journalists;
+  }
+
+  class Journalist {
+    String name;
+    String email;
+    String password;
+    Studio[] studios;
+  }
+
+  class Library {
+    Model[] models;
+    Video[] videos;
+  }
+
+  class Model {
+    String name;
+    String description;
+    String file;
+  }
+
+  class Video {
+    String name;
+    String description;
+    String file;
+  }
+
+  class Studio {
+    String name;
+    String description;
+    Model[] models;
+    Video[] videos;
+    Journalist journalist;
+    Player[] players;
+  }
+
+  class Player {
+    String name;
+    String description;
+    Model[] models;
+    Video[] videos;
+  }
+
+  composition Newsroom -> Journalist[*];
+  composition Journalist -> Studio[*];
+  composition Studio -> Journalist[1];
+  composition Studio -> Player[*];
+  composition Player -> Studio[1];
+  composition Library -> Model[*];
+  composition Library -> Video[*];
+  composition Studio -> Model[*];
+  composition Studio -> Video[*];
+  composition Player -> Model[*];
+  composition Player -> Video[*];
+}

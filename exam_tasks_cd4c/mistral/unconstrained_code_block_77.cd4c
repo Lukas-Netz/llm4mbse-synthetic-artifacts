@@ -1,0 +1,74 @@
+
+classdiagram CraftMarketplace {
+
+  class User {
+    String username;
+    String password;
+    List<Craft> favorites;
+    List<Rating> ratings;
+    List<Collection> collections;
+  }
+
+  class Craft {
+    String name;
+    String description;
+    float price;
+    List<String> materials;
+    CraftType type;
+  }
+
+  enum CraftType {
+    Jewelry, Textiles, HomeDecor;
+  }
+
+  class Rating {
+    User rater;
+    Craft ratedCraft;
+    float rating;
+  }
+
+  class Collection {
+    User owner;
+    List<Craft> crafts;
+  }
+
+  class SystemAdmin {
+    void addCraft(Craft craft);
+    void removeCraft(Craft craft);
+    void addUser(User user);
+    void removeUser(User user);
+    void addCollection(Collection collection);
+    void removeCollection(Collection collection);
+    Report generateReport();
+  }
+
+  class Report {
+    List<UserActivity> userActivities;
+    List<CraftPopularity> craftPopularities;
+    List<Sales> sales;
+  }
+
+  class UserActivity {
+    User user;
+    String action;
+    Timestamp timestamp;
+  }
+
+  class CraftPopularity {
+    Craft craft;
+    int popularity;
+  }
+
+  class Sales {
+    Craft craft;
+    User buyer;
+    Timestamp timestamp;
+  }
+
+  composition CraftMarketplace -> SystemAdmin;
+  association User -> Craft [*];
+  association User -> Rating [*];
+  association User -> Collection [*];
+  association Craft -> Rating [*];
+  association Collection -> Craft [*];
+}

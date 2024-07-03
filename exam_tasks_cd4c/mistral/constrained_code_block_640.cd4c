@@ -1,0 +1,74 @@
+
+classdiagram PrecisionMedicine {
+
+  class Patient {
+    String uniqueIdentifier;
+    List<DNA_Sequence> genomicData;
+  }
+
+  class Gene {
+    String uniqueIdentifier;
+    String function;
+    String location;
+    List<GeneExpression> expressionLevels;
+  }
+
+  class Disease {
+    String uniqueIdentifier;
+    List<Symptom> symptoms;
+    List<Treatment> treatmentOptions;
+  }
+
+  class Treatment {
+    String uniqueIdentifier;
+    String medication;
+    int dosage;
+    List<SideEffect> sideEffects;
+  }
+
+  class DNA_Sequence {
+    String sequence;
+  }
+
+  class GeneExpression {
+    String gene;
+    int expressionLevel;
+  }
+
+  class Symptom {
+    String description;
+  }
+
+  class SideEffect {
+    String description;
+  }
+
+  class Analysis {
+    void analyze(Patient patient);
+    List<GeneticMutation> getMutations();
+  }
+
+  class Recommendation {
+    void generateTreatmentPlan(Patient patient, List<GeneticMutation> mutations);
+    Treatment getTreatmentPlan();
+  }
+
+  class PatientDoctor {
+    String patientUniqueIdentifier;
+    List<DoctorInteraction> interactions;
+  }
+
+  class DoctorInteraction {
+    String date;
+    String description;
+  }
+
+  composition PatientDoctor <- Patient;
+  association Analysis --analyze- 											;
+  association Recommendation --generateTreatmentPlan- 						;
+  association Patient --has- 											;
+  association Gene --has- 											;
+  association Disease --has- 											;
+  association Treatment --has- 											;
+  association DNA_Sequence --has- 											;
+ 				}

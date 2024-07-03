@@ -1,0 +1,62 @@
+
+
+
+
+classdiagram CloudCRM  {
+
+  class User  {
+    String username;
+    String password;
+    UserType type;
+  }
+
+  enum UserType  {
+    Administrator, SalesRepresentative, Customer
+  ;}
+
+  class Customer  {
+    String customerID;
+    String name;
+    String contactInformation;
+    -> Interaction[*];
+  }
+
+  class Interaction  {
+    String interactionID;
+    Customer customer;
+    InteractionType type;
+    -> Meeting[*];
+  }
+
+  enum InteractionType  {
+    PhoneCall, Email, Meeting
+  ;}
+
+  class Meeting  {
+    String meetingID;
+    Interaction interaction;
+    Date date;
+    Time time;
+    Location location;
+  }
+
+  class Sale  {
+    String saleID;
+    Customer customer;
+    Date date;
+    Product product;
+    double price;
+  }
+
+  class Product  {
+    String productID;
+    String name;
+    String description;
+  }
+
+  composition User -> (has) UserType;
+  composition Customer -> (has) Interaction[*];
+  composition Interaction -> (has) Meeting[*];
+  composition Sale -> (has) Product;
+  composition Product -> (has) none;
+}

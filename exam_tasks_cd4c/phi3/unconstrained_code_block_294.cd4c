@@ -1,0 +1,40 @@
+
+classdiagram SmartHomeForElderly {
+
+    class SmartHomeForElderly {
+      Robot robot;
+      Caregiver caregiver;
+      ChargingStation chargingStation;
+    }
+
+    class Robot {
+      String name;
+      String uniqueIdentifier;
+      int batteryLevel;
+      void clean();
+      void cook();
+      void remindMedication();
+      void recharge(ChargingStation chargingStation);
+      void interactWithDevice(Device device);
+      void learnHabits();
+    }
+
+    class Caregiver {
+      void monitorRobot();
+      void receiveNotifications();
+    }
+
+    class ChargingStation {
+      int capacityWh;
+      void chargeRobot(Robot robot);
+    }
+
+    class Device {
+      void interactWithRobot(Robot robot);
+    }
+
+    association SmartHomeForElderly -> Robot [*];
+    composition SmartHomeForElderly -> Caregiver [0..1];
+    composition SmartHomeForElderly -> ChargingStation [0..1];
+    association Robot -> Device [*];
+}

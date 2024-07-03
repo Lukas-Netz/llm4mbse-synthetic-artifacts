@@ -1,0 +1,49 @@
+
+classdiagram SpaceInternetSystem {
+
+    class SpaceInternetSystem {
+      Satellite[] satellites;
+      GroundStation[] groundStations;
+      UserDevice[] userDevices;
+      CentralManagementSystem managementSystem;
+    }
+
+    class Satellite {
+      String uniqueIdentifier;
+      AntennaType antennaType;
+    }
+
+    class GroundStation {
+      void communicateWithSatellite(Satellite satellite);
+      void relayDataToUserDevice(UserDevice userDevice);
+    }
+
+    class UserDevice {
+      String uniqueIdentifier;
+      UserDeviceStatus status;
+    }
+
+    class SatelliteTerminal extends UserDevice {
+    }
+
+    class GroundTerminal extends UserDevice {
+    }
+
+    class CentralManagementSystem {
+      void scheduleSatelliteMaintenance();
+      void allocateBandwidth(UserDevice userDevice);
+    }
+
+    enum AntennaType {
+      HighGain, LowGain;
+    }
+
+    enum UserDeviceStatus {
+      Connected, Disconnected;
+    }
+
+  composition SpaceInternetSystem -> (has) Satellite[*];
+  composition SpaceInternetSystem -> (has) GroundStation[*];
+  composition SpaceInternetSystem -> (has) UserDevice[*];
+  composition SpaceInternetSystem -> (has) CentralManagementSystem;
+}

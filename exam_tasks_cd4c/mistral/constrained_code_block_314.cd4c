@@ -1,0 +1,54 @@
+
+classdiagram WorkflowManagement {
+
+  class Workflow {
+    String id;
+    String name;
+    Task [][ ] tasks;
+  }
+
+  class Task {
+    String id;
+    String name;
+    String description;
+    TaskStatus status;
+    User [ ] assignees;
+    int priority;
+    LocalDateTime deadline;
+  }
+
+  enum TaskStatus {
+    Pending, InProgress, Completed;
+  }
+
+  class User {
+    String id;
+    String name;
+    String email;
+    Task [ ] assignedTasks;
+  }
+
+  association Workflow --o000o- 											{ 											ordered						}
+   		;
+  association Task --o000o- 											{ 											ordered						}
+   		;
+  association User --o000o- 											{ 											ordered						}
+   		;
+  association Task --o000o- 											{ 											ordered						}
+   		;
+  association User --o000o- 											{ 											ordered						}
+   		;
+  class Notification {
+    String id;
+    String recipient;
+    String message;
+    LocalDateTime sentTime;
+  }
+
+  class Report {
+    String id;
+    String name;
+    LocalDateTime generatedTime;
+    String content;
+  }
+}

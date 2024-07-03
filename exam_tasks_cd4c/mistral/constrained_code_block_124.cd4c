@@ -1,0 +1,45 @@
+
+classdiagram SmartFarming {
+
+  class Farm {
+    String farmName;
+    -> Sensor [*];
+    -> WeatherStation;
+  }
+
+  class Sensor {
+    String sensorType;
+    String farm;
+    int soilMoisture;
+    int temperature;
+    int humidity;
+  }
+
+  class WeatherStation {
+    String farm;
+    int temperature;
+    int humidity;
+    int precipitation;
+  }
+
+  class Hub {
+    -> Farm [*];
+    void collectData();
+    void provideRecommendations(CropType cropType);
+  }
+
+  enum CropType {
+    Wheat, Corn, Soybeans;
+  }
+
+  class Crop {
+    CropType cropType;
+    int soilMoistureRequirement;
+    int temperatureRequirement;
+    int humidityRequirement;
+  }
+
+  composition Farm -> Sensor [*];
+  composition Farm -> WeatherStation;
+  association Hub <-> Farm [*];
+}

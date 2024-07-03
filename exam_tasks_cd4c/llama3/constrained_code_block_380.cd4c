@@ -1,0 +1,81 @@
+
+
+
+
+classdiagram EventTicketingSystem  {
+
+  class Event  {
+    String name;
+    Date date;
+    Location location;
+    EventTypes type;
+    List<Ticket> tickets;
+    int ticketSales;
+    double revenue;
+  }
+
+  enum EventTypes  {
+    Concert, Sports, Conference;
+  }
+
+  class Ticket  {
+    String uniqueIdentifier;
+    double price;
+    SeatNumber seatNumber;
+    TicketTypes type;
+  }
+
+  enum TicketTypes  {
+    GeneralAdmission, ReservedSeating, VIP;
+  }
+
+  class SeatNumber  {
+    int number;
+  }
+
+  class Concert extends Event  {
+    List<Artist> artists;
+  }
+
+  class Artist  {
+    String name;
+    List<Song> songs;
+  }
+
+  class Song  {
+    String title;
+  }
+
+  class Sports extends Event  {
+    List<Team> teams;
+  }
+
+  class Team  {
+    String name;
+    List<Player> players;
+  }
+
+  class Player  {
+    String name;
+  }
+
+  class Conference extends Event  {
+    List<Speaker> speakers;
+  }
+
+  class Speaker  {
+    String name;
+    List<Talk> talks;
+  }
+
+  class Talk  {
+    String title;
+  }
+
+  composition Event -> Ticket[*];
+  composition Concert -> Artist[*];
+  composition Sports -> Team[*];
+  composition Conference -> Speaker[*];
+  composition Ticket -> SeatNumber [0..1];
+  composition Ticket -> TicketTypes [1];
+  }

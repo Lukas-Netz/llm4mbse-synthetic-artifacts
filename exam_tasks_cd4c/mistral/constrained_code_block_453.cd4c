@@ -1,0 +1,43 @@
+
+classdiagram VRConservation {
+
+  class Species {
+    String name;
+    String description;
+    ConservationStatus conservationStatus;
+  }
+
+  class Habitat {
+    String location;
+    String climate;
+    String vegetation;
+  }
+
+  class Conservationist {
+    String name;
+    String expertise;
+    int experience;
+  }
+
+  class Project {
+    String name;
+    String goal;
+    int budget;
+  }
+
+  class VRExperience {
+    int duration;
+    int difficultyLevel;
+    String educationalContent;
+  }
+
+  enum ConservationStatus {
+    CriticallyEndangered, Endangered, Vulnerable, NearThreatened, LeastConcern;
+  }
+
+  association Conservationist --o_has_Expertise_o;
+  association Project --o_has_Conservationist_o;
+  association Species --o_lives_in_Habitat_o;
+  association Project --o_works_on_Species_o;
+  association VRExperience --o_simulates_Species_o;
+}

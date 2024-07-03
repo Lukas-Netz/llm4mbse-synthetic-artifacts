@@ -1,0 +1,55 @@
+
+classdiagram DonationPlatform {
+
+  class Charity {
+    String name;
+    String description;
+    String uniqueIdentifier;
+  }
+
+  class DonationCampaign {
+    String name;
+    String description;
+    int targetAmount;
+    Charity charity;
+  }
+
+  class Donor {
+    String name;
+    String email;
+    String password;
+    DonationHistory donationHistory;
+  }
+
+  class Donation {
+    Donor donor;
+    Charity charity;
+    DonationCampaign campaign;
+    int amount;
+  }
+
+  class DonationHistory {
+    Donation [
+    ] donations;
+  }
+
+  class DonationReceipt {
+    Donation donation;
+    String receiptNumber;
+  }
+
+  class Notification {
+    Charity charity;
+    String message;
+  }
+
+  composition DonationPlatform -> Charity [*];
+  composition Charity -> DonationCampaign [*];
+  composition Donor -> Donation [*];
+  association Donation -> Donor;
+  association Donation -> Charity;
+  association Donation -> DonationCampaign;
+  composition DonationHistory -> Donation [*];
+  composition DonationReceipt -> Donation [1];
+  composition Notification -> Charity [1];
+}

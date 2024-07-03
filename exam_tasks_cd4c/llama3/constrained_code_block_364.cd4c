@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram VideoStreamingPlatform  {
+
+  class User  {
+    String uniqueIdentifier;
+    Profile profile;
+  }
+
+  class Profile  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Channel  {
+    String name;
+    String description;
+    List<Video> videos;
+  }
+
+  class Video  {
+    String title;
+    String description;
+    List<String> tags;
+    String fileFormat;
+  }
+
+  class Rating  {
+    User user;
+    Video video;
+    int score;
+  }
+
+  class Recommendation  {
+    User user;
+    Video video;
+  }
+
+  composition User -> Profile;
+  composition Channel -> Video[*];
+  composition Video -> Rating[*];
+  composition Video -> Recommendation[*];
+  association User -> Channel[*];
+  association Channel -> User;
+  association Video -> User;
+  association Rating -> User;
+  association Rating -> Video;
+  association Recommendation -> User;
+  association Recommendation -> Video;
+}

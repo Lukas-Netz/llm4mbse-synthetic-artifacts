@@ -1,0 +1,78 @@
+
+
+
+
+classdiagram HydroponicCropMonitoringSystem  {
+
+  class Sensor  {
+    Temperature temperature;
+    Humidity humidity;
+    pHLevel pH;
+    NutrientLevel nutrient;
+  }
+
+  class Actuator  {
+    Lighting lighting;
+    TemperatureControl temperatureControl;
+    NutrientSupply nutrientSupply;
+  }
+
+  class CentralControlUnit  {
+    SensorData sensorData;
+    ActuatorCommand actuatorCommand;
+    Database database;
+  }
+
+  class Database  {
+    HistoricalData historicalData;
+    Trend trend;
+  }
+
+  class SensorData  {
+    Temperature temperature;
+    Humidity humidity;
+    pHLevel pH;
+    NutrientLevel nutrient;
+  }
+
+  class ActuatorCommand  {
+    LightingCommand lightingCommand;
+    TemperatureCommand temperatureCommand;
+    NutrientCommand nutrientCommand;
+  }
+
+  class LightingCommand  {
+    boolean isOn;
+  }
+
+  class TemperatureCommand  {
+    int temperature;
+  }
+
+  class NutrientCommand  {
+    int amount;
+  }
+
+  class AnomalyDetector  {
+    boolean detectAnomaly(SensorData sensorData);
+  }
+
+  class RecommendationEngine  {
+    OptimalGrowingConditions recommend(OptimalGrowingConditions optimalGrowingConditions);
+  }
+
+  class OptimalGrowingConditions  {
+    Temperature temperature;
+    Humidity humidity;
+    pHLevel pH;
+    NutrientLevel nutrient;
+  }
+
+  composition CentralControlUnit -> (has) Sensor;
+  composition CentralControlUnit -> (has) Actuator;
+  composition CentralControlUnit -> (has) Database;
+  composition Database -> (has) HistoricalData;
+  composition Database -> (has) Trend;
+  composition AnomalyDetector -> (uses) SensorData;
+  composition RecommendationEngine -> (uses) OptimalGrowingConditions;
+}

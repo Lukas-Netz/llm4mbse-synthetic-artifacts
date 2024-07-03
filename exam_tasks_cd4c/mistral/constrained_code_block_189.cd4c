@@ -1,0 +1,61 @@
+
+classdiagram IRM {
+
+  class Risk {
+    String uniqueIdentifier;
+    String description;
+    RiskSeverity severity;
+  }
+
+  class Industry {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Organization {
+    String uniqueIdentifier;
+    String name;
+    RiskProfile riskProfile;
+  }
+
+  class RiskAssessment {
+    String uniqueIdentifier;
+    String description;
+    RiskScore riskScore;
+  }
+
+  class Control {
+    String uniqueIdentifier;
+    String description;
+    RiskScore riskScore;
+  }
+
+  class MitigationPlan {
+    String uniqueIdentifier;
+    String description;
+    RiskScore riskScore;
+  }
+
+  enum RiskSeverity {
+    Low, Medium, High;
+  }
+
+  enum RiskProfile {
+    Low, Medium, High;
+  }
+
+  enum RiskScore {
+    Low, Medium, High;
+  }
+
+  association Risk --o00o- 											{ 											ordered						}						;
+  association Industry --o00o-											{ 											ordered						}						;
+  association Organization --o00o-										{ 											ordered						}						;
+  association RiskAssessment --o00o-									{ 											ordered						}						;
+  association Control --o00o-											{ 											ordered						}						;
+  association MitigationPlan --o00o-									{ 											ordered						}						;
+  association Risk --o00o-												{ 											ordered						}						;
+  association RiskAssessment --o00o-									{ 											ordered						}						;
+  association Control --o00o-											{ 											ordered						}						;
+  association MitigationPlan --o00o-									{ 											ordered						}						;
+}

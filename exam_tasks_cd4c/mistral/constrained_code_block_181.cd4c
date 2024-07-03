@@ -1,0 +1,35 @@
+
+classdiagram PredictiveInventory {
+
+  class Warehouse {
+    String name;
+    String location;
+    -> Shelf [*];
+  }
+
+  class Shelf {
+    String name;
+    int capacity;
+    -> Item [*];
+  }
+
+  class Item {
+    String uniqueIdentifier;
+    String name;
+    int quantity;
+    int reorderPoint;
+  }
+
+  class PredictiveModel {
+    void predictDemand(Item item);
+    int predictedDemand(Item item);
+    int reorderQuantity(Item item);
+  }
+
+  class OrderingSystem {
+    void orderStock(Item item);
+  }
+
+  composition Warehouse -> Shelf [*];
+  composition Shelf -> Item [*];
+}

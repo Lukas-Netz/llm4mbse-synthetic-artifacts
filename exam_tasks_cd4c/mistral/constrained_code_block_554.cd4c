@@ -1,0 +1,44 @@
+
+classdiagram SolarSail {
+
+  class Spacecraft {
+    String name;
+    String uniqueIdentifier;
+    NavigationSystem navigation;
+    CommunicationSystem communication;
+    PowerSource powerSource;
+  }
+
+  class SolarSail {
+    double area;
+    String shape;
+    String material;
+  }
+
+  class ControlSystem {
+    void adjustAngle(double angle);
+    void deploySail();
+    void retractSail();
+  }
+
+  class NavigationSystem {
+    double positionX;
+    double positionY;
+    double velocity;
+  }
+
+  class CommunicationSystem {
+    void sendData(String data);
+    void receiveData(String data);
+  }
+
+  class PowerSource {
+    double powerLevel;
+  }
+
+  composition Spacecraft -> SolarSail;
+  composition Spacecraft -> ControlSystem;
+  association Spacecraft -> NavigationSystem;
+  association Spacecraft -> CommunicationSystem;
+  association Spacecraft -> PowerSource;
+}

@@ -1,0 +1,105 @@
+
+classdiagram CustomerServiceSystem {
+
+    class Customer {
+      String accountId;
+      String username;
+      String password;
+      List<Issue> issues;
+      void logIn(String username, String password);
+      void logOut();
+      void createAccount();
+      void submitIssue(Issue issue);
+      void trackIssue(String issueId);
+    Writes aSummaryOfResolution();
+    }
+
+    class Issue {
+      String issueId;
+      String description;
+      IssueSeverity severity;
+      IssueUrgency urgency;
+      Customer customer;
+      CustomerServiceRep assignedRep;
+      IssueStatus status;
+      void updateStatus(IssueStatus newStatus);
+      void resolveIssue();
+    }
+
+    class CustomerServiceRep {
+      String repId;
+      String repName;
+      List<Issue> assignedIssues;
+      void assignIssue(Issue issue);
+      void updateIssueStatus(String issueId, IssueStatus newStatus);
+      void provideResolution(Issue issue);
+    }
+
+    class IssueSeverity {
+      String name;
+    }
+
+    class IssueUrgency {
+      String name;
+    }
+
+    class IssueStatus {
+      String name;
+    }
+
+    class CommunicationChannel {
+      String name;
+    }
+
+    class CommunicationChannelType {
+      String name;
+    }
+
+    class CommunicationChannelTypeEnum {
+      String name;
+    }
+
+    class IssuePriority {
+      String name;
+    }
+
+    class IssuePriorityEnum {
+      String name;
+    }
+
+    class IssueCategory {
+      String name;
+    }
+
+    class IssueCategoryEnum {
+      String name;
+    }
+
+    class Issue {
+      CommunicationChannelTypeType channelType;
+      CommunicationChannelType channel;
+      IssueSeverity severity;
+      IssueUrgency urgency;
+      IssueCategory category;
+      Customer customer;
+      CustomerServiceRep assignedRep;
+      IssueStatus status;
+    }
+
+    class CustomerServiceSystem {
+      Hub hub;
+      List<Customer> customers;
+      List<Issue> issues;
+      void handleIssue(Issue issue);
+      void generateReport();
+      void integrateWithCRM();
+      void integrateWithERP();
+    }
+
+    composition CustomerServiceSystem -> (has) Hub;
+    composition CustomerServiceSystem -> (has) List<<Customer>>;
+    composition CustomerServiceSystem -> (has) List<<Issue>>;
+    composition CustomerServiceSystem -> (has) CustomerServiceRep;
+    composition CustomerServiceSystem -> (has) Issue;
+   
+ }

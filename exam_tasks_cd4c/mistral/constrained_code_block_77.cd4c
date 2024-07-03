@@ -1,0 +1,38 @@
+
+classdiagram ProjectManagementTool {
+
+  class Project {
+    String name;
+    Date startDate;
+    Date endDate;
+    -> Task [*];
+  }
+
+  class Task {
+    String name;
+    String description;
+    Date dueDate;
+    TaskStatus status;
+    -> TeamMember [*];
+  }
+
+  class TeamMember {
+    String name;
+    int employeeID;
+    -> Task [*];
+  }
+
+  enum TaskStatus {
+    NotStarted, InProgress, Completed;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  association Project --o000o- 											;
+  association Task --o000o-												;
+  association TeamMember --o000o-											;
+}

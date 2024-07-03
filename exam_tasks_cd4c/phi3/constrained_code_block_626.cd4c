@@ -1,0 +1,52 @@
+
+classdiagram AutonomousOceanCleanup {
+
+    class CentralHub {
+      CollectionUnitCollection collectionUnits;
+      ProcessingUnit processingUnit;
+      CommunicationModule communicationModule;
+      void monitorSystemStatus();
+      void alertHub(Device malfunctioning);
+    }
+
+    class CollectionUnit {
+      String uniqueIdentifier;
+      Location location;
+      PlasticWasteCollected plasticWasteCollected;
+      void collectPlasticWaste();
+    }
+
+    class ProcessingUnit {
+      String uniqueIdentifier;
+      Location location;
+      PlasticWasteProcessed plasticWasteProcessed;
+      void processPlasticWaste();
+    }
+
+    class CommunicationModule {
+      void sendMessage(Device sender, String message);
+      void receiveMessage(Device receiver, String message);
+    }
+
+    class PlasticWasteCollected {
+      int amount;
+    }
+
+    class PlasticWasteProcessed {
+      int amount;
+    }
+
+    class Location {
+      double latitude;
+      double longitude;
+    }
+
+    association CentralHub <-> CollectionUnitCollection;
+    association CentralHub <-> ProcessingUnit;
+    association CentralHub <-> CommunicationModule;
+    association CollectionUnit -> PlasticWasteCollected;
+    association ProcessingUnit -> PlasticWasteProcessed;
+    association CollectionUnit -> Location;
+    association ProcessingUnit -> Location;
+    association CommunicationModule -> CentralHub;
+}

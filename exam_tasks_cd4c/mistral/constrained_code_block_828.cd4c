@@ -1,0 +1,53 @@
+
+classdiagram BlockchainLogistics {
+
+  class Blockchain {
+    void createPackage(Package package);
+    void createCarrier(Carrier carrier);
+    void createLocation(Location location);
+    void updatePackageStatus(Package package);
+  }
+
+  class Package {
+    String uniqueIdentifier;
+    int weight;
+    int dimensions;
+    PackageStatus status;
+  }
+
+  class TransportationMode {
+    String uniqueIdentifier;
+    TransportationModeRules rules;
+  }
+
+  class Carrier {
+    String uniqueIdentifier;
+    TransportationMode [ ] availableModes;
+  }
+
+  class PackageHandler {
+    String uniqueIdentifier;
+    Carrier associatedCarrier;
+  }
+
+  class Location {
+    String uniqueIdentifier;
+    PackageHandler associatedHandler;
+  }
+
+  class TransportationModeRules {
+    int maxWeight;
+    int maxDimensions;
+  }
+
+  enum PackageStatus {
+    Created, InTransit, Delivered, Lost;
+  }
+
+  composition Blockchain -> Package;
+  composition Blockchain -> Carrier;
+  composition Blockchain -> Location;
+  association Package -> TransportationMode;
+  association Carrier -> TransportationMode [*];
+  association PackageHandler -> Location;
+}

@@ -1,0 +1,60 @@
+
+
+
+
+classdiagram CybersecuritySystem  {
+
+  class Network  {
+    Node  node  ; 
+    Edge  edge  ; 
+  }
+
+  class Sensor  {
+    String uniqueId;
+    AttackType  attackType;
+  }
+
+  class Anomaly  {
+    int severity;
+    Date timestamp;
+  }
+
+  class Rule  {
+    AttackType  attackType;
+    int severity;
+  }
+
+  class Response  {
+    Action  action;
+    int severity;
+  }
+
+  class Node  {
+    String ipAddress;
+  }
+
+  class Edge  {
+    Node  source;
+    Node  target;
+  }
+
+  enum AttackType  {
+    SQLInjection,
+    CrossSiteScripting,
+    Malware
+  ;}
+
+  enum Action  {
+    BlockIP,
+    SendAlert,
+    LogEvent
+  ;}
+
+  composition Network  ->  (has) Node  ; 
+  composition Network  ->  (has) Edge  ; 
+  composition Sensor  ->  (has) Anomaly  ; 
+  composition Rule  ->  (has) Anomaly  ; 
+  composition Response  ->  (has) Anomaly  ; 
+  composition Sensor  ->  (has) Rule  ; 
+  composition Response  ->  (has) Rule  ; 
+}

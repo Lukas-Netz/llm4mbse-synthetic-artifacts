@@ -1,0 +1,65 @@
+
+classdiagram ActingClasses {
+
+  class Student {
+    String uniqueID;
+    String name;
+    String email;
+    Course [ ] enrolledCourses;
+    int lessonsCompleted;
+    float grade;
+  }
+
+  class Instructor {
+    String uniqueID;
+    String name;
+    String expertise;
+    Course [ ] taughtCourses;
+  }
+
+  class Course {
+    String uniqueID;
+    String name;
+    String description;
+    Instructor instructor;
+    Student [ ] students;
+    LessonMaterial [ ] materials;
+    Assignment [ ] assignments;
+  }
+
+  class LessonMaterial {
+    String title;
+    String url;
+  }
+
+  class Assignment {
+    String title;
+    String description;
+    String dueDate;
+    String submissionUrl;
+  }
+
+  composition Student [*] enrollsIn (Course)
+  -- Instructor [1] << teaches >>  -  { 											ordered
+ 				} 					;
+  composition Course [1] has (Instructor)
+  -- Student [*] << enrolled >> -  { 											ordered
+ 				} 					;
+  composition Course [*] has (LessonMaterial)
+  -- Course [*] << has >> -  { 											ordered
+ 				} 					;
+  composition Course [*] has (Assignment)
+
+  -- CustomTypes
+  <<customType>> 																	;
+  enum Grade {
+    A_Plus, A_, B_Plus, B_, C_Plus, C_, D_Plus, D_, F_
+ 										;
+  }
+
+  <<customType>> 																													composition
+  LessonMaterial [*] belongsTo (Course)
+  -- Assignment [*] << belongsTo >> -  { 											ordered
+ 				} 					;
+
+}

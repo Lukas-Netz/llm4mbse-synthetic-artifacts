@@ -1,0 +1,48 @@
+
+
+
+classdiagram AstronomicalInstrumentation  {
+
+  class Instrument  {
+    String uniqueIdentifier;
+    String name;
+    Sensor  sensor;
+  }
+
+  class Sensor  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Data  {
+    String uniqueIdentifier;
+    String timestamp;
+    double value;
+    String unitOfMeasurement;
+    Instrument  instrument;
+  }
+
+  class Analysis  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    Data  data;
+  }
+
+  class Result  {
+    String uniqueIdentifier;
+    String name;
+    double value;
+  }
+
+  composition Instrument  ->  (has) Sensor;
+  composition Data  ->  (has) Instrument;
+  composition Analysis  ->  (has) Data;
+  composition Result  ->  (has) Analysis;
+
+  <<operation>>  public  interfacedefine  {
+    void addData(Instrument instrument, Data data);
+    void runAnalysis(Analysis analysis);
+    Result getResult(Analysis analysis);
+  }
+}

@@ -1,0 +1,63 @@
+
+classdiagram InsuranceBlockchain {
+
+    class Policy {
+      String policyId;
+      Date startDate;
+      Date endDate;
+      double premium;
+    }
+
+    class Insurer {
+      String insurerId;
+      String insurerName;
+    }
+
+    class Insured {
+      String insuredId;
+      String insuredName;
+    }
+
+    class Claim {
+      String claimId;
+      String claimDescription;
+      ClaimStatus status;
+      Policy policy;
+    }
+
+    class Settlement {
+      String settlementId;
+      double settlementAmount;
+      SettlementStatus status;
+      Claim claim;
+    }
+
+    enum ClaimStatus {
+      Pending, Approved, Rejected
+   
+   
+   ;}
+
+    enum SettlementStatus {
+      Pending, Approved, Rejected
+   
+   
+   ;}
+
+    association Insurer 
+      -> Policy [1..*];
+
+    association Insured 
+      -> Policy [1..*];
+
+    association Policy 
+      -> Claim [1..*];
+
+    association Claim 
+      -> Settlement [1..*];
+
+    composition Insurer -> Policy;
+    composition Insured -> Policy;
+    composition Policy -> Claim;
+    composition Claim -> Settlement;
+}

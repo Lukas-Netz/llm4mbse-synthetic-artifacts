@@ -1,0 +1,58 @@
+
+
+
+
+classdiagram ContentModerationSystem  {
+
+  class Content  {
+    String type;  (textImageVideo)
+    String content;
+  }
+
+  class Moderator  {
+    String type;  (humanAIHybrid)
+  }
+
+  class HumanModerator extends Moderator  {
+    void reviewAndApprove(Content content);
+    void reviewAndReject(Content content);
+  }
+
+  class AIModerator extends Moderator  {
+    void flagForReview(Content content);
+  }
+
+  class HybridModerator extends Moderator  {
+    void reviewAndApprove(Content content);
+    void reviewAndReject(Content content);
+  }
+
+  class ModerationHistory  {
+    Content content;
+    int reviews;
+    int approvals;
+    int rejections;
+  }
+
+  class ModeratorPerformance  {
+    Moderator moderator;
+    double accuracy;
+    double precision;
+    double recall;
+  }
+
+  class System  {
+    List<Content> contents;
+    List<Moderator> moderators;
+    List<ModerationHistory> moderationHistory;
+    List<ModifierPerformance> moderatorPerformance;
+  }
+
+  composition System -> (has) contents;
+  composition System -> (has) moderators;
+  composition System -> (has) moderationHistory;
+  composition System -> (has) moderatorPerformance;
+  composition Moderator -> (moderates) Content;
+  composition ModerationHistory -> (relatesTo) Content;
+  composition ModeratorPerformance -> (relatesTo) Moderator;
+}

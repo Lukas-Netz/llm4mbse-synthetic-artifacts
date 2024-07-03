@@ -1,0 +1,54 @@
+
+
+
+
+classdiagram Logistics  {
+
+  class Vehicle  {
+    String uniqueIdentifier;
+    String make;
+    String model;
+    int year;
+  }
+
+  class Driver  {
+    String name;
+    String personnelNumber;
+    JobTitle jobTitle;
+  }
+
+  enum JobTitle  {
+    TruckDriver,
+    CarDriver,
+    VanDriver
+  ;}
+
+  class Task  {
+    String uniqueIdentifier;
+    String description;
+    TaskStatus status;
+  }
+
+  enum TaskStatus  {
+    NotCompleted,
+    Completed
+  ;}
+
+  class Warehouse  {
+    String uniqueIdentifier;
+    String location;
+    int capacity;
+  }
+
+  class Good  {
+    String uniqueIdentifier;
+    String name;
+    int quantity;
+  }
+
+  composition Vehicle -> Driver;
+  composition Vehicle -> Task[*];
+  composition Task -> Vehicle[*];
+  composition Warehouse -> Good[*];
+  composition Good -> Warehouse[*];
+}

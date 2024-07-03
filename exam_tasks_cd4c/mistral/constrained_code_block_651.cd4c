@@ -1,0 +1,42 @@
+
+classdiagram OnlineInterpretationSystem {
+
+  class Interpreter {
+    String id;
+    String name;
+    int expertiseLevel;
+    Language [ ] languages;
+    boolean isAvailable;
+  }
+
+  class Language {
+    String code;
+    String name;
+    Interpreter [ ] interpreters;
+  }
+
+  class Appointment {
+    Interpreter interpreter;
+    Language language;
+    LocalDateTime dateTime;
+  }
+
+  class History {
+    Interpreter interpreter;
+    Language language;
+    Appointment [ ] appointments;
+  }
+
+  class Report {
+    Language language;
+    Interpreter interpreter;
+    int numberOfAppointments;
+  }
+
+  association Interpreter -- [has] Language [*];
+  association Appointment -- [has] Interpreter;
+  association Appointment -- [has] Language;
+  composition History -- (contains) Appointment [*];
+  composition Report -- (contains) Language [0..*];
+  composition Report -- (contains) Interpreter [0..*];
+}

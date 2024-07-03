@@ -1,0 +1,63 @@
+
+
+
+
+classdiagram RatingsAndReviews  {
+
+  class User  {
+    String username;
+    String password;
+    Review[] reviews;
+  }
+
+  class Product  {
+    String name;
+    String description;
+    Review[] reviews;
+  }
+
+  class Service  {
+    String name;
+    String description;
+    Review[] reviews;
+  }
+
+  class Business  {
+    String name;
+    String description;
+    Review[] reviews;
+  }
+
+  class Review  {
+    int rating;
+    String reviewText;
+    User reviewer;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class Platform  {
+    User[] users;
+    Product[] products;
+    Service[] services;
+    Business[] businesses;
+    Review[] reviews;
+    Administrator[] administrators;
+  }
+
+  composition Platform -> (has) Administrator[*];
+  composition Platform -> (has) User[*];
+  composition Platform -> (has) Product[*];
+  composition Platform -> (has) Service[*];
+  composition Platform -> (has) Business[*];
+  composition User -> Review[*];
+  composition Product -> Review[*];
+  composition Service -> Review[*];
+  composition Business -> Review[*];
+  composition Review -> User;
+  composition Administrator -> Platform;
+  composition Platform -> Review[*];
+}

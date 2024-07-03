@@ -1,0 +1,66 @@
+
+classdiagram InCarInfotainmentSystem {
+
+    class InCarInfotainmentSystem {
+      CentralUnit centralUnit;
+      TouchscreenDisplay display;
+      SpeakerSet speakers;
+      ClimateControl climateControl;
+    }
+
+    class CentralUnit {
+      void playMusic(MusicSource source);
+      void playVideo(VideoSource source);
+      void processAudioAndVideoData();
+    }
+
+    class TouchscreenDisplay {
+      void displayMusicControls();
+      void displayNavigationControls();
+      void displayClimateControls();
+      void displayVehicleData();
+    }
+
+    class SpeakerSet {
+      void playAudio(AudioSource source);
+    }
+
+    class ClimateControl {
+      void setTemperature(int temperature);
+      void setFanSpeed(int speed);
+      void displayTemperatureAndFanSpeed();
+    }
+
+    class MusicSource {
+      String sourceType;
+    }
+
+    class VideoSource {
+      String sourceType;
+    }
+
+    class AudioSource {
+      String sourceType;
+    }
+
+    class VehicleData {
+      int speed;
+      float fuelLevel;
+    }
+
+    association InCarInfotainmentSystem -> CentralUnit;
+    association InCarInfotainmentSystem -> TouchscreenDisplay;
+    association InCarInfotainmentSystem -> SpeakerSet;
+    association InCarInfotainmentSystem -> ClimateControl;
+
+    composition CentralUnit -> MusicSource;
+    composition CentralUnit -> VideoSource;
+    composition CentralUnit -> AudioSource;
+
+    composition TouchscreenDisplay -> MusicControls;
+    composition TouchscreenDisplay -> NavigationControls;
+    composition TouchscreenDisplay -> ClimateControls;
+    composition TouchscreenDisplay -> VehicleData;
+
+   
+}

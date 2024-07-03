@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram VRDentalTrainingSystem  {
+
+  class DentalProcedure  {
+    String name;
+    ProcedureStep  procedureSteps  ;
+  }
+
+  class Trainee  {
+    String name;
+    String id;
+    TraineeProgress progress;
+  }
+
+  class Simulation  {
+    DentalProcedure procedure;
+    Trainee trainee;
+    Feedback feedback;
+  }
+
+  class Feedback  {
+    String message;
+    int score;
+  }
+
+  class ProcedureStep  {
+    String description;
+    boolean isComplete;
+  }
+
+  class TraineeProgress  {
+    int stepNumber;
+    boolean isComplete;
+  }
+
+  class SimulationResult  {
+    Trainee trainee;
+    Feedback feedback;
+    int score;
+  }
+
+  composition Simulation  ->  (has) DentalProcedure;
+  composition Simulation  ->  (has) Trainee;
+  composition Simulation  ->  (has) Feedback;
+  composition Trainee  ->  (has) TraineeProgress;
+  composition SimulationResult  ->  (has) Trainee;
+  composition SimulationResult  ->  (has) Feedback;
+  composition DentalProcedure  ->  (has) ProcedureStep  [*];
+  composition TraineeProgress  ->  (has) ProcedureStep;
+}

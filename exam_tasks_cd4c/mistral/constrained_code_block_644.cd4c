@@ -1,0 +1,65 @@
+
+classdiagram LegalResearch {
+
+  class LegalDocument {
+    String title;
+    String language;
+    String type;
+    String content;
+  }
+
+  class Case {
+    String name;
+    String court;
+    String year;
+    LegalDocument decision;
+  }
+
+  class Law {
+    String name;
+    String jurisdiction;
+    String year;
+    LegalDocument text;
+  }
+
+  class LegalConcept {
+    String name;
+    String definition;
+    LegalConceptType type;
+  }
+
+  enum LegalConceptType {
+    LegalPrinciple,
+    LegalDoctrine,
+    LegalTerm
+ 	
+ 							;
+  }
+
+  class User {
+    String name;
+    String role;
+  }
+
+  class Query {
+    String queryText;
+    User user;
+  }
+
+  class Result {
+    LegalDocument document;
+    LegalConcept concept;
+    Case case;
+    Law law;
+  }
+
+  class Recommendation {
+    String recommendationText;
+    Result result;
+  }
+
+  composition LegalResearch -> (has) User;
+  composition LegalResearch -> (has) Query;
+  composition Query -> (has) Result [*];
+  composition Query -> (has) Recommendation [*];
+}

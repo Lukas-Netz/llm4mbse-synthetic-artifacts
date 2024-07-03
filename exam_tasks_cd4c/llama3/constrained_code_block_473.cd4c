@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram VoiceActingPlatform  {
+
+  class Student  {
+    String username;
+    String password;
+  }
+
+  class Instructor  {
+    String username;
+    String password;
+  }
+
+  class Administrator  {
+    String username;
+    String password;
+  }
+
+  class Class  {
+    String name;
+    String description;
+    Schedule schedule;
+    Instructor instructor;
+    Student[] students;
+  }
+
+  class Schedule  {
+    Date startDate;
+    Date endDate;
+    Time[] times;
+  }
+
+  class Rating  {
+    Student student;
+    Instructor instructor;
+    int rating;
+  }
+
+  class Progress  {
+    Student student;
+    Class class;
+    int progress;
+  }
+
+  composition Instructor -> Class [1..*];
+  composition Class -> Student [1..*];
+  composition Administrator -> Instructor [1..*];
+  composition Class -> Rating [0..*];
+  composition Class -> Progress [0..*];
+}

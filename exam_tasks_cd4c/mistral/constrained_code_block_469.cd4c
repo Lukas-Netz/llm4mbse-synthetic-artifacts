@@ -1,0 +1,49 @@
+
+classdiagram VRForensic {
+
+  class CrimeScene {
+    String location;
+    String description;
+  }
+
+  class Suspect {
+    String name;
+    int age;
+    List<String> aliases;
+  }
+
+  class Evidence {
+    String type;
+    String description;
+  }
+
+  class ForensicScientist {
+    String name;
+    List<String> skills;
+  }
+
+  class Simulation {
+    boolean isRunning;
+    List<CrimeScene> crimeScenes;
+    List<Suspect> suspects;
+    List<Evidence> evidence;
+  }
+
+  composition Simulation -> CrimeScene [*];
+  composition Simulation -> Suspect [*];
+  composition Simulation -> Evidence [*];
+  association ForensicScientist -- Simulation [*];
+  association ForensicScientist -- Skill [*];
+
+  enum Skill {
+    DNA_ANALYSIS,
+    FINGERPRINT_ANALYSIS,
+    EVIDENCE_COLLECTION,
+    EVIDENCE_PRESERVATION,
+    EVIDENCE_EXAMINATION,
+    CRIME_SCENE_RECONSTRUCTION,
+    SUSPECT_INTERROGATION,
+    SUSPECT_PROFILING
+  ;
+}
+}

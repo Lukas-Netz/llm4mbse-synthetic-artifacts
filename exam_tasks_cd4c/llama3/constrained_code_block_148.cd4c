@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram DataLossPrevention  {
+
+  class DataLossPreventionSystem  {
+    DataMonitor dataMonitor;
+    AlertSystem alertSystem;
+    ReportGenerator reportGenerator;
+  }
+
+  class DataMonitor  {
+    DataTracker dataTracker;
+    DataScanner dataScanner;
+  }
+
+  class DataTracker  {
+    DataAccessHistory dataAccessHistory;
+  }
+
+  class DataScanner  {
+    DataCopyMoveTracker dataCopyMoveTracker;
+  }
+
+  class DataAccessHistory  {
+    DataAccessRecord[] dataAccessRecords;
+  }
+
+  class DataCopyMoveTracker  {
+    DataCopyMoveRecord[] dataCopyMoveRecords;
+  }
+
+  class DataAccessRecord  {
+    Data data;
+    User user;
+    DateTime accessTime;
+  }
+
+  class DataCopyMoveRecord  {
+    Data data;
+    User user;
+    DateTime copyMoveTime;
+  }
+
+  class AlertSystem  {
+    Alert[] alerts;
+  }
+
+  class Alert  {
+    Data data;
+    User user;
+    DateTime alertTime;
+  }
+
+  class ReportGenerator  {
+    Report[] reports;
+  }
+
+  class Report  {
+    Data data;
+    DateTime reportTime;
+  }
+
+  composition DataLossPreventionSystem -> (has) DataMonitor;
+  composition DataMonitor -> (has) DataTracker;
+  composition DataMonitor -> (has) DataScanner;
+  composition DataTracker -> (has) DataAccessHistory;
+  composition DataScanner -> (has) DataCopyMoveTracker;
+  composition AlertSystem -> (has) Alert;
+  composition ReportGenerator -> (has) Report;
+  association DataLossPreventionSystem -> AlertSystem;
+  }

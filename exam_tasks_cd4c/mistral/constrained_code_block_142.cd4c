@@ -1,0 +1,44 @@
+
+classdiagram AutonomousFarming {
+
+  class Farm {
+    String name;
+    int totalAcres;
+    Field [ ] fields;
+  }
+
+  class Field {
+    String uniqueIdentifier;
+    String name;
+    int sizeAcres;
+    Equipment [ ] equipment;
+  }
+
+  abstract class Equipment {
+    String uniqueIdentifier;
+    String name;
+    EquipmentType type;
+  }
+
+  class Tractor extends Equipment {
+    int speed;
+    int fuelLevel;
+  }
+
+  class Plow extends Equipment {
+    int depth;
+    int angle;
+  }
+
+  class Harvester extends Equipment {
+    int capacity;
+    float efficiency;
+  }
+
+  enum EquipmentType {
+    Tractor, Plow, Harvester;
+  }
+
+  composition Farm -> Field [*];
+  composition Field -> Equipment [*];
+}

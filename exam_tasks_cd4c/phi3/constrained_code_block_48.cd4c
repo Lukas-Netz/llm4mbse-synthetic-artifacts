@@ -1,0 +1,51 @@
+
+classdiagram FraudDetectionSystem {
+
+    class TransactionData {
+      String transactionId;
+      double amount;
+      Date date;
+      String transactionType;
+    }
+
+    class UserData {
+      String userId;
+      String accountInfo;
+      List<TransactionData> transactionHistory;
+    }
+
+    class FraudDetectionAlgorithm {
+      void analyzeTransactions(List<TransactionData> transactions);
+      void learnFromData(List<TransactionData> transactions);
+    }
+
+    class AlertSystem {
+      void sendAlert(String alertMessage);
+    }
+
+    class DataAnalytics {
+      void analyzeTransactions(List<TransactionData> transactions);
+      String getCommonFraudulentActivities();
+    }
+
+    class MachineLearning {
+      void trainModel(List<TransactionData> transactions);
+      void updateModel(List<TransactionData> transactions);
+    }
+
+    class FraudDetectionSystem {
+      TransactionData transactionData;
+      UserData userData;
+      FraudDetectionAlgorithm fraudDetectionAlgorithm;
+      AlertSystem alertSystem;
+      DataAnalytics dataAnalytics;
+      MachineLearning machineLearning;
+    }
+
+    association FraudDetectionSystem -> TransactionData;
+    association FraudDetectionSystem -> UserData;
+    association FraudDetectionSystem -> FraudDetectionAlgorithm;
+    association FraudDetectionSystem -> AlertSystem;
+    association FraudDetectionSystem -> DataAnalytics;
+    association FraudDetectionSystem -> MachineLearning;
+}

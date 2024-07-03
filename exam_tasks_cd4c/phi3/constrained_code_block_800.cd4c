@@ -1,0 +1,112 @@
+
+classdiagram GeneEditingSystem {
+
+    class GeneEditingSystem {
+      UserManager userManager;
+      GeneDatabase geneDatabase;
+      GeneEditingToolManager geneEditingToolManager;
+      GeneEditingProjectManager geneEditingProjectManager;
+      ReportGenerator reportGenerator;
+    }
+
+    class UserManager {
+      User[] users;
+      void addUser(User user);
+      void removeUser(User user);
+      User getUser(String username);
+    }
+
+    class GeneDatabase {
+      Gene[] genes;
+      void addGene(Gene gene);
+      void removeGene(Gene gene);
+      Gene getGene(String geneId);
+    }
+
+    class GeneEditingToolManager {
+      GeneEditingTool[] tools;
+      void addTool(GeneEditingTool tool);
+      void removeTool(GeneEditingTool tool);
+      GeneEditingTool getTool(String toolId);
+    }
+
+    class GeneEditingProjectManager {
+      GeneEditingProject[] projects;
+      void addProject(GeneEditingProject project);
+      void removeProject(GeneEditingProject project);
+      GeneEditingProject getProject(String projectId);
+    }
+
+    class GeneEditingProject {
+      String projectId;
+      User projectManager;
+      GeneEditingTool tool;
+      Gene[] genes;
+      GeneEditingResult[] results;
+      int successCount;
+      int failureCount;
+      double successRate;
+    }
+
+    class GeneEditingTool {
+      String toolId;
+      String toolName;
+      String toolType;
+    }
+
+    class GeneEditingResult {
+      String resultId;
+      String resultStatus;
+    }
+
+    class User {
+      String username;
+      String role;
+    }
+
+    class Gene {
+      String geneId;
+      String geneName;
+    }
+
+    class GeneEditingResult {
+      String resultId;
+      String resultStatus;
+    }
+
+    association GeneEditingSystem 
+      [0..1] UserManager
+      [many] -> GeneDatabase
+      [0..1] - 
+      {
+       
+   ordered
+     };
+
+    association GeneEditingSystem 
+      [0..1] GeneEditingToolManager
+      [many] -> GeneEditingProjectManager
+      [0..1] - 
+      {
+       
+   ordered
+     };
+
+    association GeneEditingSystem 
+      [0..1] GeneEditingProjectManager
+      [many] -> GeneEditingProject
+      [0..1] - 
+      {
+       
+   ordered
+     };
+
+    association GeneEditingSystem 
+      [0..1] ReportGenerator
+      [many] -> GeneEditingProject
+      [0..1] - 
+      {
+       
+   ordered
+     };
+}

@@ -1,0 +1,53 @@
+
+
+
+
+classdiagram SolarPanelCleaningRobot  {
+
+  class Robot  {
+    String uniqueIdentifier;
+    Farm farm;
+    Mechanism mechanism;
+    Navigation navigation;
+  }
+
+  class Farm  {
+    String name;
+    Location location;
+    Robot  [ ] robots;
+  }
+
+  class Mechanism  {
+    CleaningType type;
+    int cleaningSpeed;
+    int pressure;
+    int angle;
+  }
+
+  class Navigation  {
+    int speed;
+    Direction direction;
+    int distance;
+  }
+
+  class Monitoring  {
+    int temperature;
+    int humidity;
+    int energyOutput;
+  }
+
+  enum CleaningType  {
+    WaterBased, DryBased;
+  }
+
+  enum Direction  {
+    North, South, East, West;
+  }
+
+  composition Robot  ->  (has) Mechanism;
+  composition Robot  ->  (has) Navigation;
+  composition Farm  ->  (has) Robot  [0..*];
+  composition Farm  ->  (has) Monitoring;
+  association Robot  ->  (assignedTo) Farm;
+  association Farm  ->  (monitoredBy) Monitoring;
+}

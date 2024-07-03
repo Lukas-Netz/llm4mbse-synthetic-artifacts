@@ -1,0 +1,73 @@
+
+classdiagram MentalHealthPlatform {
+
+  class User {
+    String username;
+    String password;
+    String name;
+    String email;
+    Resource [ ] resources;
+    Rating [ ] ratings;
+    Goal [ ] goals;
+    Progress [ ] progress;
+    Achievement [ ] achievements;
+  }
+
+  class Therapist extends User {
+    String qualifications;
+    String experience;
+    String availability;
+    Resource [ ] resources;
+    Session [ ] sessions;
+  }
+
+  class Resource {
+    String title;
+    String description;
+    String [ ] tags;
+  }
+
+  class Article extends Resource { }
+  class Video extends Resource { }
+  class Podcast extends Resource { }
+
+  class Rating {
+    User user;
+    Resource resource;
+    int rating;
+    String review;
+  }
+
+  class Goal {
+    User user;
+    String goal;
+    boolean isCompleted;
+  }
+
+  class Progress {
+    User user;
+    String progress;
+  }
+
+  class Achievement {
+    User user;
+    String achievement;
+  }
+
+  class Session {
+    Therapist therapist;
+    User user;
+    String date;
+    String time;
+  }
+
+  association User <- Therapist;
+  association User --o0o- 											;
+  association User --o0o- 											;
+  association User --o0o- 											;
+  association User --o0o- 											;
+  association Therapist --o0o- 										;
+  association Therapist --o0o- 										;
+  association Resource --o0o- 										;
+  association Rating --o0o- 											;
+ 				}

@@ -1,0 +1,42 @@
+
+
+
+
+classdiagram Excavation  {
+
+  class Team  {
+    String teamLeader;
+    Archaeologist  [ ] teamMembers;
+    ExcavationStatus status;
+    void addTeamMember(Archaeologist member);
+    void removeTeamMember(Archaeologist member);
+    void updateStatus(ExcavationStatus status);
+  }
+
+  class Archaeologist  {
+    String uniqueIdentifier;
+    Layer  [ ] assignedLayers;
+  }
+
+  class Layer  {
+    String uniqueIdentifier;
+    Artifact  [ ] artifacts;
+  }
+
+  class Artifact  {
+    String uniqueIdentifier;
+    ArtifactType type;
+  }
+
+  enum ArtifactType  {
+    Pottery, Tools, Relics;
+  }
+
+  enum ExcavationStatus  {
+    Active, Completed;
+  }
+
+  composition Team  ->  (has) Archaeologist  [ * ];
+  composition Team  ->  (has) Layer  [ * ];
+  composition Layer  ->  (has) Artifact  [ * ];
+}

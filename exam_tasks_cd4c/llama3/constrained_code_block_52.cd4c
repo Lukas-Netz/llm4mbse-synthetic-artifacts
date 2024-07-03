@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram CollaborationTool  {
+
+  class Project  {
+    String name;
+    String description;
+    ProjectStatus status;
+    -> Member[*];
+    -> File[*];
+  }
+
+  class Member  {
+    String uniqueIdentifier;
+    Role role;
+  }
+
+  class File  {
+    String name;
+    int size;
+    FileType type;
+    -> Member[*];
+  }
+
+  class Task  {
+    String name;
+    String description;
+    Date dueDate;
+    -> Member[*];
+  }
+
+  enum ProjectStatus  {
+    InProgress,
+    Completed,
+    Cancelled
+  ;}
+
+  enum Role  {
+    Admin,
+    Member,
+    Guest
+  ;}
+
+  enum FileType  {
+    Image,
+    Document,
+    Video
+  ;}
+
+  composition Project -> Member[*];
+  composition Project -> File[*];
+  composition Task -> Member[*];
+}

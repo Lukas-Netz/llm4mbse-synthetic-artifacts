@@ -1,0 +1,55 @@
+
+classdiagram BlockchainRealEstate {
+
+    class Property {
+      String uniqueId;
+      String location;
+      String type;
+      List<Owner> owners;
+    }
+
+    class Owner {
+      String uniqueId;
+      String name;
+      String contactInfo;
+    }
+
+    class Buyer {
+      String uniqueId;
+      String name;
+      String contactInfo;
+    }
+
+    class Seller {
+      String uniqueId;
+      String name;
+      String contactInfo;
+    }
+
+    class Transaction {
+      String uniqueId;
+      Date date;
+      BigDecimal price;
+      Property property;
+      Buyer buyer;
+      Seller seller;
+    }
+
+    class Blockchain {
+      List<Transaction> transactionHistory;
+      verifyOwnership(String uniqueId);
+      resolveDispute(String uniqueId);
+    }
+
+    association Property 
+      to [many] 
+      -> Owner;
+
+    association Transaction 
+      to [many] 
+      -> Property;
+
+    composition Blockchain 
+      to [many] 
+      -> Transaction;
+}

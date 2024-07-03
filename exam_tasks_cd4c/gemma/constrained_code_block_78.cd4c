@@ -1,0 +1,45 @@
+
+
+classdiagram SelfServiceBI {
+
+  class User {
+    String name;
+    String password;
+    List<Report> reports;
+    List<Dashboard> dashboards;
+  }
+
+  class Report {
+    String name;
+    DataSource dataSource;
+    List<DataVisualization> visualizations;
+  }
+
+  class Dashboard {
+    String name;
+    List<Report> reports;
+    List<DataVisualization> visualizations;
+  }
+
+  class DataVisualization {
+    String type;
+    String data;
+  }
+
+  class DataSource {
+    String name;
+    String connectionString;
+  }
+
+  class DataGovernance {
+    List<DataValidationRule> rules;
+  }
+
+  composition User -> (has) Reports;
+  composition User -> (has) Dashboards;
+  composition Report -> (has) Visualizations;
+  composition Dashboard -> (has) Reports;
+  composition Dashboard -> (has) Visualizations;
+  composition DataVisualization -> (has) Data;
+  composition DataGovernance -> (has) Rules;
+}

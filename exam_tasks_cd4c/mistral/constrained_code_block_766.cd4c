@@ -1,0 +1,45 @@
+
+classdiagram RoboticBartender {
+
+  class RoboticBartender {
+    Hub hub;
+    Database database;
+    Robot [						] robots;
+  }
+
+  class Hub {
+    void manageRobots();
+    void manageDatabase();
+  }
+
+  class Database {
+    DrinkRecipe [					] recipes;
+  }
+
+  class Robot {
+    String uniqueIdentifier;
+    Sensor sensor;
+    void mixDrink();
+    void serveDrink();
+    void cleanBar();
+    void recognizeOrder();
+  }
+
+  class Sensor {
+    void detectCustomer();
+    void recognizeOrder();
+  }
+
+  class DrinkRecipe {
+    String name;
+    String ingredients;
+    String preparationInstructions;
+    int price;
+  }
+
+  composition RoboticBartender -> Hub;
+  composition RoboticBartender -> Database;
+  composition RoboticBartender -> Robot [*];
+  association Robot -> Sensor;
+  association Hub -> Database;
+}

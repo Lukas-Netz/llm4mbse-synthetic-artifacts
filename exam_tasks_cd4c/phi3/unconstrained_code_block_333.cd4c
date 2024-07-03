@@ -1,0 +1,102 @@
+
+classdiagram RetailAnalyticsSystem {
+
+  class RetailAnalyticsSystem {
+    Hub hub;
+    Store store;
+    Product product;
+    Category category;
+    Customer customer;
+    SalesData salesData;
+    CustomerBehavior behavior;
+    PredictiveAnalytics analytics;
+    BusinessIntelligenceBI bibt;
+    DataVisualizationDV dv;
+  }
+
+  class Hub {
+    -> RetailAnalyticsSystem;
+    void integrateDataSources();
+    void provideRealTimeAnalytics();
+    void providePredictiveAnalytics();
+    void provideForecasting();
+    void provideInsights();
+    void provideRecommendations();
+  }
+
+  class Store {
+    String storeName;
+    Store(String storeName);
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    void addCustomer(Customer customer);
+    void removeCustomer(Customer customer);
+    SalesData getSalesData();
+  }
+
+  class Product {
+    String productName;
+    double price;
+    Product(String productName, double price);
+    void addSalesData(SalesData salesData);
+    void removeSalesData(SalesData salesData);
+  }
+
+  class Category {
+    String categoryName;
+    Category(String categoryName);
+    void addProduct(Product product);
+    void removeProduct(Product product);
+    SalesData getSalesData();
+  }
+
+  class Customer {
+    String customerName;
+    Customer(String customerName);
+    void addSalesData(SalesData salesData);
+    void removeSalesData(SalesData salesData);
+    CustomerBehavior getBehavior();
+  }
+
+  class SalesData {
+    int salesCount;
+    double totalSales;
+    SalesData(int salesCount, double totalSales);
+    void addSalesData(int salesCount, double totalSales);
+    void removeSalesData();
+  }
+
+  class CustomerBehavior {
+    boolean isRepeatCustomer;
+    boolean isHighValueCustomer;
+    CustomerBehavior(boolean isRepeatCustomer, boolean isHighValueCustomer);
+  }
+
+  class PredictiveAnalytics {
+    double forecastSales;
+    PredictiveAnalytics(double forecastSales);
+    void analyzeCustomerBehavior();
+    void provideRecommendations();
+  }
+
+  class BusinessIntelligenceBI {
+    void integrateBITools();
+    void provideBIInsights();
+  }
+
+  class DataVisualizationDV {
+    void visualizeData();
+    void provideDataVisualizations();
+  }
+
+  composition RetailAnalyticsSystem -> (has) Hub;
+  composition RetailAnalyticsSystem -> (has) Store;
+  composition RetailAnalyticsSystem -> (has) Product;
+  composition RetailAnalyticsSystem -> (has) Category;
+  composition RetailAnalyticsSystem -> (has) Customer;
+  composition RetailAnalyticsSystem -> (has) SalesData;
+  composition RetailAnalyticsSystem -> (has) CustomerBehavior;
+  composition RetailAnalyticsSystem -> (has) PredictiveAnalytics;
+  composition RetailAnalyticsSystem -> (has) BusinessIntelligenceBI;
+  composition RetailAnalyticsSystem -> (has) DataVisualizationDV;
+}

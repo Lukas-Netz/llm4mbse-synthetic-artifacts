@@ -1,0 +1,73 @@
+
+classdiagram AdSystem {
+
+  class UserProfile {
+    String uniqueIdentifier;
+    String age;
+    String gender;
+    String interests;
+    String purchaseHistory;
+  }
+
+  class Advertiser {
+    String uniqueIdentifier;
+    String name;
+    String contactInfo;
+  }
+
+  class Ad {
+    String uniqueIdentifier;
+    String title;
+    String description;
+    String targetAudience;
+  }
+
+  class Campaign {
+    String uniqueIdentifier;
+    Ad [ ] ads;
+    String targetAudience;
+  }
+
+  class UserAdInteraction {
+    String uniqueIdentifier;
+    String userProfileUniqueIdentifier;
+    String adUniqueIdentifier;
+    String interactionType;
+    String timestamp;
+  }
+
+  class AIEngine {
+    void analyzeUserData();
+    void optimizeAdTargeting();
+    void improveUserEngagement();
+  }
+
+  composition UserProfile [*] UserAdInteraction [  many ]
+  -- Association
+  <<stereotype>>  -  {
+    ordered
+  }
+  ;
+
+  composition Ad [*] UserAdInteraction [  many ]
+  -- Association
+  <<stereotype>>  -  {
+    ordered
+  }
+  ;
+
+  composition Campaign [*] Ad [  many ]
+  -- Association
+  <<stereotype>>  -  {
+    ordered
+  }
+  ;
+
+  composition Advertiser [*] Campaign [  many ]
+  -- Association
+  <<stereotype>>  -  {
+    ordered
+  }
+  ;
+
+}

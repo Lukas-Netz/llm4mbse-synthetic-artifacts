@@ -1,0 +1,44 @@
+
+classdiagram Agriculture {
+
+  class Sensor {
+    String id;
+    String type;
+    float temperature;
+    float humidity;
+    float lightLevel;
+  }
+
+  class WeatherStation {
+    String id;
+    float temperature;
+    float precipitation;
+    float windSpeed;
+  }
+
+  class CentralHub {
+    -> Sensor [*];
+    -> WeatherStation [*];
+    void collectData();
+    void predictCropGrowth();
+    void provideRecommendations();
+  }
+
+  class Farm {
+    String id;
+    CentralHub centralHub;
+    CropType cropType;
+  }
+
+  class CropType {
+    String name;
+    float temperatureRequirement;
+    float humidityRequirement;
+    float lightRequirement;
+    float growthPattern;
+  }
+
+  composition CentralHub -> Sensor [*];
+  composition CentralHub -> WeatherStation [*];
+  composition Farm -> CentralHub [1..1];
+}

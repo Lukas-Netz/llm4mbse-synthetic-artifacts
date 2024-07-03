@@ -1,0 +1,36 @@
+
+classdiagram AutonomousBiometricSecuritySystem {
+
+    class AutonomousBiometricSecuritySystem {
+      Sensor[] sensors;
+      CPU cpu;
+      Database database;
+    }
+
+    class Sensor {
+      String type;
+    }
+
+    class FaceRecognitionSensor extends Sensor {
+      int resolution;
+      float accuracy;
+    }
+
+    class FingerprintSensor extends Sensor {
+      int resolution;
+      float accuracy;
+    }
+
+    class CPU {
+      void authenticate(Sensor sensor);
+      void identify(Sensor sensor);
+    }
+
+    class Database {
+      void storeBiometricData(Sensor sensor);
+    }
+
+    association AutonomousBiometricSecuritySystem -> [has] Sensor[*];
+    association AutonomousBiometricSecuritySystem -> [has] CPU;
+    association AutonomousBiometricSecuritySystem -> [has] Database;
+}

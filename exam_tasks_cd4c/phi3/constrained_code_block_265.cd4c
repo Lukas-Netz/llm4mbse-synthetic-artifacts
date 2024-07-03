@@ -1,0 +1,181 @@
+
+classdiagram RemoteDesktop {
+
+  class Client {
+    void connectToServer(Server server);
+    void sendCommand(String command);
+    void receiveOutput(String output);
+    void transferFile(File file);
+    void shareScreen();
+    void startChat(String message);
+    void saveSession();
+    void recordSession();
+  }
+
+  class Server {
+    void executeCommand(String command);
+    void sendOutput(String output);
+    void receiveFile(File file);
+    void startChat(String message);
+    void saveSession();
+    void recordSession();
+  }
+
+  class File {
+    String name;
+    byte[] content;
+  }
+
+  class Session {
+    String id;
+    boolean isActive;
+    boolean isSaved;
+    boolean isRecorded;
+  }
+
+  association Client -> Server {
+    ordered
+  }
+
+ 
+ 
+;
+
+  association Server -> Session {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Server {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Client {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association File -> Server {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association File -> Client {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> File {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Client {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Server {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> File {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Client {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Server {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> File {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Client {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> Server {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+  association Session -> File {
+    
+   
+ 
+ordered
+ 
+ 
+ };
+
+ 
+ 
+}

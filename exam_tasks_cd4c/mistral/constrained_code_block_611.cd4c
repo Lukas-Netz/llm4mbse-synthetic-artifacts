@@ -1,0 +1,72 @@
+
+classdiagram AutonomousProbes {
+
+  class AutonomousProbeSystem {
+    Probe [][] probes;
+  }
+
+  abstract class Probe {
+    String uniqueIdentifier;
+    Position position;
+    Velocity velocity;
+    Trajectory trajectory;
+    Sensors sensors;
+    RadioCommunication radioCommunication;
+  }
+
+  class ScientificProbe extends Probe {
+    Instruments instruments;
+  }
+
+  class ExploratoryProbe extends Probe {
+  }
+
+  class Position {
+    double xCoordinate;
+    double yCoordinate;
+    double zCoordinate;
+  }
+
+  class Velocity {
+    double xVelocity;
+    double yVelocity;
+    double zVelocity;
+  }
+
+  class Trajectory {
+    Position[] waypoints;
+  }
+
+  class Sensors {
+    TemperatureSensor temperatureSensor;
+    PressureSensor pressureSensor;
+    RadiationSensor radiationSensor;
+  }
+
+  class TemperatureSensor {
+    double temperature;
+  }
+
+  class PressureSensor {
+    double pressure;
+  }
+
+  class RadiationSensor {
+    double radiationLevel;
+  }
+
+  class RadioCommunication {
+    boolean isCommunicating;
+  }
+
+  class Instruments {
+    CelestialBodyDataCollector[] instruments;
+  }
+
+  class CelestialBodyDataCollector {
+    String celestialBodyName;
+    double data;
+  }
+
+  composition AutonomousProbeSystem -> Probe [*];
+}

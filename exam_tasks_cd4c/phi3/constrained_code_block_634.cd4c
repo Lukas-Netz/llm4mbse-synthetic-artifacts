@@ -1,0 +1,44 @@
+
+classdiagram QuantumEncryptionKeyDistribution {
+
+    class CentralServer {
+      Map<String, PublicPrivateKeyPair> userKeys;
+      void generateKey(String userId);
+      void distributeKey(String userId, PublicPrivateKeyPair key);
+      void monitorNetworkActivity();
+    }
+
+    class User {
+      String uniqueIdentifier;
+      PublicPrivateKeyPair publicKey;
+      PublicPrivateKeyPair privateKey;
+      void requestNewKey();
+      void receiveKey(PublicPrivateKeyPair key);
+    }
+
+    class Network {
+      void transmitData(User sender, User receiver, byte[] encryptedData);
+    }
+
+    class PublicPrivateKeyPair {
+      PublicKey publicKey;
+      PrivateKey privateKey;
+    }
+
+    class PublicKey {
+      byte[] key;
+    }
+
+    class PrivateKey {
+      byte[] key;
+    }
+
+  association CentralServer 
+    -> User [*];
+  association CentralServer 
+    -> Network;
+  association User 
+    -> PublicPrivateKeyPair;
+  association User 
+    -> Network;
+}

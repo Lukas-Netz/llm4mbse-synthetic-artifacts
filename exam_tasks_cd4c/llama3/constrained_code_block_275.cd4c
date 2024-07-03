@@ -1,0 +1,56 @@
+
+
+
+classdiagram FraudDetectionSystem  {
+
+  class Sensor  {
+    TransactionType type;
+    void sendTransactionData(Transaction transaction);
+  }
+
+  class Transaction  {
+    String details;
+    Date timestamp;
+  }
+
+  class CentralDatabase  {
+    void storeTransactionData(Transaction transaction);
+    void analyzeTransactionData();
+    void alertSecurityTeam(Transaction transaction);
+  }
+
+  class SecurityTeam  {
+    void receiveAlert(Transaction transaction);
+  }
+
+  class Report  {
+    int suspiciousTransactions;
+    TransactionType mostCommonFraudulentType;
+    Time mostFraudulentTime;
+  }
+
+  class ReportGenerator  {
+    void generateReport();
+  }
+
+  class TransactionType  {
+    String name;
+  }
+
+  class Date  {
+    int day;
+    int month;
+    int year;
+  }
+
+  class Time  {
+    int hour;
+    int minute;
+  }
+
+  composition CentralDatabase -> Sensor [*];
+  composition SecurityTeam -> CentralDatabase;
+  composition ReportGenerator -> CentralDatabase;
+  association CentralDatabase -> Report;
+  association ReportGenerator -> Report;
+}

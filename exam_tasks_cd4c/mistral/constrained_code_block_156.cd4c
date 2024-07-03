@@ -1,0 +1,42 @@
+
+classdiagram VirtualWorkspace {
+
+  class VirtualWorkspace {
+    String name;
+    String description;
+    Feature [ ] features;
+  }
+
+  abstract class Feature {
+    boolean isEnabled;
+  }
+
+  class User {
+    String username;
+    String password;
+    Role [ ] roles;
+    Team [ ] teams;
+  }
+
+  abstract class Role {
+    String name;
+    Permission [ ] permissions;
+  }
+
+  class Permission {
+    String action;
+    String resource;
+  }
+
+  class Team {
+    String name;
+    String description;
+    User [ ] members;
+    VirtualWorkspace [ ] virtualWorkspaces;
+  }
+
+  composition VirtualWorkspace -> Feature [*];
+  composition User -> Role [*];
+  composition Team -> User [*];
+  composition Team -> VirtualWorkspace [*];
+}

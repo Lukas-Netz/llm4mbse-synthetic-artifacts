@@ -1,0 +1,48 @@
+
+classdiagram SmartGrid {
+
+    class CentralControlCenter {
+      String name;
+      String location;
+      void monitorGrid();
+      void controlGrid();
+    Writable[] powerLines;
+    }
+
+    class Substation {
+      String name;
+      String location;
+      Writable[] powerLines;
+    }
+
+    class PowerLine {
+      String name;
+      double length;
+      Writable[] substations;
+    }
+
+    class Transformer {
+      String name;
+      int capacity;
+      Writable[] powerLines;
+    }
+
+    class Meter {
+      String name;
+      String location;
+      Writable[] households;
+    }
+
+    class SmartAppliance {
+      String name;
+      String type;
+      Writable[] households;
+    }
+
+    association SmartGrid -> CentralControlCenter;
+    association SmartGrid -> Substation [*];
+    association SmartGrid -> PowerLine [*];
+    association SmartGrid -> Transformer [*];
+    association SmartGrid -> Meter [*];
+    association SmartGrid -> SmartAppliance [*];
+}

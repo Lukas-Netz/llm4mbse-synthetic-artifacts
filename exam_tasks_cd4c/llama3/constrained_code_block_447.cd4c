@@ -1,0 +1,47 @@
+
+
+
+
+classdiagram MathTutoringSystem  {
+
+  class Student  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Teacher  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    -> Course[*];
+  }
+
+  class Course  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    -> Teacher[*];
+    -> Student[*];
+    Score score;
+  }
+
+  class Score  {
+    float value;
+    Course course;
+  }
+
+  class Recommendation  {
+    String student;
+    String course;
+    String suggestion;
+  }
+
+  composition Student -> Course[*];
+  composition Course -> Teacher[*];
+  composition Course -> Student[*];
+  composition Score -> Course;
+  composition Recommendation -> Student;
+  composition Recommendation -> Course;
+}

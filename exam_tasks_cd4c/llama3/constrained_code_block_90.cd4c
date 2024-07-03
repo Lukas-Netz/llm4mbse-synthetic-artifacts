@@ -1,0 +1,37 @@
+
+
+
+classdiagram SmartManufacturing  {
+
+  class ProductionLine  {
+    String name;
+    String uniqueIdentifier;
+    Machine  machine  ;  }
+  class Machine  {
+    String uniqueIdentifier;
+    type  type  ;  }
+  class LaserCutter extends Machine  {
+    int cuttingSpeed;
+    int precisionLevel;  }
+  class DrillingMachine extends Machine  {
+    int drillingSpeed;
+    int torque;  }
+  class AssemblyRobot extends Machine  {
+    int assemblySpeed;
+    int accuracy;  }
+  class QualityControlDepartment  {
+    Inspector  inspector  ;  }
+  class Inspector  {
+    String uniqueIdentifier;
+    Skill  skill  ;  }
+  class Skill  {
+    String name;  }
+  class Reporting  {
+    ProductionLine  productionLine;
+    QualityControlDepartment  qualityControlDepartment;  }
+
+  composition ProductionLine  ->  (has) Machine;
+  composition QualityControlDepartment  ->  (has) Inspector;
+  composition Reporting  ->  (has) ProductionLine;
+  composition Reporting  ->  (has) QualityControlDepartment;
+}

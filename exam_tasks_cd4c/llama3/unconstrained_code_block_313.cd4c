@@ -1,0 +1,66 @@
+
+
+
+
+classdiagram PrecisionAgriculture  {
+
+  class VineyardPlot  {
+    String name;
+    GrapeVariety grapeVariety;
+    WeatherStation weatherStation;
+    SoilMoistureSensor soilMoistureSensor;
+  }
+
+  class GrapeVariety  {
+    String name;
+  }
+
+  class WeatherStation  {
+    String location;
+    WeatherData weatherData;
+  }
+
+  class SoilMoistureSensor  {
+    String location;
+    SoilMoistureData soilMoistureData;
+  }
+
+  class WeatherData  {
+    double temperature;
+    double humidity;
+    double windSpeed;
+  }
+
+  class SoilMoistureData  {
+    double moistureLevel;
+  }
+
+  class Recommendation  {
+    String action;
+    String reason;
+  }
+
+  class VineyardManager  {
+    List<VineyardPlot> vineyardPlots;
+    WeatherForecastingService weatherForecastingService;
+
+    void provideRecommendations(VineyardPlot plot);
+  }
+
+  class WeatherForecastingService  {
+    List<WeatherForecast> weatherForecasts;
+
+    WeatherForecast getForecast(String location);
+  }
+
+  class WeatherForecast  {
+    String location;
+    WeatherData weatherData;
+  }
+
+  composition VineyardPlot -> (has) GrapeVariety;
+  composition VineyardPlot -> (has) WeatherStation;
+  composition VineyardPlot -> (has) SoilMoistureSensor;
+  composition VineyardManager -> VineyardPlot [*];
+  composition WeatherForecastingService -> WeatherForecast [*];
+}

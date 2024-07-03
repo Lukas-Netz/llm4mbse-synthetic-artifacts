@@ -1,0 +1,37 @@
+
+classdiagram University {
+
+  class Instructor {
+    String name;
+    String email;
+    Course [ ] teaches;
+  }
+
+  class Course {
+    String name;
+    String description;
+    Instructor [ ] instructors;
+    Date startDate;
+    Date endDate;
+    Student [ ] students;
+  }
+
+  class Student {
+    String name;
+    String email;
+    Course [ ] enrolled;
+  }
+
+  class Date {
+    int day;
+    int month;
+    int year;
+  }
+
+  composition University -> Instructor [*];
+  composition University -> Course [*];
+  composition Course -> Instructor [*];
+  composition Course -> Student [*];
+  association Student -> Course [*];
+  association Instructor -> Course [*];
+}

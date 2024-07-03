@@ -1,0 +1,52 @@
+
+classdiagram RefugeeCampManagementSystem {
+
+    class Camp {
+      String name;
+      String location;
+      List<Tent> tents;
+    }
+
+    class Tent {
+      String name;
+      int capacity;
+      List<Refugee> refugees;
+      List<Activity> activities;
+    }
+
+    class Refugee {
+      String id;
+      String name;
+      DateOfBirth dob;
+    }
+
+    class Activity {
+      String name;
+      String description;
+    }
+
+    class Volunteer {
+      String id;
+      String name;
+      String role;
+    }
+
+    class Donation {
+      String id;
+      String description;
+      int quantity;
+    }
+
+    association Camp <-> List<<Tent>>;
+    association Camp <-> List<<Volunteer>>;
+    association Camp <-> List<<Donation>>;
+
+    association Tent <-> List<<Refugee>>;
+    association Tent <-> List<<Activity>>;
+
+    association Refugee <-> Tent;
+
+    association Volunteer <-> Camp;
+
+    association Donation <-> Camp;
+}

@@ -1,0 +1,73 @@
+
+classdiagram OnlineTherapyPlatform {
+
+    class Therapist {
+      String uniqueIdentifier;
+      String name;
+      String specialization;
+      List<Session> sessions;
+    }
+
+    class Client {
+      String uniqueIdentifier;
+      String name;
+      String contactInformation;
+      List<Session> sessions;
+    }
+
+    class Session {
+      String uniqueIdentifier;
+      Date date;
+      Time time;
+      int duration;
+      Therapist therapist;
+      Client client;
+    }
+
+    class Rating {
+      String therapistIdentifier;
+      String clientIdentifier;
+      int ratingValue;
+    }
+
+    class Review {
+      String therapistIdentifier;
+      String clientIdentifier;
+      String content;
+    }
+
+    class OnlineTherapyPlatform {
+      List<Therapist> therapists;
+      List<Client> clients;
+      List<Session> sessions;
+      List<Rating> ratings;
+      List<Review> reviews;
+
+      void addTherapist(Therapist therapist);
+      void addClient(Client client);
+      void addSession(Session session);
+      void addRating(Rating rating);
+      void addReview(Review review);
+      List<Therapist> getAvailableTherapists(Date date);
+      List<Therapist> getTherapistsBySpecialization(String specialization);
+      List<Client> getAvailableClients(Date date);
+      List<Session> getAvailableSessions(Therapist therapist);
+      List<Session> getAvailableSessions(Client client);
+      List<Session> getAllSessions();
+      List<Rating> getAllRatings();
+      List<Review> getAllReviews();
+      List<Therapist> getTherapistsWithSpecialization(String specialization);
+      List<Client> getClientsWithTherapist(Therapist therapist);
+     }
+
+  composition OnlineTherapyPlatform -> (has) Therapist;
+  composition OnlineTherapyPlatform -> (has) Client;
+  composition OnlineTherapyPlatform -> (has) Session;
+  composition OnlineTherapyPlatform -> (has) Rating;
+  composition OnlineTherapyPlatform -> (has) Review;
+  association OnlineTherapyPlatform -> Therapist;
+  association OnlineTherapyPlatform -> Client;
+  association OnlineTherapyPlatform -> Session;
+  association OnlineTherapyPlatform -> Rating;
+  association OnlineTherapyPlatform -> Review;
+}

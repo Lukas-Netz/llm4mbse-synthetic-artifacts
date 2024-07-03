@@ -1,0 +1,35 @@
+
+
+classdiagram IntelligentDocumentSearch {
+
+    class Indexer {
+      Index index;
+
+      void indexDocument(Document document);
+    }
+
+    class Searcher {
+      Index index;
+
+      List<Document> searchDocuments(Query query);
+    }
+
+    class Document {
+      String id;
+      String title;
+      String content;
+    }
+
+    class Index {
+      Map<String, List<Document>> keywordsToDocuments;
+    }
+
+    class Query {
+      String text;
+    }
+
+  composition Indexer -> (has) Index;
+  composition Searcher -> (has) Index;
+  association Document -> Index;
+  association Query -> Searcher;
+}

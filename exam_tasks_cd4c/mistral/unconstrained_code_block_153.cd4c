@@ -1,0 +1,57 @@
+
+classdiagram GamingPlatform {
+
+  class GamingPlatform {
+    List<Game> games;
+    List<Currency> currencies;
+    List<GameMode> gameModes;
+    List<GameDeveloper> gameDevelopers;
+  }
+
+  class Game {
+    String name;
+    String description;
+    List<Player> players;
+    GameMode gameMode;
+    GameState state;
+  }
+
+  enum GameState {
+    Active, Inactive;
+  }
+
+  abstract class Player {
+    String uniqueIdentifier;
+  }
+
+  class HumanPlayer extends Player {
+    String username;
+    String password;
+  }
+
+  class AIPlayer extends Player {
+    int difficultyLevel;
+  }
+
+  class Currency {
+    String name;
+    double value;
+  }
+
+  class GameMode {
+    String name;
+    String description;
+  }
+
+  class GameDeveloper {
+    String name;
+    List<Game> games;
+  }
+
+  association GamingPlatform -> Game [*];
+  association GamingPlatform -> Currency [*];
+  association GamingPlatform -> GameMode [*];
+  association GamingPlatform -> GameDeveloper [*];
+  association Game -> Player [*];
+  association Game -> GameMode;
+}

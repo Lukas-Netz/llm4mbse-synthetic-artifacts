@@ -1,0 +1,47 @@
+
+classdiagram BookClub {
+
+  class BookClub {
+    String name;
+    String description;
+    List<Member> members;
+    List<Discussion> discussions;
+  }
+
+  class Member {
+    String username;
+    String password;
+    List<BookClub> bookClubs;
+  }
+
+  class Discussion {
+    String title;
+    String description;
+    List<Comment> comments;
+    BookClub bookClub;
+  }
+
+  class Comment {
+    String content;
+    Member commenter;
+    boolean isUnread;
+  }
+
+  association BookClub 
+    has 
+      -> Member [1..*];
+
+  association BookClub 
+    has 
+      -> Discussion [1..*];
+
+  association Member 
+    has 
+      -> BookClub [1..*];
+
+  association Discussion 
+    has 
+      -> Comment [1..*];
+
+  composition Member -> BookClub [1..*];
+}

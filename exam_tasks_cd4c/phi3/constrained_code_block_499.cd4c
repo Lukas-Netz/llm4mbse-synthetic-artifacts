@@ -1,0 +1,50 @@
+
+classdiagram MarineTrafficManagement {
+
+    class MarineTrafficManagement {
+      Hub hub;
+      List<Vessel> vessels;
+      List<Buoy> buoys;
+    }
+
+    class Hub {
+      -> Vessel [*];
+      -> Buoy [*];
+      void trackVessel(Vessel vessel);
+      void trackBuoy(Buoy buoy);
+      void sendAlert(Vessel vessel, String message);
+      void sendAlert(Buoy buoy, String message);
+      void receiveMessage(Vessel vessel, String message);
+      void receiveMessage(Buoy buoy, String message);
+    }
+
+    class Vessel {
+      String uniqueIdentifier;
+      String name;
+      VesselType type;
+      String message;
+      double speed;
+      double direction;
+      double position;
+    }
+
+    class Buoy {
+      String uniqueIdentifier;
+      String location;
+      BuoyType type;
+      String message;
+    }
+
+    enum VesselType {
+      CargoShip, Tanker, PassengerShip;
+    }
+
+    enum BuoyType {
+      NavigationBuoy, WarningBuoy;
+    }
+
+    association Hub -> Vessel [*];
+    association Hub -> Buoy [*];
+    association MarineTrafficManagement -> Vessel [*];
+    association MarineTrafficManagement -> Buoy [*];
+}

@@ -1,0 +1,52 @@
+
+classdiagram VotingSystem {
+
+  class Voter {
+    String id;
+    String name;
+  }
+
+  class Vote {
+    String voterId;
+    String option;
+    String timestamp;
+  }
+
+  class Election {
+    String id;
+    String name;
+    String startDate;
+    String endDate;
+    String result;
+  }
+
+  class Option {
+    String id;
+    String name;
+  }
+
+  class Administrator {
+    String id;
+    String name;
+    String role;
+  }
+
+  class Block {
+    String hash;
+    String previousHash;
+    String timestamp;
+    String data;
+  }
+
+  class Blockchain {
+    Block head;
+    Block tail;
+  }
+
+  composition VotingSystem -> (has) Blockchain;
+  composition Election -> (has) Option [*];
+  composition Election -> (has) Vote [*];
+  composition Administrator -> (has) VotingSystem [*];
+  association Voter --oVote;
+  association Administrator --oVotingSystem;
+}

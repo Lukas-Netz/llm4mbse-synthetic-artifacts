@@ -1,0 +1,63 @@
+
+classdiagram CryptoExchange {
+
+  class CryptoExchange {
+    String name;
+    String uniqueIdentifier;
+  }
+
+  abstract class Account {
+    String uniqueIdentifier;
+    double balance;
+  }
+
+  class UserAccount extends Account {
+    String username;
+    String password;
+  }
+
+  class BusinessAccount extends Account {
+    String businessName;
+    String taxID;
+  }
+
+  class Cryptocurrency {
+    String uniqueIdentifier;
+    String name;
+    double currentPrice;
+    double tradingVolume;
+  }
+
+  class Order {
+    String uniqueIdentifier;
+    OrderType type;
+    Cryptocurrency cryptocurrency;
+    double quantity;
+    double price;
+  }
+
+  enum OrderType {
+    Buy, Sell;
+  }
+
+  class TransactionFee {
+    double fee;
+    TransactionType transactionType;
+    double cryptocurrencyAmount;
+  }
+
+  enum TransactionType {
+    Buy, Sell, Deposit, Withdrawal;
+  }
+
+  class Notification {
+    String event;
+    Account account;
+  }
+
+  composition CryptoExchange -> Account [*];
+  composition CryptoExchange -> Cryptocurrency [*];
+  association Account <- Order [*];
+  association TransactionFee <- Order [*];
+  association Notification <- Account [*];
+}

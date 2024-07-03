@@ -1,0 +1,69 @@
+
+
+
+
+classdiagram PoetryPlatform  {
+
+  class Reading  {
+    String title;
+    String description;
+    Date date;
+    -> Poem[*];
+    -> User[*];
+  }
+
+  class Poem  {
+    String title;
+    String content;
+    -> Author[*];
+    -> Reading[*];
+  }
+
+  class Author  {
+    String name;
+  }
+
+  class User  {
+    String username;
+    -> Role[*];
+  }
+
+  enum Role  {
+    Organizer,
+    Reader,
+    Moderator
+  ;}
+
+  class AudioRecording  {
+    String url;
+    -> Poem[*];
+  }
+
+  class Review  {
+    String text;
+    int rating;
+    -> Poem[*];
+    -> User[*];
+  }
+
+  class SearchCriteria  {
+    String title;
+    String author;
+    String type;
+  }
+
+  class Notification  {
+    String message;
+    -> User[*];
+  }
+
+  composition Reading -> (has) Poem[*];
+  composition Reading -> (has) User[*];
+  composition Poem -> (has) Author[*];
+  composition Poem -> (has) Reading[*];
+  composition User -> (has) Role[*];
+  composition AudioRecording -> (has) Poem[*];
+  composition Review -> (has) Poem[*];
+  composition Review -> (has) User[*];
+  composition Notification -> (has) User[*];
+}

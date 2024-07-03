@@ -1,0 +1,52 @@
+
+
+classdiagram BlockchainGamePlatform {
+
+    class BlockchainNetwork {
+      -> Game [*];
+      -> User [*];
+    }
+
+    class Game {
+      String uniqueIdentifier;
+      GameStatus status;
+    }
+
+    enum GameStatus {
+      Active, Inactive
+    
+    
+	;
+    }
+
+    class PuzzleGame extends Game {
+      int difficultyLevel;
+      PuzzleType type;
+    }
+
+    class StrategyGame extends Game {
+      GameMode mode;
+      int playerCount;
+    }
+
+    class RolePlayingGame extends Game {
+      Character character;
+      Storyline storyline;
+    }
+
+    class User {
+      String uniqueIdentifier;
+      Profile profile;
+    }
+
+    class Profile {
+      String username;
+      String email;
+      String password;
+    }
+
+    composition BlockchainNetwork -> (has) Game [*];
+    composition BlockchainNetwork -> (has) User [*];
+    association Game -> BlockchainNetwork;
+    association User -> BlockchainNetwork;
+}

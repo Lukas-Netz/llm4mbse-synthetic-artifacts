@@ -1,0 +1,129 @@
+
+
+classdiagram GlacierMonitoringSystem {
+
+    class Glacier {
+      String uniqueIdentifier;
+      Location location;
+      Size size;
+      Type type;
+    }
+
+    class Sensor {
+      String uniqueIdentifier;
+      Glacier glacier;
+      Temperature temperature;
+      Humidity humidity;
+    }
+
+    class DataLogger {
+      String uniqueIdentifier;
+      Glacier glacier;
+      Sensor sensor;
+      Data data;
+    }
+
+    class Researcher {
+      String uniqueIdentifier;
+      Glacier glacier;
+      Data data;
+    }
+
+    enum Type {
+      Alpine, Continental, IceSheet
+    
+
+    
+;
+
+  composition GlacierMonitoringSystem  (has  Glacier)
+  
+  
+  
+  ;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  compositionsGlacierMonitoringSystem  (has)  <-> Glacier
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  associationResearcher  (with)  <-> Glacier
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  associationDataLogger  (with)  <-> Glacier
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ;
+}

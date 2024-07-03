@@ -1,0 +1,51 @@
+
+
+classdiagram SmartPort {
+
+    class Port {
+      String uniqueIdentifier;
+      boolean isOperational;
+    }
+
+    class Berth {
+      String uniqueIdentifier;
+      boolean isOccupied;
+    }
+
+    class Ship {
+      String uniqueIdentifier;
+      String name;
+      int cargoCapacity;
+    }
+
+    class Cargo {
+      String uniqueIdentifier;
+      String type;
+      int weight;
+    }
+
+    class Crane {
+      String uniqueIdentifier;
+      String type;
+      int capacity;
+    }
+
+    class Truck {
+      String uniqueIdentifier;
+      String type;
+      int capacity;
+    }
+
+    class Warehouse {
+      String uniqueIdentifier;
+      String name;
+      int capacity;
+    }
+
+  composition Port -> Berth [1..*];
+  composition Berth -> Ship [0..*];
+  association Ship -> Cargo;
+  association Cargo -> Crane;
+  association Crane -> Truck;
+  association Truck -> Warehouse;
+}

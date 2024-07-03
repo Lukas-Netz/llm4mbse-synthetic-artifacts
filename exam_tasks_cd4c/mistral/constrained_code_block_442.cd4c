@@ -1,0 +1,52 @@
+
+classdiagram FlightTraining {
+
+  class Simulator {
+    String name;
+    SimulatorType type;
+  }
+
+  enum SimulatorType {
+    FIXED_WING, HELICOPTER;
+  }
+
+  class FlightPlan {
+    String name;
+    Location startLocation;
+    Location endLocation;
+    List<Location> waypoints;
+  }
+
+  class Location {
+    String name;
+    double latitude;
+    double longitude;
+  }
+
+  class Pilot {
+    String name;
+    LicenseType licenseType;
+    List<Skill> skills;
+  }
+
+  enum LicenseType {
+    COMMERCIAL, PRIVATE;
+  }
+
+  enum Skill {
+    NAVIGATION, COMMUNICATION, EMERGENCY_PROCEDURES;
+  }
+
+  class ScoringMechanism {
+    double navigationScore;
+    double communicationScore;
+    double emergencyProceduresScore;
+  }
+
+  composition FlightTraining -> Simulator;
+  composition FlightTraining -> FlightPlan;
+  composition FlightPlan -> Location [*];
+  association Pilot --oAssignment;
+  association Simulator --oSimulates;
+  association ScoringMechanism --oEvaluates;
+}

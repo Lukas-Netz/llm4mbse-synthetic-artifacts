@@ -1,0 +1,75 @@
+
+classdiagram IndigenousLanguageLearningSystem {
+
+    class User {
+      String username;
+      String password;
+      void login();
+      void createAccount();
+      void enrollInCourse(Course course);
+      void submitAssignment(Assignment assignment);
+      void viewProgress();
+    }
+
+    class Course {
+      String courseName;
+      String language;
+      Curriculum curriculum;
+      List<Lesson> lessons;
+      List<Quiz> quizzes;
+      List<Exercise> exercises;
+      Instructor instructor;
+      void enrollUser(User user);
+      void submitAssignment(Assignment assignment);
+      void generateReport();
+    }
+
+    class Lesson {
+      String lessonName;
+      String lessonContent;
+      void completeLesson();
+    }
+
+    class Quiz {
+      String quizName;
+      String quizContent;
+      void takeQuiz();
+      void getQuizResult();
+    }
+
+    class Exercise {
+      String exerciseName;
+      String exerciseContent;
+      void completeExercise();
+    }
+
+    class Assignment {
+      String assignmentName;
+      String assignmentContent;
+      void submitAssignment();
+      void getFeedback();
+    }
+
+    class Instructor {
+      String instructorName;
+      String instructorExpertise;
+      void teachCourse();
+      void provideFeedback();
+    }
+
+    class DiscussionForum {
+      String forumName;
+      List<User> participants;
+      void postMessage(User user, String message);
+      String getLastMessage();
+    }
+
+    association User -> Course [0..*];
+    association Course -> Lesson [1..];
+    association Course -> Quiz [1..];
+    association Course -> Exercision [1..];
+    association Course -> Assignment [1..];
+    association Course -> Instructor [1..];
+    association User -> DiscussionForum [1..];
+    association Course -> DiscussionForum [1..];
+}

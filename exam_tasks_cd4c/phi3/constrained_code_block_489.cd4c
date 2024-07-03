@@ -1,0 +1,44 @@
+
+classdiagram ClimateChangeSimulationSystem {
+
+    class Simulation {
+      String uniqueId;
+      Date startDate;
+    }
+
+    class Scenario {
+      String name;
+      String description;
+    }
+
+    class Location {
+      String name;
+      double latitude;
+      double longitude;
+    }
+
+    class WeatherStation {
+      Location location;
+      double temperature;
+      double humidity;
+      double windSpeed;
+    }
+
+    class SimulationRun {
+      Simulation simulation;
+      Scenario scenario;
+    }
+
+    class DataPoint {
+      SimulationRun simulationRun;
+      Location location;
+      WeatherStation weatherStation;
+    }
+
+    association SimulationRun <-> DataPoint [*];
+    association SimulationRun <-> Location [*];
+    association SimulationRun <-> WeatherStation [*];
+    association Scenario <-> SimulationRun [*];
+    association Simulation <-> SimulationRun [0..*];
+    association Location <-> WeatherStation [*];
+}

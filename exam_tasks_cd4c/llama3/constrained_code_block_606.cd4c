@@ -1,0 +1,59 @@
+
+
+
+classdiagram DigitalTwin  {
+
+  class City  {
+    String name;
+    GeographicLocation location;
+    District  [] districts;
+  }
+
+  class District  {
+    String name;
+    City city;
+    Block  [] blocks;
+  }
+
+  class Block  {
+    String name;
+    District district;
+    Properties properties;
+  }
+
+  class InfrastructureComponent  {
+    String name;
+    City city;
+    Properties properties;
+  }
+
+  class Service  {
+    String name;
+    City city;
+    Properties properties;
+  }
+
+  class Properties  {
+    int populationDensity;
+    String landUse;
+    Infrastructure infrastructure;
+  }
+
+  class GeographicLocation  {
+    double latitude;
+    double longitude;
+  }
+
+  class Infrastructure  {
+    double length;
+    int capacity;
+    String status;
+  }
+
+  composition City -> (has) Districts;
+  composition District -> (has) Blocks;
+  composition City -> (has) InfrastructureComponents;
+  composition City -> (has) Services;
+  association InfrastructureComponent -> (partOf) City;
+  association Service -> (partOf) City;
+}

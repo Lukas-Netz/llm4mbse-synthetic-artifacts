@@ -1,0 +1,17 @@
+
+    <<h1>>
+    
+    
+    
+  classdiagram Smarthome {
+      
+      
+      
+      
+      
+      
+      
+    composition Smarthome -> (has) Hub;
+    composition Smarthome -> (has) BackupPower [0..1];
+    composition Hub -> Device [*];
+  }

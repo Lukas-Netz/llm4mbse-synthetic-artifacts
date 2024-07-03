@@ -1,0 +1,47 @@
+
+classdiagram SmartBuildingAnalytics {
+
+  class Building {
+    String name;
+    BuildingManagementSystem bms;
+    EnergyManagementSystem ems;
+    Device [][] devices;
+  }
+
+  abstract class Device {
+    String name;
+    EnergyConsumption consumption;
+  }
+
+  class Lighting extends Device {
+    int wattage;
+    int hoursOn;
+  }
+
+  class HVAC extends Device {
+    int power;
+    int runtime;
+  }
+
+  class Appliance extends Device {
+    int wattage;
+    int runtime;
+  }
+
+  class EnergyConsumption {
+    int kWh;
+    int cost;
+  }
+
+  class BuildingManagementSystem {
+    Building building;
+  }
+
+  class EnergyManagementSystem {
+    Building building;
+  }
+
+  composition Building -> BuildingManagementSystem [0..1];
+  composition Building -> EnergyManagementSystem [0..1];
+  composition Building -> Device [*];
+}

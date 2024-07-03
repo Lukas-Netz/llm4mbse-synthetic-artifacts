@@ -1,0 +1,61 @@
+
+classdiagram TravelAgency {
+
+  class Flight {
+    String departureAirport;
+    String arrivalAirport;
+    Date departureDate;
+    Date arrivalDate;
+    int price;
+  }
+
+  class Hotel {
+    String name;
+    String location;
+    int pricePerNight;
+    int maxGuests;
+  }
+
+  class CarRental {
+    String type;
+    String location;
+    int pricePerDay;
+    int maxDrivers;
+  }
+
+  class Customer {
+    String name;
+    String email;
+    String password;
+    int loyaltyPoints;
+    Booking [ ] bookings;
+  }
+
+  class Booking {
+    Customer customer;
+    Flight flight;
+    Hotel hotel;
+    CarRental carRental;
+    Date bookingDate;
+    boolean isCancelled;
+  }
+
+  class Employee {
+    String name;
+    String role;
+    String password;
+  }
+
+  class Database {
+    Flight [ ] flights;
+    Hotel [ ] hotels;
+    CarRental [ ] carRentals;
+    Customer [ ] customers;
+    Booking [ ] bookings;
+  }
+
+  composition TravelAgency -> Database;
+  composition Customer -> Booking [*];
+  association Employee -- Customer;
+  association Employee -- Booking;
+}

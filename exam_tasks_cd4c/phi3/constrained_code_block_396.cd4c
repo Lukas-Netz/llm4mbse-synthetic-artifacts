@@ -1,0 +1,119 @@
+
+classdiagram SmartAuctionPlatform {
+
+    class Auction {
+      String uniqueId;
+      Date startDate;
+      Date endDate;
+      AuctionType auctionType;
+      Status auctionStatus;
+      Hub hub;
+    }
+
+    class Item {
+      String uniqueId;
+      String name;
+      String description;
+      ItemType itemType;
+      Auction currentAuction;
+    }
+
+    class Bid {
+      String uniqueId;
+      Bidder bidder;
+      Item item;
+      BigDecimal bidAmount;
+      Status bidStatus;
+    }
+
+    class Bidder {
+      String uniqueId;
+      String name;
+      String email;
+      BidderStatus bidderStatus;
+    }
+
+    enum AuctionType {
+      FIXED_PRICE, TIMED, PROXY
+   
+   
+   ()
+   
+
+;
+    enum ItemType
+   
+    ;
+    enum BidderStatus
+   
+    ;
+    enum BidStatus
+   
+    ;
+    enum AuctionStatus
+   
+    ;
+}
+
+classdiagram
+
+    ;
+    class Hub
+    {
+      List<Auction> auctions;
+      List<Item> items;
+      List<Bid> bids;
+      List<Bidder> bidders;
+      List<BackupPower> backupPower;
+      void addAuction(Auction auction);
+      void removeAuction(Auction auction);
+      Auction getAuction(String uniqueId);
+      void addItem(Item item);
+      void removeItem(Item item);
+      Item getItem(String uniqueId);
+      void addBid(Bid bid);
+      void removeBid(Bid bid);
+      Bid getBid(String uniqueId);
+      void addBidder(Bidder bidder);
+      void removeBidder(Bidder bidder);
+      List<Bidder> getBidders();
+      void addBackupPower(BackupPower backupPower);
+      BackupPower getBackupPower(String uniqueId);
+    }
+
+    class BackupPower {
+      String uniqueId;
+      int capacityWh;
+    }
+
+    enum AuctionType {
+      FIXED_PRICE, TIMED, PROXY
+   
+    ;
+    enum ItemType
+   
+    ;
+    enum BidderStatus
+   
+    ;
+    enum BidStatus
+   
+    ;
+    enum AuctionStatus
+   
+    ;
+    enum ItemStatus
+   
+    ;
+   
+    enum BidderStatus
+   
+    ;
+    enum BidderStatus
+    ;
+    enum BidderStatus
+    ;
+    }
+    enum BidderStatus
+    ;
+    }

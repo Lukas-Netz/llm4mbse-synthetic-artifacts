@@ -1,0 +1,57 @@
+
+
+
+
+classdiagram MuseumARSystem  {
+
+  class Exhibit  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+    ExhibitType type;
+  }
+
+  enum ExhibitType  {
+    Artifact, InteractiveDisplay, MultimediaPresentation;
+  }
+
+  class InteractiveExperience  {
+    Exhibit exhibit;
+    Activity activity;
+  }
+
+  enum Activity  {
+    Quiz, Game, VirtualTour;
+  }
+
+  class VisitorProfile  {
+    String uniqueIdentifier;
+    String name;
+    String email;
+    String preferredLanguage;
+  }
+
+  class ARExperience  {
+    Exhibit exhibit;
+    Activity activity;
+  }
+
+  class MuseumStaff  {
+    String uniqueIdentifier;
+    String name;
+    Role role;
+  }
+
+  enum Role  {
+    Curator, Guide, Administrator;
+  }
+
+  composition MuseumStaff  ->  (has) Role;
+  composition Exhibit  ->  (has) ExhibitType;
+  composition InteractiveExperience  ->  (has) Activity;
+  composition ARExperience  ->  (has) Activity;
+  composition VisitorProfile  ->  (has) preferredLanguage;
+  composition Exhibit  ->  (has) InteractiveExperience [0..*];
+  composition Exhibit  ->  (has) ARExperience [0..*];
+  composition MuseumStaff  ->  (has) VisitorProfile [0..*];
+}

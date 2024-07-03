@@ -1,0 +1,45 @@
+
+classdiagram UrbanFarmDigitalTwin {
+
+    class Crop {
+      String uniqueId;
+      String name;
+      String type;
+      GrowthStage stage;
+      double height;
+      double weight;
+    }
+
+    class Sensor {
+      String uniqueId;
+      String location;
+      double temperature;
+      double humidity;
+      double light;
+      double soilMoisture;
+    }
+
+    class Farm {
+      String farmId;
+      String name;
+      List<Crop> crops;
+      List<Sensor> sensors;
+      Recommendation recommendations;
+      Scenario scenarios;
+    }
+
+    class Recommendation {
+      String target;
+      String recommendation;
+    }
+
+    class Scenario {
+      String target;
+      String scenarioDescription;
+      double predictedOutcome;
+    }
+
+    composition Farm -> (has) List<<Crop, Sensor>>;
+    composition Farm -> (has) Recommendation;
+    composition Farm -> (has) Scenario;
+}

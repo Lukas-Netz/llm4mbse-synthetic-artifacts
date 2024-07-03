@@ -1,0 +1,44 @@
+
+
+
+
+classdiagram SkillAssessment  {
+
+  class Employee  {
+    String uniqueIdentifier;
+    String name;
+  }
+
+  class Skill  {
+    String uniqueIdentifier;
+    String name;
+    String description;
+  }
+
+  class Assessment  {
+    Employee employee;
+    Skill skill;
+    int score;
+    Date date;
+  }
+
+  class Report  {
+    Employee employee;
+    List<Assessment> assessments;
+  }
+
+  class SkillAssessmentSystem  {
+    List<Employee> employees;
+    List<Skill> skills;
+    List<Assessment> assessments;
+    void generateAssessment(Employee employee, Skill skill);
+    Report generateReport(Employee employee);
+  }
+
+  composition SkillAssessmentSystem -> (has) employees;
+  composition SkillAssessmentSystem -> (has) skills;
+  composition SkillAssessmentSystem -> (has) assessments;
+  composition Employee -> (has) assessments;
+  composition Skill -> (has) assessments;
+  composition Report -> (has) assessments;
+}

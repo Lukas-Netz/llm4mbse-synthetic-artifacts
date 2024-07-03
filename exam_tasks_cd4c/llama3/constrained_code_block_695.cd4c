@@ -1,0 +1,39 @@
+
+
+
+
+classdiagram SmartGrid  {
+
+  class EnergyStorageUnit  {
+    int capacityKWh;
+    boolean isCharged;
+  }
+
+  class EnergyDistributionCenter  {
+    -> EnergyStorageUnit[*];
+    -> EnergyConsumptionPoint[*];
+  }
+
+  class EnergyConsumptionPoint  {
+    String uniqueIdentifier;
+    EnergyConsumptionPattern consumptionPattern;
+  }
+
+  class WeatherStation  {
+    WeatherData weatherData;
+  }
+
+  class WeatherData  {
+    double temperature;
+    double humidity;
+  }
+
+  enum EnergyConsumptionPattern  {
+    Residential, Commercial, Industrial;
+  }
+
+  composition EnergyDistributionCenter -> EnergyStorageUnit[*];
+  composition EnergyDistributionCenter -> EnergyConsumptionPoint[*];
+  composition EnergyConsumptionPoint -> EnergyDistributionCenter[*];
+  composition WeatherStation -> WeatherData;
+}

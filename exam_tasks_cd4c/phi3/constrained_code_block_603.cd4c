@@ -1,0 +1,50 @@
+
+classdiagram AutonomousCargoShipSystem {
+
+    class CargoShip {
+      String uniqueIdentifier;
+      String name;
+      String currentLocation;
+      List<CargoContainer> cargoContainers;
+      List<NavigationSystem> navigationSystems;
+      CargoManagement cargoManagement;
+
+      void changeSpeed(int speed);
+      void changeDirection(String direction);
+      void checkCargoStatus();
+      void checkNavigationSystemStatus();
+    }
+
+    class CargoContainer {
+      int containerWeight;
+      String containerType;
+      CargoContainerStatus status;
+    }
+
+    class NavigationSystem {
+      String systemType;
+      NavigationSystemStatus status;
+    }
+
+    class CargoManagement {
+      int cargoWeight;
+      String cargoType;
+      CargoManagementStatus status;
+    }
+
+    enum CargoContainerStatus {
+      Loaded, Unloaded, InTransit;
+    }
+
+    enum NavigationSystemStatus {
+      Operational, NonOperational;
+    }
+
+    enum CargoManagementStatus {
+      CargoLoaded, CargoUnloaded;
+    }
+
+    composition CargoShip -> (has) CargoManagement;
+    composition CargoShip -> (has) List<<NavigationSystem>>;
+    composition CargoShip -> (has) List<<CargoContainer>>;
+}

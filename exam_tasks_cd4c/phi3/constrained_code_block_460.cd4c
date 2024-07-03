@@ -1,0 +1,74 @@
+
+classdiagram VirtualRealityAstronomyTour {
+
+    class Tour {
+      String name;
+      String description;
+      List<Stop> stops;
+    }
+
+    class Stop {
+      String name;
+      String description;
+      List<Object> objects;
+    }
+
+    class Object {
+      String name;
+      String description;
+      Map<String, String> attributes;
+    }
+
+    class User {
+      String name;
+      List<Tour> takenTours;
+    }
+
+    <<association>>
+    class Tour {
+      User user;
+      void addStop(Stop stop);
+      void removeStop(Stop stop);
+    }
+
+    <<association>>
+    class Stop {
+      Tour tour;
+      Object object;
+    }
+
+    <<association>>
+    class Object {
+      Stop stop;
+    }
+
+    <<association>>
+    class User {
+      List<Tour> takenTours;
+    }
+
+    <<aggregation>>
+    class Object {
+      List<Attribute> attributes;
+    }
+
+    class Attribute {
+      String name;
+      String value;
+    }
+
+    <<association>>
+    class Attribute {
+      Object object;
+    }
+
+    <<association>>
+    class User {
+      List<Tour> takenTours;
+    }
+
+    <<association>>
+    class Tour {
+      List<User> users;
+    }
+}

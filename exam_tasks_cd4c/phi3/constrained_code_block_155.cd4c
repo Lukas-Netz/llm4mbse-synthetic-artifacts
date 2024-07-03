@@ -1,0 +1,147 @@
+
+classdiagram InteractiveWhiteboard {
+
+    class InteractiveWhiteboard {
+      String uniqueIdentifier;
+      Computer computer;
+      Stylus stylus;
+      SoftwareComponent softwareComponent;
+      Mode currentMode;
+      List<UserInteraction> userInteractions;
+    }
+
+    class Computer {
+      String computerID;
+    }
+
+    class Stylus {
+      String stylusID;
+    }
+
+    class SoftwareComponent {
+      int versionNumber;
+      void updateSoftware();
+    }
+
+    class Mode {
+      String modeName;
+    }
+
+    class UserInteraction {
+      String interactionType;
+      String interactionDetails;
+    }
+
+    enum Mode {
+      Presentation,
+      Drawing,
+      Game
+   
+    (has)
+   
+ ;
+
+  composition InteractiveWhiteboard 
+    (has Stylus);
+
+  composition InteractiveWhiteboard 
+    (has SoftwareComponent);
+
+  composition InteractiveWhiteboard 
+    (has Computer);
+
+  composition InteractiveWhiteboard 
+    (has Mode);
+
+  composition InteractiveWhiteboard 
+    (has UserInteraction);
+}
+
+enum Mode {
+  Presentation,
+  Drawing,
+  Game
+
+  (has)
+ 
+  ;
+
+  void switchMode(Mode newMode);
+}
+
+class SoftwareComponent {
+  int versionNumber;
+  void updateSoftware();
+}
+
+class UserInteraction {
+  String interactionType;
+  String interactionDetails;
+}
+
+class Stylus {
+  String stylusID;
+}
+
+class Computer {
+  String computerID;
+}
+
+class InteractiveWhiteboard {
+  String uniqueIdentifier;
+  Computer computer;
+  Stylus stylus;
+  SoftwareComponent softwareComponent;
+  Mode currentMode;
+  List<UserInteraction> userInteractions;
+}
+
+class Mode {
+  String modeName;
+  void switchMode(Mode newMode);
+}
+
+enum Mode {
+  Presentation,
+  Drawing,
+  Game
+
+  (has)
+ 
+  ;
+
+  void switchMode(Mode newMode);
+}
+
+class SoftwareComponent {
+  int versionNumber;
+  void updateSoftware();
+}
+
+class UserInteraction {
+  String interactionType;
+  String interactionDetails;
+}
+
+class Stylus {
+  String stylusID;
+}
+
+class Computer {
+  String computerID;
+}
+
+class InteractiveWhiteboard {
+  String uniqueIdentifier;
+  Computer computer;
+  Stylus stylus;
+  SoftwareComponent softwareComponent;
+  Mode currentMode;
+  List<UserInteraction> userInteractions;
+}
+
+
+
+
+
+}

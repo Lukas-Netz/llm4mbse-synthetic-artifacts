@@ -1,0 +1,73 @@
+
+
+
+
+classdiagram SmartPort  {
+
+  class Port  {
+    String uniqueIdentifier;
+    PortStatus status;
+  }
+
+  class Berth  {
+    String uniqueIdentifier;
+    BerthStatus status;
+  }
+
+  class Ship  {
+    String uniqueIdentifier;
+    String name;
+    int cargoCapacity;
+  }
+
+  class Cargo  {
+    String uniqueIdentifier;
+    CargoType type;
+    int weight;
+  }
+
+  class Crane  {
+    String uniqueIdentifier;
+    CraneType type;
+    int capacity;
+  }
+
+  class Truck  {
+    String uniqueIdentifier;
+    TruckType type;
+    int capacity;
+  }
+
+  class Warehouse  {
+    String uniqueIdentifier;
+    String name;
+    int capacity;
+  }
+
+  enum PortStatus  {
+    Operational, NotOperational;
+  }
+
+  enum BerthStatus  {
+    Occupied, NotOccupied;
+  }
+
+  enum CargoType  {
+    Container, Vehicle, Other;
+  }
+
+  enum CraneType  {
+    ContainerCrane, VehicleCrane, Other;
+  }
+
+  enum TruckType  {
+    ContainerTruck, VehicleTruck, Other;
+  }
+
+  composition Port  ->  (has) Berth[*];
+  composition Berth  ->  (has) Ship[*];
+  composition Ship  ->  (has) Cargo[*];
+  composition Ship  ->  (has) Crane[*];
+  composition Crane  ->  (has) Truck[*];
+  composition Truck  ->  (has) Warehouse[*];
+}

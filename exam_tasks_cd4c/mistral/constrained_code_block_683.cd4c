@@ -1,0 +1,33 @@
+
+classdiagram AirQualityMonitor {
+
+  class WearableDevice {
+    int temperature;
+    int humidity;
+    int airQualityIndex;
+  }
+
+  class MobileApp {
+    String userID;
+    String deviceID;
+    AlertSettings alertSettings;
+  }
+
+  class CloudServer {
+    int dataStorageCapacity;
+    AnalyticsAlgorithms analyticsAlgorithms;
+  }
+
+  class AlertSettings {
+    int lowAirQualityThreshold;
+    int highAirQualityThreshold;
+  }
+
+  class AnalyticsAlgorithms {
+    int trendAnalysis;
+    int historicalDataAnalysis;
+  }
+
+  composition WearableDevice -> MobileApp;
+  composition MobileApp -> CloudServer;
+}

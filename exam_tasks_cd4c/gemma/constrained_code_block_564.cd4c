@@ -1,0 +1,57 @@
+
+
+classdiagram CarbonNanotubeProductionSystem {
+
+  class ProductionProcess {
+    MultipleReactors reactors;
+    CentralControlUnit controlUnit;
+  }
+
+  class MultipleReactors {
+    String uniqueIdentifier;
+    ProductionCapacity capacity;
+  }
+
+  class CentralControlUnit {
+    void monitorProduction(MultipleReactors reactor);
+    void adjustProductionRate(MultipleReactors reactor);
+    Inventory inventory;
+  }
+
+  class Inventory {
+    String type;
+    int quantity;
+  }
+
+  class QualityControlDepartment {
+    TestingProtocols protocols;
+    void testBatch(Inventory batch);
+    boolean meetsQualityStandards(Inventory batch);
+  }
+
+  class TestingProtocols {
+    String name;
+    List<TestStep> steps;
+  }
+
+  class TestStep {
+    String description;
+    boolean isCompleted;
+  }
+
+  class ShippingDepartment {
+    Inventory inventory;
+    void packageAndShip(Inventory batch, Customer customer);
+  }
+
+  class Customer {
+    String name;
+    Address address;
+  }
+
+  composition ProductionProcess -> (has) CentralControlUnit;
+  composition ProductionProcess -> (has) MultipleReactors;
+  association Inventory -> QualityControlDepartment;
+  association Inventory -> ShippingDepartment;
+  association Customer -> ShippingDepartment;
+}

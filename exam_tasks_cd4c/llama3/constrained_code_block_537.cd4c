@@ -1,0 +1,46 @@
+
+
+
+
+classdiagram VrGeologyTours  {
+
+  class Tour  {
+    String name;
+    String description;
+    List<Stop> stops;
+  }
+
+  class Stop  {
+    String name;
+    String description;
+    List<Resource> resources;
+  }
+
+  class Resource  {
+    String name;
+    String description;
+    ResourceType type;
+  }
+
+  enum ResourceType  {
+    ROCK, FOSSIL, MINERAL, etc;
+  }
+
+  class User  {
+    String name;
+    Tour currentTour;
+  }
+
+  class Administrator  {
+    void createTour(Tour tour);
+    void editTour(Tour tour);
+    void deleteTour(Tour tour);
+    void addResource(Stop stop, Resource resource);
+    void removeResource(Stop stop, Resource resource);
+  }
+
+  composition Tour -> (has) Stop[*];
+  composition Stop -> (has) Resource[*];
+  composition User -> (has) Tour;
+  composition Administrator -> (has) Tour[*];
+}

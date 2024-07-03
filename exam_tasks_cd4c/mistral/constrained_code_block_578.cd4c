@@ -1,0 +1,62 @@
+
+classdiagram PersonalizedLearning {
+
+  class Student {
+    String username;
+    String password;
+    String firstName;
+    String lastName;
+    String email;
+    String enrolledCourses;
+    int progress;
+  }
+
+  class Course {
+    String courseId;
+    String courseName;
+    String curriculum;
+    String assessments;
+    Instructor instructor;
+  }
+
+  class Instructor {
+    String username;
+    String password;
+    String firstName;
+    String lastName;
+    String email;
+    Course [ ] courses;
+  }
+
+  class LearningHistory {
+    Student student;
+    Course course;
+    int performance;
+  }
+
+  class Progress {
+    Student student;
+    Course course;
+    int currentLesson;
+    int totalLessons;
+  }
+
+  class Recommendation {
+    Student student;
+    Course [ ] recommendedCourses;
+  }
+
+  class UserInterface {
+    Student student;
+    Instructor instructor;
+  }
+
+  association Student --oPersonalizedLearning;
+  association Instructor --oPersonalizedLearning;
+  association Course --oPersonalizedLearning;
+  association LearningHistory --oStudent;
+  association Progress --oStudent;
+  association Recommendation --oStudent;
+  association UserInterface --oStudent;
+  association UserInterface --oInstructor;
+}

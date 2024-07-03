@@ -1,0 +1,55 @@
+
+
+
+
+classdiagram HomeRenovationPlatform  {
+
+  class Homeowner  {
+    String name;
+    String email;
+    String password;
+  }
+
+  class Contractor  {
+    String name;
+    String email;
+    String password;
+    List<Image> workSamples;
+  }
+
+  class Image  {
+    String url;
+  }
+
+  class Quote  {
+    double price;
+    Contractor contractor;
+  }
+
+  class Project  {
+    String description;
+    Homeowner homeowner;
+    List<Quote> quotes;
+  }
+
+  class Rating  {
+    int rating;
+    Homeowner homeowner;
+    Contractor contractor;
+  }
+
+  class Payment  {
+    double amount;
+    Homeowner homeowner;
+    Contractor contractor;
+  }
+
+  composition Homeowner -> Project [1..*];
+  composition Contractor -> Quote [1..*];
+  composition Project -> Quote [1..*];
+  composition Quote -> Contractor [1];
+  composition Rating -> Homeowner [1];
+  composition Rating -> Contractor [1];
+  composition Payment -> Homeowner [1];
+  composition Payment -> Contractor [1];
+}

@@ -1,0 +1,51 @@
+
+classdiagram VRTraining {
+
+  class Trainer {
+    -> Game [*];
+    -> Player [*];
+  }
+
+  class Player {
+    String uniqueIdentifier;
+    String name;
+    int skillLevel;
+  }
+
+  class Game {
+    String name;
+    String description;
+    Level [ ] levels;
+  }
+
+  class Level {
+    int difficultyLevel;
+    int score;
+    Challenge [ ] challenges;
+  }
+
+  enum ChallengeType {
+    Shooting, Passing, Dribbling;
+  }
+
+  class Challenge {
+    ChallengeType type;
+    int difficultyLevel;
+    int score;
+    Outcome [ ] outcomes;
+  }
+
+  enum Outcome {
+    Success, Failure, PartialSuccess;
+  }
+
+  class VirtualCurrency {
+    int balance;
+  }
+
+  composition Trainer -> Game;
+  composition Trainer -> Player;
+  composition Game -> Level;
+  composition Level -> Challenge;
+  composition Challenge -> Outcome;
+}

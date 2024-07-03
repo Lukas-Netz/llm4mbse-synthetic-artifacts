@@ -1,0 +1,84 @@
+
+
+
+
+classdiagram RetailAnalytics  {
+
+  class Product  {
+    String name;
+    String category;
+  }
+
+  class Category  {
+    String name;
+  }
+
+  class Store  {
+    String name;
+  }
+
+  class Customer  {
+    String name;
+    String email;
+  }
+
+  class SalesData  {
+    Date date;
+    Product product;
+    int quantity;
+    double revenue;
+  }
+
+  class CustomerBehavior  {
+    Customer customer;
+    List<SalesData> salesData;
+  }
+
+  class Recommendation  {
+    String product;
+    String reason;
+  }
+
+  class DataIntegration  {
+    PointOfSaleSystem posSystem;
+    CustomerRelationshipManagementSystem crmSystem;
+    WebAnalyticsTool webAnalyticsTool;
+  }
+
+  class RealTimeAnalytics  {
+    List<SalesData> salesData;
+    CustomerBehavior customerBehavior;
+  }
+
+  class PredictiveAnalytics  {
+    List<SalesData> salesData;
+    CustomerBehavior customerBehavior;
+  }
+
+  class BusinessIntelligenceTool  {
+    String name;
+  }
+
+  class DataVisualizationTool  {
+    String name;
+  }
+
+  class Retailer  {
+    String name;
+  }
+
+  class AnalyticsSystem  {
+    DataIntegration dataIntegration;
+    RealTimeAnalytics realTimeAnalytics;
+    PredictiveAnalytics predictiveAnalytics;
+    BusinessIntelligenceTool businessIntelligenceTool;
+    DataVisualizationTool dataVisualizationTool;
+  }
+
+  composition AnalyticsSystem -> (has) DataIntegration;
+  composition AnalyticsSystem -> (has) RealTimeAnalytics;
+  composition AnalyticsSystem -> (has) PredictiveAnalytics;
+  composition AnalyticsSystem -> (has) BusinessIntelligenceTool;
+  composition AnalyticsSystem -> (has) DataVisualizationTool;
+  composition AnalyticsSystem -> (has) Retailer;
+  }

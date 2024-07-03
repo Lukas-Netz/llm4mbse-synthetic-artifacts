@@ -1,0 +1,50 @@
+
+classdiagram DigitalPianoLearningPlatform {
+
+    class User {
+      String username;
+      String password;
+      List<Course> enrolledCourses;
+    }
+
+    class Course {
+      String title;
+      String description;
+      List<Lesson> lessons;
+    }
+
+    class Lesson {
+      String title;
+      String description;
+      List<Exercise> exercises;
+    }
+
+    class Exercise {
+      int difficultyLevel;
+      List<String> assignedLessons;
+    }
+
+    class Progress {
+      String userId;
+      String courseId;
+      int exerciseId;
+      int score;
+    }
+
+    class Admin {
+      void manageCourse(Course course);
+      void manageLesson(Lesson lesson);
+      void manageExercise(Exercise exercise);
+      void trackUserProgress(User user);
+      void trackUserPerformance(User user);
+    }
+
+    association User - has -> List<<Course>>;
+    association Course - has -> List<<Lesson>>;
+    association Lesson - has -> List<<Exercise>>;
+    association User - has -> List<<Progress>>;
+    composition Admin - has -> Course;
+    composition Admin - has -> Lesson;
+    composition Admin - has -> Exercise;
+    composition Admin - has -> User;
+}

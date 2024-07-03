@@ -1,0 +1,61 @@
+
+
+
+
+classdiagram GraphicDesignCompany  {
+
+  class Designer  {
+    String uniqueID;
+    String name;
+    Set<DesignSkill> skills;
+  }
+
+  class DesignSkill  {
+    String software;
+    String expertise;
+  }
+
+  class Client  {
+    String uniqueID;
+    String name;
+  }
+
+  class DesignRequest  {
+    DesignType type;
+    Date deadline;
+  }
+
+  class DesignType  {
+    String name;
+  }
+
+  class DesignConcept  {
+    Designer designer;
+    DesignRequest request;
+    Design design;
+  }
+
+  class Design  {
+    String description;
+  }
+
+  class Rating  {
+    Designer designer;
+    Client client;
+    int rating;
+  }
+
+  class Company  {
+    Set<Designer> designers;
+    Set<Client> clients;
+  }
+
+  composition Company -> Designer[*];
+  composition Company -> Client[*];
+  composition Designer -> DesignRequest[*];
+  composition Designer -> DesignConcept[*];
+  composition Client -> DesignRequest[*];
+  composition DesignConcept -> Design[*];
+  composition Designer -> Rating[*];
+  composition Client -> Rating[*];
+}

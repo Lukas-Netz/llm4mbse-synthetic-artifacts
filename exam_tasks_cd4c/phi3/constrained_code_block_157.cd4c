@@ -1,0 +1,54 @@
+
+classdiagram AugmentedRealityMaintenayer {
+
+    class ARDevice {
+      String uniqueIdentifier;
+      DeviceStatus status;
+      List<Component> components;
+    }
+
+    class Component {
+      String uniqueIdentifier;
+      ComponentStatus status;
+    }
+
+    class MaintenanceTask {
+      String uniqueIdentifier;
+      String description;
+      TaskStatus status;
+    }
+
+    class MaintenanceHistory {
+      ARDevice arDevice;
+      List<MaintenanceTask> tasks;
+    }
+
+    class MaintenanceSystem {
+      Map<String, ARDevice> arDevices;
+      Map<String, MaintenanceHistory> maintenanceHistory;
+
+      void performMaintenance(ARDevice arDevice, MaintenanceTask task);
+      void updateComponentStatus(Component component, ComponentStatus status);
+      void updateDeviceStatus(ARDevice arDevice, DeviceStatus status);
+      void displayDeviceStatus(ARDevice arDevice);
+      void generateMaintenanceReport(ARDevice arDevice);
+    }
+
+    enum ComponentStatus {
+      Functioning, NotFunctioning;
+    }
+
+    enum DeviceStatus {
+      Operational, NotOperational;
+    }
+
+    enum TaskStatus {
+      Completed, InProgress;
+    }
+
+  association MaintenanceSystem -> ARDevice [*];
+  association MaintenanceSystem -> MaintenanceHistory [*];
+  association ARDevice -> MaintenanceHistory [*];
+  association ARDevice -> Component [*];
+  association MaintenanceTask -> MaintenanceHistory [*];
+}
